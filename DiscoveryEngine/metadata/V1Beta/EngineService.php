@@ -25,7 +25,7 @@ class EngineService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-œ
+„
 8google/cloud/discoveryengine/v1beta/engine_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/discoveryengine/v1beta/engine.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"²
 CreateEngineRequestA
 parent (	B1àAúA+
@@ -56,8 +56,20 @@ page_token (	BàA
 next_page_token (	"ˆ
 UpdateEngineRequest@
 engine (2+.google.cloud.discoveryengine.v1beta.EngineBàA/
-update_mask (2.google.protobuf.FieldMask2£
-
+update_mask (2.google.protobuf.FieldMask"Q
+PauseEngineRequest;
+name (	B-àAúA\'
+%discoveryengine.googleapis.com/Engine"R
+ResumeEngineRequest;
+name (	B-àAúA\'
+%discoveryengine.googleapis.com/Engine"P
+TuneEngineRequest;
+name (	B-àAúA\'
+%discoveryengine.googleapis.com/Engine"S
+TuneEngineMetadata=
+engine (	B-àAúA\'
+%discoveryengine.googleapis.com/Engine"
+TuneEngineResponse2§
 EngineServiceº
 CreateEngine8.google.cloud.discoveryengine.v1beta.CreateEngineRequest.google.longrunning.Operation"ÐÊAf
 *google.cloud.discoveryengine.v1beta.Engine8google.cloud.discoveryengine.v1beta.CreateEngineMetadataÚAparent,engine,engine_id‚Óä“G"=/v1beta/{parent=projects/*/locations/*/collections/*}/engines:engineŠ
@@ -65,7 +77,12 @@ page_token (	BàA
 google.protobuf.Empty8google.cloud.discoveryengine.v1beta.DeleteEngineMetadataÚAname‚Óä“?*=/v1beta/{name=projects/*/locations/*/collections/*/engines/*}à
 UpdateEngine8.google.cloud.discoveryengine.v1beta.UpdateEngineRequest+.google.cloud.discoveryengine.v1beta.Engine"iÚAengine,update_mask‚Óä“N2D/v1beta/{engine.name=projects/*/locations/*/collections/*/engines/*}:engine½
 	GetEngine5.google.cloud.discoveryengine.v1beta.GetEngineRequest+.google.cloud.discoveryengine.v1beta.Engine"LÚAname‚Óä“?=/v1beta/{name=projects/*/locations/*/collections/*/engines/*}Ð
-ListEngines7.google.cloud.discoveryengine.v1beta.ListEnginesRequest8.google.cloud.discoveryengine.v1beta.ListEnginesResponse"NÚAparent‚Óä“?=/v1beta/{parent=projects/*/locations/*/collections/*}/enginesRÊAdiscoveryengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB™
+ListEngines7.google.cloud.discoveryengine.v1beta.ListEnginesRequest8.google.cloud.discoveryengine.v1beta.ListEnginesResponse"NÚAparent‚Óä“?=/v1beta/{parent=projects/*/locations/*/collections/*}/enginesÊ
+PauseEngine7.google.cloud.discoveryengine.v1beta.PauseEngineRequest+.google.cloud.discoveryengine.v1beta.Engine"UÚAname‚Óä“H"C/v1beta/{name=projects/*/locations/*/collections/*/engines/*}:pause:*Í
+ResumeEngine8.google.cloud.discoveryengine.v1beta.ResumeEngineRequest+.google.cloud.discoveryengine.v1beta.Engine"VÚAname‚Óä“I"D/v1beta/{name=projects/*/locations/*/collections/*/engines/*}:resume:*ä
+
+TuneEngine6.google.cloud.discoveryengine.v1beta.TuneEngineRequest.google.longrunning.Operation"ÊA(
+TuneEngineResponseTuneEngineMetadataÚAname‚Óä“G"B/v1beta/{name=projects/*/locations/*/collections/*/engines/*}:tune:*RÊAdiscoveryengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB™
 \'com.google.cloud.discoveryengine.v1betaBEngineServiceProtoPZQcloud.google.com/go/discoveryengine/apiv1beta/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINEª#Google.Cloud.DiscoveryEngine.V1BetaÊ#Google\\Cloud\\DiscoveryEngine\\V1betaê&Google::Cloud::DiscoveryEngine::V1betabproto3'
         , true);
 

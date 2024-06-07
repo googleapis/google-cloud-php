@@ -26,14 +26,14 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
      */
-    private $predicate_filter = null;
+    protected $predicate_filter = null;
     /**
      * The filter to apply to the input row if `predicate_filter` returns any
      * results. If not provided, no results will be returned in the true case.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
      */
-    private $true_filter = null;
+    protected $true_filter = null;
     /**
      * The filter to apply to the input row if `predicate_filter` does not
      * return any results. If not provided, no results will be returned in the
@@ -41,7 +41,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
      */
-    private $false_filter = null;
+    protected $false_filter = null;
 
     /**
      * Constructor.

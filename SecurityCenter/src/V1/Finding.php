@@ -353,6 +353,18 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LoadBalancer load_balancers = 58;</code>
      */
     private $load_balancers;
+    /**
+     * Fields related to Cloud Armor findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudArmor cloud_armor = 59;</code>
+     */
+    private $cloud_armor = null;
+    /**
+     * Notebook associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Notebook notebook = 63;</code>
+     */
+    private $notebook = null;
 
     /**
      * Constructor.
@@ -517,6 +529,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Log entries that are relevant to the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $load_balancers
      *           The load balancers associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\CloudArmor $cloud_armor
+     *           Fields related to Cloud Armor findings.
+     *     @type \Google\Cloud\SecurityCenter\V1\Notebook $notebook
+     *           Notebook associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1972,6 +1988,78 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\LoadBalancer::class);
         $this->load_balancers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Fields related to Cloud Armor findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudArmor cloud_armor = 59;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\CloudArmor|null
+     */
+    public function getCloudArmor()
+    {
+        return $this->cloud_armor;
+    }
+
+    public function hasCloudArmor()
+    {
+        return isset($this->cloud_armor);
+    }
+
+    public function clearCloudArmor()
+    {
+        unset($this->cloud_armor);
+    }
+
+    /**
+     * Fields related to Cloud Armor findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudArmor cloud_armor = 59;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\CloudArmor $var
+     * @return $this
+     */
+    public function setCloudArmor($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\CloudArmor::class);
+        $this->cloud_armor = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notebook associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Notebook notebook = 63;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Notebook|null
+     */
+    public function getNotebook()
+    {
+        return $this->notebook;
+    }
+
+    public function hasNotebook()
+    {
+        return isset($this->notebook);
+    }
+
+    public function clearNotebook()
+    {
+        unset($this->notebook);
+    }
+
+    /**
+     * Notebook associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Notebook notebook = 63;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Notebook $var
+     * @return $this
+     */
+    public function setNotebook($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Notebook::class);
+        $this->notebook = $var;
 
         return $this;
     }

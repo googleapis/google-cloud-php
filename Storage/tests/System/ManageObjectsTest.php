@@ -287,33 +287,33 @@ class ManageObjectsTest extends StorageTestCase
         return $composedObject;
     }
 
-    /**
-     * @depends testComposeObjects
-     */
-    public function testSoftDeleteObject($object)
+    public function testSoftDeleteObject()
     {
-        // Set soft delete policy
-        self::$bucket->update([
-            'softDeletePolicy' => [
-                'retentionDurationSeconds' => 8*24*60*60
-                ]
-            ]);
-
-        $this->assertStorageObjectExists($object);
+        $softDeleteBucketName = "soft-delete-bucket-" . uniqid();
+        $softDeleteBucket = self::createBucket(
+            self::$client,
+            $softDeleteBucketName,
+            [
+                'location' => 'us-west1',
+                'softDeletePolicy' => ['retentionDurationSeconds' => 8*24*60*60]
+            ]
+        );
+        $object = $softDeleteBucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
+        $this->assertStorageObjectExists($softDeleteBucket, $object);
         $generation = $object->info()['generation'];
 
         $object->delete();
 
-        $this->assertStorageObjectNotExists($object);
-        $this->assertStorageObjectExists($object, [
+        $this->assertStorageObjectNotExists($softDeleteBucket, $object);
+        $this->assertStorageObjectExists($softDeleteBucket, $object, [
             'softDeleted' => true,
             'generation' => $generation
         ]);
 
-        $restoredObject = self::$bucket->restore($object->name(), $generation);
+        $restoredObject = $softDeleteBucket->restore($object->name(), $generation);
         $this->assertNotEquals($generation, $restoredObject->info()['generation']);
 
-        $this->assertStorageObjectExists($restoredObject);
+        $this->assertStorageObjectExists($softDeleteBucket, $restoredObject);
     }
 
     public function testRotatesCustomerSuppliedEncrpytion()
@@ -445,20 +445,31 @@ class ManageObjectsTest extends StorageTestCase
         }
     }
 
-    private function assertStorageObjectExists($object, $options = [], $isPresent = true)
+    /**
+     * Asserts that a provided StorageObject exists.
+     *
+     * A StorageObject can be created via several methods, including but not limited to:
+     * Directly via constructor such as during object creation,
+     * Or lazily by providing name to bucket object,
+     * Or by listing objects in a bucket.
+     */
+    private function assertStorageObjectExists($bucket, $object, $options = [], $isPresent = true)
     {
+        // validate provided object exists
         $this->assertEquals($isPresent, $object->exists($options));
-        $object = self::$bucket->object($object->name(), $options);
+        // validate object returned from $bucket->object() exists
+        $object = $bucket->object($object->name(), $options);
         $this->assertEquals($isPresent, $object->exists($options));
-        $objects = self::$bucket->objects($options);
+        // validate object exists in $bucket->objects() exists
+        $objects = $bucket->objects($options);
         $objects = array_map(function ($o) {
             return $o->name();
         }, iterator_to_array($objects));
         $this->assertEquals($isPresent, in_array($object->name(), $objects));
     }
 
-    private function assertStorageObjectNotExists($object, $options = [])
+    private function assertStorageObjectNotExists($bucket, $object, $options = [])
     {
-        $this->assertStorageObjectExists($object, $options, false);
+        $this->assertStorageObjectExists($bucket, $object, $options, false);
     }
 }

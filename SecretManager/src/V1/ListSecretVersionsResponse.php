@@ -9,28 +9,34 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [SecretManagerService.ListSecretVersions][google.cloud.secretmanager.v1.SecretManagerService.ListSecretVersions].
+ * Response message for
+ * [SecretManagerService.ListSecretVersions][google.cloud.secretmanager.v1.SecretManagerService.ListSecretVersions].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.ListSecretVersionsResponse</code>
  */
 class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] sorted in reverse by
-     * create_time (newest first).
+     * The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]
+     * sorted in reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.SecretVersion versions = 1;</code>
      */
     private $versions;
     /**
      * A token to retrieve the next page of results. Pass this value in
-     * [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token] to retrieve the next page.
+     * [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token]
+     * to retrieve the next page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
     /**
-     * The total number of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * The total number of
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] but 0 when
+     * the
+     * [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     * field is set.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -43,13 +49,18 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\SecretManager\V1\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $versions
-     *           The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] sorted in reverse by
-     *           create_time (newest first).
+     *           The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]
+     *           sorted in reverse by create_time (newest first).
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Pass this value in
-     *           [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token] to retrieve the next page.
+     *           [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token]
+     *           to retrieve the next page.
      *     @type int $total_size
-     *           The total number of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *           The total number of
+     *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] but 0 when
+     *           the
+     *           [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     *           field is set.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,8 +69,8 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] sorted in reverse by
-     * create_time (newest first).
+     * The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]
+     * sorted in reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.SecretVersion versions = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,8 +81,8 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] sorted in reverse by
-     * create_time (newest first).
+     * The list of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]
+     * sorted in reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.SecretVersion versions = 1;</code>
      * @param array<\Google\Cloud\SecretManager\V1\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $var
@@ -87,7 +98,8 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results. Pass this value in
-     * [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token] to retrieve the next page.
+     * [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token]
+     * to retrieve the next page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -99,7 +111,8 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results. Pass this value in
-     * [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token] to retrieve the next page.
+     * [ListSecretVersionsRequest.page_token][google.cloud.secretmanager.v1.ListSecretVersionsRequest.page_token]
+     * to retrieve the next page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
@@ -114,7 +127,11 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * The total number of
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] but 0 when
+     * the
+     * [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     * field is set.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -125,7 +142,11 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * The total number of
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] but 0 when
+     * the
+     * [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     * field is set.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var

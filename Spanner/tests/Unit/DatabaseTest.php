@@ -57,6 +57,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\LongRunning\Client\OperationsClient;
 
 /**
  * @group spanner

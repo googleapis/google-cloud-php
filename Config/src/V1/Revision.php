@@ -124,6 +124,36 @@ class Revision extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string worker_pool = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $worker_pool = '';
+    /**
+     * Output only. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version_constraint = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $tf_version_constraint = '';
+    /**
+     * Output only. The version of Terraform used to create the Revision.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $tf_version = '';
+    /**
+     * Output only. Cloud Storage path containing quota validation results. This
+     * field is set when a user sets Deployment.quota_validation field to ENABLED
+     * or ENFORCED. Format: `gs://{bucket}/{object}`.
+     *
+     * Generated from protobuf field <code>string quota_validation_results = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $quota_validation_results = '';
+    /**
+     * Optional. Input to control quota checks for resources in terraform
+     * configuration files. There are limited resources on which quota validation
+     * applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $quota_validation = 0;
     protected $blueprint;
 
     /**
@@ -182,6 +212,20 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/workerPools/{workerPoolId}`.
      *           If this field is unspecified, the default Cloud Build worker pool will be
      *           used.
+     *     @type string $tf_version_constraint
+     *           Output only. The user-specified Terraform version constraint.
+     *           Example: "=1.3.10".
+     *     @type string $tf_version
+     *           Output only. The version of Terraform used to create the Revision.
+     *           It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *     @type string $quota_validation_results
+     *           Output only. Cloud Storage path containing quota validation results. This
+     *           field is set when a user sets Deployment.quota_validation field to ENABLED
+     *           or ENFORCED. Format: `gs://{bucket}/{object}`.
+     *     @type int $quota_validation
+     *           Optional. Input to control quota checks for resources in terraform
+     *           configuration files. There are limited resources on which quota validation
+     *           applies.
      * }
      */
     public function __construct($data = NULL) {
@@ -672,6 +716,122 @@ class Revision extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->worker_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version_constraint = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTfVersionConstraint()
+    {
+        return $this->tf_version_constraint;
+    }
+
+    /**
+     * Output only. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version_constraint = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTfVersionConstraint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tf_version_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The version of Terraform used to create the Revision.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTfVersion()
+    {
+        return $this->tf_version;
+    }
+
+    /**
+     * Output only. The version of Terraform used to create the Revision.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTfVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tf_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Cloud Storage path containing quota validation results. This
+     * field is set when a user sets Deployment.quota_validation field to ENABLED
+     * or ENFORCED. Format: `gs://{bucket}/{object}`.
+     *
+     * Generated from protobuf field <code>string quota_validation_results = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getQuotaValidationResults()
+    {
+        return $this->quota_validation_results;
+    }
+
+    /**
+     * Output only. Cloud Storage path containing quota validation results. This
+     * field is set when a user sets Deployment.quota_validation field to ENABLED
+     * or ENFORCED. Format: `gs://{bucket}/{object}`.
+     *
+     * Generated from protobuf field <code>string quota_validation_results = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQuotaValidationResults($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->quota_validation_results = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input to control quota checks for resources in terraform
+     * configuration files. There are limited resources on which quota validation
+     * applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQuotaValidation()
+    {
+        return $this->quota_validation;
+    }
+
+    /**
+     * Optional. Input to control quota checks for resources in terraform
+     * configuration files. There are limited resources on which quota validation
+     * applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQuotaValidation($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Config\V1\QuotaValidation::class);
+        $this->quota_validation = $var;
 
         return $this;
     }

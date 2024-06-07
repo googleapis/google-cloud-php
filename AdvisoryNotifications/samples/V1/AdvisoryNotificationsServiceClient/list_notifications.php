@@ -34,8 +34,8 @@ use Google\Cloud\AdvisoryNotifications\V1\Notification;
  *
  * @param string $formattedParent The parent, which owns this collection of notifications.
  *                                Must be of the form "organizations/{organization}/locations/{location}"
- *                                or "projects/{project}/locations/{location}"
- *                                Please see {@see AdvisoryNotificationsServiceClient::locationName()} for help formatting this field.
+ *                                or "projects/{project}/locations/{location}". Please see
+ *                                {@see AdvisoryNotificationsServiceClient::locationName()} for help formatting this field.
  */
 function list_notifications_sample(string $formattedParent): void
 {

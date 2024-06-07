@@ -36,8 +36,15 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      */
     private $compute_resource = null;
     /**
-     * Maximum duration the task should run.
-     * The task will be killed and marked as FAILED if over this limit.
+     * Maximum duration the task should run before being automatically retried
+     * (if enabled) or automatically failed. Format the value of this field
+     * as a time limit in seconds followed by `s`&mdash;for example, `3600s`
+     * for 1 hour. The field accepts any value between 0 and the maximum listed
+     * for the `Duration` field type at
+     * https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however,
+     * the actual maximum run time for a job will be limited to the maximum run
+     * time for a job listed at
+     * https://cloud.google.com/batch/quotas#max-job-duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      */
@@ -102,8 +109,15 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Batch\V1\ComputeResource $compute_resource
      *           ComputeResource requirements.
      *     @type \Google\Protobuf\Duration $max_run_duration
-     *           Maximum duration the task should run.
-     *           The task will be killed and marked as FAILED if over this limit.
+     *           Maximum duration the task should run before being automatically retried
+     *           (if enabled) or automatically failed. Format the value of this field
+     *           as a time limit in seconds followed by `s`&mdash;for example, `3600s`
+     *           for 1 hour. The field accepts any value between 0 and the maximum listed
+     *           for the `Duration` field type at
+     *           https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however,
+     *           the actual maximum run time for a job will be limited to the maximum run
+     *           time for a job listed at
+     *           https://cloud.google.com/batch/quotas#max-job-duration.
      *     @type int $max_retry_count
      *           Maximum number of retries on failures.
      *           The default, 0, which means never retry.
@@ -209,8 +223,15 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum duration the task should run.
-     * The task will be killed and marked as FAILED if over this limit.
+     * Maximum duration the task should run before being automatically retried
+     * (if enabled) or automatically failed. Format the value of this field
+     * as a time limit in seconds followed by `s`&mdash;for example, `3600s`
+     * for 1 hour. The field accepts any value between 0 and the maximum listed
+     * for the `Duration` field type at
+     * https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however,
+     * the actual maximum run time for a job will be limited to the maximum run
+     * time for a job listed at
+     * https://cloud.google.com/batch/quotas#max-job-duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      * @return \Google\Protobuf\Duration|null
@@ -231,8 +252,15 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum duration the task should run.
-     * The task will be killed and marked as FAILED if over this limit.
+     * Maximum duration the task should run before being automatically retried
+     * (if enabled) or automatically failed. Format the value of this field
+     * as a time limit in seconds followed by `s`&mdash;for example, `3600s`
+     * for 1 hour. The field accepts any value between 0 and the maximum listed
+     * for the `Duration` field type at
+     * https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however,
+     * the actual maximum run time for a job will be limited to the maximum run
+     * time for a job listed at
+     * https://cloud.google.com/batch/quotas#max-job-duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      * @param \Google\Protobuf\Duration $var

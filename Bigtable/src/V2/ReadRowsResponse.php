@@ -32,7 +32,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes last_scanned_row_key = 2;</code>
      */
-    private $last_scanned_row_key = '';
+    protected $last_scanned_row_key = '';
     /**
      * If requested, provide enhanced query performance statistics. The semantics
      * dictate:
@@ -54,7 +54,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
      */
-    private $request_stats = null;
+    protected $request_stats = null;
 
     /**
      * Constructor.

@@ -39,7 +39,7 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
      * [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
      * or
      * [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
-     * API after engine creation. Please use
+     * API after engine creation. Use
      * [ChatEngineMetadata.dialogflow_agent][google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata.dialogflow_agent]
      * for actual agent association after Engine is created.
      *
@@ -73,7 +73,7 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
      *           [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
      *           or
      *           [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
-     *           API after engine creation. Please use
+     *           API after engine creation. Use
      *           [ChatEngineMetadata.dialogflow_agent][google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata.dialogflow_agent]
      *           for actual agent association after Engine is created.
      * }
@@ -144,7 +144,7 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
      * [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
      * or
      * [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
-     * API after engine creation. Please use
+     * API after engine creation. Use
      * [ChatEngineMetadata.dialogflow_agent][google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata.dialogflow_agent]
      * for actual agent association after Engine is created.
      *
@@ -167,7 +167,7 @@ class ChatEngineConfig extends \Google\Protobuf\Internal\Message
      * [EngineService.GetEngine][google.cloud.discoveryengine.v1.EngineService.GetEngine]
      * or
      * [EngineService.ListEngines][google.cloud.discoveryengine.v1.EngineService.ListEngines]
-     * API after engine creation. Please use
+     * API after engine creation. Use
      * [ChatEngineMetadata.dialogflow_agent][google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata.dialogflow_agent]
      * for actual agent association after Engine is created.
      *

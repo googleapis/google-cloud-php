@@ -30,7 +30,8 @@ use Google\Cloud\SecretManager\V1\DeleteSecretRequest;
 /**
  * Deletes a [Secret][google.cloud.secretmanager.v1.Secret].
  *
- * @param string $formattedName The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+ * @param string $formattedName The resource name of the
+ *                              [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
  *                              `projects/&#42;/secrets/*`. Please see
  *                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */

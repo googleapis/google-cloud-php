@@ -24,7 +24,7 @@ class GenerateInitialChangeStreamPartitionsRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
@@ -32,7 +32,7 @@ class GenerateInitialChangeStreamPartitionsRequest extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string app_profile_id = 2;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
 
     /**
      * @param string $tableName Required. The unique name of the table from which to get change stream

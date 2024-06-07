@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
+use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\PgJsonb;
 use Prophecy\Argument;
 
@@ -280,6 +281,7 @@ class SpannerClientTest extends SnippetTestCase
             [Numeric::class, 'numeric'],
             [PgNumeric::class, 'pgNumeric'],
             [PgJsonB::class, 'pgJsonb'],
+            [PgOid::class, 'pgOid'],
         ];
     }
 

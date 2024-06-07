@@ -28,19 +28,6 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class ComponentInfoCommandTest extends TestCase
 {
-    private static $expectedFiles = [
-        '.OwlBot.yaml',
-        '.gitattributes',
-        '.github/pull_request_template.md',
-        '.repo-metadata.json',
-        'CONTRIBUTING.md',
-        'LICENSE',
-        'README.md',
-        'VERSION',
-        'owlbot.py',
-        'phpunit.xml.dist',
-    ];
-
     private static CommandTester $commandTester;
 
     public static function setUpBeforeClass(): void
@@ -83,7 +70,7 @@ class ComponentInfoCommandTest extends TestCase
     {
         self::$commandTester->execute([
             '-c' => 'AccessContextManager',
-            '--fields' => 'name,package_name,doesnt_exist',
+            '--fields' => 'component_name,package_name,doesnt_exist',
         ]);
         $this->assertEquals(<<<EOL
 +-----------------------------------------------+
@@ -98,7 +85,7 @@ EOL, self::$commandTester->getDisplay());
     {
         self::$commandTester->execute([
             '-c' => 'AccessContextManager',
-            '--fields' => 'package_name,name',
+            '--fields' => 'package_name,component_name',
         ]);
         $this->assertEquals(<<<EOL
 +-----------------------------------------------+
@@ -115,7 +102,7 @@ EOL, self::$commandTester->getDisplay());
         $csv = $tmpDir . '/test.csv';
         self::$commandTester->execute([
             '-c' => 'AccessContextManager',
-            '--fields' => 'package_name,name,github_repo',
+            '--fields' => 'package_name,component_name,github_repo',
             '--csv' => $csv,
         ]);
         $this->assertFileExists($csv);

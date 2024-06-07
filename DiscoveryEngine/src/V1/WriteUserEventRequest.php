@@ -16,8 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent DataStore resource name, such as
+     * Required. The parent resource name.
+     * If the write user event action is applied in
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     * If the write user event action is applied in [Location][] level, for
+     * example, the event with
+     * [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,6 +36,13 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.discoveryengine.v1.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $user_event = null;
+    /**
+     * If set to true, the user event is written asynchronously after
+     * validation, and the API responds without waiting for the write.
+     *
+     * Generated from protobuf field <code>bool write_async = 3;</code>
+     */
+    protected $write_async = false;
 
     /**
      * Constructor.
@@ -36,10 +51,21 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent DataStore resource name, such as
+     *           Required. The parent resource name.
+     *           If the write user event action is applied in
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     *           is:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     *           If the write user event action is applied in [Location][] level, for
+     *           example, the event with
+     *           [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     *           [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     *           `projects/{project}/locations/{location}`.
      *     @type \Google\Cloud\DiscoveryEngine\V1\UserEvent $user_event
      *           Required. User event to write.
+     *     @type bool $write_async
+     *           If set to true, the user event is written asynchronously after
+     *           validation, and the API responds without waiting for the write.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,8 +74,16 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent DataStore resource name, such as
+     * Required. The parent resource name.
+     * If the write user event action is applied in
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     * If the write user event action is applied in [Location][] level, for
+     * example, the event with
+     * [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +94,16 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent DataStore resource name, such as
+     * Required. The parent resource name.
+     * If the write user event action is applied in
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+     * is:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+     * If the write user event action is applied in [Location][] level, for
+     * example, the event with
+     * [Document][google.cloud.discoveryengine.v1.Document] across multiple
+     * [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+     * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -107,6 +149,34 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\UserEvent::class);
         $this->user_event = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, the user event is written asynchronously after
+     * validation, and the API responds without waiting for the write.
+     *
+     * Generated from protobuf field <code>bool write_async = 3;</code>
+     * @return bool
+     */
+    public function getWriteAsync()
+    {
+        return $this->write_async;
+    }
+
+    /**
+     * If set to true, the user event is written asynchronously after
+     * validation, and the API responds without waiting for the write.
+     *
+     * Generated from protobuf field <code>bool write_async = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setWriteAsync($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->write_async = $var;
 
         return $this;
     }

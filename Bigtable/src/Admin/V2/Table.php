@@ -23,7 +23,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Map from cluster ID to per-cluster table state.
      * If it could not be determined whether or not the table has data in a
@@ -49,14 +49,14 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $granularity = 0;
+    protected $granularity = 0;
     /**
      * Output only. If this table was restored from another data source (e.g. a
      * backup), this field will be populated with information about the restore.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $restore_info = null;
+    protected $restore_info = null;
     /**
      * If specified, enable the change stream on this table.
      * Otherwise, the change stream is disabled and the change stream is not
@@ -64,7 +64,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.ChangeStreamConfig change_stream_config = 8;</code>
      */
-    private $change_stream_config = null;
+    protected $change_stream_config = null;
     /**
      * Set to true to make the table protected against data loss. i.e. deleting
      * the following resources through Admin APIs are prohibited:
@@ -75,7 +75,8 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool deletion_protection = 9;</code>
      */
-    private $deletion_protection = false;
+    protected $deletion_protection = false;
+    protected $automated_backup_config;
 
     /**
      * Constructor.
@@ -115,6 +116,9 @@ class Table extends \Google\Protobuf\Internal\Message
      *           * The column families in the table.
      *           * The instance containing the table.
      *           Note one can still delete the data stored in the table through Data APIs.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $automated_backup_policy
+     *           If specified, automated backups are enabled for this table.
+     *           Otherwise, automated backups are disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -358,6 +362,47 @@ class Table extends \Google\Protobuf\Internal\Message
         $this->deletion_protection = $var;
 
         return $this;
+    }
+
+    /**
+     * If specified, automated backups are enabled for this table.
+     * Otherwise, automated backups are disabled.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy automated_backup_policy = 13;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy|null
+     */
+    public function getAutomatedBackupPolicy()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasAutomatedBackupPolicy()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * If specified, automated backups are enabled for this table.
+     * Otherwise, automated backups are disabled.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy automated_backup_policy = 13;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $var
+     * @return $this
+     */
+    public function setAutomatedBackupPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutomatedBackupConfig()
+    {
+        return $this->whichOneof("automated_backup_config");
     }
 
 }

@@ -1,0 +1,63 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.backupdr.v1",
+    "libraryPackage": "Google\\Cloud\\BackupDR\\V1",
+    "services": {
+        "BackupDR": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BackupDRGapicClient",
+                    "rpcs": {
+                        "CreateManagementServer": {
+                            "methods": [
+                                "createManagementServer"
+                            ]
+                        },
+                        "DeleteManagementServer": {
+                            "methods": [
+                                "deleteManagementServer"
+                            ]
+                        },
+                        "GetManagementServer": {
+                            "methods": [
+                                "getManagementServer"
+                            ]
+                        },
+                        "ListManagementServers": {
+                            "methods": [
+                                "listManagementServers"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

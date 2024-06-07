@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Deprecated: not implemented.
  * Message for requesting list of Zones
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.edgenetwork.v1.ListZonesRequest</code>
  */
 class ListZonesRequest extends \Google\Protobuf\Internal\Message

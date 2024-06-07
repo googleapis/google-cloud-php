@@ -27,7 +27,6 @@ namespace Google\Cloud\DiscoveryEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -43,6 +42,7 @@ use Google\Cloud\DiscoveryEngine\V1\ImportDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\UpdateDocumentRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -146,6 +146,25 @@ final class DocumentServiceClient
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a branch
      * resource.
      *
@@ -191,6 +210,27 @@ final class DocumentServiceClient
             'data_store' => $dataStore,
             'branch' => $branch,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a fhir_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $fhirStore
+     *
+     * @return string The formatted fhir_store resource.
+     */
+    public static function fhirStoreName(string $project, string $location, string $dataset, string $fhirStore): string
+    {
+        return self::getPathTemplate('fhirStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'fhir_store' => $fhirStore,
         ]);
     }
 
@@ -312,6 +352,7 @@ final class DocumentServiceClient
      * Template: Pattern
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - fhirStore: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStoreBranch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
@@ -486,7 +527,7 @@ final class DocumentServiceClient
     /**
      * Bulk import of multiple
      * [Document][google.cloud.discoveryengine.v1.Document]s. Request processing
-     * may be synchronous. Non-existing items will be created.
+     * may be synchronous. Non-existing items are created.
      *
      * Note: It is possible for a subset of the
      * [Document][google.cloud.discoveryengine.v1.Document]s to be successfully

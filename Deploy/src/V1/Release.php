@@ -19,7 +19,8 @@ class Release extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Name of the `Release`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
+     * The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -178,7 +179,8 @@ class Release extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. Name of the `Release`. Format is
-     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
+     *           The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $uid
      *           Output only. Unique identifier of the `Release`.
      *     @type string $description
@@ -249,7 +251,8 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `Release`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
+     * The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -261,7 +264,8 @@ class Release extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `Release`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
+     * The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

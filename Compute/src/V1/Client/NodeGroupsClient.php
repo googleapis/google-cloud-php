@@ -44,6 +44,7 @@ use Google\Cloud\Compute\V1\ListNodeGroupsRequest;
 use Google\Cloud\Compute\V1\ListNodesNodeGroupsRequest;
 use Google\Cloud\Compute\V1\NodeGroup;
 use Google\Cloud\Compute\V1\PatchNodeGroupRequest;
+use Google\Cloud\Compute\V1\PerformMaintenanceNodeGroupRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyNodeGroupRequest;
 use Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest;
@@ -69,6 +70,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listAsync(ListNodeGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNodesAsync(ListNodesNodeGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface performMaintenanceAsync(PerformMaintenanceNodeGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setNodeTemplateAsync(SetNodeTemplateNodeGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface simulateMaintenanceEventAsync(SimulateMaintenanceEventNodeGroupRequest $request, array $optionalArgs = [])
@@ -131,7 +133,7 @@ final class NodeGroupsClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::supportedTransports. */
+    /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
         return [
@@ -165,6 +167,9 @@ final class NodeGroupsClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
+            'cancelOperationRequest' => null,
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
         ];
     }
 
@@ -494,6 +499,30 @@ final class NodeGroupsClient
     public function patch(PatchNodeGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Perform maintenance on a subset of nodes in the node group.
+     *
+     * The async variant is {@see NodeGroupsClient::performMaintenanceAsync()} .
+     *
+     * @param PerformMaintenanceNodeGroupRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function performMaintenance(PerformMaintenanceNodeGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
     /**

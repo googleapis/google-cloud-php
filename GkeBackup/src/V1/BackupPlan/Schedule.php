@@ -17,24 +17,47 @@ use Google\Protobuf\Internal\GPBUtil;
 class Schedule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     * repeating schedule for creating Backups via this BackupPlan. If this is
-     * defined, then
+     * Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that
+     * defines a repeating schedule for creating Backups via this BackupPlan.
+     * This is mutually exclusive with the
+     * [rpo_config][google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config]
+     * field since at most one schedule can be defined for a BackupPlan. If this
+     * is defined, then
      * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
      * must also be defined.
      * Default (empty): no automatic backup creation will occur.
      *
-     * Generated from protobuf field <code>string cron_schedule = 1;</code>
+     * Generated from protobuf field <code>string cron_schedule = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cron_schedule = '';
     /**
-     * This flag denotes whether automatic Backup creation is paused for this
-     * BackupPlan.
+     * Optional. This flag denotes whether automatic Backup creation is paused
+     * for this BackupPlan.
      * Default: False
      *
-     * Generated from protobuf field <code>bool paused = 2;</code>
+     * Generated from protobuf field <code>bool paused = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $paused = false;
+    /**
+     * Optional. Defines the RPO schedule configuration for this BackupPlan.
+     * This is mutually exclusive with the
+     * [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     * field since at most one schedule can be defined for a BackupPLan. If this
+     * is defined, then
+     * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     * must also be defined.
+     * Default (empty): no automatic backup creation will occur.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RpoConfig rpo_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $rpo_config = null;
+    /**
+     * Output only. Start time of next scheduled backup under this BackupPlan by
+     * either cron_schedule or rpo config.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp next_scheduled_backup_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $next_scheduled_backup_time = null;
 
     /**
      * Constructor.
@@ -43,16 +66,31 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cron_schedule
-     *           A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     *           repeating schedule for creating Backups via this BackupPlan. If this is
-     *           defined, then
+     *           Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that
+     *           defines a repeating schedule for creating Backups via this BackupPlan.
+     *           This is mutually exclusive with the
+     *           [rpo_config][google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config]
+     *           field since at most one schedule can be defined for a BackupPlan. If this
+     *           is defined, then
      *           [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
      *           must also be defined.
      *           Default (empty): no automatic backup creation will occur.
      *     @type bool $paused
-     *           This flag denotes whether automatic Backup creation is paused for this
-     *           BackupPlan.
+     *           Optional. This flag denotes whether automatic Backup creation is paused
+     *           for this BackupPlan.
      *           Default: False
+     *     @type \Google\Cloud\GkeBackup\V1\RpoConfig $rpo_config
+     *           Optional. Defines the RPO schedule configuration for this BackupPlan.
+     *           This is mutually exclusive with the
+     *           [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     *           field since at most one schedule can be defined for a BackupPLan. If this
+     *           is defined, then
+     *           [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     *           must also be defined.
+     *           Default (empty): no automatic backup creation will occur.
+     *     @type \Google\Protobuf\Timestamp $next_scheduled_backup_time
+     *           Output only. Start time of next scheduled backup under this BackupPlan by
+     *           either cron_schedule or rpo config.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,14 +99,17 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     * repeating schedule for creating Backups via this BackupPlan. If this is
-     * defined, then
+     * Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that
+     * defines a repeating schedule for creating Backups via this BackupPlan.
+     * This is mutually exclusive with the
+     * [rpo_config][google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config]
+     * field since at most one schedule can be defined for a BackupPlan. If this
+     * is defined, then
      * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
      * must also be defined.
      * Default (empty): no automatic backup creation will occur.
      *
-     * Generated from protobuf field <code>string cron_schedule = 1;</code>
+     * Generated from protobuf field <code>string cron_schedule = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getCronSchedule()
@@ -77,14 +118,17 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A standard [cron](https://wikipedia.com/wiki/cron) string that defines a
-     * repeating schedule for creating Backups via this BackupPlan. If this is
-     * defined, then
+     * Optional. A standard [cron](https://wikipedia.com/wiki/cron) string that
+     * defines a repeating schedule for creating Backups via this BackupPlan.
+     * This is mutually exclusive with the
+     * [rpo_config][google.cloud.gkebackup.v1.BackupPlan.Schedule.rpo_config]
+     * field since at most one schedule can be defined for a BackupPlan. If this
+     * is defined, then
      * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
      * must also be defined.
      * Default (empty): no automatic backup creation will occur.
      *
-     * Generated from protobuf field <code>string cron_schedule = 1;</code>
+     * Generated from protobuf field <code>string cron_schedule = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -97,11 +141,11 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag denotes whether automatic Backup creation is paused for this
-     * BackupPlan.
+     * Optional. This flag denotes whether automatic Backup creation is paused
+     * for this BackupPlan.
      * Default: False
      *
-     * Generated from protobuf field <code>bool paused = 2;</code>
+     * Generated from protobuf field <code>bool paused = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getPaused()
@@ -110,11 +154,11 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag denotes whether automatic Backup creation is paused for this
-     * BackupPlan.
+     * Optional. This flag denotes whether automatic Backup creation is paused
+     * for this BackupPlan.
      * Default: False
      *
-     * Generated from protobuf field <code>bool paused = 2;</code>
+     * Generated from protobuf field <code>bool paused = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -122,6 +166,94 @@ class Schedule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->paused = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines the RPO schedule configuration for this BackupPlan.
+     * This is mutually exclusive with the
+     * [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     * field since at most one schedule can be defined for a BackupPLan. If this
+     * is defined, then
+     * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     * must also be defined.
+     * Default (empty): no automatic backup creation will occur.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RpoConfig rpo_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeBackup\V1\RpoConfig|null
+     */
+    public function getRpoConfig()
+    {
+        return $this->rpo_config;
+    }
+
+    public function hasRpoConfig()
+    {
+        return isset($this->rpo_config);
+    }
+
+    public function clearRpoConfig()
+    {
+        unset($this->rpo_config);
+    }
+
+    /**
+     * Optional. Defines the RPO schedule configuration for this BackupPlan.
+     * This is mutually exclusive with the
+     * [cron_schedule][google.cloud.gkebackup.v1.BackupPlan.Schedule.cron_schedule]
+     * field since at most one schedule can be defined for a BackupPLan. If this
+     * is defined, then
+     * [backup_retain_days][google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy.backup_retain_days]
+     * must also be defined.
+     * Default (empty): no automatic backup creation will occur.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RpoConfig rpo_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeBackup\V1\RpoConfig $var
+     * @return $this
+     */
+    public function setRpoConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeBackup\V1\RpoConfig::class);
+        $this->rpo_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Start time of next scheduled backup under this BackupPlan by
+     * either cron_schedule or rpo config.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp next_scheduled_backup_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getNextScheduledBackupTime()
+    {
+        return $this->next_scheduled_backup_time;
+    }
+
+    public function hasNextScheduledBackupTime()
+    {
+        return isset($this->next_scheduled_backup_time);
+    }
+
+    public function clearNextScheduledBackupTime()
+    {
+        unset($this->next_scheduled_backup_time);
+    }
+
+    /**
+     * Output only. Start time of next scheduled backup under this BackupPlan by
+     * either cron_schedule or rpo config.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp next_scheduled_backup_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setNextScheduledBackupTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->next_scheduled_backup_time = $var;
 
         return $this;
     }

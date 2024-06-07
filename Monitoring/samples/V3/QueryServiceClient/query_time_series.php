@@ -30,10 +30,11 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\TimeSeriesData;
 
 /**
- * Queries time series using Monitoring Query Language. This method does not require a Workspace.
+ * Queries time series using Monitoring Query Language.
  *
- * @param string $name  The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                      which to execute the request. The format is:
+ * @param string $name  The
+ *                      [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                      to execute the request. The format is:
  *
  *                      projects/[PROJECT_ID_OR_NUMBER]
  * @param string $query The query in the [Monitoring Query

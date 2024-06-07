@@ -43,6 +43,20 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      * Generated from protobuf field <code>bool verify_replication_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $verify_replication_only = false;
+    /**
+     * Optional. MigrationType field decides if the migration is a physical file
+     * based migration or logical migration
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $migration_type = 0;
+    /**
+     * Optional. Parallel level for initial data sync. Currently only applicable
+     * for PostgreSQL.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExternalSyncParallelLevel sync_parallel_level = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sync_parallel_level = 0;
     protected $sync_config;
 
     /**
@@ -63,6 +77,12 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      *           Optional. Flag to verify settings required by replication setup only
      *     @type \Google\Cloud\Sql\V1beta4\MySqlSyncConfig $mysql_sync_config
      *           Optional. MySQL-specific settings for start external sync.
+     *     @type int $migration_type
+     *           Optional. MigrationType field decides if the migration is a physical file
+     *           based migration or logical migration
+     *     @type int $sync_parallel_level
+     *           Optional. Parallel level for initial data sync. Currently only applicable
+     *           for PostgreSQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -227,6 +247,62 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\MySqlSyncConfig::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. MigrationType field decides if the migration is a physical file
+     * based migration or logical migration
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMigrationType()
+    {
+        return $this->migration_type;
+    }
+
+    /**
+     * Optional. MigrationType field decides if the migration is a physical file
+     * based migration or logical migration
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMigrationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType::class);
+        $this->migration_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Parallel level for initial data sync. Currently only applicable
+     * for PostgreSQL.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExternalSyncParallelLevel sync_parallel_level = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSyncParallelLevel()
+    {
+        return $this->sync_parallel_level;
+    }
+
+    /**
+     * Optional. Parallel level for initial data sync. Currently only applicable
+     * for PostgreSQL.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExternalSyncParallelLevel sync_parallel_level = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSyncParallelLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel::class);
+        $this->sync_parallel_level = $var;
 
         return $this;
     }

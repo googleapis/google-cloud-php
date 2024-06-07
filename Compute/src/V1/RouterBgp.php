@@ -41,6 +41,12 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      */
     private $asn = null;
     /**
+     * Explicitly specifies a range of valid BGP Identifiers for this Router. It is provided as a link-local IPv4 range (from 169.254.0.0/16), of size at least /30, even if the BGP sessions are over IPv6. It must not overlap with any IPv4 BGP session ranges. Other vendors commonly call this "router ID".
+     *
+     * Generated from protobuf field <code>optional string identifier_range = 501573159;</code>
+     */
+    private $identifier_range = null;
+    /**
      * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 20 and 60. The default is 20.
      *
      * Generated from protobuf field <code>optional uint32 keepalive_interval = 276771516;</code>
@@ -63,6 +69,8 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *     @type int $asn
      *           Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
+     *     @type string $identifier_range
+     *           Explicitly specifies a range of valid BGP Identifiers for this Router. It is provided as a link-local IPv4 range (from 169.254.0.0/16), of size at least /30, even if the BGP sessions are over IPv6. It must not overlap with any IPv4 BGP session ranges. Other vendors commonly call this "router ID".
      *     @type int $keepalive_interval
      *           The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 20 and 60. The default is 20.
      * }
@@ -196,6 +204,42 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->asn = $var;
+
+        return $this;
+    }
+
+    /**
+     * Explicitly specifies a range of valid BGP Identifiers for this Router. It is provided as a link-local IPv4 range (from 169.254.0.0/16), of size at least /30, even if the BGP sessions are over IPv6. It must not overlap with any IPv4 BGP session ranges. Other vendors commonly call this "router ID".
+     *
+     * Generated from protobuf field <code>optional string identifier_range = 501573159;</code>
+     * @return string
+     */
+    public function getIdentifierRange()
+    {
+        return isset($this->identifier_range) ? $this->identifier_range : '';
+    }
+
+    public function hasIdentifierRange()
+    {
+        return isset($this->identifier_range);
+    }
+
+    public function clearIdentifierRange()
+    {
+        unset($this->identifier_range);
+    }
+
+    /**
+     * Explicitly specifies a range of valid BGP Identifiers for this Router. It is provided as a link-local IPv4 range (from 169.254.0.0/16), of size at least /30, even if the BGP sessions are over IPv6. It must not overlap with any IPv4 BGP session ranges. Other vendors commonly call this "router ID".
+     *
+     * Generated from protobuf field <code>optional string identifier_range = 501573159;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIdentifierRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->identifier_range = $var;
 
         return $this;
     }

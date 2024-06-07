@@ -31,7 +31,8 @@ use Google\Cloud\Monitoring\V3\ServiceLevelObjective;
 /**
  * Get a `ServiceLevelObjective` by name.
  *
- * @param string $formattedName Resource name of the `ServiceLevelObjective` to get. The format is:
+ * @param string $formattedName Resource name of the `ServiceLevelObjective` to get. The format
+ *                              is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
  *                              Please see {@see ServiceMonitoringServiceClient::serviceLevelObjectiveName()} for help formatting this field.

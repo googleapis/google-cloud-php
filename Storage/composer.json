@@ -16,7 +16,7 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
         "phpseclib/phpseclib": "^2.0||^3.0",
-        "google/cloud-pubsub": "^1.0"
+        "google/cloud-pubsub": "^2.0"
     },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",

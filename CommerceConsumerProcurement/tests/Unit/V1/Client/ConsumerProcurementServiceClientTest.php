@@ -24,7 +24,6 @@ namespace Google\Cloud\Commerce\Consumer\Procurement\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\Client\ConsumerProcurementServiceClient;
@@ -33,6 +32,7 @@ use Google\Cloud\Commerce\Consumer\Procurement\V1\ListOrdersRequest;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\ListOrdersResponse;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\Order;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\PlaceOrderRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransferConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the transfer config.
+     * Identifier. The resource name of the transfer config.
      * Transfer config names have the form either
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or
      * `projects/{project_id}/transferConfigs/{config_id}`,
@@ -29,7 +29,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * guaranteed or required. The name is ignored when creating a transfer
      * config.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -169,7 +169,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the transfer config.
+     *           Identifier. The resource name of the transfer config.
      *           Transfer config names have the form either
      *           `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/transferConfigs/{config_id}`,
@@ -250,7 +250,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the transfer config.
+     * Identifier. The resource name of the transfer config.
      * Transfer config names have the form either
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or
      * `projects/{project_id}/transferConfigs/{config_id}`,
@@ -258,7 +258,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * guaranteed or required. The name is ignored when creating a transfer
      * config.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -267,7 +267,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the transfer config.
+     * Identifier. The resource name of the transfer config.
      * Transfer config names have the form either
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or
      * `projects/{project_id}/transferConfigs/{config_id}`,
@@ -275,7 +275,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * guaranteed or required. The name is ignored when creating a transfer
      * config.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

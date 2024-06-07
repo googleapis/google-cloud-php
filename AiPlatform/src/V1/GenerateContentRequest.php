@@ -33,6 +33,14 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $contents;
     /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $system_instruction = null;
+    /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
@@ -42,6 +50,13 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tools;
+    /**
+     * Optional. Tool config. This config is shared for all tools provided in the
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ToolConfig tool_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tool_config = null;
     /**
      * Optional. Per request settings for blocking unsafe content.
      * Enforced on GenerateContentResponse.candidates.
@@ -92,12 +107,19 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           For single-turn queries, this is a single instance. For multi-turn queries,
      *           this is a repeated field that contains conversation history + latest
      *           request.
+     *     @type \Google\Cloud\AIPlatform\V1\Content $system_instruction
+     *           Optional. The user provided system instructions for the model.
+     *           Note: only text should be used in parts and content in each part will be in
+     *           a separate paragraph.
      *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
      *           knowledge and scope of the model.
+     *     @type \Google\Cloud\AIPlatform\V1\ToolConfig $tool_config
+     *           Optional. Tool config. This config is shared for all tools provided in the
+     *           request.
      *     @type array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -173,6 +195,46 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Content|null
+     */
+    public function getSystemInstruction()
+    {
+        return $this->system_instruction;
+    }
+
+    public function hasSystemInstruction()
+    {
+        return isset($this->system_instruction);
+    }
+
+    public function clearSystemInstruction()
+    {
+        unset($this->system_instruction);
+    }
+
+    /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Content $var
+     * @return $this
+     */
+    public function setSystemInstruction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Content::class);
+        $this->system_instruction = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
@@ -202,6 +264,44 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Tool::class);
         $this->tools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Tool config. This config is shared for all tools provided in the
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ToolConfig tool_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ToolConfig|null
+     */
+    public function getToolConfig()
+    {
+        return $this->tool_config;
+    }
+
+    public function hasToolConfig()
+    {
+        return isset($this->tool_config);
+    }
+
+    public function clearToolConfig()
+    {
+        unset($this->tool_config);
+    }
+
+    /**
+     * Optional. Tool config. This config is shared for all tools provided in the
+     * request.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ToolConfig tool_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ToolConfig $var
+     * @return $this
+     */
+    public function setToolConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ToolConfig::class);
+        $this->tool_config = $var;
 
         return $this;
     }

@@ -19,7 +19,9 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
+use Throwable;
 
 /**
  * A utility trait which utilizes exponential backoff to wait until an operation
@@ -55,7 +57,12 @@ trait JobWaitTrait
                 }
             };
 
-            (new ExponentialBackoff($maxRetries))
+            (new ExponentialBackoff($maxRetries, function (Throwable $e) {
+                if ($e instanceof ServiceException) {
+                    return $e->getCode() !== 499;
+                }
+                return true;
+            }))
                 ->execute($retryFn);
         }
     }

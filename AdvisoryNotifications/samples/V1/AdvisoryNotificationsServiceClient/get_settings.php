@@ -33,7 +33,8 @@ use Google\Cloud\AdvisoryNotifications\V1\Settings;
  *
  * @param string $formattedName The resource name of the settings to retrieve.
  *                              Format:
- *                              organizations/{organization}/locations/{location}/settings. Please see
+ *                              organizations/{organization}/locations/{location}/settings or
+ *                              projects/{projects}/locations/{location}/settings. Please see
  *                              {@see AdvisoryNotificationsServiceClient::settingsName()} for help formatting this field.
  */
 function get_settings_sample(string $formattedName): void

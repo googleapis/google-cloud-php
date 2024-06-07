@@ -16,16 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     * which to create the group. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     * to create the group. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Required. A group definition. It is an error to define the `name` field because
-     * the system assigns the name.
+     * Required. A group definition. It is an error to define the `name` field
+     * because the system assigns the name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,12 +39,13 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
-     * @param string                            $name  Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                                                 which to create the group. The format is:
+     * @param string                            $name  Required. The
+     *                                                 [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                                                 to create the group. The format is:
      *
      *                                                 projects/[PROJECT_ID_OR_NUMBER]
-     * @param \Google\Cloud\Monitoring\V3\Group $group Required. A group definition. It is an error to define the `name` field because
-     *                                                 the system assigns the name.
+     * @param \Google\Cloud\Monitoring\V3\Group $group Required. A group definition. It is an error to define the `name` field
+     *                                                 because the system assigns the name.
      *
      * @return \Google\Cloud\Monitoring\V3\CreateGroupRequest
      *
@@ -63,12 +65,13 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *           which to create the group. The format is:
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *           to create the group. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type \Google\Cloud\Monitoring\V3\Group $group
-     *           Required. A group definition. It is an error to define the `name` field because
-     *           the system assigns the name.
+     *           Required. A group definition. It is an error to define the `name` field
+     *           because the system assigns the name.
      *     @type bool $validate_only
      *           If true, validate this request but do not create the group.
      * }
@@ -79,8 +82,9 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     * which to create the group. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     * to create the group. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -92,8 +96,9 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     * which to create the group. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     * to create the group. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -109,8 +114,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A group definition. It is an error to define the `name` field because
-     * the system assigns the name.
+     * Required. A group definition. It is an error to define the `name` field
+     * because the system assigns the name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\Group|null
@@ -131,8 +136,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A group definition. It is an error to define the `name` field because
-     * the system assigns the name.
+     * Required. A group definition. It is an error to define the `name` field
+     * because the system assigns the name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\Group $var

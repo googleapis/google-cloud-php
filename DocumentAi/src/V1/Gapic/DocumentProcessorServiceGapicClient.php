@@ -77,6 +77,7 @@ use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -2114,6 +2115,8 @@ class DocumentProcessorServiceGapicClient
      *
      *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
      *           Options to control Custom Document Extraction (CDE) Processor.
+     *     @type FoundationModelTuningOptions $foundationModelTuningOptions
+     *           Options to control foundation model tuning of a processor.
      *     @type DocumentSchema $documentSchema
      *           Optional. The schema the processor version will be trained with.
      *     @type InputData $inputData
@@ -2146,6 +2149,12 @@ class DocumentProcessorServiceGapicClient
         if (isset($optionalArgs['customDocumentExtractionOptions'])) {
             $request->setCustomDocumentExtractionOptions(
                 $optionalArgs['customDocumentExtractionOptions']
+            );
+        }
+
+        if (isset($optionalArgs['foundationModelTuningOptions'])) {
+            $request->setFoundationModelTuningOptions(
+                $optionalArgs['foundationModelTuningOptions']
             );
         }
 

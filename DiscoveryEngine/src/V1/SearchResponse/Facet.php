@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Facet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The key for this facet. E.g., "colors" or "price". It matches
+     * The key for this facet. For example, `"colors"` or `"price"`. It matches
      * [SearchRequest.FacetSpec.FacetKey.key][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.key].
      *
      * Generated from protobuf field <code>string key = 1;</code>
@@ -42,7 +42,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           The key for this facet. E.g., "colors" or "price". It matches
+     *           The key for this facet. For example, `"colors"` or `"price"`. It matches
      *           [SearchRequest.FacetSpec.FacetKey.key][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.key].
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet\FacetValue>|\Google\Protobuf\Internal\RepeatedField $values
      *           The facet values for this field.
@@ -56,7 +56,7 @@ class Facet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key for this facet. E.g., "colors" or "price". It matches
+     * The key for this facet. For example, `"colors"` or `"price"`. It matches
      * [SearchRequest.FacetSpec.FacetKey.key][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.key].
      *
      * Generated from protobuf field <code>string key = 1;</code>
@@ -68,7 +68,7 @@ class Facet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key for this facet. E.g., "colors" or "price". It matches
+     * The key for this facet. For example, `"colors"` or `"price"`. It matches
      * [SearchRequest.FacetSpec.FacetKey.key][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.key].
      *
      * Generated from protobuf field <code>string key = 1;</code>

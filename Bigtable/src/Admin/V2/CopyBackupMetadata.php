@@ -23,13 +23,13 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Information about the source backup that is being copied from.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.BackupInfo source_backup_info = 2;</code>
      */
-    private $source_backup_info = null;
+    protected $source_backup_info = null;
     /**
      * The progress of the
      * [CopyBackup][google.bigtable.admin.v2.BigtableTableAdmin.CopyBackup]
@@ -37,7 +37,7 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 3;</code>
      */
-    private $progress = null;
+    protected $progress = null;
 
     /**
      * Constructor.

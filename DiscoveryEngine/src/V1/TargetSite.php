@@ -55,6 +55,12 @@ class TargetSite extends \Google\Protobuf\Internal\Message
      */
     protected $generated_uri_pattern = '';
     /**
+     * Output only. Root domain of the provided_uri_pattern.
+     *
+     * Generated from protobuf field <code>string root_domain_uri = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $root_domain_uri = '';
+    /**
      * Output only. Site ownership and validity verification status.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SiteVerificationInfo site_verification_info = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -104,6 +110,8 @@ class TargetSite extends \Google\Protobuf\Internal\Message
      *           generate the URI pattern to be used by the search engine.
      *     @type string $generated_uri_pattern
      *           Output only. This is system-generated based on the provided_uri_pattern.
+     *     @type string $root_domain_uri
+     *           Output only. Root domain of the provided_uri_pattern.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SiteVerificationInfo $site_verification_info
      *           Output only. Site ownership and validity verification status.
      *     @type int $indexing_status
@@ -263,6 +271,32 @@ class TargetSite extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->generated_uri_pattern = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Root domain of the provided_uri_pattern.
+     *
+     * Generated from protobuf field <code>string root_domain_uri = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRootDomainUri()
+    {
+        return $this->root_domain_uri;
+    }
+
+    /**
+     * Output only. Root domain of the provided_uri_pattern.
+     *
+     * Generated from protobuf field <code>string root_domain_uri = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRootDomainUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->root_domain_uri = $var;
 
         return $this;
     }

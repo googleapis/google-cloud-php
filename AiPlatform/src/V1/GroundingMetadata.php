@@ -22,11 +22,11 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      */
     private $web_search_queries;
     /**
-     * Optional. List of grounding attributions.
+     * Optional. Google search entry for the following-up web searches.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $grounding_attributions;
+    private $search_entry_point = null;
 
     /**
      * Constructor.
@@ -36,8 +36,8 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $web_search_queries
      *           Optional. Web search queries for the following-up web search.
-     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingAttribution>|\Google\Protobuf\Internal\RepeatedField $grounding_attributions
-     *           Optional. List of grounding attributions.
+     *     @type \Google\Cloud\AIPlatform\V1\SearchEntryPoint $search_entry_point
+     *           Optional. Google search entry for the following-up web searches.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,27 +72,37 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of grounding attributions.
+     * Optional. Google search entry for the following-up web searches.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\SearchEntryPoint|null
      */
-    public function getGroundingAttributions()
+    public function getSearchEntryPoint()
     {
-        return $this->grounding_attributions;
+        return $this->search_entry_point;
+    }
+
+    public function hasSearchEntryPoint()
+    {
+        return isset($this->search_entry_point);
+    }
+
+    public function clearSearchEntryPoint()
+    {
+        unset($this->search_entry_point);
     }
 
     /**
-     * Optional. List of grounding attributions.
+     * Optional. Google search entry for the following-up web searches.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GroundingAttribution>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\SearchEntryPoint $var
      * @return $this
      */
-    public function setGroundingAttributions($var)
+    public function setSearchEntryPoint($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingAttribution::class);
-        $this->grounding_attributions = $arr;
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SearchEntryPoint::class);
+        $this->search_entry_point = $var;
 
         return $this;
     }

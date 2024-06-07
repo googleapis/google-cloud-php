@@ -17,9 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UnenrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the project resource in the form: `projects/{project_id}`
+     * Required. The name of the project resource in the form:
+     * `projects/{project_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -37,7 +38,8 @@ class UnenrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the project resource in the form: `projects/{project_id}`
+     *           Required. The name of the project resource in the form:
+     *           `projects/{project_id}`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_source_ids
      *           Data sources that are unenrolled. It is required to provide at least one
      *           data source id.
@@ -49,9 +51,10 @@ class UnenrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the project resource in the form: `projects/{project_id}`
+     * Required. The name of the project resource in the form:
+     * `projects/{project_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -60,9 +63,10 @@ class UnenrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the project resource in the form: `projects/{project_id}`
+     * Required. The name of the project resource in the form:
+     * `projects/{project_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

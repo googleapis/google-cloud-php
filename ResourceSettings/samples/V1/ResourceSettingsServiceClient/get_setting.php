@@ -34,7 +34,8 @@ use Google\Cloud\ResourceSettings\V1\Setting;
  * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
  * setting does not exist.
  *
- * @param string $formattedName The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+ * @param string $formattedName The name of the setting to get. See
+ *                              [Setting][google.cloud.resourcesettings.v1.Setting] for naming
  *                              requirements. Please see
  *                              {@see ResourceSettingsServiceClient::settingName()} for help formatting this field.
  */

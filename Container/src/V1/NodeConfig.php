@@ -331,6 +331,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
      */
     private $secondary_boot_disks;
+    /**
+     * Secondary boot disk update strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
+     */
+    private $secondary_boot_disk_update_strategy = null;
 
     /**
      * Constructor.
@@ -502,6 +508,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Reserved for future use.
      *     @type array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $secondary_boot_disks
      *           List of secondary boot disks attached to the nodes.
+     *     @type \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $secondary_boot_disk_update_strategy
+     *           Secondary boot disk update strategy.
      * }
      */
     public function __construct($data = NULL) {
@@ -1817,6 +1825,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\SecondaryBootDisk::class);
         $this->secondary_boot_disks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Secondary boot disk update strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
+     * @return \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy|null
+     */
+    public function getSecondaryBootDiskUpdateStrategy()
+    {
+        return $this->secondary_boot_disk_update_strategy;
+    }
+
+    public function hasSecondaryBootDiskUpdateStrategy()
+    {
+        return isset($this->secondary_boot_disk_update_strategy);
+    }
+
+    public function clearSecondaryBootDiskUpdateStrategy()
+    {
+        unset($this->secondary_boot_disk_update_strategy);
+    }
+
+    /**
+     * Secondary boot disk update strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
+     * @param \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $var
+     * @return $this
+     */
+    public function setSecondaryBootDiskUpdateStrategy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy::class);
+        $this->secondary_boot_disk_update_strategy = $var;
 
         return $this;
     }

@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The metric descriptor on which to execute the request. The format is:
+     * Required. The metric descriptor on which to execute the request. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      * An example value of `[METRIC_ID]` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
@@ -26,7 +27,8 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The metric descriptor on which to execute the request. The format is:
+     * @param string $name Required. The metric descriptor on which to execute the request. The format
+     *                     is:
      *
      *                     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      *
@@ -51,7 +53,8 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The metric descriptor on which to execute the request. The format is:
+     *           Required. The metric descriptor on which to execute the request. The format
+     *           is:
      *               projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      *           An example value of `[METRIC_ID]` is
      *           `"compute.googleapis.com/instance/disk/read_bytes_count"`.
@@ -63,7 +66,8 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The metric descriptor on which to execute the request. The format is:
+     * Required. The metric descriptor on which to execute the request. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      * An example value of `[METRIC_ID]` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
@@ -77,7 +81,8 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The metric descriptor on which to execute the request. The format is:
+     * Required. The metric descriptor on which to execute the request. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      * An example value of `[METRIC_ID]` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.

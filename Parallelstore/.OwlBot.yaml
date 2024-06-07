@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/parallelstore/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/Parallelstore/$1/$2
+api-name: Parallelstore

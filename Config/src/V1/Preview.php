@@ -59,9 +59,9 @@ class Preview extends \Google\Protobuf\Internal\Message
      */
     protected $preview_mode = 0;
     /**
-     * Optional. Optional service account. If omitted, the deployment resource
-     * reference must be provided, and the service account attached to the
-     * deployment will be used.
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * previewing resources.
+     * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
      * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -137,6 +137,20 @@ class Preview extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string logs = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $logs = '';
+    /**
+     * Output only. The current Terraform version set on the preview.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $tf_version = '';
+    /**
+     * Optional. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tf_version_constraint = null;
     protected $blueprint;
 
     /**
@@ -165,9 +179,9 @@ class Preview extends \Google\Protobuf\Internal\Message
      *     @type int $preview_mode
      *           Optional. Current mode of preview.
      *     @type string $service_account
-     *           Optional. Optional service account. If omitted, the deployment resource
-     *           reference must be provided, and the service account attached to the
-     *           deployment will be used.
+     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           previewing resources.
+     *           Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *     @type string $artifacts_gcs_bucket
      *           Optional. User-defined location of Cloud Build logs, artifacts, and
      *           in Google Cloud Storage.
@@ -203,6 +217,12 @@ class Preview extends \Google\Protobuf\Internal\Message
      *           Output only. Artifacts from preview.
      *     @type string $logs
      *           Output only. Location of preview logs in `gs://{bucket}/{object}` format.
+     *     @type string $tf_version
+     *           Output only. The current Terraform version set on the preview.
+     *           It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *     @type string $tf_version_constraint
+     *           Optional. The user-specified Terraform version constraint.
+     *           Example: "=1.3.10".
      * }
      */
     public function __construct($data = NULL) {
@@ -418,9 +438,9 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional service account. If omitted, the deployment resource
-     * reference must be provided, and the service account attached to the
-     * deployment will be used.
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * previewing resources.
+     * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
      * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -431,9 +451,9 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional service account. If omitted, the deployment resource
-     * reference must be provided, and the service account attached to the
-     * deployment will be used.
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * previewing resources.
+     * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
      * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -751,6 +771,72 @@ class Preview extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->logs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current Terraform version set on the preview.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTfVersion()
+    {
+        return $this->tf_version;
+    }
+
+    /**
+     * Output only. The current Terraform version set on the preview.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTfVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tf_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTfVersionConstraint()
+    {
+        return isset($this->tf_version_constraint) ? $this->tf_version_constraint : '';
+    }
+
+    public function hasTfVersionConstraint()
+    {
+        return isset($this->tf_version_constraint);
+    }
+
+    public function clearTfVersionConstraint()
+    {
+        unset($this->tf_version_constraint);
+    }
+
+    /**
+     * Optional. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTfVersionConstraint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tf_version_constraint = $var;
 
         return $this;
     }

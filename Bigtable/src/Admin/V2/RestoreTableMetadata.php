@@ -21,13 +21,13 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the restore source.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreSourceType source_type = 2;</code>
      */
-    private $source_type = 0;
+    protected $source_type = 0;
     /**
      * If exists, the name of the long-running operation that will be used to
      * track the post-restore optimization process to optimize the performance of
@@ -41,7 +41,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string optimize_table_operation_name = 4;</code>
      */
-    private $optimize_table_operation_name = '';
+    protected $optimize_table_operation_name = '';
     /**
      * The progress of the
      * [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
@@ -49,7 +49,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 5;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     protected $source_info;
 
     /**

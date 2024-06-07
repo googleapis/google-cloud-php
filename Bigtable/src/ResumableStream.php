@@ -18,15 +18,21 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
-use Google\Cloud\Core\ExponentialBackoff;
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\RetrySettings;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
+use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
 
 /**
  * User stream which handles failure from upstream, retries if necessary and
  * provides single retrying user stream.
+ * @internal
  */
 class ResumableStream implements \IteratorAggregate
 {
+    use ArrayTrait;
+
     const DEFAULT_MAX_RETRIES = 3;
 
     /**
@@ -44,9 +50,19 @@ class ResumableStream implements \IteratorAggregate
     private $retries;
 
     /**
-     * @var callable
+     * @var GapicClient
      */
-    private $apiFunction;
+    private $gapicClient;
+
+    /**
+     * @var Message
+     */
+    private $request;
+
+    /**
+     * @var string
+     */
+    private $method;
 
     /**
      * @var callable
@@ -59,25 +75,47 @@ class ResumableStream implements \IteratorAggregate
     private $retryFunction;
 
     /**
+     * @var array
+     */
+    private $callOptions;
+
+    /**
      * Constructs a resumable stream.
      *
-     * @param callable $apiFunction Function to execute to get server stream. Function signature
-     *        should match: `function (...) : Google\ApiCore\ServerStream`.
+     * @param GapicClient $gapicClient The GAPIC client to use in order to send requests.
+     * @param string $method The method to call on the GAPIC client.
+     * @param Message $request The request to pass on to the GAPIC client method.
      * @param callable $argumentFunction Function which returns the argument to be used while
      *        calling `$apiFunction`.
      * @param callable $retryFunction Function which determines whether to retry or not.
-     * @param int $retries [optional] Number of times to retry. **Defaults to** `3`.
+     * @param array $callOptions {
+     *        @option RetrySettings|array $retrySettings {
+     *                @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *                Only maxRetries works for RetrySettings in this API.
+     *            }
+     *   }
      */
     public function __construct(
-        callable $apiFunction,
+        GapicClient $gapicClient,
+        string $method,
+        Message $request,
         callable $argumentFunction,
         callable $retryFunction,
-        $retries = self::DEFAULT_MAX_RETRIES
+        array $callOptions = []
     ) {
-        $this->retries = $retries ?: self::DEFAULT_MAX_RETRIES;
-        $this->apiFunction = $apiFunction;
+        $this->gapicClient = $gapicClient;
+        $this->method = $method;
+        $this->request = $request;
+        $this->retries = $this->getMaxRetries($callOptions);
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
+        $this->callOptions = $callOptions;
+        // Disable GAX retries because we want to handle the retries here.
+        // Once GAX has the provision to modify request/args in between retries,
+        // we can re enable GAX's retries and use them completely.
+        $this->callOptions['retrySettings'] = [
+            'retriesEnabled' => false
+        ];
     }
 
     /**
@@ -93,9 +131,16 @@ class ResumableStream implements \IteratorAggregate
         $retryFunction = $this->retryFunction;
         do {
             $ex = null;
-            $args = $argumentFunction();
-            if (!isset($args[1]['requestCompleted']) || $args[1]['requestCompleted'] !== true) {
-                $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $args);
+            list($this->request, $this->callOptions) = $argumentFunction($this->request, $this->callOptions);
+
+            $completed = $this->pluck('requestCompleted', $this->callOptions, false);
+
+            if ($completed !== true) {
+                $stream = call_user_func_array(
+                    [$this->gapicClient, $this->method],
+                    [$this->request, $this->callOptions]
+                );
+
                 try {
                     foreach ($stream->readAll() as $item) {
                         yield $item;
@@ -132,13 +177,14 @@ class ResumableStream implements \IteratorAggregate
         return isset(self::$retryableStatusCodes[$code]);
     }
 
-    private function createExponentialBackoff()
+    private function getMaxRetries(array $options) : int
     {
-        return new ExponentialBackoff(
-            $this->retries,
-            function ($ex) {
-                return self::isRetryable($ex->getCode());
-            }
-        );
+        $retrySettings = $options['retrySettings'] ?? [];
+
+        if ($retrySettings instanceof RetrySettings) {
+            return $retrySettings->getMaxRetries();
+        }
+
+        return $retrySettings['maxRetries'] ?? ResumableStream::DEFAULT_MAX_RETRIES;
     }
 }

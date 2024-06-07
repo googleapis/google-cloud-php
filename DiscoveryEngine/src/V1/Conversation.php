@@ -17,9 +17,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `project/&#42;&#47;locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
      * or
-     * `project/&#42;&#47;locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     * `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -63,9 +63,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `project/&#42;&#47;locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     *           `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
      *           or
-     *           `project/&#42;&#47;locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     *           `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
      *     @type int $state
      *           The state of the Conversation.
      *     @type string $user_pseudo_id
@@ -85,9 +85,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `project/&#42;&#47;locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
      * or
-     * `project/&#42;&#47;locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     * `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -99,9 +99,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `project/&#42;&#47;locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
      * or
-     * `project/&#42;&#47;locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     * `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

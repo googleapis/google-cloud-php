@@ -213,7 +213,6 @@ trait RequestTrait
         return $args;
     }
 
-    // @TODO: Make the following methods more readable and simple, if possible.
     private function deserializeOperationArray($operation)
     {
         if (isset($operation['metadata'])) {

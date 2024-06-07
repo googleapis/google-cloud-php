@@ -1,6 +1,0 @@
-{
-    "distribution_name": "google/shopping-common-protos",
-    "release_level": "preview",
-    "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-common-protos/latest",
-    "library_type": "CORE"
-}

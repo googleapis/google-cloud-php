@@ -27,7 +27,6 @@ namespace Google\Cloud\EdgeNetwork\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -74,6 +73,7 @@ use Google\Cloud\EdgeNetwork\V1\Zone;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -197,6 +197,25 @@ final class EdgeNetworkClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -878,6 +897,7 @@ final class EdgeNetworkClient
     }
 
     /**
+     * Deprecated: not implemented.
      * Gets details of a single Zone.
      *
      * The async variant is {@see EdgeNetworkClient::getZoneAsync()} .
@@ -897,6 +917,8 @@ final class EdgeNetworkClient
      * @return Zone
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getZone(GetZoneRequest $request, array $callOptions = []): Zone
     {
@@ -1063,6 +1085,7 @@ final class EdgeNetworkClient
     }
 
     /**
+     * Deprecated: not implemented.
      * Lists Zones in a given project and location.
      *
      * The async variant is {@see EdgeNetworkClient::listZonesAsync()} .
@@ -1082,6 +1105,8 @@ final class EdgeNetworkClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listZones(ListZonesRequest $request, array $callOptions = []): PagedListResponse
     {

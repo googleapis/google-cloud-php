@@ -1,0 +1,68 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "maps.fleetengine.delivery.v1",
+    "libraryPackage": "Google\\Maps\\FleetEngine\\Delivery\\V1",
+    "services": {
+        "DeliveryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeliveryServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateTasks": {
+                            "methods": [
+                                "batchCreateTasks"
+                            ]
+                        },
+                        "CreateDeliveryVehicle": {
+                            "methods": [
+                                "createDeliveryVehicle"
+                            ]
+                        },
+                        "CreateTask": {
+                            "methods": [
+                                "createTask"
+                            ]
+                        },
+                        "GetDeliveryVehicle": {
+                            "methods": [
+                                "getDeliveryVehicle"
+                            ]
+                        },
+                        "GetTask": {
+                            "methods": [
+                                "getTask"
+                            ]
+                        },
+                        "GetTaskTrackingInfo": {
+                            "methods": [
+                                "getTaskTrackingInfo"
+                            ]
+                        },
+                        "ListDeliveryVehicles": {
+                            "methods": [
+                                "listDeliveryVehicles"
+                            ]
+                        },
+                        "ListTasks": {
+                            "methods": [
+                                "listTasks"
+                            ]
+                        },
+                        "UpdateDeliveryVehicle": {
+                            "methods": [
+                                "updateDeliveryVehicle"
+                            ]
+                        },
+                        "UpdateTask": {
+                            "methods": [
+                                "updateTask"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

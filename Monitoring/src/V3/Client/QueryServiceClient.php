@@ -36,7 +36,7 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: The QueryService API is used to manage time series data in Stackdriver
+ * Service Description: The QueryService API is used to manage time series data in Cloud
  * Monitoring. Time series data is a collection of data points that describes
  * the time-varying values of a metric.
  *
@@ -166,7 +166,7 @@ final class QueryServiceClient
     }
 
     /**
-     * Queries time series using Monitoring Query Language. This method does not require a Workspace.
+     * Queries time series using Monitoring Query Language.
      *
      * The async variant is {@see QueryServiceClient::queryTimeSeriesAsync()} .
      *

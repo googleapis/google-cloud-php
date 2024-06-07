@@ -40,6 +40,14 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      */
     private $filename_suffix = '';
     /**
+     * Optional. User-provided format string specifying how to represent datetimes
+     * in Cloud Storage filenames. See the [datetime format
+     * guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
+     *
+     * Generated from protobuf field <code>string filename_datetime_format = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filename_datetime_format = '';
+    /**
      * Optional. The maximum duration that can elapse before a new Cloud Storage
      * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
      * exceed the subscription's acknowledgement deadline.
@@ -62,6 +70,17 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account_email = '';
     protected $output_format;
 
     /**
@@ -82,6 +101,10 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *           Optional. User-provided suffix for Cloud Storage filename. See the [object
      *           naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      *           Must not end in "/".
+     *     @type string $filename_datetime_format
+     *           Optional. User-provided format string specifying how to represent datetimes
+     *           in Cloud Storage filenames. See the [datetime format
+     *           guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
      *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig\TextConfig $text_config
      *           Optional. If set, message data will be written to Cloud Storage in text
      *           format.
@@ -99,6 +122,13 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
+     *     @type string $service_account_email
+     *           Optional. The service account to use to write to Cloud Storage. The
+     *           subscription creator or updater that specifies this field must have
+     *           `iam.serviceAccounts.actAs` permission on the service account. If not
+     *           specified, the Pub/Sub
+     *           [service agent](https://cloud.google.com/iam/docs/service-agents),
+     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +222,36 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filename_suffix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. User-provided format string specifying how to represent datetimes
+     * in Cloud Storage filenames. See the [datetime format
+     * guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
+     *
+     * Generated from protobuf field <code>string filename_datetime_format = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilenameDatetimeFormat()
+    {
+        return $this->filename_datetime_format;
+    }
+
+    /**
+     * Optional. User-provided format string specifying how to represent datetimes
+     * in Cloud Storage filenames. See the [datetime format
+     * guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
+     *
+     * Generated from protobuf field <code>string filename_datetime_format = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilenameDatetimeFormat($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filename_datetime_format = $var;
 
         return $this;
     }
@@ -356,6 +416,42 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\CloudStorageConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccountEmail()
+    {
+        return $this->service_account_email;
+    }
+
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_email = $var;
 
         return $this;
     }

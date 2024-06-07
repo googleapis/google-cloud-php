@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * UserEvent captures all metadata information Discovery Engine API needs to
- * know about how end users interact with customers' website.
+ * know about how end users interact with your website.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.UserEvent</code>
  */
@@ -52,6 +52,31 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string user_pseudo_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $user_pseudo_id = '';
+    /**
+     * The [Engine][google.cloud.discoveryengine.v1.Engine] resource name, in the
+     * form of
+     * `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     * Optional. Only required for
+     * [Engine][google.cloud.discoveryengine.v1.Engine] produced user events. For
+     * example, user events from blended search.
+     *
+     * Generated from protobuf field <code>string engine = 19 [(.google.api.resource_reference) = {</code>
+     */
+    protected $engine = '';
+    /**
+     * The [DataStore][google.cloud.discoveryengine.v1.DataStore] resource full
+     * name, of the form
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * Optional. Only required for user events whose data store can't by
+     * determined by
+     * [UserEvent.engine][google.cloud.discoveryengine.v1.UserEvent.engine] or
+     * [UserEvent.documents][google.cloud.discoveryengine.v1.UserEvent.documents].
+     * If data store is set in the parent of write/import/collect user event
+     * requests, this field can be omitted.
+     *
+     * Generated from protobuf field <code>string data_store = 20 [(.google.api.resource_reference) = {</code>
+     */
+    protected $data_store = '';
     /**
      * Only required for
      * [UserEventService.ImportUserEvents][google.cloud.discoveryengine.v1.UserEventService.ImportUserEvents]
@@ -103,19 +128,23 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * Token to attribute an API response to user action(s) to trigger the event.
      * Highly recommended for user events that are the result of
-     * [RecommendationService.Recommend][]. This field enables accurate
-     * attribution of recommendation model performance.
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
+     * This field enables accurate attribution of recommendation model
+     * performance.
      * The value must be one of:
-     * * [RecommendResponse.attribution_token][] for events that are the result of
-     * [RecommendationService.Recommend][].
+     * * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token] for events that are the result of
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
      * * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
      * This token enables us to accurately attribute page view or conversion
      * completion back to the event and the particular predict response containing
      * this clicked/purchased product. If user clicks on product K in the
-     * recommendation results, pass [RecommendResponse.attribution_token][] as a
-     * URL parameter to product K's page. When recording events on product K's
-     * page, log the [RecommendResponse.attribution_token][] to this field.
+     * recommendation results, pass
+     * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     * as a URL parameter to product K's page. When recording events on product
+     * K's page, log the
+     * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     * to this field.
      *
      * Generated from protobuf field <code>string attribution_token = 8;</code>
      */
@@ -129,9 +158,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
-     * [RecommendRequest][], this field may be populated directly from
-     * [RecommendRequest.filter][] conforming to
-     * https://google.aip.dev/160#filtering.
+     * [RecommendRequest][google.cloud.discoveryengine.v1.RecommendRequest], this
+     * field may be populated directly from
+     * [RecommendRequest.filter][google.cloud.discoveryengine.v1.RecommendRequest.filter]
+     * conforming to https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
@@ -190,7 +220,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
-     * different experiment setups on the customer end.
+     * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
      */
@@ -270,6 +300,23 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           Analytics [Client
      *           ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
      *           for this field.
+     *     @type string $engine
+     *           The [Engine][google.cloud.discoveryengine.v1.Engine] resource name, in the
+     *           form of
+     *           `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     *           Optional. Only required for
+     *           [Engine][google.cloud.discoveryengine.v1.Engine] produced user events. For
+     *           example, user events from blended search.
+     *     @type string $data_store
+     *           The [DataStore][google.cloud.discoveryengine.v1.DataStore] resource full
+     *           name, of the form
+     *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     *           Optional. Only required for user events whose data store can't by
+     *           determined by
+     *           [UserEvent.engine][google.cloud.discoveryengine.v1.UserEvent.engine] or
+     *           [UserEvent.documents][google.cloud.discoveryengine.v1.UserEvent.documents].
+     *           If data store is set in the parent of write/import/collect user event
+     *           requests, this field can be omitted.
      *     @type \Google\Protobuf\Timestamp $event_time
      *           Only required for
      *           [UserEventService.ImportUserEvents][google.cloud.discoveryengine.v1.UserEventService.ImportUserEvents]
@@ -301,19 +348,23 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type string $attribution_token
      *           Token to attribute an API response to user action(s) to trigger the event.
      *           Highly recommended for user events that are the result of
-     *           [RecommendationService.Recommend][]. This field enables accurate
-     *           attribution of recommendation model performance.
+     *           [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
+     *           This field enables accurate attribution of recommendation model
+     *           performance.
      *           The value must be one of:
-     *           * [RecommendResponse.attribution_token][] for events that are the result of
-     *           [RecommendationService.Recommend][].
+     *           * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token] for events that are the result of
+     *           [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
      *           * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      *           [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
      *           This token enables us to accurately attribute page view or conversion
      *           completion back to the event and the particular predict response containing
      *           this clicked/purchased product. If user clicks on product K in the
-     *           recommendation results, pass [RecommendResponse.attribution_token][] as a
-     *           URL parameter to product K's page. When recording events on product K's
-     *           page, log the [RecommendResponse.attribution_token][] to this field.
+     *           recommendation results, pass
+     *           [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     *           as a URL parameter to product K's page. When recording events on product
+     *           K's page, log the
+     *           [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     *           to this field.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered.
@@ -323,9 +374,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      *           conforming to https://google.aip.dev/160#filtering.
      *           Similarly, for `view-item-list` events that are generated from a
-     *           [RecommendRequest][], this field may be populated directly from
-     *           [RecommendRequest.filter][] conforming to
-     *           https://google.aip.dev/160#filtering.
+     *           [RecommendRequest][google.cloud.discoveryengine.v1.RecommendRequest], this
+     *           field may be populated directly from
+     *           [RecommendRequest.filter][google.cloud.discoveryengine.v1.RecommendRequest.filter]
+     *           conforming to https://google.aip.dev/160#filtering.
      *           The value must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $documents
@@ -360,7 +412,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_ids
      *           A list of identifiers for the independent experiment groups this user event
      *           belongs to. This is used to distinguish between user events associated with
-     *           different experiment setups on the customer end.
+     *           different experiment setups.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
      *           The promotion IDs if this is an event associated with promotions.
      *           Currently, this field is restricted to at most one ID.
@@ -492,6 +544,84 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_pseudo_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [Engine][google.cloud.discoveryengine.v1.Engine] resource name, in the
+     * form of
+     * `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     * Optional. Only required for
+     * [Engine][google.cloud.discoveryengine.v1.Engine] produced user events. For
+     * example, user events from blended search.
+     *
+     * Generated from protobuf field <code>string engine = 19 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getEngine()
+    {
+        return $this->engine;
+    }
+
+    /**
+     * The [Engine][google.cloud.discoveryengine.v1.Engine] resource name, in the
+     * form of
+     * `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     * Optional. Only required for
+     * [Engine][google.cloud.discoveryengine.v1.Engine] produced user events. For
+     * example, user events from blended search.
+     *
+     * Generated from protobuf field <code>string engine = 19 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEngine($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->engine = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [DataStore][google.cloud.discoveryengine.v1.DataStore] resource full
+     * name, of the form
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * Optional. Only required for user events whose data store can't by
+     * determined by
+     * [UserEvent.engine][google.cloud.discoveryengine.v1.UserEvent.engine] or
+     * [UserEvent.documents][google.cloud.discoveryengine.v1.UserEvent.documents].
+     * If data store is set in the parent of write/import/collect user event
+     * requests, this field can be omitted.
+     *
+     * Generated from protobuf field <code>string data_store = 20 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getDataStore()
+    {
+        return $this->data_store;
+    }
+
+    /**
+     * The [DataStore][google.cloud.discoveryengine.v1.DataStore] resource full
+     * name, of the form
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * Optional. Only required for user events whose data store can't by
+     * determined by
+     * [UserEvent.engine][google.cloud.discoveryengine.v1.UserEvent.engine] or
+     * [UserEvent.documents][google.cloud.discoveryengine.v1.UserEvent.documents].
+     * If data store is set in the parent of write/import/collect user event
+     * requests, this field can be omitted.
+     *
+     * Generated from protobuf field <code>string data_store = 20 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataStore($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->data_store = $var;
 
         return $this;
     }
@@ -695,19 +825,23 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * Token to attribute an API response to user action(s) to trigger the event.
      * Highly recommended for user events that are the result of
-     * [RecommendationService.Recommend][]. This field enables accurate
-     * attribution of recommendation model performance.
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
+     * This field enables accurate attribution of recommendation model
+     * performance.
      * The value must be one of:
-     * * [RecommendResponse.attribution_token][] for events that are the result of
-     * [RecommendationService.Recommend][].
+     * * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token] for events that are the result of
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
      * * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
      * This token enables us to accurately attribute page view or conversion
      * completion back to the event and the particular predict response containing
      * this clicked/purchased product. If user clicks on product K in the
-     * recommendation results, pass [RecommendResponse.attribution_token][] as a
-     * URL parameter to product K's page. When recording events on product K's
-     * page, log the [RecommendResponse.attribution_token][] to this field.
+     * recommendation results, pass
+     * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     * as a URL parameter to product K's page. When recording events on product
+     * K's page, log the
+     * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     * to this field.
      *
      * Generated from protobuf field <code>string attribution_token = 8;</code>
      * @return string
@@ -720,19 +854,23 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * Token to attribute an API response to user action(s) to trigger the event.
      * Highly recommended for user events that are the result of
-     * [RecommendationService.Recommend][]. This field enables accurate
-     * attribution of recommendation model performance.
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
+     * This field enables accurate attribution of recommendation model
+     * performance.
      * The value must be one of:
-     * * [RecommendResponse.attribution_token][] for events that are the result of
-     * [RecommendationService.Recommend][].
+     * * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token] for events that are the result of
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend].
      * * [SearchResponse.attribution_token][google.cloud.discoveryengine.v1.SearchResponse.attribution_token] for events that are the result of
      * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search].
      * This token enables us to accurately attribute page view or conversion
      * completion back to the event and the particular predict response containing
      * this clicked/purchased product. If user clicks on product K in the
-     * recommendation results, pass [RecommendResponse.attribution_token][] as a
-     * URL parameter to product K's page. When recording events on product K's
-     * page, log the [RecommendResponse.attribution_token][] to this field.
+     * recommendation results, pass
+     * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     * as a URL parameter to product K's page. When recording events on product
+     * K's page, log the
+     * [RecommendResponse.attribution_token][google.cloud.discoveryengine.v1.RecommendResponse.attribution_token]
+     * to this field.
      *
      * Generated from protobuf field <code>string attribution_token = 8;</code>
      * @param string $var
@@ -755,9 +893,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
-     * [RecommendRequest][], this field may be populated directly from
-     * [RecommendRequest.filter][] conforming to
-     * https://google.aip.dev/160#filtering.
+     * [RecommendRequest][google.cloud.discoveryengine.v1.RecommendRequest], this
+     * field may be populated directly from
+     * [RecommendRequest.filter][google.cloud.discoveryengine.v1.RecommendRequest.filter]
+     * conforming to https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
@@ -778,9 +917,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
-     * [RecommendRequest][], this field may be populated directly from
-     * [RecommendRequest.filter][] conforming to
-     * https://google.aip.dev/160#filtering.
+     * [RecommendRequest][google.cloud.discoveryengine.v1.RecommendRequest], this
+     * field may be populated directly from
+     * [RecommendRequest.filter][google.cloud.discoveryengine.v1.RecommendRequest.filter]
+     * conforming to https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
@@ -1007,7 +1147,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
-     * different experiment setups on the customer end.
+     * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1020,7 +1160,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
-     * different experiment setups on the customer end.
+     * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -39,8 +39,9 @@ use Google\Cloud\Monitoring\V3\TimeSeries;
  * [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
  * instead.
  *
- * @param string $formattedName The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                              which to execute the request. The format is:
+ * @param string $formattedName The
+ *                              [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                              to execute the request. The format is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]
  *                              Please see {@see MetricServiceClient::projectName()} for help formatting this field.

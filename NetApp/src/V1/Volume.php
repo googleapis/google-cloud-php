@@ -46,8 +46,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     protected $share_name = '';
     /**
-     * Output only. This field is currently not implemented. Currently values
-     * provided in this field will be ignored.
+     * Output only. This field is not implemented. The values provided in this
+     * field are ignored.
      *
      * Generated from protobuf field <code>string psa_range = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -210,6 +210,12 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.RestrictedAction restricted_actions = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $restricted_actions;
+    /**
+     * Tiering policy for the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
+     */
+    protected $tiering_policy = null;
 
     /**
      * Constructor.
@@ -228,8 +234,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type string $share_name
      *           Required. Share name of the volume
      *     @type string $psa_range
-     *           Output only. This field is currently not implemented. Currently values
-     *           provided in this field will be ignored.
+     *           Output only. This field is not implemented. The values provided in this
+     *           field are ignored.
      *     @type string $storage_pool
      *           Required. StoragePool name of the volume
      *     @type string $network
@@ -288,6 +294,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           BackupConfig of the volume.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_actions
      *           Optional. List of actions that are restricted on this volume.
+     *     @type \Google\Cloud\NetApp\V1\TieringPolicy $tiering_policy
+     *           Tiering policy for the volume.
      * }
      */
     public function __construct($data = NULL) {
@@ -436,8 +444,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field is currently not implemented. Currently values
-     * provided in this field will be ignored.
+     * Output only. This field is not implemented. The values provided in this
+     * field are ignored.
      *
      * Generated from protobuf field <code>string psa_range = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -448,8 +456,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field is currently not implemented. Currently values
-     * provided in this field will be ignored.
+     * Output only. This field is not implemented. The values provided in this
+     * field are ignored.
      *
      * Generated from protobuf field <code>string psa_range = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -1165,6 +1173,42 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\NetApp\V1\RestrictedAction::class);
         $this->restricted_actions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Tiering policy for the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
+     * @return \Google\Cloud\NetApp\V1\TieringPolicy|null
+     */
+    public function getTieringPolicy()
+    {
+        return $this->tiering_policy;
+    }
+
+    public function hasTieringPolicy()
+    {
+        return isset($this->tiering_policy);
+    }
+
+    public function clearTieringPolicy()
+    {
+        unset($this->tiering_policy);
+    }
+
+    /**
+     * Tiering policy for the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
+     * @param \Google\Cloud\NetApp\V1\TieringPolicy $var
+     * @return $this
+     */
+    public function setTieringPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\TieringPolicy::class);
+        $this->tiering_policy = $var;
 
         return $this;
     }

@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -60,6 +80,21 @@ return [
                     'slate_id',
                 ],
             ],
+            'CreateVodConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/vodConfigs',
+                'body' => 'vod_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'vod_config_id',
+                ],
+            ],
             'CreateVodSession' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/vodSessions',
@@ -97,6 +132,17 @@ return [
             'DeleteSlate' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/slates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteVodConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/vodConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -163,6 +209,17 @@ return [
             'GetVodAdTagDetail' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/vodSessions/*/vodAdTagDetails/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetVodConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/vodConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -248,6 +305,17 @@ return [
                     ],
                 ],
             ],
+            'ListVodConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/vodConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListVodStitchDetails' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/vodSessions/*}/vodStitchDetails',
@@ -275,6 +343,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateLiveConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{live_config.name=projects/*/locations/*/liveConfigs/*}',
+                'body' => 'live_config',
+                'placeholders' => [
+                    'live_config.name' => [
+                        'getters' => [
+                            'getLiveConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateSlate' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{slate.name=projects/*/locations/*/slates/*}',
@@ -283,6 +367,22 @@ return [
                     'slate.name' => [
                         'getters' => [
                             'getSlate',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateVodConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{vod_config.name=projects/*/locations/*/vodConfigs/*}',
+                'body' => 'vod_config',
+                'placeholders' => [
+                    'vod_config.name' => [
+                        'getters' => [
+                            'getVodConfig',
                             'getName',
                         ],
                     ],

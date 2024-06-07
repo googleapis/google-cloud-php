@@ -33,29 +33,28 @@ use GuzzleHttp\Client;
 class ComponentInfoCommand extends Command
 {
     private static $allFields = [
-        'name' => 'Component Name',
+        'component_name' => 'Component Name',
         'package_name' => 'Package Name',
         'package_version' => 'Package Version',
         'api_versions' => 'API Version',
         'release_level' => 'Release Level',
-        'migration' => 'Migration',
+        'migration_mode' => 'Migration Mode',
         'php_namespaces' => 'Php Namespace',
         'github_repo' => 'Github Repo',
-        'proto' => 'Proto Path',
+        'proto_path' => 'Proto Path',
         'service_address' => 'Service Address',
-        'shortname' => 'API Shortname',
+        'api_shortname' => 'API Shortname',
         'description' => 'Description',
         'available_api_versions' => 'Availble API Versions',
     ];
     private static $defaultFields = [
-        'name',
+        'component_name',
         'package_name',
         'package_version',
         'api_versions',
         'release_level',
-        'migration',
-        'proto',
-        'shortname',
+        'migration_mode',
+        'api_shortname',
     ];
 
     private string $token;
@@ -72,6 +71,13 @@ class ComponentInfoCommand extends Command
                 "Use --show-available-api-versions to include them.\n",
                 implode("\n - ", array_keys(self::$allFields))
             ))
+            ->addOption('filter', '', InputOption::VALUE_REQUIRED,
+                'Comma-separated list of key-value filters. Supported operators are "=", "!=", "~=", and "!~=".'
+                . "\nExample: `--filter 'release_level=preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'`'"
+            )
+            ->addOption('sort', '', InputOption::VALUE_REQUIRED,
+                'field to sort by (with optional ASC/DESC suffix. e.g. "component_name DESC"'
+            )
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption(
                 'show-available-api-versions',
@@ -100,13 +106,42 @@ class ComponentInfoCommand extends Command
         $componentName = $input->getOption('component');
         $components = $componentName ? [new Component($componentName)] : Component::getComponents();
 
+        $filters = $this->parseFilters($input->getOption('filter') ?: '');
+
         $rows = [];
         foreach ($components as $component) {
-            $rows = array_merge($rows, $this->getComponentDetails(
+            $componentRows = $this->getComponentDetails(
                 $component,
                 $requestedFields,
                 $input->getOption('expanded')
-            ));
+            );
+            foreach ($filters as $filter) {
+                list($field, $value, $operator) = $filter;
+                foreach ($componentRows as $row) {
+                    if (!match ($operator) {
+                        '=' => ($row[$field] === $value),
+                        '!=' => ($row[$field] !== $value),
+                        '~=' => strpos($row[$field], $value) !== false,
+                        '!~=' => strpos($row[$field], $value) === false,
+                    }) {
+                        continue 3;
+                    }
+                }
+            }
+            $rows = array_merge($rows, $componentRows);
+        }
+
+        if ($sort = $input->getOption('sort')) {
+            list($field, $order) = explode(' ', $sort) + [1 => 'ASC'];
+            usort($rows, function ($a, $b) use ($field) {
+                return match ($field) {
+                    'package_version' => version_compare($a[$field], $b[$field]),
+                    default => strcmp($a[$field], $b[$field]),
+                };
+            });
+            if ($order === 'DESC') {
+                $rows = array_reverse($rows);
+            }
         }
 
         // output the component data
@@ -150,17 +185,17 @@ class ComponentInfoCommand extends Command
                 // use "array_intersect_key" to filter out fields that were not requested.
                 // use "array_replace" to sort the fields in the order they were requested.
                 $rows[] = array_replace($requestedFields, array_intersect_key([
-                    'name' => $component->getName() . "\\" . $pkg->getName(),
+                    'component_name' => $component->getName() . "\\" . $pkg->getName(),
                     'package_name' => $component->getPackageName(),
                     'package_version' => $component->getPackageVersion(),
                     'api_versions' => $pkg->getName(),
                     'release_level' => $component->getReleaseLevel(),
-                    'migration' => $pkg->getMigrationStatus(),
+                    'migration_mode' => $pkg->getMigrationStatus(),
                     'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
                     'github_repo' => $component->getRepoName(),
-                    'proto' => $pkg->getProtoPackage(),
+                    'proto_path' => $pkg->getProtoPackage(),
                     'service_address' => $pkg->getServiceAddress(),
-                    'shortname' => $pkg->getApiShortname(),
+                    'api_shortname' => $pkg->getApiShortname(),
                     'description' => $component->getDescription(),
                     'available_api_versions' => $availableApiVersions,
                 ], $requestedFields));
@@ -169,17 +204,17 @@ class ComponentInfoCommand extends Command
             // use "array_intersect_key" to filter out fields that were not requested.
             // use "array_replace" to sort the fields in the order they were requested.
             $details = array_replace($requestedFields, array_intersect_key([
-                'name' => $component->getName(),
+                'component_name' => $component->getName(),
                 'package_name' => $component->getPackageName(),
                 'package_version' => $component->getPackageVersion(),
                 'api_versions' => implode("\n", $component->getApiVersions()),
                 'release_level' => $component->getReleaseLevel(),
-                'migration' => implode("\n", $component->getMigrationStatuses()),
+                'migration_mode' => implode("\n", $component->getMigrationStatuses()),
                 'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
                 'github_repo' => $component->getRepoName(),
-                'proto' => implode("\n", $component->getProtoPackages()),
+                'proto_path' => implode("\n", $component->getProtoPackages()),
                 'service_address' => implode("\n", $component->getServiceAddresses()),
-                'shortname' => implode("\n", $component->getApiShortnames()),
+                'api_shortname' => implode("\n", $component->getApiShortnames()),
                 'description' => $component->getDescription(),
             ], $requestedFields));
 
@@ -217,5 +252,23 @@ class ComponentInfoCommand extends Command
                 fn ($file) => $file['type'] === 'dir' && $file['name'][0] === 'v' && !in_array($file['name'], $versions)
             )
         ));
+    }
+
+    private function parseFilters(string $filterString): array
+    {
+        $filters = [];
+        foreach (array_filter(explode(',', $filterString)) as $filter) {
+            if (!preg_match('/^(\w+?)(!~=|~=|!=|=)(.+)$/', $filter, $matches)) {
+                throw new \InvalidArgumentException(sprintf('Invalid filter: %s', $filter));
+            }
+            $filters[] = [$matches[1], $matches[3], $matches[2]];
+        }
+
+        foreach ($filters as $filter) {
+            if (!array_key_exists($filter[0], self::$allFields)) {
+                throw new \InvalidArgumentException(sprintf('Invalid filter field: %s', $filter[0]));
+            }
+        }
+        return $filters;
     }
 }

@@ -25,7 +25,7 @@ class Column extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes qualifier = 1;</code>
      */
-    private $qualifier = '';
+    protected $qualifier = '';
     /**
      * Must not be empty. Sorted in order of decreasing "timestamp_micros".
      *

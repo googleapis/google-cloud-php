@@ -45,17 +45,20 @@ use Google\Cloud\CertificateManager\V1\CreateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateRequest;
 use Google\Cloud\CertificateManager\V1\CreateDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\CreateTrustConfigRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateRequest;
 use Google\Cloud\CertificateManager\V1\DeleteDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\DeleteTrustConfigRequest;
 use Google\Cloud\CertificateManager\V1\DnsAuthorization;
 use Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateRequest;
 use Google\Cloud\CertificateManager\V1\GetDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\GetTrustConfigRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsResponse;
 use Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesRequest;
@@ -66,10 +69,14 @@ use Google\Cloud\CertificateManager\V1\ListCertificatesRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificatesResponse;
 use Google\Cloud\CertificateManager\V1\ListDnsAuthorizationsRequest;
 use Google\Cloud\CertificateManager\V1\ListDnsAuthorizationsResponse;
+use Google\Cloud\CertificateManager\V1\ListTrustConfigsRequest;
+use Google\Cloud\CertificateManager\V1\ListTrustConfigsResponse;
+use Google\Cloud\CertificateManager\V1\TrustConfig;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateRequest;
 use Google\Cloud\CertificateManager\V1\UpdateDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\UpdateTrustConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -194,6 +201,8 @@ class CertificateManagerGapicClient
 
     private static $locationNameTemplate;
 
+    private static $trustConfigNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -302,6 +311,17 @@ class CertificateManagerGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getTrustConfigNameTemplate()
+    {
+        if (self::$trustConfigNameTemplate == null) {
+            self::$trustConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/trustConfigs/{trust_config}'
+            );
+        }
+
+        return self::$trustConfigNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -313,6 +333,7 @@ class CertificateManagerGapicClient
                 'certificateMapEntry' => self::getCertificateMapEntryNameTemplate(),
                 'dnsAuthorization' => self::getDnsAuthorizationNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'trustConfig' => self::getTrustConfigNameTemplate(),
             ];
         }
 
@@ -466,6 +487,25 @@ class CertificateManagerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a trust_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $trustConfig
+     *
+     * @return string The formatted trust_config resource.
+     */
+    public static function trustConfigName($project, $location, $trustConfig)
+    {
+        return self::getTrustConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'trust_config' => $trustConfig,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -476,6 +516,7 @@ class CertificateManagerGapicClient
      * - certificateMapEntry: projects/{project}/locations/{location}/certificateMaps/{certificate_map}/certificateMapEntries/{certificate_map_entry}
      * - dnsAuthorization: projects/{project}/locations/{location}/dnsAuthorizations/{dns_authorization}
      * - location: projects/{project}/locations/{location}
+     * - trustConfig: projects/{project}/locations/{location}/trustConfigs/{trust_config}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1033,6 +1074,91 @@ class CertificateManagerGapicClient
     }
 
     /**
+     * Creates a new TrustConfig in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $trustConfigId = 'trust_config_id';
+     *     $trustConfig = new TrustConfig();
+     *     $operationResponse = $certificateManagerClient->createTrustConfig($formattedParent, $trustConfigId, $trustConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $certificateManagerClient->createTrustConfig($formattedParent, $trustConfigId, $trustConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createTrustConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string      $parent        Required. The parent resource of the TrustConfig. Must be in the format
+     *                                   `projects/&#42;/locations/*`.
+     * @param string      $trustConfigId Required. A user-provided name of the TrustConfig. Must match the regexp
+     *                                   `[a-z0-9-]{1,63}`.
+     * @param TrustConfig $trustConfig   Required. A definition of the TrustConfig to create.
+     * @param array       $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createTrustConfig(
+        $parent,
+        $trustConfigId,
+        $trustConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateTrustConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setTrustConfigId($trustConfigId);
+        $request->setTrustConfig($trustConfig);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateTrustConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a single Certificate.
      *
      * Sample code:
@@ -1397,6 +1523,86 @@ class CertificateManagerGapicClient
     }
 
     /**
+     * Deletes a single TrustConfig.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedName = $certificateManagerClient->trustConfigName('[PROJECT]', '[LOCATION]', '[TRUST_CONFIG]');
+     *     $operationResponse = $certificateManagerClient->deleteTrustConfig($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $certificateManagerClient->deleteTrustConfig($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteTrustConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the TrustConfig to delete. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/trustConfigs/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $etag
+     *           The current etag of the TrustConfig.
+     *           If an etag is provided and does not match the current etag of the resource,
+     *           deletion will be blocked and an ABORTED error will be returned.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTrustConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTrustConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteTrustConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Gets details of a single Certificate.
      *
      * Sample code:
@@ -1644,6 +1850,55 @@ class CertificateManagerGapicClient
     }
 
     /**
+     * Gets details of a single TrustConfig.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedName = $certificateManagerClient->trustConfigName('[PROJECT]', '[LOCATION]', '[TRUST_CONFIG]');
+     *     $response = $certificateManagerClient->getTrustConfig($formattedName);
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the TrustConfig to describe. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/trustConfigs/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\CertificateManager\V1\TrustConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getTrustConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetTrustConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetTrustConfig',
+            TrustConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists CertificateIssuanceConfigs in a given project and location.
      *
      * Sample code:
@@ -1688,7 +1943,7 @@ class CertificateManagerGapicClient
      *     @type string $orderBy
      *           A list of Certificate Config field names used to specify the order of the
      *           returned results. The default sorting order is ascending. To specify
-     *           descending order for a field, add a suffix " desc".
+     *           descending order for a field, add a suffix `" desc"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1783,7 +2038,7 @@ class CertificateManagerGapicClient
      *     @type string $orderBy
      *           A list of Certificate Map Entry field names used to specify
      *           the order of the returned results. The default sorting order is ascending.
-     *           To specify descending order for a field, add a suffix " desc".
+     *           To specify descending order for a field, add a suffix `" desc"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1875,7 +2130,7 @@ class CertificateManagerGapicClient
      *     @type string $orderBy
      *           A list of Certificate Map field names used to specify the order of the
      *           returned results. The default sorting order is ascending. To specify
-     *           descending order for a field, add a suffix " desc".
+     *           descending order for a field, add a suffix `" desc"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1967,7 +2222,7 @@ class CertificateManagerGapicClient
      *     @type string $orderBy
      *           A list of Certificate field names used to specify the order of the returned
      *           results. The default sorting order is ascending. To specify descending
-     *           order for a field, add a suffix " desc".
+     *           order for a field, add a suffix `" desc"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2059,7 +2314,7 @@ class CertificateManagerGapicClient
      *     @type string $orderBy
      *           A list of Dns Authorization field names used to specify the order of the
      *           returned results. The default sorting order is ascending. To specify
-     *           descending order for a field, add a suffix " desc".
+     *           descending order for a field, add a suffix `" desc"`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2102,6 +2357,98 @@ class CertificateManagerGapicClient
             'ListDnsAuthorizations',
             $optionalArgs,
             ListDnsAuthorizationsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists TrustConfigs in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $certificateManagerClient->listTrustConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $certificateManagerClient->listTrustConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project and location from which the TrustConfigs should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Filter expression to restrict the TrustConfigs returned.
+     *     @type string $orderBy
+     *           A list of TrustConfig field names used to specify the order of the
+     *           returned results. The default sorting order is ascending. To specify
+     *           descending order for a field, add a suffix `" desc"`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listTrustConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListTrustConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListTrustConfigs',
+            $optionalArgs,
+            ListTrustConfigsResponse::class,
             $request
         );
     }
@@ -2430,6 +2777,87 @@ class CertificateManagerGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateDnsAuthorization',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates a TrustConfig.
+     *
+     * Sample code:
+     * ```
+     * $certificateManagerClient = new CertificateManagerClient();
+     * try {
+     *     $trustConfig = new TrustConfig();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $certificateManagerClient->updateTrustConfig($trustConfig, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $certificateManagerClient->updateTrustConfig($trustConfig, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'updateTrustConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $certificateManagerClient->close();
+     * }
+     * ```
+     *
+     * @param TrustConfig $trustConfig  Required. A definition of the TrustConfig to update.
+     * @param FieldMask   $updateMask   Required. The update mask applies to the resource. For the `FieldMask`
+     *                                  definition, see
+     *                                  https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * @param array       $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateTrustConfig(
+        $trustConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateTrustConfigRequest();
+        $requestParamHeaders = [];
+        $request->setTrustConfig($trustConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['trust_config.name'] = $trustConfig->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateTrustConfig',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

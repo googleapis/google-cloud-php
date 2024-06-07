@@ -29,7 +29,6 @@ namespace Google\Cloud\DiscoveryEngine\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -42,7 +41,11 @@ use Google\Cloud\DiscoveryEngine\V1beta\DeleteEngineRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\Engine;
 use Google\Cloud\DiscoveryEngine\V1beta\GetEngineRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListEnginesRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\PauseEngineRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\ResumeEngineRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\TuneEngineRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateEngineRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -64,6 +67,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteEngineAsync(DeleteEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEngineAsync(GetEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEnginesAsync(ListEnginesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface pauseEngineAsync(PauseEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface resumeEngineAsync(ResumeEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface tuneEngineAsync(TuneEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateEngineAsync(UpdateEngineRequest $request, array $optionalArgs = [])
  */
 final class EngineServiceClient
@@ -147,6 +153,25 @@ final class EngineServiceClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -405,6 +430,96 @@ final class EngineServiceClient
     public function listEngines(ListEnginesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListEngines', $request, $callOptions);
+    }
+
+    /**
+     * Pauses the training of an existing engine. Only applicable if
+     * [SolutionType][google.cloud.discoveryengine.v1beta.SolutionType] is
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *
+     * The async variant is {@see EngineServiceClient::pauseEngineAsync()} .
+     *
+     * @example samples/V1beta/EngineServiceClient/pause_engine.php
+     *
+     * @param PauseEngineRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Engine
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function pauseEngine(PauseEngineRequest $request, array $callOptions = []): Engine
+    {
+        return $this->startApiCall('PauseEngine', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Resumes the training of an existing engine. Only applicable if
+     * [SolutionType][google.cloud.discoveryengine.v1beta.SolutionType] is
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *
+     * The async variant is {@see EngineServiceClient::resumeEngineAsync()} .
+     *
+     * @example samples/V1beta/EngineServiceClient/resume_engine.php
+     *
+     * @param ResumeEngineRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Engine
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function resumeEngine(ResumeEngineRequest $request, array $callOptions = []): Engine
+    {
+        return $this->startApiCall('ResumeEngine', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Tunes an existing engine. Only applicable if
+     * [SolutionType][google.cloud.discoveryengine.v1beta.SolutionType] is
+     * [SOLUTION_TYPE_RECOMMENDATION][google.cloud.discoveryengine.v1beta.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *
+     * The async variant is {@see EngineServiceClient::tuneEngineAsync()} .
+     *
+     * @example samples/V1beta/EngineServiceClient/tune_engine.php
+     *
+     * @param TuneEngineRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function tuneEngine(TuneEngineRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('TuneEngine', $request, $callOptions)->wait();
     }
 
     /**

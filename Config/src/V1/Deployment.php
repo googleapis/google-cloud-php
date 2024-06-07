@@ -150,6 +150,37 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.config.v1.Deployment.LockState lock_state = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $lock_state = 0;
+    /**
+     * Optional. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>optional string tf_version_constraint = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tf_version_constraint = null;
+    /**
+     * Output only. The current Terraform version set on the deployment.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $tf_version = '';
+    /**
+     * Optional. Input to control quota checks for resources in terraform
+     * configuration files. There are limited resources on which quota validation
+     * applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $quota_validation = 0;
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identify deployments during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
     protected $blueprint;
 
     /**
@@ -223,6 +254,21 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           used.
      *     @type int $lock_state
      *           Output only. Current lock state of the deployment.
+     *     @type string $tf_version_constraint
+     *           Optional. The user-specified Terraform version constraint.
+     *           Example: "=1.3.10".
+     *     @type string $tf_version
+     *           Output only. The current Terraform version set on the deployment.
+     *           It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *     @type int $quota_validation
+     *           Optional. Input to control quota checks for resources in terraform
+     *           configuration files. There are limited resources on which quota validation
+     *           applies.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     *           identify deployments during automation. See
+     *           https://google.aip.dev/148#annotations for details on format and size
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -849,6 +895,134 @@ class Deployment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Config\V1\Deployment\LockState::class);
         $this->lock_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>optional string tf_version_constraint = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTfVersionConstraint()
+    {
+        return isset($this->tf_version_constraint) ? $this->tf_version_constraint : '';
+    }
+
+    public function hasTfVersionConstraint()
+    {
+        return isset($this->tf_version_constraint);
+    }
+
+    public function clearTfVersionConstraint()
+    {
+        unset($this->tf_version_constraint);
+    }
+
+    /**
+     * Optional. The user-specified Terraform version constraint.
+     * Example: "=1.3.10".
+     *
+     * Generated from protobuf field <code>optional string tf_version_constraint = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTfVersionConstraint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tf_version_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current Terraform version set on the deployment.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTfVersion()
+    {
+        return $this->tf_version;
+    }
+
+    /**
+     * Output only. The current Terraform version set on the deployment.
+     * It is in the format of "Major.Minor.Patch", for example, "1.3.10".
+     *
+     * Generated from protobuf field <code>string tf_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTfVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tf_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input to control quota checks for resources in terraform
+     * configuration files. There are limited resources on which quota validation
+     * applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQuotaValidation()
+    {
+        return $this->quota_validation;
+    }
+
+    /**
+     * Optional. Input to control quota checks for resources in terraform
+     * configuration files. There are limited resources on which quota validation
+     * applies.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQuotaValidation($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Config\V1\QuotaValidation::class);
+        $this->quota_validation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identify deployments during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identify deployments during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }

@@ -5,7 +5,9 @@
 
 PHP Version  | Status
 ------------ | ------
-[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud) | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.svg)](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.html)
+
+
 
 View the [list of supported APIs and Services](https://cloud.google.com/php/docs/reference).
 

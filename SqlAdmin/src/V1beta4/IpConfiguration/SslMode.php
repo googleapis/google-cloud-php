@@ -48,6 +48,7 @@ class SslMode
      * [Cloud SQL
      * Connectors](https://cloud.google.com/sql/docs/postgres/connect-connectors)
      * to enforce client identity verification.
+     * This value is not applicable to SQL Server.
      *
      * Generated from protobuf enum <code>TRUSTED_CLIENT_CERTIFICATE_REQUIRED = 3;</code>
      */

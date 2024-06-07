@@ -100,6 +100,14 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 9;</code>
      */
     protected $filter = '';
+    /**
+     * Boost specification to boost certain documents in search results which may
+     * affect the converse response. For more information on boosting, see
+     * [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 10;</code>
+     */
+    protected $boost_spec = null;
 
     /**
      * @param string                                     $name  Required. The resource name of the Conversation to get. Format:
@@ -179,6 +187,10 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      *           For more information about filtering including syntax and filter
      *           operators, see
      *           [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $boost_spec
+     *           Boost specification to boost certain documents in search results which may
+     *           affect the converse response. For more information on boosting, see
+     *           [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
      * }
      */
     public function __construct($data = NULL) {
@@ -490,6 +502,46 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Boost specification to boost certain documents in search results which may
+     * affect the converse response. For more information on boosting, see
+     * [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 10;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec|null
+     */
+    public function getBoostSpec()
+    {
+        return $this->boost_spec;
+    }
+
+    public function hasBoostSpec()
+    {
+        return isset($this->boost_spec);
+    }
+
+    public function clearBoostSpec()
+    {
+        unset($this->boost_spec);
+    }
+
+    /**
+     * Boost specification to boost certain documents in search results which may
+     * affect the converse response. For more information on boosting, see
+     * [Boosting](https://cloud.google.com/retail/docs/boosting#boost)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec boost_spec = 10;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec $var
+     * @return $this
+     */
+    public function setBoostSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec::class);
+        $this->boost_spec = $var;
 
         return $this;
     }

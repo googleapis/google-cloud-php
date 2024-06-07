@@ -74,6 +74,12 @@ class PreviewStep
      * Generated from protobuf enum <code>FAILED = 9;</code>
      */
     const FAILED = 9;
+    /**
+     * Validating the provided repository.
+     *
+     * Generated from protobuf enum <code>VALIDATING_REPOSITORY = 10;</code>
+     */
+    const VALIDATING_REPOSITORY = 10;
 
     private static $valueToName = [
         self::PREVIEW_STEP_UNSPECIFIED => 'PREVIEW_STEP_UNSPECIFIED',
@@ -86,6 +92,7 @@ class PreviewStep
         self::UNLOCKING_DEPLOYMENT => 'UNLOCKING_DEPLOYMENT',
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
+        self::VALIDATING_REPOSITORY => 'VALIDATING_REPOSITORY',
     ];
 
     public static function name($value)

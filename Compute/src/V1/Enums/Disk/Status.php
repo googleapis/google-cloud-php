@@ -41,4 +41,6 @@ class Status
     const READY = 'READY';
 
     const RESTORING = 'RESTORING';
+
+    const UNAVAILABLE = 'UNAVAILABLE';
 }

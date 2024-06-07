@@ -16,12 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class OcrParsingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Apply additional enhanced OCR processing to a list of document
-     * elements.
-     * Supported values:
-     * * `table`: advanced table parsing model.
+     * [DEPRECATED] This field is deprecated. To use the additional enhanced
+     * document elements processing, please switch to `layout_parsing_config`.
      *
-     * Generated from protobuf field <code>repeated string enhanced_document_elements = 1;</code>
+     * Generated from protobuf field <code>repeated string enhanced_document_elements = 1 [deprecated = true];</code>
+     * @deprecated
      */
     private $enhanced_document_elements;
     /**
@@ -39,10 +38,8 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enhanced_document_elements
-     *           Apply additional enhanced OCR processing to a list of document
-     *           elements.
-     *           Supported values:
-     *           * `table`: advanced table parsing model.
+     *           [DEPRECATED] This field is deprecated. To use the additional enhanced
+     *           document elements processing, please switch to `layout_parsing_config`.
      *     @type bool $use_native_text
      *           If true, will use native text instead of OCR text on pages containing
      *           native text.
@@ -54,31 +51,31 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Apply additional enhanced OCR processing to a list of document
-     * elements.
-     * Supported values:
-     * * `table`: advanced table parsing model.
+     * [DEPRECATED] This field is deprecated. To use the additional enhanced
+     * document elements processing, please switch to `layout_parsing_config`.
      *
-     * Generated from protobuf field <code>repeated string enhanced_document_elements = 1;</code>
+     * Generated from protobuf field <code>repeated string enhanced_document_elements = 1 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getEnhancedDocumentElements()
     {
+        @trigger_error('enhanced_document_elements is deprecated.', E_USER_DEPRECATED);
         return $this->enhanced_document_elements;
     }
 
     /**
-     * Apply additional enhanced OCR processing to a list of document
-     * elements.
-     * Supported values:
-     * * `table`: advanced table parsing model.
+     * [DEPRECATED] This field is deprecated. To use the additional enhanced
+     * document elements processing, please switch to `layout_parsing_config`.
      *
-     * Generated from protobuf field <code>repeated string enhanced_document_elements = 1;</code>
+     * Generated from protobuf field <code>repeated string enhanced_document_elements = 1 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setEnhancedDocumentElements($var)
     {
+        @trigger_error('enhanced_document_elements is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->enhanced_document_elements = $arr;
 

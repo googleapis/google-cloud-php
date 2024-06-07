@@ -30,11 +30,14 @@ use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
 /**
- * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
- * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
+ * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]
+ * containing secret data and attaches it to an existing
+ * [Secret][google.cloud.secretmanager.v1.Secret].
  *
- * @param string $formattedParent The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
- *                                [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`. Please see
+ * @param string $formattedParent The resource name of the
+ *                                [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+ *                                [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+ *                                `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
  *                                {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function add_secret_version_sample(string $formattedParent): void

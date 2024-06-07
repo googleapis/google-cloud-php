@@ -104,8 +104,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $ldap_enabled = false;
     /**
-     * Optional. This field is currently not implemented. Currently values
-     * provided in this field will be ignored.
+     * Optional. This field is not implemented. The values provided in this field
+     * are ignored.
      *
      * Generated from protobuf field <code>string psa_range = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -162,8 +162,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type bool $ldap_enabled
      *           Optional. Flag indicating if the pool is NFS LDAP enabled or not.
      *     @type string $psa_range
-     *           Optional. This field is currently not implemented. Currently values
-     *           provided in this field will be ignored.
+     *           Optional. This field is not implemented. The values provided in this field
+     *           are ignored.
      *     @type int $encryption_type
      *           Output only. Specifies the current pool encryption key source.
      *     @type bool $global_access_allowed
@@ -555,8 +555,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is currently not implemented. Currently values
-     * provided in this field will be ignored.
+     * Optional. This field is not implemented. The values provided in this field
+     * are ignored.
      *
      * Generated from protobuf field <code>string psa_range = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -567,8 +567,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is currently not implemented. Currently values
-     * provided in this field will be ignored.
+     * Optional. This field is not implemented. The values provided in this field
+     * are ignored.
      *
      * Generated from protobuf field <code>string psa_range = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

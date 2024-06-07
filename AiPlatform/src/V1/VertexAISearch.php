@@ -19,7 +19,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     /**
      * Required. Fully-qualified Vertex AI Search's datastore resource ID.
      * Format:
-     * projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
      * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,7 +34,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      *     @type string $datastore
      *           Required. Fully-qualified Vertex AI Search's datastore resource ID.
      *           Format:
-     *           projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     /**
      * Required. Fully-qualified Vertex AI Search's datastore resource ID.
      * Format:
-     * projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
      * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -58,7 +58,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     /**
      * Required. Fully-qualified Vertex AI Search's datastore resource ID.
      * Format:
-     * projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
      * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

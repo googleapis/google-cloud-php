@@ -28,7 +28,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. Name of the table from which this backup was created.
      * This needs to be in the same instance as the backup. Values are of the form
@@ -36,7 +36,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_table = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_table = '';
+    protected $source_table = '';
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
@@ -44,7 +44,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_backup = '';
+    protected $source_backup = '';
     /**
      * Required. The expiration time of the backup, with microseconds
      * granularity that must be at least 6 hours and at most 90 days
@@ -54,7 +54,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. `start_time` is the time that the backup was started
      * (i.e. approximately the time the
@@ -64,32 +64,32 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. `end_time` is the time that the backup was finished. The row
      * data in the backup will be no newer than this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Size of the backup in bytes.
      *
      * Generated from protobuf field <code>int64 size_bytes = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Output only. The current state of the backup.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The encryption information for the backup.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo encryption_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_info = null;
+    protected $encryption_info = null;
 
     /**
      * Constructor.

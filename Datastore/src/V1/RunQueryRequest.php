@@ -45,6 +45,15 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_options = null;
     /**
+     * The properties to return.
+     * This field must not be set for a projection query.
+     * See
+     * [LookupRequest.property_mask][google.datastore.v1.LookupRequest.property_mask].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 10;</code>
+     */
+    private $property_mask = null;
+    /**
      * Optional. Explain options for the query. If set, additional query
      * statistics will be returned. If not, only query results will be returned.
      *
@@ -76,6 +85,11 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *           The query to run.
      *     @type \Google\Cloud\Datastore\V1\GqlQuery $gql_query
      *           The GQL query to run. This query must be a non-aggregation query.
+     *     @type \Google\Cloud\Datastore\V1\PropertyMask $property_mask
+     *           The properties to return.
+     *           This field must not be set for a projection query.
+     *           See
+     *           [LookupRequest.property_mask][google.datastore.v1.LookupRequest.property_mask].
      *     @type \Google\Cloud\Datastore\V1\ExplainOptions $explain_options
      *           Optional. Explain options for the query. If set, additional query
      *           statistics will be returned. If not, only query results will be returned.
@@ -278,6 +292,48 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\GqlQuery::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The properties to return.
+     * This field must not be set for a projection query.
+     * See
+     * [LookupRequest.property_mask][google.datastore.v1.LookupRequest.property_mask].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 10;</code>
+     * @return \Google\Cloud\Datastore\V1\PropertyMask|null
+     */
+    public function getPropertyMask()
+    {
+        return $this->property_mask;
+    }
+
+    public function hasPropertyMask()
+    {
+        return isset($this->property_mask);
+    }
+
+    public function clearPropertyMask()
+    {
+        unset($this->property_mask);
+    }
+
+    /**
+     * The properties to return.
+     * This field must not be set for a projection query.
+     * See
+     * [LookupRequest.property_mask][google.datastore.v1.LookupRequest.property_mask].
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 10;</code>
+     * @param \Google\Cloud\Datastore\V1\PropertyMask $var
+     * @return $this
+     */
+    public function setPropertyMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\PropertyMask::class);
+        $this->property_mask = $var;
 
         return $this;
     }

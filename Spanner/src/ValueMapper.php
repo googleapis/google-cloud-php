@@ -33,6 +33,7 @@ class ValueMapper
 
     const TYPE_BOOL = TypeCode::BOOL;
     const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT32 = TypeCode::FLOAT32;
     const TYPE_FLOAT64 = TypeCode::FLOAT64;
     const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
     const TYPE_DATE = TypeCode::DATE;
@@ -44,9 +45,11 @@ class ValueMapper
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
+    const TYPE_PG_OID = 'pgOid';
 
     /**
      * @var array
+     * @internal
      */
     public static $allowedTypes = [
         self::TYPE_BOOL,
@@ -62,6 +65,8 @@ class ValueMapper
         self::TYPE_JSON,
         self::TYPE_PG_NUMERIC,
         self::TYPE_PG_JSONB,
+        self::TYPE_PG_OID,
+        self::TYPE_FLOAT32,
     ];
 
     /*
@@ -76,6 +81,7 @@ class ValueMapper
     private static $typeToClassMap = [
         self::TYPE_PG_NUMERIC => PgNumeric::class,
         self::TYPE_PG_JSONB => PgJsonb::class,
+        self::TYPE_PG_OID => PgOid::class,
     ];
 
     /*
@@ -87,6 +93,7 @@ class ValueMapper
     private static $typeCodes = [
         self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
         self::TYPE_PG_JSONB => self::TYPE_JSON,
+        self::TYPE_PG_OID => self::TYPE_INT64,
     ];
 
     /*
@@ -98,6 +105,7 @@ class ValueMapper
     private static $typeAnnotations = [
         self::TYPE_PG_NUMERIC => TypeAnnotationCode::PG_NUMERIC,
         self::TYPE_PG_JSONB => TypeAnnotationCode::PG_JSONB,
+        self::TYPE_PG_OID => TypeAnnotationCode::PG_OID,
     ];
 
     /**
@@ -277,9 +285,13 @@ class ValueMapper
 
         switch ($type['code']) {
             case self::TYPE_INT64:
-                $value = $this->returnInt64AsObject
-                    ? new Int64($value)
-                    : (int) $value;
+                if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_OID) {
+                    $value = new PgOid($value);
+                } else {
+                    $value = $this->returnInt64AsObject
+                        ? new Int64($value)
+                        : (int) $value;
+                }
                 break;
 
             case self::TYPE_TIMESTAMP:
@@ -324,6 +336,7 @@ class ValueMapper
                 }
                 break;
 
+            case self::TYPE_FLOAT32:
             case self::TYPE_FLOAT64:
                 // NaN, Infinite and -Infinite are possible FLOAT64 values,
                 // but when the gRPC response is decoded, they are represented
@@ -346,8 +359,9 @@ class ValueMapper
 
                         default:
                             throw new \RuntimeException(sprintf(
-                                'Unexpected string value %s encountered in FLOAT64 field.',
-                                $value
+                                'Unexpected string value %s encountered in %s field.',
+                                $value,
+                                TypeCode::name($type['code'])
                             ));
                     }
                 }

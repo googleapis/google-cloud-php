@@ -365,6 +365,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_k8s_beta_apis = null;
     /**
+     * Enable/Disable Multi-Networking for the cluster
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_multi_networking = 135;</code>
+     */
+    private $desired_enable_multi_networking = null;
+    /**
      * The desired resource manager tags that apply to all auto-provisioned node
      * pools in autopilot clusters and node auto-provisioning enabled clusters.
      *
@@ -541,6 +547,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired workload policy configuration for the autopilot cluster.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $desired_k8s_beta_apis
      *           Desired Beta APIs to be enabled for cluster.
+     *     @type bool $desired_enable_multi_networking
+     *           Enable/Disable Multi-Networking for the cluster
      *     @type \Google\Cloud\Container\V1\ResourceManagerTags $desired_node_pool_auto_config_resource_manager_tags
      *           The desired resource manager tags that apply to all auto-provisioned node
      *           pools in autopilot clusters and node auto-provisioning enabled clusters.
@@ -2311,6 +2319,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\K8sBetaAPIConfig::class);
         $this->desired_k8s_beta_apis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Multi-Networking for the cluster
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_multi_networking = 135;</code>
+     * @return bool
+     */
+    public function getDesiredEnableMultiNetworking()
+    {
+        return isset($this->desired_enable_multi_networking) ? $this->desired_enable_multi_networking : false;
+    }
+
+    public function hasDesiredEnableMultiNetworking()
+    {
+        return isset($this->desired_enable_multi_networking);
+    }
+
+    public function clearDesiredEnableMultiNetworking()
+    {
+        unset($this->desired_enable_multi_networking);
+    }
+
+    /**
+     * Enable/Disable Multi-Networking for the cluster
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_multi_networking = 135;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredEnableMultiNetworking($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_enable_multi_networking = $var;
 
         return $this;
     }

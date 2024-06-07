@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Summary of the top N search result specified by the summary spec.
+ * Summary of the top N search results specified by the summary spec.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1beta.SearchResponse.Summary</code>
  */

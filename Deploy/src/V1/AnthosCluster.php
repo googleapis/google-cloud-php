@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class AnthosCluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Membership of the GKE Hub-registered cluster to which to apply the Skaffold
-     * configuration. Format is
+     * Optional. Membership of the GKE Hub-registered cluster to which to apply
+     * the Skaffold configuration. Format is
      * `projects/{project}/locations/{location}/memberships/{membership_name}`.
      *
-     * Generated from protobuf field <code>string membership = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string membership = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $membership = '';
 
@@ -31,8 +31,8 @@ class AnthosCluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $membership
-     *           Membership of the GKE Hub-registered cluster to which to apply the Skaffold
-     *           configuration. Format is
+     *           Optional. Membership of the GKE Hub-registered cluster to which to apply
+     *           the Skaffold configuration. Format is
      *           `projects/{project}/locations/{location}/memberships/{membership_name}`.
      * }
      */
@@ -42,11 +42,11 @@ class AnthosCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Membership of the GKE Hub-registered cluster to which to apply the Skaffold
-     * configuration. Format is
+     * Optional. Membership of the GKE Hub-registered cluster to which to apply
+     * the Skaffold configuration. Format is
      * `projects/{project}/locations/{location}/memberships/{membership_name}`.
      *
-     * Generated from protobuf field <code>string membership = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string membership = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getMembership()
@@ -55,11 +55,11 @@ class AnthosCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Membership of the GKE Hub-registered cluster to which to apply the Skaffold
-     * configuration. Format is
+     * Optional. Membership of the GKE Hub-registered cluster to which to apply
+     * the Skaffold configuration. Format is
      * `projects/{project}/locations/{location}/memberships/{membership_name}`.
      *
-     * Generated from protobuf field <code>string membership = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string membership = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

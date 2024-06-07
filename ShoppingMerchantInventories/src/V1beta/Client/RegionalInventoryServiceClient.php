@@ -108,6 +108,25 @@ final class RegionalInventoryServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a product
+     * resource.
+     *
+     * @param string $account
+     * @param string $product
+     *
+     * @return string The formatted product resource.
+     *
+     * @experimental
+     */
+    public static function productName(string $account, string $product): string
+    {
+        return self::getPathTemplate('product')->render([
+            'account' => $account,
+            'product' => $product,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * regional_inventory resource.
      *
@@ -132,6 +151,7 @@ final class RegionalInventoryServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - product: accounts/{account}/products/{product}
      * - regionalInventory: accounts/{account}/products/{product}/regionalInventories/{region}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

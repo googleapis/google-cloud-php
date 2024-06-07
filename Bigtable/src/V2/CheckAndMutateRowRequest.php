@@ -16,27 +16,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table to which the conditional mutation
-     * should be applied. Values are of the form
+     * Optional. The unique name of the table to which the conditional mutation
+     * should be applied.
+     * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
+    /**
+     * Optional. The unique name of the AuthorizedView to which the conditional
+     * mutation should be applied.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *
+     * Generated from protobuf field <code>string authorized_view_name = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $authorized_view_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 7;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
     /**
      * Required. The key of the row to which the conditional mutation should be
      * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $row_key = '';
+    protected $row_key = '';
     /**
      * The filter to be applied to the contents of the specified row. Depending
      * on whether or not any results are yielded, either `true_mutations` or
@@ -45,7 +55,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 6;</code>
      */
-    private $predicate_filter = null;
+    protected $predicate_filter = null;
     /**
      * Changes to be atomically applied to the specified row if `predicate_filter`
      * yields at least one cell when applied to `row_key`. Entries are applied in
@@ -68,8 +78,10 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     private $false_mutations;
 
     /**
-     * @param string                               $tableName       Required. The unique name of the table to which the conditional mutation
-     *                                                              should be applied. Values are of the form
+     * @param string                               $tableName       Optional. The unique name of the table to which the conditional mutation
+     *                                                              should be applied.
+     *
+     *                                                              Values are of the form
      *                                                              `projects/<project>/instances/<instance>/tables/<table>`. Please see
      *                                                              {@see BigtableClient::tableName()} for help formatting this field.
      * @param string                               $rowKey          Required. The key of the row to which the conditional mutation should be
@@ -104,8 +116,10 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string                               $tableName       Required. The unique name of the table to which the conditional mutation
-     *                                                              should be applied. Values are of the form
+     * @param string                               $tableName       Optional. The unique name of the table to which the conditional mutation
+     *                                                              should be applied.
+     *
+     *                                                              Values are of the form
      *                                                              `projects/<project>/instances/<instance>/tables/<table>`. Please see
      *                                                              {@see BigtableClient::tableName()} for help formatting this field.
      * @param string                               $rowKey          Required. The key of the row to which the conditional mutation should be
@@ -149,9 +163,15 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table to which the conditional mutation
-     *           should be applied. Values are of the form
+     *           Optional. The unique name of the table to which the conditional mutation
+     *           should be applied.
+     *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorized_view_name
+     *           Optional. The unique name of the AuthorizedView to which the conditional
+     *           mutation should be applied.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -183,11 +203,12 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the conditional mutation
-     * should be applied. Values are of the form
+     * Optional. The unique name of the table to which the conditional mutation
+     * should be applied.
+     * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTableName()
@@ -196,11 +217,12 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table to which the conditional mutation
-     * should be applied. Values are of the form
+     * Optional. The unique name of the table to which the conditional mutation
+     * should be applied.
+     * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -208,6 +230,38 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->table_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The unique name of the AuthorizedView to which the conditional
+     * mutation should be applied.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *
+     * Generated from protobuf field <code>string authorized_view_name = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAuthorizedViewName()
+    {
+        return $this->authorized_view_name;
+    }
+
+    /**
+     * Optional. The unique name of the AuthorizedView to which the conditional
+     * mutation should be applied.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *
+     * Generated from protobuf field <code>string authorized_view_name = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAuthorizedViewName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->authorized_view_name = $var;
 
         return $this;
     }

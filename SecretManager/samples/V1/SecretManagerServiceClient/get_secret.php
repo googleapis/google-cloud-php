@@ -31,7 +31,9 @@ use Google\Cloud\SecretManager\V1\Secret;
 /**
  * Gets metadata for a given [Secret][google.cloud.secretmanager.v1.Secret].
  *
- * @param string $formattedName The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`. Please see
+ * @param string $formattedName The resource name of the
+ *                              [Secret][google.cloud.secretmanager.v1.Secret], in the format
+ *                              `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
  *                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function get_secret_sample(string $formattedName): void
