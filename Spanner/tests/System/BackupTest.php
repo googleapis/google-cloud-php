@@ -479,7 +479,7 @@ class BackupTest extends SpannerTestCase
         }, $backupOps);
 
         $this->assertTrue(count($backupOps) > 0);
-        $this->assertContainsOnlyInstancesOf(LongRunningOperatioManager::class, $backupOps);
+        $this->assertContainsOnlyInstancesOf(LongRunningOperationManager::class, $backupOps);
         $this->assertTrue(in_array(self::$backupOperationName, $backupOpsNames));
     }
 
