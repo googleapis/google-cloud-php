@@ -22,7 +22,7 @@ class Canary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RuntimeConfig runtime_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $runtime_config = null;
+    protected $runtime_config = null;
     protected $mode;
 
     /**

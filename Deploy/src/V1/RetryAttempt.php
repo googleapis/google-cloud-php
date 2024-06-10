@@ -20,25 +20,25 @@ class RetryAttempt extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 attempt = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $attempt = 0;
+    protected $attempt = 0;
     /**
      * Output only. How long the operation will be paused.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Output only. Valid state of this retry action.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RepairState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Description of the state of the Retry.
      *
      * Generated from protobuf field <code>string state_desc = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_desc = '';
+    protected $state_desc = '';
 
     /**
      * Constructor.

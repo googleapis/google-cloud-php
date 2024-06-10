@@ -21,19 +21,19 @@ class IgnoreJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * Required. The phase ID the Job to ignore belongs to.
      *
      * Generated from protobuf field <code>string phase_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phase_id = '';
+    protected $phase_id = '';
     /**
      * Required. The job ID for the Job to ignore.
      *
      * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
 
     /**
      * @param string $rollout Required. Name of the Rollout. Format is

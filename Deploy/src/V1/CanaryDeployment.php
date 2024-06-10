@@ -28,21 +28,21 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verify = 2;</code>
      */
-    private $verify = false;
+    protected $verify = false;
     /**
      * Optional. Configuration for the predeploy job of the first phase. If this
      * is not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predeploy = null;
+    protected $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job of the last phase. If this
      * is not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postdeploy = null;
+    protected $postdeploy = null;
 
     /**
      * Constructor.

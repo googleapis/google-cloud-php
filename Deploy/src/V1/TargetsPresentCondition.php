@@ -21,7 +21,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool status = 1;</code>
      */
-    private $status = false;
+    protected $status = false;
     /**
      * The list of Target names that do not exist. For example,
      * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
@@ -34,7 +34,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

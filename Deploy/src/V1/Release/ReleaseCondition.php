@@ -20,14 +20,14 @@ class ReleaseCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.ReleaseReadyCondition release_ready_condition = 1;</code>
      */
-    private $release_ready_condition = null;
+    protected $release_ready_condition = null;
     /**
      * Details around the support state of the release's Skaffold
      * version.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.SkaffoldSupportedCondition skaffold_supported_condition = 2;</code>
      */
-    private $skaffold_supported_condition = null;
+    protected $skaffold_supported_condition = null;
 
     /**
      * Constructor.

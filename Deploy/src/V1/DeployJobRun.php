@@ -22,32 +22,32 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $build = '';
+    protected $build = '';
     /**
      * Output only. The reason the deploy failed. This will always be unspecified
      * while the deploy is in progress or if it succeeded.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployJobRun.FailureCause failure_cause = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_cause = 0;
+    protected $failure_cause = 0;
     /**
      * Output only. Additional information about the deploy failure, if available.
      *
      * Generated from protobuf field <code>string failure_message = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_message = '';
+    protected $failure_message = '';
     /**
      * Output only. Metadata containing information about the deploy job run.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployJobRunMetadata metadata = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. The artifact of a deploy job run, if available.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployArtifact artifact = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $artifact = null;
+    protected $artifact = null;
 
     /**
      * Constructor.

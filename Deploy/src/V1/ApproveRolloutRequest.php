@@ -21,13 +21,13 @@ class ApproveRolloutRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. True = approve; false = reject
      *
      * Generated from protobuf field <code>bool approved = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $approved = false;
+    protected $approved = false;
 
     /**
      * @param string $name Required. Name of the Rollout. Format is

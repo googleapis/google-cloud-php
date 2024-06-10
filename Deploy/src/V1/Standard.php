@@ -20,21 +20,21 @@ class Standard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verify = 1;</code>
      */
-    private $verify = false;
+    protected $verify = false;
     /**
      * Optional. Configuration for the predeploy job. If this is not configured,
      * predeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predeploy = null;
+    protected $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job. If this is not configured,
      * postdeploy job will not be present.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postdeploy = null;
+    protected $postdeploy = null;
 
     /**
      * Constructor.
