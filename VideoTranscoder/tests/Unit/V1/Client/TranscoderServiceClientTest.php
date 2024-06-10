@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,9 @@ class TranscoderServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TranscoderServiceClient */
@@ -97,9 +99,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -125,19 +125,20 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         try {
             $gapicClient->createJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -199,12 +200,15 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -240,8 +244,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteJobRequest())->setName($formattedName);
         $gapicClient->deleteJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -264,17 +267,19 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteJobRequest())->setName($formattedName);
         try {
             $gapicClient->deleteJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -301,8 +306,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
-        $request = (new DeleteJobTemplateRequest())
-            ->setName($formattedName);
+        $request = (new DeleteJobTemplateRequest())->setName($formattedName);
         $gapicClient->deleteJobTemplate($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -325,17 +329,19 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
-        $request = (new DeleteJobTemplateRequest())
-            ->setName($formattedName);
+        $request = (new DeleteJobTemplateRequest())->setName($formattedName);
         try {
             $gapicClient->deleteJobTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -374,8 +380,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = (new GetJobRequest())->setName($formattedName);
         $response = $gapicClient->getJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -399,17 +404,19 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = (new GetJobRequest())->setName($formattedName);
         try {
             $gapicClient->getJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -438,8 +445,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
-        $request = (new GetJobTemplateRequest())
-            ->setName($formattedName);
+        $request = (new GetJobTemplateRequest())->setName($formattedName);
         $response = $gapicClient->getJobTemplate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -463,17 +469,19 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
-        $request = (new GetJobTemplateRequest())
-            ->setName($formattedName);
+        $request = (new GetJobTemplateRequest())->setName($formattedName);
         try {
             $gapicClient->getJobTemplate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -498,17 +506,14 @@ class TranscoderServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $jobTemplatesElement = new JobTemplate();
-        $jobTemplates = [
-            $jobTemplatesElement,
-        ];
+        $jobTemplates = [$jobTemplatesElement];
         $expectedResponse = new ListJobTemplatesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobTemplates($jobTemplates);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobTemplatesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobTemplatesRequest())->setParent($formattedParent);
         $response = $gapicClient->listJobTemplates($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -535,17 +540,19 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobTemplatesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobTemplatesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listJobTemplates($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -570,17 +577,14 @@ class TranscoderServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $jobsElement = new Job();
-        $jobs = [
-            $jobsElement,
-        ];
+        $jobs = [$jobsElement];
         $expectedResponse = new ListJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -607,17 +611,19 @@ class TranscoderServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -657,9 +663,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJobAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

@@ -27,20 +27,20 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
-    private $codec = '';
+    protected $codec = '';
     /**
      * Required. Audio bitrate in bits per second. Must be between 1 and
      * 10,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bitrate_bps = 0;
+    protected $bitrate_bps = 0;
     /**
      * Number of audio channels. Must be between 1 and 6. The default is 2.
      *
      * Generated from protobuf field <code>int32 channel_count = 3;</code>
      */
-    private $channel_count = 0;
+    protected $channel_count = 0;
     /**
      * A list of channel names specifying layout of the audio channels.
      * This only affects the metadata embedded in the container headers, if
@@ -67,7 +67,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 6;</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
@@ -76,14 +76,14 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The name for this particular audio stream that
      * will be added to the HLS/DASH manifest. Not supported in MP4 files.
      *
      * Generated from protobuf field <code>string display_name = 8;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

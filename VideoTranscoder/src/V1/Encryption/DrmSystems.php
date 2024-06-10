@@ -20,25 +20,25 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.Widevine widevine = 1;</code>
      */
-    private $widevine = null;
+    protected $widevine = null;
     /**
      * Fairplay configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.Fairplay fairplay = 2;</code>
      */
-    private $fairplay = null;
+    protected $fairplay = null;
     /**
      * Playready configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.Playready playready = 3;</code>
      */
-    private $playready = null;
+    protected $playready = null;
     /**
      * Clearkey configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption.Clearkey clearkey = 4;</code>
      */
-    private $clearkey = null;
+    protected $clearkey = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 1;</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * Required. File name prefix for the generated sprite sheets.
      * Each sprite sheet has an incremental 10-digit zero-padded suffix starting
@@ -30,7 +30,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $file_prefix = '';
+    protected $file_prefix = '';
     /**
      * Required. The width of sprite in pixels. Must be an even integer. To
      * preserve the source aspect ratio, set the
@@ -46,7 +46,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sprite_width_pixels = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sprite_width_pixels = 0;
+    protected $sprite_width_pixels = 0;
     /**
      * Required. The height of sprite in pixels. Must be an even integer. To
      * preserve the source aspect ratio, set the
@@ -62,14 +62,14 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sprite_height_pixels = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sprite_height_pixels = 0;
+    protected $sprite_height_pixels = 0;
     /**
      * The maximum number of sprites per row in a sprite sheet. The default is 0,
      * which indicates no maximum limit.
      *
      * Generated from protobuf field <code>int32 column_count = 5;</code>
      */
-    private $column_count = 0;
+    protected $column_count = 0;
     /**
      * The maximum number of rows per sprite sheet. When the sprite sheet is full,
      * a new sprite sheet is created. The default is 0, which indicates no maximum
@@ -77,14 +77,14 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 6;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Start time in seconds, relative to the output file timeline. Determines the
      * first sprite to pick. The default is `0s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time_offset = 7;</code>
      */
-    private $start_time_offset = null;
+    protected $start_time_offset = null;
     /**
      * End time in seconds, relative to the output file timeline. When
      * `end_time_offset` is not specified, the sprites are generated until the end
@@ -92,7 +92,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time_offset = 8;</code>
      */
-    private $end_time_offset = null;
+    protected $end_time_offset = null;
     /**
      * The quality of the generated sprite sheet. Enter a value between 1
      * and 100, where 1 is the lowest quality and 100 is the highest quality.
@@ -101,7 +101,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 quality = 11;</code>
      */
-    private $quality = 0;
+    protected $quality = 0;
     protected $extraction_strategy;
 
     /**

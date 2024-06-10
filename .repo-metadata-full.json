@@ -1481,7 +1481,7 @@
     "VideoTranscoder": {
         "language": "php",
         "distribution_name": "google/cloud-video-transcoder",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-video-transcoder/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "transcoder"

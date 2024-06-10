@@ -21,19 +21,19 @@ class TextMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $atom_key = '';
+    protected $atom_key = '';
     /**
      * Required. The `Input.key` that identifies the input file.
      *
      * Generated from protobuf field <code>string input_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_key = '';
+    protected $input_key = '';
     /**
      * Required. The zero-based index of the track in the input file.
      *
      * Generated from protobuf field <code>int32 input_track = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_track = 0;
+    protected $input_track = 0;
 
     /**
      * Constructor.
