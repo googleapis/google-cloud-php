@@ -21,7 +21,7 @@ class AuxiliaryVersionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the
      * auxiliary Hive metastore (configured in `hive-site.xml`) in addition to
@@ -38,7 +38,7 @@ class AuxiliaryVersionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.NetworkConfig network_config = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
 
     /**
      * Constructor.

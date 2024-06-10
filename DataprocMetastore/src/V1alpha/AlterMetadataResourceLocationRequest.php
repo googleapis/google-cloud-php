@@ -23,7 +23,7 @@ class AlterMetadataResourceLocationRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. The relative metadata resource name in the following format.
      * `databases/{database_id}`
@@ -34,13 +34,13 @@ class AlterMetadataResourceLocationRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string resource_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * Required. The new location URI for the metadata resource.
      *
      * Generated from protobuf field <code>string location_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $location_uri = '';
+    protected $location_uri = '';
 
     /**
      * Constructor.

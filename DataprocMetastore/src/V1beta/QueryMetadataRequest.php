@@ -23,14 +23,14 @@ class QueryMetadataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. A read-only SQL query to execute against the metadata database.
      * The query cannot change or mutate the data.
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
 
     /**
      * Constructor.

@@ -25,14 +25,14 @@ class RemoveIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * Optional. Removes IAM policy attached to database or table asynchronously
      * when it is set. The default is false.
      *
      * Generated from protobuf field <code>bool asynchronous = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $asynchronous = false;
+    protected $asynchronous = false;
 
     /**
      * Constructor.
