@@ -23,7 +23,7 @@ class ListConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool supports_in = 1;</code>
      */
-    private $supports_in = false;
+    protected $supports_in = false;
     /**
      * Indicates whether subtrees of the Resource Manager resource hierarchy
      * can be used in `Policy.allowed_values` and `Policy.denied_values`. For
@@ -32,7 +32,7 @@ class ListConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool supports_under = 2;</code>
      */
-    private $supports_under = false;
+    protected $supports_under = false;
 
     /**
      * Constructor.
@@ -120,6 +120,4 @@ class ListConstraint extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ListConstraint::class, \Google\Cloud\OrgPolicy\V2\Constraint_ListConstraint::class);
 

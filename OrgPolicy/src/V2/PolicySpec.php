@@ -28,7 +28,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 1;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. The time stamp this was previously updated. This
      * represents the last time a call to `CreatePolicy` or `UpdatePolicy` was
@@ -36,7 +36,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * In policies for boolean constraints, the following requirements apply:
      *   - There must be one and only one policy rule where condition is unset.
@@ -58,7 +58,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool inherit_from_parent = 4;</code>
      */
-    private $inherit_from_parent = false;
+    protected $inherit_from_parent = false;
     /**
      * Ignores policies set above this resource and restores the
      * `constraint_default` enforcement behavior of the specific constraint at
@@ -69,7 +69,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reset = 5;</code>
      */
-    private $reset = false;
+    protected $reset = false;
 
     /**
      * Constructor.

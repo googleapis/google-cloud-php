@@ -31,7 +31,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 5;</code>
      */
-    private $condition = null;
+    protected $condition = null;
     protected $kind;
 
     /**
@@ -275,6 +275,4 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PolicyRule::class, \Google\Cloud\OrgPolicy\V2\PolicySpec_PolicyRule::class);
 

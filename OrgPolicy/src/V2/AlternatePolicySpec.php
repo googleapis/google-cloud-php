@@ -23,13 +23,13 @@ class AlternatePolicySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string launch = 1;</code>
      */
-    private $launch = '';
+    protected $launch = '';
     /**
      * Specify constraint for configurations of Google Cloud resources.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      */
-    private $spec = null;
+    protected $spec = null;
 
     /**
      * Constructor.
