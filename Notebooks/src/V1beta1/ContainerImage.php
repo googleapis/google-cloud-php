@@ -22,14 +22,14 @@ class ContainerImage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repository = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repository = '';
+    protected $repository = '';
     /**
      * The tag of the container image. If not specified, this defaults
      * to the latest tag.
      *
      * Generated from protobuf field <code>string tag = 2;</code>
      */
-    private $tag = '';
+    protected $tag = '';
 
     /**
      * Constructor.

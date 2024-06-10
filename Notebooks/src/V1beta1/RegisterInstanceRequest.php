@@ -21,7 +21,7 @@ class RegisterInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User defined unique ID of this instance. The `instance_id` must
      * be 1 to 63 characters long and contain only lowercase letters,
@@ -30,7 +30,7 @@ class RegisterInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
 
     /**
      * Constructor.

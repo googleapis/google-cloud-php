@@ -21,7 +21,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Path to a Bash script that automatically runs after a notebook instance
      * fully boots up. The path must be a URL or
@@ -29,13 +29,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string post_startup_script = 4;</code>
      */
-    private $post_startup_script = '';
+    protected $post_startup_script = '';
     /**
      * Output only. The proxy endpoint that is used to access the Jupyter notebook.
      *
      * Generated from protobuf field <code>string proxy_uri = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $proxy_uri = '';
+    protected $proxy_uri = '';
     /**
      * Input only. The owner of this instance after creation. Format: `alias&#64;example.com`
      * Currently supports one owner only. If not specified, all of the service
@@ -56,7 +56,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 7;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Required. The [Compute Engine machine
      * type](https://cloud.google.com/compute/docs/machine-types) of this
@@ -64,7 +64,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * The hardware accelerator used on this instance. If you use
      * accelerators, make sure that your configuration has
@@ -73,13 +73,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.AcceleratorConfig accelerator_config = 9;</code>
      */
-    private $accelerator_config = null;
+    protected $accelerator_config = null;
     /**
      * Output only. The state of this instance.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.State state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Whether the end user authorizes Google Cloud to install GPU driver
      * on this instance.
@@ -88,21 +88,21 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool install_gpu_driver = 11;</code>
      */
-    private $install_gpu_driver = false;
+    protected $install_gpu_driver = false;
     /**
      * Specify a custom Cloud Storage path where the GPU driver is stored.
      * If not specified, we'll automatically choose from official GPU drivers.
      *
      * Generated from protobuf field <code>string custom_gpu_driver_path = 12;</code>
      */
-    private $custom_gpu_driver_path = '';
+    protected $custom_gpu_driver_path = '';
     /**
      * Input only. The type of the boot disk attached to this instance, defaults to
      * standard persistent disk (`PD_STANDARD`).
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.DiskType boot_disk_type = 13 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $boot_disk_type = 0;
+    protected $boot_disk_type = 0;
     /**
      * Input only. The size of the boot disk in GB attached to this instance, up to a maximum
      * of 64000 GB (64 TB). The minimum recommended value is 100 GB. If not
@@ -110,14 +110,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 boot_disk_size_gb = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $boot_disk_size_gb = 0;
+    protected $boot_disk_size_gb = 0;
     /**
      * Input only. The type of the data disk attached to this instance, defaults to
      * standard persistent disk (`PD_STANDARD`).
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.DiskType data_disk_type = 25 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $data_disk_type = 0;
+    protected $data_disk_type = 0;
     /**
      * Input only. The size of the data disk in GB attached to this instance, up to a maximum
      * of 64000 GB (64 TB). You can choose the size of the data disk based on how
@@ -125,19 +125,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 data_disk_size_gb = 26 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $data_disk_size_gb = 0;
+    protected $data_disk_size_gb = 0;
     /**
      * Input only. If true, the data disk will not be auto deleted when deleting the instance.
      *
      * Generated from protobuf field <code>bool no_remove_data_disk = 27 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $no_remove_data_disk = false;
+    protected $no_remove_data_disk = false;
     /**
      * Input only. Disk encryption method used on the boot and data disks, defaults to GMEK.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.DiskEncryption disk_encryption = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $disk_encryption = 0;
+    protected $disk_encryption = 0;
     /**
      * Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption
      * is CMEK.
@@ -148,19 +148,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key = 16 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
     /**
      * If true, no public IP will be assigned to this instance.
      *
      * Generated from protobuf field <code>bool no_public_ip = 17;</code>
      */
-    private $no_public_ip = false;
+    protected $no_public_ip = false;
     /**
      * If true, the notebook instance will not register with the proxy.
      *
      * Generated from protobuf field <code>bool no_proxy_access = 18;</code>
      */
-    private $no_proxy_access = false;
+    protected $no_proxy_access = false;
     /**
      * The name of the VPC that this instance is in.
      * Format:
@@ -168,7 +168,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 19;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The name of the subnet that this instance is in.
      * Format:
@@ -176,7 +176,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnet = 20;</code>
      */
-    private $subnet = '';
+    protected $subnet = '';
     /**
      * Labels to apply to this instance.
      * These can be later modified by the setLabels method.
@@ -196,7 +196,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.Instance.NicType nic_type = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $nic_type = 0;
+    protected $nic_type = 0;
     /**
      * Optional. The optional reservation affinity. Setting this field will apply
      * the specified [Zonal Compute
@@ -205,26 +205,26 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.ReservationAffinity reservation_affinity = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reservation_affinity = null;
+    protected $reservation_affinity = null;
     /**
      * Optional. Flag to enable ip forwarding or not, default false/off.
      * https://cloud.google.com/vpc/docs/using-routes#canipforward
      *
      * Generated from protobuf field <code>bool can_ip_forward = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $can_ip_forward = false;
+    protected $can_ip_forward = false;
     /**
      * Output only. Instance creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Instance update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $environment;
 
     /**

@@ -21,7 +21,7 @@ class SetInstanceLabelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Labels to apply to this instance.
      * These can be later modified by the setLabels method

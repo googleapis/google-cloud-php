@@ -24,7 +24,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key = 1;</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
 
     /**
      * Constructor.

@@ -21,14 +21,14 @@ class ReportInstanceInfoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The VM hardware token for authenticating the VM.
      * https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *
      * Generated from protobuf field <code>string vm_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * The metadata reported to Notebooks API. This will be merged to the instance
      * metadata store

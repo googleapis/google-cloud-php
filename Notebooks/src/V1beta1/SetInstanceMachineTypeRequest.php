@@ -21,14 +21,14 @@ class SetInstanceMachineTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The [Compute Engine machine
      * type](https://cloud.google.com/compute/docs/machine-types).
      *
      * Generated from protobuf field <code>string machine_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
 
     /**
      * Constructor.

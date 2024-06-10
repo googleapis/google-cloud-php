@@ -20,19 +20,19 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $instance_name = '';
+    protected $instance_name = '';
     /**
      * Output only. The unique identifier of the Managed Compute Engine instance.
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Virtual Machine configuration settings.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.VirtualMachineConfig virtual_machine_config = 3;</code>
      */
-    private $virtual_machine_config = null;
+    protected $virtual_machine_config = null;
 
     /**
      * Constructor.

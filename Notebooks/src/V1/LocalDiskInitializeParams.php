@@ -24,7 +24,7 @@ class LocalDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Specifies the disk name. If not specified, the default is to use the name
      * of the instance. If the disk with the instance name exists already in the
@@ -32,7 +32,7 @@ class LocalDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disk_name = '';
+    protected $disk_name = '';
     /**
      * Optional. Specifies the size of the disk in base-2 GB. If not specified, the disk
      * will be the same size as the image (usually 10GB). If specified, the size
@@ -40,14 +40,14 @@ class LocalDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * Input only. The type of the boot disk attached to this instance, defaults to
      * standard persistent disk (`PD_STANDARD`).
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.LocalDiskInitializeParams.DiskType disk_type = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $disk_type = 0;
+    protected $disk_type = 0;
     /**
      * Optional. Labels to apply to this disk. These can be later modified by the
      * disks.setLabels method. This field is only applicable for persistent disks.
