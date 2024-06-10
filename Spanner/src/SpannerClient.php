@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ApiHelperTrait;
@@ -188,27 +189,17 @@ class SpannerClient
      *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *     @type CacheItemPoolInterface $credentialsConfig.authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     *     @type array $credentialsConfig.authCacheOptions Cache configuration options.
+     *     @type callable $credentialsConfig.authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type callable $transportConfig.rest.httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request. Used only
-     *           with default backoff strategy. **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls.
+     *     @type array $credentialsConfig.scopes Scopes to be used for the request.
+     *     @type string $credentialsConfig.quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
@@ -242,11 +233,8 @@ class SpannerClient
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
 
         $this->requireGrpc();
+        $scopes = [self::FULL_CONTROL_SCOPE, self::ADMIN_SCOPE];
         $config += [
-            'scopes' => [
-                self::FULL_CONTROL_SCOPE,
-                self::ADMIN_SCOPE
-            ],
             'returnInt64AsObject' => false,
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
@@ -306,9 +294,17 @@ class SpannerClient
 
         // Configure GAPIC client options
         $config = $this->buildClientOptions($config);
+        if (isset($config['credentialsConfig']['scopes'])) {
+            $config['credentialsConfig']['scopes'] = array_merge(
+                $config['credentialsConfig']['scopes'],
+                $scopes
+            );
+        } else {
+            $config['credentialsConfig']['scopes'] = $scopes;
+        }
         $config['credentials'] = $this->createCredentialsWrapper(
             $config['credentials'],
-            $config['credentialsConfig'] + ['scopes' => $config['scopes']],
+            $config['credentialsConfig'],
             $config['universeDomain']
         );
         $this->projectId = $this->detectProjectId($config);
