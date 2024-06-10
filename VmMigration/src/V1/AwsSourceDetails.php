@@ -21,20 +21,20 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aws_region = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $aws_region = '';
+    protected $aws_region = '';
     /**
      * Output only. State of the source as determined by the health check.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceDetails.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Provides details on the state of the Source in case of an
      * error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * AWS resource tags to limit the scope of the source inventory.
      *
@@ -63,7 +63,7 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_ip = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $public_ip = '';
+    protected $public_ip = '';
     protected $credentials_type;
 
     /**

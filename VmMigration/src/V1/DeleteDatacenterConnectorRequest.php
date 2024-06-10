@@ -20,7 +20,7 @@ class DeleteDatacenterConnectorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -36,7 +36,7 @@ class DeleteDatacenterConnectorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 2;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $name Required. The DatacenterConnector name. Please see

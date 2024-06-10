@@ -20,51 +20,51 @@ class VmUtilizationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 cpu_max_percent = 9;</code>
      */
-    private $cpu_max_percent = 0;
+    protected $cpu_max_percent = 0;
     /**
      * Average CPU usage, percent.
      *
      * Generated from protobuf field <code>int32 cpu_average_percent = 10;</code>
      */
-    private $cpu_average_percent = 0;
+    protected $cpu_average_percent = 0;
     /**
      * Max memory usage, percent.
      *
      * Generated from protobuf field <code>int32 memory_max_percent = 11;</code>
      */
-    private $memory_max_percent = 0;
+    protected $memory_max_percent = 0;
     /**
      * Average memory usage, percent.
      *
      * Generated from protobuf field <code>int32 memory_average_percent = 12;</code>
      */
-    private $memory_average_percent = 0;
+    protected $memory_average_percent = 0;
     /**
      * Max disk IO rate, in kilobytes per second.
      *
      * Generated from protobuf field <code>int64 disk_io_rate_max_kbps = 13;</code>
      */
-    private $disk_io_rate_max_kbps = 0;
+    protected $disk_io_rate_max_kbps = 0;
     /**
      * Average disk IO rate, in kilobytes per second.
      *
      * Generated from protobuf field <code>int64 disk_io_rate_average_kbps = 14;</code>
      */
-    private $disk_io_rate_average_kbps = 0;
+    protected $disk_io_rate_average_kbps = 0;
     /**
      * Max network throughput (combined transmit-rates and receive-rates), in
      * kilobytes per second.
      *
      * Generated from protobuf field <code>int64 network_throughput_max_kbps = 15;</code>
      */
-    private $network_throughput_max_kbps = 0;
+    protected $network_throughput_max_kbps = 0;
     /**
      * Average network throughput (combined transmit-rates and receive-rates), in
      * kilobytes per second.
      *
      * Generated from protobuf field <code>int64 network_throughput_average_kbps = 16;</code>
      */
-    private $network_throughput_average_kbps = 0;
+    protected $network_throughput_average_kbps = 0;
 
     /**
      * Constructor.

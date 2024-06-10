@@ -20,7 +20,7 @@ class ResumeMigrationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string migrating_vm = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $migrating_vm = '';
+    protected $migrating_vm = '';
 
     /**
      * Constructor.

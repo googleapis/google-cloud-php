@@ -30,38 +30,38 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the clone job was ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The name of the clone.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. State of the clone job.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.CloneJob.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time the state was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. Provides details for the errors that led to the Clone Job's
      * state.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. The clone steps list representing its progress.
      *
