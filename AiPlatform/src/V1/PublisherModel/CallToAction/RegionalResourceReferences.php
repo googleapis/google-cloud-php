@@ -27,25 +27,25 @@ class RegionalResourceReferences extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. Title of the resource.
      *
      * Generated from protobuf field <code>optional string resource_title = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_title = null;
+    protected $resource_title = null;
     /**
      * Optional. Use case (CUJ) of the resource.
      *
      * Generated from protobuf field <code>optional string resource_use_case = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_use_case = null;
+    protected $resource_use_case = null;
     /**
      * Optional. Description of the resource.
      *
      * Generated from protobuf field <code>optional string resource_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_description = null;
+    protected $resource_description = null;
 
     /**
      * Constructor.

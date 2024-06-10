@@ -21,7 +21,7 @@ class DeployModelResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel deployed_model = 1;</code>
      */
-    private $deployed_model = null;
+    protected $deployed_model = null;
 
     /**
      * Constructor.

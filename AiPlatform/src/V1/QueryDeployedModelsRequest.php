@@ -22,14 +22,14 @@ class QueryDeployedModelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployment_resource_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment_resource_pool = '';
+    protected $deployment_resource_pool = '';
     /**
      * The maximum number of DeployedModels to return. The service may return
      * fewer than this value.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `QueryDeployedModels` call.
      * Provide this to retrieve the subsequent page.
@@ -39,7 +39,7 @@ class QueryDeployedModelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $deploymentResourcePool Required. The name of the target DeploymentResourcePool to query.

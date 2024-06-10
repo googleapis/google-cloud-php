@@ -20,21 +20,21 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User provided display name of the Context.
      * May be up to 128 Unicode characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * An eTag used to perform consistent read-modify-write updates. If not set, a
      * blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Contexts.
      * Label keys and values can be no longer than 64 characters
@@ -51,13 +51,13 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Context was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. A list of resource names of Contexts that are parents of this
      * Context. A Context may have at most 10 parent_contexts.
@@ -73,7 +73,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema_title = 13;</code>
      */
-    private $schema_title = '';
+    protected $schema_title = '';
     /**
      * The version of the schema in schema_name to use.
      * Schema title and version is expected to be registered in earlier Create
@@ -82,7 +82,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema_version = 14;</code>
      */
-    private $schema_version = '';
+    protected $schema_version = '';
     /**
      * Properties of the Context.
      * Top level metadata keys' heading and trailing spaces will be trimmed.
@@ -90,13 +90,13 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 15;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Description of the Context
      *
      * Generated from protobuf field <code>string description = 16;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

@@ -23,20 +23,20 @@ class GetPublisherModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The IETF BCP-47 language code representing the language in which
      * the publisher model's text information should be written in (see go/bcp47).
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. PublisherModel view specifying which fields to read.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModelView view = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. The name of the PublisherModel resource.

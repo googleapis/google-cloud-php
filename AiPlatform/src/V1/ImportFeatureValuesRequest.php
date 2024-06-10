@@ -23,14 +23,14 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * Source column that holds entity IDs. If not provided, entity IDs are
      * extracted from the column named entity_id.
      *
      * Generated from protobuf field <code>string entity_id_field = 5;</code>
      */
-    private $entity_id_field = '';
+    protected $entity_id_field = '';
     /**
      * Required. Specifications defining which Feature values to import from the
      * entity. The request fails if no feature_specs are provided, and having
@@ -46,7 +46,7 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_online_serving = 9;</code>
      */
-    private $disable_online_serving = false;
+    protected $disable_online_serving = false;
     /**
      * Specifies the number of workers that are used to write data to the
      * Featurestore. Consider the online serving capacity that you require to
@@ -57,13 +57,13 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 worker_count = 11;</code>
      */
-    private $worker_count = 0;
+    protected $worker_count = 0;
     /**
      * If true, API doesn't start ingestion analysis pipeline.
      *
      * Generated from protobuf field <code>bool disable_ingestion_analysis = 12;</code>
      */
-    private $disable_ingestion_analysis = false;
+    protected $disable_ingestion_analysis = false;
     protected $source;
     protected $feature_time_source;
 

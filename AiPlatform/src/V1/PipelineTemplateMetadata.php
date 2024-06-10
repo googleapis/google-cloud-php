@@ -27,7 +27,7 @@ class PipelineTemplateMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 3;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

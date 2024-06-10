@@ -27,7 +27,6 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -50,6 +49,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -101,9 +101,7 @@ final class PersistentResourceServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -120,7 +118,8 @@ final class PersistentResourceServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/persistent_resource_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/persistent_resource_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -149,10 +148,31 @@ final class PersistentResourceServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -328,8 +348,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPersistentResource(CreatePersistentResourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPersistentResource(
+        CreatePersistentResourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePersistentResource', $request, $callOptions)->wait();
     }
 
@@ -355,8 +377,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePersistentResource(DeletePersistentResourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePersistentResource(
+        DeletePersistentResourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePersistentResource', $request, $callOptions)->wait();
     }
 
@@ -382,8 +406,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPersistentResource(GetPersistentResourceRequest $request, array $callOptions = []): PersistentResource
-    {
+    public function getPersistentResource(
+        GetPersistentResourceRequest $request,
+        array $callOptions = []
+    ): PersistentResource {
         return $this->startApiCall('GetPersistentResource', $request, $callOptions)->wait();
     }
 
@@ -409,8 +435,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPersistentResources(ListPersistentResourcesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPersistentResources(
+        ListPersistentResourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPersistentResources', $request, $callOptions);
     }
 
@@ -436,8 +464,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rebootPersistentResource(RebootPersistentResourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rebootPersistentResource(
+        RebootPersistentResourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RebootPersistentResource', $request, $callOptions)->wait();
     }
 
@@ -463,8 +493,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePersistentResource(UpdatePersistentResourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updatePersistentResource(
+        UpdatePersistentResourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdatePersistentResource', $request, $callOptions)->wait();
     }
 
@@ -609,8 +641,10 @@ final class PersistentResourceServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

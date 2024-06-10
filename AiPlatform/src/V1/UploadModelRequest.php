@@ -22,14 +22,14 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The resource name of the model into which to upload the version.
      * Only specify this field when uploading a new version.
      *
      * Generated from protobuf field <code>string parent_model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parent_model = '';
+    protected $parent_model = '';
     /**
      * Optional. The ID to use for the uploaded Model, which will become the final
      * component of the model resource name.
@@ -38,13 +38,13 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model_id = '';
+    protected $model_id = '';
     /**
      * Required. The Model to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = null;
+    protected $model = null;
     /**
      * Optional. The user-provided custom service account to use to do the model
      * upload. If empty, [Vertex AI Service
@@ -56,7 +56,7 @@ class UploadModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
 
     /**
      * @param string                            $parent Required. The resource name of the Location into which to upload the Model.

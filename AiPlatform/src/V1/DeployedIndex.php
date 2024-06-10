@@ -23,27 +23,27 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. The name of the Index this is the deployment of.
      * We may refer to this Index as the DeployedIndex's "original" Index.
      *
      * Generated from protobuf field <code>string index = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index = '';
+    protected $index = '';
     /**
      * The display name of the DeployedIndex. If not provided upon creation,
      * the Index's display_name is used.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Timestamp when the DeployedIndex was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Provides paths for users to send requests directly to the
      * deployed index services running on Cloud via private services access. This
@@ -52,7 +52,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexPrivateEndpoints private_endpoints = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $private_endpoints = null;
+    protected $private_endpoints = null;
     /**
      * Output only. The DeployedIndex may depend on various data on its original
      * Index. Additionally when certain changes to the original Index are being
@@ -71,7 +71,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_sync_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index_sync_time = null;
+    protected $index_sync_time = null;
     /**
      * Optional. A description of resources that the DeployedIndex uses, which to
      * large degree are decided by Vertex AI, and optionally allows only a modest
@@ -83,7 +83,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AutomaticResources automatic_resources = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $automatic_resources = null;
+    protected $automatic_resources = null;
     /**
      * Optional. A description of resources that are dedicated to the
      * DeployedIndex, and that need a higher degree of manual configuration. The
@@ -102,7 +102,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DedicatedResources dedicated_resources = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dedicated_resources = null;
+    protected $dedicated_resources = null;
     /**
      * Optional. If true, private endpoint's access logs are sent to Cloud
      * Logging.
@@ -114,13 +114,13 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_access_logging = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_access_logging = false;
+    protected $enable_access_logging = false;
     /**
      * Optional. If set, the authentication is enabled for the private endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig deployed_index_auth_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deployed_index_auth_config = null;
+    protected $deployed_index_auth_config = null;
     /**
      * Optional. A list of reserved ip ranges under the VPC network that can be
      * used for this DeployedIndex.
@@ -150,7 +150,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployment_group = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deployment_group = '';
+    protected $deployment_group = '';
 
     /**
      * Constructor.

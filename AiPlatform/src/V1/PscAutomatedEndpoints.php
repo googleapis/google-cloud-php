@@ -21,19 +21,19 @@ class PscAutomatedEndpoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Corresponding network in pscAutomationConfigs.
      *
      * Generated from protobuf field <code>string network = 2;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Ip Address created by the automated forwarding rule.
      *
      * Generated from protobuf field <code>string match_address = 3;</code>
      */
-    private $match_address = '';
+    protected $match_address = '';
 
     /**
      * Constructor.

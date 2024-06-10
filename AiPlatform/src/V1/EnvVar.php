@@ -20,7 +20,7 @@ class EnvVar extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Variables that reference a $(VAR_NAME) are expanded
      * using the previous defined environment variables in the container and
@@ -32,7 +32,7 @@ class EnvVar extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

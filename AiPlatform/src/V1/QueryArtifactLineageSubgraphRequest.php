@@ -26,7 +26,7 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string artifact = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $artifact = '';
+    protected $artifact = '';
     /**
      * Specifies the size of the lineage graph in terms of number of hops from the
      * specified artifact.
@@ -36,7 +36,7 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>int32 max_hops = 2;</code>
      */
-    private $max_hops = 0;
+    protected $max_hops = 0;
     /**
      * Filter specifying the boolean condition for the Artifacts to satisfy in
      * order to be part of the Lineage Subgraph.
@@ -63,7 +63,7 @@ class QueryArtifactLineageSubgraphRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $artifact Required. The resource name of the Artifact whose Lineage needs to be

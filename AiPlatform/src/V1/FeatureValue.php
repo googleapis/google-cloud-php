@@ -20,7 +20,7 @@ class FeatureValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureValue.Metadata metadata = 14;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     protected $value;
 
     /**

@@ -22,14 +22,14 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set to true, any Features for this EntityType will also be deleted.
      * (Otherwise, the request will only work if the EntityType has no Features.)
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name Required. The name of the EntityType to be deleted.

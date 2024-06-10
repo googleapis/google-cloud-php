@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\Client\SpecialistPoolServiceClient;
@@ -44,6 +43,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -68,7 +68,9 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SpecialistPoolServiceClient */
@@ -122,9 +124,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $specialistPool->setName($specialistPoolName);
         $specialistPoolDisplayName = 'specialistPoolDisplayName703175488';
         $specialistPool->setDisplayName($specialistPoolDisplayName);
-        $request = (new CreateSpecialistPoolRequest())
-            ->setParent($formattedParent)
-            ->setSpecialistPool($specialistPool);
+        $request = (new CreateSpecialistPoolRequest())->setParent($formattedParent)->setSpecialistPool($specialistPool);
         $response = $gapicClient->createSpecialistPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -182,12 +182,15 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -196,9 +199,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $specialistPool->setName($specialistPoolName);
         $specialistPoolDisplayName = 'specialistPoolDisplayName703175488';
         $specialistPool->setDisplayName($specialistPoolDisplayName);
-        $request = (new CreateSpecialistPoolRequest())
-            ->setParent($formattedParent)
-            ->setSpecialistPool($specialistPool);
+        $request = (new CreateSpecialistPoolRequest())->setParent($formattedParent)->setSpecialistPool($specialistPool);
         $response = $gapicClient->createSpecialistPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,8 +253,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->specialistPoolName('[PROJECT]', '[LOCATION]', '[SPECIALIST_POOL]');
-        $request = (new DeleteSpecialistPoolRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSpecialistPoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteSpecialistPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -309,17 +309,19 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->specialistPoolName('[PROJECT]', '[LOCATION]', '[SPECIALIST_POOL]');
-        $request = (new DeleteSpecialistPoolRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSpecialistPoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteSpecialistPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -361,8 +363,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->specialistPoolName('[PROJECT]', '[LOCATION]', '[SPECIALIST_POOL]');
-        $request = (new GetSpecialistPoolRequest())
-            ->setName($formattedName);
+        $request = (new GetSpecialistPoolRequest())->setName($formattedName);
         $response = $gapicClient->getSpecialistPool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -386,17 +387,19 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->specialistPoolName('[PROJECT]', '[LOCATION]', '[SPECIALIST_POOL]');
-        $request = (new GetSpecialistPoolRequest())
-            ->setName($formattedName);
+        $request = (new GetSpecialistPoolRequest())->setName($formattedName);
         try {
             $gapicClient->getSpecialistPool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -421,17 +424,14 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $specialistPoolsElement = new SpecialistPool();
-        $specialistPools = [
-            $specialistPoolsElement,
-        ];
+        $specialistPools = [$specialistPoolsElement];
         $expectedResponse = new ListSpecialistPoolsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSpecialistPools($specialistPools);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSpecialistPoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSpecialistPoolsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSpecialistPools($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -458,17 +458,19 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSpecialistPoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSpecialistPoolsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSpecialistPools($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -524,9 +526,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $specialistPoolDisplayName = 'specialistPoolDisplayName703175488';
         $specialistPool->setDisplayName($specialistPoolDisplayName);
         $updateMask = new FieldMask();
-        $request = (new UpdateSpecialistPoolRequest())
-            ->setSpecialistPool($specialistPool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSpecialistPoolRequest())->setSpecialistPool($specialistPool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSpecialistPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -584,12 +584,15 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $specialistPool = new SpecialistPool();
@@ -598,9 +601,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $specialistPoolDisplayName = 'specialistPoolDisplayName703175488';
         $specialistPool->setDisplayName($specialistPoolDisplayName);
         $updateMask = new FieldMask();
-        $request = (new UpdateSpecialistPoolRequest())
-            ->setSpecialistPool($specialistPool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSpecialistPoolRequest())->setSpecialistPool($specialistPool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSpecialistPool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -662,12 +663,15 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -694,9 +698,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -726,12 +728,15 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -764,8 +769,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -789,17 +793,19 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -831,9 +837,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -859,19 +863,20 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -899,9 +904,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -927,19 +930,20 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -995,9 +999,7 @@ class SpecialistPoolServiceClientTest extends GeneratedTest
         $specialistPool->setName($specialistPoolName);
         $specialistPoolDisplayName = 'specialistPoolDisplayName703175488';
         $specialistPool->setDisplayName($specialistPoolDisplayName);
-        $request = (new CreateSpecialistPoolRequest())
-            ->setParent($formattedParent)
-            ->setSpecialistPool($specialistPool);
+        $request = (new CreateSpecialistPoolRequest())->setParent($formattedParent)->setSpecialistPool($specialistPool);
         $response = $gapicClient->createSpecialistPoolAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

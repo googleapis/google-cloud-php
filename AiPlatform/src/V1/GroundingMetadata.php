@@ -26,7 +26,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $search_entry_point = null;
+    protected $search_entry_point = null;
 
     /**
      * Constructor.

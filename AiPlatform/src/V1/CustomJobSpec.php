@@ -25,7 +25,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $persistent_resource_id = '';
+    protected $persistent_resource_id = '';
     /**
      * Required. The spec of the worker pools including machine type and Docker
      * image. All worker pools except the first one are optional and can be
@@ -39,7 +39,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling scheduling = 3;</code>
      */
-    private $scheduling = null;
+    protected $scheduling = null;
     /**
      * Specifies the service account for workload run-as account.
      * Users submitting jobs must have act-as permission on this run-as account.
@@ -49,12 +49,12 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 4;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Optional. The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the Job
      * should be peered. For example, `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
@@ -65,7 +65,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Optional. A list of names for the reserved ip ranges under the VPC network
      * that can be used for this job.
@@ -97,7 +97,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination base_output_directory = 6;</code>
      */
-    private $base_output_directory = null;
+    protected $base_output_directory = null;
     /**
      * The ID of the location to store protected artifacts. e.g. us-central1.
      * Populate only when the location is different than CustomJob location.
@@ -106,7 +106,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
      */
-    private $protected_artifact_location_id = '';
+    protected $protected_artifact_location_id = '';
     /**
      * Optional. The name of a Vertex AI
      * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
@@ -115,7 +115,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tensorboard = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $tensorboard = '';
+    protected $tensorboard = '';
     /**
      * Optional. Whether you want Vertex AI to enable [interactive shell
      * access](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)
@@ -130,7 +130,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_web_access = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_web_access = false;
+    protected $enable_web_access = false;
     /**
      * Optional. Whether you want Vertex AI to enable access to the customized
      * dashboard in training chief container.
@@ -144,7 +144,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_dashboard_access = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_dashboard_access = false;
+    protected $enable_dashboard_access = false;
     /**
      * Optional. The Experiment associated with this job.
      * Format:
@@ -152,7 +152,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string experiment = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $experiment = '';
+    protected $experiment = '';
     /**
      * Optional. The Experiment Run associated with this job.
      * Format:
@@ -160,7 +160,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $experiment_run = '';
+    protected $experiment_run = '';
     /**
      * Optional. The name of the Model resources for which to generate a mapping
      * to artifact URIs. Applicable only to some of the Google-provided custom
@@ -206,9 +206,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           for the CustomJob's project is used.
      *     @type string $network
      *           Optional. The full name of the Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
+     *           [network](/compute/docs/networks-and-firewalls#networks) to which the Job
      *           should be peered. For example, `projects/12345/global/networks/myVPC`.
-     *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     *           [Format](/compute/docs/reference/rest/v1/networks/insert)
      *           is of the form `projects/{project}/global/networks/{network}`.
      *           Where {project} is a project number, as in `12345`, and {network} is a
      *           network name.
@@ -437,9 +437,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the Job
      * should be peered. For example, `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
@@ -458,9 +458,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the Job
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the Job
      * should be peered. For example, `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.

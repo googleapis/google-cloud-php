@@ -24,14 +24,14 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_type_id = '';
+    protected $entity_type_id = '';
     /**
      * Required. Selectors choosing which Feature values to read from the
      * EntityType.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_selector = null;
+    protected $feature_selector = null;
     /**
      * Per-Feature settings for the batch read.
      *

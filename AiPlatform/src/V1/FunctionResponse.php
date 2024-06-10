@@ -24,13 +24,13 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The function response in JSON object format.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $response = null;
+    protected $response = null;
 
     /**
      * Constructor.

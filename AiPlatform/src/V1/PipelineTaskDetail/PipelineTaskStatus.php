@@ -20,13 +20,13 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The state of the task.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskDetail.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The error that occurred during the state. May be set when
      * the state is any of the non-final state (PENDING/RUNNING/CANCELLING) or
@@ -36,7 +36,7 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class Neighbor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string neighbor_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $neighbor_id = '';
+    protected $neighbor_id = '';
     /**
      * Output only. The neighbor distance.
      *
      * Generated from protobuf field <code>double neighbor_distance = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $neighbor_distance = 0.0;
+    protected $neighbor_distance = 0.0;
 
     /**
      * Constructor.

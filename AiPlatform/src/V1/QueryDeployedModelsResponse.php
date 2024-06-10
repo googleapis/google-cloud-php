@@ -28,7 +28,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * References to the DeployedModels that share the specified
      * deploymentResourcePool.
@@ -41,14 +41,14 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_deployed_model_count = 4;</code>
      */
-    private $total_deployed_model_count = 0;
+    protected $total_deployed_model_count = 0;
     /**
      * The total number of Endpoints that have DeployedModels on this
      * DeploymentResourcePool.
      *
      * Generated from protobuf field <code>int32 total_endpoint_count = 5;</code>
      */
-    private $total_endpoint_count = 0;
+    protected $total_endpoint_count = 0;
 
     /**
      * Constructor.

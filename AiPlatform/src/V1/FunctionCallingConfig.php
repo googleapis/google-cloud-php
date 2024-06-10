@@ -20,7 +20,7 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FunctionCallingConfig.Mode mode = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Optional. Function names to call. Only set when the Mode is ANY. Function
      * names should match [FunctionDeclaration.name]. With mode set to ANY, model

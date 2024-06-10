@@ -28,13 +28,13 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerateContentResponse.PromptFeedback prompt_feedback = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $prompt_feedback = null;
+    protected $prompt_feedback = null;
     /**
      * Usage metadata about the response(s).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerateContentResponse.UsageMetadata usage_metadata = 4;</code>
      */
-    private $usage_metadata = null;
+    protected $usage_metadata = null;
 
     /**
      * Constructor.

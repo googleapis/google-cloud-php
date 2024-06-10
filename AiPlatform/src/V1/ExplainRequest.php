@@ -23,7 +23,7 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The instances that are the input to the explanation call.
      * A DeployedModel may have an upper limit on the number of instances it
@@ -47,7 +47,7 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value parameters = 4;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * If specified, overrides the
      * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
@@ -60,7 +60,7 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpecOverride explanation_spec_override = 5;</code>
      */
-    private $explanation_spec_override = null;
+    protected $explanation_spec_override = null;
     /**
      * If specified, this ExplainRequest will be served by the chosen
      * DeployedModel, overriding
@@ -68,7 +68,7 @@ class ExplainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployed_model_id = 3;</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
 
     /**
      * @param string                   $endpoint        Required. The name of the Endpoint requested to serve the explanation.

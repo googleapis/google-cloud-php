@@ -26,7 +26,7 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string tensorboard = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tensorboard = '';
+    protected $tensorboard = '';
     /**
      * Required. The resource names of the TensorboardTimeSeries to read data
      * from. Format:

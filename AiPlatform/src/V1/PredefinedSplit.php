@@ -27,7 +27,7 @@ class PredefinedSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

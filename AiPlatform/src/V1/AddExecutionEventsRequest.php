@@ -24,7 +24,7 @@ class AddExecutionEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string execution = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $execution = '';
+    protected $execution = '';
     /**
      * The Events to create and add.
      *

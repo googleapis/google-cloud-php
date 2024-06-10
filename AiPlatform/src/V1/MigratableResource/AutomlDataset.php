@@ -22,13 +22,13 @@ class AutomlDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * The Dataset's display name in automl.googleapis.com.
      *
      * Generated from protobuf field <code>string dataset_display_name = 4;</code>
      */
-    private $dataset_display_name = '';
+    protected $dataset_display_name = '';
 
     /**
      * Constructor.
