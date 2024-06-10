@@ -152,9 +152,9 @@ class LongRunningOperationManager
     /**
      * Get the state of the Operation.
      *
-     * Return value will be one of `LongRunningOperation::STATE_IN_PROGRESS`,
-     * `LongRunningOperation::STATE_SUCCESS` or
-     * `LongRunningOperation::STATE_ERROR`.
+     * Return value will be one of `LongRunningOperationManager::STATE_IN_PROGRESS`,
+     * `LongRunningOperationManager::STATE_SUCCESS` or
+     * `LongRunningOperationManager::STATE_ERROR`.
      *
      * If the Operation state is not available, a service request may be executed
      * by this method.
@@ -162,15 +162,15 @@ class LongRunningOperationManager
      * Example:
      * ```
      * switch ($operation->state()) {
-     *     case LongRunningOperation::STATE_IN_PROGRESS:
+     *     case LongRunningOperationManager::STATE_IN_PROGRESS:
      *         echo "Operation is in progress";
      *         break;
      *
-     *     case LongRunningOperation::STATE_SUCCESS:
+     *     case LongRunningOperationManager::STATE_SUCCESS:
      *         echo "Operation succeeded";
      *         break;
      *
-     *     case LongRunningOperation::STATE_ERROR:
+     *     case LongRunningOperationManager::STATE_ERROR:
      *         echo "Operation failed";
      *         break;
      * }
@@ -374,6 +374,16 @@ class LongRunningOperationManager
     }
 
     /**
+     * Get the client object.
+     *
+     * @return mixed
+     */
+    private function getClient()
+    {
+        return $this->requestHandler->getClientObject($this->clientClass);
+    }
+
+    /**
      * When the Operation is complete, there may be a callback enqueued to
      * handle the response. If so, execute it and return the result.
      *
@@ -399,16 +409,6 @@ class LongRunningOperationManager
         $fn = $callable['callable'];
 
         return call_user_func($fn, $response);
-    }
-
-    /**
-     * Get the client object.
-     *
-     * @return mixed
-     */
-    public function getClient()
-    {
-        return $this->requestHandler->getClientObject($this->clientClass);
     }
 
     /**
