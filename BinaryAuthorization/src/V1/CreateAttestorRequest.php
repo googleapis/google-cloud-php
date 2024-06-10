@@ -20,13 +20,13 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The [attestors][google.cloud.binaryauthorization.v1.Attestor] ID.
      *
      * Generated from protobuf field <code>string attestor_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attestor_id = '';
+    protected $attestor_id = '';
     /**
      * Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
      * overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,
@@ -34,7 +34,7 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Attestor attestor = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attestor = null;
+    protected $attestor = null;
 
     /**
      * @param string                                        $parent     Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
