@@ -20,7 +20,7 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encoding = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encoding = '';
+    protected $encoding = '';
     /**
      * Optional. Whether to disable the inference of data type for Json data.
      * If true, all columns will be registered as their primitive types
@@ -28,7 +28,7 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_type_inference = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_type_inference = false;
+    protected $disable_type_inference = false;
 
     /**
      * Constructor.

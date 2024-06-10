@@ -20,7 +20,7 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Optional. The list of patterns to apply for selecting data to include
      * during discovery if only a subset of the data should considered. For
@@ -45,13 +45,13 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.DiscoverySpec.CsvOptions csv_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $csv_options = null;
+    protected $csv_options = null;
     /**
      * Optional. Configuration for Json data.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Zone.DiscoverySpec.JsonOptions json_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $json_options = null;
+    protected $json_options = null;
     protected $trigger;
 
     /**

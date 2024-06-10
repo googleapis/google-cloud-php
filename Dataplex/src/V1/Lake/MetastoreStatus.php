@@ -20,25 +20,25 @@ class MetastoreStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Lake.MetastoreStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Additional information about the current status.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Last update time of the metastore status of the lake.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The URI of the endpoint used to access the Metastore service.
      *
      * Generated from protobuf field <code>string endpoint = 4;</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
 
     /**
      * Constructor.

@@ -22,26 +22,26 @@ class CreateEntryTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. EntryType identifier.
      *
      * Generated from protobuf field <code>string entry_type_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_type_id = '';
+    protected $entry_type_id = '';
     /**
      * Required. EntryType Resource
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryType entry_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_type = null;
+    protected $entry_type = null;
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                              $parent      Required. The resource name of the EntryType, of the form:

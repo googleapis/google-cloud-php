@@ -20,13 +20,13 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule rule = 1;</code>
      */
-    private $rule = null;
+    protected $rule = null;
     /**
      * Whether the rule passed or failed.
      *
      * Generated from protobuf field <code>bool passed = 7;</code>
      */
-    private $passed = false;
+    protected $passed = false;
     /**
      * The number of rows a rule was evaluated against.
      * This field is only valid for row-level type rules.
@@ -38,34 +38,34 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 evaluated_count = 9;</code>
      */
-    private $evaluated_count = 0;
+    protected $evaluated_count = 0;
     /**
      * The number of rows which passed a rule evaluation.
      * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>int64 passed_count = 8;</code>
      */
-    private $passed_count = 0;
+    protected $passed_count = 0;
     /**
      * The number of rows with null values in the specified column.
      *
      * Generated from protobuf field <code>int64 null_count = 5;</code>
      */
-    private $null_count = 0;
+    protected $null_count = 0;
     /**
      * The ratio of **passed_count / evaluated_count**.
      * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>double pass_ratio = 6;</code>
      */
-    private $pass_ratio = 0.0;
+    protected $pass_ratio = 0.0;
     /**
      * The query to find rows that did not pass this rule.
      * This field is only valid for row-level type rules.
      *
      * Generated from protobuf field <code>string failing_rows_query = 10;</code>
      */
-    private $failing_rows_query = '';
+    protected $failing_rows_query = '';
     /**
      * Output only. The number of rows returned by the sql statement in the
      * SqlAssertion rule.
@@ -73,7 +73,7 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $assertion_row_count = 0;
+    protected $assertion_row_count = 0;
 
     /**
      * Constructor.

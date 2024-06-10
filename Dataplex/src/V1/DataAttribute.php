@@ -30,7 +30,7 @@ class DataAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the DataAttribute.
      * This ID will be different if the DataAttribute is deleted and re-created
@@ -38,31 +38,31 @@ class DataAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The time when the DataAttribute was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the DataAttribute was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Description of the DataAttribute.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. User friendly display name.
      *
      * Generated from protobuf field <code>string display_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-defined labels for the DataAttribute.
      *
@@ -77,13 +77,13 @@ class DataAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_id = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $parent_id = '';
+    protected $parent_id = '';
     /**
      * Output only. The number of child attributes present for this attribute.
      *
      * Generated from protobuf field <code>int32 attribute_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $attribute_count = 0;
+    protected $attribute_count = 0;
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -91,21 +91,21 @@ class DataAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Specified when applied to a resource (eg: Cloud Storage bucket,
      * BigQuery dataset, BigQuery table).
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.ResourceAccessSpec resource_access_spec = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_access_spec = null;
+    protected $resource_access_spec = null;
     /**
      * Optional. Specified when applied to data stored on the resource (eg: rows,
      * columns in BigQuery Tables).
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataAccessSpec data_access_spec = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_access_spec = null;
+    protected $data_access_spec = null;
 
     /**
      * Constructor.
