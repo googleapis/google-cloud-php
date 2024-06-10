@@ -632,6 +632,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $tpuIpv4CidrBlock = 'tpuIpv4CidrBlock1137906646';
         $id = 'id3355';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -660,6 +662,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setTpuIpv4CidrBlock($tpuIpv4CidrBlock);
         $expectedResponse->setId($id);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $response = $gapicClient->getCluster();
         $this->assertEquals($expectedResponse, $response);
