@@ -20,19 +20,19 @@ class RunWorkflowCustomOperationMetadata extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Name of the verb executed by the operation.
      *
      * Generated from protobuf field <code>string verb = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $verb = '';
+    protected $verb = '';
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
@@ -42,25 +42,25 @@ class RunWorkflowCustomOperationMetadata extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>bool requested_cancellation = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $requested_cancellation = false;
+    protected $requested_cancellation = false;
     /**
      * Output only. API version used to start the operation.
      *
      * Generated from protobuf field <code>string api_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $api_version = '';
+    protected $api_version = '';
     /**
      * Output only. Server-defined resource path for the target of the operation.
      *
      * Generated from protobuf field <code>string target = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target = '';
+    protected $target = '';
     /**
      * Output only. ID of the pipeline run created by RunWorkflow.
      *
      * Generated from protobuf field <code>string pipeline_run_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pipeline_run_id = '';
+    protected $pipeline_run_id = '';
 
     /**
      * Constructor.
