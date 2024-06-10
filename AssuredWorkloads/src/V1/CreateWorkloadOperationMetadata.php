@@ -20,26 +20,26 @@ class CreateWorkloadOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Optional. The display name of the workload.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. The parent of the workload.
      *
      * Generated from protobuf field <code>string parent = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Compliance controls that should be applied to the resources managed by
      * the workload.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload.ComplianceRegime compliance_regime = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $compliance_regime = 0;
+    protected $compliance_regime = 0;
 
     /**
      * Constructor.

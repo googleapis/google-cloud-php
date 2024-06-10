@@ -63,6 +63,4 @@ class RestrictionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RestrictionType::class, \Google\Cloud\AssuredWorkloads\V1\RestrictAllowedResourcesRequest_RestrictionType::class);
 

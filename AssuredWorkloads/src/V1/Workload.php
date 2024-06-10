@@ -24,7 +24,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-assigned display name of the Workload.
      * When present it must be between 4 to 30 characters.
@@ -34,7 +34,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The resources associated with this workload.
      * These resources will be created when creating the workload.
@@ -49,13 +49,13 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload.ComplianceRegime compliance_regime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $compliance_regime = 0;
+    protected $compliance_regime = 0;
     /**
      * Output only. Immutable. The Workload creation timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Optional. The billing account used for the resources which are
      * direct children of workload. This billing account is initially associated
@@ -68,14 +68,14 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $billing_account = '';
+    protected $billing_account = '';
     /**
      * Optional. ETag of the workload, it is calculated on the basis
      * of the Workload contents. It will be used in Update & Delete operations.
      *
      * Generated from protobuf field <code>string etag = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Labels applied to the workload.
      *
@@ -92,7 +92,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provisioned_resources_parent = 13 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $provisioned_resources_parent = '';
+    protected $provisioned_resources_parent = '';
     /**
      * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS
      * CMEK key is provisioned.
@@ -117,14 +117,14 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload.KajEnrollmentState kaj_enrollment_state = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kaj_enrollment_state = 0;
+    protected $kaj_enrollment_state = 0;
     /**
      * Optional. Indicates the sovereignty status of the given workload.
      * Currently meant to be used by Europe/Canada customers.
      *
      * Generated from protobuf field <code>bool enable_sovereign_controls = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_sovereign_controls = false;
+    protected $enable_sovereign_controls = false;
     /**
      * Output only. Represents the SAA enrollment response of the given workload.
      * SAA enrollment response is queried during GetWorkload call.
@@ -132,7 +132,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload.SaaEnrollmentResponse saa_enrollment_response = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $saa_enrollment_response = null;
+    protected $saa_enrollment_response = null;
     /**
      * Output only. Urls for services which are compliant for this Assured Workload, but which
      * are currently disallowed by the ResourceUsageRestriction org policy.
@@ -147,7 +147,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload.Partner partner = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $partner = 0;
+    protected $partner = 0;
 
     /**
      * Constructor.
