@@ -24,7 +24,7 @@ class VehicleLoad extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 amount = 1;</code>
      */
-    private $amount = 0;
+    protected $amount = 0;
 
     /**
      * Constructor.

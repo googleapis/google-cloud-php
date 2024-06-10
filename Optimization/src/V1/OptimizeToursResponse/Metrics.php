@@ -23,13 +23,13 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.AggregatedMetrics aggregated_route_metrics = 1;</code>
      */
-    private $aggregated_route_metrics = null;
+    protected $aggregated_route_metrics = null;
     /**
      * Number of mandatory shipments skipped.
      *
      * Generated from protobuf field <code>int32 skipped_mandatory_shipment_count = 2;</code>
      */
-    private $skipped_mandatory_shipment_count = 0;
+    protected $skipped_mandatory_shipment_count = 0;
     /**
      * Number of vehicles used. Note: if a vehicle route is empty and
      * [Vehicle.used_if_route_is_empty][google.cloud.optimization.v1.Vehicle.used_if_route_is_empty]
@@ -37,7 +37,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 used_vehicle_count = 3;</code>
      */
-    private $used_vehicle_count = 0;
+    protected $used_vehicle_count = 0;
     /**
      * The earliest start time for a used vehicle, computed as the minimum over
      * all used vehicles of
@@ -45,7 +45,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_vehicle_start_time = 4;</code>
      */
-    private $earliest_vehicle_start_time = null;
+    protected $earliest_vehicle_start_time = null;
     /**
      * The latest end time for a used vehicle, computed as the maximum over all
      * used vehicles of
@@ -53,7 +53,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_vehicle_end_time = 5;</code>
      */
-    private $latest_vehicle_end_time = null;
+    protected $latest_vehicle_end_time = null;
     /**
      * Cost of the solution, broken down by cost-related request fields.
      * The keys are proto paths, relative to the input OptimizeToursRequest,
@@ -73,7 +73,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double total_cost = 6;</code>
      */
-    private $total_cost = 0.0;
+    protected $total_cost = 0.0;
 
     /**
      * Constructor.

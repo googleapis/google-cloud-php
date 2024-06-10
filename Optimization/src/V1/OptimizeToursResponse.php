@@ -31,7 +31,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_label = 3;</code>
      */
-    private $request_label = '';
+    protected $request_label = '';
     /**
      * The list of all shipments skipped.
      *
@@ -52,7 +52,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.OptimizeToursResponse.Metrics metrics = 6;</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
     /**
      * Deprecated: Use
      * [Metrics.total_cost][google.cloud.optimization.v1.OptimizeToursResponse.Metrics.total_cost]

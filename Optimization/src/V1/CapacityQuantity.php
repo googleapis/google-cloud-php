@@ -21,11 +21,11 @@ class CapacityQuantity extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Generated from protobuf field <code>int64 value = 2;</code>
      */
-    private $value = 0;
+    protected $value = 0;
 
     /**
      * Constructor.

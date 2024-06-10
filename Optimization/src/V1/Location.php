@@ -20,7 +20,7 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
      */
-    private $lat_lng = null;
+    protected $lat_lng = null;
     /**
      * The compass heading associated with the direction of the flow of traffic.
      * This value is used to specify the side of the road to use for pickup and
@@ -29,7 +29,7 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 heading = 2;</code>
      */
-    private $heading = null;
+    protected $heading = null;
 
     /**
      * Constructor.

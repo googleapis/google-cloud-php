@@ -51,7 +51,7 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_break_duration = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_break_duration = null;
+    protected $min_break_duration = null;
     /**
      * Required. Maximum allowed span of any interval of time in the route
      * that does not include at least partially a break of `duration >=
@@ -59,7 +59,7 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_inter_break_duration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_inter_break_duration = null;
+    protected $max_inter_break_duration = null;
 
     /**
      * Constructor.

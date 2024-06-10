@@ -21,15 +21,15 @@ class CapacityQuantityInterval extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Generated from protobuf field <code>optional int64 min_value = 2;</code>
      */
-    private $min_value = null;
+    protected $min_value = null;
     /**
      * Generated from protobuf field <code>optional int64 max_value = 3;</code>
      */
-    private $max_value = null;
+    protected $max_value = null;
 
     /**
      * Constructor.
