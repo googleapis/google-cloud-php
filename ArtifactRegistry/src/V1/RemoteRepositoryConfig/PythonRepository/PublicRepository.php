@@ -52,6 +52,4 @@ class PublicRepository
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublicRepository::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_PythonRepository_PublicRepository::class);
 

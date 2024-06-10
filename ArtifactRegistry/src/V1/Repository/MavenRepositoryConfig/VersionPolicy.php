@@ -61,6 +61,4 @@ class VersionPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VersionPolicy::class, \Google\Cloud\ArtifactRegistry\V1\Repository_MavenRepositoryConfig_VersionPolicy::class);
 
