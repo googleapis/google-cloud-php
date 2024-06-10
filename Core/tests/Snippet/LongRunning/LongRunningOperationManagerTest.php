@@ -247,6 +247,9 @@ class LongRunningOperationManagerTest extends SnippetTestCase
 
     public function testCancel()
     {
+        $this->checkAndSkipTest([
+            DatabaseAdminClient::class,
+        ]);
         $operation = $this->prophesize(OperationResponse::class);
         $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $operation->cancel(Argument::any())->shouldBeCalled();
@@ -267,6 +270,9 @@ class LongRunningOperationManagerTest extends SnippetTestCase
 
     public function testDelete()
     {
+        $this->checkAndSkipTest([
+            DatabaseAdminClient::class,
+        ]);
         $operation = $this->prophesize(OperationResponse::class);
         $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $operation->delete(Argument::any())->shouldBeCalled();
