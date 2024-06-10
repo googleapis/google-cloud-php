@@ -22,13 +22,13 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user provided display name of the ScanConfig.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The maximum QPS during scanning. A valid value ranges from 5 to 20
      * inclusively. If the field is unspecified or its value is set 0, server will
@@ -37,7 +37,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_qps = 3;</code>
      */
-    private $max_qps = 0;
+    protected $max_qps = 0;
     /**
      * Required. The starting URLs from which the scanner finds site pages.
      *
@@ -50,13 +50,13 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig.Authentication authentication = 5;</code>
      */
-    private $authentication = null;
+    protected $authentication = null;
     /**
      * The user agent used during scanning.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig.UserAgent user_agent = 6;</code>
      */
-    private $user_agent = 0;
+    protected $user_agent = 0;
     /**
      * The excluded URL patterns as described in
      * https://cloud.google.com/security-command-center/docs/how-to-use-web-security-scanner#excluding_urls
@@ -69,40 +69,40 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig.Schedule schedule = 8;</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
     /**
      * Controls export of scan configurations and results to Security
      * Command Center.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig.ExportToSecurityCommandCenter export_to_security_command_center = 10;</code>
      */
-    private $export_to_security_command_center = 0;
+    protected $export_to_security_command_center = 0;
     /**
      * The risk level selected for the scan
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig.RiskLevel risk_level = 12;</code>
      */
-    private $risk_level = 0;
+    protected $risk_level = 0;
     /**
      * Whether the scan config is managed by Web Security Scanner, output
      * only.
      *
      * Generated from protobuf field <code>bool managed_scan = 13;</code>
      */
-    private $managed_scan = false;
+    protected $managed_scan = false;
     /**
      * Whether the scan configuration has enabled static IP address scan feature.
      * If enabled, the scanner will access applications from static IP addresses.
      *
      * Generated from protobuf field <code>bool static_ip_scan = 14;</code>
      */
-    private $static_ip_scan = false;
+    protected $static_ip_scan = false;
     /**
      * Whether to keep scanning even if most requests return HTTP error codes.
      *
      * Generated from protobuf field <code>bool ignore_http_status_errors = 15;</code>
      */
-    private $ignore_http_status_errors = false;
+    protected $ignore_http_status_errors = false;
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user provided display name of the ScanConfig.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The maximum QPS during scanning. A valid value ranges from 5 to 20
      * inclusively. If the field is unspecified or its value is set 0, server will
@@ -37,7 +37,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_qps = 3;</code>
      */
-    private $max_qps = 0;
+    protected $max_qps = 0;
     /**
      * Required. The starting URLs from which the scanner finds site pages.
      *
@@ -50,13 +50,13 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication authentication = 5;</code>
      */
-    private $authentication = null;
+    protected $authentication = null;
     /**
      * The user agent used during scanning.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.UserAgent user_agent = 6;</code>
      */
-    private $user_agent = 0;
+    protected $user_agent = 0;
     /**
      * The blacklist URL patterns as described in
      * https://cloud.google.com/security-scanner/docs/excluded-urls
@@ -69,7 +69,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.Schedule schedule = 8;</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
     /**
      * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be
      * used as a default.
@@ -83,19 +83,19 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.ExportToSecurityCommandCenter export_to_security_command_center = 10;</code>
      */
-    private $export_to_security_command_center = 0;
+    protected $export_to_security_command_center = 0;
     /**
      * Latest ScanRun if available.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRun latest_run = 11;</code>
      */
-    private $latest_run = null;
+    protected $latest_run = null;
     /**
      * The risk level selected for the scan
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.RiskLevel risk_level = 12;</code>
      */
-    private $risk_level = 0;
+    protected $risk_level = 0;
 
     /**
      * Constructor.

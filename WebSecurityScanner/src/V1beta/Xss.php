@@ -26,7 +26,7 @@ class Xss extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
 
     /**
      * Constructor.
