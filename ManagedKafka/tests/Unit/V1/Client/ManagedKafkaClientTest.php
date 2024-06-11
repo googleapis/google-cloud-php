@@ -24,7 +24,6 @@ namespace Google\Cloud\ManagedKafka\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\GetLocationRequest;
@@ -55,6 +54,7 @@ use Google\Cloud\ManagedKafka\V1\Topic;
 use Google\Cloud\ManagedKafka\V1\UpdateClusterRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateConsumerGroupRequest;
 use Google\Cloud\ManagedKafka\V1\UpdateTopicRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
