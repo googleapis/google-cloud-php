@@ -31,7 +31,6 @@ use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
@@ -838,38 +837,7 @@ class Instance
      */
     public function databaseOperations(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data['parent'] = $this->name;
-
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $operation) {
-                    return $this->resumeOperation($operation['name'], $operation);
-                },
-                function ($callOptions) use ($optionalArgs, $data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
-
-                    $result = $this->createAndSendRequest(
-                        DatabaseAdminClient::class,
-                        'listDatabaseOperations',
-                        $data,
-                        $optionalArgs,
-                        ListDatabaseOperationsRequest::class,
-                        $this->name
-                    );
-                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
-                    return $result;
-                },
-                $options + ['instance' => $this->name],
-                [
-                    'itemsKey' => 'operations',
-                    'resultLimit' => $resultLimit
-                ]
-            )
-        );
+        return $this->database($this->name)->databaseOperations($options);
     }
 
     /**

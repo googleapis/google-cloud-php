@@ -276,11 +276,13 @@ class InstanceConfiguration
     public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        
+
+        $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
         $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
         $data += [
             'replicas' => $replicas,
             'baseConfig' => $baseConfig->name(),
+            'leaderOptions' => $leaderOptions
         ];
         $instanceConfig = $this->instanceConfigArray($data);
         $requestArray = [
@@ -392,22 +394,6 @@ class InstanceConfiguration
     }
 
     /**
-     * A more readable representation of the object.
-     *
-     * @codeCoverageIgnore
-     * @access private
-     */
-    public function __debugInfo()
-    {
-        return [
-            'requestHandler' => get_class($this->requestHandler),
-            'projectId' => $this->projectId,
-            'name' => $this->name,
-            'info' => $this->info,
-        ];
-    }
-
-    /**
      * Get the fully qualified instance config name.
      *
      * @param string $name The configuration name.
@@ -453,5 +439,21 @@ class InstanceConfiguration
             $mask[] = $this->serializer::toSnakeCase($key);
         }
         return ['paths' => $mask];
+    }
+
+    /**
+     * A more readable representation of the object.
+     *
+     * @codeCoverageIgnore
+     * @access private
+     */
+    public function __debugInfo()
+    {
+        return [
+            'requestHandler' => get_class($this->requestHandler),
+            'projectId' => $this->projectId,
+            'name' => $this->name,
+            'info' => $this->info,
+        ];
     }
 }

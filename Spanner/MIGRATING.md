@@ -113,6 +113,3 @@ $lro->pollUntilComplete();
 $lro->cancel();
 $lro->delete();
 ```
-
-### Changes specific to resources:
-- Continue from here.

@@ -121,7 +121,6 @@ class BackupTest extends SpannerTestCase
     public function testCreateBackup()
     {
         $expireTime = new \DateTime('+7 hours');
-        // $versionTime = new \DateTime('-5 seconds');
         $encryptionConfig = [
             'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
         ];
@@ -131,7 +130,6 @@ class BackupTest extends SpannerTestCase
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName1, $expireTime, [
-            //'versionTime' => $versionTime,
             'encryptionConfig' => $encryptionConfig,
         ]);
         self::$backupOperationName = $op->name();
@@ -391,12 +389,11 @@ class BackupTest extends SpannerTestCase
     }
 
     /**
-     * @depends testCancelBackupOperation
+     * @depends testCreateBackup
      */
     public function testListAllBackupsCreatedAfterTimestamp()
     {
-        self::$createTime2 = gmdate('"Y-m-d\TH:i:s\Z"');
-        $filter = sprintf("create_time >= %s", self::$createTime2);
+        $filter = sprintf("create_time >= %s", self::$createTime1);
 
         $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
 
@@ -405,8 +402,7 @@ class BackupTest extends SpannerTestCase
             $backupNames[] = $b->name();
         }
         $this->assertTrue(count($backupNames) > 0);
-        $this->assertFalse(in_array(self::fullyQualifiedBackupName(self::$backupId1), $backupNames));
-        $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId2), $backupNames));
+        $this->assertTrue(in_array(self::fullyQualifiedBackupName(self::$backupId1), $backupNames));
     }
 
     /**

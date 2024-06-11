@@ -28,7 +28,6 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
@@ -43,7 +42,7 @@ use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
-use Google\Protobuf\Duration;;
+use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
 
@@ -116,7 +115,7 @@ use Psr\Http\StreamInterface;
  *
  *     @param string $operationName The Long Running Operation name.
  *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
+ *     @return LongRunningOperationManager
  * }
  */
 class SpannerClient
@@ -438,7 +437,7 @@ class SpannerClient
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<InstanceConfiguration>
+     * @return LongRunningOperationManager<InstanceConfiguration>
      * @throws ValidationException
      */
     public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
@@ -620,7 +619,7 @@ class SpannerClient
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
-     * @return LongRunningOperation<Instance>
+     * @return LongRunningOperationManager<Instance>
      * @codingStandardsIgnoreEnd
      */
     public function createInstance(InstanceConfiguration $config, $name, array $options = [])
