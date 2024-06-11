@@ -10,7 +10,7 @@
     "AccessContextManager": {
         "language": "php",
         "distribution_name": "google/access-context-manager",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/access-context-manager/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "accesscontextmanager"
@@ -160,6 +160,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-automl/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "automl"
+    },
+    "BackupDr": {
+        "language": "php",
+        "distribution_name": "google/cloud-backupdr",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-backupdr/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "backupdr"
     },
     "BareMetalSolution": {
         "language": "php",
@@ -863,6 +871,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "fleetengine"
     },
+    "MapsRouteOptimization": {
+        "language": "php",
+        "distribution_name": "google/maps-routeoptimization",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/maps-routeoptimization/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "routeoptimization"
+    },
     "MediaTranslation": {
         "language": "php",
         "distribution_name": "google/cloud-media-translation",
@@ -926,6 +942,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-network-security/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "networksecurity"
+    },
+    "NetworkServices": {
+        "language": "php",
+        "distribution_name": "google/cloud-networkservices",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-networkservices/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "networkservices"
     },
     "Notebooks": {
         "language": "php",
@@ -1239,6 +1263,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "css"
     },
+    "ShoppingMerchantAccounts": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-accounts",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-accounts/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
     "ShoppingMerchantConversions": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-conversions",
@@ -1247,10 +1279,50 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },
+    "ShoppingMerchantDatasources": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-datasources",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-datasources/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
     "ShoppingMerchantInventories": {
         "distribution_name": "google/shopping-merchant-inventories",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-inventories/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantLfp": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-lfp",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-lfp/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantNotifications": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-notifications",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-notifications/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantProducts": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-products",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-products/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantPromotions": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-promotions",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-promotions/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },

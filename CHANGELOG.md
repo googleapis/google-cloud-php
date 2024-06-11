@@ -1,5 +1,257 @@
 # Changelog
 
+## 0.248.0
+
+<details><summary>google/cloud-backupdr 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce BackupDr ([#7364](https://github.com/googleapis/google-cloud-php/issues/7364)) ([0378468](https://github.com/googleapis/google-cloud-php/commit/037846841d186199014aac43004aa395e9e6d3e2))
+
+</details>
+
+<details><summary>google/cloud-batch 0.16.10</summary>
+
+
+
+### Documentation
+
+* Documentation improvements ([#7369](https://github.com/googleapis/google-cloud-php/issues/7369)) ([dab2c39](https://github.com/googleapis/google-cloud-php/commit/dab2c3977edd8e720eade07c06c5c912f441c2b2))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.30.3</summary>
+
+
+
+### Bug Fixes
+
+* **BigQuery:** do not retry status code 499 (client canceled) ([cd4fdc3](https://github.com/googleapis/google-cloud-php/commit/cd4fdc396906dffd8f62a64f95a3ef6ecee74340))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade Bigtable to 2.0.0-RC1 ([#7317](https://github.com/googleapis/google-cloud-php/issues/7317))
+
+### Features
+
+* Upgrade Bigtable to 2.0.0-RC1 ([#7317](https://github.com/googleapis/google-cloud-php/issues/7317)) ([446c61f](https://github.com/googleapis/google-cloud-php/commit/446c61fa5b51248621cfed90a3831f01689e8258))
+
+</details>
+
+<details><summary>google/cloud-container 1.31.0</summary>
+
+
+
+### Features
+
+* A new method_signature `parent` is added to method `ListOperations` in service `ClusterManager` ([#7383](https://github.com/googleapis/google-cloud-php/issues/7383)) ([6383f83](https://github.com/googleapis/google-cloud-php/commit/6383f834747250b325b671de5b254fce234c46a9))
+
+</details>
+
+<details><summary>google/cloud-core 1.59.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade Bigtable to 2.0.0-RC1 ([#7317](https://github.com/googleapis/google-cloud-php/issues/7317))
+
+### Features
+
+* Upgrade Bigtable to 2.0.0-RC1 ([#7317](https://github.com/googleapis/google-cloud-php/issues/7317)) ([446c61f](https://github.com/googleapis/google-cloud-php/commit/446c61fa5b51248621cfed90a3831f01689e8258))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce Maps RouteOptimization ([#7365](https://github.com/googleapis/google-cloud-php/issues/7365)) ([7b748a6](https://github.com/googleapis/google-cloud-php/commit/7b748a642474f04942a86c87e2a70d9abe201591))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce NetworkServices ([#7370](https://github.com/googleapis/google-cloud-php/issues/7370)) ([f702871](https://github.com/googleapis/google-cloud-php/commit/f7028712e4319b947415a51701238a76a54e03fc))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* Pubsub version constant ([#7362](https://github.com/googleapis/google-cloud-php/issues/7362)) ([ffcadde](https://github.com/googleapis/google-cloud-php/commit/ffcadde3f3d88b3ef2b41f48d385dbed89679591))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.3.0</summary>
+
+
+
+### Features
+
+* Add persistence support ([b01e8dc](https://github.com/googleapis/google-cloud-php/commit/b01e8dcd3a229b0f5f0d8aa6ec60257444859b75))
+* Add support for different node types ([#7368](https://github.com/googleapis/google-cloud-php/issues/7368)) ([b01e8dc](https://github.com/googleapis/google-cloud-php/commit/b01e8dcd3a229b0f5f0d8aa6ec60257444859b75))
+* Get details of certificate authority from redis cluster ([b01e8dc](https://github.com/googleapis/google-cloud-php/commit/b01e8dcd3a229b0f5f0d8aa6ec60257444859b75))
+
+
+### Documentation
+
+* Size_gb field shows the size of the cluster rounded up to the next integer, precise_size_gb field will show the exact size of the cluster ([b01e8dc](https://github.com/googleapis/google-cloud-php/commit/b01e8dcd3a229b0f5f0d8aa6ec60257444859b75))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 1.2.6</summary>
+
+
+
+### Documentation
+
+* Resource Settings is deprecated. As of November 7, 2023, no organizations will be onboarded for any of the enabled settings, and the service will be shut down on October 1, 2024 ([#7358](https://github.com/googleapis/google-cloud-php/issues/7358)) ([7a1be5a](https://github.com/googleapis/google-cloud-php/commit/7a1be5ac80750b82bb62102b17cd438ea8790ddc))
+
+</details>
+
+<details><summary>google/cloud-retail 1.7.0</summary>
+
+
+
+### Features
+
+* Add page_categories to control condition ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+* Add product purge API ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+* Allow to skip denylist postfiltering in recommendations ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+* Support attribute suggestion in autocomplete ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+* Support frequent bought together model config ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+* Support merged facets ([#7382](https://github.com/googleapis/google-cloud-php/issues/7382)) ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([c5ea1f3](https://github.com/googleapis/google-cloud-php/commit/c5ea1f329305a41613b074232a753a1160ed52a0))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.3.2</summary>
+
+
+
+### Documentation
+
+* Minor docs formatting in `UpdateSecurityCenterServiceRequest.validate_only` ([#7379](https://github.com/googleapis/google-cloud-php/issues/7379)) ([343a465](https://github.com/googleapis/google-cloud-php/commit/343a465e600bd06fd6da4a76877f6ad38de82545))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.1.0</summary>
+
+
+
+### Features
+
+* introduce Shopping Merchant APIs for LFP, Notifications, Accounts, Datasources, Products, Promotions ([#7367](https://github.com/googleapis/google-cloud-php/issues/7367)) ([2c700e7](https://github.com/googleapis/google-cloud-php/commit/2c700e77f2073e8646d20a4424ba5f3234a4982b))
+
+
+### Documentation
+
+* Format comments in ListUsersRequest ([#7384](https://github.com/googleapis/google-cloud-php/issues/7384)) ([bb67e02](https://github.com/googleapis/google-cloud-php/commit/bb67e02426312f6c05722219b8d75c7e49eee261))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.1.0</summary>
+
+
+
+### Features
+
+* introduce Shopping Merchant APIs for LFP, Notifications, Accounts, Datasources, Products, Promotions ([#7367](https://github.com/googleapis/google-cloud-php/issues/7367)) ([2c700e7](https://github.com/googleapis/google-cloud-php/commit/2c700e77f2073e8646d20a4424ba5f3234a4982b))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.5.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove deprecated client surfaces ([#7366](https://github.com/googleapis/google-cloud-php/issues/7366))
+
+### Bug Fixes
+
+* Remove deprecated client surfaces ([#7366](https://github.com/googleapis/google-cloud-php/issues/7366)) ([19d35b2](https://github.com/googleapis/google-cloud-php/commit/19d35b20e244875ea49f898fabb8c987a40c66c2))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 0.1.0</summary>
+
+
+
+### Features
+
+* introduce Shopping Merchant APIs for LFP, Notifications, Accounts, Datasources, Products, Promotions ([#7367](https://github.com/googleapis/google-cloud-php/issues/7367)) ([2c700e7](https://github.com/googleapis/google-cloud-php/commit/2c700e77f2073e8646d20a4424ba5f3234a4982b))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 0.1.0</summary>
+
+
+
+### Features
+
+* introduce Shopping Merchant APIs for LFP, Notifications, Accounts, Datasources, Products, Promotions ([#7367](https://github.com/googleapis/google-cloud-php/issues/7367)) ([2c700e7](https://github.com/googleapis/google-cloud-php/commit/2c700e77f2073e8646d20a4424ba5f3234a4982b))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.1.0</summary>
+
+
+
+### Features
+
+* introduce Shopping Merchant APIs for LFP, Notifications, Accounts, Datasources, Products, Promotions ([#7367](https://github.com/googleapis/google-cloud-php/issues/7367)) ([2c700e7](https://github.com/googleapis/google-cloud-php/commit/2c700e77f2073e8646d20a4424ba5f3234a4982b))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 0.1.0</summary>
+
+
+
+### Features
+
+* introduce Shopping Merchant APIs for LFP, Notifications, Accounts, Datasources, Products, Promotions ([#7367](https://github.com/googleapis/google-cloud-php/issues/7367)) ([2c700e7](https://github.com/googleapis/google-cloud-php/commit/2c700e77f2073e8646d20a4424ba5f3234a4982b))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.18.0</summary>
+
+
+
+### Features
+
+* Support for CLUSTER_MAINTENANCE and SELF_SERVICE_MAINTENANCE operation types ([#7363](https://github.com/googleapis/google-cloud-php/issues/7363)) ([23415ce](https://github.com/googleapis/google-cloud-php/commit/23415ce49ac44aa961bed5af7a6dfec7daa55a3c))
+* Support for MySQL 8.4 ([23415ce](https://github.com/googleapis/google-cloud-php/commit/23415ce49ac44aa961bed5af7a6dfec7daa55a3c))
+
+
+### Documentation
+
+* Various updates and clarifications to the documentation ([23415ce](https://github.com/googleapis/google-cloud-php/commit/23415ce49ac44aa961bed5af7a6dfec7daa55a3c))
+
+</details>
+
 ## 0.247.0
 
 <details><summary>google/cloud-access-approval 1.2.5</summary>

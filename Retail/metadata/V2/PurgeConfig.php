@@ -16,11 +16,26 @@ class PurgeConfig
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
-)google/cloud/retail/v2/purge_config.protogoogle.cloud.retail.v2google/api/resource.proto"
-PurgeMetadata"s
+‡
+)google/cloud/retail/v2/purge_config.protogoogle.cloud.retail.v2google/api/resource.protogoogle/protobuf/timestamp.proto"
+PurgeMetadata"§
+PurgeProductsMetadata/
+create_time (2.google.protobuf.Timestamp/
+update_time (2.google.protobuf.Timestamp
+success_count (
+failure_count ("p
+PurgeProductsRequest4
+parent (	B$àAúA
+retail.googleapis.com/Branch
+filter (	BàA
+force ("f
+PurgeProductsResponse
+purge_count (8
+purge_sample (	B"úA
+retail.googleapis.com/Product"s
 PurgeUserEventsRequest5
 parent (	B%àAúA
 retail.googleapis.com/Catalog

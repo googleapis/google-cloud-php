@@ -159,6 +159,12 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Model.ServingConfigList serving_config_lists = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $serving_config_lists;
+    /**
+     * Optional. Additional model features config.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Model.ModelFeaturesConfig model_features_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model_features_config = null;
 
     /**
      * Constructor.
@@ -250,6 +256,8 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Retail\V2\Model\ServingConfigList>|\Google\Protobuf\Internal\RepeatedField $serving_config_lists
      *           Output only. The list of valid serving configs associated with the
      *           PageOptimizationConfig.
+     *     @type \Google\Cloud\Retail\V2\Model\ModelFeaturesConfig $model_features_config
+     *           Optional. Additional model features config.
      * }
      */
     public function __construct($data = NULL) {
@@ -759,6 +767,42 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\Model\ServingConfigList::class);
         $this->serving_config_lists = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional model features config.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Model.ModelFeaturesConfig model_features_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Retail\V2\Model\ModelFeaturesConfig|null
+     */
+    public function getModelFeaturesConfig()
+    {
+        return $this->model_features_config;
+    }
+
+    public function hasModelFeaturesConfig()
+    {
+        return isset($this->model_features_config);
+    }
+
+    public function clearModelFeaturesConfig()
+    {
+        unset($this->model_features_config);
+    }
+
+    /**
+     * Optional. Additional model features config.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Model.ModelFeaturesConfig model_features_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Retail\V2\Model\ModelFeaturesConfig $var
+     * @return $this
+     */
+    public function setModelFeaturesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\Model\ModelFeaturesConfig::class);
+        $this->model_features_config = $var;
 
         return $this;
     }

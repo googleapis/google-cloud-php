@@ -239,6 +239,11 @@
                                 "listProducts"
                             ]
                         },
+                        "PurgeProducts": {
+                            "methods": [
+                                "purgeProducts"
+                            ]
+                        },
                         "RemoveFulfillmentPlaces": {
                             "methods": [
                                 "removeFulfillmentPlaces"

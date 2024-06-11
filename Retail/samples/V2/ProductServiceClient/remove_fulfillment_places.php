@@ -31,10 +31,11 @@ use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesResponse;
 use Google\Rpc\Status;
 
 /**
- * It is recommended to use the
+ * We recommend that you use the
  * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
- * method instead of
- * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+ * method instead of the
+ * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+ * method.
  * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
  * achieves the same results but provides more fine-grained control over
  * ingesting local inventory data.

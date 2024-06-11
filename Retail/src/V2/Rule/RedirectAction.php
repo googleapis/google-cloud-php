@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Redirects a shopper to a specific page.
  * * Rule Condition:
- *   - Must specify
+ *   Must specify
  *   [Condition.query_terms][google.cloud.retail.v2.Condition.query_terms].
  * * Action Input: Request Query
  * * Action Result: Redirects shopper to provided uri.

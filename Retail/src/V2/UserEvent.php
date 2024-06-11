@@ -19,6 +19,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * Required. User event type. Allowed values are:
      * * `add-to-cart`: Products being added to cart.
+     * * `remove-from-cart`: Products being removed from cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
      * * `detail-page-view`: Products detail page viewed.
@@ -278,8 +279,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * The entity for customers that may run multiple different entities, domains,
      * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
      * `google.com`, `youtube.com`, etc.
-     * It is recommended to set this field to get better per-entity search,
-     * completion and prediction results.
+     * We recommend that you set this field to get better per-entity search,
+     * completion, and prediction results.
      *
      * Generated from protobuf field <code>string entity = 23;</code>
      */
@@ -294,6 +295,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type string $event_type
      *           Required. User event type. Allowed values are:
      *           * `add-to-cart`: Products being added to cart.
+     *           * `remove-from-cart`: Products being removed from cart.
      *           * `category-page-view`: Special pages such as sale or promotion pages
      *             viewed.
      *           * `detail-page-view`: Products detail page viewed.
@@ -473,8 +475,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           The entity for customers that may run multiple different entities, domains,
      *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
      *           `google.com`, `youtube.com`, etc.
-     *           It is recommended to set this field to get better per-entity search,
-     *           completion and prediction results.
+     *           We recommend that you set this field to get better per-entity search,
+     *           completion, and prediction results.
      * }
      */
     public function __construct($data = NULL) {
@@ -485,6 +487,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * Required. User event type. Allowed values are:
      * * `add-to-cart`: Products being added to cart.
+     * * `remove-from-cart`: Products being removed from cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
      * * `detail-page-view`: Products detail page viewed.
@@ -506,6 +509,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * Required. User event type. Allowed values are:
      * * `add-to-cart`: Products being added to cart.
+     * * `remove-from-cart`: Products being removed from cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
      * * `detail-page-view`: Products detail page viewed.
@@ -1322,8 +1326,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * The entity for customers that may run multiple different entities, domains,
      * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
      * `google.com`, `youtube.com`, etc.
-     * It is recommended to set this field to get better per-entity search,
-     * completion and prediction results.
+     * We recommend that you set this field to get better per-entity search,
+     * completion, and prediction results.
      *
      * Generated from protobuf field <code>string entity = 23;</code>
      * @return string
@@ -1337,8 +1341,8 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * The entity for customers that may run multiple different entities, domains,
      * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
      * `google.com`, `youtube.com`, etc.
-     * It is recommended to set this field to get better per-entity search,
-     * completion and prediction results.
+     * We recommend that you set this field to get better per-entity search,
+     * completion, and prediction results.
      *
      * Generated from protobuf field <code>string entity = 23;</code>
      * @param string $var

@@ -169,7 +169,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_vertical_pod_autoscaling = null;
     /**
-     * The desired private cluster configuration.
+     * The desired private cluster configuration. master_global_access_config is
+     * the only field that can be changed via this field.
+     * See also
+     * [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
+     * for modifying other fields within
+     * [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
      */
@@ -365,6 +370,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_k8s_beta_apis = null;
     /**
+     * The desired containerd config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig desired_containerd_config = 134;</code>
+     */
+    private $desired_containerd_config = null;
+    /**
      * Enable/Disable Multi-Networking for the cluster
      *
      * Generated from protobuf field <code>optional bool desired_enable_multi_networking = 135;</code>
@@ -389,6 +400,19 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool desired_enable_cilium_clusterwide_network_policy = 138;</code>
      */
     private $desired_enable_cilium_clusterwide_network_policy = null;
+    /**
+     * The desired node kubelet config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_kubelet_config = 141;</code>
+     */
+    private $desired_node_kubelet_config = null;
+    /**
+     * The desired node kubelet config for all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_pool_auto_config_kubelet_config = 142;</code>
+     */
+    private $desired_node_pool_auto_config_kubelet_config = null;
 
     /**
      * Constructor.
@@ -472,7 +496,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\VerticalPodAutoscaling $desired_vertical_pod_autoscaling
      *           Cluster-level Vertical Pod Autoscaling configuration.
      *     @type \Google\Cloud\Container\V1\PrivateClusterConfig $desired_private_cluster_config
-     *           The desired private cluster configuration.
+     *           The desired private cluster configuration. master_global_access_config is
+     *           the only field that can be changed via this field.
+     *           See also
+     *           [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
+     *           for modifying other fields within
+     *           [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
      *     @type \Google\Cloud\Container\V1\IntraNodeVisibilityConfig $desired_intra_node_visibility_config
      *           The desired config of Intra-node visibility.
      *     @type \Google\Cloud\Container\V1\DefaultSnatStatus $desired_default_snat_status
@@ -547,6 +576,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired workload policy configuration for the autopilot cluster.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $desired_k8s_beta_apis
      *           Desired Beta APIs to be enabled for cluster.
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig $desired_containerd_config
+     *           The desired containerd config for the cluster.
      *     @type bool $desired_enable_multi_networking
      *           Enable/Disable Multi-Networking for the cluster
      *     @type \Google\Cloud\Container\V1\ResourceManagerTags $desired_node_pool_auto_config_resource_manager_tags
@@ -556,6 +587,11 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           Specify the details of in-transit encryption.
      *     @type bool $desired_enable_cilium_clusterwide_network_policy
      *           Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $desired_node_kubelet_config
+     *           The desired node kubelet config for the cluster.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $desired_node_pool_auto_config_kubelet_config
+     *           The desired node kubelet config for all auto-provisioned node pools
+     *           in autopilot clusters and node auto-provisioning enabled clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -1262,7 +1298,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired private cluster configuration.
+     * The desired private cluster configuration. master_global_access_config is
+     * the only field that can be changed via this field.
+     * See also
+     * [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
+     * for modifying other fields within
+     * [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
      * @return \Google\Cloud\Container\V1\PrivateClusterConfig|null
@@ -1283,7 +1324,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired private cluster configuration.
+     * The desired private cluster configuration. master_global_access_config is
+     * the only field that can be changed via this field.
+     * See also
+     * [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
+     * for modifying other fields within
+     * [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
      * @param \Google\Cloud\Container\V1\PrivateClusterConfig $var
@@ -2324,6 +2370,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired containerd config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig desired_containerd_config = 134;</code>
+     * @return \Google\Cloud\Container\V1\ContainerdConfig|null
+     */
+    public function getDesiredContainerdConfig()
+    {
+        return $this->desired_containerd_config;
+    }
+
+    public function hasDesiredContainerdConfig()
+    {
+        return isset($this->desired_containerd_config);
+    }
+
+    public function clearDesiredContainerdConfig()
+    {
+        unset($this->desired_containerd_config);
+    }
+
+    /**
+     * The desired containerd config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig desired_containerd_config = 134;</code>
+     * @param \Google\Cloud\Container\V1\ContainerdConfig $var
+     * @return $this
+     */
+    public function setDesiredContainerdConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig::class);
+        $this->desired_containerd_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Enable/Disable Multi-Networking for the cluster
      *
      * Generated from protobuf field <code>optional bool desired_enable_multi_networking = 135;</code>
@@ -2465,6 +2547,80 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->desired_enable_cilium_clusterwide_network_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node kubelet config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_kubelet_config = 141;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getDesiredNodeKubeletConfig()
+    {
+        return $this->desired_node_kubelet_config;
+    }
+
+    public function hasDesiredNodeKubeletConfig()
+    {
+        return isset($this->desired_node_kubelet_config);
+    }
+
+    public function clearDesiredNodeKubeletConfig()
+    {
+        unset($this->desired_node_kubelet_config);
+    }
+
+    /**
+     * The desired node kubelet config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_kubelet_config = 141;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setDesiredNodeKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->desired_node_kubelet_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node kubelet config for all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_pool_auto_config_kubelet_config = 142;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getDesiredNodePoolAutoConfigKubeletConfig()
+    {
+        return $this->desired_node_pool_auto_config_kubelet_config;
+    }
+
+    public function hasDesiredNodePoolAutoConfigKubeletConfig()
+    {
+        return isset($this->desired_node_pool_auto_config_kubelet_config);
+    }
+
+    public function clearDesiredNodePoolAutoConfigKubeletConfig()
+    {
+        unset($this->desired_node_pool_auto_config_kubelet_config);
+    }
+
+    /**
+     * The desired node kubelet config for all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_pool_auto_config_kubelet_config = 142;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setDesiredNodePoolAutoConfigKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->desired_node_pool_auto_config_kubelet_config = $var;
 
         return $this;
     }

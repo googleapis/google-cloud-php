@@ -60,6 +60,14 @@ class ClassNode
         return 0 === strpos($lastDescriptionLine, 'Protobuf type');
     }
 
+    public function isProtobufMessageClass(): bool
+    {
+        if ($extends = $this->getExtends()) {
+            return '\Google\Protobuf\Internal\Message' === $extends;
+        }
+        return false;
+    }
+
     public function isGapicEnumClass(): bool
     {
         // returns true if the class extends \Google\Protobuf\Internal\Message

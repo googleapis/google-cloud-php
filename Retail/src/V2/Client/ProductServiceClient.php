@@ -43,6 +43,7 @@ use Google\Cloud\Retail\V2\GetProductRequest;
 use Google\Cloud\Retail\V2\ImportProductsRequest;
 use Google\Cloud\Retail\V2\ListProductsRequest;
 use Google\Cloud\Retail\V2\Product;
+use Google\Cloud\Retail\V2\PurgeProductsRequest;
 use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest;
 use Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
@@ -69,6 +70,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getProductAsync(GetProductRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
@@ -295,10 +297,11 @@ final class ProductServiceClient
     }
 
     /**
-     * It is recommended to use the
+     * We recommend that you use the
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
-     * method instead of
-     * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces].
+     * method instead of the
+     * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+     * method.
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
      * achieves the same results but provides more fine-grained control over
      * ingesting local inventory data.
@@ -536,10 +539,53 @@ final class ProductServiceClient
     }
 
     /**
-     * It is recommended to use the
+     * Permanently deletes all selected [Product][google.cloud.retail.v2.Product]s
+     * under a branch.
+     *
+     * This process is asynchronous. If the request is valid, the removal will be
+     * enqueued and processed offline. Depending on the number of
+     * [Product][google.cloud.retail.v2.Product]s, this operation could take hours
+     * to complete. Before the operation completes, some
+     * [Product][google.cloud.retail.v2.Product]s may still be returned by
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * Depending on the number of [Product][google.cloud.retail.v2.Product]s, this
+     * operation could take hours to complete. To get a sample of
+     * [Product][google.cloud.retail.v2.Product]s that would be deleted, set
+     * [PurgeProductsRequest.force][google.cloud.retail.v2.PurgeProductsRequest.force]
+     * to false.
+     *
+     * The async variant is {@see ProductServiceClient::purgeProductsAsync()} .
+     *
+     * @example samples/V2/ProductServiceClient/purge_products.php
+     *
+     * @param PurgeProductsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function purgeProducts(PurgeProductsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PurgeProducts', $request, $callOptions)->wait();
+    }
+
+    /**
+     * We recommend that you use the
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
-     * method instead of
-     * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+     * method instead of the
+     * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+     * method.
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
      * achieves the same results but provides more fine-grained control over
      * ingesting local inventory data.
