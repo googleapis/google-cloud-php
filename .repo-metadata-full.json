@@ -847,6 +847,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "managedidentities"
     },
+    "ManagedKafka": {
+        "language": "php",
+        "distribution_name": "google/cloud-managedkafka",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-managedkafka/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "managedkafka"
+    },
     "MapsFleetEngine": {
         "language": "php",
         "distribution_name": "google/maps-fleetengine",
