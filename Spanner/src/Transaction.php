@@ -22,6 +22,7 @@ use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Protobuf\Duration;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.

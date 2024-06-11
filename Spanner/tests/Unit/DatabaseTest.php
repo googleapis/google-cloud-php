@@ -32,7 +32,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\Database as GapicDatabase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -52,6 +51,7 @@ use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Protobuf\Duration;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -1436,7 +1436,7 @@ class DatabaseTest extends TestCase
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->execute($sql, [
-            'maxStaleness' => new Duration(10, 0)
+            'maxStaleness' => new Duration(['seconds' => 10, 'nanos' => 0])
         ]);
         $rows = iterator_to_array($res->rows());
     }
@@ -1451,7 +1451,7 @@ class DatabaseTest extends TestCase
 
         $this->database->execute($sql, [
             'begin' => true,
-            'maxStaleness' => new Duration(10, 0)
+            'maxStaleness' => new Duration(['seconds' => 10, 'nanos' => 0])
         ]);
     }
 

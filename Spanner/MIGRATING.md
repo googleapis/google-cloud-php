@@ -34,13 +34,11 @@ Google Cloud clients.
 
 ### Retry Options changes
 
-The retry options have been moved to use [`RetrySettings`][RetrySettings] in Client Options, call options
+The retry options have been moved to use [`RetrySettings`][RetrySettings] in call options
 and function parameters.
 
 - `retries` -> Renamed to `retrySettings.maxRetries`
 - `maxRetries` -> Renamed to `retrySettings.maxRetries`
-- `restRetryFunction` -> Renamed to `retrySettings.retryFunction`
-- `grpcRetryFunction` -> Renamed to `retrySettings.retryFunction`
 
 [RetrySettings]: https://googleapis.github.io/gax-php/v1.26.1/Google/ApiCore/RetrySettings.html
 
@@ -67,11 +65,14 @@ and passed it to the `Instance` class, this will break in Spanner `v2`:
 ```php
 // Not intended
 $connObj = new Grpc([]);
-$topic = new Instance(
+$instance = new Instance(
     $connObj,
     // other constructor options
 );
 ```
+
+### `Google\Cloud\Spanner\Duration` class is not used anymore.
+We have removed the `Google\Cloud\Spanner\Duration` class from the library. Instead we will be using the `Google\Protobuf\Duration` class.
 
 ### IAM class changes
 

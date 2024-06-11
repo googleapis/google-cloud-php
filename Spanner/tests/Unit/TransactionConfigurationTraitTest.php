@@ -19,10 +19,10 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Protobuf\Duration;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -47,8 +47,8 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->impl = new TransactionConfigurationTraitImplementation;
-        $this->duration = new Duration(10, 1);
-        $this->dur = ['seconds' => 10, 'nanos' => 1];
+        $this->duration = new Duration(['seconds' => 10, 'nanos' => 1]);
+        $this->dur = new Duration(['seconds' => 10, 'nanos' => 1]);
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
                 'replicaSelections' => [
@@ -155,14 +155,6 @@ class TransactionConfigurationTraitTest extends TestCase
 
         $args = ['transactionType' => 'foo'];
         $this->impl->proxyTransactionSelector($args);
-    }
-
-    public function testConfigureSnapshotOptionsInvalidExactStaleness()
-    {
-        $this->expectException(\BadMethodCallException::class);
-
-        $args = ['exactStaleness' => 'foo'];
-        $this->impl->proxyConfigureSnapshotOptions($args);
     }
 
     public function testConfigureSnapshotOptionsInvalidMaxStaleness()

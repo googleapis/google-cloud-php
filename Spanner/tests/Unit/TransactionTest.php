@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
@@ -37,6 +36,7 @@ use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Protobuf\Duration;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -648,7 +648,7 @@ class TransactionTest extends TestCase
 
     public function testCommitWithMaxCommitDelay()
     {
-        $duration = new Duration(0, 100000000);
+        $duration = new Duration(['seconds' => 0, 'nanos' => 100000000]);
         $this->transaction->insert('Posts', ['foo' => 'bar']);
 
         $mutations = $this->transaction->___getProperty('mutations');

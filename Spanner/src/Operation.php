@@ -32,17 +32,12 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\Mutation\Delete;
-use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\ListValue;
-use Google\Protobuf\Struct;
-use Google\Protobuf\Value;
+use Google\Protobuf\Duration;
 use Google\Rpc\Code;
 use InvalidArgumentException;
 

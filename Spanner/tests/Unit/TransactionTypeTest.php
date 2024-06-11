@@ -25,7 +25,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -44,6 +43,7 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
+use Google\Protobuf\Duration;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -248,7 +248,7 @@ class TransactionTypeTest extends TestCase
 
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
-        $duration = new Duration($seconds, $nanos);
+        $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
 
         $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
         $transaction = [
@@ -309,7 +309,7 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $duration = new Duration($seconds, $nanos);
+        $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
 
         $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
         $this->mockSendRequest(SpannerClient::class, 'executeStreamingSql', null, null, 0);
@@ -331,7 +331,7 @@ class TransactionTypeTest extends TestCase
 
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
-        $duration = new Duration($seconds, $nanos);
+        $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
@@ -378,7 +378,7 @@ class TransactionTypeTest extends TestCase
 
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
-        $duration = new Duration($seconds, $nanos);
+        $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
         $options = [
             'readOnly' => [
                 'readTimestamp' => $this->formatTimestampForApi($this->timestamp),

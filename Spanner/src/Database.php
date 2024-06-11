@@ -52,6 +52,7 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Protobuf\Duration;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 
