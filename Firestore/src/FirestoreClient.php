@@ -163,7 +163,7 @@ class FirestoreClient
             throw new GoogleException(
                 'The requested client requires the gRPC extension. ' .
                 'Please see https://cloud.google.com/php/grpc for installation ' .
-               'instructions.'
+                'instructions.'
             );
         }
 

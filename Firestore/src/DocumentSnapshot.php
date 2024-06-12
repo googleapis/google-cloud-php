@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-
 /**
  * Represents the data of a document at the time of retrieval.
  * A snapshot is immutable and may point to a non-existing document.
