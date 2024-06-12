@@ -59,6 +59,4 @@ class PostStartupScriptBehavior
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PostStartupScriptBehavior::class, \Google\Cloud\Notebooks\V1\RuntimeSoftwareConfig_PostStartupScriptBehavior::class);
 

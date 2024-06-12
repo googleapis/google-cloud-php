@@ -30,7 +30,7 @@ class DiagnosticConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_bucket = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gcs_bucket = '';
+    protected $gcs_bucket = '';
     /**
      * Optional. Defines the relative storage path in the Cloud Storage bucket
      * where the diagnostic logs will be written: Default path will be the root
@@ -41,25 +41,25 @@ class DiagnosticConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string relative_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $relative_path = '';
+    protected $relative_path = '';
     /**
      * Optional. Enables flag to repair service for instance
      *
      * Generated from protobuf field <code>bool repair_flag_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $repair_flag_enabled = false;
+    protected $repair_flag_enabled = false;
     /**
      * Optional. Enables flag to capture packets from the instance for 30 seconds
      *
      * Generated from protobuf field <code>bool packet_capture_flag_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $packet_capture_flag_enabled = false;
+    protected $packet_capture_flag_enabled = false;
     /**
      * Optional. Enables flag to copy all `/home/jupyter` folder contents
      *
      * Generated from protobuf field <code>bool copy_home_files_flag_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $copy_home_files_flag_enabled = false;
+    protected $copy_home_files_flag_enabled = false;
 
     /**
      * Constructor.
