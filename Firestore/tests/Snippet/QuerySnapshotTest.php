@@ -22,10 +22,11 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -39,14 +40,12 @@ class QuerySnapshotTest extends SnippetTestCase
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $snapshot;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->snapshot = TestHelpers::stub(QuerySnapshot::class, [
@@ -59,12 +58,15 @@ class QuerySnapshotTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([]));
 
-        $client = TestHelpers::stub(FirestoreClient::class);
-        $client->___setProperty('connection', $this->connection->reveal());
+        $client = TestHelpers::stub(FirestoreClient::class, [], ['requestHandler']);
+        $client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromClass(QuerySnapshot::class);
         $snippet->setLine(2, '');

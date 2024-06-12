@@ -22,8 +22,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
@@ -58,7 +56,6 @@ class DocumentSnapshotTest extends SnippetTestCase
         $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper(
-                $this->prophesize(ConnectionInterface::class)->reveal(),
                 $this->prophesize(RequestHandler::class)->reveal(),
                 $this->getSerializer(),
                 false
@@ -143,7 +140,7 @@ class DocumentSnapshotTest extends SnippetTestCase
      */
     public function testTimestampMethods($method)
     {
-        $ts = new Timestamp(new \DateTime());
+        $ts = ['seconds' => 100, 'nanos' => 100];
         $info = [$method => $ts];
         $this->snapshot->___setProperty('info', $info);
 

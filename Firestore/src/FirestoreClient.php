@@ -17,12 +17,10 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Blob;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -32,11 +30,9 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
-use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -80,10 +76,9 @@ use Psr\Http\Message\StreamInterface;
  */
 class FirestoreClient
 {
-    use ClientTrait; // To remove in the end
     use ApiHelperTrait;
     use ClientOptionsTrait;
-    // use DetectProjectIdTrait; // To uncomment when ClientTrait is removed
+    use DetectProjectIdTrait;
     use SnapshotTrait;
     use ValidateTrait;
 
@@ -94,12 +89,6 @@ class FirestoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     const MAX_RETRIES = 5;
-
-    /**
-     * @var Connection\ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -122,6 +111,11 @@ class FirestoreClient
      * @var ValueMapper
      */
     private $valueMapper;
+
+    /**
+     * @var string
+     */
+    private $projectId;
 
     /**
      * Create a Firestore client. Please note that this client requires
@@ -165,7 +159,14 @@ class FirestoreClient
     {
         $emulatorHost = getenv('FIRESTORE_EMULATOR_HOST');
 
-        $this->requireGrpc();
+        if (!extension_loaded('grpc')) {
+            throw new GoogleException(
+                'The requested client requires the gRPC extension. ' .
+                'Please see https://cloud.google.com/php/grpc for installation ' .
+                'instructions.'
+            );
+        }
+
         $config += [
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -184,10 +185,6 @@ class FirestoreClient
 
         $this->database = $config['database'];
 
-        $this->connection = new Grpc($this->configureAuthentication($config) + [
-            'projectId' => $this->projectId,
-        ]);
-
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
@@ -198,10 +195,6 @@ class FirestoreClient
             'google.protobuf.Struct' => function ($v) {
                 return $this->flattenStruct($v);
             },
-        ], [], [
-            'google.protobuf.Int32Value' => function ($v) {
-                return ['value' => $v];
-            }
         ]);
 
         $this->requestHandler = new RequestHandler(
@@ -211,11 +204,12 @@ class FirestoreClient
         );
 
         $this->valueMapper = new ValueMapper(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $config['returnInt64AsObject']
         );
+
+        $this->projectId = $this->detectProjectId($config);
     }
 
     /**
@@ -238,7 +232,6 @@ class FirestoreClient
             class_alias(BulkWriter::class, WriteBatch::class);
         }
         return new BulkWriter(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -292,7 +285,6 @@ class FirestoreClient
     public function bulkWriter(array $options = [])
     {
         return new BulkWriter(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -322,7 +314,6 @@ class FirestoreClient
     public function collection($name)
     {
         return $this->getCollectionReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -404,7 +395,6 @@ class FirestoreClient
     public function document($name)
     {
         return $this->getDocumentReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -457,7 +447,6 @@ class FirestoreClient
     public function documents(array $paths, array $options = [])
     {
         return $this->getDocumentsByPaths(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -498,7 +487,6 @@ class FirestoreClient
         }
 
         return new Query(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -636,7 +624,6 @@ class FirestoreClient
             $transactionId = $beginTransaction['transaction'];
 
             $transaction = new Transaction(
-                $this->connection,
                 $this->requestHandler,
                 $this->serializer,
                 $this->valueMapper,
@@ -767,7 +754,6 @@ class FirestoreClient
     public function sessionHandler(array $options = [])
     {
         return new FirestoreSessionHandler(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,

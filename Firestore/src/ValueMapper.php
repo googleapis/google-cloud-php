@@ -24,11 +24,9 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Protobuf\NullValue;
+use Google\Protobuf\Timestamp;
 
 /**
  * Normalizes values between Google Cloud PHP and Cloud Firestore.
@@ -40,17 +38,10 @@ class ValueMapper
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
-    use TimeTrait;
     use ValidateTrait;
 
     public const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
     public const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
-
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -68,9 +59,6 @@ class ValueMapper
     private $returnInt64AsObject;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -78,12 +66,10 @@ class ValueMapper
      *        (to preserve values in 32-bit environments).
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         $returnInt64AsObject
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->returnInt64AsObject = $returnInt64AsObject;
@@ -143,6 +129,7 @@ class ValueMapper
             case 'booleanValue':
             case 'stringValue':
             case 'doubleValue':
+            case 'timestampValue':
                 return $value;
                 break;
 
@@ -157,10 +144,7 @@ class ValueMapper
                     ? new Int64($value)
                     : (int) $value;
 
-            case 'timestampValue':
-                $time = $this->parseTimeString($value);
-                return new Timestamp($time[0], $time[1]);
-                break;
+
 
             case 'geoPointValue':
                 $value += [
@@ -201,14 +185,12 @@ class ValueMapper
 
             case 'referenceValue':
                 $parent = new CollectionReference(
-                    $this->connection,
                     $this->requestHandler,
                     $this->serializer,
                     $this,
                     $this->parentPath($value)
                 );
                 return new DocumentReference(
-                    $this->connection,
                     $this->requestHandler,
                     $this->serializer,
                     $this,
@@ -326,22 +308,8 @@ class ValueMapper
             return ['bytesValue' => (string) $value];
         }
 
-        if ($value instanceof \DateTimeInterface) {
-            return [
-                'timestampValue' => [
-                    'seconds' => $value->format('U'),
-                    'nanos' => (int)($value->format('u') * 1000)
-                ]
-            ];
-        }
-
         if ($value instanceof Timestamp) {
-            return [
-                'timestampValue' => [
-                    'seconds' => $value->get()->format('U'),
-                    'nanos' => $value->nanoSeconds()
-                ]
-            ];
+            return ['timestampValue' => $value];
         }
 
         if ($value instanceof GeoPoint) {

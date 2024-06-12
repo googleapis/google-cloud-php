@@ -21,7 +21,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
@@ -98,14 +97,11 @@ class BulkWriterTest extends FirestoreTestCase
     public function testLongFailuresAreRetriedWithDelay()
     {
         $docs = $this->bulkDocuments();
-        $connection = $this->prophesize(ConnectionInterface::class);
         $requestHandler = $this->prophesize(RequestHandler::class);
         $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $connection->reveal(),
             $requestHandler->reveal(),
             $this->getSerializer(),
             new ValueMapper(
-                $connection->reveal(),
                 $requestHandler->reveal(),
                 $this->getSerializer(),
                 false
@@ -116,7 +112,7 @@ class BulkWriterTest extends FirestoreTestCase
                 'maxOpsPerSecond' => 10,
                 'greedilySend' => false,
             ],
-        ], ['connection', 'requestHandler']);
+        ], ['requestHandler']);
 
         $batchSize = 20;
         $successPerBatch = $batchSize * 3 / 4;
@@ -142,7 +138,8 @@ class BulkWriterTest extends FirestoreTestCase
                     }
                 }
                 return true;
-            })
+            }),
+            Argument::cetera()
         )->shouldBeCalledTimes(10)->willReturn([
             'writeResults' => array_fill(0, $batchSize, []),
             'status' => array_merge(
@@ -154,12 +151,14 @@ class BulkWriterTest extends FirestoreTestCase
                 ]),
             ),
         ]);
+
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
                 'key' => $k,
                 'path' => $v,
             ]);
         }
+        $this->batch->___setProperty('requestHandler', $requestHandler->reveal());
 
         $startTime = floor(microtime(true) * 1000);
         $this->batch->flush();

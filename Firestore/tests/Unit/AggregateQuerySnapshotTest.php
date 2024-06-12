@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
+use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -42,7 +42,9 @@ class AggregateQuerySnapshotTest extends TestCase
 
     public function testReadTime()
     {
-        $readTime = (new \DateTime())->format(Timestamp::FORMAT);
+        $readTime = new Timestamp();
+        $readTime->fromDateTime(new \DateTime());
+        $readTime = json_decode($readTime->serializeToJsonString());
         $aggregationQuerySnapshot = new AggregateQuerySnapshot([
             'readTime' => $readTime
         ]);

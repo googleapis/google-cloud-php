@@ -18,9 +18,8 @@
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\Filter;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
@@ -30,6 +29,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\ValueMapper;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -43,13 +43,11 @@ class FilterTest extends SnippetTestCase
     public const COLLECTION = 'a';
     public const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
     }
@@ -191,11 +189,9 @@ class FilterTest extends SnippetTestCase
         ];
 
         $q = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -204,17 +200,21 @@ class FilterTest extends SnippetTestCase
             [
                 'from' => $from
             ]
-        ]);
+        ], ['requestHandler']);
 
-        $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => self::QUERY_PARENT,
-            'retries' => 0,
-            'structuredQuery' => [
-                'from' => $from
-            ] + $query
-        ]))->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($query, $from) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['parent'] == self::QUERY_PARENT
+                    && array_replace_recursive($data['structuredQuery'], ['from' => $from] + $query)
+                        == $data['structuredQuery'];
+            }),
+            Argument::withEntry('retrySettings', ['maxRetries' => 0])
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
-        $q->___setProperty('connection', $this->connection->reveal());
+        $q->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('query', $q);
 
         $res = $snippet->invoke('result');

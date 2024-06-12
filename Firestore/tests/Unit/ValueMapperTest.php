@@ -23,10 +23,8 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
@@ -41,24 +39,20 @@ class ValueMapperTest extends TestCase
 {
     use FirestoreTestHelperTrait;
     use ProphecyTrait;
-    use TimeTrait;
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $mapper;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->mapper = TestHelpers::stub(ValueMapper::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             false
-        ], ['connection', 'requestHandler', 'returnInt64AsObject']);
+        ], ['requestHandler', 'returnInt64AsObject']);
     }
 
     /**
@@ -110,13 +104,6 @@ class ValueMapperTest extends TestCase
                 ['integerValue' => 15],
                 function ($val) {
                     $this->assertEquals(15, $val);
-                }
-            ], [
-                ['timestampValue' => new Timestamp($this->createDateTimeFromSeconds($now), 10)],
-                function ($val) use ($now) {
-                    $this->assertInstanceOf(Timestamp::class, $val);
-                    $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $now), 10);
-                    $this->assertEquals($ts, $val);
                 }
             ], [
                 ['geoPointValue' => ['latitude' => 100.01, 'longitude' => 500.5]],
@@ -216,7 +203,6 @@ class ValueMapperTest extends TestCase
         $blob = new Blob($blobValue);
 
         $datetime = \DateTimeImmutable::createFromFormat('U.u', (string) microtime(true));
-        $timestamp = new Timestamp($datetime);
         $now = (string) $datetime->format('U');
         $nanos = (int) $datetime->format('u') * 1000;
 
@@ -324,14 +310,6 @@ class ValueMapperTest extends TestCase
                 }
             ], [
                 $datetime,
-                function ($val) use ($now, $nanos) {
-                    $this->assertEquals([
-                        'seconds' => $now,
-                        'nanos' => $nanos
-                    ], $val['timestampValue']);
-                }
-            ], [
-                $timestamp,
                 function ($val) use ($now, $nanos) {
                     $this->assertEquals([
                         'seconds' => $now,

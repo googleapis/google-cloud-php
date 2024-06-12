@@ -20,8 +20,6 @@ namespace Google\Cloud\Firestore;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * Represents a Firestore transaction.
@@ -49,11 +47,6 @@ class Transaction
 {
     use SnapshotTrait;
     use DebugInfoTrait;
-
-    /**
-     * @var ConnectionInterface
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -86,7 +79,6 @@ class Transaction
     private $writer;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -95,14 +87,12 @@ class Transaction
      * @param string $transaction The transaction ID.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         ValueMapper $valueMapper,
         $database,
         $transaction
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
@@ -110,7 +100,6 @@ class Transaction
         $this->transaction = $transaction;
 
         $this->writer = new BulkWriter(
-            $connection,
             $requestHandler,
             $serializer,
             $valueMapper,
@@ -141,7 +130,6 @@ class Transaction
             $options += ['transaction' => $this->transaction];
         }
         return $this->createSnapshot(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -158,27 +146,16 @@ class Transaction
      * $snapshot = $transaction->runAggregateQuery($aggregateQuery);
      * ```
      *
-     * @param AggregateQuery $aggregateQuery The aggregate query to retrieve.
-     * @param array $options {
-     *     Configuration Options
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param AggregateQuery $aggregateQuery The aggregate query to retrieve.
+     * @param array $options [optional] Configuration options is an array.
      * @return AggregateQuerySnapshot
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
      */
     public function runAggregateQuery(AggregateQuery $aggregateQuery, array $options = [])
     {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
-
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
         return $aggregateQuery->getSnapshot([
             'transaction' => $this->transaction
         ] + $options);
@@ -227,7 +204,6 @@ class Transaction
     public function documents(array $paths, array $options = [])
     {
         return $this->getDocumentsByPaths(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,

@@ -21,8 +21,6 @@ use Exception;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -55,7 +53,6 @@ class DocumentSnapshotTest extends TestCase
         $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper(
-                $this->prophesize(ConnectionInterface::class)->reveal(),
                 $this->prophesize(RequestHandler::class)->reveal(),
                 $this->getSerializer(),
                 false
@@ -89,7 +86,7 @@ class DocumentSnapshotTest extends TestCase
      */
     public function testTimestampMethods($method)
     {
-        $ts = new Timestamp(new \DateTime());
+        $ts = ['seconds' => 100, 'nanos' => 100];
         $info = [$method => $ts];
         $this->snapshot->___setProperty('info', $info);
 

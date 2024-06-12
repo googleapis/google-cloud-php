@@ -21,8 +21,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
@@ -47,7 +45,6 @@ class SnapshotTraitTest extends TestCase
     public const DATABASE = '(default)';
     public const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $mapper;
@@ -56,13 +53,11 @@ class SnapshotTraitTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->impl = TestHelpers::impl(SnapshotTrait::class);
 
         $this->valueMapper = new ValueMapper(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             false
@@ -97,7 +92,6 @@ class SnapshotTraitTest extends TestCase
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
         $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper,
@@ -129,7 +123,6 @@ class SnapshotTraitTest extends TestCase
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
         $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper,
@@ -158,7 +151,6 @@ class SnapshotTraitTest extends TestCase
         ]));
 
         $this->assertEquals('foo', $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::NAME
@@ -185,7 +177,6 @@ class SnapshotTraitTest extends TestCase
         ]));
 
         $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::NAME,
@@ -198,7 +189,6 @@ class SnapshotTraitTest extends TestCase
         $this->expectException(TypeError::class);
 
         $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::NAME,
@@ -225,7 +215,6 @@ class SnapshotTraitTest extends TestCase
         ]));
 
         $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::NAME
