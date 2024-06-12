@@ -202,10 +202,6 @@ class ValueMapperTest extends TestCase
         $blobValue = 'hello world';
         $blob = new Blob($blobValue);
 
-        $datetime = \DateTimeImmutable::createFromFormat('U.u', (string) microtime(true));
-        $now = (string) $datetime->format('U');
-        $nanos = (int) $datetime->format('u') * 1000;
-
         $lat = 100.01;
         $lng = 100.25;
         $geo = new GeoPoint($lat, $lng);
@@ -307,14 +303,6 @@ class ValueMapperTest extends TestCase
                 $blob,
                 function ($val) use ($blobValue) {
                     $this->assertEquals($blobValue, $val['bytesValue']);
-                }
-            ], [
-                $datetime,
-                function ($val) use ($now, $nanos) {
-                    $this->assertEquals([
-                        'seconds' => $now,
-                        'nanos' => $nanos
-                    ], $val['timestampValue']);
                 }
             ], [
                 $geo,

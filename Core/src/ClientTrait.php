@@ -67,7 +67,6 @@ trait ClientTrait
      */
     private function requireGrpc()
     {
-        extension_loaded('grpc')
         if (!$this->isGrpcLoaded()) {
             throw new GoogleException(
                 'The requested client requires the gRPC extension. ' .
