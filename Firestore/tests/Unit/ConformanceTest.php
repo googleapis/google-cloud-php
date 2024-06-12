@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -55,7 +54,6 @@ class ConformanceTest extends TestCase
     use GrpcTestTrait;
     use PathTrait;
     use ProphecyTrait;
-    use TimeTrait;
 
     const SUITE_FILENAME = 'firestore-test-suite.binproto';
 
@@ -276,13 +274,20 @@ class ConformanceTest extends TestCase
         }
 
         $times = (isset($test['isError']) && $test['isError']) ? 0 : 1;
-        $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => $this->parentPath($test['collPath']),
-            'structuredQuery' => $query,
-            'retries' => 0
-        ]))->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($query, $test) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['parent'] == $this->parentPath($test['collPath'])
+                    && array_replace_recursive($data['structuredQuery'], $query)
+                        == $data['structuredQuery'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
+
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $query = $this->client->collection($this->relativeName($test['collPath']));
 

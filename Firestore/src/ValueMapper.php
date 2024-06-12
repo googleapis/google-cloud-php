@@ -24,7 +24,6 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -40,7 +39,6 @@ class ValueMapper
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
-    use TimeTrait;
     use ValidateTrait;
 
     public const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
@@ -143,6 +141,7 @@ class ValueMapper
             case 'booleanValue':
             case 'stringValue':
             case 'doubleValue':
+            case 'timestampValue':
                 return $value;
                 break;
 
@@ -157,10 +156,7 @@ class ValueMapper
                     ? new Int64($value)
                     : (int) $value;
 
-            case 'timestampValue':
-                $time = $this->parseTimeString($value);
-                return new Timestamp($time[0], $time[1]);
-                break;
+
 
             case 'geoPointValue':
                 $value += [
@@ -331,15 +327,6 @@ class ValueMapper
                 'timestampValue' => [
                     'seconds' => $value->format('U'),
                     'nanos' => (int)($value->format('u') * 1000)
-                ]
-            ];
-        }
-
-        if ($value instanceof Timestamp) {
-            return [
-                'timestampValue' => [
-                    'seconds' => $value->get()->format('U'),
-                    'nanos' => $value->nanoSeconds()
                 ]
             ];
         }

@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\Timestamp;
 
 /**
  * Represents the data of a document at the time of retrieval.
@@ -172,13 +171,11 @@ class DocumentSnapshot implements \ArrayAccess
      * $updateTime = $snapshot->updateTime();
      * ```
      *
-     * @return Timestamp|null
+     * @return array|null
      */
     public function updateTime()
     {
-        return isset($this->info['updateTime'])
-            ? $this->info['updateTime']
-            : null;
+        return $this->info['updateTime'] ?? null;
     }
 
     /**
@@ -189,13 +186,11 @@ class DocumentSnapshot implements \ArrayAccess
      * $readTime = $snapshot->readTime();
      * ```
      *
-     * @return Timestamp|null
+     * @return array|null
      */
     public function readTime()
     {
-        return isset($this->info['readTime'])
-            ? $this->info['readTime']
-            : null;
+        return $this->info['readTime'] ?? null;
     }
 
     /**
@@ -206,13 +201,11 @@ class DocumentSnapshot implements \ArrayAccess
      * $createTime = $snapshot->createTime();
      * ```
      *
-     * @return Timestamp|null
+     * @return array|null
      */
     public function createTime()
     {
-        return isset($this->info['createTime'])
-            ? $this->info['createTime']
-            : null;
+        return $this->info['createTime'] ?? null;
     }
 
     /**
@@ -227,9 +220,7 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function data()
     {
-        return $this->exists
-            ? $this->data
-            : null;
+        return $this->exists ? $this->data : null;
     }
 
     /**

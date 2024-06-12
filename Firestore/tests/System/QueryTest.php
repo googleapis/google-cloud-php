@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\Filter;
 

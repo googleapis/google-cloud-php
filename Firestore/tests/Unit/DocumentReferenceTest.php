@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -32,6 +31,7 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -44,7 +44,6 @@ class DocumentReferenceTest extends TestCase
 {
     use FirestoreTestHelperTrait;
     use ProphecyTrait;
-    use TimeTrait;
 
     public const PROJECT = 'example_project';
     public const DATABASE = '(default)';
@@ -335,9 +334,10 @@ class DocumentReferenceTest extends TestCase
 
     public function testWriteResult()
     {
-        $time = time();
-        $ts = \DateTime::createFromFormat('U', $time)->format(Timestamp::FORMAT);
-        $ts2 = \DateTime::createFromFormat('U', $time+100)->format(Timestamp::FORMAT);
+        $time = [
+            'seconds' => 100,
+            'nanos' => 10
+        ];
 
         $this->requestHandler->sendRequest(
             V1FirestoreClient::class,
@@ -349,18 +349,18 @@ class DocumentReferenceTest extends TestCase
             ->willReturn([
                 'writeResults' => [
                     [
-                        'updateTime' => $ts
+                        'updateTime' => $time
                     ], [
-                        'updateTime' => $ts2
+                        'updateTime' => ['seconds' => 200] + $time
                     ]
                 ],
-                'commitTime' => $ts
+                'commitTime' => $time
             ]);
 
         $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->document->set(['foo' => 'bar']);
-        $this->assertInstanceOf(Timestamp::class, $res['updateTime']);
-        $this->assertEqualsWithDelta($time + 100, $res['updateTime']->get()->format('U'), 3);
+        $this->assertIsArray($res['updateTime']);
+        $this->assertEqualsWithDelta($time['seconds'], $res['updateTime']['seconds'], 100);
     }
 }

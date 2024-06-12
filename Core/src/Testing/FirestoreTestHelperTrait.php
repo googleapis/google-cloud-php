@@ -47,10 +47,6 @@ trait FirestoreTestHelperTrait
                 'google.protobuf.Struct' => function ($v) {
                     return $this->flattenStruct($v);
                 },
-            ], [], [
-                'google.protobuf.Int32Value' => function ($v) {
-                    return ['value' => $v];
-                }
             ]);
         }
 

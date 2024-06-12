@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
-use Google\Cloud\Core\Timestamp;
 
 /**
  * @group firestore

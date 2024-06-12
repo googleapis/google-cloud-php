@@ -21,7 +21,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -29,6 +28,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\FirestoreClient as FirestoreGapicClient;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
@@ -39,6 +39,9 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\Filter;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * @group firestore
@@ -124,7 +127,12 @@ class QueryTest extends TestCase
     {
         $name = self::QUERY_PARENT .'/foo';
 
-        $this->connection->runQuery(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([
                 [
@@ -136,12 +144,12 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                    'readTime' => ['seconds' => 100, 'nanos' => 100]
                 ],
                 []
             ]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->query->documents(['maxRetries' => 0]);
         $this->assertContainsOnlyInstancesOf(DocumentSnapshot::class, $res);
@@ -156,8 +164,14 @@ class QueryTest extends TestCase
     {
         $name = self::QUERY_PARENT .'/foo';
 
-        $ts = (new \DateTime())->format(Timestamp::FORMAT);
-        $this->connection->runQuery(Argument::any())
+        $ts = ['seconds' => 500, 'nanos' => 0];
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([
                 [
@@ -176,12 +190,12 @@ class QueryTest extends TestCase
                 []
             ]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->query->documents()->rows()[0];
-        $this->assertInstanceOf(Timestamp::class, $res->createTime());
-        $this->assertInstanceOf(Timestamp::class, $res->updateTime());
-        $this->assertInstanceOf(Timestamp::class, $res->readTime());
+        $this->assertArrayHasKey('seconds', $res->createTime());
+        $this->assertArrayHasKey('seconds', $res->updateTime());
+        $this->assertArrayHasKey('seconds', $res->readTime());
     }
 
     /**
@@ -189,19 +203,22 @@ class QueryTest extends TestCase
      */
     public function testAggregation($type, $arg)
     {
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'result' => [
-                        'aggregateFields' => [
-                            $type => ['integerValue' => 1]
-                        ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'result' => [
+                    'aggregateFields' => [
+                        $type => ['integerValue' => 1]
                     ]
                 ]
-            ]));
+            ]
+        ]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $arg ? $this->query->$type($arg) : $this->query->$type();
         $this->assertEquals(1, $res);
@@ -212,20 +229,25 @@ class QueryTest extends TestCase
      */
     public function testAggregationWithReadTime($type, $arg)
     {
-        $readTime = new Timestamp(new \DateTimeImmutable('now'));
-        $this->connection->runAggregationQuery(Argument::withEntry('readTime', $readTime))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'result' => [
-                        'aggregateFields' => [
-                            $type => ['testValue' => 1]
-                        ]
+        $readTime = new ProtobufTimestamp();
+        $readTime->fromDateTime(new \DateTime());
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'result' => [
+                    'aggregateFields' => [
+                        $type => ['testValue' => 1]
                     ]
                 ]
-            ]));
+            ]
+        ]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $arg ?
             $this->query->$type($arg, ['readTime' => $readTime]) :
@@ -786,7 +808,7 @@ class QueryTest extends TestCase
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
-                'limit' => $limit
+                'limit' => ['value' => $limit]
             ]
         ]);
     }
@@ -805,7 +827,7 @@ class QueryTest extends TestCase
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
-                'limit' => 1
+                'limit' => ['value' => 1]
             ] + $query
         ]);
     }
@@ -933,7 +955,12 @@ class QueryTest extends TestCase
         $name1 = self::QUERY_PARENT .'/foo';
         $name2 = self::QUERY_PARENT .'/bar';
 
-        $this->connection->runQuery(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([
                 [
@@ -945,7 +972,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                    'readTime' => ['seconds' => 100, 'nanos' => 100]
                 ],
                 [
                     'document' => [
@@ -956,11 +983,11 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                    'readTime' => ['seconds' => 100, 'nanos' => 100]
                 ],
             ]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $this->query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->query->orderBy('foo', 'DESC')
             ->limitToLast(2)
@@ -1599,20 +1626,23 @@ class QueryTest extends TestCase
 
     private function runAndAssert(callable $filters, $assertion, Query $query = null)
     {
-        if (is_array($assertion)) {
-            $this->connection->runQuery(
-                new ArrayHasSameValuesToken($assertion + ['retries' => 0])
-            )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([
-                []
-            ]));
-        } elseif (is_callable($assertion)) {
-            $this->connection->runQuery(Argument::that($assertion))
-                ->shouldBeCalledTimes(1);
-        }
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($assertion) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                if (is_callable($assertion)) {
+                    return $assertion($data);
+                } else {
+                    return array_replace_recursive($data, $assertion) == $data;
+                }
+            }),
+            Argument::withEntry('retrySettings', ['maxRetries' => 0])
+        )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([[]]));
 
         $query = $query ?: $this->query;
         $immutable = clone $query;
-        $immutable->___setProperty('connection', $this->connection->reveal());
+        $immutable->___setProperty('requestHandler', $this->requestHandler->reveal());
         $query = $filters($immutable);
 
         $this->assertInstanceOf(Query::class, $query);

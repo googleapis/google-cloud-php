@@ -23,7 +23,6 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\ListDocumentsRequest;
@@ -48,7 +47,6 @@ class CollectionReference extends Query
     use ApiHelperTrait;
     use DebugInfoTrait;
     use PathTrait;
-    use TimestampTrait;
 
     /**
      * @var ConnectionInterface

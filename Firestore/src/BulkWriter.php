@@ -18,12 +18,9 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
@@ -33,7 +30,6 @@ use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\RollbackRequest;
-use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use Google\Rpc\Code;
 
 /**
@@ -57,7 +53,6 @@ class BulkWriter
 {
     use ApiHelperTrait;
     use DebugInfoTrait;
-    use TimeTrait;
     use ValidateTrait;
 
     public const TYPE_UPDATE = 'update';
@@ -755,20 +750,6 @@ class BulkWriter
             $optionalArgs
         );
 
-        if (isset($response['commitTime'])) {
-            $time = $this->parseTimeString($response['commitTime']);
-            $response['commitTime'] = new Timestamp($time[0], $time[1]);
-        }
-
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
-                if (isset($result['updateTime'])) {
-                    $time = $this->parseTimeString($result['updateTime']);
-                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
-                }
-            }
-        }
-
         return $response;
     }
 
@@ -1106,7 +1087,7 @@ class BulkWriter
      * @throws \InvalidArgumentException If the precondition is invalid.
      * @codingStandardsIgnoreEnd
      */
-    private function validatePrecondition(array &$options)
+    private function validatePrecondition(array $options)
     {
         $precondition = $options['precondition'] ?? null;
 
@@ -1114,24 +1095,11 @@ class BulkWriter
             return;
         }
 
-        if (isset($precondition['exists'])) {
-            return $precondition;
+        if (!isset($precondition['exists']) && !isset($precondition['updateTime'])) {
+            throw new \InvalidArgumentException('Preconditions must provide either `exists` or `updateTime`.');
         }
 
-        if (isset($precondition['updateTime'])) {
-            if (!($precondition['updateTime'] instanceof ProtobufTimestamp)
-                && !is_array($precondition['updateTime'])
-            ) {
-                throw new \InvalidArgumentException(
-                    'Precondition Update Time must be an instance of `Google\\Protobuf\\Timestamp` ' .
-                    'or array representation of the same.'
-                );
-            }
-
-            return $precondition;
-        }
-
-        throw new \InvalidArgumentException('Preconditions must provide either `exists` or `updateTime`.');
+        return $precondition;
     }
 
     /**

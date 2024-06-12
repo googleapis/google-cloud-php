@@ -18,7 +18,6 @@
 namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Firestore\Aggregate;
-use Google\Cloud\Core\Timestamp;
 
 /**
  * @group firestore

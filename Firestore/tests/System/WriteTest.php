@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 
 /**
@@ -26,7 +25,6 @@ use Google\Cloud\Core\TimeTrait;
  */
 class WriteTest extends FirestoreTestCase
 {
-    use TimeTrait;
 
     /**
      * @dataProvider timestamps

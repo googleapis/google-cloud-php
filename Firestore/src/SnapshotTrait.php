@@ -19,12 +19,8 @@ namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
@@ -37,8 +33,6 @@ trait SnapshotTrait
 {
     use ApiHelperTrait;
     use PathTrait;
-    use TimeTrait;
-    use TimestampTrait;
 
     /**
      * Execute a service request to retrieve a document snapshot.
@@ -106,8 +100,6 @@ trait SnapshotTrait
         $fields = $exists
             ? $valueMapper->decodeValues($this->pluck('fields', $document))
             : [];
-
-        $document = $this->transformSnapshotTimestamps($document);
 
         return new DocumentSnapshot($reference, $valueMapper, $document, $fields, $exists);
     }
@@ -342,26 +334,5 @@ trait SnapshotTrait
             $mapper,
             $name
         );
-    }
-
-    /**
-     * Convert snapshot timestamps to Google Cloud PHP types.
-     *
-     * @param array $data The snapshot data.
-     * @return array
-     */
-    private function transformSnapshotTimestamps(array $data)
-    {
-        foreach (['createTime', 'updateTime', 'readTime'] as $timestampField) {
-            if (!isset($data[$timestampField])) {
-                continue;
-            }
-
-            list($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
-
-            $data[$timestampField] = new Timestamp($dt, $nanos);
-        }
-
-        return $data;
     }
 }

@@ -31,7 +31,7 @@ use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
-use Google\Cloud\Firestore\V1beta1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 
 /**
  * A Cloud Firestore Query.
@@ -338,8 +338,9 @@ class Query
             'limitToLast' => $this->limitToLast
         ]);
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
-
-            list($data, $optionalArgs) = $this->splitOptionalArgs(['retrySettings' => ['maxRetries' => 0]] + $options);
+            list($data, $optionalArgs) = $this->splitOptionalArgs(
+                ['retrySettings' => ['maxRetries' => 0]] + $options
+            );
             $data += $this->arrayFilterRemoveNull([
                 'parent' => $this->parentName,
                 'structuredQuery' => $query,
@@ -577,7 +578,7 @@ class Query
     public function limit($number)
     {
         return $this->newQuery([
-            'limit' => $number
+            'limit' => ['value' => $number]
         ], false, false); // create a new query, explicitly setting `limitToLast` to false.
     }
 
@@ -601,7 +602,7 @@ class Query
     public function limitToLast($number)
     {
         return $this->newQuery([
-            'limit' => $number
+            'limit' => ['value' => $number]
         ], false, true); // create a new query, explicitly setting `limitToLast` to true.
     }
 

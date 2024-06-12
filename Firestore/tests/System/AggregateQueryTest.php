@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Exception;
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\Filter;
 use Google\Cloud\Firestore\Query;

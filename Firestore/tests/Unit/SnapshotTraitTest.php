@@ -21,7 +21,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;

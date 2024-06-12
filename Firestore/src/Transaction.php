@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**

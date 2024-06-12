@@ -25,7 +25,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -37,6 +36,8 @@ use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\RollbackRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -148,13 +149,13 @@ class FirestoreClientTest extends SnippetTestCase
                     'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
                     'fields' => []
                 ],
-                'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                'readTime' => ['seconds' => 100, 'nanos' => 100]
             ], [
                 'found' => [
                     'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
                     'fields' => []
                 ],
-                'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                'readTime' => ['seconds' => 100, 'nanos' => 100]
             ]
         ]);
 
@@ -179,7 +180,7 @@ class FirestoreClientTest extends SnippetTestCase
         )->shouldBeCalled()->willReturn([
             [
                 'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
-                'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                'readTime' => ['seconds' => 100, 'nanos' => 100]
             ]
         ]);
 
@@ -194,7 +195,12 @@ class FirestoreClientTest extends SnippetTestCase
 
     public function testCollectionGroup()
     {
-        $this->connection->runQuery(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )
             ->willReturn(new \ArrayIterator([
                 [
                     'document' => [
@@ -211,7 +217,7 @@ class FirestoreClientTest extends SnippetTestCase
                 ]
             ]));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'collectionGroup');
         $snippet->addLocal('firestore', $this->client);
@@ -244,7 +250,7 @@ class FirestoreClientTest extends SnippetTestCase
             [
                 'found' => [
                     'name' => $from,
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
+                    'readTime' => ['seconds' => 100, 'nanos' => 100],
                     'fields' => [
                         'balance' => [
                             'doubleValue' => 1000.00
@@ -266,7 +272,7 @@ class FirestoreClientTest extends SnippetTestCase
             [
                 'found' => [
                     'name' => $from,
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
+                    'readTime' => ['seconds' => 100, 'nanos' => 100],
                     'fields' => [
                         'balance' => [
                             'doubleValue' => 1000.00

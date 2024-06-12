@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
@@ -32,6 +31,8 @@ use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -117,19 +118,25 @@ class TransactionTest extends TestCase
 
     public function testRunQuery()
     {
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([[]]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                return $req->getTransaction() == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
         $query = new Query(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper,
-            '',
-            ['from' => ['collectionId' => '']]
+            'foo_parent',
+            ['from' => [['collectionId' => 'foo_collection']]]
         );
 
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
         $res = $this->transaction->runQuery($query);
         $this->assertInstanceOf(QuerySnapshot::class, $res);
     }
@@ -139,9 +146,12 @@ class TransactionTest extends TestCase
      */
     public function testRunAggregateQuery($type, $arg)
     {
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([]));
 
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
@@ -152,6 +162,7 @@ class TransactionTest extends TestCase
             $arg ? Aggregate::$type($arg) : Aggregate::$type()
         );
 
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->transaction->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->transaction->runAggregateQuery($aggregateQuery);
@@ -177,8 +188,14 @@ class TransactionTest extends TestCase
             ['query' => []],
             $arg ? Aggregate::$type($arg) : Aggregate::$type()
         );
-        $this->connection->runAggregationQuery(
-            Argument::withEntry('readTime', $timestamp)
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) use ($timestamp) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readTime'] == $timestamp;
+            }),
+            Argument::cetera()
         )->shouldBeCalled()->willReturn(new \ArrayIterator([
             [
                 'result' => [
@@ -189,26 +206,14 @@ class TransactionTest extends TestCase
             ]
         ]));
 
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->transaction->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->transaction->runAggregateQuery($aggregateQuery, [
-            'readTime' => new Timestamp(
-                \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']),
-                $timestamp['nanos']
-            )
+            'readTime' => $timestamp
         ]);
 
         $this->assertEquals(1, $res->get($type));
-    }
-
-    public function testGetAggregateSnapshotReadTimeInvalidReadTime()
-    {
-        $this->expectException('InvalidArgumentException');
-        $q = $this->prophesize(AggregateQuery::class);
-
-        $res = $this->transaction->runAggregateQuery($q->reveal(), [
-            'readTime' => 'invalid_time'
-        ]);
     }
 
     public function testCreate()
@@ -319,7 +324,10 @@ class TransactionTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $timestamp = (new Timestamp(new \DateTimeImmutable()))->formatAsString();
+        $timestamp = [
+            'seconds' => 100,
+            'nanos' => 100
+        ];
 
         $res = [
             [
@@ -418,7 +426,7 @@ class TransactionTest extends TestCase
 
     public function testDocumentsOrdered()
     {
-        $timestamp = (new Timestamp(new \DateTimeImmutable()))->formatAsString();
+        $timestamp = ['seconds' => 100, 'nanos' => 100];
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
             sprintf($tpl, 'a'),

@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -227,7 +226,7 @@ class DocumentReferenceTest extends SnippetTestCase
                 'found' => [
                     'name' => self::DOCUMENT,
                     'fields' => [],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                    'readTime' => ['seconds' => 100, 'nanos' => 100]
                 ]
             ]
         ]));

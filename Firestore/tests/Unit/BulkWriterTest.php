@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -36,6 +35,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use RuntimeException;
 
 /**
  * @group firestore
@@ -883,17 +883,6 @@ class BulkWriterTest extends TestCase
         }
 
         return [[$docs]];
-    }
-
-    public function testWriteUpdateTimePreconditionInvalidType()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $this->batch->delete(self::DOCUMENT, [
-            'precondition' => [
-                'updateTime' => 'foobar',
-            ],
-        ]);
     }
 
     public function testWritePreconditionMissingStuff()

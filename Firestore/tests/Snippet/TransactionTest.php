@@ -23,7 +23,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
@@ -38,6 +37,9 @@ use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\RollbackRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -103,8 +105,12 @@ class TransactionTest extends SnippetTestCase
             Argument::cetera()
         )->shouldBeCalled()->willReturn(['transaction' => self::TRANSACTION]);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
 
         $client = TestHelpers::stub(FirestoreClient::class, [], [
             'connection',
@@ -131,7 +137,7 @@ class TransactionTest extends SnippetTestCase
                 'found' => [
                     'name' => self::DOCUMENT,
                     'fields' => [],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                    'readTime' => ['seconds' => 100, 'nanos' => 100]
                 ]
             ]
         ]));
@@ -150,7 +156,12 @@ class TransactionTest extends SnippetTestCase
 
     public function testRunAggregateQuery()
     {
-        $this->connection->runAggregationQuery(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
         $aggregateQuery = new AggregateQuery(
@@ -282,13 +293,13 @@ class TransactionTest extends SnippetTestCase
                     'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
                     'fields' => []
                 ],
-                'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                'readTime' => ['seconds' => 100, 'nanos' => 100]
             ], [
                 'found' => [
                     'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
                     'fields' => []
                 ],
-                'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                'readTime' => ['seconds' => 100, 'nanos' => 100]
             ]
         ]);
 
@@ -312,7 +323,7 @@ class TransactionTest extends SnippetTestCase
         )->shouldBeCalled()->willReturn([
             [
                 'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
-                'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+                'readTime' => ['seconds' => 100, 'nanos' => 100]
             ]
         ]);
 
