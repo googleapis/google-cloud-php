@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -117,9 +117,7 @@ final class OrgPolicyClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -398,8 +396,10 @@ final class OrgPolicyClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCustomConstraint(CreateCustomConstraintRequest $request, array $callOptions = []): CustomConstraint
-    {
+    public function createCustomConstraint(
+        CreateCustomConstraintRequest $request,
+        array $callOptions = []
+    ): CustomConstraint {
         return $this->startApiCall('CreateCustomConstraint', $request, $callOptions)->wait();
     }
 
@@ -626,8 +626,10 @@ final class OrgPolicyClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCustomConstraints(ListCustomConstraintsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomConstraints(
+        ListCustomConstraintsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomConstraints', $request, $callOptions);
     }
 
@@ -684,8 +686,10 @@ final class OrgPolicyClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCustomConstraint(UpdateCustomConstraintRequest $request, array $callOptions = []): CustomConstraint
-    {
+    public function updateCustomConstraint(
+        UpdateCustomConstraintRequest $request,
+        array $callOptions = []
+    ): CustomConstraint {
         return $this->startApiCall('UpdateCustomConstraint', $request, $callOptions)->wait();
     }
 
