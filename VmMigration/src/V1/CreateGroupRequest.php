@@ -20,19 +20,19 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The group identifier.
      *
      * Generated from protobuf field <code>string group_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $group_id = '';
+    protected $group_id = '';
     /**
      * Required. The create request body.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.Group group = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $group = null;
+    protected $group = null;
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48,7 +48,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                             $parent  Required. The Group's parent. Please see

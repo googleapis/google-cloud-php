@@ -20,7 +20,7 @@ class ListTargetProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of targets to return. The service may return
      * fewer than this value. If unspecified, at most 500 targets will be
@@ -29,7 +29,7 @@ class ListTargetProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Required. A page token, received from a previous `ListTargets` call.
      * Provide this to retrieve the subsequent page.
@@ -38,19 +38,19 @@ class ListTargetProjectsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The filter request.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. the order by fields for the result.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The parent, which owns this collection of targets. Please see

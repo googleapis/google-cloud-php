@@ -20,13 +20,13 @@ class RemoveGroupMigrationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $group = '';
+    protected $group = '';
     /**
      * The MigratingVm to remove.
      *
      * Generated from protobuf field <code>string migrating_vm = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $migrating_vm = '';
+    protected $migrating_vm = '';
 
     /**
      * @param string $group Required. The name of the Group. Please see

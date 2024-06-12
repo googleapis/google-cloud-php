@@ -22,7 +22,7 @@ class AvailableUpdates extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ApplianceVersion new_deployable_appliance = 1;</code>
      */
-    private $new_deployable_appliance = null;
+    protected $new_deployable_appliance = null;
     /**
      * The latest version for in place update.
      * The current appliance can be updated to this version using the API or m4c
@@ -30,7 +30,7 @@ class AvailableUpdates extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ApplianceVersion in_place_update = 2;</code>
      */
-    private $in_place_update = null;
+    protected $in_place_update = null;
 
     /**
      * Constructor.
