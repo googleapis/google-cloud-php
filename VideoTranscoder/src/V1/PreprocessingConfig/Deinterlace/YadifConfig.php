@@ -24,14 +24,14 @@ class YadifConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mode = 1;</code>
      */
-    private $mode = '';
+    protected $mode = '';
     /**
      * Disable spacial interlacing.
      * The default is `false`.
      *
      * Generated from protobuf field <code>bool disable_spatial_interlacing = 2;</code>
      */
-    private $disable_spatial_interlacing = false;
+    protected $disable_spatial_interlacing = false;
     /**
      * The picture field parity assumed for the input interlaced video.
      * The default is `auto`.
@@ -42,14 +42,14 @@ class YadifConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parity = 3;</code>
      */
-    private $parity = '';
+    protected $parity = '';
     /**
      * Deinterlace all frames rather than just the frames identified as
      * interlaced. The default is `false`.
      *
      * Generated from protobuf field <code>bool deinterlace_all_frames = 4;</code>
      */
-    private $deinterlace_all_frames = false;
+    protected $deinterlace_all_frames = false;
 
     /**
      * Constructor.

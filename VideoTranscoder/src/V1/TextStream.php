@@ -26,7 +26,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
-    private $codec = '';
+    protected $codec = '';
     /**
      * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
@@ -35,7 +35,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      *
@@ -48,7 +48,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

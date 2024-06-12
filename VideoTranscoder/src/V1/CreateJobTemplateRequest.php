@@ -21,13 +21,13 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Parameters for creating job template.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.JobTemplate job_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_template = null;
+    protected $job_template = null;
     /**
      * Required. The ID to use for the job template, which will become the final
      * component of the job template's resource name.
@@ -36,7 +36,7 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_template_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_template_id = '';
+    protected $job_template_id = '';
 
     /**
      * @param string                                        $parent        Required. The parent location to create this job template.
