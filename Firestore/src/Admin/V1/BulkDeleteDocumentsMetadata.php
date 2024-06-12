@@ -11,61 +11,64 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata for [google.longrunning.Operation][google.longrunning.Operation]
  * results from
- * [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1.FirestoreAdmin.ImportDocuments].
+ * [FirestoreAdmin.BulkDeleteDocuments][google.firestore.admin.v1.FirestoreAdmin.BulkDeleteDocuments].
  *
- * Generated from protobuf message <code>google.firestore.admin.v1.ImportDocumentsMetadata</code>
+ * Generated from protobuf message <code>google.firestore.admin.v1.BulkDeleteDocumentsMetadata</code>
  */
-class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
+class BulkDeleteDocumentsMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The time this operation started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
      * The time this operation completed. Will be unset if operation still in
      * progress.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    protected $end_time = null;
+    private $end_time = null;
     /**
-     * The state of the import operation.
+     * The state of the operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      */
-    protected $operation_state = 0;
+    private $operation_state = 0;
     /**
      * The progress, in documents, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_documents = 4;</code>
      */
-    protected $progress_documents = null;
+    private $progress_documents = null;
     /**
      * The progress, in bytes, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_bytes = 5;</code>
      */
-    protected $progress_bytes = null;
+    private $progress_bytes = null;
     /**
-     * Which collection ids are being imported.
+     * The ids of the collection groups that are being deleted.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      */
     private $collection_ids;
     /**
-     * The location of the documents being imported.
+     * Which namespace ids are being deleted.
      *
-     * Generated from protobuf field <code>string input_uri_prefix = 7;</code>
-     */
-    protected $input_uri_prefix = '';
-    /**
-     * Which namespace ids are being imported.
-     *
-     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * Generated from protobuf field <code>repeated string namespace_ids = 7;</code>
      */
     private $namespace_ids;
+    /**
+     * The timestamp that corresponds to the version of the database that is being
+     * read to get the list of documents to delete. This time can also be used as
+     * the timestamp of PITR in case of disaster recovery (subject to PITR window
+     * limit).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 8;</code>
+     */
+    private $snapshot_time = null;
 
     /**
      * Constructor.
@@ -79,17 +82,20 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           The time this operation completed. Will be unset if operation still in
      *           progress.
      *     @type int $operation_state
-     *           The state of the import operation.
+     *           The state of the operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_documents
      *           The progress, in documents, of this operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
-     *           Which collection ids are being imported.
-     *     @type string $input_uri_prefix
-     *           The location of the documents being imported.
+     *           The ids of the collection groups that are being deleted.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
-     *           Which namespace ids are being imported.
+     *           Which namespace ids are being deleted.
+     *     @type \Google\Protobuf\Timestamp $snapshot_time
+     *           The timestamp that corresponds to the version of the database that is being
+     *           read to get the list of documents to delete. This time can also be used as
+     *           the timestamp of PITR in case of disaster recovery (subject to PITR window
+     *           limit).
      * }
      */
     public function __construct($data = NULL) {
@@ -172,7 +178,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state of the import operation.
+     * The state of the operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      * @return int
@@ -183,7 +189,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state of the import operation.
+     * The state of the operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.OperationState operation_state = 3;</code>
      * @param int $var
@@ -270,7 +276,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids are being imported.
+     * The ids of the collection groups that are being deleted.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -281,7 +287,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids are being imported.
+     * The ids of the collection groups that are being deleted.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -296,35 +302,9 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the documents being imported.
+     * Which namespace ids are being deleted.
      *
-     * Generated from protobuf field <code>string input_uri_prefix = 7;</code>
-     * @return string
-     */
-    public function getInputUriPrefix()
-    {
-        return $this->input_uri_prefix;
-    }
-
-    /**
-     * The location of the documents being imported.
-     *
-     * Generated from protobuf field <code>string input_uri_prefix = 7;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setInputUriPrefix($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->input_uri_prefix = $var;
-
-        return $this;
-    }
-
-    /**
-     * Which namespace ids are being imported.
-     *
-     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * Generated from protobuf field <code>repeated string namespace_ids = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNamespaceIds()
@@ -333,9 +313,9 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which namespace ids are being imported.
+     * Which namespace ids are being deleted.
      *
-     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * Generated from protobuf field <code>repeated string namespace_ids = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -343,6 +323,48 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->namespace_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The timestamp that corresponds to the version of the database that is being
+     * read to get the list of documents to delete. This time can also be used as
+     * the timestamp of PITR in case of disaster recovery (subject to PITR window
+     * limit).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 8;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSnapshotTime()
+    {
+        return $this->snapshot_time;
+    }
+
+    public function hasSnapshotTime()
+    {
+        return isset($this->snapshot_time);
+    }
+
+    public function clearSnapshotTime()
+    {
+        unset($this->snapshot_time);
+    }
+
+    /**
+     * The timestamp that corresponds to the version of the database that is being
+     * read to get the list of documents to delete. This time can also be used as
+     * the timestamp of PITR in case of disaster recovery (subject to PITR window
+     * limit).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 8;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSnapshotTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->snapshot_time = $var;
 
         return $this;
     }
