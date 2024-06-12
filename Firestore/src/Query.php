@@ -21,7 +21,6 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\QueryTrait;
@@ -121,12 +120,6 @@ class Query
     ];
 
     /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
      * @var RequestHandler
      */
     private $requestHandler;
@@ -157,9 +150,6 @@ class Query
     private $limitToLast;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -170,7 +160,6 @@ class Query
      * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         ValueMapper $valueMapper,
@@ -178,7 +167,6 @@ class Query
         array $query,
         $limitToLast = false
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
@@ -293,7 +281,6 @@ class Query
     public function addAggregation($aggregate)
     {
         $aggregateQuery = new AggregateQuery(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->parentName,
@@ -364,7 +351,6 @@ class Query
                     $collectionName = $this->parentPath($result['document']['name']);
                     if (!isset($collections[$collectionName])) {
                         $collections[$collectionName] = new CollectionReference(
-                            $this->connection,
                             $this->requestHandler,
                             $this->serializer,
                             $this->valueMapper,
@@ -373,7 +359,6 @@ class Query
                     }
 
                     $ref = new DocumentReference(
-                        $this->connection,
                         $this->requestHandler,
                         $this->serializer,
                         $this->valueMapper,
@@ -1001,7 +986,6 @@ class Query
         $query = $this->arrayMergeRecursive($query, $additionalConfig);
 
         return new self(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -1040,7 +1024,6 @@ class Query
         }
 
         $parent = new CollectionReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -1048,7 +1031,6 @@ class Query
         );
 
         return new DocumentReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,

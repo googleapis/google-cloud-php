@@ -23,7 +23,6 @@ use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
@@ -47,12 +46,6 @@ class CollectionReference extends Query
     use ApiHelperTrait;
     use DebugInfoTrait;
     use PathTrait;
-
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -80,9 +73,6 @@ class CollectionReference extends Query
     private $parent;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -90,20 +80,17 @@ class CollectionReference extends Query
      * @param string $name The absolute name of the collection.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         ValueMapper $valueMapper,
         $name
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
 
         parent::__construct(
-            $connection,
             $requestHandler,
             $serializer,
             $valueMapper,
@@ -351,7 +338,6 @@ class CollectionReference extends Query
     private function documentFactory($name)
     {
         return new DocumentReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,

@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
@@ -40,7 +39,6 @@ class FieldValueTest extends SnippetTestCase
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $firestore;
@@ -49,12 +47,11 @@ class FieldValueTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->firestore = TestHelpers::stub(FirestoreClient::class, [
             ['projectId' => 'my-awesome-project'],
-        ], ['connection', 'requestHandler']);
+        ], ['requestHandler']);
     }
 
     public function testDeleteField()

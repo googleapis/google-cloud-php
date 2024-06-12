@@ -26,7 +26,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
@@ -59,7 +58,6 @@ class FirestoreClientTest extends TestCase
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $client;
@@ -68,13 +66,12 @@ class FirestoreClientTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(
             FirestoreClient::class,
             [['projectId' => self::PROJECT]],
-            ['requestHandler', 'connection']
+            ['requestHandler']
         );
     }
 
@@ -431,7 +428,6 @@ class FirestoreClientTest extends TestCase
             Argument::cetera()
         )->shouldBeCalled();
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->client->runTransaction($this->noop());
@@ -503,7 +499,6 @@ class FirestoreClientTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
@@ -535,7 +530,11 @@ class FirestoreClientTest extends TestCase
             'transaction' => $transactionId
         ]);
 
-        $this->connection->commit()->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::cetera()
+        )->shouldNotBeCalled();
 
         $this->requestHandler->sendRequest(
             V1FirestoreClient::class,
@@ -547,7 +546,6 @@ class FirestoreClientTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
@@ -586,7 +584,6 @@ class FirestoreClientTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(6);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
@@ -625,7 +622,6 @@ class FirestoreClientTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(3);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {

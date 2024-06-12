@@ -21,7 +21,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
@@ -51,22 +50,18 @@ class BulkWriterTest extends TestCase
     public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     public const TRANSACTION = 'foobar';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $batch;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -83,11 +78,9 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Value for argument "initialOpsPerSecond" must be greater than 1/');
         new BulkWriter(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -102,11 +95,9 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Value for argument "maxOpsPerSecond" must be greater than 1/');
         new BulkWriter(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -121,11 +112,9 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/\'maxOpsPerSecond\' cannot be less than \'initialOpsPerSecond\'/');
         new BulkWriter(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -337,18 +326,16 @@ class BulkWriterTest extends TestCase
         $successPerBatch = $batchSize * 3 / 4;
         $successfulDocs = [];
         $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             ['greedilySend' => false],
-        ], ['requestHandler', 'connection']);
+        ], ['requestHandler']);
 
         $this->requestHandler->sendRequest(
             V1FirestoreClient::class,
@@ -1060,13 +1047,13 @@ class BulkWriterTest extends TestCase
                 ],
             ]);
         } elseif (is_array($assertion)) {
-            $connectionResponse = [
+            $response = [
                 'writeResults' => [],
                 'status' => [],
             ];
             for ($i = 0; $i < count($assertion); $i++) {
-                $connectionResponse['writeResults'][] = [];
-                $connectionResponse['status'][] = [
+                $response['writeResults'][] = [];
+                $response['status'][] = [
                     'code' => Code::OK,
                 ];
             }
@@ -1078,7 +1065,7 @@ class BulkWriterTest extends TestCase
                     return array_replace_recursive($data, $assertion) == $data;
                 }),
                 Argument::cetera()
-            )->shouldBeCalled()->willReturn($connectionResponse);
+            )->shouldBeCalled()->willReturn($response);
         } else {
             throw new \Exception('bad assertion');
         }

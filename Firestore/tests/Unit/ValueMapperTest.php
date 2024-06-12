@@ -25,7 +25,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
@@ -41,22 +40,19 @@ class ValueMapperTest extends TestCase
     use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $mapper;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->mapper = TestHelpers::stub(ValueMapper::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             false
-        ], ['connection', 'requestHandler', 'returnInt64AsObject']);
+        ], ['requestHandler', 'returnInt64AsObject']);
     }
 
     /**

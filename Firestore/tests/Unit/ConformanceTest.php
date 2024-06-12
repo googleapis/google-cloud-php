@@ -24,7 +24,6 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -62,7 +61,6 @@ class ConformanceTest extends TestCase
 
     private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
-    private $connection;
     private $requestHandler;
 
     private $excludes = [
@@ -89,9 +87,8 @@ class ConformanceTest extends TestCase
             [
                 'projectId' => 'projectID'
             ]
-        ], ['requestHandler', 'connection']);
+        ], ['requestHandler']);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
@@ -362,7 +359,6 @@ class ConformanceTest extends TestCase
                             $ref->name()->willReturn($clause[$name]['docSnapshot']['path']);
 
                             $mapper = new ValueMapper(
-                                $this->prophesize(ConnectionInterface::class)->reveal(),
                                 $this->prophesize(RequestHandler::class)->reveal(),
                                 $this->getSerializer(),
                                 false

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\TimeTrait;
+use Google\Protobuf\Timestamp;
 
 /**
  * @group firestore
@@ -44,13 +45,9 @@ class WriteTest extends FirestoreTestCase
 
         $res2 = $doc->snapshot()['timestampField'];
 
-        $this->assertEquals($timestamp->get()->format('U'), $res->get()->format('U'));
-        $this->assertEquals($timestamp->nanoSeconds(), $res->nanoSeconds());
-        $this->assertEquals($timestamp->formatAsString(), $res->formatAsString());
-
-        $this->assertEquals($timestamp->get()->format('U'), $res2->get()->format('U'));
-        $this->assertEquals($timestamp->nanoSeconds(), $res2->nanoSeconds());
-        $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
+        $expected = ['seconds' => $timestamp->getSeconds(), 'nanos' => $timestamp->getNanos()];
+        $this->assertEquals($expected, $res);
+        $this->assertEquals($expected, $res2);
     }
 
     /**
@@ -73,13 +70,9 @@ class WriteTest extends FirestoreTestCase
 
             $res2 = $doc->snapshot()['timestampField'];
 
-            $this->assertEquals($timestamp->get()->format('U'), $res->get()->format('U'));
-            $this->assertEquals($timestamp->nanoSeconds(), $res->nanoSeconds());
-            $this->assertEquals($timestamp->formatAsString(), $res->formatAsString());
-
-            $this->assertEquals($timestamp->get()->format('U'), $res2->get()->format('U'));
-            $this->assertEquals($timestamp->nanoSeconds(), $res2->nanoSeconds());
-            $this->assertEquals($timestamp->formatAsString(), $res2->formatAsString());
+            $expected = ['seconds' => $timestamp->getSeconds(), 'nanos' => $timestamp->getNanos()];
+            $this->assertEquals($expected, $res);
+            $this->assertEquals($expected, $res2);
         } finally {
             setlocale(LC_ALL, null);
         }
@@ -87,17 +80,10 @@ class WriteTest extends FirestoreTestCase
 
     public function timestamps()
     {
-        $today = new \DateTime;
-        $str = $today->format('Y-m-d\TH:i:s');
-
-        $r = new \ReflectionClass(Timestamp::class);
+        $time = time();
         return [
-            [new Timestamp($today)],
-            [new Timestamp($today, 0)],
-            [new Timestamp($today, 1000)],
-            [$r->newInstanceArgs($this->parseTimeString($str .'.100000000Z'))],
-            [$r->newInstanceArgs($this->parseTimeString($str .'.000001Z'))],
-            [$r->newInstanceArgs($this->parseTimeString($str .'.101999Z'))],
+            [new Timestamp(['seconds' => $time])],
+            [new Timestamp(['seconds' => $time, 'nanos' => 1000])],
         ];
     }
 }

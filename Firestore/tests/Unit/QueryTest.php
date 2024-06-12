@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -62,7 +61,6 @@ class QueryTest extends TestCase
             ['collectionId' => self::COLLECTION]
         ]
     ];
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $query;
@@ -70,38 +68,33 @@ class QueryTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'requestHandler', 'query', 'transaction']);
+        ], ['requestHandler', 'query', 'transaction']);
 
         $allDescendants = $this->queryObj;
         $allDescendants['from'][0]['allDescendants'] = true;
         $this->collectionGroupQuery = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::QUERY_PARENT,
             $allDescendants
-        ], ['connection', 'requestHandler', 'query', 'transaction']);
+        ], ['requestHandler', 'query', 'transaction']);
     }
 
     public function testConstructMissingFrom()
@@ -109,11 +102,9 @@ class QueryTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         new Query(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false

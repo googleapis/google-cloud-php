@@ -26,7 +26,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
@@ -62,7 +61,6 @@ class TransactionTest extends SnippetTestCase
     public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     public const DOCUMENT_TEMPLATE = 'projects/%s/databases/%s/documents/users/%s';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $transaction;
@@ -71,22 +69,19 @@ class TransactionTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->transaction = TestHelpers::stub(TransactionStub::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::DATABASE,
             self::TRANSACTION
-        ], ['connection', 'requestHandler', 'writer']);
+        ], ['requestHandler', 'writer']);
 
         $this->document = $this->prophesize(DocumentReference::class);
         $this->document->name()->willReturn(self::DOCUMENT);
@@ -113,11 +108,9 @@ class TransactionTest extends SnippetTestCase
         )->shouldBeCalled();
 
         $client = TestHelpers::stub(FirestoreClient::class, [], [
-            'connection',
             'requestHandler'
         ]);
         $client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(3, '');
@@ -142,8 +135,7 @@ class TransactionTest extends SnippetTestCase
             ]
         ]));
 
-        $this->transaction->setConnection(
-            $this->connection->reveal(),
+        $this->transaction->setRequestHandler(
             $this->requestHandler->reveal()
         );
 
@@ -165,7 +157,6 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
         $aggregateQuery = new AggregateQuery(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::DOCUMENT,
@@ -345,7 +336,6 @@ class TransactionStub extends Transaction
     private $database;
 
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         ValueMapper $valueMapper,
@@ -355,7 +345,6 @@ class TransactionStub extends Transaction
         $this->database = $database;
 
         parent::__construct(
-            $connection,
             $requestHandler,
             $serializer,
             $valueMapper,
@@ -364,16 +353,13 @@ class TransactionStub extends Transaction
         );
     }
 
-    public function setConnection(ConnectionInterface $connection, RequestHandler $requestHandler)
+    public function setRequestHandler(RequestHandler $requestHandler)
     {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->writer = new WriteBatch(
-            $connection,
             $requestHandler,
             $this->getSerializer(),
             new ValueMapper(
-                $connection,
                 $requestHandler,
                 $this->getSerializer(),
                 false

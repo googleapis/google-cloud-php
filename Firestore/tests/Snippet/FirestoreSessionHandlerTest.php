@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
@@ -45,7 +44,6 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
 
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $client;
@@ -67,11 +65,9 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(FirestoreClient::class, [], [
-            'connection',
             'requestHandler'
         ]);
     }
@@ -120,7 +116,6 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             'writeResults' => []
         ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('firestore', $this->client);
 
@@ -173,7 +168,6 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             'writeResults' => []
         ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('firestore', $this->client);
 
@@ -222,7 +216,6 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             trigger_error('oops!', E_USER_WARNING);
         });
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('firestore', $this->client);
 

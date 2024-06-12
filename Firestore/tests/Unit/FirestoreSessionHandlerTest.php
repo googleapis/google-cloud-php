@@ -21,7 +21,6 @@ use Exception;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
@@ -50,7 +49,6 @@ class FirestoreSessionHandlerTest extends TestCase
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $valueMapper;
@@ -58,7 +56,6 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->valueMapper = $this->prophesize(ValueMapper::class);
@@ -77,7 +74,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1)->willReturn(['transaction' => null]);
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -102,7 +98,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1)->willThrow(new ServiceException(''));
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -127,7 +122,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1)->willReturn(['transaction' => null]);
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -157,7 +151,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1);
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -196,7 +189,6 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willReturn($this->documents->reveal());
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -234,7 +226,6 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willThrow((new ServiceException('')));
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -284,7 +275,6 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willReturn($this->documents->reveal());
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -342,7 +332,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1);
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -396,7 +385,6 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willThrow((new ServiceException('')));
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -435,7 +423,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1);
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -480,7 +467,6 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -505,9 +491,13 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willReturn(['transaction' => 123]);
 
-        $this->connection->commit()->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::cetera()
+        )->shouldNotBeCalled();
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -588,7 +578,6 @@ class FirestoreSessionHandlerTest extends TestCase
         )->shouldBeCalledTimes(1);
 
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),
@@ -627,7 +616,6 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->valueMapper->encodeValue(Argument::type('integer'))
             ->will(fn ($arg) => ['integerValue' => $arg[0]]);
         $firestoreSessionHandler = new FirestoreSessionHandler(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper->reveal(),

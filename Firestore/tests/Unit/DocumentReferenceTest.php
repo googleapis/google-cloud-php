@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -50,37 +49,32 @@ class DocumentReferenceTest extends TestCase
     public const COLLECTION = 'projects/example_project/databases/(default)/documents/a';
     public const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $document;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
 
         $valueMapper = new ValueMapper(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             false
         );
         $this->document = TestHelpers::stub(DocumentReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $valueMapper,
             new CollectionReference(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 $valueMapper,
                 self::COLLECTION
             ),
             self::NAME
-        ], ['requestHandler', 'connection']);
+        ], ['requestHandler']);
     }
 
     public function testParent()

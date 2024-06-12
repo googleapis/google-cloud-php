@@ -24,7 +24,6 @@ use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
@@ -46,29 +45,25 @@ class BulkWriterTest extends SnippetTestCase
     public const DATABASE = 'projects/example_project/databases/(default)';
     public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $batch;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::DATABASE,
             [],
-        ], ['connection', 'requestHandler']);
+        ], ['requestHandler']);
     }
 
     public function testClass()
@@ -235,13 +230,13 @@ class BulkWriterTest extends SnippetTestCase
 
     public function flushAndAssert(Snippet $snippet, $assertion)
     {
-        $connectionResponse = [
+        $response = [
             'writeResults' => [],
             'status' => [],
         ];
         for ($i = 0; $i < count($assertion); $i++) {
-            $connectionResponse['writeResults'][] = [];
-            $connectionResponse['status'][] = [
+            $response['writeResults'][] = [];
+            $response['status'][] = [
                 'code' => Code::OK,
             ];
         }
@@ -256,7 +251,7 @@ class BulkWriterTest extends SnippetTestCase
                     && $data['labels'] == [];
             }),
             Argument::cetera()
-        )->shouldBeCalled()->willReturn($connectionResponse);
+        )->shouldBeCalled()->willReturn($response);
 
         $snippet->addLocal('batch', $this->batch);
         $snippet->addLocal('documentName', self::DOCUMENT);

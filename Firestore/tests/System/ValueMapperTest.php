@@ -19,6 +19,8 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
+use Google\Protobuf\Timestamp;
 
 /**
  * @group firestore
@@ -26,10 +28,11 @@ use Google\Cloud\Core\GeoPoint;
  */
 class ValueMapperTest extends FirestoreTestCase
 {
+    use FirestoreTestHelperTrait;
     private static $document;
     private static $isSetup = false;
 
-    const FIELD = 'testedField';
+    public const FIELD = 'testedField';
 
     public static function setUpBeforeClass(): void
     {
@@ -49,12 +52,14 @@ class ValueMapperTest extends FirestoreTestCase
         self::$document->update([
             ['path' => self::FIELD, 'value' => $input]
         ]);
-
         $snapshot = self::$document->snapshot();
         if ($expectation) {
             $this->assertTrue($expectation($snapshot[self::FIELD]));
         } elseif ($input instanceof Timestamp) {
-            $this->assertEquals($input->formatAsString(), $snapshot[self::FIELD]->formatAsString());
+            $this->assertEquals(
+                $this->getSerializer()->encodeMessage($input),
+                $snapshot[self::FIELD]
+            );
         } else {
             $this->assertEquals($input, $snapshot[self::FIELD]);
         }
@@ -71,7 +76,7 @@ class ValueMapperTest extends FirestoreTestCase
             [10],
             [2147483647],
             [3.1415],
-            [new Timestamp(\DateTime::createFromFormat('U', time()))],
+            [new Timestamp(['seconds' => time()])],
             ['foo'],
             [self::$document],
             [new GeoPoint(10, -10)],

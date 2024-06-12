@@ -22,7 +22,6 @@ use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
 use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
@@ -117,12 +116,6 @@ class BulkWriter
          */
         'RATE_LIMITER_MULTIPLIER_MILLIS' => 1000,
     ];
-
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -220,9 +213,6 @@ class BulkWriter
     private $maxDelayTime;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -255,14 +245,12 @@ class BulkWriter
      * }
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         $valueMapper,
         $database,
         $options = null
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;

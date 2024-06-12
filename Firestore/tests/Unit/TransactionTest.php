@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -52,7 +51,6 @@ class TransactionTest extends TestCase
     public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     public const TRANSACTION = 'foobar';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $valueMapper;
@@ -61,23 +59,20 @@ class TransactionTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->valueMapper = new ValueMapper(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             false
         );
         $this->transaction = TestHelpers::stub(Transaction::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper,
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             self::TRANSACTION
-        ], ['requestHandler', 'connection']);
+        ], ['requestHandler']);
 
         $this->ref = $this->prophesize(DocumentReference::class);
         $this->ref->name()->willReturn(self::DOCUMENT);
@@ -128,7 +123,6 @@ class TransactionTest extends TestCase
         )->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
         $query = new Query(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->valueMapper,
@@ -154,7 +148,6 @@ class TransactionTest extends TestCase
         )->shouldBeCalled()->willReturn(new \ArrayIterator([]));
 
         $aggregateQuery = new AggregateQuery(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::DOCUMENT,
@@ -163,7 +156,6 @@ class TransactionTest extends TestCase
         );
 
         $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->transaction->runAggregateQuery($aggregateQuery);
 
@@ -181,7 +173,6 @@ class TransactionTest extends TestCase
         ];
 
         $aggregateQuery = new AggregateQuery(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::DOCUMENT,
@@ -207,7 +198,6 @@ class TransactionTest extends TestCase
         ]));
 
         $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->transaction->runAggregateQuery($aggregateQuery, [
             'readTime' => $timestamp

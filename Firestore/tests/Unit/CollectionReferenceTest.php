@@ -28,7 +28,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\ListDocumentsRequest;
@@ -47,28 +46,24 @@ class CollectionReferenceTest extends TestCase
     public const COLLECTION_PARENT = 'projects/example_project/databases/(default)/documents/a/doc';
     public const NAME = 'projects/example_project/databases/(default)/documents/a/doc/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $collection;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->collection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::NAME
-        ], ['requestHandler', 'connection']);
+        ], ['requestHandler']);
     }
 
     public function testName()
@@ -188,14 +183,11 @@ class CollectionReferenceTest extends TestCase
 
     public function randomNames()
     {
-        $connection = $this->prophesize(ConnectionInterface::class);
         $requestHandler = $this->prophesize(RequestHandler::class);
         $collection = TestHelpers::stub(CollectionReference::class, [
-            $connection->reveal(),
             $requestHandler->reveal(),
             $this->getSerializer(),
             new ValueMapper(
-                $connection->reveal(),
                 $requestHandler->reveal(),
                 $this->getSerializer(),
                 false
@@ -228,11 +220,9 @@ class CollectionReferenceTest extends TestCase
     {
         $collectionName = 'projects/example_project/databases/(default)/documents/foo';
         $collection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false

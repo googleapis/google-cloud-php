@@ -23,7 +23,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
@@ -49,7 +48,6 @@ class AggregateQueryTest extends TestCase
         ]
     ];
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $query;
@@ -58,31 +56,27 @@ class AggregateQueryTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'requestHandler', 'query']);
+        ], ['requestHandler', 'query']);
         $this->aggregate = Aggregate::count();
         $this->aggregateQuery = TestHelpers::stub(AggregateQuery::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::QUERY_PARENT,
             ['query' => $this->queryObj],
             $this->aggregate
-        ], ['connection', 'requestHandler', 'query', 'aggregates']);
+        ], ['requestHandler', 'query', 'aggregates']);
     }
 
     /**

@@ -22,7 +22,6 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
@@ -57,7 +56,6 @@ class DocumentSnapshotTest extends SnippetTestCase
         $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
             new ValueMapper(
-                $this->prophesize(ConnectionInterface::class)->reveal(),
                 $this->prophesize(RequestHandler::class)->reveal(),
                 $this->getSerializer(),
                 false

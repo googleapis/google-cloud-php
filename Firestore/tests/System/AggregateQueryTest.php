@@ -19,16 +19,21 @@ namespace Google\Cloud\Firestore\Tests\System;
 
 use Exception;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\Filter;
 use Google\Cloud\Firestore\Query;
+use Google\Protobuf\Timestamp;
 
 /**
  * @group firestore
  * @group firestore-query
+ * @group curr
  */
 class AggregateQueryTest extends FirestoreTestCase
 {
+    use FirestoreTestHelperTrait;
+
     private $query;
 
     public function setUp(): void
@@ -167,7 +172,6 @@ class AggregateQueryTest extends FirestoreTestCase
         foreach ($aggregations as $aggregation) {
             $query = $query->addAggregation($aggregation);
         }
-        $expectedTimestamp = new Timestamp(new \DateTimeImmutable());
 
         $snapshot = $query->getSnapshot();
 
@@ -178,10 +182,9 @@ class AggregateQueryTest extends FirestoreTestCase
 
         $this->assertEquals(0, strlen($snapshot->getTransaction()));
         $actualTimestamp = $snapshot->getReadTime();
-        $this->assertInstanceOf(Timestamp::class, $snapshot->getReadTime());
         $this->assertEqualsWithDelta(
-            $expectedTimestamp->get()->getTimestamp(),
-            $actualTimestamp->get()->getTimestamp(),
+            time(),
+            $actualTimestamp['seconds'],
             100
         );
     }

@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\QueryTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
@@ -42,12 +41,6 @@ class AggregateQuery
 {
     use ApiHelperTrait;
     use QueryTrait;
-
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -77,9 +70,6 @@ class AggregateQuery
     /**
      * Create an aggregation query.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -88,14 +78,12 @@ class AggregateQuery
      * @param Aggregate $aggregate Aggregation over the provided query.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         $parent,
         array $query,
         Aggregate $aggregate
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->parentName = $parent;

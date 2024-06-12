@@ -24,7 +24,6 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
@@ -51,13 +50,11 @@ class QueryTest extends SnippetTestCase
     public const COLLECTION = 'a';
     public const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
     }
@@ -74,11 +71,9 @@ class QueryTest extends SnippetTestCase
     public function testDocuments()
     {
         $query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -111,11 +106,9 @@ class QueryTest extends SnippetTestCase
     public function testCount()
     {
         $query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -156,11 +149,9 @@ class QueryTest extends SnippetTestCase
     public function testAddAggregation()
     {
         $query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -392,11 +383,9 @@ class QueryTest extends SnippetTestCase
         ];
 
         $q = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false

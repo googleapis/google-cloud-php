@@ -20,7 +20,6 @@ namespace Google\Cloud\Firestore;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * Represents a Firestore transaction.
@@ -48,11 +47,6 @@ class Transaction
 {
     use SnapshotTrait;
     use DebugInfoTrait;
-
-    /**
-     * @var ConnectionInterface
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -85,7 +79,6 @@ class Transaction
     private $writer;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -94,14 +87,12 @@ class Transaction
      * @param string $transaction The transaction ID.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         ValueMapper $valueMapper,
         $database,
         $transaction
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
@@ -109,7 +100,6 @@ class Transaction
         $this->transaction = $transaction;
 
         $this->writer = new BulkWriter(
-            $connection,
             $requestHandler,
             $serializer,
             $valueMapper,
@@ -140,7 +130,6 @@ class Transaction
             $options += ['transaction' => $this->transaction];
         }
         return $this->createSnapshot(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -215,7 +204,6 @@ class Transaction
     public function documents(array $paths, array $options = [])
     {
         return $this->getDocumentsByPaths(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,

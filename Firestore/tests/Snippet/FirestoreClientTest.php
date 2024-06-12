@@ -26,7 +26,6 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -55,7 +54,6 @@ class FirestoreClientTest extends SnippetTestCase
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $client;
@@ -64,12 +62,11 @@ class FirestoreClientTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(FirestoreClient::class, [
             ['projectId' => self::PROJECT]
-        ], ['connection', 'requestHandler']);
+        ], ['requestHandler']);
     }
 
     public function testClass()
@@ -289,7 +286,6 @@ class FirestoreClientTest extends SnippetTestCase
             Argument::cetera()
         )->shouldBeCalled();
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'runTransaction');
