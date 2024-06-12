@@ -23,7 +23,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The type of the Finding.
      * Detailed and up-to-date information on findings can be found here:
@@ -31,111 +31,111 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string finding_type = 2;</code>
      */
-    private $finding_type = '';
+    protected $finding_type = '';
     /**
      * Output only. The severity level of the reported vulnerability.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.Finding.Severity severity = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Output only. The http method of the request that triggered the vulnerability, in
      * uppercase.
      *
      * Generated from protobuf field <code>string http_method = 3;</code>
      */
-    private $http_method = '';
+    protected $http_method = '';
     /**
      * Output only. The URL produced by the server-side fuzzer and used in the request that
      * triggered the vulnerability.
      *
      * Generated from protobuf field <code>string fuzzed_url = 4;</code>
      */
-    private $fuzzed_url = '';
+    protected $fuzzed_url = '';
     /**
      * Output only. The body of the request that triggered the vulnerability.
      *
      * Generated from protobuf field <code>string body = 5;</code>
      */
-    private $body = '';
+    protected $body = '';
     /**
      * Output only. The description of the vulnerability.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The URL containing human-readable payload that user can leverage to
      * reproduce the vulnerability.
      *
      * Generated from protobuf field <code>string reproduction_url = 7;</code>
      */
-    private $reproduction_url = '';
+    protected $reproduction_url = '';
     /**
      * Output only. If the vulnerability was originated from nested IFrame, the immediate
      * parent IFrame is reported.
      *
      * Generated from protobuf field <code>string frame_url = 8;</code>
      */
-    private $frame_url = '';
+    protected $frame_url = '';
     /**
      * Output only. The URL where the browser lands when the vulnerability is detected.
      *
      * Generated from protobuf field <code>string final_url = 9;</code>
      */
-    private $final_url = '';
+    protected $final_url = '';
     /**
      * Output only. The tracking ID uniquely identifies a vulnerability instance across
      * multiple ScanRuns.
      *
      * Generated from protobuf field <code>string tracking_id = 10;</code>
      */
-    private $tracking_id = '';
+    protected $tracking_id = '';
     /**
      * Output only. An addon containing information reported for a vulnerability with an HTML
      * form, if any.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.Form form = 16;</code>
      */
-    private $form = null;
+    protected $form = null;
     /**
      * Output only. An addon containing information about outdated libraries.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.OutdatedLibrary outdated_library = 11;</code>
      */
-    private $outdated_library = null;
+    protected $outdated_library = null;
     /**
      * Output only. An addon containing detailed information regarding any resource causing the
      * vulnerability such as JavaScript sources, image, audio files, etc.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ViolatingResource violating_resource = 12;</code>
      */
-    private $violating_resource = null;
+    protected $violating_resource = null;
     /**
      * Output only. An addon containing information about vulnerable or missing HTTP headers.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.VulnerableHeaders vulnerable_headers = 15;</code>
      */
-    private $vulnerable_headers = null;
+    protected $vulnerable_headers = null;
     /**
      * Output only. An addon containing information about request parameters which were found
      * to be vulnerable.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.VulnerableParameters vulnerable_parameters = 13;</code>
      */
-    private $vulnerable_parameters = null;
+    protected $vulnerable_parameters = null;
     /**
      * Output only. An addon containing information reported for an XSS, if any.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.Xss xss = 14;</code>
      */
-    private $xss = null;
+    protected $xss = null;
     /**
      * Output only. An addon containing information reported for an XXE, if any.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.Xxe xxe = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $xxe = null;
+    protected $xxe = null;
 
     /**
      * Constructor.

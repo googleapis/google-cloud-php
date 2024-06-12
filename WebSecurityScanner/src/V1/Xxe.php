@@ -21,13 +21,13 @@ class Xxe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string payload_value = 1;</code>
      */
-    private $payload_value = '';
+    protected $payload_value = '';
     /**
      * Location within the request where the payload was placed.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.Xxe.Location payload_location = 2;</code>
      */
-    private $payload_location = 0;
+    protected $payload_location = 0;
 
     /**
      * Constructor.

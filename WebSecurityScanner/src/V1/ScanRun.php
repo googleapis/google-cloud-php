@@ -23,40 +23,40 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The execution state of the ScanRun.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRun.ExecutionState execution_state = 2;</code>
      */
-    private $execution_state = 0;
+    protected $execution_state = 0;
     /**
      * Output only. The result state of the ScanRun. This field is only available after the
      * execution state reaches "FINISHED".
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRun.ResultState result_state = 3;</code>
      */
-    private $result_state = 0;
+    protected $result_state = 0;
     /**
      * Output only. The time at which the ScanRun started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time at which the ScanRun reached termination state - that the ScanRun
      * is either finished or stopped by user.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The number of URLs crawled during this ScanRun. If the scan is in progress,
      * the value represents the number of URLs crawled up to now.
      *
      * Generated from protobuf field <code>int64 urls_crawled_count = 6;</code>
      */
-    private $urls_crawled_count = 0;
+    protected $urls_crawled_count = 0;
     /**
      * Output only. The number of URLs tested during this ScanRun. If the scan is in progress,
      * the value represents the number of URLs tested up to now. The number of
@@ -65,13 +65,13 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 urls_tested_count = 7;</code>
      */
-    private $urls_tested_count = 0;
+    protected $urls_tested_count = 0;
     /**
      * Output only. Whether the scan run has found any vulnerabilities.
      *
      * Generated from protobuf field <code>bool has_vulnerabilities = 8;</code>
      */
-    private $has_vulnerabilities = false;
+    protected $has_vulnerabilities = false;
     /**
      * Output only. The percentage of total completion ranging from 0 to 100.
      * If the scan is in queue, the value is 0.
@@ -80,14 +80,14 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 progress_percent = 9;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Output only. If result_state is an ERROR, this field provides the primary reason for
      * scan's termination and more details, if such are available.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRunErrorTrace error_trace = 10;</code>
      */
-    private $error_trace = null;
+    protected $error_trace = null;
     /**
      * Output only. A list of warnings, if such are encountered during this scan run.
      *

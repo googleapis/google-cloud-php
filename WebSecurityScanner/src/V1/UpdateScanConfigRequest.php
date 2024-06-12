@@ -22,7 +22,7 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig scan_config = 2;</code>
      */
-    private $scan_config = null;
+    protected $scan_config = null;
     /**
      * Required. The update mask applies to the resource. For the `FieldMask` definition,
      * see
@@ -30,7 +30,7 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.
