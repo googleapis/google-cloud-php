@@ -29,7 +29,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cron = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cron = '';
+    protected $cron = '';
 
     /**
      * Constructor.

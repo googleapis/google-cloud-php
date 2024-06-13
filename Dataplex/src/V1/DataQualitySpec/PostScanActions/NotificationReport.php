@@ -20,25 +20,25 @@ class NotificationReport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.Recipients recipients = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $recipients = null;
+    protected $recipients = null;
     /**
      * Optional. If set, report will be sent when score threshold is met.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.ScoreThresholdTrigger score_threshold_trigger = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $score_threshold_trigger = null;
+    protected $score_threshold_trigger = null;
     /**
      * Optional. If set, report will be sent when a scan job fails.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobFailureTrigger job_failure_trigger = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $job_failure_trigger = null;
+    protected $job_failure_trigger = null;
     /**
      * Optional. If set, report will be sent when a scan job ends.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.JobEndTrigger job_end_trigger = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $job_end_trigger = null;
+    protected $job_end_trigger = null;
 
     /**
      * Constructor.

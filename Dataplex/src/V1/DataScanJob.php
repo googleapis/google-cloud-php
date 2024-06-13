@@ -23,43 +23,43 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the DataScanJob.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The time when the DataScanJob was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time when the DataScanJob ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Execution state for the DataScanJob.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanJob.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the current state.
      *
      * Generated from protobuf field <code>string message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Output only. The type of the parent DataScan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanType type = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     protected $spec;
     protected $result;
 

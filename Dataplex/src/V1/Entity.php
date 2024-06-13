@@ -21,32 +21,32 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Display name must be shorter than or equal to 256 characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User friendly longer description text. Must be shorter than or
      * equal to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The time when the entity was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the entity was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. A user-provided entity ID. It is mutable, and will be used as the
      * published table name. Specifying a new ID in an update entity
@@ -56,20 +56,20 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. The etag associated with the entity, which can be retrieved with
      * a [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Required. Immutable. The type of entity.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entity.Type type = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. Immutable. The ID of the asset associated with the storage
      * location containing the entity data. The entity must be with in the same
@@ -77,7 +77,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $asset = '';
+    protected $asset = '';
     /**
      * Required. Immutable. The storage path of the entity data.
      * For Cloud Storage data, this is the fully-qualified path to the entity,
@@ -87,7 +87,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_path = 12 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $data_path = '';
+    protected $data_path = '';
     /**
      * Optional. The set of items within the data path constituting the data in
      * the entity, represented as a glob path. Example:
@@ -95,46 +95,46 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_path_pattern = '';
+    protected $data_path_pattern = '';
     /**
      * Output only. The name of the associated Data Catalog entry.
      *
      * Generated from protobuf field <code>string catalog_entry = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $catalog_entry = '';
+    protected $catalog_entry = '';
     /**
      * Required. Immutable. Identifies the storage system of the entity data.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageSystem system = 15 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $system = 0;
+    protected $system = 0;
     /**
      * Required. Identifies the storage format of the entity data.
      * It does not apply to entities with data stored in BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageFormat format = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $format = null;
+    protected $format = null;
     /**
      * Output only. Metadata stores that the entity is compatible with.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entity.CompatibilityStatus compatibility = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $compatibility = null;
+    protected $compatibility = null;
     /**
      * Output only. Identifies the access mechanism to the entity. Not user
      * settable.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.StorageAccess access = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $access = null;
+    protected $access = null;
     /**
      * Output only. System generated unique ID for the Entity. This ID will be
      * different if the Entity is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Required. The description of the data structure and layout.
      * The schema is not included in list responses. It is only included in
@@ -142,7 +142,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema schema = 50 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schema = null;
+    protected $schema = null;
 
     /**
      * Constructor.

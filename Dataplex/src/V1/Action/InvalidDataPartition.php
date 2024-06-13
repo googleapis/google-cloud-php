@@ -20,7 +20,7 @@ class InvalidDataPartition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Action.InvalidDataPartition.PartitionStructure expected_structure = 1;</code>
      */
-    private $expected_structure = 0;
+    protected $expected_structure = 0;
 
     /**
      * Constructor.

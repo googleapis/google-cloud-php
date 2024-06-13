@@ -20,25 +20,25 @@ class Aspect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aspect_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $aspect_type = '';
+    protected $aspect_type = '';
     /**
      * Output only. The path in the entry under which the aspect is attached.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Output only. The time when the Aspect was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the Aspect was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. The content of the aspect, according to its aspect type schema.
      * This will replace `content`.
@@ -46,11 +46,11 @@ class Aspect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data = null;
+    protected $data = null;
     /**
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectSource aspect_source = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $aspect_source = null;
+    protected $aspect_source = null;
 
     /**
      * Constructor.

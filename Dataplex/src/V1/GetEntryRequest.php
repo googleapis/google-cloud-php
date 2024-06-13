@@ -19,13 +19,13 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. View for controlling which parts of an entry are to be returned.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * Optional. Limits the aspects returned to the provided aspect types.
      * Only works if the CUSTOM view is selected.
