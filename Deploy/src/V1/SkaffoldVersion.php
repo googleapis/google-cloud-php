@@ -20,25 +20,25 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The time at which this version of Skaffold will enter maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
      */
-    private $maintenance_mode_time = null;
+    protected $maintenance_mode_time = null;
     /**
      * The time at which this version of Skaffold will no longer be supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
      */
-    private $support_expiration_time = null;
+    protected $support_expiration_time = null;
     /**
      * Date when this version is expected to no longer be supported.
      *
      * Generated from protobuf field <code>.google.type.Date support_end_date = 2;</code>
      */
-    private $support_end_date = null;
+    protected $support_end_date = null;
 
     /**
      * Constructor.

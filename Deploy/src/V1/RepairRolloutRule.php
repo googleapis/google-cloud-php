@@ -23,7 +23,7 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. Phases within which jobs are subject to automatic repair actions
      * on failure. Proceeds only after phase name matched any one in the list, or
@@ -58,7 +58,7 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRuleCondition condition = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $condition = null;
+    protected $condition = null;
 
     /**
      * Constructor.

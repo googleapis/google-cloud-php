@@ -21,7 +21,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $cluster = '';
+    protected $cluster = '';
     /**
      * Optional. If true, `cluster` is accessed using the private IP address of
      * the control plane endpoint. Otherwise, the default IP address of the
@@ -33,7 +33,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $internal_ip = false;
+    protected $internal_ip = false;
 
     /**
      * Constructor.

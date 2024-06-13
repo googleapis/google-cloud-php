@@ -24,25 +24,25 @@ class Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Resource id of the `Target`.
      *
      * Generated from protobuf field <code>string target_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Output only. Unique identifier of the `Target`.
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Optional. Description of the `Target`. Max length is 255 characters.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. User annotations. These attributes can only be set and used by
      * the user, and not by Cloud Deploy. See
@@ -71,19 +71,19 @@ class Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool require_approval = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $require_approval = false;
+    protected $require_approval = false;
     /**
      * Output only. Time at which the `Target` was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Most recent time at which the `Target` was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. This checksum is computed by the server based on the value of
      * other fields, and may be sent on update and delete requests to ensure the
@@ -91,7 +91,7 @@ class Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Configurations for all execution that relates to this `Target`.
      * Each `ExecutionEnvironmentUsage` value may only be used in a single

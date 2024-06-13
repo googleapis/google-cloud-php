@@ -22,21 +22,21 @@ class PostdeployJobRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $build = '';
+    protected $build = '';
     /**
      * Output only. The reason the postdeploy failed. This will always be
      * unspecified while the postdeploy is in progress or if it succeeded.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.PostdeployJobRun.FailureCause failure_cause = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_cause = 0;
+    protected $failure_cause = 0;
     /**
      * Output only. Additional information about the postdeploy failure, if
      * available.
      *
      * Generated from protobuf field <code>string failure_message = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_message = '';
+    protected $failure_message = '';
 
     /**
      * Constructor.

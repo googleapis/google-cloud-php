@@ -20,20 +20,20 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string http_route = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $http_route = '';
+    protected $http_route = '';
     /**
      * Required. Name of the Kubernetes Service.
      *
      * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. Name of the Kubernetes Deployment whose traffic is managed by
      * the specified HTTPRoute and Service.
      *
      * Generated from protobuf field <code>string deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment = '';
+    protected $deployment = '';
     /**
      * Optional. The time to wait for route updates to propagate. The maximum
      * configurable time is 3 hours, in seconds format. If unspecified, there is
@@ -41,7 +41,7 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration route_update_wait_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $route_update_wait_time = null;
+    protected $route_update_wait_time = null;
     /**
      * Optional. The amount of time to migrate traffic back from the canary
      * Service to the original Service during the stable phase deployment. If
@@ -50,7 +50,7 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration stable_cutback_duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stable_cutback_duration = null;
+    protected $stable_cutback_duration = null;
 
     /**
      * Constructor.

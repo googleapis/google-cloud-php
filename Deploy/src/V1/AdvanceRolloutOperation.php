@@ -20,25 +20,25 @@ class AdvanceRolloutOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_phase = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_phase = '';
+    protected $source_phase = '';
     /**
      * Output only. How long the operation will be paused.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Output only. The name of the rollout that initiates the `AutomationRun`.
      *
      * Generated from protobuf field <code>string rollout = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * Output only. The phase the rollout will be advanced to.
      *
      * Generated from protobuf field <code>string destination_phase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $destination_phase = '';
+    protected $destination_phase = '';
 
     /**
      * Constructor.
