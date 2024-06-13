@@ -137,7 +137,7 @@ class ResumableStream implements \IteratorAggregate
             if ($completed !== true) {
                 // Send in "bigtable-attempt" header on each request
                 $headers = $this->callOptions['headers'] ?? [];
-                $headers['bigtable-attempt'] = ++$attempt;
+                $headers['bigtable-attempt'] = [++$attempt];
 
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
