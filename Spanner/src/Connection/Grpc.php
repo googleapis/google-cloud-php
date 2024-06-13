@@ -1387,7 +1387,7 @@ class Grpc implements ConnectionInterface
                 $transaction['begin'] = $this->formatTransactionOptions($transaction['begin']);
             }
 
-            $str = json_encode($transaction);
+            $str = json_encode($transaction, JSON_FORCE_OBJECT);
             $selector->mergeFromJsonString($str);
         } elseif (isset($args['transactionId'])) {
             $selector->setId($this->pluck('transactionId', $args));
