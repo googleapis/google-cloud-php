@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
@@ -30,7 +31,6 @@ use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -66,7 +66,7 @@ class DocumentReferenceTest extends SnippetTestCase
             $this->prophesize(CollectionReference::class)->reveal(),
             self::DOCUMENT
         ], ['requestHandler', 'batch']);
-        $this->batch = $this->prophesize(WriteBatch::class);
+        $this->batch = $this->prophesize(BulkWriter::class);
     }
 
     public function testClass()

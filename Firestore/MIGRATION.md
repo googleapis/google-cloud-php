@@ -161,5 +161,6 @@ RunQuery RPC is exposed via `CollectionReference::documents()` and `Transaction:
 when `readTime` was invalid. Now we've removed this client level check and exception is thrown by the Serializer
 when it converts the array data into Protobuf Request object.
 
+# WriteBatch class
 
-
+This class has been removed as it was already deprecated. Users should use the bulkwriter feature instead.

@@ -241,7 +241,3 @@ class FindNearest extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FindNearest::class, \Google\Cloud\Firestore\V1\StructuredQuery_FindNearest::class);
-

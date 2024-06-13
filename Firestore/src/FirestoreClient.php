@@ -238,14 +238,10 @@ class FirestoreClient
      * $batch = $firestore->batch();
      * ```
      *
-     * @return WriteBatch
-     * @deprecated Please use {@see \Google\Cloud\Firestore\BulkWriter} instead.
+     * @return BulkWriter
      */
     public function batch()
     {
-        if (!class_exists(WriteBatch::class)) {
-            class_alias(BulkWriter::class, WriteBatch::class);
-        }
         return new BulkWriter(
             $this->requestHandler,
             $this->serializer,

@@ -25,6 +25,7 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
@@ -39,7 +40,6 @@ use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
-use Google\Cloud\Firestore\WriteBatch;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -78,7 +78,7 @@ class FirestoreClientTest extends TestCase
     public function testBatch()
     {
         $batch = $this->client->batch();
-        $this->assertInstanceOf(WriteBatch::class, $batch);
+        $this->assertInstanceOf(BulkWriter::class, $batch);
     }
 
     public function testBatchCorrectDatabaseName()
