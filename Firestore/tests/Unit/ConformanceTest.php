@@ -22,17 +22,17 @@ use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator as CompositFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -53,7 +53,6 @@ class ConformanceTest extends TestCase
     use GrpcTestTrait;
     use PathTrait;
     use ProphecyTrait;
-    use TimeTrait;
 
     const SUITE_FILENAME = 'firestore-test-suite.binproto';
 
@@ -62,9 +61,7 @@ class ConformanceTest extends TestCase
 
     private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
-    private $connection;
     private $requestHandler;
-    private $serializer;
 
     private $excludes = [
         // need mergeFields support
@@ -90,11 +87,9 @@ class ConformanceTest extends TestCase
             [
                 'projectId' => 'projectID'
             ]
-        ]);
+        ], ['requestHandler']);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-        $this->serializer = $this->getSerializer();
     }
 
     /**
@@ -103,10 +98,16 @@ class ConformanceTest extends TestCase
      */
     public function testGet($test)
     {
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$test['request']['name']]))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([[]]));
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($test) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == [$test['request']['name']];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->client->document($this->relativeName($test['docRefPath']))->snapshot();
     }
@@ -114,6 +115,7 @@ class ConformanceTest extends TestCase
     /**
      * @dataProvider cases
      * @group firestore-conformance-create
+     * @group mystic
      */
     public function testCreate($test)
     {
@@ -123,8 +125,16 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
-                ->shouldBeCalled()->willReturn([]);
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] == $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )->shouldBeCalled()->willReturn([]);
         });
 
         $this->executeAndHandleError($test, function ($test) {
@@ -145,11 +155,20 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] === $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )
                 ->shouldBeCalled()->willReturn([]);
         });
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->executeAndHandleError($test, function ($test) {
             $options = [];
@@ -174,7 +193,16 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] === $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -208,7 +236,16 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] == $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -234,13 +271,20 @@ class ConformanceTest extends TestCase
         }
 
         $times = (isset($test['isError']) && $test['isError']) ? 0 : 1;
-        $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => $this->parentPath($test['collPath']),
-            'structuredQuery' => $query,
-            'retries' => 0
-        ]))->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($query, $test) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['parent'] == $this->parentPath($test['collPath'])
+                    && array_replace_recursive($data['structuredQuery'], $query)
+                        == $data['structuredQuery'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes($times)->willReturn(new \ArrayIterator([]));
+
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $query = $this->client->collection($this->relativeName($test['collPath']));
 
@@ -315,9 +359,8 @@ class ConformanceTest extends TestCase
                             $ref->name()->willReturn($clause[$name]['docSnapshot']['path']);
 
                             $mapper = new ValueMapper(
-                                $this->prophesize(ConnectionInterface::class)->reveal(),
                                 $this->prophesize(RequestHandler::class)->reveal(),
-                                $this->serializer,
+                                $this->getSerializer(),
                                 false
                             );
 
@@ -351,11 +394,15 @@ class ConformanceTest extends TestCase
         if (!$test['isError']) {
             $call($test);
         } else {
-            $this->connection->commit(Argument::any())
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::cetera()
+            )
                 ->shouldNotBeCalled()->willReturn([]);
         }
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
     }
 
     private function executeAndHandleError(array $test, callable $executeTest)
@@ -387,17 +434,8 @@ class ConformanceTest extends TestCase
             }
 
             if (isset($test['precondition']['updateTime'])) {
-                $updateTime = $this->parseTimeString($test['precondition']['updateTime']);
-                $test['precondition']['updateTime'] = [
-                    'seconds' => $updateTime[0]->format('U'),
-                    'nanos' => $updateTime[1]
-                ];
-
                 $options['precondition'] = [
-                    'updateTime' => new Timestamp(
-                        \DateTime::createFromFormat('U', (string) $test['precondition']['updateTime']['seconds']),
-                        $test['precondition']['updateTime']['nanos']
-                    )
+                    'updateTime' => $test['precondition']['updateTime']
                 ];
             }
         }

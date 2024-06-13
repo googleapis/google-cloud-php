@@ -28,7 +28,9 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * @group firestore
@@ -44,28 +46,24 @@ class CollectionReferenceTest extends SnippetTestCase
     public const DATABASE = '(default)';
     public const NAME = 'projects/example_project/databases/(default)/documents/users';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $collection;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->collection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::NAME
-        ]);
+        ], ['requestHandler']);
     }
 
     public function testClass()
@@ -88,11 +86,9 @@ class CollectionReferenceTest extends SnippetTestCase
     public function testSubCollectionParent()
     {
         $subCollection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
@@ -152,10 +148,16 @@ class CollectionReferenceTest extends SnippetTestCase
 
     public function testAdd()
     {
-        $this->connection->commit(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn([[]]);
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'add');
         $snippet->addLocal('collection', $this->collection);
@@ -171,7 +173,12 @@ class CollectionReferenceTest extends SnippetTestCase
 
         $docName = self::NAME . '/foo';
 
-        $this->connection->listDocuments(Argument::any())->shouldBeCalled()->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listDocuments',
+            Argument::type(ListDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'documents' => [
                 [
                     'name' => $docName
@@ -179,7 +186,7 @@ class CollectionReferenceTest extends SnippetTestCase
             ]
         ]);
 
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'listDocuments');
         $snippet->addLocal('collection', $this->collection);

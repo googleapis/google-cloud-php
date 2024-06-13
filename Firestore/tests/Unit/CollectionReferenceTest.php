@@ -28,7 +28,9 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * @group firestore
@@ -44,28 +46,24 @@ class CollectionReferenceTest extends TestCase
     public const COLLECTION_PARENT = 'projects/example_project/databases/(default)/documents/a/doc';
     public const NAME = 'projects/example_project/databases/(default)/documents/a/doc/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $collection;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->collection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::NAME
-        ]);
+        ], ['requestHandler']);
     }
 
     public function testName()
@@ -105,29 +103,33 @@ class CollectionReferenceTest extends TestCase
 
     public function testAdd()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            $expected = [
-                'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-                'writes' => [
-                    [
-                        'currentDocument' => ['exists' => false],
-                        'update' => [
-                            'fields' => [
-                                'hello' => [
-                                    'stringValue' => 'world'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'currentDocument' => ['exists' => false],
+                            'update' => [
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
                                 ]
                             ]
                         ]
                     ]
-                ]
-            ];
+                ];
 
-            unset($args['writes'][0]['update']['name']);
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([[]]);
 
-            return $args === $expected;
-        }))->shouldBeCalled()->willReturn([[]]);
-
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->collection->add(['hello' => 'world']);
     }
@@ -139,11 +141,15 @@ class CollectionReferenceTest extends TestCase
 
         $docName = self::NAME . '/foo';
 
-        $this->connection->listDocuments(Argument::allOf(
-            Argument::withEntry('parent', self::COLLECTION_PARENT),
-            Argument::withEntry('collectionId', $id),
-            Argument::withEntry('mask', [])
-        ))->shouldBeCalled()->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listDocuments',
+            Argument::that(function ($req) use ($id) {
+                return $req->getParent() === self::COLLECTION_PARENT
+                    && $req->getCollectionId() === $id;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'documents' => [
                 [
                     'name' => $docName
@@ -151,7 +157,7 @@ class CollectionReferenceTest extends TestCase
             ]
         ]);
 
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->collection->listDocuments();
         $docs = iterator_to_array($res);
@@ -177,14 +183,11 @@ class CollectionReferenceTest extends TestCase
 
     public function randomNames()
     {
-        $connection = $this->prophesize(ConnectionInterface::class);
         $requestHandler = $this->prophesize(RequestHandler::class);
         $collection = TestHelpers::stub(CollectionReference::class, [
-            $connection->reveal(),
             $requestHandler->reveal(),
             $this->getSerializer(),
             new ValueMapper(
-                $connection->reveal(),
                 $requestHandler->reveal(),
                 $this->getSerializer(),
                 false
@@ -217,11 +220,9 @@ class CollectionReferenceTest extends TestCase
     {
         $collectionName = 'projects/example_project/databases/(default)/documents/foo';
         $collection = TestHelpers::stub(CollectionReference::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false

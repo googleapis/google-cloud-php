@@ -18,16 +18,17 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
 use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Rpc\Code;
 
 /**
@@ -49,9 +50,8 @@ use Google\Rpc\Code;
  */
 class BulkWriter
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
-    use TimeTrait;
     use ValidateTrait;
 
     public const TYPE_UPDATE = 'update';
@@ -116,12 +116,6 @@ class BulkWriter
          */
         'RATE_LIMITER_MULTIPLIER_MILLIS' => 1000,
     ];
-
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -207,7 +201,7 @@ class BulkWriter
 
     /**
      * @var bool Whether BulkWriter greedily sends operations via
-     * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#batchwriterequest](BatchWriteRequest)
+     * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#BatchWriteRequest](BatchWriteRequest)
      * as soon  as sufficient number of operations are enqueued.
      */
     private $greedilySend;
@@ -219,9 +213,6 @@ class BulkWriter
     private $maxDelayTime;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -254,14 +245,12 @@ class BulkWriter
      * }
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         $valueMapper,
         $database,
         $options = null
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
@@ -678,7 +667,7 @@ class BulkWriter
      *
      * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
      *         retryable failures. **Defaults to** `false`.
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#BatchWriteResponse](BatchWriteResponse)
      */
     public function flush($waitForRetryableFailures = false)
     {
@@ -722,37 +711,32 @@ class BulkWriter
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @internal Only supposed to be used internally in Transaction class.
      * @access private
      * @param array $options Configuration Options
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#commitresponse](CommitResponse)
      * @codingStandardsIgnoreEnd
      */
     public function commit(array $options = [])
     {
         unset($options['merge'], $options['precondition']);
 
-        $response = $this->connection->commit(array_filter([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += array_filter([
             'database' => $this->database,
             'writes' => $this->writes,
             'transaction' => $this->transaction,
-        ]) + $options);
+        ]);
+        $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
 
-        if (isset($response['commitTime'])) {
-            $time = $this->parseTimeString($response['commitTime']);
-            $response['commitTime'] = new Timestamp($time[0], $time[1]);
-        }
-
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
-                if (isset($result['updateTime'])) {
-                    $time = $this->parseTimeString($result['updateTime']);
-                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
-                }
-            }
-        }
+        $response = $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            $request,
+            $optionalArgs
+        );
 
         return $response;
     }
@@ -778,10 +762,19 @@ class BulkWriter
             throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
         }
 
-        $this->connection->rollback([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'database' => $this->database,
             'transaction' => $this->transaction,
-        ] + $options);
+        ];
+        $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'rollback',
+            $request,
+            $optionalArgs
+        );
     }
 
     /**
@@ -799,7 +792,7 @@ class BulkWriter
      * Close the bulk writer instance for further writes.
      * Also, flushes all retries and pending writes.
      *
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#BatchWriteResponse](BatchWriteResponse)
      */
     public function close()
     {
@@ -961,7 +954,7 @@ class BulkWriter
      *     @type array $labels
      *           Labels associated with this batch write.
      * }
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#BatchWriteResponse](BatchWriteResponse)
      */
     private function sendBatch(array $writes, array $options = [])
     {
@@ -977,21 +970,21 @@ class BulkWriter
         $this->rateLimiter->tryMakeRequest(count($writes));
 
         unset($options['merge'], $options['precondition']);
-        $options += ['labels' => []];
 
-        $response = $this->connection->batchWrite(array_filter([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += array_filter([
             'database' => $this->database,
             'writes' => $writes,
-        ]) + $options);
+            'labels' => []
+        ]);
+        $request = $this->serializer->decodeMessage(new BatchWriteRequest(), $data);
 
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
-                if (isset($result['updateTime'])) {
-                    $time = $this->parseTimeString($result['updateTime']);
-                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
-                }
-            }
-        }
+        $response = $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            $request,
+            $optionalArgs
+        );
 
         return $response;
     }
@@ -1025,7 +1018,7 @@ class BulkWriter
 
             $operations[] = [
                 'fieldPath' => $transform->fieldPath()->pathString(),
-                $transform->key() => $args,
+                $transform->key() => $args['arrayValue'] ?? $args,
             ];
         }
 
@@ -1082,7 +1075,7 @@ class BulkWriter
      * @throws \InvalidArgumentException If the precondition is invalid.
      * @codingStandardsIgnoreEnd
      */
-    private function validatePrecondition(array &$options)
+    private function validatePrecondition(array $options)
     {
         $precondition = $options['precondition'] ?? null;
 
@@ -1090,23 +1083,11 @@ class BulkWriter
             return;
         }
 
-        if (isset($precondition['exists'])) {
-            return $precondition;
+        if (!isset($precondition['exists']) && !isset($precondition['updateTime'])) {
+            throw new \InvalidArgumentException('Preconditions must provide either `exists` or `updateTime`.');
         }
 
-        if (isset($precondition['updateTime'])) {
-            if (!($precondition['updateTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(
-                    'Precondition Update Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
-                );
-            }
-
-            return [
-                'updateTime' => $precondition['updateTime']->formatForApi(),
-            ];
-        }
-
-        throw new \InvalidArgumentException('Preconditions must provide either `exists` or `updateTime`.');
+        return $precondition;
     }
 
     /**

@@ -38,7 +38,7 @@
                   },
                   {
                     "fieldPath": "c.d",
-                    "setToServerValue": "REQUEST_TIME"
+                    "setToServerValue": "1"
                   }
                 ]
               }

@@ -20,7 +20,8 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestHandler;
 use SessionHandlerInterface;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 
 /**
  * Custom session handler backed by Cloud Firestore.
@@ -118,12 +119,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     use SnapshotTrait;
 
     /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
      * @var RequestHandler
      */
     private $requestHandler;
@@ -169,9 +164,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     /**
      * Create a custom session handler backed by Cloud Firestore.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -197,7 +189,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * }
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         ValueMapper $valueMapper,
@@ -205,7 +196,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $database,
         array $options = []
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
@@ -242,9 +232,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $database = $this->databaseName($this->projectId, $this->database);
 
         try {
-            $beginTransaction = $this->connection->beginTransaction([
-                'database' => $database
-            ] + $this->options['begin']);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($this->options['begin']);
+            $data['database'] = $database;
+
+            $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+            $beginTransaction = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'beginTransaction',
+                $request,
+                $optionalArgs
+            );
         } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore beginTransaction failed: %s', $e->getMessage()),
@@ -253,7 +250,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         }
 
         $this->transaction = new Transaction(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -297,7 +293,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $this->id = $id;
         try {
             $docRef = $this->getDocumentReference(
-                $this->connection,
                 $this->requestHandler,
                 $this->serializer,
                 $this->valueMapper,
@@ -332,7 +327,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function write($id, $data)
     {
         $docRef = $this->getDocumentReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -357,7 +351,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function destroy($id)
     {
         $docRef = $this->getDocumentReference(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
@@ -385,12 +378,18 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $deleteCount = 0;
         try {
             $database = $this->databaseName($this->projectId, $this->database);
-            $beginTransaction = $this->connection->beginTransaction([
-                'database' => $database
-            ] + $this->options['begin']);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($this->options['begin']);
+            $data['database'] = $database;
+
+            $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+            $beginTransaction = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'beginTransaction',
+                $request,
+                $optionalArgs
+            );
 
             $transaction = new Transaction(
-                $this->connection,
                 $this->requestHandler,
                 $this->serializer,
                 $this->valueMapper,
@@ -399,7 +398,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             );
 
             $collectionRef = $this->getCollectionReference(
-                $this->connection,
                 $this->requestHandler,
                 $this->serializer,
                 $this->valueMapper,

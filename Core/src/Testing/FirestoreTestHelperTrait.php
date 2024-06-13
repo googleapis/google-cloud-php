@@ -31,6 +31,9 @@ trait FirestoreTestHelperTrait
 
     private static $_serializer;
 
+    /**
+     * @return Serializer
+     */
     private function getSerializer()
     {
         if (!self::$_serializer) {
@@ -44,13 +47,6 @@ trait FirestoreTestHelperTrait
                 'google.protobuf.Struct' => function ($v) {
                     return $this->flattenStruct($v);
                 },
-                'google.protobuf.Timestamp' => function ($v) {
-                    return $this->formatTimestampFromApi($v);
-                },
-            ], [], [
-                'google.protobuf.Int32Value' => function ($v) {
-                    return ['value' => $v];
-                }
             ]);
         }
 

@@ -22,12 +22,13 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -45,7 +46,6 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $document;
@@ -53,22 +53,19 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->document = TestHelpers::stub(DocumentReferenceStub::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             $this->prophesize(CollectionReference::class)->reveal(),
             self::DOCUMENT
-        ], ['connection', 'requestHandler', 'batch']);
+        ], ['requestHandler', 'batch']);
         $this->batch = $this->prophesize(WriteBatch::class);
     }
 
@@ -214,19 +211,22 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => self::DOCUMENT,
-                        'fields' => [],
-                        'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [],
+                    'readTime' => ['seconds' => 100, 'nanos' => 100]
                 ]
-            ]));
+            ]
+        ]));
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'snapshot');
         $snippet->addLocal('document', $this->document);
@@ -244,11 +244,14 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testCollections()
     {
-        $this->connection->listCollectionIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['collectionIds' => ['foo','bar']]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listCollectionIds',
+            Argument::type(ListCollectionIdsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['collectionIds' => ['foo','bar']]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'collections');
         $snippet->addLocal('document', $this->document);
         $res = $snippet->invoke('collections');

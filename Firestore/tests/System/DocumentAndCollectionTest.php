@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * @group firestore
@@ -49,7 +49,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
     {
         // without sleep, test fails intermittently
         sleep(1);
-        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+        $readTime = new ProtobufTimestamp(['seconds' => time()]);
         $snapshotData = $this->document->snapshot([
             'readTime' => $readTime
         ])->data();
@@ -206,7 +206,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         // without sleep, emulator system test may fail intermittently
         sleep(1);
 
-        $readTime = new Timestamp(new \DateTimeImmutable());
+        $readTime = new ProtobufTimestamp(['seconds' => time()]);
         $collection = $this->document->collections([
             'readTime' => $readTime
         ])->current();
@@ -224,7 +224,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         // without sleep, emulator system test may fail intermittently
         sleep(1);
 
-        $readTime = new Timestamp(new \DateTimeImmutable());
+        $readTime = new ProtobufTimestamp(['seconds' => time()]);
         $expectedCount = count(iterator_to_array(self::$client->collections()));
 
         // Creating a random document
@@ -248,7 +248,7 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         sleep(1);
 
         // Creating a current timestamp and then adding a document
-        $readTime = new Timestamp(new \DateTimeImmutable());
+        $readTime = new ProtobufTimestamp(['seconds' => time()]);
         $collection->add(['c' => 'd']);
 
         // Reading at $readTime to get documents at that time

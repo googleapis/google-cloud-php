@@ -23,8 +23,9 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -47,7 +48,6 @@ class AggregateQueryTest extends TestCase
         ]
     ];
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $query;
@@ -56,31 +56,27 @@ class AggregateQueryTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
         $this->query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             new ValueMapper(
-                $this->connection->reveal(),
                 $this->requestHandler->reveal(),
                 $this->serializer,
                 false
             ),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'requestHandler', 'query']);
+        ], ['requestHandler', 'query']);
         $this->aggregate = Aggregate::count();
         $this->aggregateQuery = TestHelpers::stub(AggregateQuery::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::QUERY_PARENT,
             ['query' => $this->queryObj],
             $this->aggregate
-        ], ['connection', 'requestHandler', 'query', 'aggregates']);
+        ], ['requestHandler', 'query', 'aggregates']);
     }
 
     /**
@@ -94,18 +90,24 @@ class AggregateQueryTest extends TestCase
         $aggregate = $arg ? Aggregate::$type($arg) : Aggregate::$type();
         $this->aggregateQuery->___setProperty('aggregates', [$aggregate]);
 
-        $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
-            return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new \ArrayIterator([[
-                'result' => [
-                    'aggregateFields' => [
-                        $type => ['testResultType' => 123456]
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) use ($expectedProps) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $x = $data['structuredAggregationQuery']['aggregations'];
+                return array_replace_recursive($x, $expectedProps) == $x;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([[
+            'result' => [
+                'aggregateFields' => [
+                    $type => ['testResultType' => 123456]
                 ]
-            ]]));
-        $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
+            ]
+        ]]));
+
+        $this->aggregateQuery->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $response = $this->aggregateQuery->getSnapshot();
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
@@ -131,12 +133,19 @@ class AggregateQueryTest extends TestCase
             ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('type_with_another_alias')
         ];
         $this->aggregateQuery->___setProperty('aggregates', $aggregates);
-        $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
-            return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(new \ArrayIterator([]));
-        $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) use ($expectedProps) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $x = $data['structuredAggregationQuery']['aggregations'];
+                return array_replace_recursive($x, $expectedProps) == $x;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([]));
+
+        $this->aggregateQuery->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $response = $this->aggregateQuery->getSnapshot();
 
