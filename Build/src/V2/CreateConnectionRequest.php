@@ -21,13 +21,13 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Connection to create.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.Connection connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection = null;
+    protected $connection = null;
     /**
      * Required. The ID to use for the Connection, which will become the final
      * component of the Connection's resource name. Names must be unique
@@ -36,7 +36,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection_id = '';
+    protected $connection_id = '';
 
     /**
      * @param string                            $parent       Required. Project and location where the connection will be created.
