@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.firestore.admin.v1.FirestoreAdmin' => [
+            'BulkDeleteDocuments' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsResponse',
+                    'metadataReturnType' => '\Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',

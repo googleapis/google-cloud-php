@@ -20,43 +20,43 @@ class UpgradeHistoryEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot = 1;</code>
      */
-    private $snapshot = '';
+    protected $snapshot = '';
     /**
      * The VM image before this instance upgrade.
      *
      * Generated from protobuf field <code>string vm_image = 2;</code>
      */
-    private $vm_image = '';
+    protected $vm_image = '';
     /**
      * The container image before this instance upgrade.
      *
      * Generated from protobuf field <code>string container_image = 3;</code>
      */
-    private $container_image = '';
+    protected $container_image = '';
     /**
      * The framework of this notebook instance.
      *
      * Generated from protobuf field <code>string framework = 4;</code>
      */
-    private $framework = '';
+    protected $framework = '';
     /**
      * The version of the notebook instance before this upgrade.
      *
      * Generated from protobuf field <code>string version = 5;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The state of this instance upgrade history entry.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Instance.UpgradeHistoryEntry.State state = 6;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The time that this instance upgrade history entry is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Target VM Image. Format: `ainotebooks-vm/project/image-name/name`.
      *
@@ -69,13 +69,13 @@ class UpgradeHistoryEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Instance.UpgradeHistoryEntry.Action action = 9;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * Target VM Version, like m63.
      *
      * Generated from protobuf field <code>string target_version = 10;</code>
      */
-    private $target_version = '';
+    protected $target_version = '';
 
     /**
      * Constructor.
@@ -386,6 +386,4 @@ class UpgradeHistoryEntry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UpgradeHistoryEntry::class, \Google\Cloud\Notebooks\V1\Instance_UpgradeHistoryEntry::class);
 

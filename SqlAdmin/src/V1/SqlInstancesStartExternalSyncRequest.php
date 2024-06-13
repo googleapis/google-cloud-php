@@ -47,8 +47,9 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      */
     private $sync_parallel_level = 0;
     /**
-     * Optional. MigrationType decides if the migration is a physical file based
-     * migration or logical migration.
+     * Optional. MigrationType configures the migration to use physical files or
+     * logical dump files. If not set, then the logical dump file configuration is
+     * used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,8 +76,9 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *           Optional. Parallel level for initial data sync. Currently only applicable
      *           for MySQL.
      *     @type int $migration_type
-     *           Optional. MigrationType decides if the migration is a physical file based
-     *           migration or logical migration.
+     *           Optional. MigrationType configures the migration to use physical files or
+     *           logical dump files. If not set, then the logical dump file configuration is
+     *           used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,8 +250,9 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. MigrationType decides if the migration is a physical file based
-     * migration or logical migration.
+     * Optional. MigrationType configures the migration to use physical files or
+     * logical dump files. If not set, then the logical dump file configuration is
+     * used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -260,8 +263,9 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. MigrationType decides if the migration is a physical file based
-     * migration or logical migration.
+     * Optional. MigrationType configures the migration to use physical files or
+     * logical dump files. If not set, then the logical dump file configuration is
+     * used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

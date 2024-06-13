@@ -23,13 +23,13 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      */
-    private $segment_duration = null;
+    protected $segment_duration = null;
     /**
      * Required. Create an individual segment file. The default is `false`.
      *
      * Generated from protobuf field <code>bool individual_segments = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $individual_segments = false;
+    protected $individual_segments = false;
 
     /**
      * Constructor.

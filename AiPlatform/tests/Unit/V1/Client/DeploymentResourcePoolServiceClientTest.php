@@ -105,8 +105,12 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $disableContainerLogging = true;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -361,8 +365,12 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $disableContainerLogging = true;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name2);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentResourcePoolName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT_RESOURCE_POOL]');
@@ -915,8 +923,12 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $disableContainerLogging = true;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDisableContainerLogging($disableContainerLogging);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

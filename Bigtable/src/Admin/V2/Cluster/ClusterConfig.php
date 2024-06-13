@@ -20,7 +20,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.ClusterAutoscalingConfig cluster_autoscaling_config = 1;</code>
      */
-    private $cluster_autoscaling_config = null;
+    protected $cluster_autoscaling_config = null;
 
     /**
      * Constructor.

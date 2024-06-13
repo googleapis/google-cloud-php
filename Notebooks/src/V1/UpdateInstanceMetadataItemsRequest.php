@@ -21,7 +21,7 @@ class UpdateInstanceMetadataItemsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Metadata items to add/update for the instance.
      *

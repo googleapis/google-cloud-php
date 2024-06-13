@@ -20,79 +20,79 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_id = 1;</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * The display name of the VM. Note that this value is not necessarily unique.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The id of the AWS's source this VM is connected to.
      *
      * Generated from protobuf field <code>string source_id = 3;</code>
      */
-    private $source_id = '';
+    protected $source_id = '';
     /**
      * The descriptive name of the AWS's source this VM is connected to.
      *
      * Generated from protobuf field <code>string source_description = 4;</code>
      */
-    private $source_description = '';
+    protected $source_description = '';
     /**
      * Output only. The power state of the VM at the moment list was taken.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmDetails.PowerState power_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $power_state = 0;
+    protected $power_state = 0;
     /**
      * The number of cpus the VM has.
      *
      * Generated from protobuf field <code>int32 cpu_count = 6;</code>
      */
-    private $cpu_count = 0;
+    protected $cpu_count = 0;
     /**
      * The memory size of the VM in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 7;</code>
      */
-    private $memory_mb = 0;
+    protected $memory_mb = 0;
     /**
      * The number of disks the VM has.
      *
      * Generated from protobuf field <code>int32 disk_count = 8;</code>
      */
-    private $disk_count = 0;
+    protected $disk_count = 0;
     /**
      * The total size of the storage allocated to the VM in MB.
      *
      * Generated from protobuf field <code>int64 committed_storage_mb = 9;</code>
      */
-    private $committed_storage_mb = 0;
+    protected $committed_storage_mb = 0;
     /**
      * The VM's OS.
      *
      * Generated from protobuf field <code>string os_description = 10;</code>
      */
-    private $os_description = '';
+    protected $os_description = '';
     /**
      * The VM Boot Option.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmDetails.BootOption boot_option = 11;</code>
      */
-    private $boot_option = 0;
+    protected $boot_option = 0;
     /**
      * The instance type of the VM.
      *
      * Generated from protobuf field <code>string instance_type = 12;</code>
      */
-    private $instance_type = '';
+    protected $instance_type = '';
     /**
      * The VPC ID the VM belongs to.
      *
      * Generated from protobuf field <code>string vpc_id = 13;</code>
      */
-    private $vpc_id = '';
+    protected $vpc_id = '';
     /**
      * The security groups the VM belongs to.
      *
@@ -110,19 +110,19 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 16;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The virtualization type.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmDetails.VmVirtualizationType virtualization_type = 17;</code>
      */
-    private $virtualization_type = 0;
+    protected $virtualization_type = 0;
     /**
      * The CPU architecture.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsVmDetails.VmArchitecture architecture = 18;</code>
      */
-    private $architecture = 0;
+    protected $architecture = 0;
 
     /**
      * Constructor.

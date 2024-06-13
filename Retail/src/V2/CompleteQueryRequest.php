@@ -95,10 +95,17 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $max_suggestions = 0;
     /**
-     * The entity for customers that may run multiple different entities, domains,
-     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * If true, attribute suggestions are enabled and provided in response.
+     * This field is only available for "cloud-retail" dataset.
+     *
+     * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
+     */
+    private $enable_attribute_suggestions = false;
+    /**
+     * The entity for customers who run multiple entities, domains, sites, or
+     * regions, for example, `Google US`, `Google Ads`, `Waymo`,
      * `google.com`, `youtube.com`, etc.
-     * If this is set, it should be exactly matched with
+     * If this is set, it must be an exact match with
      * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
      * per-entity autocomplete results.
      *
@@ -163,11 +170,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
      *           The maximum allowed max suggestions is 20. If it is set higher, it will be
      *           capped by 20.
+     *     @type bool $enable_attribute_suggestions
+     *           If true, attribute suggestions are enabled and provided in response.
+     *           This field is only available for "cloud-retail" dataset.
      *     @type string $entity
-     *           The entity for customers that may run multiple different entities, domains,
-     *           sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     *           The entity for customers who run multiple entities, domains, sites, or
+     *           regions, for example, `Google US`, `Google Ads`, `Waymo`,
      *           `google.com`, `youtube.com`, etc.
-     *           If this is set, it should be exactly matched with
+     *           If this is set, it must be an exact match with
      *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
      *           per-entity autocomplete results.
      * }
@@ -434,10 +444,38 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The entity for customers that may run multiple different entities, domains,
-     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * If true, attribute suggestions are enabled and provided in response.
+     * This field is only available for "cloud-retail" dataset.
+     *
+     * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
+     * @return bool
+     */
+    public function getEnableAttributeSuggestions()
+    {
+        return $this->enable_attribute_suggestions;
+    }
+
+    /**
+     * If true, attribute suggestions are enabled and provided in response.
+     * This field is only available for "cloud-retail" dataset.
+     *
+     * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableAttributeSuggestions($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_attribute_suggestions = $var;
+
+        return $this;
+    }
+
+    /**
+     * The entity for customers who run multiple entities, domains, sites, or
+     * regions, for example, `Google US`, `Google Ads`, `Waymo`,
      * `google.com`, `youtube.com`, etc.
-     * If this is set, it should be exactly matched with
+     * If this is set, it must be an exact match with
      * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
      * per-entity autocomplete results.
      *
@@ -450,10 +488,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The entity for customers that may run multiple different entities, domains,
-     * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
+     * The entity for customers who run multiple entities, domains, sites, or
+     * regions, for example, `Google US`, `Google Ads`, `Waymo`,
      * `google.com`, `youtube.com`, etc.
-     * If this is set, it should be exactly matched with
+     * If this is set, it must be an exact match with
      * [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get
      * per-entity autocomplete results.
      *

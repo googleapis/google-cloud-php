@@ -35,7 +35,7 @@ class AttributeType
      * specified. The value must be formatted as an XSD `dayTimeDuration`
      * value (a restricted subset of an ISO 8601 duration value). The
      * pattern for this is: `[nD][T[nH][nM][nS]]`.
-     * E.g. `5D`, `3DT12H30M`, `T24H`.
+     * For example, `5D`, `3DT12H30M`, `T24H`.
      *
      * Generated from protobuf enum <code>FRESHNESS = 2;</code>
      */

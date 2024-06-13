@@ -119,9 +119,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product] otherwise an INVALID_ARGUMENT
      * error is returned.
      * At most 250 values are allowed per
-     * [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
-     * Each value must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * [Product][google.cloud.retail.v2.Product] unless overridden through the
+     * Google Cloud console. Empty values are not allowed. Each value must be a
+     * UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an
+     * INVALID_ARGUMENT error is returned.
      * Corresponding properties: Google Merchant Center property
      * [google_product_category][mc_google_product_category]. Schema.org property
      * [Product.category] (https://schema.org/category).
@@ -144,9 +145,10 @@ class Product extends \Google\Protobuf\Internal\Message
     private $title = '';
     /**
      * The brands of the product.
-     * A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
-     * string with a length limit of 1,000 characters. Otherwise, an
-     * INVALID_ARGUMENT error is returned.
+     * A maximum of 30 brands are allowed unless overridden through the Google
+     * Cloud console. Each
+     * brand must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      * Corresponding properties: Google Merchant Center property
      * [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      * property [Product.brand](https://schema.org/brand).
@@ -481,22 +483,19 @@ class Product extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           The timestamp when this product becomes unavailable for
-     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
-     *           that this is only applicable to
-     *           [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
-     *           [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
-     *           ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     *           In general, we suggest the users to delete the stale products explicitly,
-     *           instead of using this field to determine staleness.
-     *           If it is set, the [Product][google.cloud.retail.v2.Product] is not
-     *           available for
-     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
-     *           [expire_time][google.cloud.retail.v2.Product.expire_time]. However, the
-     *           product can still be retrieved by
-     *           [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
-     *           and
-     *           [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *           Note that this field is applied in the following ways:
+     *           * If the [Product][google.cloud.retail.v2.Product] is already expired
+     *           when it is uploaded, this product
+     *             is not indexed for search.
+     *           * If the [Product][google.cloud.retail.v2.Product] is not expired when it
+     *           is uploaded, only the
+     *             [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]'s and
+     *             [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]'s
+     *             expireTime is respected, and
+     *             [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]'s
+     *             expireTime is not used.
+     *           In general, we suggest the users to delete the stale
+     *           products explicitly, instead of using this field to determine staleness.
      *           [expire_time][google.cloud.retail.v2.Product.expire_time] must be later
      *           than [available_time][google.cloud.retail.v2.Product.available_time] and
      *           [publish_time][google.cloud.retail.v2.Product.publish_time], otherwise an
@@ -603,9 +602,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [Product][google.cloud.retail.v2.Product] otherwise an INVALID_ARGUMENT
      *           error is returned.
      *           At most 250 values are allowed per
-     *           [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
-     *           Each value must be a UTF-8 encoded string with a length limit of 5,000
-     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           [Product][google.cloud.retail.v2.Product] unless overridden through the
+     *           Google Cloud console. Empty values are not allowed. Each value must be a
+     *           UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an
+     *           INVALID_ARGUMENT error is returned.
      *           Corresponding properties: Google Merchant Center property
      *           [google_product_category][mc_google_product_category]. Schema.org property
      *           [Product.category] (https://schema.org/category).
@@ -620,9 +620,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *           property [Product.name](https://schema.org/name).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $brands
      *           The brands of the product.
-     *           A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
-     *           string with a length limit of 1,000 characters. Otherwise, an
-     *           INVALID_ARGUMENT error is returned.
+     *           A maximum of 30 brands are allowed unless overridden through the Google
+     *           Cloud console. Each
+     *           brand must be a UTF-8 encoded string with a length limit of 1,000
+     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *           Corresponding properties: Google Merchant Center property
      *           [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      *           property [Product.brand](https://schema.org/brand).
@@ -859,22 +860,19 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp when this product becomes unavailable for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
-     * that this is only applicable to
-     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
-     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
-     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     * In general, we suggest the users to delete the stale products explicitly,
-     * instead of using this field to determine staleness.
-     * If it is set, the [Product][google.cloud.retail.v2.Product] is not
-     * available for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
-     * [expire_time][google.cloud.retail.v2.Product.expire_time]. However, the
-     * product can still be retrieved by
-     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
-     * and
-     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * Note that this field is applied in the following ways:
+     * * If the [Product][google.cloud.retail.v2.Product] is already expired
+     * when it is uploaded, this product
+     *   is not indexed for search.
+     * * If the [Product][google.cloud.retail.v2.Product] is not expired when it
+     * is uploaded, only the
+     *   [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]'s and
+     *   [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]'s
+     *   expireTime is respected, and
+     *   [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]'s
+     *   expireTime is not used.
+     * In general, we suggest the users to delete the stale
+     * products explicitly, instead of using this field to determine staleness.
      * [expire_time][google.cloud.retail.v2.Product.expire_time] must be later
      * than [available_time][google.cloud.retail.v2.Product.available_time] and
      * [publish_time][google.cloud.retail.v2.Product.publish_time], otherwise an
@@ -896,22 +894,19 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The timestamp when this product becomes unavailable for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search]. Note
-     * that this is only applicable to
-     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] and
-     * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION], and
-     * ignored for [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     * In general, we suggest the users to delete the stale products explicitly,
-     * instead of using this field to determine staleness.
-     * If it is set, the [Product][google.cloud.retail.v2.Product] is not
-     * available for
-     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
-     * [expire_time][google.cloud.retail.v2.Product.expire_time]. However, the
-     * product can still be retrieved by
-     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
-     * and
-     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * Note that this field is applied in the following ways:
+     * * If the [Product][google.cloud.retail.v2.Product] is already expired
+     * when it is uploaded, this product
+     *   is not indexed for search.
+     * * If the [Product][google.cloud.retail.v2.Product] is not expired when it
+     * is uploaded, only the
+     *   [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]'s and
+     *   [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION]'s
+     *   expireTime is respected, and
+     *   [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]'s
+     *   expireTime is not used.
+     * In general, we suggest the users to delete the stale
+     * products explicitly, instead of using this field to determine staleness.
      * [expire_time][google.cloud.retail.v2.Product.expire_time] must be later
      * than [available_time][google.cloud.retail.v2.Product.available_time] and
      * [publish_time][google.cloud.retail.v2.Product.publish_time], otherwise an
@@ -1271,9 +1266,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product] otherwise an INVALID_ARGUMENT
      * error is returned.
      * At most 250 values are allowed per
-     * [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
-     * Each value must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * [Product][google.cloud.retail.v2.Product] unless overridden through the
+     * Google Cloud console. Empty values are not allowed. Each value must be a
+     * UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an
+     * INVALID_ARGUMENT error is returned.
      * Corresponding properties: Google Merchant Center property
      * [google_product_category][mc_google_product_category]. Schema.org property
      * [Product.category] (https://schema.org/category).
@@ -1307,9 +1303,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product] otherwise an INVALID_ARGUMENT
      * error is returned.
      * At most 250 values are allowed per
-     * [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
-     * Each value must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * [Product][google.cloud.retail.v2.Product] unless overridden through the
+     * Google Cloud console. Empty values are not allowed. Each value must be a
+     * UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an
+     * INVALID_ARGUMENT error is returned.
      * Corresponding properties: Google Merchant Center property
      * [google_product_category][mc_google_product_category]. Schema.org property
      * [Product.category] (https://schema.org/category).
@@ -1366,9 +1363,10 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The brands of the product.
-     * A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
-     * string with a length limit of 1,000 characters. Otherwise, an
-     * INVALID_ARGUMENT error is returned.
+     * A maximum of 30 brands are allowed unless overridden through the Google
+     * Cloud console. Each
+     * brand must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      * Corresponding properties: Google Merchant Center property
      * [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      * property [Product.brand](https://schema.org/brand).
@@ -1383,9 +1381,10 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The brands of the product.
-     * A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
-     * string with a length limit of 1,000 characters. Otherwise, an
-     * INVALID_ARGUMENT error is returned.
+     * A maximum of 30 brands are allowed unless overridden through the Google
+     * Cloud console. Each
+     * brand must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      * Corresponding properties: Google Merchant Center property
      * [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      * property [Product.brand](https://schema.org/brand).

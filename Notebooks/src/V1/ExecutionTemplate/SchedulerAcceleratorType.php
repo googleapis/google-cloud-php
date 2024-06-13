@@ -101,6 +101,4 @@ class SchedulerAcceleratorType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SchedulerAcceleratorType::class, \Google\Cloud\Notebooks\V1\ExecutionTemplate_SchedulerAcceleratorType::class);
 

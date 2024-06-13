@@ -17,28 +17,35 @@
 
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataUtil;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Table;
-use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
+use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as MutateRowsResponse_Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation\SetCell;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
-use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk as ReadRowsResponse_CellChunk;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -93,6 +100,7 @@ class TableTest extends SnippetTestCase
             Table::class,
             [
                 $this->bigtableClient->reveal(),
+                new Serializer(),
                 self::TABLE_NAME
             ]
         );
@@ -117,11 +125,13 @@ class TableTest extends SnippetTestCase
             ->willReturn(
                 $this->arrayAsGenerator($this->mutateRowsResponses)
             );
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $this->entries, [])
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::type(MutateRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $snippet = $this->snippetFromMethod(Table::class, 'mutateRows');
         $snippet->addLocal('table', $this->table);
         $snippet->invoke();
@@ -131,11 +141,13 @@ class TableTest extends SnippetTestCase
     {
         $mutations = (new Mutations)
             ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
-        $this->bigtableClient->mutateRow(self::TABLE_NAME, 'r1', $mutations->toProto(), [])
-            ->shouldBeCalled()
-            ->willReturn(
-                new MutateRowResponse
-            );
+        $this->bigtableClient->mutateRow(
+            Argument::type(MutateRowRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            new MutateRowResponse
+        );
         $snippet = $this->snippetFromMethod(Table::class, 'mutateRow');
         $snippet->addLocal('table', $this->table);
         $snippet->invoke();
@@ -148,11 +160,13 @@ class TableTest extends SnippetTestCase
             ->willReturn(
                 $this->arrayAsGenerator($this->mutateRowsResponses)
             );
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $this->entries, [])
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::type(MutateRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $snippet = $this->snippetFromMethod(Table::class, 'upsert');
         $snippet->addLocal('table', $this->table);
         $snippet->invoke();
@@ -165,11 +179,13 @@ class TableTest extends SnippetTestCase
             ->willReturn(
                 $this->arrayAsGenerator([$this->setUpReadRowsResponse()])
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, [])
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $snippet = $this->snippetFromMethod(Table::class, 'readRows');
         $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('rows');
@@ -200,11 +216,13 @@ class TableTest extends SnippetTestCase
             ->setEndKeyOpen('lincoln');
         $rowSet = (new RowSet())
             ->setRowRanges([$rowRange]);
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($rowSet) {
-            return $argument['rows']->serializeToJsonString() === $rowSet->serializeToJsonString();
-        }))
-            ->shouldBeCalled()
-            ->willReturn($this->serverStream->reveal());
+        $this->bigtableClient->readRows(
+            Argument::that(function ($request) use ($rowSet) {
+                return $request->getRows()->serializeToJsonString() === $rowSet->serializeToJsonString();
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn($this->serverStream->reveal());
 
         $snippet = $this->snippetFromMethod(Table::class, 'readRows', 1);
         $snippet->addLocal('table', $this->table);
@@ -233,11 +251,13 @@ class TableTest extends SnippetTestCase
             );
         $rowSet = (new RowSet())
             ->setRowKeys(['jefferson']);
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($rowSet) {
-            return $argument['rows']->serializeToJsonString() === $rowSet->serializeToJsonString();
-        }))
-            ->shouldBeCalled()
-            ->willReturn($this->serverStream->reveal());
+        $this->bigtableClient->readRows(
+            Argument::that(function ($request) use ($rowSet) {
+                return $request->getRows()->serializeToJsonString() === $rowSet->serializeToJsonString();
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn($this->serverStream->reveal());
         $snippet = $this->snippetFromMethod(Table::class, 'readRow');
         $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('row');
@@ -279,10 +299,8 @@ class TableTest extends SnippetTestCase
             ->append('cf1', 'cq1', 'value12');
         $this->bigtableClient
             ->readModifyWriteRow(
-                self::TABLE_NAME,
-                'rk1',
-                $readModifyWriteRowRules->toProto(),
-                []
+                Argument::type(ReadModifyWriteRowRequest::class),
+                Argument::type('array')
             )
             ->shouldBeCalled()
             ->willReturn(
@@ -320,11 +338,13 @@ class TableTest extends SnippetTestCase
             ->willReturn(
                 $this->arrayAsGenerator($this->mutateRowsResponses)
             );
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, Argument::any(), [])
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::type(MutateRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
             ->setRow(
                 (new Row)
@@ -346,12 +366,9 @@ class TableTest extends SnippetTestCase
             ->increment('cf1', 'cq1', 3);
         $this->bigtableClient
             ->readModifyWriteRow(
-                self::TABLE_NAME,
-                'rk1',
-                $readModifyWriteRowRules->toProto(),
-                []
-            )
-            ->shouldBeCalled()
+                Argument::type(ReadModifyWriteRowRequest::class),
+                Argument::type('array')
+            )->shouldBeCalled()
             ->willReturn(
                 $readModifyWriteRowResponse
             );
@@ -383,11 +400,13 @@ class TableTest extends SnippetTestCase
             ->willReturn(
                 $this->arrayAsGenerator($sampleRowKeyResponses)
             );
-        $this->bigtableClient->sampleRowKeys(self::TABLE_NAME, [])
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->sampleRowKeys(
+            Argument::type(SampleRowKeysRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $snippet = $this->snippetFromMethod(Table::class, 'sampleRowKeys');
         $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('rowKeyStream');
@@ -403,9 +422,11 @@ class TableTest extends SnippetTestCase
 
     public function testCheckAndMutateRow()
     {
-        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, 'rk1', Argument::any())
-            ->shouldBeCalled()
-            ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
+        $this->bigtableClient->checkAndMutateRow(
+            Argument::type(CheckAndMutateRowRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
         $snippet = $this->snippetFromMethod(Table::class, 'checkAndMutateRow');
         $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('result');
@@ -416,9 +437,8 @@ class TableTest extends SnippetTestCase
     {
         $this->bigtableClient
             ->checkAndMutateRow(
-                self::TABLE_NAME,
-                'rk1',
-                Argument::any()
+                Argument::type(CheckAndMutateRowRequest::class),
+                Argument::type('array')
             )
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
@@ -432,7 +452,7 @@ class TableTest extends SnippetTestCase
     {
         $readRowsResponse = new ReadRowsResponse;
         $chunks = [];
-        $chunk = new ReadRowsResponse_CellChunk();
+        $chunk = new CellChunk();
         $chunk->setRowKey('rk1');
         $stringValue = new StringValue();
         $stringValue->setValue('cf1');

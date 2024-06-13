@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobWaitTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -98,6 +99,27 @@ class JobWaitTraitTest extends TestCase
             },
             $this->job,
             1
+        ]);
+    }
+
+
+    public function testWaitThrowsExceptionWhenJobWasCanceled()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionMessage('Job execution was cancelled: Job timed out after 10 sec');
+
+        $this->trait->call('wait', [
+            function () {
+                return false;
+            },
+            function () {
+                throw new ServiceException(
+                    'Job execution was cancelled: Job timed out after 10 sec',
+                    499
+                );
+            },
+            $this->job,
+            null
         ]);
     }
 }

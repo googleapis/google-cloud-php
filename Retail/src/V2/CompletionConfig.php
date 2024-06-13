@@ -73,8 +73,8 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the LRO corresponding to the latest suggestion terms
      * list import.
-     * Can use [GetOperation][google.longrunning.Operations.GetOperation] API to
-     * retrieve the latest state of the Long Running Operation.
+     * Can use [GetOperation][google.longrunning.Operations.GetOperation] API
+     * method to retrieve the latest state of the Long Running Operation.
      *
      * Generated from protobuf field <code>string last_suggestions_import_operation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -149,8 +149,8 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
      *     @type string $last_suggestions_import_operation
      *           Output only. Name of the LRO corresponding to the latest suggestion terms
      *           list import.
-     *           Can use [GetOperation][google.longrunning.Operations.GetOperation] API to
-     *           retrieve the latest state of the Long Running Operation.
+     *           Can use [GetOperation][google.longrunning.Operations.GetOperation] API
+     *           method to retrieve the latest state of the Long Running Operation.
      *     @type \Google\Cloud\Retail\V2\CompletionDataInputConfig $denylist_input_config
      *           Output only. The source data for the latest import of the autocomplete
      *           denylist phrases.
@@ -377,8 +377,8 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the LRO corresponding to the latest suggestion terms
      * list import.
-     * Can use [GetOperation][google.longrunning.Operations.GetOperation] API to
-     * retrieve the latest state of the Long Running Operation.
+     * Can use [GetOperation][google.longrunning.Operations.GetOperation] API
+     * method to retrieve the latest state of the Long Running Operation.
      *
      * Generated from protobuf field <code>string last_suggestions_import_operation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -391,8 +391,8 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the LRO corresponding to the latest suggestion terms
      * list import.
-     * Can use [GetOperation][google.longrunning.Operations.GetOperation] API to
-     * retrieve the latest state of the Long Running Operation.
+     * Can use [GetOperation][google.longrunning.Operations.GetOperation] API
+     * method to retrieve the latest state of the Long Running Operation.
      *
      * Generated from protobuf field <code>string last_suggestions_import_operation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

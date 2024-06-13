@@ -26,41 +26,41 @@ class RuntimeSoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notebook_upgrade_schedule = 1;</code>
      */
-    private $notebook_upgrade_schedule = '';
+    protected $notebook_upgrade_schedule = '';
     /**
      * Verifies core internal services are running.
      * Default: True
      *
      * Generated from protobuf field <code>optional bool enable_health_monitoring = 2;</code>
      */
-    private $enable_health_monitoring = null;
+    protected $enable_health_monitoring = null;
     /**
      * Runtime will automatically shutdown after idle_shutdown_time.
      * Default: True
      *
      * Generated from protobuf field <code>optional bool idle_shutdown = 3;</code>
      */
-    private $idle_shutdown = null;
+    protected $idle_shutdown = null;
     /**
      * Time in minutes to wait before shutting down runtime. Default: 180 minutes
      *
      * Generated from protobuf field <code>int32 idle_shutdown_timeout = 4;</code>
      */
-    private $idle_shutdown_timeout = 0;
+    protected $idle_shutdown_timeout = 0;
     /**
      * Install Nvidia Driver automatically.
      * Default: True
      *
      * Generated from protobuf field <code>bool install_gpu_driver = 5;</code>
      */
-    private $install_gpu_driver = false;
+    protected $install_gpu_driver = false;
     /**
      * Specify a custom Cloud Storage path where the GPU driver is stored.
      * If not specified, we'll automatically choose from official GPU drivers.
      *
      * Generated from protobuf field <code>string custom_gpu_driver_path = 6;</code>
      */
-    private $custom_gpu_driver_path = '';
+    protected $custom_gpu_driver_path = '';
     /**
      * Path to a Bash script that automatically runs after a notebook instance
      * fully boots up. The path must be a URL or
@@ -68,7 +68,7 @@ class RuntimeSoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string post_startup_script = 7;</code>
      */
-    private $post_startup_script = '';
+    protected $post_startup_script = '';
     /**
      * Optional. Use a list of container images to use as Kernels in the notebook instance.
      *
@@ -80,26 +80,26 @@ class RuntimeSoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool upgradeable = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $upgradeable = null;
+    protected $upgradeable = null;
     /**
      * Behavior for the post startup script.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeSoftwareConfig.PostStartupScriptBehavior post_startup_script_behavior = 10;</code>
      */
-    private $post_startup_script_behavior = 0;
+    protected $post_startup_script_behavior = 0;
     /**
      * Bool indicating whether JupyterLab terminal will be available or not.
      * Default: False
      *
      * Generated from protobuf field <code>optional bool disable_terminal = 11;</code>
      */
-    private $disable_terminal = null;
+    protected $disable_terminal = null;
     /**
      * Output only. version of boot image such as M100, from release label of the image.
      *
      * Generated from protobuf field <code>optional string version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.

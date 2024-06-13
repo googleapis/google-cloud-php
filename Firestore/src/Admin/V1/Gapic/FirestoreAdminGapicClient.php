@@ -37,6 +37,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\Backup;
 use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
+use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
@@ -113,9 +114,33 @@ use Google\Protobuf\Timestamp;
  * ```
  * $firestoreAdminClient = new FirestoreAdminClient();
  * try {
- *     $formattedParent = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
- *     $backupSchedule = new BackupSchedule();
- *     $response = $firestoreAdminClient->createBackupSchedule($formattedParent, $backupSchedule);
+ *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+ *     $operationResponse = $firestoreAdminClient->bulkDeleteDocuments($formattedName);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $firestoreAdminClient->bulkDeleteDocuments($formattedName);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'bulkDeleteDocuments');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $firestoreAdminClient->close();
  * }
@@ -573,6 +598,102 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Bulk deletes a subset of documents from Google Cloud Firestore.
+     * Documents created or updated after the underlying system starts to process
+     * the request will not be deleted. The bulk delete occurs in the background
+     * and its progress can be monitored and managed via the Operation resource
+     * that is created.
+     *
+     * For more details on bulk delete behavior, refer to:
+     * https://cloud.google.com/firestore/docs/manage-data/bulk-delete
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $operationResponse = $firestoreAdminClient->bulkDeleteDocuments($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->bulkDeleteDocuments($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'bulkDeleteDocuments');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Database to operate. Should be of the form:
+     *                             `projects/{project_id}/databases/{database_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string[] $collectionIds
+     *           Optional. IDs of the collection groups to delete. Unspecified means all
+     *           collection groups.
+     *
+     *           Each collection group in this list must be unique.
+     *     @type string[] $namespaceIds
+     *           Optional. Namespaces to delete.
+     *
+     *           An empty list means all namespaces. This is the recommended
+     *           usage for databases that don't use namespaces.
+     *
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to delete from them.
+     *
+     *           Each namespace in this list must be unique.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkDeleteDocuments($name, array $optionalArgs = [])
+    {
+        $request = new BulkDeleteDocumentsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['collectionIds'])) {
+            $request->setCollectionIds($optionalArgs['collectionIds']);
+        }
+
+        if (isset($optionalArgs['namespaceIds'])) {
+            $request->setNamespaceIds($optionalArgs['namespaceIds']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('BulkDeleteDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Creates a backup schedule on a database.
      * At most two backup schedules can be configured on a database, one daily
      * backup schedule and one weekly backup schedule.
@@ -1013,7 +1134,8 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to export. Unspecified means all collections.
+     *           Which collection ids to export. Unspecified means all collections. Each
+     *           collection id in this list must be unique.
      *     @type string $outputUriPrefix
      *           The output URI. Currently only supports Google Cloud Storage URIs of the
      *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
@@ -1326,7 +1448,7 @@ class FirestoreAdminGapicClient
      *
      *     @type string[] $collectionIds
      *           Which collection ids to import. Unspecified means all collections included
-     *           in the import.
+     *           in the import. Each collection id in this list must be unique.
      *     @type string $inputUriPrefix
      *           Location of the exported files.
      *           This must match the output_uri_prefix of an ExportDocumentsResponse from
@@ -1477,6 +1599,8 @@ class FirestoreAdminGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $showDeleted
+     *           If true, also returns deleted resources.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1493,6 +1617,10 @@ class FirestoreAdminGapicClient
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['showDeleted'])) {
+            $request->setShowDeleted($optionalArgs['showDeleted']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ListDatabases', ListDatabasesResponse::class, $optionalArgs, $request)->wait();
@@ -1543,7 +1671,8 @@ class FirestoreAdminGapicClient
      *           only supports listing fields that have been explicitly overridden. To issue
      *           this query, call
      *           [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
-     *           with a filter that includes `indexConfig.usesAncestorConfig:false` .
+     *           with a filter that includes `indexConfig.usesAncestorConfig:false` or
+     *           `ttlConfig:*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1666,7 +1795,7 @@ class FirestoreAdminGapicClient
      *
      * The new database must be in the same cloud region or multi-region location
      * as the existing backup. This behaves similar to
-     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.CreateDatabase]
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
      * except instead of creating a new empty database, a new database is created
      * with the database type, index configuration, and documents from an existing
      * backup.

@@ -1,0 +1,31 @@
+{
+    "name": "google/shopping-merchant-products",
+    "description": "Google Shopping Merchant Products Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Shopping\\Merchant\\Products\\": "src",
+            "GPBMetadata\\Google\\Shopping\\Merchant\\Products\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "shopping-merchant-products",
+            "path": "ShoppingMerchantProducts",
+            "target": "googleapis/php-shopping-merchant-products"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "google/gax": "^1.34.0",
+        "google/shopping-common-protos": "^0.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

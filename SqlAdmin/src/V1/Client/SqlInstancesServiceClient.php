@@ -733,7 +733,8 @@ final class SqlInstancesServiceClient
     }
 
     /**
-     * Promotes the read replica instance to be a stand-alone Cloud SQL instance.
+     * Promotes the read replica instance to be an independent Cloud SQL
+     * primary instance.
      * Using this operation might cause your instance to restart.
      *
      * The async variant is {@see SqlInstancesServiceClient::promoteReplicaAsync()} .
@@ -1051,7 +1052,8 @@ final class SqlInstancesServiceClient
     }
 
     /**
-     * Switches over from the primary instance to the replica instance.
+     * Switches over from the primary instance to the designated DR replica
+     * instance.
      *
      * The async variant is {@see SqlInstancesServiceClient::switchoverAsync()} .
      *

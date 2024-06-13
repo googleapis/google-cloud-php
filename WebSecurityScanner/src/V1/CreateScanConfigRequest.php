@@ -21,13 +21,13 @@ class CreateScanConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ScanConfig to be created.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfig scan_config = 2;</code>
      */
-    private $scan_config = null;
+    protected $scan_config = null;
 
     /**
      * Constructor.

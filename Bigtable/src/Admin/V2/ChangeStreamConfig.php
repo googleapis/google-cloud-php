@@ -24,7 +24,7 @@ class ChangeStreamConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_period = 1;</code>
      */
-    private $retention_period = null;
+    protected $retention_period = null;
 
     /**
      * Constructor.

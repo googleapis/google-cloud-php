@@ -21,13 +21,13 @@ class DiagnoseInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Defines flags that are used to run the diagnostic tool
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.DiagnosticConfig diagnostic_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $diagnostic_config = null;
+    protected $diagnostic_config = null;
 
     /**
      * @param string                                      $name             Required. Format:

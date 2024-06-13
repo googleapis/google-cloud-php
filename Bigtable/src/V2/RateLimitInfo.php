@@ -25,7 +25,7 @@ class RateLimitInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 1;</code>
      */
-    private $period = null;
+    protected $period = null;
     /**
      * If it has been at least one `period` since the last load adjustment, the
      * client should multiply the current load by this value to get the new target
@@ -38,7 +38,7 @@ class RateLimitInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double factor = 2;</code>
      */
-    private $factor = 0.0;
+    protected $factor = 0.0;
 
     /**
      * Constructor.

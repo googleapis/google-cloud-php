@@ -59,6 +59,26 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ignore_record_details_in_response = 6;</code>
      */
     protected $ignore_record_details_in_response = false;
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 7;</code>
+     */
+    private $user_labels;
 
     /**
      * Constructor.
@@ -84,6 +104,22 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $ignore_record_details_in_response
      *           If true, the response will contain only record ID and score. By default, it
      *           is false, the response will contain record details.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           The user labels applied to a resource must meet the following requirements:
+     *           * Each resource can have multiple labels, up to a maximum of 64.
+     *           * Each label must be a key-value pair.
+     *           * Keys have a minimum length of 1 character and a maximum length of 63
+     *             characters and cannot be empty. Values can be empty and have a maximum
+     *             length of 63 characters.
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *             underscores, and dashes. All characters must use UTF-8 encoding, and
+     *             international characters are allowed.
+     *           * The key portion of a label must be unique. However, you can use the same
+     *             key with multiple resources.
+     *           * Keys must start with a lowercase letter or international character.
+     *           See [Google Cloud
+     *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -255,6 +291,60 @@ class RankRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_record_details_in_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 7;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 7;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
 
         return $this;
     }

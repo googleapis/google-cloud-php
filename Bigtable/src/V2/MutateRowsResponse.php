@@ -28,7 +28,7 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.bigtable.v2.RateLimitInfo rate_limit_info = 3;</code>
      */
-    private $rate_limit_info = null;
+    protected $rate_limit_info = null;
 
     /**
      * Constructor.

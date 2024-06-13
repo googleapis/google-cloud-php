@@ -36,23 +36,15 @@ use Google\Cloud\Video\Stitcher\V1\VodSession;
  * @param string $formattedParent      The project and location in which the VOD session should be
  *                                     created, in the form of `projects/{project_number}/locations/{location}`. Please see
  *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param string $vodSessionSourceUri  URI of the media to stitch.
- * @param string $vodSessionAdTagUri   Ad tag URI.
  * @param int    $vodSessionAdTracking Determines how the ad should be tracked.
  */
-function create_vod_session_sample(
-    string $formattedParent,
-    string $vodSessionSourceUri,
-    string $vodSessionAdTagUri,
-    int $vodSessionAdTracking
-): void {
+function create_vod_session_sample(string $formattedParent, int $vodSessionAdTracking): void
+{
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
     // Prepare the request message.
     $vodSession = (new VodSession())
-        ->setSourceUri($vodSessionSourceUri)
-        ->setAdTagUri($vodSessionAdTagUri)
         ->setAdTracking($vodSessionAdTracking);
     $request = (new CreateVodSessionRequest())
         ->setParent($formattedParent)
@@ -80,15 +72,8 @@ function create_vod_session_sample(
 function callSample(): void
 {
     $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $vodSessionSourceUri = '[SOURCE_URI]';
-    $vodSessionAdTagUri = '[AD_TAG_URI]';
     $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
 
-    create_vod_session_sample(
-        $formattedParent,
-        $vodSessionSourceUri,
-        $vodSessionAdTagUri,
-        $vodSessionAdTracking
-    );
+    create_vod_session_sample($formattedParent, $vodSessionAdTracking);
 }
 // [END videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]

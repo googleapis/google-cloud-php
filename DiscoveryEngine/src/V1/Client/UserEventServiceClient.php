@@ -27,7 +27,6 @@ namespace Google\Cloud\DiscoveryEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -39,6 +38,7 @@ use Google\Cloud\DiscoveryEngine\V1\CollectUserEventRequest;
 use Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest;
 use Google\Cloud\DiscoveryEngine\V1\UserEvent;
 use Google\Cloud\DiscoveryEngine\V1\WriteUserEventRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -137,6 +137,25 @@ final class UserEventServiceClient
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a data_store
      * resource.
      *
@@ -180,6 +199,27 @@ final class UserEventServiceClient
             'data_store' => $dataStore,
             'branch' => $branch,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a engine
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted engine resource.
+     */
+    public static function engineName(string $project, string $location, string $collection, string $engine): string
+    {
+        return self::getPathTemplate('engine')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
         ]);
     }
 
@@ -292,6 +332,7 @@ final class UserEventServiceClient
      * Template: Pattern
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
@@ -418,7 +459,7 @@ final class UserEventServiceClient
     }
 
     /**
-     * Bulk import of User events. Request processing might be
+     * Bulk import of user events. Request processing might be
      * synchronous. Events that already exist are skipped.
      * Use this method for backfilling historical user events.
      *

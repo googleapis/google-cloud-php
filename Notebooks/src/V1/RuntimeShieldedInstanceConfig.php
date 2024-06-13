@@ -26,13 +26,13 @@ class RuntimeShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_secure_boot = 1;</code>
      */
-    private $enable_secure_boot = false;
+    protected $enable_secure_boot = false;
     /**
      * Defines whether the instance has the vTPM enabled. Enabled by default.
      *
      * Generated from protobuf field <code>bool enable_vtpm = 2;</code>
      */
-    private $enable_vtpm = false;
+    protected $enable_vtpm = false;
     /**
      * Defines whether the instance has integrity monitoring enabled.
      * Enables monitoring and attestation of the boot integrity of the instance.
@@ -42,7 +42,7 @@ class RuntimeShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_integrity_monitoring = 3;</code>
      */
-    private $enable_integrity_monitoring = false;
+    protected $enable_integrity_monitoring = false;
 
     /**
      * Constructor.

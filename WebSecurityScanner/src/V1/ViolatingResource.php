@@ -21,13 +21,13 @@ class ViolatingResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content_type = 1;</code>
      */
-    private $content_type = '';
+    protected $content_type = '';
     /**
      * URL of this violating resource.
      *
      * Generated from protobuf field <code>string resource_url = 2;</code>
      */
-    private $resource_url = '';
+    protected $resource_url = '';
 
     /**
      * Constructor.

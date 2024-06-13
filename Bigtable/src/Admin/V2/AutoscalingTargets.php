@@ -23,7 +23,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 cpu_utilization_percent = 2;</code>
      */
-    private $cpu_utilization_percent = 0;
+    protected $cpu_utilization_percent = 0;
     /**
      * The storage utilization that the Autoscaler should be trying to achieve.
      * This number is limited between 2560 (2.5TiB) and 5120 (5TiB) for a SSD
@@ -34,7 +34,7 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 storage_utilization_gib_per_node = 3;</code>
      */
-    private $storage_utilization_gib_per_node = 0;
+    protected $storage_utilization_gib_per_node = 0;
 
     /**
      * Constructor.

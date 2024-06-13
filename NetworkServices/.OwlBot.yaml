@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/networkservices/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/NetworkServices/$1/$2
+api-name: NetworkServices

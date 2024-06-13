@@ -28,7 +28,8 @@ use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\SqlInstancesServiceClient;
 
 /**
- * Promotes the read replica instance to be a stand-alone Cloud SQL instance.
+ * Promotes the read replica instance to be an independent Cloud SQL
+ * primary instance.
  * Using this operation might cause your instance to restart.
  *
  * This sample has been automatically generated and should be regarded as a code

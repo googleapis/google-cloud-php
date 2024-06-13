@@ -20,7 +20,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $replication_state = 0;
+    protected $replication_state = 0;
     /**
      * Output only. The encryption information for the table in this cluster.
      * If the encryption key protecting this resource is customer managed, then

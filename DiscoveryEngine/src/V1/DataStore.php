@@ -73,6 +73,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
+     * Configuration for Document understanding and enrichment.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DocumentProcessingConfig document_processing_config = 27;</code>
+     */
+    protected $document_processing_config = null;
+    /**
      * The start schema to use for this
      * [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
      * it. If unset, a default vertical specialized schema will be used.
@@ -125,6 +131,8 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp the
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig $document_processing_config
+     *           Configuration for Document understanding and enrichment.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Schema $starting_schema
      *           The start schema to use for this
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] when provisioning
@@ -363,6 +371,42 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for Document understanding and enrichment.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DocumentProcessingConfig document_processing_config = 27;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig|null
+     */
+    public function getDocumentProcessingConfig()
+    {
+        return $this->document_processing_config;
+    }
+
+    public function hasDocumentProcessingConfig()
+    {
+        return isset($this->document_processing_config);
+    }
+
+    public function clearDocumentProcessingConfig()
+    {
+        unset($this->document_processing_config);
+    }
+
+    /**
+     * Configuration for Document understanding and enrichment.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.DocumentProcessingConfig document_processing_config = 27;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig $var
+     * @return $this
+     */
+    public function setDocumentProcessingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig::class);
+        $this->document_processing_config = $var;
 
         return $this;
     }

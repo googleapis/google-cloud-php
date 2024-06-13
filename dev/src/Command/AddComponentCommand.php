@@ -201,9 +201,10 @@ class AddComponentCommand extends Command
         $repoMetadataFullPath = $this->rootPath . '/.repo-metadata-full.json';
         $repoMetadataFull = json_decode(file_get_contents($repoMetadataFullPath), true);
         $repoMetadataFull[$new->componentName] = $repoMetadata;
+        ksort($repoMetadataFull);
         file_put_contents(
             $repoMetadataFullPath,
-            json_encode($repoMetadataFull, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+            json_encode($repoMetadataFull, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL
         );
 
         // Write composer file

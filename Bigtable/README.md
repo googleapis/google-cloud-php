@@ -66,6 +66,8 @@ foreach ($rows as $row) {
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
 any minor or patch releases. We will address issues and requests with the highest priority.
 
+Please see the [migration guide](./MIGRATING.md) to upgrade from **V1** of the library to **V2**.
+
 ### Next Steps
 
 Take a look at and understand the [official documentation](https://cloud.google.com/bigtable/docs).

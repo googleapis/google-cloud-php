@@ -24,7 +24,6 @@ namespace Google\Cloud\AssuredWorkloads\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AssuredWorkloads\V1\AcknowledgeViolationRequest;
@@ -45,6 +44,7 @@ use Google\Cloud\AssuredWorkloads\V1\UpdateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1\Violation;
 use Google\Cloud\AssuredWorkloads\V1\Workload;
 use Google\Cloud\AssuredWorkloads\V1\Workload\ComplianceRegime;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

@@ -22,14 +22,14 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The operator to use for the node resources specified in the `values`
      * parameter.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.SchedulingNodeAffinity.Operator operator = 2;</code>
      */
-    private $operator = 0;
+    protected $operator = 0;
     /**
      * Corresponds to the label values of Node resource.
      *

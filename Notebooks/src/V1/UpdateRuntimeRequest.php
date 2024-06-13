@@ -20,7 +20,7 @@ class UpdateRuntimeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Runtime runtime = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $runtime = null;
+    protected $runtime = null;
     /**
      * Required. Specifies the path, relative to `Runtime`, of
      * the field to update. For example, to change the software configuration
@@ -45,13 +45,13 @@ class UpdateRuntimeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Idempotent request UUID.
      *
      * Generated from protobuf field <code>string request_id = 3;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\Notebooks\V1\Runtime $runtime    Required. The Runtime to be updated.

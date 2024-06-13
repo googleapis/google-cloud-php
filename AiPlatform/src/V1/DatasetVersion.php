@@ -60,6 +60,13 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metadata = null;
+    /**
+     * Output only. Reference to the public base model last used by the dataset
+     * version. Only set for prompt dataset versions.
+     *
+     * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_reference = '';
 
     /**
      * Constructor.
@@ -84,6 +91,9 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type \Google\Protobuf\Value $metadata
      *           Required. Output only. Additional information about the DatasetVersion.
+     *     @type string $model_reference
+     *           Output only. Reference to the public base model last used by the dataset
+     *           version. Only set for prompt dataset versions.
      * }
      */
     public function __construct($data = NULL) {
@@ -305,6 +315,34 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reference to the public base model last used by the dataset
+     * version. Only set for prompt dataset versions.
+     *
+     * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelReference()
+    {
+        return $this->model_reference;
+    }
+
+    /**
+     * Output only. Reference to the public base model last used by the dataset
+     * version. Only set for prompt dataset versions.
+     *
+     * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelReference($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_reference = $var;
 
         return $this;
     }

@@ -24,7 +24,6 @@ namespace Google\Cloud\NetApp\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\GetLocationRequest;
@@ -105,6 +104,7 @@ use Google\Cloud\NetApp\V1\UpdateVolumeRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigResponse;
 use Google\Cloud\NetApp\V1\Volume;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

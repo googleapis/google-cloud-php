@@ -20,7 +20,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User-defined unique ID of this environment. The `environment_id` must
      * be 1 to 63 characters long and contain only lowercase letters,
@@ -29,13 +29,13 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $environment_id = '';
+    protected $environment_id = '';
     /**
      * Required. The environment to be created.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Environment environment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $environment = null;
+    protected $environment = null;
 
     /**
      * @param string                                 $parent        Required. Format: `projects/{project_id}/locations/{location}`

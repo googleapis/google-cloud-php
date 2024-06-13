@@ -212,6 +212,12 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_0_40 = 358;
     /**
+     * The database version is MySQL 8.4.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_4 = 398;</code>
+     */
+    const MYSQL_8_4 = 398;
+    /**
      * The database version is SQL Server 2019 Standard.
      *
      * Generated from protobuf enum <code>SQLSERVER_2019_STANDARD = 26;</code>
@@ -294,6 +300,7 @@ class SqlDatabaseVersion
         self::MYSQL_8_0_38 => 'MYSQL_8_0_38',
         self::MYSQL_8_0_39 => 'MYSQL_8_0_39',
         self::MYSQL_8_0_40 => 'MYSQL_8_0_40',
+        self::MYSQL_8_4 => 'MYSQL_8_4',
         self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',
         self::SQLSERVER_2019_ENTERPRISE => 'SQLSERVER_2019_ENTERPRISE',
         self::SQLSERVER_2019_EXPRESS => 'SQLSERVER_2019_EXPRESS',

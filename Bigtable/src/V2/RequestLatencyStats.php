@@ -36,7 +36,7 @@ class RequestLatencyStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration frontend_server_latency = 1;</code>
      */
-    private $frontend_server_latency = null;
+    protected $frontend_server_latency = null;
 
     /**
      * Constructor.

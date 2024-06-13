@@ -21,7 +21,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Display name used for UI purposes.
      * Name can only contain alphanumeric characters, hyphens `-`,
@@ -29,17 +29,17 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A brief description of this environment.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Schedule.State state = 4;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Cron-tab formatted schedule by which the job will execute.
      * Format: minute, hour, day of month, month, day of week,
@@ -48,7 +48,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cron_schedule = 5;</code>
      */
-    private $cron_schedule = '';
+    protected $cron_schedule = '';
     /**
      * Timezone on which the cron_schedule.
      * The value of this field must be a time zone name from the tz database.
@@ -60,25 +60,25 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 6;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Output only. Time the schedule was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time the schedule was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Notebook Execution Template corresponding to this schedule.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.ExecutionTemplate execution_template = 9;</code>
      */
-    private $execution_template = null;
+    protected $execution_template = null;
     /**
      * Output only. The most recent execution names triggered from this schedule and their
      * corresponding states.

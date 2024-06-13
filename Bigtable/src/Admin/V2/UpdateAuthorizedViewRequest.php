@@ -24,7 +24,7 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView authorized_view = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorized_view = null;
+    protected $authorized_view = null;
     /**
      * Optional. The list of fields to update.
      * A mask specifying which fields in the AuthorizedView resource should be
@@ -36,14 +36,14 @@ class UpdateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. If true, ignore the safety checks when updating the
      * AuthorizedView.
      *
      * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_warnings = false;
+    protected $ignore_warnings = false;
 
     /**
      * @param \Google\Cloud\Bigtable\Admin\V2\AuthorizedView $authorizedView Required. The AuthorizedView to update. The `name` in `authorized_view` is

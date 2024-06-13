@@ -24,7 +24,7 @@ class BwdifConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mode = 1;</code>
      */
-    private $mode = '';
+    protected $mode = '';
     /**
      * The picture field parity assumed for the input interlaced video.
      * The default is `auto`.
@@ -35,14 +35,14 @@ class BwdifConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parity = 2;</code>
      */
-    private $parity = '';
+    protected $parity = '';
     /**
      * Deinterlace all frames rather than just the frames identified as
      * interlaced. The default is `false`.
      *
      * Generated from protobuf field <code>bool deinterlace_all_frames = 3;</code>
      */
-    private $deinterlace_all_frames = false;
+    protected $deinterlace_all_frames = false;
 
     /**
      * Constructor.

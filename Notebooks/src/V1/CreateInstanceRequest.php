@@ -21,19 +21,19 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User-defined unique ID of this instance.
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Required. The instance to be created.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * @param string                              $parent     Required. Format:

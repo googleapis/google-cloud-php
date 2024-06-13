@@ -21,13 +21,13 @@ class FindingTypeStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string finding_type = 1;</code>
      */
-    private $finding_type = '';
+    protected $finding_type = '';
     /**
      * Output only. The count of findings belonging to this finding type.
      *
      * Generated from protobuf field <code>int32 finding_count = 2;</code>
      */
-    private $finding_count = 0;
+    protected $finding_count = 0;
 
     /**
      * Constructor.

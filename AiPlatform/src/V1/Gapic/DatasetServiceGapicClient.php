@@ -66,6 +66,7 @@ use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest\OrderByAnnotation;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsResponse;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\UpdateDatasetVersionRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -2068,6 +2069,66 @@ class DatasetServiceGapicClient
         return $this->startCall(
             'UpdateDataset',
             Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a DatasetVersion.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $datasetVersion = new DatasetVersion();
+     *     $updateMask = new FieldMask();
+     *     $response = $datasetServiceClient->updateDatasetVersion($datasetVersion, $updateMask);
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param DatasetVersion $datasetVersion Required. The DatasetVersion which replaces the resource on the server.
+     * @param FieldMask      $updateMask     Required. The update mask applies to the resource.
+     *                                       For the `FieldMask` definition, see
+     *                                       [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
+     *
+     *                                       * `display_name`
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DatasetVersion
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateDatasetVersion(
+        $datasetVersion,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateDatasetVersionRequest();
+        $requestParamHeaders = [];
+        $request->setDatasetVersion($datasetVersion);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'dataset_version.name'
+        ] = $datasetVersion->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateDatasetVersion',
+            DatasetVersion::class,
             $optionalArgs,
             $request
         )->wait();

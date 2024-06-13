@@ -20,7 +20,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Overlay.Image image = 1;</code>
      */
-    private $image = null;
+    protected $image = null;
     /**
      * List of Animations. The list should be chronological, without any time
      * overlap.

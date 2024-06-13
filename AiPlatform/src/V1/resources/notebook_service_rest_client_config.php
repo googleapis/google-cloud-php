@@ -125,6 +125,22 @@ return [
                     ],
                 ],
             ],
+            'UpdateNotebookRuntimeTemplate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{notebook_runtime_template.name=projects/*/locations/*/notebookRuntimeTemplates/*}',
+                'body' => 'notebook_runtime_template',
+                'placeholders' => [
+                    'notebook_runtime_template.name' => [
+                        'getters' => [
+                            'getNotebookRuntimeTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpgradeNotebookRuntime' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimes/*}:upgrade',
@@ -355,6 +371,14 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}:cancel',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}:cancel',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}:cancel',
@@ -668,6 +692,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}',
+                    ],
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}',
@@ -1005,6 +1037,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}',
@@ -1356,6 +1396,14 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*}/operations',
                     ],
                     [
@@ -1699,6 +1747,14 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}:wait',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}:wait',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}:wait',

@@ -24,7 +24,7 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
@@ -32,13 +32,13 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_profile_id = 2;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
     /**
      * The partition to read changes from.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.StreamPartition partition = 3;</code>
      */
-    private $partition = null;
+    protected $partition = null;
     /**
      * If specified, OK will be returned when the stream advances beyond
      * this time. Otherwise, changes will be continuously delivered on the stream.
@@ -46,14 +46,14 @@ class ReadChangeStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * If specified, the duration between `Heartbeat` messages on the stream.
      * Otherwise, defaults to 5 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration heartbeat_duration = 7;</code>
      */
-    private $heartbeat_duration = null;
+    protected $heartbeat_duration = null;
     protected $start_from;
 
     /**

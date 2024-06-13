@@ -22,7 +22,7 @@ class Denoise extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double strength = 1;</code>
      */
-    private $strength = 0.0;
+    protected $strength = 0.0;
     /**
      * Set the denoiser mode. The default is `standard`.
      * Supported denoiser modes:
@@ -31,7 +31,7 @@ class Denoise extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tune = 2;</code>
      */
-    private $tune = '';
+    protected $tune = '';
 
     /**
      * Constructor.

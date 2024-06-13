@@ -23,14 +23,14 @@ class ResponseParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string zone_id = 1;</code>
      */
-    private $zone_id = null;
+    protected $zone_id = null;
     /**
      * Identifier for a cluster that represents set of
      * bigtable resources.
      *
      * Generated from protobuf field <code>optional string cluster_id = 2;</code>
      */
-    private $cluster_id = null;
+    protected $cluster_id = null;
 
     /**
      * Constructor.

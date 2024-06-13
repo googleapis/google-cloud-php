@@ -31,17 +31,16 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $document = null;
     /**
-     * If set to true, and the
+     * If set to `true` and the
      * [Document][google.cloud.discoveryengine.v1beta.Document] is not found, a
-     * new [Document][google.cloud.discoveryengine.v1beta.Document] will be
-     * created.
+     * new [Document][google.cloud.discoveryengine.v1beta.Document] is be created.
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
      */
     protected $allow_missing = false;
     /**
      * Indicates which fields in the provided imported 'document' to update. If
-     * not set, will by default update all fields.
+     * not set, by default updates all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
@@ -59,7 +58,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      *                                                                  [allow_missing][google.cloud.discoveryengine.v1beta.UpdateDocumentRequest.allow_missing]
      *                                                                  is not set, a `NOT_FOUND` error is returned.
      * @param \Google\Protobuf\FieldMask                    $updateMask Indicates which fields in the provided imported 'document' to update. If
-     *                                                                  not set, will by default update all fields.
+     *                                                                  not set, by default updates all fields.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\UpdateDocumentRequest
      *
@@ -88,13 +87,12 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           [allow_missing][google.cloud.discoveryengine.v1beta.UpdateDocumentRequest.allow_missing]
      *           is not set, a `NOT_FOUND` error is returned.
      *     @type bool $allow_missing
-     *           If set to true, and the
+     *           If set to `true` and the
      *           [Document][google.cloud.discoveryengine.v1beta.Document] is not found, a
-     *           new [Document][google.cloud.discoveryengine.v1beta.Document] will be
-     *           created.
+     *           new [Document][google.cloud.discoveryengine.v1beta.Document] is be created.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Indicates which fields in the provided imported 'document' to update. If
-     *           not set, will by default update all fields.
+     *           not set, by default updates all fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,10 +151,9 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the
+     * If set to `true` and the
      * [Document][google.cloud.discoveryengine.v1beta.Document] is not found, a
-     * new [Document][google.cloud.discoveryengine.v1beta.Document] will be
-     * created.
+     * new [Document][google.cloud.discoveryengine.v1beta.Document] is be created.
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
      * @return bool
@@ -167,10 +164,9 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the
+     * If set to `true` and the
      * [Document][google.cloud.discoveryengine.v1beta.Document] is not found, a
-     * new [Document][google.cloud.discoveryengine.v1beta.Document] will be
-     * created.
+     * new [Document][google.cloud.discoveryengine.v1beta.Document] is be created.
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
      * @param bool $var
@@ -186,7 +182,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates which fields in the provided imported 'document' to update. If
-     * not set, will by default update all fields.
+     * not set, by default updates all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -208,7 +204,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates which fields in the provided imported 'document' to update. If
-     * not set, will by default update all fields.
+     * not set, by default updates all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var
