@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for active A/B testing [Experiments][].
+ * Metadata for active A/B testing [Experiment][].
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.ExperimentInfo</code>
  */

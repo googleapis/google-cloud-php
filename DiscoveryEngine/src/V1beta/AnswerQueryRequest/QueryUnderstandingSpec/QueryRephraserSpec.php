@@ -23,7 +23,7 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
     protected $disable = false;
     /**
      * Max rephrase steps.
-     * The max number is 10 steps.
+     * The max number is 5 steps.
      * If not set or set to < 1, it will be set to 1 by default.
      *
      * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
@@ -40,7 +40,7 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
      *           Disable query rephraser.
      *     @type int $max_rephrase_steps
      *           Max rephrase steps.
-     *           The max number is 10 steps.
+     *           The max number is 5 steps.
      *           If not set or set to < 1, it will be set to 1 by default.
      * }
      */
@@ -77,7 +77,7 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Max rephrase steps.
-     * The max number is 10 steps.
+     * The max number is 5 steps.
      * If not set or set to < 1, it will be set to 1 by default.
      *
      * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
@@ -90,7 +90,7 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Max rephrase steps.
-     * The max number is 10 steps.
+     * The max number is 5 steps.
      * If not set or set to < 1, it will be set to 1 by default.
      *
      * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>

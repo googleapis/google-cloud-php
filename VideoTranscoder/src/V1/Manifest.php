@@ -21,13 +21,13 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
      */
-    private $file_name = '';
+    protected $file_name = '';
     /**
      * Required. Type of the manifest.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Manifest.ManifestType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. List of user given `MuxStream.key`s that should appear in this
      * manifest.

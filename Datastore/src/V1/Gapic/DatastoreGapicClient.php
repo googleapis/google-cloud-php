@@ -47,6 +47,7 @@ use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\Mutation;
 use Google\Cloud\Datastore\V1\PartitionId;
+use Google\Cloud\Datastore\V1\PropertyMask;
 use Google\Cloud\Datastore\V1\Query;
 use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReserveIdsRequest;
@@ -414,6 +415,13 @@ class DatastoreGapicClient
      *           database.
      *     @type ReadOptions $readOptions
      *           The options for this lookup request.
+     *     @type PropertyMask $propertyMask
+     *           The properties to return. Defaults to returning all properties.
+     *
+     *           If this field is set and an entity has a property not referenced in the
+     *           mask, it will be absent from [LookupResponse.found.entity.properties][].
+     *
+     *           The entity's key is always returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -438,6 +446,10 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['readOptions'])) {
             $request->setReadOptions($optionalArgs['readOptions']);
+        }
+
+        if (isset($optionalArgs['propertyMask'])) {
+            $request->setPropertyMask($optionalArgs['propertyMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -669,6 +681,12 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be a non-aggregation query.
+     *     @type PropertyMask $propertyMask
+     *           The properties to return.
+     *           This field must not be set for a projection query.
+     *
+     *           See
+     *           [LookupRequest.property_mask][google.datastore.v1.LookupRequest.property_mask].
      *     @type ExplainOptions $explainOptions
      *           Optional. Explain options for the query. If set, additional query
      *           statistics will be returned. If not, only query results will be returned.
@@ -704,6 +722,10 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
+        }
+
+        if (isset($optionalArgs['propertyMask'])) {
+            $request->setPropertyMask($optionalArgs['propertyMask']);
         }
 
         if (isset($optionalArgs['explainOptions'])) {

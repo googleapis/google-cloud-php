@@ -24,12 +24,14 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\SearchTuningServiceClient;
+use Google\Cloud\DiscoveryEngine\V1beta\ListCustomModelsRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\ListCustomModelsResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\TrainCustomModelRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\TrainCustomModelResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -67,6 +69,69 @@ class SearchTuningServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listCustomModelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ListCustomModelsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $request = (new ListCustomModelsRequest())->setDataStore($formattedDataStore);
+        $response = $gapicClient->listCustomModels($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1beta.SearchTuningService/ListCustomModels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDataStore();
+        $this->assertProtobufEquals($formattedDataStore, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listCustomModelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
+        $request = (new ListCustomModelsRequest())->setDataStore($formattedDataStore);
+        try {
+            $gapicClient->listCustomModels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function trainCustomModelTest()
     {
         $operationsTransport = $this->createTransport();
@@ -88,8 +153,10 @@ class SearchTuningServiceClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $modelStatus = 'modelStatus12165576';
+        $modelName = 'modelName2104871393';
         $expectedResponse = new TrainCustomModelResponse();
         $expectedResponse->setModelStatus($modelStatus);
+        $expectedResponse->setModelName($modelName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -194,70 +261,28 @@ class SearchTuningServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function trainCustomModelAsyncTest()
+    public function listCustomModelsAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/trainCustomModelTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $modelStatus = 'modelStatus12165576';
-        $expectedResponse = new TrainCustomModelResponse();
-        $expectedResponse->setModelStatus($modelStatus);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/trainCustomModelTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $expectedResponse = new ListCustomModelsResponse();
+        $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDataStore = $gapicClient->dataStoreName('[PROJECT]', '[LOCATION]', '[DATA_STORE]');
-        $request = (new TrainCustomModelRequest())->setDataStore($formattedDataStore);
-        $response = $gapicClient->trainCustomModelAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.discoveryengine.v1beta.SearchTuningService/TrainCustomModel',
-            $actualApiFuncCall
-        );
-        $actualValue = $actualApiRequestObject->getDataStore();
+        $request = (new ListCustomModelsRequest())->setDataStore($formattedDataStore);
+        $response = $gapicClient->listCustomModelsAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1beta.SearchTuningService/ListCustomModels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDataStore();
         $this->assertProtobufEquals($formattedDataStore, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/trainCustomModelTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

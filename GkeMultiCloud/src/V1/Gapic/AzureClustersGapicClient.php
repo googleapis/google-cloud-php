@@ -1011,6 +1011,11 @@ class AzureClustersGapicClient
      *
      *           If the provided etag does not match the current etag of the cluster,
      *           the request will fail and an ABORTED error will be returned.
+     *     @type bool $ignoreErrors
+     *           Optional. If set to true, the deletion of
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource will
+     *           succeed even if errors occur during deleting in cluster resources. Using
+     *           this parameter may result in orphaned resources in the cluster.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1037,6 +1042,10 @@ class AzureClustersGapicClient
 
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['ignoreErrors'])) {
+            $request->setIgnoreErrors($optionalArgs['ignoreErrors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1125,6 +1134,11 @@ class AzureClustersGapicClient
      *
      *           If the provided ETag does not match the current etag of the node pool,
      *           the request will fail and an ABORTED error will be returned.
+     *     @type bool $ignoreErrors
+     *           Optional. If set to true, the deletion of
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource will
+     *           succeed even if errors occur during deleting in node pool resources. Using
+     *           this parameter may result in orphaned resources in the node pool.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1151,6 +1165,10 @@ class AzureClustersGapicClient
 
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['ignoreErrors'])) {
+            $request->setIgnoreErrors($optionalArgs['ignoreErrors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1458,7 +1476,7 @@ class AzureClustersGapicClient
      *
      * @param string $azureCluster Required. The AzureCluster, which owns the JsonWebKeys.
      *                             Format:
-     *                             projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
      * @param array  $optionalArgs {
      *     Optional.
      *

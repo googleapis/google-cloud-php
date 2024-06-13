@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Gemini configuration.
+ * Gemini instance configuration.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1beta4.GeminiInstanceConfig</code>
  */
@@ -22,31 +22,31 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     private $entitled = null;
     /**
-     * Output only. Whether vacuum management is enabled.
+     * Output only. Whether the vacuum management is enabled.
      *
      * Generated from protobuf field <code>optional bool google_vacuum_mgmt_enabled = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $google_vacuum_mgmt_enabled = null;
     /**
-     * Output only. Whether oom session cancel is enabled.
+     * Output only. Whether canceling the out-of-memory (OOM) session is enabled.
      *
      * Generated from protobuf field <code>optional bool oom_session_cancel_enabled = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $oom_session_cancel_enabled = null;
     /**
-     * Output only. Whether active query is enabled.
+     * Output only. Whether the active query is enabled.
      *
      * Generated from protobuf field <code>optional bool active_query_enabled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $active_query_enabled = null;
     /**
-     * Output only. Whether index advisor is enabled.
+     * Output only. Whether the index advisor is enabled.
      *
      * Generated from protobuf field <code>optional bool index_advisor_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $index_advisor_enabled = null;
     /**
-     * Output only. Whether flag recommender is enabled.
+     * Output only. Whether the flag recommender is enabled.
      *
      * Generated from protobuf field <code>optional bool flag_recommender_enabled = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -61,15 +61,15 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $entitled
      *           Output only. Whether Gemini is enabled.
      *     @type bool $google_vacuum_mgmt_enabled
-     *           Output only. Whether vacuum management is enabled.
+     *           Output only. Whether the vacuum management is enabled.
      *     @type bool $oom_session_cancel_enabled
-     *           Output only. Whether oom session cancel is enabled.
+     *           Output only. Whether canceling the out-of-memory (OOM) session is enabled.
      *     @type bool $active_query_enabled
-     *           Output only. Whether active query is enabled.
+     *           Output only. Whether the active query is enabled.
      *     @type bool $index_advisor_enabled
-     *           Output only. Whether index advisor is enabled.
+     *           Output only. Whether the index advisor is enabled.
      *     @type bool $flag_recommender_enabled
-     *           Output only. Whether flag recommender is enabled.
+     *           Output only. Whether the flag recommender is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +114,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether vacuum management is enabled.
+     * Output only. Whether the vacuum management is enabled.
      *
      * Generated from protobuf field <code>optional bool google_vacuum_mgmt_enabled = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -135,7 +135,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether vacuum management is enabled.
+     * Output only. Whether the vacuum management is enabled.
      *
      * Generated from protobuf field <code>optional bool google_vacuum_mgmt_enabled = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -150,7 +150,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether oom session cancel is enabled.
+     * Output only. Whether canceling the out-of-memory (OOM) session is enabled.
      *
      * Generated from protobuf field <code>optional bool oom_session_cancel_enabled = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -171,7 +171,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether oom session cancel is enabled.
+     * Output only. Whether canceling the out-of-memory (OOM) session is enabled.
      *
      * Generated from protobuf field <code>optional bool oom_session_cancel_enabled = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -186,7 +186,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether active query is enabled.
+     * Output only. Whether the active query is enabled.
      *
      * Generated from protobuf field <code>optional bool active_query_enabled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -207,7 +207,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether active query is enabled.
+     * Output only. Whether the active query is enabled.
      *
      * Generated from protobuf field <code>optional bool active_query_enabled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -222,7 +222,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether index advisor is enabled.
+     * Output only. Whether the index advisor is enabled.
      *
      * Generated from protobuf field <code>optional bool index_advisor_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -243,7 +243,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether index advisor is enabled.
+     * Output only. Whether the index advisor is enabled.
      *
      * Generated from protobuf field <code>optional bool index_advisor_enabled = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -258,7 +258,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether flag recommender is enabled.
+     * Output only. Whether the flag recommender is enabled.
      *
      * Generated from protobuf field <code>optional bool flag_recommender_enabled = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -279,7 +279,7 @@ class GeminiInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether flag recommender is enabled.
+     * Output only. Whether the flag recommender is enabled.
      *
      * Generated from protobuf field <code>optional bool flag_recommender_enabled = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

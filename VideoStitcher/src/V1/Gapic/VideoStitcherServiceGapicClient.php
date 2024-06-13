@@ -40,16 +40,19 @@ use Google\Cloud\Video\Stitcher\V1\CreateCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\CreateVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\DeleteVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveAdTagDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodAdTagDetailRequest;
+use Google\Cloud\Video\Stitcher\V1\GetVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodStitchDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\ListCdnKeysRequest;
@@ -62,6 +65,8 @@ use Google\Cloud\Video\Stitcher\V1\ListSlatesRequest;
 use Google\Cloud\Video\Stitcher\V1\ListSlatesResponse;
 use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsResponse;
+use Google\Cloud\Video\Stitcher\V1\ListVodConfigsRequest;
+use Google\Cloud\Video\Stitcher\V1\ListVodConfigsResponse;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsResponse;
 use Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail;
@@ -69,8 +74,11 @@ use Google\Cloud\Video\Stitcher\V1\LiveConfig;
 use Google\Cloud\Video\Stitcher\V1\LiveSession;
 use Google\Cloud\Video\Stitcher\V1\Slate;
 use Google\Cloud\Video\Stitcher\V1\UpdateCdnKeyRequest;
+use Google\Cloud\Video\Stitcher\V1\UpdateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\UpdateVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
+use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
 use Google\LongRunning\Operation;
@@ -171,6 +179,8 @@ class VideoStitcherServiceGapicClient
     private static $slateNameTemplate;
 
     private static $vodAdTagDetailNameTemplate;
+
+    private static $vodConfigNameTemplate;
 
     private static $vodSessionNameTemplate;
 
@@ -285,6 +295,17 @@ class VideoStitcherServiceGapicClient
         return self::$vodAdTagDetailNameTemplate;
     }
 
+    private static function getVodConfigNameTemplate()
+    {
+        if (self::$vodConfigNameTemplate == null) {
+            self::$vodConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/vodConfigs/{vod_config}'
+            );
+        }
+
+        return self::$vodConfigNameTemplate;
+    }
+
     private static function getVodSessionNameTemplate()
     {
         if (self::$vodSessionNameTemplate == null) {
@@ -318,6 +339,7 @@ class VideoStitcherServiceGapicClient
                 'location' => self::getLocationNameTemplate(),
                 'slate' => self::getSlateNameTemplate(),
                 'vodAdTagDetail' => self::getVodAdTagDetailNameTemplate(),
+                'vodConfig' => self::getVodConfigNameTemplate(),
                 'vodSession' => self::getVodSessionNameTemplate(),
                 'vodStitchDetail' => self::getVodStitchDetailNameTemplate(),
             ];
@@ -470,6 +492,25 @@ class VideoStitcherServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a vod_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $vodConfig
+     *
+     * @return string The formatted vod_config resource.
+     */
+    public static function vodConfigName($project, $location, $vodConfig)
+    {
+        return self::getVodConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'vod_config' => $vodConfig,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a vod_session
      * resource.
      *
@@ -524,6 +565,7 @@ class VideoStitcherServiceGapicClient
      * - location: projects/{project}/locations/{location}
      * - slate: projects/{project}/locations/{location}/slates/{slate}
      * - vodAdTagDetail: projects/{project}/locations/{location}/vodSessions/{vod_session}/vodAdTagDetails/{vod_ad_tag_detail}
+     * - vodConfig: projects/{project}/locations/{location}/vodConfigs/{vod_config}
      * - vodSession: projects/{project}/locations/{location}/vodSessions/{vod_session}
      * - vodStitchDetail: projects/{project}/locations/{location}/vodSessions/{vod_session}/vodStitchDetails/{vod_stitch_detail}
      *
@@ -1015,6 +1057,109 @@ class VideoStitcherServiceGapicClient
     }
 
     /**
+     * Registers the VOD config with the provided unique ID in
+     * the specified region.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $vodConfigId = 'vod_config_id';
+     *     $vodConfig = new VodConfig();
+     *     $operationResponse = $videoStitcherServiceClient->createVodConfig($formattedParent, $vodConfigId, $vodConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->createVodConfig($formattedParent, $vodConfigId, $vodConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'createVodConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string    $parent       Required. The project in which the VOD config should be created, in
+     *                                the form of `projects/{project_number}/locations/{location}`.
+     * @param string    $vodConfigId  Required. The unique identifier ID to use for the VOD config.
+     * @param VodConfig $vodConfig    Required. The VOD config resource to create.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes since the first request.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported `(00000000-0000-0000-0000-000000000000)`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createVodConfig(
+        $parent,
+        $vodConfigId,
+        $vodConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateVodConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setVodConfigId($vodConfigId);
+        $request->setVodConfig($vodConfig);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateVodConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Creates a client side playback VOD session and returns the full
      * tracking and playback metadata of the session.
      *
@@ -1280,6 +1425,78 @@ class VideoStitcherServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeleteSlate',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified VOD config.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedName = $videoStitcherServiceClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
+     *     $operationResponse = $videoStitcherServiceClient->deleteVodConfig($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->deleteVodConfig($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'deleteVodConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the VOD config to be deleted, in the form of
+     *                             `projects/{project_number}/locations/{location}/vodConfigs/{id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteVodConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteVodConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteVodConfig',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -1578,6 +1795,56 @@ class VideoStitcherServiceGapicClient
         return $this->startCall(
             'GetVodAdTagDetail',
             VodAdTagDetail::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns the specified VOD config managed by the Video
+     * Stitcher API service.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedName = $videoStitcherServiceClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
+     *     $response = $videoStitcherServiceClient->getVodConfig($formattedName);
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the VOD config to be retrieved, in the form
+     *                             of `projects/{project_number}/locations/{location}/vodConfigs/{id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Video\Stitcher\V1\VodConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getVodConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetVodConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetVodConfig',
+            VodConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2114,6 +2381,100 @@ class VideoStitcherServiceGapicClient
     }
 
     /**
+     * Lists all VOD configs managed by the Video Stitcher API that
+     * belong to the specified project and region.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $formattedParent = $videoStitcherServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $videoStitcherServiceClient->listVodConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $videoStitcherServiceClient->listVodConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project that contains the list of VOD configs, in the
+     *                             form of `projects/{project_number}/locations/{location}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. The filter to apply to list results (see
+     *           [Filtering](https://google.aip.dev/160)).
+     *     @type string $orderBy
+     *           Optional. Specifies the ordering of results following
+     *           [Cloud API
+     *           syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listVodConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListVodConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListVodConfigs',
+            $optionalArgs,
+            ListVodConfigsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Returns a list of detailed stitching information of the specified VOD
      * session.
      *
@@ -2272,6 +2633,89 @@ class VideoStitcherServiceGapicClient
     }
 
     /**
+     * Updates the specified LiveConfig. Only update fields specified
+     * in the call method body.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $liveConfig = new LiveConfig();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $videoStitcherServiceClient->updateLiveConfig($liveConfig, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->updateLiveConfig($liveConfig, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'updateLiveConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param LiveConfig $liveConfig   Required. The LiveConfig resource which replaces the resource on the
+     *                                 server.
+     * @param FieldMask  $updateMask   Required. The update mask applies to the resource.
+     *                                 For the `FieldMask` definition, see
+     *                                 https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateLiveConfig(
+        $liveConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateLiveConfigRequest();
+        $requestParamHeaders = [];
+        $request->setLiveConfig($liveConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['live_config.name'] = $liveConfig->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateLiveConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Updates the specified slate.
      *
      * Sample code:
@@ -2341,6 +2785,89 @@ class VideoStitcherServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateSlate',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the specified VOD config. Only update fields specified
+     * in the call method body.
+     *
+     * Sample code:
+     * ```
+     * $videoStitcherServiceClient = new VideoStitcherServiceClient();
+     * try {
+     *     $vodConfig = new VodConfig();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $videoStitcherServiceClient->updateVodConfig($vodConfig, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $videoStitcherServiceClient->updateVodConfig($vodConfig, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $videoStitcherServiceClient->resumeOperation($operationName, 'updateVodConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $videoStitcherServiceClient->close();
+     * }
+     * ```
+     *
+     * @param VodConfig $vodConfig    Required. The VOD config resource which replaces the resource on the
+     *                                server.
+     * @param FieldMask $updateMask   Required. The update mask applies to the resource.
+     *                                For the `FieldMask` definition, see
+     *                                https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateVodConfig(
+        $vodConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateVodConfigRequest();
+        $requestParamHeaders = [];
+        $request->setVodConfig($vodConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['vod_config.name'] = $vodConfig->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateVodConfig',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

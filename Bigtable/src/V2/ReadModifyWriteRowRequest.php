@@ -23,7 +23,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * Optional. The unique name of the AuthorizedView to which the
      * read/modify/write rules should be applied.
@@ -32,21 +32,21 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_view_name = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $authorized_view_name = '';
+    protected $authorized_view_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 4;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
     /**
      * Required. The key of the row to which the read/modify/write rules should be
      * applied.
      *
      * Generated from protobuf field <code>bytes row_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $row_key = '';
+    protected $row_key = '';
     /**
      * Required. Rules specifying how the specified row's contents are to be
      * transformed into writes. Entries are applied in order, meaning that earlier

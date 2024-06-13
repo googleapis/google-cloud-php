@@ -24,7 +24,7 @@
     },
     "require": {
         "php": "^8.0",
-        "google/gax": "^1.30",
+        "google/gax": "^1.34.0",
         "google/grafeas": "^0.10.0"
     },
     "require-dev": {

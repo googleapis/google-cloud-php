@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSettingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     * Required. The name of the setting to get. See
+     * [Setting][google.cloud.resourcesettings.v1.Setting] for naming
      * requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +31,8 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
-     * @param string $name Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     * @param string $name Required. The name of the setting to get. See
+     *                     [Setting][google.cloud.resourcesettings.v1.Setting] for naming
      *                     requirements. Please see
      *                     {@see ResourceSettingsServiceClient::settingName()} for help formatting this field.
      *
@@ -51,7 +53,8 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     *           Required. The name of the setting to get. See
+     *           [Setting][google.cloud.resourcesettings.v1.Setting] for naming
      *           requirements.
      *     @type int $view
      *           The SettingView for this request.
@@ -63,7 +66,8 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     * Required. The name of the setting to get. See
+     * [Setting][google.cloud.resourcesettings.v1.Setting] for naming
      * requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -75,7 +79,8 @@ class GetSettingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     * Required. The name of the setting to get. See
+     * [Setting][google.cloud.resourcesettings.v1.Setting] for naming
      * requirements.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

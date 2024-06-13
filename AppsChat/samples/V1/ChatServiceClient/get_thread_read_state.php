@@ -30,7 +30,9 @@ use Google\Apps\Chat\V1\ThreadReadState;
 
 /**
  * Returns details about a user's read state within a thread, used to identify
- * read and unread messages.
+ * read and unread messages. For an example, see [Get details about a user's
+ * thread read
+ * state](https://developers.google.com/workspace/chat/get-thread-read-state).
  *
  * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).

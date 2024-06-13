@@ -29,21 +29,21 @@ class Audio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double lufs = 1;</code>
      */
-    private $lufs = 0.0;
+    protected $lufs = 0.0;
     /**
      * Enable boosting high frequency components. The default is `false`.
      * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool high_boost = 2;</code>
      */
-    private $high_boost = false;
+    protected $high_boost = false;
     /**
      * Enable boosting low frequency components. The default is `false`.
      * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool low_boost = 3;</code>
      */
-    private $low_boost = false;
+    protected $low_boost = false;
 
     /**
      * Constructor.

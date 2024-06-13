@@ -24,7 +24,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of items to return.
+     * Optional. The maximum number of items to return. The default value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -92,7 +92,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the namespace whose services you'd
      *           like to list.
      *     @type int $page_size
-     *           Optional. The maximum number of items to return.
+     *           Optional. The maximum number of items to return. The default value is 100.
      *     @type string $page_token
      *           Optional. The next_page_token value returned from a previous List request,
      *           if any.
@@ -169,7 +169,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return.
+     * Optional. The maximum number of items to return. The default value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -180,7 +180,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return.
+     * Optional. The maximum number of items to return. The default value is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

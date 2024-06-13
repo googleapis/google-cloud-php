@@ -19,7 +19,7 @@ class ThreadReadState
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
+Ó
 &google/chat/v1/thread_read_state.protogoogle.chat.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Ì
 ThreadReadState
 name (	2
@@ -27,8 +27,8 @@ class ThreadReadState
 #chat.googleapis.com/ThreadReadState<users/{user}/spaces/{space}/threads/{thread}/threadReadState2threadReadState"V
 GetThreadReadStateRequest9
 name (	B+àAúA%
-#chat.googleapis.com/ThreadReadStateBŸ
-com.google.chat.v1BThreadReadStateProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpbªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
+#chat.googleapis.com/ThreadReadStateB­
+com.google.chat.v1BThreadReadStateProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProtoªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;

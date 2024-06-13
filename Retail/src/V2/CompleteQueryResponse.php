@@ -32,9 +32,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      */
     private $attribution_token = '';
     /**
-     * Matched recent searches of this user. The maximum number of recent searches
-     * is 10. This field is a restricted feature. Contact Retail Search support
-     * team if you are interested in enabling it.
+     * Deprecated. Matched recent searches of this user. The maximum number of
+     * recent searches is 10. This field is a restricted feature. If you want to
+     * enable it, contact Retail Search support.
      * This feature is only available when
      * [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      * field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -48,7 +48,8 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Recent searches are deduplicated. More recent searches will be reserved
      * when duplication happens.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3 [deprecated = true];</code>
+     * @deprecated
      */
     private $recent_search_results;
 
@@ -67,9 +68,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *           for search events resulting from this completion, which enables accurate
      *           attribution of complete model performance.
      *     @type array<\Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult>|\Google\Protobuf\Internal\RepeatedField $recent_search_results
-     *           Matched recent searches of this user. The maximum number of recent searches
-     *           is 10. This field is a restricted feature. Contact Retail Search support
-     *           team if you are interested in enabling it.
+     *           Deprecated. Matched recent searches of this user. The maximum number of
+     *           recent searches is 10. This field is a restricted feature. If you want to
+     *           enable it, contact Retail Search support.
      *           This feature is only available when
      *           [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      *           field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -150,9 +151,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Matched recent searches of this user. The maximum number of recent searches
-     * is 10. This field is a restricted feature. Contact Retail Search support
-     * team if you are interested in enabling it.
+     * Deprecated. Matched recent searches of this user. The maximum number of
+     * recent searches is 10. This field is a restricted feature. If you want to
+     * enable it, contact Retail Search support.
      * This feature is only available when
      * [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      * field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -166,18 +167,20 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Recent searches are deduplicated. More recent searches will be reserved
      * when duplication happens.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getRecentSearchResults()
     {
+        @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
         return $this->recent_search_results;
     }
 
     /**
-     * Matched recent searches of this user. The maximum number of recent searches
-     * is 10. This field is a restricted feature. Contact Retail Search support
-     * team if you are interested in enabling it.
+     * Deprecated. Matched recent searches of this user. The maximum number of
+     * recent searches is 10. This field is a restricted feature. If you want to
+     * enable it, contact Retail Search support.
      * This feature is only available when
      * [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      * field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -191,12 +194,14 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Recent searches are deduplicated. More recent searches will be reserved
      * when duplication happens.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3 [deprecated = true];</code>
      * @param array<\Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setRecentSearchResults($var)
     {
+        @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult::class);
         $this->recent_search_results = $arr;
 

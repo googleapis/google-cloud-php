@@ -162,7 +162,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
     /**
      * Normalized [shipping
      * label](https://support.google.com/merchants/answer/6324504) specified in
-     * the feed.
+     * the data source.
      *
      * Generated from protobuf field <code>optional string shipping_label = 20;</code>
      */
@@ -295,7 +295,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *     @type string $shipping_label
      *           Normalized [shipping
      *           label](https://support.google.com/merchants/answer/6324504) specified in
-     *           the feed.
+     *           the data source.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtin
      *           List of Global Trade Item Numbers (GTINs) of the product.
      *     @type string $item_group_id
@@ -1084,7 +1084,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
     /**
      * Normalized [shipping
      * label](https://support.google.com/merchants/answer/6324504) specified in
-     * the feed.
+     * the data source.
      *
      * Generated from protobuf field <code>optional string shipping_label = 20;</code>
      * @return string
@@ -1107,7 +1107,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
     /**
      * Normalized [shipping
      * label](https://support.google.com/merchants/answer/6324504) specified in
-     * the feed.
+     * the data source.
      *
      * Generated from protobuf field <code>optional string shipping_label = 20;</code>
      * @param string $var

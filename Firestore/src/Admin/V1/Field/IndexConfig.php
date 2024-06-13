@@ -30,8 +30,8 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      */
     private $uses_ancestor_config = false;
     /**
-     * Output only. Specifies the resource name of the `Field` from which this field's
-     * index configuration is set (when `uses_ancestor_config` is true),
+     * Output only. Specifies the resource name of the `Field` from which this
+     * field's index configuration is set (when `uses_ancestor_config` is true),
      * or from which it *would* be set if this field had no index configuration
      * (when `uses_ancestor_config` is false).
      *
@@ -62,8 +62,8 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *           configuration specified by the `ancestor_field`.
      *           When false, the `Field`'s index configuration is defined explicitly.
      *     @type string $ancestor_field
-     *           Output only. Specifies the resource name of the `Field` from which this field's
-     *           index configuration is set (when `uses_ancestor_config` is true),
+     *           Output only. Specifies the resource name of the `Field` from which this
+     *           field's index configuration is set (when `uses_ancestor_config` is true),
      *           or from which it *would* be set if this field had no index configuration
      *           (when `uses_ancestor_config` is false).
      *     @type bool $reverting
@@ -136,8 +136,8 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the resource name of the `Field` from which this field's
-     * index configuration is set (when `uses_ancestor_config` is true),
+     * Output only. Specifies the resource name of the `Field` from which this
+     * field's index configuration is set (when `uses_ancestor_config` is true),
      * or from which it *would* be set if this field had no index configuration
      * (when `uses_ancestor_config` is false).
      *
@@ -150,8 +150,8 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the resource name of the `Field` from which this field's
-     * index configuration is set (when `uses_ancestor_config` is true),
+     * Output only. Specifies the resource name of the `Field` from which this
+     * field's index configuration is set (when `uses_ancestor_config` is true),
      * or from which it *would* be set if this field had no index configuration
      * (when `uses_ancestor_config` is false).
      *

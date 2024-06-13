@@ -92,7 +92,9 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $answerQueryToken = 'answerQueryToken886927553';
         $expectedResponse = new AnswerQueryResponse();
+        $expectedResponse->setAnswerQueryToken($answerQueryToken);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedServingConfig = $gapicClient->servingConfigName(
@@ -1018,7 +1020,9 @@ class ConversationalSearchServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $answerQueryToken = 'answerQueryToken886927553';
         $expectedResponse = new AnswerQueryResponse();
+        $expectedResponse->setAnswerQueryToken($answerQueryToken);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedServingConfig = $gapicClient->servingConfigName(

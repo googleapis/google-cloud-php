@@ -237,6 +237,13 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_category_filter_level = '';
     /**
+     * When the flag is enabled, the products in the denylist will not be filtered
+     * out in the recommendation filtering results.
+     *
+     * Generated from protobuf field <code>bool ignore_recs_denylist = 24;</code>
+     */
+    private $ignore_recs_denylist = false;
+    /**
      * The specification for personalization spec.
      * Can only be set if
      * [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
@@ -419,6 +426,9 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2main.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
+     *     @type bool $ignore_recs_denylist
+     *           When the flag is enabled, the products in the denylist will not be filtered
+     *           out in the recommendation filtering results.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec $personalization_spec
      *           The specification for personalization spec.
      *           Can only be set if
@@ -1126,6 +1136,34 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->enable_category_filter_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * When the flag is enabled, the products in the denylist will not be filtered
+     * out in the recommendation filtering results.
+     *
+     * Generated from protobuf field <code>bool ignore_recs_denylist = 24;</code>
+     * @return bool
+     */
+    public function getIgnoreRecsDenylist()
+    {
+        return $this->ignore_recs_denylist;
+    }
+
+    /**
+     * When the flag is enabled, the products in the denylist will not be filtered
+     * out in the recommendation filtering results.
+     *
+     * Generated from protobuf field <code>bool ignore_recs_denylist = 24;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreRecsDenylist($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_recs_denylist = $var;
 
         return $this;
     }

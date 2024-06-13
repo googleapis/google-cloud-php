@@ -21,25 +21,25 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the table the backup is created from.
      *
      * Generated from protobuf field <code>string source_table = 2;</code>
      */
-    private $source_table = '';
+    protected $source_table = '';
     /**
      * The time at which this operation started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * If set, the time at which this operation finished or was cancelled.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

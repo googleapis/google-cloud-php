@@ -25,11 +25,17 @@ class Neighbor extends \Google\Protobuf\Internal\Message
      */
     private $datapoint = null;
     /**
-     * The distance between the neighbor and the query vector.
+     * The distance between the neighbor and the dense embedding query.
      *
      * Generated from protobuf field <code>double distance = 2;</code>
      */
     private $distance = 0.0;
+    /**
+     * The distance between the neighbor and the query sparse_embedding.
+     *
+     * Generated from protobuf field <code>double sparse_distance = 3;</code>
+     */
+    private $sparse_distance = 0.0;
 
     /**
      * Constructor.
@@ -43,7 +49,9 @@ class Neighbor extends \Google\Protobuf\Internal\Message
      *           is set to true. Otherwise, only the "datapoint_id" and "crowding_tag"
      *           fields are populated.
      *     @type float $distance
-     *           The distance between the neighbor and the query vector.
+     *           The distance between the neighbor and the dense embedding query.
+     *     @type float $sparse_distance
+     *           The distance between the neighbor and the query sparse_embedding.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +102,7 @@ class Neighbor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The distance between the neighbor and the query vector.
+     * The distance between the neighbor and the dense embedding query.
      *
      * Generated from protobuf field <code>double distance = 2;</code>
      * @return float
@@ -105,7 +113,7 @@ class Neighbor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The distance between the neighbor and the query vector.
+     * The distance between the neighbor and the dense embedding query.
      *
      * Generated from protobuf field <code>double distance = 2;</code>
      * @param float $var
@@ -115,6 +123,32 @@ class Neighbor extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->distance = $var;
+
+        return $this;
+    }
+
+    /**
+     * The distance between the neighbor and the query sparse_embedding.
+     *
+     * Generated from protobuf field <code>double sparse_distance = 3;</code>
+     * @return float
+     */
+    public function getSparseDistance()
+    {
+        return $this->sparse_distance;
+    }
+
+    /**
+     * The distance between the neighbor and the query sparse_embedding.
+     *
+     * Generated from protobuf field <code>double sparse_distance = 3;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSparseDistance($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->sparse_distance = $var;
 
         return $this;
     }

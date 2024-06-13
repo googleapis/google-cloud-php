@@ -20,7 +20,7 @@ class SchedulePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_duration = 1;</code>
      */
-    private $idle_duration = null;
+    protected $idle_duration = null;
     /**
      * A flag to indicate whether to skip OS adaptation during the replication
      * sync. OS adaptation is a process where the VM's operating system undergoes
@@ -28,7 +28,7 @@ class SchedulePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_os_adaptation = 2;</code>
      */
-    private $skip_os_adaptation = false;
+    protected $skip_os_adaptation = false;
 
     /**
      * Constructor.

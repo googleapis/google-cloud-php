@@ -29,7 +29,7 @@ class VertexAIParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Environment variables.
      * At most 100 environment variables can be specified and unique.
@@ -143,6 +143,4 @@ class VertexAIParameters extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VertexAIParameters::class, \Google\Cloud\Notebooks\V1\ExecutionTemplate_VertexAIParameters::class);
 

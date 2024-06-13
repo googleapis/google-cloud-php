@@ -51,6 +51,10 @@ class Rule extends \Google\Protobuf\Internal\Message
      *           Filters results.
      *     @type \Google\Cloud\Retail\V2\Rule\TwowaySynonymsAction $twoway_synonyms_action
      *           Treats a set of terms as synonyms of one another.
+     *     @type \Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction $force_return_facet_action
+     *           Force returns an attribute as a facet in the request.
+     *     @type \Google\Cloud\Retail\V2\Rule\RemoveFacetAction $remove_facet_action
+     *           Remove an attribute as a facet in the request (if present).
      *     @type \Google\Cloud\Retail\V2\Condition $condition
      *           Required. The condition that triggers the rule.
      *           If the condition is empty, the rule will always apply.
@@ -307,6 +311,68 @@ class Rule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\Rule\TwowaySynonymsAction::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Force returns an attribute as a facet in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Rule.ForceReturnFacetAction force_return_facet_action = 12;</code>
+     * @return \Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction|null
+     */
+    public function getForceReturnFacetAction()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasForceReturnFacetAction()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Force returns an attribute as a facet in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Rule.ForceReturnFacetAction force_return_facet_action = 12;</code>
+     * @param \Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction $var
+     * @return $this
+     */
+    public function setForceReturnFacetAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Remove an attribute as a facet in the request (if present).
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Rule.RemoveFacetAction remove_facet_action = 13;</code>
+     * @return \Google\Cloud\Retail\V2\Rule\RemoveFacetAction|null
+     */
+    public function getRemoveFacetAction()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasRemoveFacetAction()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Remove an attribute as a facet in the request (if present).
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.Rule.RemoveFacetAction remove_facet_action = 13;</code>
+     * @param \Google\Cloud\Retail\V2\Rule\RemoveFacetAction $var
+     * @return $this
+     */
+    public function setRemoveFacetAction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\Rule\RemoveFacetAction::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }

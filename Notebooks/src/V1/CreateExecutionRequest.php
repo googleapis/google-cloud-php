@@ -21,19 +21,19 @@ class CreateExecutionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User-defined unique ID of this execution.
      *
      * Generated from protobuf field <code>string execution_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $execution_id = '';
+    protected $execution_id = '';
     /**
      * Required. The execution to be created.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Execution execution = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $execution = null;
+    protected $execution = null;
 
     /**
      * @param string                               $parent      Required. Format:

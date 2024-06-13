@@ -35,6 +35,10 @@ class DiscoveryBigQueryFilter extends \Google\Protobuf\Internal\Message
      *           anything above it will apply first. Should only appear once in a
      *           configuration. If none is specified, a default one will be added
      *           automatically.
+     *     @type \Google\Cloud\Dlp\V2\TableReference $table_reference
+     *           The table to scan. Discovery configurations including this can only
+     *           include one DiscoveryTarget (the DiscoveryTarget with this
+     *           TableReference).
      * }
      */
     public function __construct($data = NULL) {
@@ -112,6 +116,41 @@ class DiscoveryBigQueryFilter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DiscoveryBigQueryFilter\AllOtherBigQueryTables::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The table to scan. Discovery configurations including this can only
+     * include one DiscoveryTarget (the DiscoveryTarget with this
+     * TableReference).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TableReference table_reference = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\TableReference|null
+     */
+    public function getTableReference()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasTableReference()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * The table to scan. Discovery configurations including this can only
+     * include one DiscoveryTarget (the DiscoveryTarget with this
+     * TableReference).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.TableReference table_reference = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\TableReference $var
+     * @return $this
+     */
+    public function setTableReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TableReference::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

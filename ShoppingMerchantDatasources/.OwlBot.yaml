@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/shopping/merchant/datasources/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/ShoppingMerchantDatasources/$1/$2
+api-name: ShoppingMerchantDatasources

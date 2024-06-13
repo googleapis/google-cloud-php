@@ -31,6 +31,12 @@ class FactChunk extends \Google\Protobuf\Internal\Message
      */
     protected $source = '';
     /**
+     * The index of this chunk. Currently, only used for the streaming mode.
+     *
+     * Generated from protobuf field <code>int32 index = 4;</code>
+     */
+    protected $index = 0;
+    /**
      * More fine-grained information for the source reference.
      *
      * Generated from protobuf field <code>map<string, string> source_metadata = 3;</code>
@@ -50,6 +56,8 @@ class FactChunk extends \Google\Protobuf\Internal\Message
      *           from the GroundingFacts provided in the request then this field will
      *           contain the index of the specific fact from which this chunk was
      *           retrieved.
+     *     @type int $index
+     *           The index of this chunk. Currently, only used for the streaming mode.
      *     @type array|\Google\Protobuf\Internal\MapField $source_metadata
      *           More fine-grained information for the source reference.
      * }
@@ -113,6 +121,32 @@ class FactChunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source = $var;
+
+        return $this;
+    }
+
+    /**
+     * The index of this chunk. Currently, only used for the streaming mode.
+     *
+     * Generated from protobuf field <code>int32 index = 4;</code>
+     * @return int
+     */
+    public function getIndex()
+    {
+        return $this->index;
+    }
+
+    /**
+     * The index of this chunk. Currently, only used for the streaming mode.
+     *
+     * Generated from protobuf field <code>int32 index = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIndex($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->index = $var;
 
         return $this;
     }

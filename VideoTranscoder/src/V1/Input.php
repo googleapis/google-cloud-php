@@ -21,7 +21,7 @@ class Input extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * URI of the media. Input files must be at least 5 seconds in duration and
      * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
@@ -31,13 +31,13 @@ class Input extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Preprocessing configurations.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig preprocessing_config = 3;</code>
      */
-    private $preprocessing_config = null;
+    protected $preprocessing_config = null;
 
     /**
      * Constructor.

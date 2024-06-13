@@ -21,25 +21,25 @@ class CreateRuntimeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User-defined unique ID of this Runtime.
      *
      * Generated from protobuf field <code>string runtime_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $runtime_id = '';
+    protected $runtime_id = '';
     /**
      * Required. The Runtime to be created.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Runtime runtime = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $runtime = null;
+    protected $runtime = null;
     /**
      * Idempotent request UUID.
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                             $parent    Required. Format:

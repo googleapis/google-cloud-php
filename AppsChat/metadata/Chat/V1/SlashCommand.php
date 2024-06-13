@@ -16,12 +16,12 @@ class SlashCommand
         }
         $pool->internalAddGeneratedFile(
             '
-ˇ
+ç
 "google/chat/v1/slash_command.protogoogle.chat.v1""
 SlashCommand
 
-command_id (Bú
-com.google.chat.v1BSlashCommandProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb™Google.Apps.Chat.V1 Google\\Apps\\Chat\\V1ÍGoogle::Apps::Chat::V1bproto3'
+command_id (B™
+com.google.chat.v1BSlashCommandProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProto™Google.Apps.Chat.V1 Google\\Apps\\Chat\\V1ÍGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;

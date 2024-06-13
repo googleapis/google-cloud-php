@@ -24,7 +24,6 @@ namespace Google\Cloud\Domains\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Domains\V1\AuthorizationCode;
@@ -52,6 +51,7 @@ use Google\Cloud\Domains\V1\SearchDomainsRequest;
 use Google\Cloud\Domains\V1\SearchDomainsResponse;
 use Google\Cloud\Domains\V1\TransferDomainRequest;
 use Google\Cloud\Domains\V1\UpdateRegistrationRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

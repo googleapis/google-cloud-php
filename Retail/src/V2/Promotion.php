@@ -21,8 +21,8 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * characters, and match the pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example,
      * id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is
      * returned.
-     * Google Merchant Center property
-     * [promotion](https://support.google.com/merchants/answer/7050148).
+     * Corresponds to Google Merchant Center property
+     * [promotion_id](https://support.google.com/merchants/answer/7050148).
      *
      * Generated from protobuf field <code>string promotion_id = 1;</code>
      */
@@ -40,8 +40,8 @@ class Promotion extends \Google\Protobuf\Internal\Message
      *           characters, and match the pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example,
      *           id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is
      *           returned.
-     *           Google Merchant Center property
-     *           [promotion](https://support.google.com/merchants/answer/7050148).
+     *           Corresponds to Google Merchant Center property
+     *           [promotion_id](https://support.google.com/merchants/answer/7050148).
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +55,8 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * characters, and match the pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example,
      * id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is
      * returned.
-     * Google Merchant Center property
-     * [promotion](https://support.google.com/merchants/answer/7050148).
+     * Corresponds to Google Merchant Center property
+     * [promotion_id](https://support.google.com/merchants/answer/7050148).
      *
      * Generated from protobuf field <code>string promotion_id = 1;</code>
      * @return string
@@ -72,8 +72,8 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * characters, and match the pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example,
      * id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is
      * returned.
-     * Google Merchant Center property
-     * [promotion](https://support.google.com/merchants/answer/7050148).
+     * Corresponds to Google Merchant Center property
+     * [promotion_id](https://support.google.com/merchants/answer/7050148).
      *
      * Generated from protobuf field <code>string promotion_id = 1;</code>
      * @param string $var

@@ -16,42 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. CCFE supplied fields BEGIN
-     * The time the operation was created.
+     * Output only. Information about the progress of the transfer operation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $create_time = null;
-    /**
-     * Output only. The time the operation finished running.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $end_time = null;
-    /**
-     * Information about the progress of the transfer operation.
-     *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $counters = null;
     /**
-     * Required. The origin of the data transfer.
+     * Output only. The type of transfer occurring.
      *
-     * Generated from protobuf field <code>string source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    protected $source = '';
-    /**
-     * Required. The destination of the data transfer.
-     *
-     * Generated from protobuf field <code>string destination = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    protected $destination = '';
-    /**
-     * The type of transfer occurring.
-     *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $transfer_type = 0;
+    protected $source;
+    protected $destination;
 
     /**
      * Constructor.
@@ -59,19 +36,18 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. CCFE supplied fields BEGIN
-     *           The time the operation was created.
-     *     @type \Google\Protobuf\Timestamp $end_time
-     *           Output only. The time the operation finished running.
+     *     @type \Google\Cloud\Parallelstore\V1beta\SourceParallelstore $source_parallelstore
+     *           Output only. Parallelstore source.
+     *     @type \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket $source_gcs_bucket
+     *           Output only. Cloud Storage source.
+     *     @type \Google\Cloud\Parallelstore\V1beta\DestinationGcsBucket $destination_gcs_bucket
+     *           Output only. Cloud Storage destination.
+     *     @type \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $destination_parallelstore
+     *           Output only. Parallelstore destination.
      *     @type \Google\Cloud\Parallelstore\V1beta\TransferCounters $counters
-     *           Information about the progress of the transfer operation.
-     *     @type string $source
-     *           Required. The origin of the data transfer.
-     *     @type string $destination
-     *           Required. The destination of the data transfer.
+     *           Output only. Information about the progress of the transfer operation.
      *     @type int $transfer_type
-     *           The type of transfer occurring.
+     *           Output only. The type of transfer occurring.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,83 +56,133 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. CCFE supplied fields BEGIN
-     * The time the operation was created.
+     * Output only. Parallelstore source.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp|null
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceParallelstore source_parallelstore = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\SourceParallelstore|null
      */
-    public function getCreateTime()
+    public function getSourceParallelstore()
     {
-        return $this->create_time;
+        return $this->readOneof(7);
     }
 
-    public function hasCreateTime()
+    public function hasSourceParallelstore()
     {
-        return isset($this->create_time);
-    }
-
-    public function clearCreateTime()
-    {
-        unset($this->create_time);
+        return $this->hasOneof(7);
     }
 
     /**
-     * Output only. CCFE supplied fields BEGIN
-     * The time the operation was created.
+     * Output only. Parallelstore source.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Protobuf\Timestamp $var
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceParallelstore source_parallelstore = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\SourceParallelstore $var
      * @return $this
      */
-    public function setCreateTime($var)
+    public function setSourceParallelstore($var)
     {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
-        $this->create_time = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\SourceParallelstore::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
 
     /**
-     * Output only. The time the operation finished running.
+     * Output only. Cloud Storage source.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp|null
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceGcsBucket source_gcs_bucket = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket|null
      */
-    public function getEndTime()
+    public function getSourceGcsBucket()
     {
-        return $this->end_time;
+        return $this->readOneof(8);
     }
 
-    public function hasEndTime()
+    public function hasSourceGcsBucket()
     {
-        return isset($this->end_time);
-    }
-
-    public function clearEndTime()
-    {
-        unset($this->end_time);
+        return $this->hasOneof(8);
     }
 
     /**
-     * Output only. The time the operation finished running.
+     * Output only. Cloud Storage source.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Protobuf\Timestamp $var
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceGcsBucket source_gcs_bucket = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket $var
      * @return $this
      */
-    public function setEndTime($var)
+    public function setSourceGcsBucket($var)
     {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
-        $this->end_time = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
 
     /**
-     * Information about the progress of the transfer operation.
+     * Output only. Cloud Storage destination.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DestinationGcsBucket destination_gcs_bucket = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\DestinationGcsBucket|null
+     */
+    public function getDestinationGcsBucket()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasDestinationGcsBucket()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Output only. Cloud Storage destination.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DestinationGcsBucket destination_gcs_bucket = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\DestinationGcsBucket $var
+     * @return $this
+     */
+    public function setDestinationGcsBucket($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\DestinationGcsBucket::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Parallelstore destination.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DestinationParallelstore destination_parallelstore = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore|null
+     */
+    public function getDestinationParallelstore()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasDestinationParallelstore()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Output only. Parallelstore destination.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DestinationParallelstore destination_parallelstore = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $var
+     * @return $this
+     */
+    public function setDestinationParallelstore($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the progress of the transfer operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Parallelstore\V1beta\TransferCounters|null
      */
     public function getCounters()
@@ -175,9 +201,9 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about the progress of the transfer operation.
+     * Output only. Information about the progress of the transfer operation.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferCounters counters = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Parallelstore\V1beta\TransferCounters $var
      * @return $this
      */
@@ -190,61 +216,9 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The origin of the data transfer.
+     * Output only. The type of transfer occurring.
      *
-     * Generated from protobuf field <code>string source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
-
-    /**
-     * Required. The origin of the data transfer.
-     *
-     * Generated from protobuf field <code>string source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setSource($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->source = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. The destination of the data transfer.
-     *
-     * Generated from protobuf field <code>string destination = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
-     */
-    public function getDestination()
-    {
-        return $this->destination;
-    }
-
-    /**
-     * Required. The destination of the data transfer.
-     *
-     * Generated from protobuf field <code>string destination = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDestination($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->destination = $var;
-
-        return $this;
-    }
-
-    /**
-     * The type of transfer occurring.
-     *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getTransferType()
@@ -253,9 +227,9 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of transfer occurring.
+     * Output only. The type of transfer occurring.
      *
-     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferType transfer_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -265,6 +239,22 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
         $this->transfer_type = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->whichOneof("source");
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestination()
+    {
+        return $this->whichOneof("destination");
     }
 
 }

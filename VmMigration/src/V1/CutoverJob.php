@@ -23,51 +23,51 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the cutover job had finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The name of the cutover job.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. State of the cutover job.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.CutoverJob.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time the state was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. The current progress in percentage of the cutover job.
      *
      * Generated from protobuf field <code>int32 progress_percent = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Output only. Provides details for the errors that led to the Cutover Job's
      * state.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. A message providing possible extra details about the current
      * state.
      *
      * Generated from protobuf field <code>string state_message = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. The cutover steps list representing its progress.
      *

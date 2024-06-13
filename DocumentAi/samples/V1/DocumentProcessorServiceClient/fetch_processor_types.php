@@ -29,7 +29,8 @@ use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
 use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
 
 /**
- * Fetches processor types. Note that we don't use [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+ * Fetches processor types. Note that we don't use
+ * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
  * here, because it isn't paginated.
  *
  * @param string $formattedParent The location of processor types to list.

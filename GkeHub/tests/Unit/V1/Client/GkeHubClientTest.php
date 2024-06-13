@@ -24,7 +24,6 @@ namespace Google\Cloud\GkeHub\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeHub\V1\Client\GkeHubClient;
@@ -44,6 +43,7 @@ use Google\Cloud\GkeHub\V1\ListMembershipsResponse;
 use Google\Cloud\GkeHub\V1\Membership;
 use Google\Cloud\GkeHub\V1\UpdateFeatureRequest;
 use Google\Cloud\GkeHub\V1\UpdateMembershipRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

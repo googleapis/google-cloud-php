@@ -17,7 +17,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * Quantity of the Document associated with the user event. Defaults to 1.
-     * For example, this field will be 2 if two quantities of the same Document
+     * For example, this field is 2 if two quantities of the same Document
      * are involved in a `add-to-cart` event.
      * Required for events of the following event types:
      * * `add-to-cart`
@@ -52,7 +52,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *           allowed for website data stores.
      *     @type int $quantity
      *           Quantity of the Document associated with the user event. Defaults to 1.
-     *           For example, this field will be 2 if two quantities of the same Document
+     *           For example, this field is 2 if two quantities of the same Document
      *           are involved in a `add-to-cart` event.
      *           Required for events of the following event types:
      *           * `add-to-cart`
@@ -168,7 +168,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Quantity of the Document associated with the user event. Defaults to 1.
-     * For example, this field will be 2 if two quantities of the same Document
+     * For example, this field is 2 if two quantities of the same Document
      * are involved in a `add-to-cart` event.
      * Required for events of the following event types:
      * * `add-to-cart`
@@ -194,7 +194,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Quantity of the Document associated with the user event. Defaults to 1.
-     * For example, this field will be 2 if two quantities of the same Document
+     * For example, this field is 2 if two quantities of the same Document
      * are involved in a `add-to-cart` event.
      * Required for events of the following event types:
      * * `add-to-cart`

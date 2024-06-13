@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSettingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
+     * Required. The setting to update. See
+     * [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Setting setting = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +30,8 @@ class UpdateSettingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\ResourceSettings\V1\Setting $setting
-     *           Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
+     *           Required. The setting to update. See
+     *           [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class UpdateSettingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
+     * Required. The setting to update. See
+     * [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Setting setting = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ResourceSettings\V1\Setting|null
@@ -59,7 +62,8 @@ class UpdateSettingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
+     * Required. The setting to update. See
+     * [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Setting setting = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ResourceSettings\V1\Setting $var

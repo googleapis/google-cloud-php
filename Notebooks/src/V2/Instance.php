@@ -21,14 +21,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The proxy endpoint that is used to access the Jupyter
      * notebook.
      *
      * Generated from protobuf field <code>string proxy_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $proxy_uri = '';
+    protected $proxy_uri = '';
     /**
      * Optional. Input only. The owner of this instance after creation. Format:
      * `alias&#64;example.com`
@@ -45,13 +45,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creator = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Output only. The state of this instance.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The upgrade history of this instance.
      *
@@ -63,13 +63,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. Instance health_state.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.HealthState health_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_state = 0;
+    protected $health_state = 0;
     /**
      * Output only. Additional information about instance health.
      * Example:
@@ -89,19 +89,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Instance update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. If true, the notebook instance will not register with the proxy.
      *
      * Generated from protobuf field <code>bool disable_proxy_access = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_proxy_access = false;
+    protected $disable_proxy_access = false;
     /**
      * Optional. Labels to apply to this instance.
      * These can be later modified by the UpdateInstance method.

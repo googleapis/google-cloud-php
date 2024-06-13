@@ -39,8 +39,8 @@ use Google\Apps\Chat\V1\Membership;
  * directly to the specified space. Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
- * To specify the member to add, set the `membership.member.name` in the
- * `CreateMembershipRequest`:
+ * To specify the member to add, set the `membership.member.name` for the
+ * human or app member.
  *
  * - To add the calling app to a space or a direct message between two human
  * users, use `users/app`. Unable to add other

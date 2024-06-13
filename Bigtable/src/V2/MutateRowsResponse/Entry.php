@@ -21,7 +21,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * The result of the request Entry identified by `index`.
      * Depending on how requests are batched during execution, it is possible
@@ -30,7 +30,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

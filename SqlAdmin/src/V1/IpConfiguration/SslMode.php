@@ -20,18 +20,21 @@ class SslMode
      */
     const SSL_MODE_UNSPECIFIED = 0;
     /**
-     * Allow non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections,
-     * the client certificate won't be verified.
+     * Allow non-SSL/non-TLS and SSL/TLS connections.
+     * For SSL connections to MySQL and PostgreSQL, the client certificate
+     * isn't verified.
      * When this value is used, the legacy `require_ssl` flag must be false or
-     * cleared to avoid the conflict between values of two flags.
+     * cleared to avoid a conflict between the values of the two flags.
      *
      * Generated from protobuf enum <code>ALLOW_UNENCRYPTED_AND_ENCRYPTED = 1;</code>
      */
     const ALLOW_UNENCRYPTED_AND_ENCRYPTED = 1;
     /**
      * Only allow connections encrypted with SSL/TLS.
+     * For SSL connections to MySQL and PostgreSQL, the client certificate
+     * isn't verified.
      * When this value is used, the legacy `require_ssl` flag must be false or
-     * cleared to avoid the conflict between values of two flags.
+     * cleared to avoid a conflict between the values of the two flags.
      *
      * Generated from protobuf enum <code>ENCRYPTED_ONLY = 2;</code>
      */
@@ -48,6 +51,7 @@ class SslMode
      * [Cloud SQL
      * Connectors](https://cloud.google.com/sql/docs/postgres/connect-connectors)
      * to enforce client identity verification.
+     * Only applicable to MySQL and PostgreSQL. Not applicable to SQL Server.
      *
      * Generated from protobuf enum <code>TRUSTED_CLIENT_CERTIFICATE_REQUIRED = 3;</code>
      */

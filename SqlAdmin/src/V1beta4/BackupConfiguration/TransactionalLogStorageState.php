@@ -7,8 +7,8 @@ namespace Google\Cloud\Sql\V1beta4\BackupConfiguration;
 use UnexpectedValueException;
 
 /**
- * This value contains the storage location of transactional logs for the
- * database for point-in-time recovery.
+ * This value contains the storage location of the transactional logs
+ * used to perform point-in-time recovery (PITR) for the database.
  *
  * Protobuf type <code>google.cloud.sql.v1beta4.BackupConfiguration.TransactionalLogStorageState</code>
  */
@@ -21,27 +21,31 @@ class TransactionalLogStorageState
      */
     const TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED = 0;
     /**
-     * The transaction logs for the instance are stored on a data disk.
+     * The transaction logs used for PITR for the instance are stored
+     * on a data disk.
      *
      * Generated from protobuf enum <code>DISK = 1;</code>
      */
     const DISK = 1;
     /**
-     * The transaction logs for the instance are switching from being stored on
-     * a data disk to being stored in Cloud Storage.
+     * The transaction logs used for PITR for the instance are switching from
+     * being stored on a data disk to being stored in Cloud Storage.
+     * Only applicable to MySQL.
      *
      * Generated from protobuf enum <code>SWITCHING_TO_CLOUD_STORAGE = 2;</code>
      */
     const SWITCHING_TO_CLOUD_STORAGE = 2;
     /**
-     * The transaction logs for the instance are now stored in Cloud Storage.
-     * Previously, they were stored on a data disk.
+     * The transaction logs used for PITR for the instance are now stored
+     * in Cloud Storage. Previously, they were stored on a data disk.
+     * Only applicable to MySQL.
      *
      * Generated from protobuf enum <code>SWITCHED_TO_CLOUD_STORAGE = 3;</code>
      */
     const SWITCHED_TO_CLOUD_STORAGE = 3;
     /**
-     * The transaction logs for the instance are stored in Cloud Storage.
+     * The transaction logs used for PITR for the instance are stored in
+     * Cloud Storage. Only applicable to MySQL and PostgreSQL.
      *
      * Generated from protobuf enum <code>CLOUD_STORAGE = 4;</code>
      */

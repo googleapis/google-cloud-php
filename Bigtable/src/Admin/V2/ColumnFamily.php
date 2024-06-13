@@ -24,7 +24,7 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
      */
-    private $gc_rule = null;
+    protected $gc_rule = null;
     /**
      * The type of data stored in each of this family's cell values, including its
      * full encoding. If omitted, the family only serves raw untyped bytes.
@@ -35,7 +35,7 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type value_type = 3;</code>
      */
-    private $value_type = null;
+    protected $value_type = null;
 
     /**
      * Constructor.

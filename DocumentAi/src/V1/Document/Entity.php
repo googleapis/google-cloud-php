@@ -19,7 +19,8 @@ class Entity extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Provenance of the entity.
-     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,8 +50,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
     /**
-     * Optional. Represents the provenance of this entity wrt. the location on the
-     * page where it was found.
+     * Optional. Represents the provenance of this entity wrt. the location on
+     * the page where it was found.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor page_anchor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,8 +64,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $id = '';
     /**
-     * Optional. Normalized entity value. Absent if the extracted value could not be
-     * converted or the type (e.g. address) is not supported for certain
+     * Optional. Normalized entity value. Absent if the extracted value could
+     * not be converted or the type (e.g. address) is not supported for certain
      * parsers. This field is also only populated for certain supported document
      * types.
      *
@@ -72,8 +73,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $normalized_value = null;
     /**
-     * Optional. Entities can be nested to form a hierarchical data structure representing
-     * the content in the document.
+     * Optional. Entities can be nested to form a hierarchical data structure
+     * representing the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,7 +86,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $provenance = null;
     /**
-     * Optional. Whether the entity will be redacted for de-identification purposes.
+     * Optional. Whether the entity will be redacted for de-identification
+     * purposes.
      *
      * Generated from protobuf field <code>bool redacted = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -99,7 +101,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor $text_anchor
      *           Optional. Provenance of the entity.
-     *           Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     *           Text anchor indexing into the
+     *           [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type string $type
      *           Required. Entity type from a schema e.g. `Address`.
      *     @type string $mention_text
@@ -109,23 +112,24 @@ class Entity extends \Google\Protobuf\Internal\Message
      *     @type float $confidence
      *           Optional. Confidence of detected Schema entity. Range `[0, 1]`.
      *     @type \Google\Cloud\DocumentAI\V1\Document\PageAnchor $page_anchor
-     *           Optional. Represents the provenance of this entity wrt. the location on the
-     *           page where it was found.
+     *           Optional. Represents the provenance of this entity wrt. the location on
+     *           the page where it was found.
      *     @type string $id
      *           Optional. Canonical id. This will be a unique value in the entity list
      *           for this document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Entity\NormalizedValue $normalized_value
-     *           Optional. Normalized entity value. Absent if the extracted value could not be
-     *           converted or the type (e.g. address) is not supported for certain
+     *           Optional. Normalized entity value. Absent if the extracted value could
+     *           not be converted or the type (e.g. address) is not supported for certain
      *           parsers. This field is also only populated for certain supported document
      *           types.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $properties
-     *           Optional. Entities can be nested to form a hierarchical data structure representing
-     *           the content in the document.
+     *           Optional. Entities can be nested to form a hierarchical data structure
+     *           representing the content in the document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           Optional. The history of this annotation.
      *     @type bool $redacted
-     *           Optional. Whether the entity will be redacted for de-identification purposes.
+     *           Optional. Whether the entity will be redacted for de-identification
+     *           purposes.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,7 +139,8 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Provenance of the entity.
-     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\TextAnchor|null
@@ -157,7 +162,8 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Provenance of the entity.
-     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\TextAnchor $var
@@ -276,8 +282,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Represents the provenance of this entity wrt. the location on the
-     * page where it was found.
+     * Optional. Represents the provenance of this entity wrt. the location on
+     * the page where it was found.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor page_anchor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\PageAnchor|null
@@ -298,8 +304,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Represents the provenance of this entity wrt. the location on the
-     * page where it was found.
+     * Optional. Represents the provenance of this entity wrt. the location on
+     * the page where it was found.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor page_anchor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\PageAnchor $var
@@ -342,8 +348,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Normalized entity value. Absent if the extracted value could not be
-     * converted or the type (e.g. address) is not supported for certain
+     * Optional. Normalized entity value. Absent if the extracted value could
+     * not be converted or the type (e.g. address) is not supported for certain
      * parsers. This field is also only populated for certain supported document
      * types.
      *
@@ -366,8 +372,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Normalized entity value. Absent if the extracted value could not be
-     * converted or the type (e.g. address) is not supported for certain
+     * Optional. Normalized entity value. Absent if the extracted value could
+     * not be converted or the type (e.g. address) is not supported for certain
      * parsers. This field is also only populated for certain supported document
      * types.
      *
@@ -384,8 +390,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Entities can be nested to form a hierarchical data structure representing
-     * the content in the document.
+     * Optional. Entities can be nested to form a hierarchical data structure
+     * representing the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -396,8 +402,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Entities can be nested to form a hierarchical data structure representing
-     * the content in the document.
+     * Optional. Entities can be nested to form a hierarchical data structure
+     * representing the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
@@ -448,7 +454,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether the entity will be redacted for de-identification purposes.
+     * Optional. Whether the entity will be redacted for de-identification
+     * purposes.
      *
      * Generated from protobuf field <code>bool redacted = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -459,7 +466,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether the entity will be redacted for de-identification purposes.
+     * Optional. Whether the entity will be redacted for de-identification
+     * purposes.
      *
      * Generated from protobuf field <code>bool redacted = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

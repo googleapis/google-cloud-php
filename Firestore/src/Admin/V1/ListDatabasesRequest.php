@@ -22,6 +22,12 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * If true, also returns deleted resources.
+     *
+     * Generated from protobuf field <code>bool show_deleted = 4;</code>
+     */
+    private $show_deleted = false;
 
     /**
      * @param string $parent Required. A parent name of the form
@@ -47,6 +53,8 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. A parent name of the form
      *           `projects/{project_id}`
+     *     @type bool $show_deleted
+     *           If true, also returns deleted resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +86,32 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, also returns deleted resources.
+     *
+     * Generated from protobuf field <code>bool show_deleted = 4;</code>
+     * @return bool
+     */
+    public function getShowDeleted()
+    {
+        return $this->show_deleted;
+    }
+
+    /**
+     * If true, also returns deleted resources.
+     *
+     * Generated from protobuf field <code>bool show_deleted = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowDeleted($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_deleted = $var;
 
         return $this;
     }

@@ -664,6 +664,10 @@ class Metric
      */
     const URL_MAPS = 378660743;
     /**
+     * Generated from protobuf enum <code>VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES = 128400161;</code>
+     */
+    const VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES = 128400161;
+    /**
      * Generated from protobuf enum <code>VPN_GATEWAYS = 35620282;</code>
      */
     const VPN_GATEWAYS = 35620282;
@@ -838,6 +842,7 @@ class Metric
         self::TPU_LITE_PODSLICE_V5 => 'TPU_LITE_PODSLICE_V5',
         self::TPU_PODSLICE_V4 => 'TPU_PODSLICE_V4',
         self::URL_MAPS => 'URL_MAPS',
+        self::VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES => 'VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES',
         self::VPN_GATEWAYS => 'VPN_GATEWAYS',
         self::VPN_TUNNELS => 'VPN_TUNNELS',
         self::XPN_SERVICE_PROJECTS => 'XPN_SERVICE_PROJECTS',

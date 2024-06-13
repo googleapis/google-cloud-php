@@ -53,6 +53,9 @@ use Google\Cloud\ResourceSettings\V1\UpdateSettingRequest;
  * resource is not in a Cloud Organization.
  * For all requests, returns a `google.rpc.Status` with
  * `google.rpc.Code.INVALID_ARGUMENT` if the request is malformed.
+ * (== deprecation_description Resource Settings is deprecated. As of November
+ * 7, 2023, no organizations will be onboarded for any of the enabled settings,
+ * and the service will be shut down on October 1, 2024. ==)
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -395,7 +398,8 @@ class ResourceSettingsServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the setting to get. See [Setting][google.cloud.resourcesettings.v1.Setting] for naming
+     * @param string $name         Required. The name of the setting to get. See
+     *                             [Setting][google.cloud.resourcesettings.v1.Setting] for naming
      *                             requirements.
      * @param array  $optionalArgs {
      *     Optional.
@@ -463,8 +467,8 @@ class ResourceSettingsServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that parents the setting. Must be in one of the
-     *                             following forms:
+     * @param string $parent       Required. The Cloud resource that parents the setting. Must be in one of
+     *                             the following forms:
      *
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
@@ -556,7 +560,8 @@ class ResourceSettingsServiceGapicClient
      * }
      * ```
      *
-     * @param Setting $setting      Required. The setting to update. See [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
+     * @param Setting $setting      Required. The setting to update. See
+     *                              [Setting][google.cloud.resourcesettings.v1.Setting] for field requirements.
      * @param array   $optionalArgs {
      *     Optional.
      *

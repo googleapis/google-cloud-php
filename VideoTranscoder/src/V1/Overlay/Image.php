@@ -21,7 +21,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Normalized image resolution, based on output video resolution. Valid
      * values: `0.0`–`1.0`. To respect the original image aspect ratio, set
@@ -30,14 +30,14 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Overlay.NormalizedCoordinate resolution = 2;</code>
      */
-    private $resolution = null;
+    protected $resolution = null;
     /**
      * Target image opacity. Valid values are from  `1.0` (solid, default) to
      * `0.0` (transparent), exclusive. Set this to a value greater than `0.0`.
      *
      * Generated from protobuf field <code>double alpha = 3;</code>
      */
-    private $alpha = 0.0;
+    protected $alpha = 0.0;
 
     /**
      * Constructor.

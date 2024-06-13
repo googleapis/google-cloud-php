@@ -72,6 +72,4 @@ class MethodType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MethodType::class, \Google\Cloud\OrgPolicy\V2\CustomConstraint_MethodType::class);
 

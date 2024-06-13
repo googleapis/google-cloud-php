@@ -34,7 +34,7 @@ use Google\Cloud\GkeMultiCloud\V1\GetAzureJsonWebKeysRequest;
  *
  * @param string $formattedAzureCluster The AzureCluster, which owns the JsonWebKeys.
  *                                      Format:
- *                                      projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+ *                                      `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
  *                                      Please see {@see AzureClustersClient::azureClusterName()} for help formatting this field.
  */
 function get_azure_json_web_keys_sample(string $formattedAzureCluster): void

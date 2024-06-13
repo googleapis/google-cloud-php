@@ -21,45 +21,45 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The report display name, as assigned by the user.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Current state of the report.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.UtilizationReport.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time the state was last set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. Provides details on the state of the report in case of an
      * error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. The time the report was created (this refers to the time of
      * the request, not the time the report creation completed).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time frame of the report.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.UtilizationReport.TimeFrame time_frame = 7;</code>
      */
-    private $time_frame = 0;
+    protected $time_frame = 0;
     /**
      * Output only. The point in time when the time frame ends. Notice that the
      * time frame is counted backwards. For instance if the "frame_end_time" value
@@ -68,13 +68,13 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp frame_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $frame_end_time = null;
+    protected $frame_end_time = null;
     /**
      * Output only. Total number of VMs included in the report.
      *
      * Generated from protobuf field <code>int32 vm_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_count = 0;
+    protected $vm_count = 0;
     /**
      * List of utilization information per VM.
      * When sent as part of the request, the "vm_id" field is used in order to

@@ -21,31 +21,31 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 13;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The cycle's ordinal number.
      *
      * Generated from protobuf field <code>int32 cycle_number = 10;</code>
      */
-    private $cycle_number = 0;
+    protected $cycle_number = 0;
     /**
      * The time the replication cycle has started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time the replication cycle has ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The accumulated duration the replication cycle was paused.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_pause_duration = 7;</code>
      */
-    private $total_pause_duration = null;
+    protected $total_pause_duration = null;
     /**
      * The current progress in percentage of this cycle.
      * Was replaced by 'steps' field, which breaks down the cycle progression more
@@ -66,13 +66,13 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle.State state = 11;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Provides details on the state of the cycle in case of an error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 12;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

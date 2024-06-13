@@ -22,12 +22,6 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      */
     private $web_search_queries;
     /**
-     * Optional. List of grounding attributions.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $grounding_attributions;
-    /**
      * Optional. Google search entry for the following-up web searches.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -42,8 +36,6 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $web_search_queries
      *           Optional. Web search queries for the following-up web search.
-     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingAttribution>|\Google\Protobuf\Internal\RepeatedField $grounding_attributions
-     *           Optional. List of grounding attributions.
      *     @type \Google\Cloud\AIPlatform\V1\SearchEntryPoint $search_entry_point
      *           Optional. Google search entry for the following-up web searches.
      * }
@@ -75,32 +67,6 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->web_search_queries = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Optional. List of grounding attributions.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getGroundingAttributions()
-    {
-        return $this->grounding_attributions;
-    }
-
-    /**
-     * Optional. List of grounding attributions.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GroundingAttribution>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setGroundingAttributions($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingAttribution::class);
-        $this->grounding_attributions = $arr;
 
         return $this;
     }

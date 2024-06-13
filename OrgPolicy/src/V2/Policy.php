@@ -30,13 +30,13 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Basic information about the Organization Policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec spec = 2;</code>
      */
-    private $spec = null;
+    protected $spec = null;
     /**
      * Deprecated.
      *
@@ -51,7 +51,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.PolicySpec dry_run_spec = 4;</code>
      */
-    private $dry_run_spec = null;
+    protected $dry_run_spec = null;
     /**
      * Optional. An opaque tag indicating the current state of the policy, used
      * for concurrency control. This 'etag' is computed by the server based on the
@@ -60,7 +60,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

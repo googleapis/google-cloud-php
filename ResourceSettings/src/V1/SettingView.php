@@ -21,20 +21,26 @@ class SettingView
      */
     const SETTING_VIEW_UNSPECIFIED = 0;
     /**
-     * Include [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata], but nothing else.
-     * This is the default value (for both ListSettings and GetSetting).
+     * Include
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata], but
+     * nothing else. This is the default value (for both ListSettings and
+     * GetSetting).
      *
      * Generated from protobuf enum <code>SETTING_VIEW_BASIC = 1;</code>
      */
     const SETTING_VIEW_BASIC = 1;
     /**
-     * Include [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value], but nothing else.
+     * Include
+     * [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value],
+     * but nothing else.
      *
      * Generated from protobuf enum <code>SETTING_VIEW_EFFECTIVE_VALUE = 2;</code>
      */
     const SETTING_VIEW_EFFECTIVE_VALUE = 2;
     /**
-     * Include [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value], but nothing else.
+     * Include
+     * [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value],
+     * but nothing else.
      *
      * Generated from protobuf enum <code>SETTING_VIEW_LOCAL_VALUE = 3;</code>
      */

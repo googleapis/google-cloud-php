@@ -314,6 +314,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $sole_tenant_config = null;
     /**
+     * Parameters for containerd customization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 43;</code>
+     */
+    private $containerd_config = null;
+    /**
      * A map of resource manager tag keys and values to be attached to the nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
@@ -502,6 +508,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           If unspecified, ephemeral storage is backed by the boot disk.
      *     @type \Google\Cloud\Container\V1\SoleTenantConfig $sole_tenant_config
      *           Parameters for node pools to be backed by shared sole tenant node groups.
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig $containerd_config
+     *           Parameters for containerd customization.
      *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
      *           A map of resource manager tag keys and values to be attached to the nodes.
      *     @type bool $enable_confidential_storage
@@ -1737,6 +1745,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SoleTenantConfig::class);
         $this->sole_tenant_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for containerd customization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 43;</code>
+     * @return \Google\Cloud\Container\V1\ContainerdConfig|null
+     */
+    public function getContainerdConfig()
+    {
+        return $this->containerd_config;
+    }
+
+    public function hasContainerdConfig()
+    {
+        return isset($this->containerd_config);
+    }
+
+    public function clearContainerdConfig()
+    {
+        unset($this->containerd_config);
+    }
+
+    /**
+     * Parameters for containerd customization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 43;</code>
+     * @param \Google\Cloud\Container\V1\ContainerdConfig $var
+     * @return $this
+     */
+    public function setContainerdConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig::class);
+        $this->containerd_config = $var;
 
         return $this;
     }

@@ -48,8 +48,8 @@ class RecordErrorType
      */
     const INVALID_EMBEDDING_ID = 5;
     /**
-     * The size of the embedding vectors does not match with the specified
-     * dimension.
+     * The size of the dense embedding vectors does not match with the
+     * specified dimension.
      *
      * Generated from protobuf enum <code>EMBEDDING_SIZE_MISMATCH = 6;</code>
      */
@@ -98,11 +98,29 @@ class RecordErrorType
      */
     const INVALID_ENCODING = 13;
     /**
+     * Error parsing sparse dimensions field.
+     *
+     * Generated from protobuf enum <code>INVALID_SPARSE_DIMENSIONS = 14;</code>
+     */
+    const INVALID_SPARSE_DIMENSIONS = 14;
+    /**
      * Token restrict value is invalid.
      *
      * Generated from protobuf enum <code>INVALID_TOKEN_VALUE = 15;</code>
      */
     const INVALID_TOKEN_VALUE = 15;
+    /**
+     * Invalid sparse embedding.
+     *
+     * Generated from protobuf enum <code>INVALID_SPARSE_EMBEDDING = 16;</code>
+     */
+    const INVALID_SPARSE_EMBEDDING = 16;
+    /**
+     * Invalid dense embedding.
+     *
+     * Generated from protobuf enum <code>INVALID_EMBEDDING = 17;</code>
+     */
+    const INVALID_EMBEDDING = 17;
 
     private static $valueToName = [
         self::ERROR_TYPE_UNSPECIFIED => 'ERROR_TYPE_UNSPECIFIED',
@@ -119,7 +137,10 @@ class RecordErrorType
         self::MULTIPLE_VALUES => 'MULTIPLE_VALUES',
         self::INVALID_NUMERIC_VALUE => 'INVALID_NUMERIC_VALUE',
         self::INVALID_ENCODING => 'INVALID_ENCODING',
+        self::INVALID_SPARSE_DIMENSIONS => 'INVALID_SPARSE_DIMENSIONS',
         self::INVALID_TOKEN_VALUE => 'INVALID_TOKEN_VALUE',
+        self::INVALID_SPARSE_EMBEDDING => 'INVALID_SPARSE_EMBEDDING',
+        self::INVALID_EMBEDDING => 'INVALID_EMBEDDING',
     ];
 
     public static function name($value)

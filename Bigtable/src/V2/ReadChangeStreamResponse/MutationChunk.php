@@ -21,7 +21,7 @@ class MutationChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.ReadChangeStreamResponse.MutationChunk.ChunkInfo chunk_info = 1;</code>
      */
-    private $chunk_info = null;
+    protected $chunk_info = null;
     /**
      * If this is a continuation of a chunked message (`chunked_value_offset` >
      * 0), ignore all fields except the `SetCell`'s value and merge it with
@@ -29,7 +29,7 @@ class MutationChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Mutation mutation = 2;</code>
      */
-    private $mutation = null;
+    protected $mutation = null;
 
     /**
      * Constructor.

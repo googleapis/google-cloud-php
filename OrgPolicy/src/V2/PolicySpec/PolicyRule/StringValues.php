@@ -113,6 +113,4 @@ class StringValues extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StringValues::class, \Google\Cloud\OrgPolicy\V2\PolicySpec_PolicyRule_StringValues::class);
 

@@ -26,7 +26,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      */
-    private $width_pixels = 0;
+    protected $width_pixels = 0;
     /**
      * The height of the video in pixels. Must be an even integer.
      * When not specified, the height is adjusted to match the specified width
@@ -38,7 +38,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      */
-    private $height_pixels = 0;
+    protected $height_pixels = 0;
     /**
      * Required. The target video frame rate in frames per second (FPS). Must be
      * less than or equal to 120. Will default to the input frame rate if larger
@@ -50,14 +50,14 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $frame_rate = 0.0;
+    protected $frame_rate = 0.0;
     /**
      * Required. The video bitrate in bits per second. The minimum value is
      * 1,000. The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bitrate_bps = 0;
+    protected $bitrate_bps = 0;
     /**
      * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
@@ -73,7 +73,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      */
-    private $pixel_format = '';
+    protected $pixel_format = '';
     /**
      * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
@@ -82,35 +82,35 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      */
-    private $rate_control_mode = '';
+    protected $rate_control_mode = '';
     /**
      * Target CRF level. Must be between 10 and 36, where 10 is the highest
      * quality and 36 is the most efficient compression. The default is 21.
      *
      * Generated from protobuf field <code>int32 crf_level = 7;</code>
      */
-    private $crf_level = 0;
+    protected $crf_level = 0;
     /**
      * Specifies whether an open Group of Pictures (GOP) structure should be
      * allowed or not. The default is `false`.
      *
      * Generated from protobuf field <code>bool allow_open_gop = 8;</code>
      */
-    private $allow_open_gop = false;
+    protected $allow_open_gop = false;
     /**
      * Use two-pass encoding strategy to achieve better video quality.
      * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      */
-    private $enable_two_pass = false;
+    protected $enable_two_pass = false;
     /**
      * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
      * greater than zero. The default is equal to `VideoStream.bitrate_bps`.
      *
      * Generated from protobuf field <code>int32 vbv_size_bits = 12;</code>
      */
-    private $vbv_size_bits = 0;
+    protected $vbv_size_bits = 0;
     /**
      * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.
      * Must be greater than zero. The default is equal to 90% of
@@ -118,14 +118,14 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 vbv_fullness_bits = 13;</code>
      */
-    private $vbv_fullness_bits = 0;
+    protected $vbv_fullness_bits = 0;
     /**
      * Allow B-pyramid for reference frame selection. This may not be supported
      * on all decoders. The default is `false`.
      *
      * Generated from protobuf field <code>bool b_pyramid = 14;</code>
      */
-    private $b_pyramid = false;
+    protected $b_pyramid = false;
     /**
      * The number of consecutive B-frames. Must be greater than or equal to
      * zero. Must be less than `VideoStream.gop_frame_count` if set. The default
@@ -133,7 +133,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 b_frame_count = 15;</code>
      */
-    private $b_frame_count = 0;
+    protected $b_frame_count = 0;
     /**
      * Specify the intensity of the adaptive quantizer (AQ). Must be between 0
      * and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A
@@ -141,7 +141,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double aq_strength = 16;</code>
      */
-    private $aq_strength = 0.0;
+    protected $aq_strength = 0.0;
     /**
      * Enforces the specified codec profile. The following profiles are
      * supported:
@@ -171,7 +171,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string profile = 17;</code>
      */
-    private $profile = '';
+    protected $profile = '';
     /**
      * Enforces the specified codec tune. The available options are
      * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
@@ -181,7 +181,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tune = 18;</code>
      */
-    private $tune = '';
+    protected $tune = '';
     /**
      * Enforces the specified codec preset. The default is `veryfast`. The
      * available options are
@@ -192,7 +192,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string preset = 19;</code>
      */
-    private $preset = '';
+    protected $preset = '';
     protected $gop_mode;
 
     /**

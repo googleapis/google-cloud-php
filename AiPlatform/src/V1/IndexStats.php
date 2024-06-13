@@ -16,11 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class IndexStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The number of vectors in the Index.
+     * Output only. The number of dense vectors in the Index.
      *
      * Generated from protobuf field <code>int64 vectors_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $vectors_count = 0;
+    /**
+     * Output only. The number of sparse vectors in the Index.
+     *
+     * Generated from protobuf field <code>int64 sparse_vectors_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $sparse_vectors_count = 0;
     /**
      * Output only. The number of shards in the Index.
      *
@@ -35,7 +41,9 @@ class IndexStats extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $vectors_count
-     *           Output only. The number of vectors in the Index.
+     *           Output only. The number of dense vectors in the Index.
+     *     @type int|string $sparse_vectors_count
+     *           Output only. The number of sparse vectors in the Index.
      *     @type int $shards_count
      *           Output only. The number of shards in the Index.
      * }
@@ -46,7 +54,7 @@ class IndexStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of vectors in the Index.
+     * Output only. The number of dense vectors in the Index.
      *
      * Generated from protobuf field <code>int64 vectors_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -57,7 +65,7 @@ class IndexStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of vectors in the Index.
+     * Output only. The number of dense vectors in the Index.
      *
      * Generated from protobuf field <code>int64 vectors_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -67,6 +75,32 @@ class IndexStats extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->vectors_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of sparse vectors in the Index.
+     *
+     * Generated from protobuf field <code>int64 sparse_vectors_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getSparseVectorsCount()
+    {
+        return $this->sparse_vectors_count;
+    }
+
+    /**
+     * Output only. The number of sparse vectors in the Index.
+     *
+     * Generated from protobuf field <code>int64 sparse_vectors_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setSparseVectorsCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->sparse_vectors_count = $var;
 
         return $this;
     }

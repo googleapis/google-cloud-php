@@ -21,14 +21,14 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_delete = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $auto_delete = false;
+    protected $auto_delete = false;
     /**
      * Optional. Output only. Indicates that this is a boot disk. The virtual machine
      * will use the first partition of the disk for its root filesystem.
      *
      * Generated from protobuf field <code>bool boot = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $boot = false;
+    protected $boot = false;
     /**
      * Optional. Output only. Specifies a unique device name
      * of your choice that is reflected into the
@@ -41,7 +41,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string device_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $device_name = '';
+    protected $device_name = '';
     /**
      * Output only. Indicates a list of features to enable on the guest operating system.
      * Applicable only for bootable images. Read  Enabling guest operating
@@ -57,7 +57,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Input only. Specifies the parameters for a new disk that will be created
      * alongside the new instance. Use initialization parameters to create boot
@@ -67,7 +67,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.LocalDiskInitializeParams initialize_params = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $initialize_params = null;
+    protected $initialize_params = null;
     /**
      * Specifies the disk interface to use for attaching this disk, which is
      * either SCSI or NVME. The default is SCSI. Persistent disks must always use
@@ -80,13 +80,13 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string interface = 7;</code>
      */
-    private $interface = '';
+    protected $interface = '';
     /**
      * Output only. Type of the resource. Always compute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>string kind = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Output only. Any valid publicly visible licenses.
      *
@@ -102,14 +102,14 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mode = 10;</code>
      */
-    private $mode = '';
+    protected $mode = '';
     /**
      * Specifies a valid partial or full URL to an existing Persistent Disk
      * resource.
      *
      * Generated from protobuf field <code>string source = 11;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Specifies the type of the disk, either `SCRATCH` or `PERSISTENT`. If not
      * specified, the default is `PERSISTENT`.
@@ -119,7 +119,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 12;</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.

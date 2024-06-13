@@ -23,13 +23,13 @@ class Deblock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double strength = 1;</code>
      */
-    private $strength = 0.0;
+    protected $strength = 0.0;
     /**
      * Enable deblocker. The default is `false`.
      *
      * Generated from protobuf field <code>bool enabled = 2;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
 
     /**
      * Constructor.
