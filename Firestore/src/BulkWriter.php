@@ -1071,7 +1071,7 @@ class BulkWriter
      *
      * @codingStandardsIgnoreStart
      * @param array $options Configuration Options
-     * @return array|void [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
+     * @return array|void [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.Precondition)
      * @throws \InvalidArgumentException If the precondition is invalid.
      * @codingStandardsIgnoreEnd
      */

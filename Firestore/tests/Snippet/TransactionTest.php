@@ -26,6 +26,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
+use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
@@ -38,9 +39,7 @@ use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
-use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\ValueMapper;
-use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -86,7 +85,7 @@ class TransactionTest extends SnippetTestCase
         $this->document = $this->prophesize(DocumentReference::class);
         $this->document->name()->willReturn(self::DOCUMENT);
 
-        $this->batch = $this->prophesize(WriteBatch::class);
+        $this->batch = $this->prophesize(BulkWriter::class);
     }
 
     public function testClass()
@@ -356,7 +355,7 @@ class TransactionStub extends Transaction
     public function setRequestHandler(RequestHandler $requestHandler)
     {
         $this->requestHandler = $requestHandler;
-        $this->writer = new WriteBatch(
+        $this->writer = new BulkWriter(
             $requestHandler,
             $this->getSerializer(),
             new ValueMapper(
@@ -369,7 +368,7 @@ class TransactionStub extends Transaction
         );
     }
 
-    public function setWriter(WriteBatch $writer)
+    public function setWriter(BulkWriter $writer)
     {
         $this->___setProperty('writer', $writer);
     }

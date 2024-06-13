@@ -81,7 +81,7 @@ trait SnapshotTrait
      * @codingStandardsIgnoreStart
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param DocumentReference $reference The parent document.
-     * @param array $document [Document](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Document)
+     * @param array $document [Document](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Document)
      * @param bool $exists Whether the document exists. **Defaults to** `true`.
      * @codingStandardsIgnoreEnd
      */

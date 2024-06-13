@@ -71,7 +71,3 @@ class ConcurrencyMode
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConcurrencyMode::class, \Google\Cloud\Firestore\Admin\V1\Database_ConcurrencyMode::class);
-

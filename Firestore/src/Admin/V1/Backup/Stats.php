@@ -136,7 +136,3 @@ class Stats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Stats::class, \Google\Cloud\Firestore\Admin\V1\Backup_Stats::class);
-

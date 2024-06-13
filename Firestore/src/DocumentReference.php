@@ -441,13 +441,10 @@ class DocumentReference
     /**
      * Create a Batch Writer for single-use mutations in this class.
      *
-     * @return WriteBatch
+     * @return BulkWriter
      */
     protected function batchFactory()
     {
-        if (!class_exists(WriteBatch::class)) {
-            class_alias(BulkWriter::class, WriteBatch::class);
-        }
         return new BulkWriter(
             $this->requestHandler,
             $this->serializer,

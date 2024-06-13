@@ -58,7 +58,3 @@ class Direction
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Direction::class, \Google\Cloud\Firestore\V1beta1\StructuredQuery_Direction::class);
-

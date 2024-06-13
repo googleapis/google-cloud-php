@@ -103,7 +103,3 @@ class Operator
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Operator::class, \Google\Cloud\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator::class);
-
