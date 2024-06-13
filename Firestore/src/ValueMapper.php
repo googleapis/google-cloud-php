@@ -117,7 +117,7 @@ class ValueMapper
     /**
      * Convert a Firestore value to a Google Cloud PHP value.
      *
-     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value Value
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#value Value
      * @param string $type The Firestore value type.
      * @param mixed $value The firestore value.
      * @return mixed
@@ -212,7 +212,7 @@ class ValueMapper
      * Encode a Google Cloud PHP value as a Firestore value.
      *
      * @param mixed $value
-     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#value)
      * @throws \RuntimeException If an unknown type is encountered.
      */
     public function encodeValue($value)
@@ -273,7 +273,7 @@ class ValueMapper
      *
      * @codingStandardsIgnoreStart
      * @param array $value
-     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ArrayValue)
+     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.ArrayValue)
      * @throws \RuntimeException If the array contains a nested array.
      * @codingStandardsIgnoreEnd
      */
@@ -331,7 +331,7 @@ class ValueMapper
      *
      * @codingStandardsIgnoreStart
      * @param array $value
-     * @return array [MapValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.MapValue)
+     * @return array [MapValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.MapValue)
      * @codingStandardsIgnoreEnd
      */
     private function encodeAssociativeArrayValue(array $value)
@@ -351,7 +351,7 @@ class ValueMapper
      * This is needed to properly encode values for "in" query filters.
      *
      * @param array $values
-     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#value)
      */
     public function encodeMultiValue(array $values)
     {
