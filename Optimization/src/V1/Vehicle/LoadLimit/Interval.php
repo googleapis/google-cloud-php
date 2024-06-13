@@ -24,7 +24,7 @@ class Interval extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 min = 1;</code>
      */
-    private $min = 0;
+    protected $min = 0;
     /**
      * A maximum acceptable load. Must be ≥ 0. If unspecified, the maximum
      * load is unrestricted by this message.
@@ -35,7 +35,7 @@ class Interval extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 max = 2;</code>
      */
-    private $max = null;
+    protected $max = null;
 
     /**
      * Constructor.
