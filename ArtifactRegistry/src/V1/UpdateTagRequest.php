@@ -20,7 +20,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Tag tag = 1;</code>
      */
-    private $tag = null;
+    protected $tag = null;
     /**
      * The update mask applies to the resource. For the `FieldMask` definition,
      * see
@@ -28,7 +28,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ArtifactRegistry\V1\Tag $tag        The tag that replaces the resource on the server.
