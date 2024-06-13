@@ -20,7 +20,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Tensor.DataType dtype = 1;</code>
      */
-    private $dtype = 0;
+    protected $dtype = 0;
     /**
      * Shape of the tensor.
      *
@@ -106,7 +106,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes tensor_val = 13;</code>
      */
-    private $tensor_val = '';
+    protected $tensor_val = '';
 
     /**
      * Constructor.

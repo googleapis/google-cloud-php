@@ -56,13 +56,13 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_attributions_schema_uri = 3;</code>
      */
-    private $feature_attributions_schema_uri = '';
+    protected $feature_attributions_schema_uri = '';
     /**
      * Name of the source to generate embeddings for example based explanations.
      *
      * Generated from protobuf field <code>string latent_space_source = 5;</code>
      */
-    private $latent_space_source = '';
+    protected $latent_space_source = '';
 
     /**
      * Constructor.

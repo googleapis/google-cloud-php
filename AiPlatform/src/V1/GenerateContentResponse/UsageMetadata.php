@@ -20,17 +20,17 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 prompt_token_count = 1;</code>
      */
-    private $prompt_token_count = 0;
+    protected $prompt_token_count = 0;
     /**
      * Number of tokens in the response(s).
      *
      * Generated from protobuf field <code>int32 candidates_token_count = 2;</code>
      */
-    private $candidates_token_count = 0;
+    protected $candidates_token_count = 0;
     /**
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
      */
-    private $total_token_count = 0;
+    protected $total_token_count = 0;
 
     /**
      * Constructor.

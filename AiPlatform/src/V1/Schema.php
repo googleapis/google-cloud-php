@@ -23,7 +23,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Type type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Optional. The format of the data.
      * Supported formats:
@@ -33,50 +33,50 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * Optional. The title of the Schema.
      *
      * Generated from protobuf field <code>string title = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. The description of the data.
      *
      * Generated from protobuf field <code>string description = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Indicates if the value may be null.
      *
      * Generated from protobuf field <code>bool nullable = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $nullable = false;
+    protected $nullable = false;
     /**
      * Optional. Default value of the data.
      *
      * Generated from protobuf field <code>.google.protobuf.Value default = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default = null;
+    protected $default = null;
     /**
      * Optional. SCHEMA FIELDS FOR TYPE ARRAY
      * Schema of the elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema items = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $items = null;
+    protected $items = null;
     /**
      * Optional. Minimum number of the elements for Type.ARRAY.
      *
      * Generated from protobuf field <code>int64 min_items = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_items = 0;
+    protected $min_items = 0;
     /**
      * Optional. Maximum number of the elements for Type.ARRAY.
      *
      * Generated from protobuf field <code>int64 max_items = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_items = 0;
+    protected $max_items = 0;
     /**
      * Optional. Possible values of the element of Type.STRING with enum format.
      * For example we can define an Enum Direction as :
@@ -103,53 +103,53 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 min_properties = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_properties = 0;
+    protected $min_properties = 0;
     /**
      * Optional. Maximum number of the properties for Type.OBJECT.
      *
      * Generated from protobuf field <code>int64 max_properties = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_properties = 0;
+    protected $max_properties = 0;
     /**
      * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER
      * Minimum value of the Type.INTEGER and Type.NUMBER
      *
      * Generated from protobuf field <code>double minimum = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $minimum = 0.0;
+    protected $minimum = 0.0;
     /**
      * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
      *
      * Generated from protobuf field <code>double maximum = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maximum = 0.0;
+    protected $maximum = 0.0;
     /**
      * Optional. SCHEMA FIELDS FOR TYPE STRING
      * Minimum length of the Type.STRING
      *
      * Generated from protobuf field <code>int64 min_length = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_length = 0;
+    protected $min_length = 0;
     /**
      * Optional. Maximum length of the Type.STRING
      *
      * Generated from protobuf field <code>int64 max_length = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_length = 0;
+    protected $max_length = 0;
     /**
      * Optional. Pattern of the Type.STRING to restrict a string to a regular
      * expression.
      *
      * Generated from protobuf field <code>string pattern = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pattern = '';
+    protected $pattern = '';
     /**
      * Optional. Example of the object. Will only populated when the object is the
      * root.
      *
      * Generated from protobuf field <code>.google.protobuf.Value example = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $example = null;
+    protected $example = null;
 
     /**
      * Constructor.

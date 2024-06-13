@@ -21,7 +21,7 @@ class GenieSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_model_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $base_model_uri = '';
+    protected $base_model_uri = '';
 
     /**
      * Constructor.

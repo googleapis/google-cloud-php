@@ -20,19 +20,19 @@ class DeployedIndexRef extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $index_endpoint = '';
+    protected $index_endpoint = '';
     /**
      * Immutable. The ID of the DeployedIndex in the above IndexEndpoint.
      *
      * Generated from protobuf field <code>string deployed_index_id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $deployed_index_id = '';
+    protected $deployed_index_id = '';
     /**
      * Output only. The display name of the DeployedIndex.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

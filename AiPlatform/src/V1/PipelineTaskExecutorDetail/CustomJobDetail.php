@@ -21,7 +21,7 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $job = '';
+    protected $job = '';
     /**
      * Output only. The names of the previously failed
      * [CustomJob][google.cloud.aiplatform.v1.CustomJob]. The list includes the

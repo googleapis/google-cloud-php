@@ -22,26 +22,26 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when this FeatureView was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this FeatureView was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Used to perform consistent read-modify-write updates. If not set,
      * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. The labels with user-defined metadata to organize your
      * FeatureViews.
@@ -63,7 +63,7 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.SyncConfig sync_config = 7;</code>
      */
-    private $sync_config = null;
+    protected $sync_config = null;
     /**
      * Optional. Configuration for index preparation for vector search. It
      * contains the required configurations to create an index from source data,
@@ -72,7 +72,7 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.IndexConfig index_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $index_config = null;
+    protected $index_config = null;
     protected $source;
 
     /**

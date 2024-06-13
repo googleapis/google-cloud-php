@@ -22,7 +22,7 @@ class CopyModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The resource name of the Model to copy. That Model must be in the
      * same Project. Format:
@@ -30,14 +30,14 @@ class CopyModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $source_model = '';
+    protected $source_model = '';
     /**
      * Customer-managed encryption key options. If this is set,
      * then the Model copy will be encrypted with the provided encryption key.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 3;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     protected $destination_model;
 
     /**

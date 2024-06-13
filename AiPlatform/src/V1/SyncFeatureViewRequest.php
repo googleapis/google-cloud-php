@@ -22,7 +22,7 @@ class SyncFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_view = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $feature_view = '';
+    protected $feature_view = '';
 
     /**
      * @param string $featureView Required. Format:

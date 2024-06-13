@@ -21,7 +21,7 @@ class CheckTrialEarlyStoppingStateResponse extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>bool should_stop = 1;</code>
      */
-    private $should_stop = false;
+    protected $should_stop = false;
 
     /**
      * Constructor.

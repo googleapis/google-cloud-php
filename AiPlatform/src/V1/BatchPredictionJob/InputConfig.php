@@ -26,7 +26,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instances_format = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instances_format = '';
+    protected $instances_format = '';
     protected $source;
 
     /**

@@ -26,14 +26,14 @@ class SelectTimeRangeAndFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Interval time_range = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $time_range = null;
+    protected $time_range = null;
     /**
      * Required. Selectors choosing which feature values to be deleted from the
      * EntityType.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureSelector feature_selector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_selector = null;
+    protected $feature_selector = null;
     /**
      * If set, data will not be deleted from online storage.
      * When time range is older than the data in online storage, setting this to
@@ -41,7 +41,7 @@ class SelectTimeRangeAndFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_online_storage_delete = 3;</code>
      */
-    private $skip_online_storage_delete = false;
+    protected $skip_online_storage_delete = false;
 
     /**
      * Constructor.

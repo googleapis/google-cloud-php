@@ -23,13 +23,13 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string tensorboard_time_series = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tensorboard_time_series = '';
+    protected $tensorboard_time_series = '';
     /**
      * Exports the TensorboardTimeSeries' data that match the filter expression.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of data points to return per page.
      * The default page_size is 1000. Values must be between 1 and 10000.
@@ -37,7 +37,7 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous
      * [ExportTensorboardTimeSeriesData][google.cloud.aiplatform.v1.TensorboardService.ExportTensorboardTimeSeriesData]
@@ -48,7 +48,7 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Field to use to sort the TensorboardTimeSeries' data.
      * By default, TensorboardTimeSeries' data is returned in a pseudo random
@@ -56,7 +56,7 @@ class ExportTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $tensorboardTimeSeries Required. The resource name of the TensorboardTimeSeries to export data

@@ -24,7 +24,7 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_logging = 2;</code>
      */
-    private $enable_logging = false;
+    protected $enable_logging = false;
     /**
      * Resource names of the NotificationChannels to send alert.
      * Must be of the format

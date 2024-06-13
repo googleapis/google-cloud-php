@@ -41,14 +41,14 @@ class Tool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Retrieval retrieval = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $retrieval = null;
+    protected $retrieval = null;
     /**
      * Optional. GoogleSearchRetrieval tool type.
      * Specialized retrieval tool that is powered by Google search.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GoogleSearchRetrieval google_search_retrieval = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $google_search_retrieval = null;
+    protected $google_search_retrieval = null;
 
     /**
      * Constructor.

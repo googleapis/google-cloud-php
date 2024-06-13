@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\AddContextArtifactsAndExecutionsRequest;
@@ -87,6 +86,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -110,7 +110,9 @@ class MetadataServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return MetadataServiceClient */
@@ -135,15 +137,17 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new AddContextArtifactsAndExecutionsRequest())
-            ->setContext($formattedContext);
+        $request = (new AddContextArtifactsAndExecutionsRequest())->setContext($formattedContext);
         $response = $gapicClient->addContextArtifactsAndExecutions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/AddContextArtifactsAndExecutions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.MetadataService/AddContextArtifactsAndExecutions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getContext();
         $this->assertProtobufEquals($formattedContext, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -160,17 +164,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new AddContextArtifactsAndExecutionsRequest())
-            ->setContext($formattedContext);
+        $request = (new AddContextArtifactsAndExecutionsRequest())->setContext($formattedContext);
         try {
             $gapicClient->addContextArtifactsAndExecutions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -197,8 +203,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new AddContextChildrenRequest())
-            ->setContext($formattedContext);
+        $request = (new AddContextChildrenRequest())->setContext($formattedContext);
         $response = $gapicClient->addContextChildren($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -222,17 +227,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new AddContextChildrenRequest())
-            ->setContext($formattedContext);
+        $request = (new AddContextChildrenRequest())->setContext($formattedContext);
         try {
             $gapicClient->addContextChildren($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -259,8 +266,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new AddExecutionEventsRequest())
-            ->setExecution($formattedExecution);
+        $request = (new AddExecutionEventsRequest())->setExecution($formattedExecution);
         $response = $gapicClient->addExecutionEvents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -284,17 +290,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new AddExecutionEventsRequest())
-            ->setExecution($formattedExecution);
+        $request = (new AddExecutionEventsRequest())->setExecution($formattedExecution);
         try {
             $gapicClient->addExecutionEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -336,9 +344,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $artifact = new Artifact();
-        $request = (new CreateArtifactRequest())
-            ->setParent($formattedParent)
-            ->setArtifact($artifact);
+        $request = (new CreateArtifactRequest())->setParent($formattedParent)->setArtifact($artifact);
         $response = $gapicClient->createArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -364,19 +370,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $artifact = new Artifact();
-        $request = (new CreateArtifactRequest())
-            ->setParent($formattedParent)
-            ->setArtifact($artifact);
+        $request = (new CreateArtifactRequest())->setParent($formattedParent)->setArtifact($artifact);
         try {
             $gapicClient->createArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -416,9 +423,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $context = new Context();
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = (new CreateContextRequest())->setParent($formattedParent)->setContext($context);
         $response = $gapicClient->createContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -444,19 +449,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $context = new Context();
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = (new CreateContextRequest())->setParent($formattedParent)->setContext($context);
         try {
             $gapicClient->createContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -496,9 +502,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $execution = new Execution();
-        $request = (new CreateExecutionRequest())
-            ->setParent($formattedParent)
-            ->setExecution($execution);
+        $request = (new CreateExecutionRequest())->setParent($formattedParent)->setExecution($execution);
         $response = $gapicClient->createExecution($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -524,19 +528,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $execution = new Execution();
-        $request = (new CreateExecutionRequest())
-            ->setParent($formattedParent)
-            ->setExecution($execution);
+        $request = (new CreateExecutionRequest())->setParent($formattedParent)->setExecution($execution);
         try {
             $gapicClient->createExecution($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -574,9 +579,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $metadataSchema = new MetadataSchema();
         $metadataSchemaSchema = 'metadataSchemaSchema-249734287';
         $metadataSchema->setSchema($metadataSchemaSchema);
-        $request = (new CreateMetadataSchemaRequest())
-            ->setParent($formattedParent)
-            ->setMetadataSchema($metadataSchema);
+        $request = (new CreateMetadataSchemaRequest())->setParent($formattedParent)->setMetadataSchema($metadataSchema);
         $response = $gapicClient->createMetadataSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -602,21 +605,22 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $metadataSchema = new MetadataSchema();
         $metadataSchemaSchema = 'metadataSchemaSchema-249734287';
         $metadataSchema->setSchema($metadataSchemaSchema);
-        $request = (new CreateMetadataSchemaRequest())
-            ->setParent($formattedParent)
-            ->setMetadataSchema($metadataSchema);
+        $request = (new CreateMetadataSchemaRequest())->setParent($formattedParent)->setMetadataSchema($metadataSchema);
         try {
             $gapicClient->createMetadataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -666,9 +670,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $metadataStore = new MetadataStore();
-        $request = (new CreateMetadataStoreRequest())
-            ->setParent($formattedParent)
-            ->setMetadataStore($metadataStore);
+        $request = (new CreateMetadataStoreRequest())->setParent($formattedParent)->setMetadataStore($metadataStore);
         $response = $gapicClient->createMetadataStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -726,19 +728,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $metadataStore = new MetadataStore();
-        $request = (new CreateMetadataStoreRequest())
-            ->setParent($formattedParent)
-            ->setMetadataStore($metadataStore);
+        $request = (new CreateMetadataStoreRequest())->setParent($formattedParent)->setMetadataStore($metadataStore);
         $response = $gapicClient->createMetadataStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -792,8 +795,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $request = (new DeleteArtifactRequest())
-            ->setName($formattedName);
+        $request = (new DeleteArtifactRequest())->setName($formattedName);
         $response = $gapicClient->deleteArtifact($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -849,17 +851,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $request = (new DeleteArtifactRequest())
-            ->setName($formattedName);
+        $request = (new DeleteArtifactRequest())->setName($formattedName);
         $response = $gapicClient->deleteArtifact($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -913,8 +917,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new DeleteContextRequest())
-            ->setName($formattedName);
+        $request = (new DeleteContextRequest())->setName($formattedName);
         $response = $gapicClient->deleteContext($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -970,17 +973,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new DeleteContextRequest())
-            ->setName($formattedName);
+        $request = (new DeleteContextRequest())->setName($formattedName);
         $response = $gapicClient->deleteContext($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1034,8 +1039,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new DeleteExecutionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteExecutionRequest())->setName($formattedName);
         $response = $gapicClient->deleteExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1091,17 +1095,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new DeleteExecutionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteExecutionRequest())->setName($formattedName);
         $response = $gapicClient->deleteExecution($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1155,8 +1161,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new DeleteMetadataStoreRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMetadataStoreRequest())->setName($formattedName);
         $response = $gapicClient->deleteMetadataStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1212,17 +1217,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new DeleteMetadataStoreRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMetadataStoreRequest())->setName($formattedName);
         $response = $gapicClient->deleteMetadataStore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1272,8 +1279,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $request = (new GetArtifactRequest())
-            ->setName($formattedName);
+        $request = (new GetArtifactRequest())->setName($formattedName);
         $response = $gapicClient->getArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1297,17 +1303,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $request = (new GetArtifactRequest())
-            ->setName($formattedName);
+        $request = (new GetArtifactRequest())->setName($formattedName);
         try {
             $gapicClient->getArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1346,8 +1354,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new GetContextRequest())
-            ->setName($formattedName);
+        $request = (new GetContextRequest())->setName($formattedName);
         $response = $gapicClient->getContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1371,17 +1378,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new GetContextRequest())
-            ->setName($formattedName);
+        $request = (new GetContextRequest())->setName($formattedName);
         try {
             $gapicClient->getContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1420,8 +1429,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new GetExecutionRequest())
-            ->setName($formattedName);
+        $request = (new GetExecutionRequest())->setName($formattedName);
         $response = $gapicClient->getExecution($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1445,17 +1453,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new GetExecutionRequest())
-            ->setName($formattedName);
+        $request = (new GetExecutionRequest())->setName($formattedName);
         try {
             $gapicClient->getExecution($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1489,9 +1499,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->metadataSchemaName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[METADATA_SCHEMA]');
-        $request = (new GetMetadataSchemaRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->metadataSchemaName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[METADATA_STORE]',
+            '[METADATA_SCHEMA]'
+        );
+        $request = (new GetMetadataSchemaRequest())->setName($formattedName);
         $response = $gapicClient->getMetadataSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1515,17 +1529,24 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->metadataSchemaName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[METADATA_SCHEMA]');
-        $request = (new GetMetadataSchemaRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->metadataSchemaName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[METADATA_STORE]',
+            '[METADATA_SCHEMA]'
+        );
+        $request = (new GetMetadataSchemaRequest())->setName($formattedName);
         try {
             $gapicClient->getMetadataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1556,8 +1577,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new GetMetadataStoreRequest())
-            ->setName($formattedName);
+        $request = (new GetMetadataStoreRequest())->setName($formattedName);
         $response = $gapicClient->getMetadataStore($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1581,17 +1601,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new GetMetadataStoreRequest())
-            ->setName($formattedName);
+        $request = (new GetMetadataStoreRequest())->setName($formattedName);
         try {
             $gapicClient->getMetadataStore($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1616,17 +1638,14 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $artifactsElement = new Artifact();
-        $artifacts = [
-            $artifactsElement,
-        ];
+        $artifacts = [$artifactsElement];
         $expectedResponse = new ListArtifactsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setArtifacts($artifacts);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListArtifactsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListArtifactsRequest())->setParent($formattedParent);
         $response = $gapicClient->listArtifacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1653,17 +1672,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListArtifactsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListArtifactsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listArtifacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1688,17 +1709,14 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $contextsElement = new Context();
-        $contexts = [
-            $contextsElement,
-        ];
+        $contexts = [$contextsElement];
         $expectedResponse = new ListContextsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContexts($contexts);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListContextsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListContextsRequest())->setParent($formattedParent);
         $response = $gapicClient->listContexts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1725,17 +1743,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListContextsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListContextsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listContexts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1760,17 +1780,14 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $executionsElement = new Execution();
-        $executions = [
-            $executionsElement,
-        ];
+        $executions = [$executionsElement];
         $expectedResponse = new ListExecutionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExecutions($executions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListExecutionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExecutionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listExecutions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1797,17 +1814,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListExecutionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExecutionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listExecutions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1832,17 +1851,14 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $metadataSchemasElement = new MetadataSchema();
-        $metadataSchemas = [
-            $metadataSchemasElement,
-        ];
+        $metadataSchemas = [$metadataSchemasElement];
         $expectedResponse = new ListMetadataSchemasResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetadataSchemas($metadataSchemas);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListMetadataSchemasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMetadataSchemasRequest())->setParent($formattedParent);
         $response = $gapicClient->listMetadataSchemas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1869,17 +1885,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
-        $request = (new ListMetadataSchemasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMetadataSchemasRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMetadataSchemas($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1904,17 +1922,14 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $metadataStoresElement = new MetadataStore();
-        $metadataStores = [
-            $metadataStoresElement,
-        ];
+        $metadataStores = [$metadataStoresElement];
         $expectedResponse = new ListMetadataStoresResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetadataStores($metadataStores);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMetadataStoresRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMetadataStoresRequest())->setParent($formattedParent);
         $response = $gapicClient->listMetadataStores($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1941,17 +1956,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMetadataStoresRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMetadataStoresRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMetadataStores($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1999,9 +2016,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeArtifactsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeArtifactsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeArtifacts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2059,19 +2074,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeArtifactsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeArtifactsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeArtifacts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2128,9 +2144,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeContextsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeContextsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeContexts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2188,19 +2202,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeContextsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeContextsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeContexts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2257,9 +2272,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeExecutionsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeExecutionsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeExecutions($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2317,19 +2330,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->metadataStoreName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeExecutionsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeExecutionsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeExecutions($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2365,8 +2379,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedArtifact = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $request = (new QueryArtifactLineageSubgraphRequest())
-            ->setArtifact($formattedArtifact);
+        $request = (new QueryArtifactLineageSubgraphRequest())->setArtifact($formattedArtifact);
         $response = $gapicClient->queryArtifactLineageSubgraph($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2390,17 +2403,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedArtifact = $gapicClient->artifactName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[ARTIFACT]');
-        $request = (new QueryArtifactLineageSubgraphRequest())
-            ->setArtifact($formattedArtifact);
+        $request = (new QueryArtifactLineageSubgraphRequest())->setArtifact($formattedArtifact);
         try {
             $gapicClient->queryArtifactLineageSubgraph($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2427,8 +2442,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new QueryContextLineageSubgraphRequest())
-            ->setContext($formattedContext);
+        $request = (new QueryContextLineageSubgraphRequest())->setContext($formattedContext);
         $response = $gapicClient->queryContextLineageSubgraph($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2452,17 +2466,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new QueryContextLineageSubgraphRequest())
-            ->setContext($formattedContext);
+        $request = (new QueryContextLineageSubgraphRequest())->setContext($formattedContext);
         try {
             $gapicClient->queryContextLineageSubgraph($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2489,15 +2505,17 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new QueryExecutionInputsAndOutputsRequest())
-            ->setExecution($formattedExecution);
+        $request = (new QueryExecutionInputsAndOutputsRequest())->setExecution($formattedExecution);
         $response = $gapicClient->queryExecutionInputsAndOutputs($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/QueryExecutionInputsAndOutputs', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.MetadataService/QueryExecutionInputsAndOutputs',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getExecution();
         $this->assertProtobufEquals($formattedExecution, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2514,17 +2532,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
-        $request = (new QueryExecutionInputsAndOutputsRequest())
-            ->setExecution($formattedExecution);
+        $request = (new QueryExecutionInputsAndOutputsRequest())->setExecution($formattedExecution);
         try {
             $gapicClient->queryExecutionInputsAndOutputs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2551,8 +2571,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new RemoveContextChildrenRequest())
-            ->setContext($formattedContext);
+        $request = (new RemoveContextChildrenRequest())->setContext($formattedContext);
         $response = $gapicClient->removeContextChildren($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2576,17 +2595,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new RemoveContextChildrenRequest())
-            ->setContext($formattedContext);
+        $request = (new RemoveContextChildrenRequest())->setContext($formattedContext);
         try {
             $gapicClient->removeContextChildren($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2627,8 +2648,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $artifact = new Artifact();
-        $request = (new UpdateArtifactRequest())
-            ->setArtifact($artifact);
+        $request = (new UpdateArtifactRequest())->setArtifact($artifact);
         $response = $gapicClient->updateArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2652,17 +2672,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $artifact = new Artifact();
-        $request = (new UpdateArtifactRequest())
-            ->setArtifact($artifact);
+        $request = (new UpdateArtifactRequest())->setArtifact($artifact);
         try {
             $gapicClient->updateArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2701,8 +2723,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $context = new Context();
-        $request = (new UpdateContextRequest())
-            ->setContext($context);
+        $request = (new UpdateContextRequest())->setContext($context);
         $response = $gapicClient->updateContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2726,17 +2747,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $context = new Context();
-        $request = (new UpdateContextRequest())
-            ->setContext($context);
+        $request = (new UpdateContextRequest())->setContext($context);
         try {
             $gapicClient->updateContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2775,8 +2798,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $execution = new Execution();
-        $request = (new UpdateExecutionRequest())
-            ->setExecution($execution);
+        $request = (new UpdateExecutionRequest())->setExecution($execution);
         $response = $gapicClient->updateExecution($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2800,17 +2822,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $execution = new Execution();
-        $request = (new UpdateExecutionRequest())
-            ->setExecution($execution);
+        $request = (new UpdateExecutionRequest())->setExecution($execution);
         try {
             $gapicClient->updateExecution($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2863,12 +2887,15 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2895,9 +2922,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2927,12 +2952,15 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2965,8 +2993,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2990,17 +3017,19 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3032,9 +3061,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3060,19 +3087,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3100,9 +3128,7 @@ class MetadataServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3128,19 +3154,20 @@ class MetadataServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3167,15 +3194,17 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
-        $request = (new AddContextArtifactsAndExecutionsRequest())
-            ->setContext($formattedContext);
+        $request = (new AddContextArtifactsAndExecutionsRequest())->setContext($formattedContext);
         $response = $gapicClient->addContextArtifactsAndExecutionsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/AddContextArtifactsAndExecutions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.MetadataService/AddContextArtifactsAndExecutions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getContext();
         $this->assertProtobufEquals($formattedContext, $actualValue);
         $this->assertTrue($transport->isExhausted());

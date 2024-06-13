@@ -22,44 +22,44 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user email of the NotebookRuntime.
      *
      * Generated from protobuf field <code>string runtime_user = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $runtime_user = '';
+    protected $runtime_user = '';
     /**
      * Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is
      * created from.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeTemplateRef notebook_runtime_template_ref = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $notebook_runtime_template_ref = null;
+    protected $notebook_runtime_template_ref = null;
     /**
      * Output only. The proxy endpoint used to access the NotebookRuntime.
      *
      * Generated from protobuf field <code>string proxy_uri = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $proxy_uri = '';
+    protected $proxy_uri = '';
     /**
      * Output only. Timestamp when this NotebookRuntime was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this NotebookRuntime was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The health state of the NotebookRuntime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntime.HealthState health_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_state = 0;
+    protected $health_state = 0;
     /**
      * Required. The display name of the NotebookRuntime.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -67,31 +67,31 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the NotebookRuntime.
      *
      * Generated from protobuf field <code>string description = 11;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The service account that the NotebookRuntime workload runs as.
      *
      * Generated from protobuf field <code>string service_account = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Output only. The runtime (instance) state of the NotebookRuntime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntime.RuntimeState runtime_state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $runtime_state = 0;
+    protected $runtime_state = 0;
     /**
      * Output only. Whether NotebookRuntime is upgradable.
      *
      * Generated from protobuf field <code>bool is_upgradable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_upgradable = false;
+    protected $is_upgradable = false;
     /**
      * The labels with user-defined metadata to organize your
      * NotebookRuntime.
@@ -121,25 +121,25 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     /**
      * Output only. The VM os image version of NotebookRuntime.
      *
      * Generated from protobuf field <code>string version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. The type of the notebook runtime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeType notebook_runtime_type = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $notebook_runtime_type = 0;
+    protected $notebook_runtime_type = 0;
     /**
      * Output only. The idle shutdown configuration of the notebook runtime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $idle_shutdown_config = null;
+    protected $idle_shutdown_config = null;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
@@ -152,19 +152,19 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = false;
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.

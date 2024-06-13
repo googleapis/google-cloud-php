@@ -31,7 +31,7 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>int64 data_bytes_count = 2;</code>
      */
-    private $data_bytes_count = 0;
+    protected $data_bytes_count = 0;
 
     /**
      * Constructor.

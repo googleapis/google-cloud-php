@@ -23,7 +23,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The instances that are the input to the prediction call.
      * A DeployedModel may have an upper limit on the number of instances it
@@ -47,7 +47,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value parameters = 3;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * @param string                   $endpoint   Required. The name of the Endpoint requested to serve the prediction.

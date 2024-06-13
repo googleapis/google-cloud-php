@@ -20,20 +20,20 @@ class SafetySetting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.HarmCategory category = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $category = 0;
+    protected $category = 0;
     /**
      * Required. The harm block threshold.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetySetting.HarmBlockThreshold threshold = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $threshold = 0;
+    protected $threshold = 0;
     /**
      * Optional. Specify if the threshold is used for probability or severity
      * score. If not specified, the threshold is used for probability score.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetySetting.HarmBlockMethod method = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $method = 0;
+    protected $method = 0;
 
     /**
      * Constructor.

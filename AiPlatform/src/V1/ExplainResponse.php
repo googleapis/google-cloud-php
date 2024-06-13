@@ -31,7 +31,7 @@ class ExplainResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployed_model_id = 2;</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
     /**
      * The predictions that are the output of the predictions call.
      * Same as

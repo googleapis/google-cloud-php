@@ -21,20 +21,20 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string training_dataset_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $training_dataset_uri = '';
+    protected $training_dataset_uri = '';
     /**
      * Optional. Cloud Storage path to file containing validation dataset for
      * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string validation_dataset_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validation_dataset_uri = '';
+    protected $validation_dataset_uri = '';
     /**
      * Optional. Hyperparameters for SFT.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedHyperParameters hyper_parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $hyper_parameters = null;
+    protected $hyper_parameters = null;
 
     /**
      * Constructor.

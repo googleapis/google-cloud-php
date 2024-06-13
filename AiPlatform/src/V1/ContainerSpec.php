@@ -21,7 +21,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * The command to be invoked when the container is started.
      * It overrides the entrypoint instruction in Dockerfile when provided.

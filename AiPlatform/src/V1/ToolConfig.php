@@ -20,7 +20,7 @@ class ToolConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FunctionCallingConfig function_calling_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $function_calling_config = null;
+    protected $function_calling_config = null;
 
     /**
      * Constructor.

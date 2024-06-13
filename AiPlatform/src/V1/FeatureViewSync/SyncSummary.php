@@ -21,13 +21,13 @@ class SyncSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_synced = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $row_synced = 0;
+    protected $row_synced = 0;
     /**
      * Output only. BigQuery slot milliseconds consumed for the sync job.
      *
      * Generated from protobuf field <code>int64 total_slot = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $total_slot = 0;
+    protected $total_slot = 0;
 
     /**
      * Constructor.

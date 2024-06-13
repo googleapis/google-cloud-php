@@ -21,19 +21,19 @@ class NasTrialDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The parameters for the NasJob NasTrial.
      *
      * Generated from protobuf field <code>string parameters = 2;</code>
      */
-    private $parameters = '';
+    protected $parameters = '';
     /**
      * The requested search NasTrial.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasTrial search_trial = 3;</code>
      */
-    private $search_trial = null;
+    protected $search_trial = null;
     /**
      * The train NasTrial corresponding to
      * [search_trial][google.cloud.aiplatform.v1.NasTrialDetail.search_trial].
@@ -43,7 +43,7 @@ class NasTrialDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasTrial train_trial = 4;</code>
      */
-    private $train_trial = null;
+    protected $train_trial = null;
 
     /**
      * Constructor.

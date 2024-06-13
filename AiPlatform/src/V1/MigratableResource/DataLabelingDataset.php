@@ -22,13 +22,13 @@ class DataLabelingDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * The Dataset's display name in datalabeling.googleapis.com.
      *
      * Generated from protobuf field <code>string dataset_display_name = 4;</code>
      */
-    private $dataset_display_name = '';
+    protected $dataset_display_name = '';
     /**
      * The migratable AnnotatedDataset in datalabeling.googleapis.com belongs to
      * the data labeling Dataset.

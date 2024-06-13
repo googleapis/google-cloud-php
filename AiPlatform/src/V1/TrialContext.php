@@ -21,7 +21,7 @@ class TrialContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * If/when a Trial is generated or selected from this Context,
      * its Parameters will match any parameters specified here.

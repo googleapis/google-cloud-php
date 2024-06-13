@@ -21,7 +21,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the IndexEndpoint.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -29,13 +29,13 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the IndexEndpoint.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The indexes deployed in this endpoint.
      *
@@ -48,7 +48,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 5;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your IndexEndpoints.
      * Label keys and values can be no longer than 64 characters
@@ -64,7 +64,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this IndexEndpoint was last updated.
      * This timestamp is not updated when the endpoint's DeployedIndexes are
@@ -73,7 +73,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. The full name of the Google Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
@@ -90,7 +90,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Optional. Deprecated: If true, expose the IndexEndpoint via private service
      * connect.
@@ -111,14 +111,14 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $private_service_connect_config = null;
+    protected $private_service_connect_config = null;
     /**
      * Optional. If true, the deployed index will be accessible through public
      * endpoint.
      *
      * Generated from protobuf field <code>bool public_endpoint_enabled = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $public_endpoint_enabled = false;
+    protected $public_endpoint_enabled = false;
     /**
      * Output only. If
      * [public_endpoint_enabled][google.cloud.aiplatform.v1.IndexEndpoint.public_endpoint_enabled]
@@ -127,7 +127,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_endpoint_domain_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $public_endpoint_domain_name = '';
+    protected $public_endpoint_domain_name = '';
     /**
      * Immutable. Customer-managed encryption key spec for an IndexEndpoint. If
      * set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be
@@ -135,7 +135,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
 
     /**
      * Constructor.

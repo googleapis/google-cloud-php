@@ -26,7 +26,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string predictions_format = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $predictions_format = '';
+    protected $predictions_format = '';
     protected $destination;
 
     /**
