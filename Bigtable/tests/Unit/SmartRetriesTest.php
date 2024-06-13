@@ -151,7 +151,7 @@ class SmartRetriesTest extends TestCase
         $this->bigtableClient->readRows(
             Argument::type(ReadRowsRequest::class),
             Argument::that(function ($callOptions) use (&$attempt) {
-                $this->assertEquals($attempt, $callOptions['headers']['bigtable-attempt'][0] ?? null);
+                $this->assertSame((string) $attempt, $callOptions['headers']['bigtable-attempt'][0] ?? null);
                 return true;
             })
         )->shouldBeCalledTimes(2)
