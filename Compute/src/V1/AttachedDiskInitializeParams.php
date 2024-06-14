@@ -125,6 +125,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      */
     private $source_snapshot_encryption_key = null;
+    /**
+     * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
+     *
+     * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
+     */
+    private $storage_pool = null;
 
     /**
      * Constructor.
@@ -170,6 +176,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD. To create a disk with a snapshot that you created, specify the snapshot name in the following format: global/snapshots/my-backup If the source snapshot is deleted later, this field will not be set.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_snapshot_encryption_key
      *           The customer-supplied encryption key of the source snapshot.
+     *     @type string $storage_pool
+     *           The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
      * }
      */
     public function __construct($data = NULL) {
@@ -775,6 +783,42 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
         $this->source_snapshot_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
+     *
+     * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
+     * @return string
+     */
+    public function getStoragePool()
+    {
+        return isset($this->storage_pool) ? $this->storage_pool : '';
+    }
+
+    public function hasStoragePool()
+    {
+        return isset($this->storage_pool);
+    }
+
+    public function clearStoragePool()
+    {
+        unset($this->storage_pool);
+    }
+
+    /**
+     * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
+     *
+     * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStoragePool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->storage_pool = $var;
 
         return $this;
     }

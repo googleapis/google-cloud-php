@@ -678,6 +678,7 @@ class DisksClientTest extends GeneratedTest
         $sourceSnapshotId = 'sourceSnapshotId-1511650478';
         $sourceStorageObject = 'sourceStorageObject-303818201';
         $status = 'status-892481550';
+        $storagePool = 'storagePool897344352';
         $type = 'type3575610';
         $zone2 = 'zone2-696322977';
         $expectedResponse = new Disk();
@@ -713,6 +714,7 @@ class DisksClientTest extends GeneratedTest
         $expectedResponse->setSourceSnapshotId($sourceSnapshotId);
         $expectedResponse->setSourceStorageObject($sourceStorageObject);
         $expectedResponse->setStatus($status);
+        $expectedResponse->setStoragePool($storagePool);
         $expectedResponse->setType($type);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);

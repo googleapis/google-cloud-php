@@ -25,17 +25,29 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
+use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
-use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\DocFx\XrefValidationTrait;
 
 /**
  * @internal
  */
 class DocFxCommand extends Command
 {
+    use XrefValidationTrait;
+
     private array $composerJson;
     private array $repoMetadataJson;
+
+    // these links are inexplicably broken in phpdoc generation, and will require more investigation
+    private static array $allowedReferenceFailures = [
+        '\Google\Cloud\ResourceManager\V3\Client\ProjectsClient::testIamPermissions()'
+            => 'ProjectsClient::testIamPermissionsAsync()',
+        '\Google\Cloud\Logging\V2\Client\ConfigServiceV2Client::getView()'
+            => 'ConfigServiceV2Client::getViewAsync()'
+    ];
 
     protected function configure()
     {
@@ -50,8 +62,8 @@ class DocFxCommand extends Command
                 'component-path',
                 '',
                 InputOption::VALUE_OPTIONAL,
-                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.
-            ')
+                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.'
+            )
         ;
     }
 
@@ -61,7 +73,7 @@ class DocFxCommand extends Command
             throw new RuntimeException('This command must be run on PHP 8.0 or above');
         }
 
-        $componentName = $input->getOption('component') ?: basename(getcwd());
+        $componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
         $component = new Component($componentName, $input->getOption('component-path'));
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
         $xml = $input->getOption('xml');
@@ -92,8 +104,10 @@ class DocFxCommand extends Command
         $indent = 2; // The amount of spaces to use for indentation of nested nodes
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
+        $valid = true;
         $tocItems = [];
         $packageDescription = $component->getDescription();
+        $isBeta = 'stable' !== $component->getReleaseLevel();
         foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
@@ -103,6 +117,8 @@ class DocFxCommand extends Command
             );
 
             foreach ($pageTree->getPages() as $page) {
+                // validate the docs page. this will fail the job if it's false
+                $valid = $this->validate($page->getClassNode(), $output) && $valid;
                 $docFxArray = ['items' => $page->getItems()];
 
                 // Dump the YAML for the class node
@@ -117,11 +133,15 @@ class DocFxCommand extends Command
             $tocItems = array_merge($tocItems, $pageTree->getTocItems());
         }
 
-        $releaseLevel = $component->getReleaseLevel();
+        // exit early if the docs aren't valid
+        if (!$valid) {
+            return 1;
+        }
+
         if (file_exists($overviewFile = sprintf('%s/README.md', $component->getPath()))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $releaseLevel !== 'stable'
+                $isBeta
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -133,7 +153,7 @@ class DocFxCommand extends Command
         $componentToc = array_filter([
             'uid' => $component->getReferenceDocumentationUid(),
             'name' => $component->getPackageName(),
-            'status' => $releaseLevel !== 'stable' ? 'beta' : '',
+            'status' => $isBeta ? 'beta' : '',
             'items' => $tocItems,
         ]);
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
@@ -198,5 +218,38 @@ class DocFxCommand extends Command
         $process->setTimeout(120);
 
         return $process;
+    }
+
+    private function validate(ClassNode $class, OutputInterface $output): bool
+    {
+        $valid = true;
+        $emptyRef = '<options=bold>empty</>';
+        $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
+        foreach (array_merge([$class], $class->getMethods(), $class->getConstants()) as $node) {
+            foreach ($this->getInvalidXrefs($node->getContent()) as $invalidRef) {
+                if (isset(self::$allowedReferenceFailures[$node->getFullname()])
+                    && self::$allowedReferenceFailures[$node->getFullname()] == $invalidRef) {
+                    // these links are inexplicably broken in phpdoc generation, and will require more investigation
+                    continue;
+                }
+                $output->write(sprintf("\n<error>Invalid xref in %s: %s</>", $node->getFullname(), $invalidRef));
+                $valid = false;
+            }
+            foreach ($this->getBrokenXrefs($node->getContent()) as $brokenRef) {
+                $output->writeln(
+                    sprintf('<comment>Broken xref in %s: %s</>', $node->getFullname(), $brokenRef ?: $emptyRef),
+                    $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL
+                );
+                // generated classes are allowed to have broken xrefs
+                if ($isGenerated) {
+                    continue;
+                }
+                $valid = false;
+            }
+        }
+        if (!$valid) {
+            $output->writeln('');
+        }
+        return $valid;
     }
 }

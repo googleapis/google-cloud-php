@@ -37,7 +37,7 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
  *                                       `projects/&#42;/locations/global/collections/&#42;/dataStores/&#42;/servingConfigs/*`
  *
  *                                       One default serving config is created along with your recommendation engine
- *                                       creation. The engine ID will be used as the ID of the default serving
+ *                                       creation. The engine ID is used as the ID of the default serving
  *                                       config. For example, for Engine
  *                                       `projects/&#42;/locations/global/collections/&#42;/engines/my-engine`, you can use
  *                                       `projects/&#42;/locations/global/collections/&#42;/engines/my-engine/servingConfigs/my-engine`

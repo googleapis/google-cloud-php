@@ -21,14 +21,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_delete = 1;</code>
      */
-    private $auto_delete = false;
+    protected $auto_delete = false;
     /**
      * Indicates that this is a boot disk. The virtual machine will use the
      * first partition of the disk for its root filesystem.
      *
      * Generated from protobuf field <code>bool boot = 2;</code>
      */
-    private $boot = false;
+    protected $boot = false;
     /**
      * Indicates a unique device name of your choice that is reflected into the
      * `/dev/disk/by-id/google-*` tree of a Linux operating system running
@@ -40,13 +40,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string device_name = 3;</code>
      */
-    private $device_name = '';
+    protected $device_name = '';
     /**
      * Indicates the size of the disk in base-2 GB.
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 4;</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * Indicates a list of features to enable on the guest operating system.
      * Applicable only for bootable images. Read  Enabling guest operating
@@ -62,7 +62,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 index = 6;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Indicates the disk interface to use for attaching this disk, which is
      * either SCSI or NVME. The default is SCSI. Persistent disks must always
@@ -76,14 +76,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string interface = 7;</code>
      */
-    private $interface = '';
+    protected $interface = '';
     /**
      * Type of the resource. Always compute#attachedDisk for attached
      * disks.
      *
      * Generated from protobuf field <code>string kind = 8;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * A list of publicly visible licenses. Reserved for Google's use.
      * A License represents billing and aggregate usage data for public
@@ -101,14 +101,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mode = 10;</code>
      */
-    private $mode = '';
+    protected $mode = '';
     /**
      * Indicates a valid partial or full URL to an existing Persistent Disk
      * resource.
      *
      * Generated from protobuf field <code>string source = 11;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Indicates the type of the disk, either `SCRATCH` or `PERSISTENT`.
      * Valid values:
@@ -117,7 +117,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 12;</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.
@@ -563,6 +563,4 @@ class Disk extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Disk::class, \Google\Cloud\Notebooks\V1\Instance_Disk::class);
 

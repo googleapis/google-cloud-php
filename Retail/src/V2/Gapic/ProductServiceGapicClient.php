@@ -48,6 +48,7 @@ use Google\Cloud\Retail\V2\ListProductsResponse;
 use Google\Cloud\Retail\V2\LocalInventory;
 use Google\Cloud\Retail\V2\Product;
 use Google\Cloud\Retail\V2\ProductInputConfig;
+use Google\Cloud\Retail\V2\PurgeProductsRequest;
 use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest;
 use Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
@@ -395,10 +396,11 @@ class ProductServiceGapicClient
     }
 
     /**
-     * It is recommended to use the
+     * We recommend that you use the
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
-     * method instead of
-     * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces].
+     * method instead of the
+     * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+     * method.
      * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
      * achieves the same results but provides more fine-grained control over
      * ingesting local inventory data.
@@ -972,7 +974,8 @@ class ProductServiceGapicClient
      *           The desired location of errors incurred during the Import.
      *     @type FieldMask $updateMask
      *           Indicates which fields in the provided imported `products` to update. If
-     *           not set, all fields are updated.
+     *           not set, all fields are updated. If provided, only the existing product
+     *           fields are updated. Missing products will not be created.
      *     @type int $reconciliationMode
      *           The mode of reconciliation between existing products and the products to be
      *           imported. Defaults to
@@ -987,9 +990,14 @@ class ProductServiceGapicClient
      *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
      *           to be within the same project as
      *           [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
-     *           Make sure that `service-<project
-     *           number>&#64;gcp-sa-retail.iam.gserviceaccount.com` has the
-     *           `pubsub.topics.publish` IAM permission on the topic.
+     *           Make sure that both
+     *           `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     *           `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     *           have the `pubsub.topics.publish` IAM permission on the topic.
+     *
+     *           Only supported when
+     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
+     *           is set to `FULL`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1188,10 +1196,151 @@ class ProductServiceGapicClient
     }
 
     /**
-     * It is recommended to use the
+     * Permanently deletes all selected [Product][google.cloud.retail.v2.Product]s
+     * under a branch.
+     *
+     * This process is asynchronous. If the request is valid, the removal will be
+     * enqueued and processed offline. Depending on the number of
+     * [Product][google.cloud.retail.v2.Product]s, this operation could take hours
+     * to complete. Before the operation completes, some
+     * [Product][google.cloud.retail.v2.Product]s may still be returned by
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * Depending on the number of [Product][google.cloud.retail.v2.Product]s, this
+     * operation could take hours to complete. To get a sample of
+     * [Product][google.cloud.retail.v2.Product]s that would be deleted, set
+     * [PurgeProductsRequest.force][google.cloud.retail.v2.PurgeProductsRequest.force]
+     * to false.
+     *
+     * Sample code:
+     * ```
+     * $productServiceClient = new ProductServiceClient();
+     * try {
+     *     $formattedParent = $productServiceClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
+     *     $filter = 'filter';
+     *     $operationResponse = $productServiceClient->purgeProducts($formattedParent, $filter);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $productServiceClient->purgeProducts($formattedParent, $filter);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $productServiceClient->resumeOperation($operationName, 'purgeProducts');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $productServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the branch under which the products are
+     *                             created. The format is
+     *                             `projects/${projectId}/locations/global/catalogs/${catalogId}/branches/${branchId}`
+     * @param string $filter       Required. The filter string to specify the products to be deleted with a
+     *                             length limit of 5,000 characters.
+     *
+     *                             Empty string filter is not allowed. "*" implies delete all items in a
+     *                             branch.
+     *
+     *                             The eligible fields for filtering are:
+     *
+     *                             * `availability`: Double quoted
+     *                             [Product.availability][google.cloud.retail.v2.Product.availability] string.
+     *                             * `create_time` : in ISO 8601 "zulu" format.
+     *
+     *                             Supported syntax:
+     *
+     *                             * Comparators (">", "<", ">=", "<=", "=").
+     *                             Examples:
+     *                             * create_time <= "2015-02-13T17:05:46Z"
+     *                             * availability = "IN_STOCK"
+     *
+     *                             * Conjunctions ("AND")
+     *                             Examples:
+     *                             * create_time <= "2015-02-13T17:05:46Z" AND availability = "PREORDER"
+     *
+     *                             * Disjunctions ("OR")
+     *                             Examples:
+     *                             * create_time <= "2015-02-13T17:05:46Z" OR availability = "IN_STOCK"
+     *
+     *                             * Can support nested queries.
+     *                             Examples:
+     *                             * (create_time <= "2015-02-13T17:05:46Z" AND availability = "PREORDER")
+     *                             OR (create_time >= "2015-02-14T13:03:32Z" AND availability = "IN_STOCK")
+     *
+     *                             * Filter Limits:
+     *                             * Filter should not contain more than 6 conditions.
+     *                             * Max nesting depth should not exceed 2 levels.
+     *
+     *                             Examples queries:
+     *                             * Delete back order products created before a timestamp.
+     *                             create_time <= "2015-02-13T17:05:46Z" OR availability = "BACKORDER"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $force
+     *           Actually perform the purge.
+     *           If `force` is set to false, the method will return the expected purge count
+     *           without deleting any products.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function purgeProducts($parent, $filter, array $optionalArgs = [])
+    {
+        $request = new PurgeProductsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setFilter($filter);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'PurgeProducts',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * We recommend that you use the
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
-     * method instead of
-     * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+     * method instead of the
+     * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+     * method.
      * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
      * achieves the same results but provides more fine-grained control over
      * ingesting local inventory data.

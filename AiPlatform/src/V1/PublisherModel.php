@@ -20,7 +20,7 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Immutable. The version ID of the PublisherModel.
      * A new version is committed when a new model version is uploaded under an
@@ -29,19 +29,19 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_id = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version_id = '';
+    protected $version_id = '';
     /**
      * Required. Indicates the open source category of the publisher model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.OpenSourceCategory open_source_category = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $open_source_category = 0;
+    protected $open_source_category = 0;
     /**
      * Optional. Supported call-to-action options.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.CallToAction supported_actions = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $supported_actions = null;
+    protected $supported_actions = null;
     /**
      * Optional. Additional information about the model's Frameworks.
      *
@@ -53,13 +53,13 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.LaunchStage launch_stage = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $launch_stage = 0;
+    protected $launch_stage = 0;
     /**
      * Optional. Indicates the state of the model version.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PublisherModel.VersionState version_state = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version_state = 0;
+    protected $version_state = 0;
     /**
      * Optional. Output only. Immutable. Used to indicate this model has a
      * publisher model and provide the template of the publisher model resource
@@ -67,7 +67,7 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string publisher_model_template = 30 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $publisher_model_template = '';
+    protected $publisher_model_template = '';
     /**
      * Optional. The schemata that describes formats of the PublisherModel's
      * predictions and explanations as given and returned via
@@ -75,7 +75,7 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PredictSchemata predict_schemata = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predict_schemata = null;
+    protected $predict_schemata = null;
 
     /**
      * Constructor.

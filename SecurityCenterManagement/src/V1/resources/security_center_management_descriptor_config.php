@@ -107,6 +107,18 @@ return [
                     ],
                 ],
             ],
+            'GetSecurityCenterService' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSecurityHealthAnalyticsCustomModule' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule',
@@ -219,6 +231,26 @@ return [
                     ],
                 ],
             ],
+            'ListSecurityCenterServices' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSecurityCenterServices',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenterManagement\V1\ListSecurityCenterServicesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSecurityHealthAnalyticsCustomModules' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -259,6 +291,19 @@ return [
                         'keyName' => 'event_threat_detection_custom_module.name',
                         'fieldAccessors' => [
                             'getEventThreatDetectionCustomModule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSecurityCenterService' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService',
+                'headerParams' => [
+                    [
+                        'keyName' => 'security_center_service.name',
+                        'fieldAccessors' => [
+                            'getSecurityCenterService',
                             'getName',
                         ],
                     ],
@@ -332,16 +377,20 @@ return [
                 'folderLocationEffectiveSecurityHealthAnalyticsCustomModule' => 'folders/{folder}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}',
                 'folderLocationEventThreatDetectionCustomModule' => 'folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}',
                 'folderLocationSecurityHealthAnalyticsCustomModule' => 'folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}',
+                'folderLocationService' => 'folders/{folder}/locations/{location}/securityCenterServices/{service}',
                 'location' => 'projects/{project}/locations/{location}',
                 'organizationLocation' => 'organizations/{organization}/locations/{location}',
                 'organizationLocationEffectiveEventThreatDetectionCustomModule' => 'organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}',
                 'organizationLocationEffectiveSecurityHealthAnalyticsCustomModule' => 'organizations/{organization}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}',
                 'organizationLocationEventThreatDetectionCustomModule' => 'organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}',
                 'organizationLocationSecurityHealthAnalyticsCustomModule' => 'organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}',
+                'organizationLocationService' => 'organizations/{organization}/locations/{location}/securityCenterServices/{service}',
                 'projectLocationEffectiveEventThreatDetectionCustomModule' => 'projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}',
                 'projectLocationEffectiveSecurityHealthAnalyticsCustomModule' => 'projects/{project}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}',
                 'projectLocationEventThreatDetectionCustomModule' => 'projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}',
                 'projectLocationSecurityHealthAnalyticsCustomModule' => 'projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}',
+                'projectLocationService' => 'projects/{project}/locations/{location}/securityCenterServices/{service}',
+                'securityCenterService' => 'projects/{project}/locations/{location}/securityCenterServices/{service}',
                 'securityHealthAnalyticsCustomModule' => 'organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}',
             ],
         ],

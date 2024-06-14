@@ -24,7 +24,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes row_key = 1;</code>
      */
-    private $row_key = '';
+    protected $row_key = '';
     /**
      * The column family name for this chunk of data.  If this message
      * is not present this CellChunk is a continuation of the same column
@@ -35,7 +35,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
      */
-    private $family_name = null;
+    protected $family_name = null;
     /**
      * The column qualifier for this chunk of data.  If this message
      * is not present, this CellChunk is a continuation of the same column
@@ -45,7 +45,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
      */
-    private $qualifier = null;
+    protected $qualifier = null;
     /**
      * The cell's stored timestamp, which also uniquely identifies it
      * within its column.  Values are always expressed in
@@ -58,7 +58,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 timestamp_micros = 4;</code>
      */
-    private $timestamp_micros = 0;
+    protected $timestamp_micros = 0;
     /**
      * Labels applied to the cell by a
      * [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
@@ -76,7 +76,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes value = 6;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * If this CellChunk is part of a chunked cell value and this is
      * not the final chunk of that cell, value_size will be set to the
@@ -85,7 +85,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 value_size = 7;</code>
      */
-    private $value_size = 0;
+    protected $value_size = 0;
     protected $row_status;
 
     /**
@@ -220,7 +220,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
      * @return string|null
      */
-    public function getFamilyNameValue()
+    public function getFamilyNameUnwrapped()
     {
         return $this->readWrapperValue("family_name");
     }
@@ -259,7 +259,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setFamilyNameValue($var)
+    public function setFamilyNameUnwrapped($var)
     {
         $this->writeWrapperValue("family_name", $var);
         return $this;}
@@ -301,7 +301,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
      * @return string|null
      */
-    public function getQualifierValue()
+    public function getQualifierUnwrapped()
     {
         return $this->readWrapperValue("qualifier");
     }
@@ -338,7 +338,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setQualifierValue($var)
+    public function setQualifierUnwrapped($var)
     {
         $this->writeWrapperValue("qualifier", $var);
         return $this;}

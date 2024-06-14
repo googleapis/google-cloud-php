@@ -23,7 +23,7 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanConfigError.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Output only. Indicates the full name of the ScanConfig field that triggers this error,
      * for example "scan_config.max_qps". This field is provided for
@@ -32,7 +32,7 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 2;</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
 
     /**
      * Constructor.

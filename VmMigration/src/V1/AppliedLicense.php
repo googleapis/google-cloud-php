@@ -20,13 +20,13 @@ class AppliedLicense extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AppliedLicense.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The OS license returned from the adaptation module's report.
      *
      * Generated from protobuf field <code>string os_license = 2;</code>
      */
-    private $os_license = '';
+    protected $os_license = '';
 
     /**
      * Constructor.

@@ -24,7 +24,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The set of values representing the partition, which
      * correspond to the partition schema defined in the parent entity.
@@ -39,7 +39,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Optional. The etag for this partition.
      *

@@ -29,6 +29,7 @@ namespace Google\Analytics\Data\V1alpha\Gapic;
 use Google\Analytics\Data\V1alpha\AudienceList;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
+use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
 use Google\Analytics\Data\V1alpha\DateRange;
 use Google\Analytics\Data\V1alpha\FilterExpression;
 use Google\Analytics\Data\V1alpha\Funnel;
@@ -36,13 +37,19 @@ use Google\Analytics\Data\V1alpha\FunnelBreakdown;
 use Google\Analytics\Data\V1alpha\FunnelNextAction;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsResponse;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsResponse;
+use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
+use Google\Analytics\Data\V1alpha\ListReportTasksResponse;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
+use Google\Analytics\Data\V1alpha\QueryReportTaskRequest;
+use Google\Analytics\Data\V1alpha\QueryReportTaskResponse;
 use Google\Analytics\Data\V1alpha\RecurringAudienceList;
+use Google\Analytics\Data\V1alpha\ReportTask;
 use Google\Analytics\Data\V1alpha\RunFunnelReportRequest;
 use Google\Analytics\Data\V1alpha\RunFunnelReportResponse;
 use Google\Analytics\Data\V1alpha\Segment;
@@ -150,6 +157,8 @@ class AlphaAnalyticsDataGapicClient
 
     private static $recurringAudienceListNameTemplate;
 
+    private static $reportTaskNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -214,6 +223,17 @@ class AlphaAnalyticsDataGapicClient
         return self::$recurringAudienceListNameTemplate;
     }
 
+    private static function getReportTaskNameTemplate()
+    {
+        if (self::$reportTaskNameTemplate == null) {
+            self::$reportTaskNameTemplate = new PathTemplate(
+                'properties/{property}/reportTasks/{report_task}'
+            );
+        }
+
+        return self::$reportTaskNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -221,6 +241,7 @@ class AlphaAnalyticsDataGapicClient
                 'audienceList' => self::getAudienceListNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
                 'recurringAudienceList' => self::getRecurringAudienceListNameTemplate(),
+                'reportTask' => self::getReportTaskNameTemplate(),
             ];
         }
 
@@ -285,12 +306,32 @@ class AlphaAnalyticsDataGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a report_task
+     * resource.
+     *
+     * @param string $property
+     * @param string $reportTask
+     *
+     * @return string The formatted report_task resource.
+     *
+     * @experimental
+     */
+    public static function reportTaskName($property, $reportTask)
+    {
+        return self::getReportTaskNameTemplate()->render([
+            'property' => $property,
+            'report_task' => $reportTask,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - audienceList: properties/{property}/audienceLists/{audience_list}
      * - property: properties/{property}
      * - recurringAudienceList: properties/{property}/recurringAudienceLists/{recurring_audience_list}
+     * - reportTask: properties/{property}/reportTasks/{report_task}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -615,6 +656,91 @@ class AlphaAnalyticsDataGapicClient
     }
 
     /**
+     * Initiates the creation of a report task. This method quickly
+     * returns a report task and initiates a long running
+     * asynchronous request to form a customized report of your Google Analytics
+     * event data.
+     *
+     * Sample code:
+     * ```
+     * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
+     * try {
+     *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     $reportTask = new ReportTask();
+     *     $operationResponse = $alphaAnalyticsDataClient->createReportTask($formattedParent, $reportTask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $alphaAnalyticsDataClient->createReportTask($formattedParent, $reportTask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $alphaAnalyticsDataClient->resumeOperation($operationName, 'createReportTask');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $alphaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. The parent resource where this report task will be created.
+     *                                 Format: `properties/{propertyId}`
+     * @param ReportTask $reportTask   Required. The report task configuration to create.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createReportTask(
+        $parent,
+        $reportTask,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateReportTaskRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setReportTask($reportTask);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateReportTask',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Gets configuration metadata about a specific audience list. This method
      * can be used to understand an audience list after it has been created.
      *
@@ -733,6 +859,59 @@ class AlphaAnalyticsDataGapicClient
         return $this->startCall(
             'GetRecurringAudienceList',
             RecurringAudienceList::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets report metadata about a specific report task. After creating a report
+     * task, use this method to check its processing state or inspect its
+     * report definition.
+     *
+     * Sample code:
+     * ```
+     * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
+     * try {
+     *     $formattedName = $alphaAnalyticsDataClient->reportTaskName('[PROPERTY]', '[REPORT_TASK]');
+     *     $response = $alphaAnalyticsDataClient->getReportTask($formattedName);
+     * } finally {
+     *     $alphaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The report task resource name.
+     *                             Format: `properties/{property}/reportTasks/{report_task}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Data\V1alpha\ReportTask
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getReportTask($name, array $optionalArgs = [])
+    {
+        $request = new GetReportTaskRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetReportTask',
+            ReportTask::class,
             $optionalArgs,
             $request
         )->wait();
@@ -925,6 +1104,86 @@ class AlphaAnalyticsDataGapicClient
     }
 
     /**
+     * Lists all report tasks for a property.
+     *
+     * Sample code:
+     * ```
+     * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
+     * try {
+     *     $formattedParent = $alphaAnalyticsDataClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $alphaAnalyticsDataClient->listReportTasks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $alphaAnalyticsDataClient->listReportTasks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $alphaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. All report tasks for this property will be listed in the
+     *                             response. Format: `properties/{property}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listReportTasks($parent, array $optionalArgs = [])
+    {
+        $request = new ListReportTasksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListReportTasks',
+            $optionalArgs,
+            ListReportTasksResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Retrieves an audience list of users. After creating an audience, the users
      * are not immediately available for listing. First, a request to
      * `CreateAudienceList` is necessary to create an audience list of users, and
@@ -1016,6 +1275,95 @@ class AlphaAnalyticsDataGapicClient
         return $this->startCall(
             'QueryAudienceList',
             QueryAudienceListResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves a report task's content. After requesting the `CreateReportTask`,
+     * you are able to retrieve the report content once the report is
+     * ACTIVE. This method will return an error if the report task's state is not
+     * `ACTIVE`. A query response will return the tabular row & column values of
+     * the report.
+     *
+     * Sample code:
+     * ```
+     * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
+     * try {
+     *     $name = 'name';
+     *     $response = $alphaAnalyticsDataClient->queryReportTask($name);
+     * } finally {
+     *     $alphaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The report source name.
+     *                             Format: `properties/{property}/reportTasks/{report}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $offset
+     *           Optional. The row count of the start row in the report. The first row is
+     *           counted as row 0.
+     *
+     *           When paging, the first request does not specify offset; or equivalently,
+     *           sets offset to 0; the first request returns the first `limit` of rows. The
+     *           second request sets offset to the `limit` of the first request; the second
+     *           request returns the second `limit` of rows.
+     *
+     *           To learn more about this pagination parameter, see
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *     @type int $limit
+     *           Optional. The number of rows to return from the report. If unspecified,
+     *           10,000 rows are returned. The API returns a maximum of 250,000 rows per
+     *           request, no matter how many you ask for. `limit` must be positive.
+     *
+     *           The API can also return fewer rows than the requested `limit`, if there
+     *           aren't as many dimension values as the `limit`. The number of rows
+     *           available to a QueryReportTaskRequest is further limited by the limit of
+     *           the associated ReportTask. A query can retrieve at most ReportTask.limit
+     *           rows. For example, if the ReportTask has a limit of 1,000, then a
+     *           QueryReportTask request with offset=900 and limit=500 will return at most
+     *           100 rows.
+     *
+     *           To learn more about this pagination parameter, see
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Data\V1alpha\QueryReportTaskResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function queryReportTask($name, array $optionalArgs = [])
+    {
+        $request = new QueryReportTaskRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['offset'])) {
+            $request->setOffset($optionalArgs['offset']);
+        }
+
+        if (isset($optionalArgs['limit'])) {
+            $request->setLimit($optionalArgs['limit']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'QueryReportTask',
+            QueryReportTaskResponse::class,
             $optionalArgs,
             $request
         )->wait();

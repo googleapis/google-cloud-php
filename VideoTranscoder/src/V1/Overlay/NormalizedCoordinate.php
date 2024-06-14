@@ -20,13 +20,13 @@ class NormalizedCoordinate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double x = 1;</code>
      */
-    private $x = 0.0;
+    protected $x = 0.0;
     /**
      * Normalized y coordinate.
      *
      * Generated from protobuf field <code>double y = 2;</code>
      */
-    private $y = 0.0;
+    protected $y = 0.0;
 
     /**
      * Constructor.

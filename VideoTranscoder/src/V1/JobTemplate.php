@@ -22,13 +22,13 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The configuration for this template.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.JobConfig config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The labels associated with this job template. You can use these to organize
      * and group your job templates.

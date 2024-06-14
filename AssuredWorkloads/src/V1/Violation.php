@@ -22,53 +22,53 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Description for the Violation.
      * e.g. OrgPolicy gcp.resourceLocations has non compliant value.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Time of the event which triggered the Violation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp begin_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $begin_time = null;
+    protected $begin_time = null;
     /**
      * Output only. The last time when the Violation record was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Time of the event which fixed the Violation.
      * If the violation is ACTIVE this will be empty.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp resolve_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resolve_time = null;
+    protected $resolve_time = null;
     /**
      * Output only. Category under which this violation is mapped.
      * e.g. Location, Service Usage, Access, Encryption, etc.
      *
      * Generated from protobuf field <code>string category = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $category = '';
+    protected $category = '';
     /**
      * Output only. State of the violation
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Violation.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in
      * this violation.
      *
      * Generated from protobuf field <code>string org_policy_constraint = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $org_policy_constraint = '';
+    protected $org_policy_constraint = '';
     /**
      * Output only. Immutable. Audit Log Link for violated resource
      * Format:
@@ -76,7 +76,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audit_log_link = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $audit_log_link = '';
+    protected $audit_log_link = '';
     /**
      * Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and
      * resulted this violation.
@@ -87,26 +87,26 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string non_compliant_org_policy = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $non_compliant_org_policy = '';
+    protected $non_compliant_org_policy = '';
     /**
      * Output only. Compliance violation remediation
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Violation.Remediation remediation = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $remediation = null;
+    protected $remediation = null;
     /**
      * Output only. A boolean that indicates if the violation is acknowledged
      *
      * Generated from protobuf field <code>bool acknowledged = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $acknowledged = false;
+    protected $acknowledged = false;
     /**
      * Optional. Timestamp when this violation was acknowledged last.
      * This will be absent when acknowledged field is marked as false.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp acknowledgement_time = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $acknowledgement_time = null;
+    protected $acknowledgement_time = null;
     /**
      * Output only. Immutable. Audit Log link to find business justification provided for violation
      * exception. Format:
@@ -114,7 +114,7 @@ class Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string exception_audit_log_link = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $exception_audit_log_link = '';
+    protected $exception_audit_log_link = '';
 
     /**
      * Constructor.

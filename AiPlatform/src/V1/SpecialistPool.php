@@ -25,7 +25,7 @@ class SpecialistPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of the SpecialistPool.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -34,13 +34,13 @@ class SpecialistPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The number of managers in this SpecialistPool.
      *
      * Generated from protobuf field <code>int32 specialist_managers_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $specialist_managers_count = 0;
+    protected $specialist_managers_count = 0;
     /**
      * The email addresses of the managers in the SpecialistPool.
      *

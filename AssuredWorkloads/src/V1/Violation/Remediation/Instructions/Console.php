@@ -133,6 +133,4 @@ class Console extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Console::class, \Google\Cloud\AssuredWorkloads\V1\Violation_Remediation_Instructions_Console::class);
 

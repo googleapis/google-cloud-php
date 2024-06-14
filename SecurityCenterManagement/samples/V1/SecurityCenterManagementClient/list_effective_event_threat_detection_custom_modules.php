@@ -35,10 +35,10 @@ use Google\Cloud\SecurityCenterManagement\V1\ListEffectiveEventThreatDetectionCu
  * parent along with modules inherited from its ancestors.
  *
  * @param string $formattedParent Name of parent to list effective custom modules. Its format is
- *                                "organizations/{organization}/locations/{location}",
- *                                "folders/{folder}/locations/{location}",
+ *                                `organizations/{organization}/locations/{location}`,
+ *                                `folders/{folder}/locations/{location}`,
  *                                or
- *                                "projects/{project}/locations/{location}"
+ *                                `projects/{project}/locations/{location}`
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
 function list_effective_event_threat_detection_custom_modules_sample(

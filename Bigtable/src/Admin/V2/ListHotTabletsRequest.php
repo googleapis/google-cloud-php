@@ -22,7 +22,7 @@ class ListHotTabletsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The start time to list hot tablets. The hot tablets in the response will
      * have start times between the requested start time and end time. Start time
@@ -33,13 +33,13 @@ class ListHotTabletsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The end time to list hot tablets.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Maximum number of results per page.
      * A page_size that is empty or zero lets the server choose the number of
@@ -51,13 +51,13 @@ class ListHotTabletsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value of `next_page_token` returned by a previous call.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The cluster name to list hot tablets.

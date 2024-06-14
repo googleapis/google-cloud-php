@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PageRef extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Index into the [Document.pages][google.cloud.documentai.v1.Document.pages] element, for example using
+     * Required. Index into the
+     * [Document.pages][google.cloud.documentai.v1.Document.pages] element,
+     * for example using
      * `[Document.pages][page_refs.page]` to locate the related page element.
      * This field is skipped when its value is the default `0`. See
      * https://developers.google.com/protocol-buffers/docs/proto3#json.
@@ -25,28 +27,32 @@ class PageRef extends \Google\Protobuf\Internal\Message
      */
     private $page = 0;
     /**
-     * Optional. The type of the layout element that is being referenced if any.
+     * Optional. The type of the layout element that is being referenced if
+     * any.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor.PageRef.LayoutType layout_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $layout_type = 0;
     /**
-     * Optional. Deprecated.  Use [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly] instead.
+     * Optional. Deprecated.  Use
+     * [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly]
+     * instead.
      *
      * Generated from protobuf field <code>string layout_id = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @deprecated
      */
     protected $layout_id = '';
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
-     * If `layout_type` is set, the bounding polygon must be exactly the same
-     * to the layout element it's referring to.
+     * Optional. Identifies the bounding polygon of a layout element on the
+     * page. If `layout_type` is set, the bounding polygon must be exactly the
+     * same to the layout element it's referring to.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $bounding_poly = null;
     /**
-     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
+     * Optional. Confidence of detected page element, if applicable. Range
+     * `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,20 +65,26 @@ class PageRef extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $page
-     *           Required. Index into the [Document.pages][google.cloud.documentai.v1.Document.pages] element, for example using
+     *           Required. Index into the
+     *           [Document.pages][google.cloud.documentai.v1.Document.pages] element,
+     *           for example using
      *           `[Document.pages][page_refs.page]` to locate the related page element.
      *           This field is skipped when its value is the default `0`. See
      *           https://developers.google.com/protocol-buffers/docs/proto3#json.
      *     @type int $layout_type
-     *           Optional. The type of the layout element that is being referenced if any.
+     *           Optional. The type of the layout element that is being referenced if
+     *           any.
      *     @type string $layout_id
-     *           Optional. Deprecated.  Use [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly] instead.
+     *           Optional. Deprecated.  Use
+     *           [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly]
+     *           instead.
      *     @type \Google\Cloud\DocumentAI\V1\BoundingPoly $bounding_poly
-     *           Optional. Identifies the bounding polygon of a layout element on the page.
-     *           If `layout_type` is set, the bounding polygon must be exactly the same
-     *           to the layout element it's referring to.
+     *           Optional. Identifies the bounding polygon of a layout element on the
+     *           page. If `layout_type` is set, the bounding polygon must be exactly the
+     *           same to the layout element it's referring to.
      *     @type float $confidence
-     *           Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
+     *           Optional. Confidence of detected page element, if applicable. Range
+     *           `[0, 1]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +93,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Index into the [Document.pages][google.cloud.documentai.v1.Document.pages] element, for example using
+     * Required. Index into the
+     * [Document.pages][google.cloud.documentai.v1.Document.pages] element,
+     * for example using
      * `[Document.pages][page_refs.page]` to locate the related page element.
      * This field is skipped when its value is the default `0`. See
      * https://developers.google.com/protocol-buffers/docs/proto3#json.
@@ -95,7 +109,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Index into the [Document.pages][google.cloud.documentai.v1.Document.pages] element, for example using
+     * Required. Index into the
+     * [Document.pages][google.cloud.documentai.v1.Document.pages] element,
+     * for example using
      * `[Document.pages][page_refs.page]` to locate the related page element.
      * This field is skipped when its value is the default `0`. See
      * https://developers.google.com/protocol-buffers/docs/proto3#json.
@@ -113,7 +129,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the layout element that is being referenced if any.
+     * Optional. The type of the layout element that is being referenced if
+     * any.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor.PageRef.LayoutType layout_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -124,7 +141,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of the layout element that is being referenced if any.
+     * Optional. The type of the layout element that is being referenced if
+     * any.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor.PageRef.LayoutType layout_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -139,7 +157,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Deprecated.  Use [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly] instead.
+     * Optional. Deprecated.  Use
+     * [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly]
+     * instead.
      *
      * Generated from protobuf field <code>string layout_id = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -152,7 +172,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Deprecated.  Use [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly] instead.
+     * Optional. Deprecated.  Use
+     * [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly]
+     * instead.
      *
      * Generated from protobuf field <code>string layout_id = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -169,9 +191,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
-     * If `layout_type` is set, the bounding polygon must be exactly the same
-     * to the layout element it's referring to.
+     * Optional. Identifies the bounding polygon of a layout element on the
+     * page. If `layout_type` is set, the bounding polygon must be exactly the
+     * same to the layout element it's referring to.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\BoundingPoly|null
@@ -192,9 +214,9 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Identifies the bounding polygon of a layout element on the page.
-     * If `layout_type` is set, the bounding polygon must be exactly the same
-     * to the layout element it's referring to.
+     * Optional. Identifies the bounding polygon of a layout element on the
+     * page. If `layout_type` is set, the bounding polygon must be exactly the
+     * same to the layout element it's referring to.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\BoundingPoly $var
@@ -209,7 +231,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
+     * Optional. Confidence of detected page element, if applicable. Range
+     * `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -220,7 +243,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
+     * Optional. Confidence of detected page element, if applicable. Range
+     * `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var

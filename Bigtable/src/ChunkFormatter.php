@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
-use Google\Cloud\Core\ArrayTrait;
+use Google\Protobuf\Internal\Message;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 
 /**
  * Converts cell chunks into an easily digestable format. Please note this class
@@ -49,6 +52,20 @@ class ChunkFormatter implements \IteratorAggregate
         'ROW_IN_PROGRESS'  => 2,
         'CELL_IN_PROGRESS' => 3,
     ];
+
+    // When we use ChunkFormatter, we know that we always
+    // need to readRows.
+    private const GAPIC_CLIENT_METHOD = 'readRows';
+
+    /**
+     * @var GapicClient
+     */
+    private $gapicClient;
+
+    /**
+     * @var Message
+     */
+    private $request;
 
     /**
      * @var string
@@ -113,34 +130,46 @@ class ChunkFormatter implements \IteratorAggregate
     /**
      * Constructs the ChunkFormatter.
      *
-     * @param callable $readRowsCall A callable which executes a read rows call and returns a stream.
-     * @param string $tableName The table name used for the read rows call.
+     * @param GapicClient $gapicClient The GAPIC client to use in order to send requests.
+     * @param ReadRowsRequest $request The proto request to be passed to the Gapic client.
      * @param array $options [optional] Configuration options for read rows call.
      */
-    public function __construct(callable $readRowsCall, $tableName, array $options = [])
-    {
-        $this->tableName = $tableName;
+    public function __construct(
+        GapicClient $gapicClient,
+        ReadRowsRequest $request,
+        array $options = []
+    ) {
+        $this->gapicClient = $gapicClient;
+        $this->request = $request;
         $this->options = $options;
-        if (isset($options['rowsLimit'])) {
-            $this->originalRowsLimit = $options['rowsLimit'];
+        
+        if ($request->getRowsLimit()) {
+            $this->originalRowsLimit = $request->getRowsLimit();
         }
+
+        $argumentFunction = function ($request, $options) {
+            $prevRowKey = $this->prevRowKey;
+            $this->reset();
+            if ($prevRowKey) {
+                list($request, $options) = $this->updateReadRowsRequest($request, $options, $prevRowKey);
+            }
+            return [$request, $options];
+        };
+
+        $retryFunction = function ($ex) {
+            if ($ex && ResumableStream::isRetryable($ex->getCode())) {
+                return true;
+            }
+            return false;
+        };
+
         $this->stream = new ResumableStream(
-            $readRowsCall,
-            function () {
-                $prevRowKey = $this->prevRowKey;
-                $this->reset();
-                if ($prevRowKey) {
-                    $this->updateOptions($prevRowKey);
-                }
-                return [$this->tableName, $this->options];
-            },
-            function ($ex) {
-                if ($ex && ResumableStream::isRetryable($ex->getCode())) {
-                    return true;
-                }
-                return false;
-            },
-            $this->pluck('retries', $this->options, false)
+            $this->gapicClient,
+            self::GAPIC_CLIENT_METHOD,
+            $request,
+            $argumentFunction,
+            $retryFunction,
+            $options
         );
     }
 
@@ -192,13 +221,17 @@ class ChunkFormatter implements \IteratorAggregate
         $this->onStreamEnd();
     }
 
-    private function updateOptions($prevRowKey)
+    /**
+     * Helper to modify the request and the options in b/w retries.
+     */
+    private function updateReadRowsRequest($request, $options, $prevRowKey)
     {
         if ($this->originalRowsLimit) {
-            $this->options['rowsLimit'] = $this->originalRowsLimit - $this->numberOfRowsRead;
+            $request->setRowsLimit($this->originalRowsLimit - $this->numberOfRowsRead);
         }
-        if (isset($this->options['rows'])) {
-            $rowSet = $this->options['rows'];
+
+        if ($request->hasRows()) {
+            $rowSet = $request->getRows();
             if (count($rowSet->getRowKeys()) > 0) {
                 $rowKeys = [];
                 foreach ($rowSet->getRowKeys() as $rowKey) {
@@ -229,12 +262,14 @@ class ChunkFormatter implements \IteratorAggregate
             // after all data is received causing empty rows to be sent in next retry
             // request resulting in a full table scan.
             if (empty($rowKeys) && empty($ranges)) {
-                $this->options['requestCompleted'] = true;
+                $options['requestCompleted'] = true;
             }
         } else {
             $range = (new RowRange)->setStartKeyOpen($prevRowKey);
-            $this->options['rows'] = (new RowSet)->setRowRanges([$range]);
+            $options['rows'] = (new RowSet)->setRowRanges([$range]);
         }
+
+        return [$request, $options];
     }
 
     /**

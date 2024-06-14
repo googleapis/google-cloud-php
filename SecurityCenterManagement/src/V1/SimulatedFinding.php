@@ -20,9 +20,9 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      * Identifier. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -32,7 +32,7 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * This field is immutable after creation time.
      * For example:
-     * "organizations/{organization_id}/sources/{source_id}"
+     * `organizations/{organization_id}/sources/{source_id}`
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
@@ -107,15 +107,15 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      *           Identifier. The [relative resource
      *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      *           of the finding. Example:
-     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *           "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     *           `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     *           `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     *           `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *     @type string $parent
      *           The relative resource name of the source the finding belongs to. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           This field is immutable after creation time.
      *           For example:
-     *           "organizations/{organization_id}/sources/{source_id}"
+     *           `organizations/{organization_id}/sources/{source_id}`
      *     @type string $resource_name
      *           For findings on Google Cloud resources, the full resource
      *           name of the Google Cloud resource this finding is for. See:
@@ -158,9 +158,9 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      * Identifier. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -174,9 +174,9 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      * Identifier. The [relative resource
      * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      * of the finding. Example:
-     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     * "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -195,7 +195,7 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * This field is immutable after creation time.
      * For example:
-     * "organizations/{organization_id}/sources/{source_id}"
+     * `organizations/{organization_id}/sources/{source_id}`
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      * @return string
@@ -210,7 +210,7 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * This field is immutable after creation time.
      * For example:
-     * "organizations/{organization_id}/sources/{source_id}"
+     * `organizations/{organization_id}/sources/{source_id}`
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      * @param string $var

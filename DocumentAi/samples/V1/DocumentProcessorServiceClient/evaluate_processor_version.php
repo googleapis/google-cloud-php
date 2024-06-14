@@ -34,7 +34,9 @@ use Google\Rpc\Status;
  * Evaluates a ProcessorVersion against annotated documents, producing an
  * Evaluation.
  *
- * @param string $formattedProcessorVersion The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
+ * @param string $formattedProcessorVersion The resource name of the
+ *                                          [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+ *                                          evaluate.
  *                                          `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
  *                                          Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */

@@ -104,6 +104,21 @@ class ManageBucketsTest extends StorageTestCase
         );
     }
 
+    /**
+     * @dataProvider hnsConfigs
+     */
+    public function testCreateBucketsWithHnsConfigs($hnsConfig, $expectedHnsEnabled)
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+
+        $this->assertFalse(self::$client->bucket($name)->exists());
+        $bucket = self::createBucket(self::$client, $name, $hnsConfig);
+
+        $this->assertTrue(self::$client->bucket($name)->exists());
+        $this->assertEquals($name, $bucket->name());
+        $this->assertEquals($expectedHnsEnabled, $bucket->info()['hierarchicalNamespace']['enabled'] ?? false);
+    }
+
     public function testUpdateBucket()
     {
         $options = [
@@ -462,6 +477,18 @@ class ManageBucketsTest extends StorageTestCase
             [['enabled' => true]],
             [['enabled' => true, 'terminalStorageClass' => 'NEARLINE']],
             [['enabled' => true, 'terminalStorageClass' => 'ARCHIVE']],
+        ];
+    }
+
+    public function hnsConfigs()
+    {
+        return [
+            [[], false],
+            [['hierarchicalNamespace' => ['enabled' => false,]], false],
+            [[
+                'hierarchicalNamespace' => ['enabled' => true,],
+                'iamConfiguration' => ['uniformBucketLevelAccess' => ['enabled' => true]]
+            ], true],
         ];
     }
 }

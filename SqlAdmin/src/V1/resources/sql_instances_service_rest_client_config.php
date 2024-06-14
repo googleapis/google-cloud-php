@@ -23,6 +23,23 @@
 return [
     'interfaces' => [
         'google.cloud.sql.v1.SqlInstancesService' => [
+            'AcquireSsrsLease' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/acquireSsrsLease',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'AddServerCa' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/addServerCa',
@@ -315,6 +332,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/reencrypt',
                 'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ReleaseSsrsLease' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/releaseSsrsLease',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [

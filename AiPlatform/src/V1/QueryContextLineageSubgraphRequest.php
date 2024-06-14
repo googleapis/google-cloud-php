@@ -27,7 +27,7 @@ class QueryContextLineageSubgraphRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $context = '';
+    protected $context = '';
 
     /**
      * @param string $context Required. The resource name of the Context whose Artifacts and Executions

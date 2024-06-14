@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dataplex\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataplex\V1\Action;
@@ -94,6 +93,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -118,7 +118,9 @@ class DataplexServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DataplexServiceClient */
@@ -143,8 +145,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $request = (new CancelJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelJobRequest())->setName($formattedName);
         $gapicClient->cancelJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -167,17 +168,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $request = (new CancelJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -299,12 +302,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
@@ -450,12 +456,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
@@ -599,12 +608,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -748,12 +760,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
@@ -903,12 +918,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
@@ -977,8 +995,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $request = (new DeleteAssetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAssetRequest())->setName($formattedName);
         $response = $gapicClient->deleteAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1034,17 +1051,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $request = (new DeleteAssetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAssetRequest())->setName($formattedName);
         $response = $gapicClient->deleteAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1098,8 +1117,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $request = (new DeleteEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEnvironmentRequest())->setName($formattedName);
         $response = $gapicClient->deleteEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1155,17 +1173,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $request = (new DeleteEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEnvironmentRequest())->setName($formattedName);
         $response = $gapicClient->deleteEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1219,8 +1239,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new DeleteLakeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteLakeRequest())->setName($formattedName);
         $response = $gapicClient->deleteLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1276,17 +1295,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new DeleteLakeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteLakeRequest())->setName($formattedName);
         $response = $gapicClient->deleteLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1340,8 +1361,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new DeleteTaskRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTaskRequest())->setName($formattedName);
         $response = $gapicClient->deleteTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1397,17 +1417,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new DeleteTaskRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTaskRequest())->setName($formattedName);
         $response = $gapicClient->deleteTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1461,8 +1483,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new DeleteZoneRequest())
-            ->setName($formattedName);
+        $request = (new DeleteZoneRequest())->setName($formattedName);
         $response = $gapicClient->deleteZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1518,17 +1539,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new DeleteZoneRequest())
-            ->setName($formattedName);
+        $request = (new DeleteZoneRequest())->setName($formattedName);
         $response = $gapicClient->deleteZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1572,8 +1595,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $request = (new GetAssetRequest())
-            ->setName($formattedName);
+        $request = (new GetAssetRequest())->setName($formattedName);
         $response = $gapicClient->getAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1597,17 +1619,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $request = (new GetAssetRequest())
-            ->setName($formattedName);
+        $request = (new GetAssetRequest())->setName($formattedName);
         try {
             $gapicClient->getAsset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1642,8 +1666,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new GetEnvironmentRequest())->setName($formattedName);
         $response = $gapicClient->getEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1667,17 +1690,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new GetEnvironmentRequest())->setName($formattedName);
         try {
             $gapicClient->getEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1714,8 +1739,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = (new GetJobRequest())->setName($formattedName);
         $response = $gapicClient->getJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1739,17 +1763,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = (new GetJobRequest())->setName($formattedName);
         try {
             $gapicClient->getJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1786,8 +1812,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new GetLakeRequest())
-            ->setName($formattedName);
+        $request = (new GetLakeRequest())->setName($formattedName);
         $response = $gapicClient->getLake($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1811,17 +1836,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new GetLakeRequest())
-            ->setName($formattedName);
+        $request = (new GetLakeRequest())->setName($formattedName);
         try {
             $gapicClient->getLake($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1856,8 +1883,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = (new GetTaskRequest())->setName($formattedName);
         $response = $gapicClient->getTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1881,17 +1907,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new GetTaskRequest())
-            ->setName($formattedName);
+        $request = (new GetTaskRequest())->setName($formattedName);
         try {
             $gapicClient->getTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1926,8 +1954,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new GetZoneRequest())
-            ->setName($formattedName);
+        $request = (new GetZoneRequest())->setName($formattedName);
         $response = $gapicClient->getZone($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1951,17 +1978,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new GetZoneRequest())
-            ->setName($formattedName);
+        $request = (new GetZoneRequest())->setName($formattedName);
         try {
             $gapicClient->getZone($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1986,17 +2015,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $actionsElement = new Action();
-        $actions = [
-            $actionsElement,
-        ];
+        $actions = [$actionsElement];
         $expectedResponse = new ListActionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $request = (new ListAssetActionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAssetActionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAssetActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2023,17 +2049,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $request = (new ListAssetActionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAssetActionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAssetActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2058,17 +2086,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $assetsElement = new Asset();
-        $assets = [
-            $assetsElement,
-        ];
+        $assets = [$assetsElement];
         $expectedResponse = new ListAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new ListAssetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAssetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2095,17 +2120,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new ListAssetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAssetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2130,17 +2157,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $environmentsElement = new Environment();
-        $environments = [
-            $environmentsElement,
-        ];
+        $environments = [$environmentsElement];
         $expectedResponse = new ListEnvironmentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListEnvironmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEnvironmentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listEnvironments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2167,17 +2191,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListEnvironmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEnvironmentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEnvironments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2202,17 +2228,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $jobsElement = new Job();
-        $jobs = [
-            $jobsElement,
-        ];
+        $jobs = [$jobsElement];
         $expectedResponse = new ListJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2239,17 +2262,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2274,17 +2299,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $actionsElement = new Action();
-        $actions = [
-            $actionsElement,
-        ];
+        $actions = [$actionsElement];
         $expectedResponse = new ListActionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListLakeActionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLakeActionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listLakeActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2311,17 +2333,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListLakeActionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLakeActionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLakeActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2346,17 +2370,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $lakesElement = new Lake();
-        $lakes = [
-            $lakesElement,
-        ];
+        $lakes = [$lakesElement];
         $expectedResponse = new ListLakesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLakes($lakes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListLakesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLakesRequest())->setParent($formattedParent);
         $response = $gapicClient->listLakes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2383,17 +2404,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListLakesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLakesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLakes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2418,17 +2441,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $sessionsElement = new Session();
-        $sessions = [
-            $sessionsElement,
-        ];
+        $sessions = [$sessionsElement];
         $expectedResponse = new ListSessionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSessions($sessions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $request = (new ListSessionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSessionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSessions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2455,17 +2475,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $request = (new ListSessionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSessionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSessions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2490,17 +2512,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tasksElement = new Task();
-        $tasks = [
-            $tasksElement,
-        ];
+        $tasks = [$tasksElement];
         $expectedResponse = new ListTasksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTasksRequest())->setParent($formattedParent);
         $response = $gapicClient->listTasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2527,17 +2546,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListTasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTasksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2562,17 +2583,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $actionsElement = new Action();
-        $actions = [
-            $actionsElement,
-        ];
+        $actions = [$actionsElement];
         $expectedResponse = new ListActionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new ListZoneActionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListZoneActionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listZoneActions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2599,17 +2617,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $request = (new ListZoneActionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListZoneActionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listZoneActions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2634,17 +2654,14 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $zonesElement = new Zone();
-        $zones = [
-            $zonesElement,
-        ];
+        $zones = [$zonesElement];
         $expectedResponse = new ListZonesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setZones($zones);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListZonesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListZonesRequest())->setParent($formattedParent);
         $response = $gapicClient->listZones($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2671,17 +2688,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $request = (new ListZonesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListZonesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listZones($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2708,8 +2727,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new RunTaskRequest())
-            ->setName($formattedName);
+        $request = (new RunTaskRequest())->setName($formattedName);
         $response = $gapicClient->runTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2733,17 +2751,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $request = (new RunTaskRequest())
-            ->setName($formattedName);
+        $request = (new RunTaskRequest())->setName($formattedName);
         try {
             $gapicClient->runTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2801,9 +2821,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecType = Type::TYPE_UNSPECIFIED;
         $assetResourceSpec->setType($resourceSpecType);
         $asset->setResourceSpec($assetResourceSpec);
-        $request = (new UpdateAssetRequest())
-            ->setUpdateMask($updateMask)
-            ->setAsset($asset);
+        $request = (new UpdateAssetRequest())->setUpdateMask($updateMask)->setAsset($asset);
         $response = $gapicClient->updateAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2861,12 +2879,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -2875,9 +2896,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecType = Type::TYPE_UNSPECIFIED;
         $assetResourceSpec->setType($resourceSpecType);
         $asset->setResourceSpec($assetResourceSpec);
-        $request = (new UpdateAssetRequest())
-            ->setUpdateMask($updateMask)
-            ->setAsset($asset);
+        $request = (new UpdateAssetRequest())->setUpdateMask($updateMask)->setAsset($asset);
         $response = $gapicClient->updateAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2946,9 +2965,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
         $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
         $environment->setInfrastructureSpec($environmentInfrastructureSpec);
-        $request = (new UpdateEnvironmentRequest())
-            ->setUpdateMask($updateMask)
-            ->setEnvironment($environment);
+        $request = (new UpdateEnvironmentRequest())->setUpdateMask($updateMask)->setEnvironment($environment);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3006,12 +3023,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -3022,9 +3042,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
         $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
         $environment->setInfrastructureSpec($environmentInfrastructureSpec);
-        $request = (new UpdateEnvironmentRequest())
-            ->setUpdateMask($updateMask)
-            ->setEnvironment($environment);
+        $request = (new UpdateEnvironmentRequest())->setUpdateMask($updateMask)->setEnvironment($environment);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3089,9 +3107,7 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $lake = new Lake();
-        $request = (new UpdateLakeRequest())
-            ->setUpdateMask($updateMask)
-            ->setLake($lake);
+        $request = (new UpdateLakeRequest())->setUpdateMask($updateMask)->setLake($lake);
         $response = $gapicClient->updateLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3149,19 +3165,20 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $lake = new Lake();
-        $request = (new UpdateLakeRequest())
-            ->setUpdateMask($updateMask)
-            ->setLake($lake);
+        $request = (new UpdateLakeRequest())->setUpdateMask($updateMask)->setLake($lake);
         $response = $gapicClient->updateLake($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3232,9 +3249,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
         $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
         $task->setExecutionSpec($taskExecutionSpec);
-        $request = (new UpdateTaskRequest())
-            ->setUpdateMask($updateMask)
-            ->setTask($task);
+        $request = (new UpdateTaskRequest())->setUpdateMask($updateMask)->setTask($task);
         $response = $gapicClient->updateTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3292,12 +3307,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -3310,9 +3328,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
         $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
         $task->setExecutionSpec($taskExecutionSpec);
-        $request = (new UpdateTaskRequest())
-            ->setUpdateMask($updateMask)
-            ->setTask($task);
+        $request = (new UpdateTaskRequest())->setUpdateMask($updateMask)->setTask($task);
         $response = $gapicClient->updateTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3381,9 +3397,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
         $zoneResourceSpec->setLocationType($resourceSpecLocationType);
         $zone->setResourceSpec($zoneResourceSpec);
-        $request = (new UpdateZoneRequest())
-            ->setUpdateMask($updateMask)
-            ->setZone($zone);
+        $request = (new UpdateZoneRequest())->setUpdateMask($updateMask)->setZone($zone);
         $response = $gapicClient->updateZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3441,12 +3455,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -3457,9 +3474,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
         $zoneResourceSpec->setLocationType($resourceSpecLocationType);
         $zone->setResourceSpec($zoneResourceSpec);
-        $request = (new UpdateZoneRequest())
-            ->setUpdateMask($updateMask)
-            ->setZone($zone);
+        $request = (new UpdateZoneRequest())->setUpdateMask($updateMask)->setZone($zone);
         $response = $gapicClient->updateZone($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3499,8 +3514,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3524,17 +3538,19 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3566,9 +3582,7 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3594,19 +3608,20 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3634,9 +3649,7 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3662,19 +3675,20 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3727,12 +3741,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -3759,9 +3776,7 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -3791,12 +3806,15 @@ class DataplexServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -3825,8 +3843,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $request = (new CancelJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelJobRequest())->setName($formattedName);
         $gapicClient->cancelJobAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));

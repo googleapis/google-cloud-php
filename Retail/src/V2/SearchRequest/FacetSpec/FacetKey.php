@@ -63,13 +63,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * for facets with numerical values. Must not be set for facet with text
      * values. Maximum number of intervals is 40.
      * For all numerical facet keys that appear in the list of products from
-     * the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     * the catalog, the percentiles 0, 10, 30, 50, 70, 90, and 100 are
      * computed from their distribution weekly. If the model assigns a high
      * score to a numerical facet key and its intervals are not specified in
-     * the search request, these percentiles will become the bounds
-     * for its intervals and will be returned in the response. If the
+     * the search request, these percentiles become the bounds
+     * for its intervals and are returned in the response. If the
      * facet key intervals are specified in the request, then the specified
-     * intervals will be returned instead.
+     * intervals are returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
      */
@@ -98,7 +98,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that start with the given string prefix. For
      * example, suppose "categories" has three values "Women > Shoe",
      * "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
-     * "categories" facet will give only "Women > Shoe" and "Women > Dress".
+     * "categories" facet gives only "Women > Shoe" and "Women > Dress".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
@@ -108,7 +108,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that contains the given strings. For example,
      * suppose "categories" has three values "Women > Shoe",
      * "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
-     * "categories" facet will give only "Women > Shoe" and "Men > Shoe".
+     * "categories" facet gives only "Women > Shoe" and "Men > Shoe".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
@@ -146,7 +146,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     private $order_by = '';
     /**
      * The query that is used to compute facet for the given facet key.
-     * When provided, it will override the default behavior of facet
+     * When provided, it overrides the default behavior of facet
      * computation. The query syntax is the same as a filter expression. See
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
      * detail syntax and limitations. Notice that there is no limitation on
@@ -154,16 +154,16 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * when query is specified.
      * In the response,
      * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
-     * will be always "1" and
+     * is always "1" and
      * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
-     * will be the number of results that match the query.
+     * is the number of results that match the query.
      * For example, you can set a customized facet for "shipToStore",
      * where
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      * is "customizedShipToStore", and
      * [FacetKey.query][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.query]
      * is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")".
-     * Then the facet will count the products that are both in stock and ship
+     * Then the facet counts the products that are both in stock and ship
      * to store "123".
      *
      * Generated from protobuf field <code>string query = 5;</code>
@@ -227,13 +227,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           for facets with numerical values. Must not be set for facet with text
      *           values. Maximum number of intervals is 40.
      *           For all numerical facet keys that appear in the list of products from
-     *           the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     *           the catalog, the percentiles 0, 10, 30, 50, 70, 90, and 100 are
      *           computed from their distribution weekly. If the model assigns a high
      *           score to a numerical facet key and its intervals are not specified in
-     *           the search request, these percentiles will become the bounds
-     *           for its intervals and will be returned in the response. If the
+     *           the search request, these percentiles become the bounds
+     *           for its intervals and are returned in the response. If the
      *           facet key intervals are specified in the request, then the specified
-     *           intervals will be returned instead.
+     *           intervals are returned instead.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_values
      *           Only get facet for the given restricted values. For example, when using
      *           "pickupInStore" as key and set restricted values to
@@ -254,13 +254,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           Only get facet values that start with the given string prefix. For
      *           example, suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
-     *           "categories" facet will give only "Women > Shoe" and "Women > Dress".
+     *           "categories" facet gives only "Women > Shoe" and "Women > Dress".
      *           Only supported on textual fields. Maximum is 10.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contains
      *           Only get facet values that contains the given strings. For example,
      *           suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
-     *           "categories" facet will give only "Women > Shoe" and "Men > Shoe".
+     *           "categories" facet gives only "Women > Shoe" and "Men > Shoe".
      *           Only supported on textual fields. Maximum is 10.
      *     @type bool $case_insensitive
      *           True to make facet keys case insensitive when getting faceting
@@ -286,7 +286,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           [FacetSpec.FacetKey.restricted_values][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.restricted_values].
      *     @type string $query
      *           The query that is used to compute facet for the given facet key.
-     *           When provided, it will override the default behavior of facet
+     *           When provided, it overrides the default behavior of facet
      *           computation. The query syntax is the same as a filter expression. See
      *           [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
      *           detail syntax and limitations. Notice that there is no limitation on
@@ -294,16 +294,16 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           when query is specified.
      *           In the response,
      *           [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
-     *           will be always "1" and
+     *           is always "1" and
      *           [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
-     *           will be the number of results that match the query.
+     *           is the number of results that match the query.
      *           For example, you can set a customized facet for "shipToStore",
      *           where
      *           [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      *           is "customizedShipToStore", and
      *           [FacetKey.query][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.query]
      *           is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")".
-     *           Then the facet will count the products that are both in stock and ship
+     *           Then the facet counts the products that are both in stock and ship
      *           to store "123".
      *     @type bool $return_min_max
      *           Returns the min and max value for each numerical facet intervals.
@@ -420,13 +420,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * for facets with numerical values. Must not be set for facet with text
      * values. Maximum number of intervals is 40.
      * For all numerical facet keys that appear in the list of products from
-     * the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     * the catalog, the percentiles 0, 10, 30, 50, 70, 90, and 100 are
      * computed from their distribution weekly. If the model assigns a high
      * score to a numerical facet key and its intervals are not specified in
-     * the search request, these percentiles will become the bounds
-     * for its intervals and will be returned in the response. If the
+     * the search request, these percentiles become the bounds
+     * for its intervals and are returned in the response. If the
      * facet key intervals are specified in the request, then the specified
-     * intervals will be returned instead.
+     * intervals are returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -441,13 +441,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * for facets with numerical values. Must not be set for facet with text
      * values. Maximum number of intervals is 40.
      * For all numerical facet keys that appear in the list of products from
-     * the catalog, the percentiles 0, 10, 30, 50, 70, 90 and 100 are
+     * the catalog, the percentiles 0, 10, 30, 50, 70, 90, and 100 are
      * computed from their distribution weekly. If the model assigns a high
      * score to a numerical facet key and its intervals are not specified in
-     * the search request, these percentiles will become the bounds
-     * for its intervals and will be returned in the response. If the
+     * the search request, these percentiles become the bounds
+     * for its intervals and are returned in the response. If the
      * facet key intervals are specified in the request, then the specified
-     * intervals will be returned instead.
+     * intervals are returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
      * @param array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $var
@@ -519,7 +519,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that start with the given string prefix. For
      * example, suppose "categories" has three values "Women > Shoe",
      * "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
-     * "categories" facet will give only "Women > Shoe" and "Women > Dress".
+     * "categories" facet gives only "Women > Shoe" and "Women > Dress".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
@@ -534,7 +534,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that start with the given string prefix. For
      * example, suppose "categories" has three values "Women > Shoe",
      * "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
-     * "categories" facet will give only "Women > Shoe" and "Women > Dress".
+     * "categories" facet gives only "Women > Shoe" and "Women > Dress".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
@@ -553,7 +553,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that contains the given strings. For example,
      * suppose "categories" has three values "Women > Shoe",
      * "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
-     * "categories" facet will give only "Women > Shoe" and "Men > Shoe".
+     * "categories" facet gives only "Women > Shoe" and "Men > Shoe".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
@@ -568,7 +568,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only get facet values that contains the given strings. For example,
      * suppose "categories" has three values "Women > Shoe",
      * "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
-     * "categories" facet will give only "Women > Shoe" and "Men > Shoe".
+     * "categories" facet gives only "Women > Shoe" and "Men > Shoe".
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
@@ -673,7 +673,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
 
     /**
      * The query that is used to compute facet for the given facet key.
-     * When provided, it will override the default behavior of facet
+     * When provided, it overrides the default behavior of facet
      * computation. The query syntax is the same as a filter expression. See
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
      * detail syntax and limitations. Notice that there is no limitation on
@@ -681,16 +681,16 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * when query is specified.
      * In the response,
      * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
-     * will be always "1" and
+     * is always "1" and
      * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
-     * will be the number of results that match the query.
+     * is the number of results that match the query.
      * For example, you can set a customized facet for "shipToStore",
      * where
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      * is "customizedShipToStore", and
      * [FacetKey.query][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.query]
      * is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")".
-     * Then the facet will count the products that are both in stock and ship
+     * Then the facet counts the products that are both in stock and ship
      * to store "123".
      *
      * Generated from protobuf field <code>string query = 5;</code>
@@ -703,7 +703,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
 
     /**
      * The query that is used to compute facet for the given facet key.
-     * When provided, it will override the default behavior of facet
+     * When provided, it overrides the default behavior of facet
      * computation. The query syntax is the same as a filter expression. See
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
      * detail syntax and limitations. Notice that there is no limitation on
@@ -711,16 +711,16 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * when query is specified.
      * In the response,
      * [SearchResponse.Facet.values.value][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]
-     * will be always "1" and
+     * is always "1" and
      * [SearchResponse.Facet.values.count][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]
-     * will be the number of results that match the query.
+     * is the number of results that match the query.
      * For example, you can set a customized facet for "shipToStore",
      * where
      * [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
      * is "customizedShipToStore", and
      * [FacetKey.query][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.query]
      * is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")".
-     * Then the facet will count the products that are both in stock and ship
+     * Then the facet counts the products that are both in stock and ship
      * to store "123".
      *
      * Generated from protobuf field <code>string query = 5;</code>

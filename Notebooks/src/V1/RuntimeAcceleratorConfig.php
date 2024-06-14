@@ -30,13 +30,13 @@ class RuntimeAcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeAcceleratorConfig.AcceleratorType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Count of cores of this accelerator.
      *
      * Generated from protobuf field <code>int64 core_count = 2;</code>
      */
-    private $core_count = 0;
+    protected $core_count = 0;
 
     /**
      * Constructor.

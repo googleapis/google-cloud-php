@@ -101,6 +101,4 @@ class Format
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Format::class, \Google\Cloud\ArtifactRegistry\V1\Repository_Format::class);
 

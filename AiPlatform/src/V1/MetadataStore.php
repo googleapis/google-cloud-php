@@ -21,19 +21,19 @@ class MetadataStore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when this MetadataStore was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this MetadataStore was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Customer-managed encryption key spec for a Metadata Store. If set, this
      * Metadata Store and all sub-resources of this Metadata Store are secured
@@ -41,19 +41,25 @@ class MetadataStore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 5;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Description of the MetadataStore.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. State information of the MetadataStore.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataStore.MetadataStoreState state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = null;
+    protected $state = null;
+    /**
+     * Optional. Dataplex integration settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataStore.DataplexConfig dataplex_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dataplex_config = null;
 
     /**
      * Constructor.
@@ -75,6 +81,8 @@ class MetadataStore extends \Google\Protobuf\Internal\Message
      *           Description of the MetadataStore.
      *     @type \Google\Cloud\AIPlatform\V1\MetadataStore\MetadataStoreState $state
      *           Output only. State information of the MetadataStore.
+     *     @type \Google\Cloud\AIPlatform\V1\MetadataStore\DataplexConfig $dataplex_config
+     *           Optional. Dataplex integration settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -278,6 +286,42 @@ class MetadataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\MetadataStore\MetadataStoreState::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Dataplex integration settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataStore.DataplexConfig dataplex_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\MetadataStore\DataplexConfig|null
+     */
+    public function getDataplexConfig()
+    {
+        return $this->dataplex_config;
+    }
+
+    public function hasDataplexConfig()
+    {
+        return isset($this->dataplex_config);
+    }
+
+    public function clearDataplexConfig()
+    {
+        unset($this->dataplex_config);
+    }
+
+    /**
+     * Optional. Dataplex integration settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataStore.DataplexConfig dataplex_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\MetadataStore\DataplexConfig $var
+     * @return $this
+     */
+    public function setDataplexConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\MetadataStore\DataplexConfig::class);
+        $this->dataplex_config = $var;
 
         return $this;
     }

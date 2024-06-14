@@ -21,7 +21,7 @@ class ReplicationSync extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_sync_time = 1;</code>
      */
-    private $last_sync_time = null;
+    protected $last_sync_time = null;
 
     /**
      * Constructor.

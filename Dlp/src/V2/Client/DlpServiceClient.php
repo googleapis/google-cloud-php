@@ -36,6 +36,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\ColumnDataProfile;
+use Google\Cloud\Dlp\V2\Connection;
+use Google\Cloud\Dlp\V2\CreateConnectionRequest;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
@@ -45,16 +47,19 @@ use Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
+use Google\Cloud\Dlp\V2\DeleteConnectionRequest;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\DeleteTableDataProfileRequest;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetColumnDataProfileRequest;
+use Google\Cloud\Dlp\V2\GetConnectionRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
@@ -71,6 +76,7 @@ use Google\Cloud\Dlp\V2\InspectContentResponse;
 use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\ListColumnDataProfilesRequest;
+use Google\Cloud\Dlp\V2\ListConnectionsRequest;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
@@ -86,8 +92,10 @@ use Google\Cloud\Dlp\V2\RedactImageRequest;
 use Google\Cloud\Dlp\V2\RedactImageResponse;
 use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
+use Google\Cloud\Dlp\V2\SearchConnectionsRequest;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\UpdateConnectionRequest;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
@@ -116,6 +124,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface activateJobTriggerAsync(ActivateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cancelDlpJobAsync(CancelDlpJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createConnectionAsync(CreateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDeidentifyTemplateAsync(CreateDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDiscoveryConfigAsync(CreateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDlpJobAsync(CreateDlpJobRequest $request, array $optionalArgs = [])
@@ -123,14 +132,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createJobTriggerAsync(CreateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createStoredInfoTypeAsync(CreateStoredInfoTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deidentifyContentAsync(DeidentifyContentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteConnectionAsync(DeleteConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDeidentifyTemplateAsync(DeleteDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDiscoveryConfigAsync(DeleteDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDlpJobAsync(DeleteDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInspectTemplateAsync(DeleteInspectTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteJobTriggerAsync(DeleteJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteStoredInfoTypeAsync(DeleteStoredInfoTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteTableDataProfileAsync(DeleteTableDataProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface finishDlpJobAsync(FinishDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getColumnDataProfileAsync(GetColumnDataProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getConnectionAsync(GetConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDeidentifyTemplateAsync(GetDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDiscoveryConfigAsync(GetDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDlpJobAsync(GetDlpJobRequest $request, array $optionalArgs = [])
@@ -143,6 +155,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface hybridInspectJobTriggerAsync(HybridInspectJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface inspectContentAsync(InspectContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listColumnDataProfilesAsync(ListColumnDataProfilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listConnectionsAsync(ListConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeidentifyTemplatesAsync(ListDeidentifyTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDiscoveryConfigsAsync(ListDiscoveryConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDlpJobsAsync(ListDlpJobsRequest $request, array $optionalArgs = [])
@@ -154,6 +167,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listTableDataProfilesAsync(ListTableDataProfilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface redactImageAsync(RedactImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface reidentifyContentAsync(ReidentifyContentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface searchConnectionsAsync(SearchConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateConnectionAsync(UpdateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDeidentifyTemplateAsync(UpdateDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDiscoveryConfigAsync(UpdateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInspectTemplateAsync(UpdateInspectTemplateRequest $request, array $optionalArgs = [])
@@ -224,6 +239,25 @@ class DlpServiceClient
             'organization' => $organization,
             'location' => $location,
             'column_data_profile' => $columnDataProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connection
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted connection resource.
+     */
+    public static function connectionName(string $project, string $location, string $connection): string
+    {
+        return self::getPathTemplate('connection')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
         ]);
     }
 
@@ -840,6 +874,7 @@ class DlpServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
@@ -1020,6 +1055,32 @@ class DlpServiceClient
     public function cancelDlpJob(CancelDlpJobRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('CancelDlpJob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a Connection to an external data source.
+     *
+     * The async variant is {@see DlpServiceClient::createConnectionAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/create_connection.php
+     *
+     * @param CreateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Connection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createConnection(CreateConnectionRequest $request, array $callOptions = []): Connection
+    {
+        return $this->startApiCall('CreateConnection', $request, $callOptions)->wait();
     }
 
     /**
@@ -1237,6 +1298,30 @@ class DlpServiceClient
     }
 
     /**
+     * Delete a Connection.
+     *
+     * The async variant is {@see DlpServiceClient::deleteConnectionAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/delete_connection.php
+     *
+     * @param DeleteConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteConnection(DeleteConnectionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteConnection', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a DeidentifyTemplate.
      * See
      * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
@@ -1400,6 +1485,31 @@ class DlpServiceClient
     }
 
     /**
+     * Delete a TableDataProfile. Will not prevent the profile from being
+     * regenerated if the table is still included in a discovery configuration.
+     *
+     * The async variant is {@see DlpServiceClient::deleteTableDataProfileAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/delete_table_data_profile.php
+     *
+     * @param DeleteTableDataProfileRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTableDataProfile(DeleteTableDataProfileRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTableDataProfile', $request, $callOptions)->wait();
+    }
+
+    /**
      * Finish a running hybrid DlpJob. Triggers the finalization steps and running
      * of any enabled actions that have not yet run.
      *
@@ -1448,6 +1558,32 @@ class DlpServiceClient
     public function getColumnDataProfile(GetColumnDataProfileRequest $request, array $callOptions = []): ColumnDataProfile
     {
         return $this->startApiCall('GetColumnDataProfile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a Connection by name.
+     *
+     * The async variant is {@see DlpServiceClient::getConnectionAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/get_connection.php
+     *
+     * @param GetConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Connection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getConnection(GetConnectionRequest $request, array $callOptions = []): Connection
+    {
+        return $this->startApiCall('GetConnection', $request, $callOptions)->wait();
     }
 
     /**
@@ -1768,7 +1904,7 @@ class DlpServiceClient
     }
 
     /**
-     * Lists data profiles for an organization.
+     * Lists column data profiles for an organization.
      *
      * The async variant is {@see DlpServiceClient::listColumnDataProfilesAsync()} .
      *
@@ -1791,6 +1927,32 @@ class DlpServiceClient
     public function listColumnDataProfiles(ListColumnDataProfilesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListColumnDataProfiles', $request, $callOptions);
+    }
+
+    /**
+     * Lists Connections in a parent.
+     *
+     * The async variant is {@see DlpServiceClient::listConnectionsAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/list_connections.php
+     *
+     * @param ListConnectionsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listConnections(ListConnectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListConnections', $request, $callOptions);
     }
 
     /**
@@ -1967,7 +2129,7 @@ class DlpServiceClient
     }
 
     /**
-     * Lists data profiles for an organization.
+     * Lists project data profiles for an organization.
      *
      * The async variant is {@see DlpServiceClient::listProjectDataProfilesAsync()} .
      *
@@ -2022,7 +2184,7 @@ class DlpServiceClient
     }
 
     /**
-     * Lists data profiles for an organization.
+     * Lists table data profiles for an organization.
      *
      * The async variant is {@see DlpServiceClient::listTableDataProfilesAsync()} .
      *
@@ -2108,6 +2270,58 @@ class DlpServiceClient
     public function reidentifyContent(ReidentifyContentRequest $request, array $callOptions = []): ReidentifyContentResponse
     {
         return $this->startApiCall('ReidentifyContent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Searches for Connections in a parent.
+     *
+     * The async variant is {@see DlpServiceClient::searchConnectionsAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/search_connections.php
+     *
+     * @param SearchConnectionsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchConnections(SearchConnectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchConnections', $request, $callOptions);
+    }
+
+    /**
+     * Update a Connection.
+     *
+     * The async variant is {@see DlpServiceClient::updateConnectionAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/update_connection.php
+     *
+     * @param UpdateConnectionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Connection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateConnection(UpdateConnectionRequest $request, array $callOptions = []): Connection
+    {
+        return $this->startApiCall('UpdateConnection', $request, $callOptions)->wait();
     }
 
     /**

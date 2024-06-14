@@ -21,7 +21,7 @@ class ModelGardenSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_model_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $public_model_name = '';
+    protected $public_model_name = '';
 
     /**
      * Constructor.

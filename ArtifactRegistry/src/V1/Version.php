@@ -25,25 +25,25 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Description of the version, as specified in its metadata.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The time when the version was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time when the version was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. A list of related tags. Will contain up to 100 tags that
      * reference this version.
@@ -60,7 +60,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

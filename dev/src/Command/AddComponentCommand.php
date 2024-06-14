@@ -189,7 +189,7 @@ class AddComponentCommand extends Command
         }
 
         // Write repo metadata JSON
-        $output->writeln('<info<Repo Metadata</info> Writing .repo-metadata.json');
+        $output->writeln('<info<Repo Metadata</info> Writing to .repo-metadata-full.json');
         $repoMetadata = [
             'language' => 'php',
             'distribution_name' => $new->composerPackage,
@@ -198,8 +198,14 @@ class AddComponentCommand extends Command
             'library_type' => 'GAPIC_AUTO',
             'api_shortname' => $new->shortName
         ];
-        $contents = json_encode($repoMetadata, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        $filesystem->dumpFile($componentDir . '/.repo-metadata.json', $contents . PHP_EOL);
+        $repoMetadataFullPath = $this->rootPath . '/.repo-metadata-full.json';
+        $repoMetadataFull = json_decode(file_get_contents($repoMetadataFullPath), true);
+        $repoMetadataFull[$new->componentName] = $repoMetadata;
+        ksort($repoMetadataFull);
+        file_put_contents(
+            $repoMetadataFullPath,
+            json_encode($repoMetadataFull, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL
+        );
 
         // Write composer file
         $output->writeln('<info>Composer</info> Updating root composer.json and creating component composer.json');

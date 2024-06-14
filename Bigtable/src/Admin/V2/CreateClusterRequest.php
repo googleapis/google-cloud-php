@@ -21,7 +21,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID to be used when referring to the new cluster within its
      * instance, e.g., just `mycluster` rather than
@@ -29,14 +29,14 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * Required. The cluster to be created.
      * Fields marked `OutputOnly` must be left blank.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
 
     /**
      * @param string                                  $parent    Required. The unique name of the instance in which to create the new

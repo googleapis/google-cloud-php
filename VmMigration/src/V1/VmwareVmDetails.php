@@ -21,61 +21,61 @@ class VmwareVmDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_id = 1;</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * The id of the vCenter's datacenter this VM is contained in.
      *
      * Generated from protobuf field <code>string datacenter_id = 2;</code>
      */
-    private $datacenter_id = '';
+    protected $datacenter_id = '';
     /**
      * The descriptive name of the vCenter's datacenter this VM is contained in.
      *
      * Generated from protobuf field <code>string datacenter_description = 3;</code>
      */
-    private $datacenter_description = '';
+    protected $datacenter_description = '';
     /**
      * The unique identifier of the VM in vCenter.
      *
      * Generated from protobuf field <code>string uuid = 4;</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     /**
      * The display name of the VM. Note that this is not necessarily unique.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The power state of the VM at the moment list was taken.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareVmDetails.PowerState power_state = 6;</code>
      */
-    private $power_state = 0;
+    protected $power_state = 0;
     /**
      * The number of cpus in the VM.
      *
      * Generated from protobuf field <code>int32 cpu_count = 7;</code>
      */
-    private $cpu_count = 0;
+    protected $cpu_count = 0;
     /**
      * The size of the memory of the VM in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 8;</code>
      */
-    private $memory_mb = 0;
+    protected $memory_mb = 0;
     /**
      * The number of disks the VM has.
      *
      * Generated from protobuf field <code>int32 disk_count = 9;</code>
      */
-    private $disk_count = 0;
+    protected $disk_count = 0;
     /**
      * The total size of the storage allocated to the VM in MB.
      *
      * Generated from protobuf field <code>int64 committed_storage_mb = 12;</code>
      */
-    private $committed_storage_mb = 0;
+    protected $committed_storage_mb = 0;
     /**
      * The VM's OS. See for example
      * https://vdc-repo.vmware.com/vmwb-repository/dcr-public/da47f910-60ac-438b-8b9b-6122f4d14524/16b7274a-bf8b-4b4c-a05e-746f2aa93c8c/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html
@@ -83,13 +83,13 @@ class VmwareVmDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string guest_description = 11;</code>
      */
-    private $guest_description = '';
+    protected $guest_description = '';
     /**
      * Output only. The VM Boot Option.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmwareVmDetails.BootOption boot_option = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $boot_option = 0;
+    protected $boot_option = 0;
 
     /**
      * Constructor.

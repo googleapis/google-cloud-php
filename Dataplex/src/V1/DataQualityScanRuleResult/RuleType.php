@@ -75,6 +75,13 @@ class RuleType
      * Generated from protobuf enum <code>UNIQUENESS_EXPECTATION = 8;</code>
      */
     const UNIQUENESS_EXPECTATION = 8;
+    /**
+     * Please see
+     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#sqlAssertion.
+     *
+     * Generated from protobuf enum <code>SQL_ASSERTION = 9;</code>
+     */
+    const SQL_ASSERTION = 9;
 
     private static $valueToName = [
         self::RULE_TYPE_UNSPECIFIED => 'RULE_TYPE_UNSPECIFIED',
@@ -86,6 +93,7 @@ class RuleType
         self::STATISTIC_RANGE_EXPECTATION => 'STATISTIC_RANGE_EXPECTATION',
         self::TABLE_CONDITION_EXPECTATION => 'TABLE_CONDITION_EXPECTATION',
         self::UNIQUENESS_EXPECTATION => 'UNIQUENESS_EXPECTATION',
+        self::SQL_ASSERTION => 'SQL_ASSERTION',
     ];
 
     public static function name($value)

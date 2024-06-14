@@ -21,14 +21,14 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_replica_count = null;
+    protected $min_replica_count = null;
     /**
      * Optional. max replicas in the node pool,
      * must be ≥ replica_count and > min_replica_count or will throw error
      *
      * Generated from protobuf field <code>optional int64 max_replica_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_replica_count = null;
+    protected $max_replica_count = null;
 
     /**
      * Constructor.

@@ -37,6 +37,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\Backup;
 use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
+use Google\Cloud\Firestore\Admin\V1\BulkDeleteDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
@@ -110,6 +111,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface bulkDeleteDocumentsAsync(BulkDeleteDocumentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
@@ -463,6 +465,39 @@ final class FirestoreAdminClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Bulk deletes a subset of documents from Google Cloud Firestore.
+     * Documents created or updated after the underlying system starts to process
+     * the request will not be deleted. The bulk delete occurs in the background
+     * and its progress can be monitored and managed via the Operation resource
+     * that is created.
+     *
+     * For more details on bulk delete behavior, refer to:
+     * https://cloud.google.com/firestore/docs/manage-data/bulk-delete
+     *
+     * The async variant is {@see FirestoreAdminClient::bulkDeleteDocumentsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/bulk_delete_documents.php
+     *
+     * @param BulkDeleteDocumentsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkDeleteDocuments(BulkDeleteDocumentsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BulkDeleteDocuments', $request, $callOptions)->wait();
     }
 
     /**
@@ -986,7 +1021,7 @@ final class FirestoreAdminClient
      *
      * The new database must be in the same cloud region or multi-region location
      * as the existing backup. This behaves similar to
-     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.CreateDatabase]
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.FirestoreAdmin.CreateDatabase]
      * except instead of creating a new empty database, a new database is created
      * with the database type, index configuration, and documents from an existing
      * backup.

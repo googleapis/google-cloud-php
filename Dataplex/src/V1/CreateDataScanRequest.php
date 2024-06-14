@@ -23,13 +23,13 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. DataScan resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan data_scan = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_scan = null;
+    protected $data_scan = null;
     /**
      * Required. DataScan identifier.
      * * Must contain only lowercase letters, numbers and hyphens.
@@ -40,14 +40,14 @@ class CreateDataScanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_scan_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_scan_id = '';
+    protected $data_scan_id = '';
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                             $parent     Required. The resource name of the parent location:

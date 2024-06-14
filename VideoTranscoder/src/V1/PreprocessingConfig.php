@@ -20,43 +20,43 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Color color = 1;</code>
      */
-    private $color = null;
+    protected $color = null;
     /**
      * Denoise preprocessing configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Denoise denoise = 2;</code>
      */
-    private $denoise = null;
+    protected $denoise = null;
     /**
      * Deblock preprocessing configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Deblock deblock = 3;</code>
      */
-    private $deblock = null;
+    protected $deblock = null;
     /**
      * Audio preprocessing configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Audio audio = 4;</code>
      */
-    private $audio = null;
+    protected $audio = null;
     /**
      * Specify the video cropping configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Crop crop = 5;</code>
      */
-    private $crop = null;
+    protected $crop = null;
     /**
      * Specify the video pad filter configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Pad pad = 6;</code>
      */
-    private $pad = null;
+    protected $pad = null;
     /**
      * Specify the video deinterlace configuration.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace deinterlace = 7;</code>
      */
-    private $deinterlace = null;
+    protected $deinterlace = null;
 
     /**
      * Constructor.

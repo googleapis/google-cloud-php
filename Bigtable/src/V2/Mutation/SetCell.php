@@ -21,14 +21,14 @@ class SetCell extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string family_name = 1;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
     /**
      * The qualifier of the column into which new data should be written.
      * Can be any byte string, including the empty string.
      *
      * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
      */
-    private $column_qualifier = '';
+    protected $column_qualifier = '';
     /**
      * The timestamp of the cell into which new data should be written.
      * Use -1 for current Bigtable server time.
@@ -38,13 +38,13 @@ class SetCell extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 timestamp_micros = 3;</code>
      */
-    private $timestamp_micros = 0;
+    protected $timestamp_micros = 0;
     /**
      * The value to be written into the specified cell.
      *
      * Generated from protobuf field <code>bytes value = 4;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

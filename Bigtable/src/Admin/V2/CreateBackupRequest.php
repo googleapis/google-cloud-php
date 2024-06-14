@@ -23,7 +23,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The id of the backup to be created. The `backup_id` along with
      * the parent `parent` are combined as {parent}/backups/{backup_id} to create
@@ -34,13 +34,13 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_id = '';
+    protected $backup_id = '';
     /**
      * Required. The backup to create.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup = null;
+    protected $backup = null;
 
     /**
      * @param string                                 $parent   Required. This must be one of the clusters in the instance in which this

@@ -28,7 +28,7 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Locations from which AppProfile information could not be retrieved,
      * due to an outage or some other transient condition.

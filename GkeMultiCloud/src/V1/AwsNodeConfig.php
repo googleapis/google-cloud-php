@@ -56,8 +56,8 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $tags;
     /**
-     * Required. The name or ARN of the AWS IAM role assigned to nodes in the
-     * pool.
+     * Required. The name or ARN of the AWS IAM instance profile to assign to
+     * nodes in the pool.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -148,8 +148,8 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
      *           255 Unicode characters.
      *     @type string $iam_instance_profile
-     *           Required. The name or ARN of the AWS IAM role assigned to nodes in the
-     *           pool.
+     *           Required. The name or ARN of the AWS IAM instance profile to assign to
+     *           nodes in the pool.
      *     @type string $image_type
      *           Optional. The OS image type to use on node pool instances.
      *           Can be unspecified, or have a value of `ubuntu`.
@@ -344,8 +344,8 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name or ARN of the AWS IAM role assigned to nodes in the
-     * pool.
+     * Required. The name or ARN of the AWS IAM instance profile to assign to
+     * nodes in the pool.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -356,8 +356,8 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name or ARN of the AWS IAM role assigned to nodes in the
-     * pool.
+     * Required. The name or ARN of the AWS IAM instance profile to assign to
+     * nodes in the pool.
      *
      * Generated from protobuf field <code>string iam_instance_profile = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

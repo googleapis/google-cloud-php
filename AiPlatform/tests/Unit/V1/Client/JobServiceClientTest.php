@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\BatchPredictionJob;
@@ -95,6 +94,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -121,7 +121,9 @@ class JobServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return JobServiceClient */
@@ -146,8 +148,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new CancelBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelBatchPredictionJobRequest())->setName($formattedName);
         $gapicClient->cancelBatchPredictionJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -170,17 +171,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new CancelBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelBatchPredictionJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelBatchPredictionJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -207,8 +210,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $request = (new CancelCustomJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelCustomJobRequest())->setName($formattedName);
         $gapicClient->cancelCustomJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -231,17 +233,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $request = (new CancelCustomJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelCustomJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelCustomJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -268,8 +272,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $request = (new CancelDataLabelingJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelDataLabelingJobRequest())->setName($formattedName);
         $gapicClient->cancelDataLabelingJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -292,17 +295,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $request = (new CancelDataLabelingJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelDataLabelingJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelDataLabelingJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -328,9 +333,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $request = (new CancelHyperparameterTuningJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[HYPERPARAMETER_TUNING_JOB]'
+        );
+        $request = (new CancelHyperparameterTuningJobRequest())->setName($formattedName);
         $gapicClient->cancelHyperparameterTuningJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -353,17 +361,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $request = (new CancelHyperparameterTuningJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[HYPERPARAMETER_TUNING_JOB]'
+        );
+        $request = (new CancelHyperparameterTuningJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelHyperparameterTuningJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -390,8 +404,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new CancelNasJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelNasJobRequest())->setName($formattedName);
         $gapicClient->cancelNasJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -414,17 +427,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new CancelNasJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelNasJobRequest())->setName($formattedName);
         try {
             $gapicClient->cancelNasJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -504,12 +519,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -564,9 +582,7 @@ class JobServiceClientTest extends GeneratedTest
         $jobSpecWorkerPoolSpecs = [];
         $customJobJobSpec->setWorkerPoolSpecs($jobSpecWorkerPoolSpecs);
         $customJob->setJobSpec($customJobJobSpec);
-        $request = (new CreateCustomJobRequest())
-            ->setParent($formattedParent)
-            ->setCustomJob($customJob);
+        $request = (new CreateCustomJobRequest())->setParent($formattedParent)->setCustomJob($customJob);
         $response = $gapicClient->createCustomJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -592,12 +608,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -608,9 +627,7 @@ class JobServiceClientTest extends GeneratedTest
         $jobSpecWorkerPoolSpecs = [];
         $customJobJobSpec->setWorkerPoolSpecs($jobSpecWorkerPoolSpecs);
         $customJob->setJobSpec($customJobJobSpec);
-        $request = (new CreateCustomJobRequest())
-            ->setParent($formattedParent)
-            ->setCustomJob($customJob);
+        $request = (new CreateCustomJobRequest())->setParent($formattedParent)->setCustomJob($customJob);
         try {
             $gapicClient->createCustomJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -652,9 +669,7 @@ class JobServiceClientTest extends GeneratedTest
         $dataLabelingJob = new DataLabelingJob();
         $dataLabelingJobDisplayName = 'dataLabelingJobDisplayName708178632';
         $dataLabelingJob->setDisplayName($dataLabelingJobDisplayName);
-        $dataLabelingJobDatasets = [
-            $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
-        ];
+        $dataLabelingJobDatasets = [$gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]')];
         $dataLabelingJob->setDatasets($dataLabelingJobDatasets);
         $dataLabelingJobLabelerCount = 500093453;
         $dataLabelingJob->setLabelerCount($dataLabelingJobLabelerCount);
@@ -692,21 +707,22 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataLabelingJob = new DataLabelingJob();
         $dataLabelingJobDisplayName = 'dataLabelingJobDisplayName708178632';
         $dataLabelingJob->setDisplayName($dataLabelingJobDisplayName);
-        $dataLabelingJobDatasets = [
-            $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
-        ];
+        $dataLabelingJobDatasets = [$gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]')];
         $dataLabelingJob->setDatasets($dataLabelingJobDatasets);
         $dataLabelingJobLabelerCount = 500093453;
         $dataLabelingJob->setLabelerCount($dataLabelingJobLabelerCount);
@@ -800,12 +816,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -873,11 +892,17 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs
+        );
         $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
         $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
-        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval(
+            $modelDeploymentMonitoringScheduleConfigMonitorInterval
+        );
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig
+        );
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         $request = (new CreateModelDeploymentMonitoringJobRequest())
@@ -908,12 +933,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -923,11 +951,17 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs
+        );
         $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
         $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
-        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval(
+            $modelDeploymentMonitoringScheduleConfigMonitorInterval
+        );
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig
+        );
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         $request = (new CreateModelDeploymentMonitoringJobRequest())
@@ -970,9 +1004,7 @@ class JobServiceClientTest extends GeneratedTest
         $nasJob->setDisplayName($nasJobDisplayName);
         $nasJobNasJobSpec = new NasJobSpec();
         $nasJob->setNasJobSpec($nasJobNasJobSpec);
-        $request = (new CreateNasJobRequest())
-            ->setParent($formattedParent)
-            ->setNasJob($nasJob);
+        $request = (new CreateNasJobRequest())->setParent($formattedParent)->setNasJob($nasJob);
         $response = $gapicClient->createNasJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -998,12 +1030,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1012,9 +1047,7 @@ class JobServiceClientTest extends GeneratedTest
         $nasJob->setDisplayName($nasJobDisplayName);
         $nasJobNasJobSpec = new NasJobSpec();
         $nasJob->setNasJobSpec($nasJobNasJobSpec);
-        $request = (new CreateNasJobRequest())
-            ->setParent($formattedParent)
-            ->setNasJob($nasJob);
+        $request = (new CreateNasJobRequest())->setParent($formattedParent)->setNasJob($nasJob);
         try {
             $gapicClient->createNasJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1059,8 +1092,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new DeleteBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBatchPredictionJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteBatchPredictionJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1116,17 +1148,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new DeleteBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBatchPredictionJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteBatchPredictionJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1180,8 +1214,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $request = (new DeleteCustomJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteCustomJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1237,17 +1270,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $request = (new DeleteCustomJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteCustomJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1301,8 +1336,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $request = (new DeleteDataLabelingJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDataLabelingJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteDataLabelingJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1358,17 +1392,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $request = (new DeleteDataLabelingJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDataLabelingJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteDataLabelingJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1421,9 +1457,12 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $request = (new DeleteHyperparameterTuningJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[HYPERPARAMETER_TUNING_JOB]'
+        );
+        $request = (new DeleteHyperparameterTuningJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteHyperparameterTuningJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1479,17 +1518,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $request = (new DeleteHyperparameterTuningJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[HYPERPARAMETER_TUNING_JOB]'
+        );
+        $request = (new DeleteHyperparameterTuningJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteHyperparameterTuningJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1542,9 +1587,12 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new DeleteModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new DeleteModelDeploymentMonitoringJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteModelDeploymentMonitoringJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1554,7 +1602,10 @@ class JobServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.JobService/DeleteModelDeploymentMonitoringJob', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.JobService/DeleteModelDeploymentMonitoringJob',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1600,17 +1651,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new DeleteModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new DeleteModelDeploymentMonitoringJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteModelDeploymentMonitoringJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1664,8 +1721,7 @@ class JobServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new DeleteNasJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNasJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteNasJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1721,17 +1777,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new DeleteNasJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNasJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteNasJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1781,8 +1839,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new GetBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new GetBatchPredictionJobRequest())->setName($formattedName);
         $response = $gapicClient->getBatchPredictionJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1806,17 +1863,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new GetBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new GetBatchPredictionJobRequest())->setName($formattedName);
         try {
             $gapicClient->getBatchPredictionJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1847,8 +1906,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $request = (new GetCustomJobRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomJobRequest())->setName($formattedName);
         $response = $gapicClient->getCustomJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1872,17 +1930,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $request = (new GetCustomJobRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomJobRequest())->setName($formattedName);
         try {
             $gapicClient->getCustomJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1921,8 +1981,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $request = (new GetDataLabelingJobRequest())
-            ->setName($formattedName);
+        $request = (new GetDataLabelingJobRequest())->setName($formattedName);
         $response = $gapicClient->getDataLabelingJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1946,17 +2005,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $request = (new GetDataLabelingJobRequest())
-            ->setName($formattedName);
+        $request = (new GetDataLabelingJobRequest())->setName($formattedName);
         try {
             $gapicClient->getDataLabelingJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1992,9 +2053,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $request = (new GetHyperparameterTuningJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[HYPERPARAMETER_TUNING_JOB]'
+        );
+        $request = (new GetHyperparameterTuningJobRequest())->setName($formattedName);
         $response = $gapicClient->getHyperparameterTuningJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2018,17 +2082,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $request = (new GetHyperparameterTuningJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[HYPERPARAMETER_TUNING_JOB]'
+        );
+        $request = (new GetHyperparameterTuningJobRequest())->setName($formattedName);
         try {
             $gapicClient->getHyperparameterTuningJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2066,9 +2136,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new GetModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new GetModelDeploymentMonitoringJobRequest())->setName($formattedName);
         $response = $gapicClient->getModelDeploymentMonitoringJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2092,17 +2165,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new GetModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new GetModelDeploymentMonitoringJobRequest())->setName($formattedName);
         try {
             $gapicClient->getModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2135,8 +2214,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new GetNasJobRequest())
-            ->setName($formattedName);
+        $request = (new GetNasJobRequest())->setName($formattedName);
         $response = $gapicClient->getNasJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2160,17 +2238,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new GetNasJobRequest())
-            ->setName($formattedName);
+        $request = (new GetNasJobRequest())->setName($formattedName);
         try {
             $gapicClient->getNasJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2201,8 +2281,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nasTrialDetailName('[PROJECT]', '[LOCATION]', '[NAS_JOB]', '[NAS_TRIAL_DETAIL]');
-        $request = (new GetNasTrialDetailRequest())
-            ->setName($formattedName);
+        $request = (new GetNasTrialDetailRequest())->setName($formattedName);
         $response = $gapicClient->getNasTrialDetail($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2226,17 +2305,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nasTrialDetailName('[PROJECT]', '[LOCATION]', '[NAS_JOB]', '[NAS_TRIAL_DETAIL]');
-        $request = (new GetNasTrialDetailRequest())
-            ->setName($formattedName);
+        $request = (new GetNasTrialDetailRequest())->setName($formattedName);
         try {
             $gapicClient->getNasTrialDetail($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2261,17 +2342,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $batchPredictionJobsElement = new BatchPredictionJob();
-        $batchPredictionJobs = [
-            $batchPredictionJobsElement,
-        ];
+        $batchPredictionJobs = [$batchPredictionJobsElement];
         $expectedResponse = new ListBatchPredictionJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBatchPredictionJobs($batchPredictionJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBatchPredictionJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBatchPredictionJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBatchPredictionJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2298,17 +2376,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBatchPredictionJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBatchPredictionJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBatchPredictionJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2333,17 +2413,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $customJobsElement = new CustomJob();
-        $customJobs = [
-            $customJobsElement,
-        ];
+        $customJobs = [$customJobsElement];
         $expectedResponse = new ListCustomJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomJobs($customJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCustomJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCustomJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2370,17 +2447,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCustomJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCustomJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2405,17 +2484,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataLabelingJobsElement = new DataLabelingJob();
-        $dataLabelingJobs = [
-            $dataLabelingJobsElement,
-        ];
+        $dataLabelingJobs = [$dataLabelingJobsElement];
         $expectedResponse = new ListDataLabelingJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataLabelingJobs($dataLabelingJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDataLabelingJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataLabelingJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDataLabelingJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2442,17 +2518,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDataLabelingJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataLabelingJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataLabelingJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2477,17 +2555,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $hyperparameterTuningJobsElement = new HyperparameterTuningJob();
-        $hyperparameterTuningJobs = [
-            $hyperparameterTuningJobsElement,
-        ];
+        $hyperparameterTuningJobs = [$hyperparameterTuningJobsElement];
         $expectedResponse = new ListHyperparameterTuningJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHyperparameterTuningJobs($hyperparameterTuningJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListHyperparameterTuningJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListHyperparameterTuningJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listHyperparameterTuningJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2514,17 +2589,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListHyperparameterTuningJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListHyperparameterTuningJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listHyperparameterTuningJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2549,17 +2626,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $modelDeploymentMonitoringJobsElement = new ModelDeploymentMonitoringJob();
-        $modelDeploymentMonitoringJobs = [
-            $modelDeploymentMonitoringJobsElement,
-        ];
+        $modelDeploymentMonitoringJobs = [$modelDeploymentMonitoringJobsElement];
         $expectedResponse = new ListModelDeploymentMonitoringJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelDeploymentMonitoringJobs($modelDeploymentMonitoringJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListModelDeploymentMonitoringJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelDeploymentMonitoringJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listModelDeploymentMonitoringJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2586,17 +2660,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListModelDeploymentMonitoringJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelDeploymentMonitoringJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listModelDeploymentMonitoringJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2621,17 +2697,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $nasJobsElement = new NasJob();
-        $nasJobs = [
-            $nasJobsElement,
-        ];
+        $nasJobs = [$nasJobsElement];
         $expectedResponse = new ListNasJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNasJobs($nasJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNasJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNasJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listNasJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2658,17 +2731,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNasJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNasJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNasJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2693,17 +2768,14 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $nasTrialDetailsElement = new NasTrialDetail();
-        $nasTrialDetails = [
-            $nasTrialDetailsElement,
-        ];
+        $nasTrialDetails = [$nasTrialDetailsElement];
         $expectedResponse = new ListNasTrialDetailsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNasTrialDetails($nasTrialDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new ListNasTrialDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNasTrialDetailsRequest())->setParent($formattedParent);
         $response = $gapicClient->listNasTrialDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2730,17 +2802,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
-        $request = (new ListNasTrialDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNasTrialDetailsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNasTrialDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2766,9 +2840,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new PauseModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new PauseModelDeploymentMonitoringJobRequest())->setName($formattedName);
         $gapicClient->pauseModelDeploymentMonitoringJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2791,17 +2868,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new PauseModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new PauseModelDeploymentMonitoringJobRequest())->setName($formattedName);
         try {
             $gapicClient->pauseModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2827,9 +2910,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new ResumeModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new ResumeModelDeploymentMonitoringJobRequest())->setName($formattedName);
         $gapicClient->resumeModelDeploymentMonitoringJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2852,17 +2938,23 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $request = (new ResumeModelDeploymentMonitoringJobRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
+        $request = (new ResumeModelDeploymentMonitoringJobRequest())->setName($formattedName);
         try {
             $gapicClient->resumeModelDeploymentMonitoringJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2887,15 +2979,17 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $monitoringStatsElement = new ModelMonitoringStatsAnomalies();
-        $monitoringStats = [
-            $monitoringStatsElement,
-        ];
+        $monitoringStats = [$monitoringStatsElement];
         $expectedResponse = new SearchModelDeploymentMonitoringStatsAnomaliesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMonitoringStats($monitoringStats);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
         $deployedModelId = 'deployedModelId866642506';
         $objectives = [];
         $request = (new SearchModelDeploymentMonitoringStatsAnomaliesRequest())
@@ -2911,7 +3005,10 @@ class JobServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.JobService/SearchModelDeploymentMonitoringStatsAnomalies', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.JobService/SearchModelDeploymentMonitoringStatsAnomalies',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getModelDeploymentMonitoringJob();
         $this->assertProtobufEquals($formattedModelDeploymentMonitoringJob, $actualValue);
         $actualValue = $actualRequestObject->getDeployedModelId();
@@ -2932,15 +3029,22 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL_DEPLOYMENT_MONITORING_JOB]'
+        );
         $deployedModelId = 'deployedModelId866642506';
         $objectives = [];
         $request = (new SearchModelDeploymentMonitoringStatsAnomaliesRequest())
@@ -3008,11 +3112,17 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs
+        );
         $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
         $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
-        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval(
+            $modelDeploymentMonitoringScheduleConfigMonitorInterval
+        );
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig
+        );
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         $updateMask = new FieldMask();
@@ -3028,7 +3138,10 @@ class JobServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.aiplatform.v1.JobService/UpdateModelDeploymentMonitoringJob', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.JobService/UpdateModelDeploymentMonitoringJob',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getModelDeploymentMonitoringJob();
         $this->assertProtobufEquals($modelDeploymentMonitoringJob, $actualValue);
         $actualValue = $actualApiRequestObject->getUpdateMask();
@@ -3076,12 +3189,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
@@ -3090,11 +3206,17 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs
+        );
         $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig = new ModelDeploymentMonitoringScheduleConfig();
         $modelDeploymentMonitoringScheduleConfigMonitorInterval = new Duration();
-        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval($modelDeploymentMonitoringScheduleConfigMonitorInterval);
-        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
+        $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig->setMonitorInterval(
+            $modelDeploymentMonitoringScheduleConfigMonitorInterval
+        );
+        $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig(
+            $modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig
+        );
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         $updateMask = new FieldMask();
@@ -3162,12 +3284,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -3194,9 +3319,7 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -3226,12 +3349,15 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -3264,8 +3390,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3289,17 +3414,19 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3331,9 +3458,7 @@ class JobServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3359,19 +3484,20 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3399,9 +3525,7 @@ class JobServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3427,19 +3551,20 @@ class JobServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3466,8 +3591,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $request = (new CancelBatchPredictionJobRequest())
-            ->setName($formattedName);
+        $request = (new CancelBatchPredictionJobRequest())->setName($formattedName);
         $gapicClient->cancelBatchPredictionJobAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));

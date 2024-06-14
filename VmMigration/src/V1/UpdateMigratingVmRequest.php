@@ -24,13 +24,13 @@ class UpdateMigratingVmRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The update request body.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVm migrating_vm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $migrating_vm = null;
+    protected $migrating_vm = null;
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -46,7 +46,7 @@ class UpdateMigratingVmRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\VMMigration\V1\MigratingVm $migratingVm Required. The update request body.

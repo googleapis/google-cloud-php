@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Status of the product aggregated for all reporting contexts.
  * Here's an example of how the aggregated status is computed:
- * Free listings | Shopping Ads | Status
+ * Free listings | Shopping ads | Status
  * --------------|--------------|------------------------------
  * Approved      | Approved     | ELIGIBLE
  * Approved      | Pending      | ELIGIBLE

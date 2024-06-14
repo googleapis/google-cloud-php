@@ -21,7 +21,7 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the
      * Hive metastore (configured in `hive-site.xml`). The mappings
@@ -41,14 +41,14 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.KerberosConfig kerberos_config = 3;</code>
      */
-    private $kerberos_config = null;
+    protected $kerberos_config = null;
     /**
      * The protocol to use for the metastore service endpoint. If unspecified,
      * defaults to `THRIFT`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.HiveMetastoreConfig.EndpointProtocol endpoint_protocol = 4;</code>
      */
-    private $endpoint_protocol = 0;
+    protected $endpoint_protocol = 0;
     /**
      * A mapping of Hive metastore version to the auxiliary version
      * configuration. When specified, a secondary Hive metastore service is

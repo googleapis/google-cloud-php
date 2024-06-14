@@ -31,7 +31,8 @@ use Google\Cloud\DocumentAI\V1\GetEvaluationRequest;
 /**
  * Retrieves a specific evaluation.
  *
- * @param string $formattedName The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+ * @param string $formattedName The resource name of the
+ *                              [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
  *                              `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
  *                              Please see {@see DocumentProcessorServiceClient::evaluationName()} for help formatting this field.
  */

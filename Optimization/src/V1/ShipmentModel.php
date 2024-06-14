@@ -42,7 +42,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_active_vehicles = 4;</code>
      */
-    private $max_active_vehicles = null;
+    protected $max_active_vehicles = null;
     /**
      * Global start and end time of the model: no times outside of this range
      * can be considered valid.
@@ -56,14 +56,14 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp global_start_time = 5;</code>
      */
-    private $global_start_time = null;
+    protected $global_start_time = null;
     /**
      * If unset, 00:00:00 UTC, January 1, 1971 (i.e. seconds: 31536000, nanos: 0)
      * is used as default.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp global_end_time = 6;</code>
      */
-    private $global_end_time = null;
+    protected $global_end_time = null;
     /**
      * The "global duration" of the overall plan is the difference between the
      * earliest effective start time and the latest effective end time of
@@ -74,7 +74,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double global_duration_cost_per_hour = 7;</code>
      */
-    private $global_duration_cost_per_hour = 0.0;
+    protected $global_duration_cost_per_hour = 0.0;
     /**
      * Specifies duration and distance matrices used in the model. If this field
      * is empty, Google Maps or geodesic distances will be used instead, depending

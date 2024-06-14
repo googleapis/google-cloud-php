@@ -22,7 +22,7 @@ class PartialResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MigrateResourceRequest request = 1;</code>
      */
-    private $request = null;
+    protected $request = null;
     protected $result;
 
     /**

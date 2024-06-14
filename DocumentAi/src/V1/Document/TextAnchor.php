@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Text reference indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
+ * Text reference indexing into the
+ * [Document.text][google.cloud.documentai.v1.Document.text].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.TextAnchor</code>
  */
 class TextAnchor extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The text segments from the [Document.text][google.cloud.documentai.v1.Document.text].
+     * The text segments from the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextAnchor.TextSegment text_segments = 1;</code>
      */
@@ -37,7 +39,8 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment>|\Google\Protobuf\Internal\RepeatedField $text_segments
-     *           The text segments from the [Document.text][google.cloud.documentai.v1.Document.text].
+     *           The text segments from the
+     *           [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type string $content
      *           Contains the content of the text span so that users do
      *           not have to look it up in the text_segments.  It is always
@@ -50,7 +53,8 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The text segments from the [Document.text][google.cloud.documentai.v1.Document.text].
+     * The text segments from the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextAnchor.TextSegment text_segments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +65,8 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The text segments from the [Document.text][google.cloud.documentai.v1.Document.text].
+     * The text segments from the
+     * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextAnchor.TextSegment text_segments = 1;</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment>|\Google\Protobuf\Internal\RepeatedField $var

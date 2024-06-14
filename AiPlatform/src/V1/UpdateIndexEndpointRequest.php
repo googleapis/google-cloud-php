@@ -21,14 +21,14 @@ class UpdateIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexEndpoint index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $index_endpoint = null;
+    protected $index_endpoint = null;
     /**
      * Required. The update mask applies to the resource. See
      * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\IndexEndpoint $indexEndpoint Required. The IndexEndpoint which replaces the resource on the server.

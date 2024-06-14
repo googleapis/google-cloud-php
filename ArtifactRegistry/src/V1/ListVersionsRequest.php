@@ -20,31 +20,31 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of versions to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The next_page_token value returned from a previous list request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The view that should be returned in the response.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.VersionView view = 4;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * Optional. The field to order the results by.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent The name of the parent resource whose versions will be listed.

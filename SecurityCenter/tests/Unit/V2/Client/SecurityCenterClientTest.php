@@ -24,7 +24,6 @@ namespace Google\Cloud\SecurityCenter\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -97,6 +96,7 @@ use Google\Cloud\SecurityCenter\V2\UpdateResourceValueConfigRequest;
 use Google\Cloud\SecurityCenter\V2\UpdateSecurityMarksRequest;
 use Google\Cloud\SecurityCenter\V2\UpdateSourceRequest;
 use Google\Cloud\SecurityCenter\V2\ValuedResource;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

@@ -20,20 +20,20 @@ class UpstreamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * A reference to the repository resource, for example:
      * `projects/p1/locations/us-central1/repositories/repo1`.
      *
      * Generated from protobuf field <code>string repository = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $repository = '';
+    protected $repository = '';
     /**
      * Entries with a greater priority value take precedence in the pull order.
      *
      * Generated from protobuf field <code>int32 priority = 3;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
 
     /**
      * Constructor.

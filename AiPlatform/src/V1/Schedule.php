@@ -21,7 +21,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. User provided name of the Schedule.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -29,14 +29,14 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Timestamp after which the first run can be scheduled.
      * Default to Schedule create time if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Optional. Timestamp after which no new runs can be scheduled.
      * If specified, The schedule will be completed when either
@@ -47,7 +47,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Optional. Maximum run count of the schedule.
      * If specified, The schedule will be completed when either
@@ -58,31 +58,31 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_run_count = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_run_count = 0;
+    protected $max_run_count = 0;
     /**
      * Output only. The number of runs started by this schedule.
      *
      * Generated from protobuf field <code>int64 started_run_count = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $started_run_count = 0;
+    protected $started_run_count = 0;
     /**
      * Output only. The state of this Schedule.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schedule.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Timestamp when this Schedule was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Schedule was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Timestamp when this Schedule should schedule the next run.
      * Having a next_run_time in the past means the runs are being started
@@ -90,21 +90,21 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_run_time = null;
+    protected $next_run_time = null;
     /**
      * Output only. Timestamp when this Schedule was last paused.
      * Unset if never paused.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_pause_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_pause_time = null;
+    protected $last_pause_time = null;
     /**
      * Output only. Timestamp when this Schedule was last resumed.
      * Unset if never resumed from pause.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_resume_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_resume_time = null;
+    protected $last_resume_time = null;
     /**
      * Required. Maximum number of runs that can be started concurrently for this
      * Schedule. This is the limit for starting the scheduled requests and not the
@@ -112,7 +112,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_concurrent_run_count = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_concurrent_run_count = 0;
+    protected $max_concurrent_run_count = 0;
     /**
      * Optional. Whether new scheduled runs can be queued when max_concurrent_runs
      * limit is reached. If set to true, new runs will be queued instead of
@@ -120,7 +120,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_queueing = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_queueing = false;
+    protected $allow_queueing = false;
     /**
      * Output only. Whether to backfill missed runs when the schedule is resumed
      * from PAUSED state. If set to true, all missed runs will be scheduled. New
@@ -128,7 +128,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool catch_up = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $catch_up = false;
+    protected $catch_up = false;
     /**
      * Output only. Response of the last scheduled run.
      * This is the response for starting the scheduled requests and not the
@@ -137,7 +137,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schedule.RunResponse last_scheduled_run_response = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_scheduled_run_response = null;
+    protected $last_scheduled_run_response = null;
     protected $time_specification;
     protected $request;
 

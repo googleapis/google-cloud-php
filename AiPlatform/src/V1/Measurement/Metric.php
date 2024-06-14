@@ -21,13 +21,13 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metric_id = '';
+    protected $metric_id = '';
     /**
      * Output only. The value for this metric.
      *
      * Generated from protobuf field <code>double value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $value = 0.0;
+    protected $value = 0.0;
 
     /**
      * Constructor.

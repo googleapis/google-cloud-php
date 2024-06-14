@@ -22,13 +22,13 @@ class UpdateShieldedInstanceConfigRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * ShieldedInstance configuration to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Instance.ShieldedInstanceConfig shielded_instance_config = 2;</code>
      */
-    private $shielded_instance_config = null;
+    protected $shielded_instance_config = null;
 
     /**
      * Constructor.

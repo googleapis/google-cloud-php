@@ -20,20 +20,20 @@ class RuntimeAccessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeAccessConfig.RuntimeAccessType access_type = 1;</code>
      */
-    private $access_type = 0;
+    protected $access_type = 0;
     /**
      * The owner of this runtime after creation. Format: `alias&#64;example.com`
      * Currently supports one owner only.
      *
      * Generated from protobuf field <code>string runtime_owner = 2;</code>
      */
-    private $runtime_owner = '';
+    protected $runtime_owner = '';
     /**
      * Output only. The proxy endpoint that is used to access the runtime.
      *
      * Generated from protobuf field <code>string proxy_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $proxy_uri = '';
+    protected $proxy_uri = '';
 
     /**
      * Constructor.

@@ -28,7 +28,7 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reverse_scans = 1;</code>
      */
-    private $reverse_scans = false;
+    protected $reverse_scans = false;
     /**
      * Notify the server that the client enables batch write flow control by
      * requesting RateLimitInfo from MutateRowsResponse. Due to technical reasons,
@@ -36,7 +36,7 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      */
-    private $mutate_rows_rate_limit = false;
+    protected $mutate_rows_rate_limit = false;
     /**
      * Notify the server that the client enables batch write flow control by
      * requesting RateLimitInfo from MutateRowsResponse. With partial retries
@@ -44,34 +44,34 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit2 = 5;</code>
      */
-    private $mutate_rows_rate_limit2 = false;
+    protected $mutate_rows_rate_limit2 = false;
     /**
      * Notify the server that the client supports the last_scanned_row field
      * in ReadRowsResponse for long-running scans.
      *
      * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
      */
-    private $last_scanned_row_responses = false;
+    protected $last_scanned_row_responses = false;
     /**
      * Notify the server that the client supports using encoded routing cookie
      * strings to retry requests with.
      *
      * Generated from protobuf field <code>bool routing_cookie = 6;</code>
      */
-    private $routing_cookie = false;
+    protected $routing_cookie = false;
     /**
      * Notify the server that the client supports using retry info back off
      * durations to retry requests with.
      *
      * Generated from protobuf field <code>bool retry_info = 7;</code>
      */
-    private $retry_info = false;
+    protected $retry_info = false;
     /**
      * Notify the server that the client has client side metrics enabled.
      *
      * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
      */
-    private $client_side_metrics_enabled = false;
+    protected $client_side_metrics_enabled = false;
 
     /**
      * Constructor.

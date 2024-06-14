@@ -23,13 +23,13 @@ class OptimizeRestoredTableMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The progress of the post-restore optimizations.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 2;</code>
      */
-    private $progress = null;
+    protected $progress = null;
 
     /**
      * Constructor.

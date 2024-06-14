@@ -226,6 +226,18 @@ class Metric
      */
     const GPUS_ALL_REGIONS = 39387177;
     /**
+     * Generated from protobuf enum <code>HDB_TOTAL_GB = 319316271;</code>
+     */
+    const HDB_TOTAL_GB = 319316271;
+    /**
+     * Generated from protobuf enum <code>HDB_TOTAL_IOPS = 309720317;</code>
+     */
+    const HDB_TOTAL_IOPS = 309720317;
+    /**
+     * Generated from protobuf enum <code>HDB_TOTAL_THROUGHPUT = 20981374;</code>
+     */
+    const HDB_TOTAL_THROUGHPUT = 20981374;
+    /**
      * Generated from protobuf enum <code>HEALTH_CHECKS = 289347502;</code>
      */
     const HEALTH_CHECKS = 289347502;
@@ -518,6 +530,10 @@ class Metric
      */
     const REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES = 96282539;
     /**
+     * Generated from protobuf enum <code>REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES = 483162968;</code>
+     */
+    const REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES = 483162968;
+    /**
      * Generated from protobuf enum <code>RESERVATIONS = 32644647;</code>
      */
     const RESERVATIONS = 32644647;
@@ -575,6 +591,10 @@ class Metric
      * Generated from protobuf enum <code>SSL_CERTIFICATES = 378372399;</code>
      */
     const SSL_CERTIFICATES = 378372399;
+    /**
+     * Generated from protobuf enum <code>SSL_POLICIES = 523254339;</code>
+     */
+    const SSL_POLICIES = 523254339;
     /**
      * Generated from protobuf enum <code>STATIC_ADDRESSES = 93624049;</code>
      */
@@ -644,6 +664,10 @@ class Metric
      */
     const URL_MAPS = 378660743;
     /**
+     * Generated from protobuf enum <code>VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES = 128400161;</code>
+     */
+    const VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES = 128400161;
+    /**
      * Generated from protobuf enum <code>VPN_GATEWAYS = 35620282;</code>
      */
     const VPN_GATEWAYS = 35620282;
@@ -709,6 +733,9 @@ class Metric
         self::GLOBAL_INTERNAL_MANAGED_BACKEND_SERVICES => 'GLOBAL_INTERNAL_MANAGED_BACKEND_SERVICES',
         self::GLOBAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES => 'GLOBAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES',
         self::GPUS_ALL_REGIONS => 'GPUS_ALL_REGIONS',
+        self::HDB_TOTAL_GB => 'HDB_TOTAL_GB',
+        self::HDB_TOTAL_IOPS => 'HDB_TOTAL_IOPS',
+        self::HDB_TOTAL_THROUGHPUT => 'HDB_TOTAL_THROUGHPUT',
         self::HEALTH_CHECKS => 'HEALTH_CHECKS',
         self::IMAGES => 'IMAGES',
         self::INSTANCES => 'INSTANCES',
@@ -782,6 +809,7 @@ class Metric
         self::REGIONAL_INSTANCE_GROUP_MANAGERS => 'REGIONAL_INSTANCE_GROUP_MANAGERS',
         self::REGIONAL_INTERNAL_LB_BACKEND_SERVICES => 'REGIONAL_INTERNAL_LB_BACKEND_SERVICES',
         self::REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES => 'REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES',
+        self::REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES => 'REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES',
         self::RESERVATIONS => 'RESERVATIONS',
         self::RESOURCE_POLICIES => 'RESOURCE_POLICIES',
         self::ROUTERS => 'ROUTERS',
@@ -796,6 +824,7 @@ class Metric
         self::SNAPSHOTS => 'SNAPSHOTS',
         self::SSD_TOTAL_GB => 'SSD_TOTAL_GB',
         self::SSL_CERTIFICATES => 'SSL_CERTIFICATES',
+        self::SSL_POLICIES => 'SSL_POLICIES',
         self::STATIC_ADDRESSES => 'STATIC_ADDRESSES',
         self::STATIC_BYOIP_ADDRESSES => 'STATIC_BYOIP_ADDRESSES',
         self::STATIC_EXTERNAL_IPV6_ADDRESS_RANGES => 'STATIC_EXTERNAL_IPV6_ADDRESS_RANGES',
@@ -813,6 +842,7 @@ class Metric
         self::TPU_LITE_PODSLICE_V5 => 'TPU_LITE_PODSLICE_V5',
         self::TPU_PODSLICE_V4 => 'TPU_PODSLICE_V4',
         self::URL_MAPS => 'URL_MAPS',
+        self::VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES => 'VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES',
         self::VPN_GATEWAYS => 'VPN_GATEWAYS',
         self::VPN_TUNNELS => 'VPN_TUNNELS',
         self::XPN_SERVICE_PROJECTS => 'XPN_SERVICE_PROJECTS',

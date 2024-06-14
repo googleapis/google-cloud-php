@@ -24,7 +24,6 @@ namespace Google\Cloud\Tpu\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\GetLocationRequest;
@@ -53,6 +52,7 @@ use Google\Cloud\Tpu\V2\RuntimeVersion;
 use Google\Cloud\Tpu\V2\StartNodeRequest;
 use Google\Cloud\Tpu\V2\StopNodeRequest;
 use Google\Cloud\Tpu\V2\UpdateNodeRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

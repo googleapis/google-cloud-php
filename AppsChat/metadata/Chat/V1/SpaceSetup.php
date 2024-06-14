@@ -19,14 +19,14 @@ class SpaceSetup
         \GPBMetadata\Google\Chat\V1\Space::initOnce();
         $pool->internalAddGeneratedFile(
             '
-§
+≤
  google/chat/v1/space_setup.protogoogle.chat.v1google/chat/v1/membership.protogoogle/chat/v1/space.proto"ç
 SetUpSpaceRequest)
 space (2.google.chat.v1.SpaceB‡A
 
 request_id (	B‡A4
-memberships (2.google.chat.v1.MembershipB‡ABö
-com.google.chat.v1BSpaceSetupProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb™Google.Apps.Chat.V1 Google\\Apps\\Chat\\V1ÍGoogle::Apps::Chat::V1bproto3'
+memberships (2.google.chat.v1.MembershipB‡AB®
+com.google.chat.v1BSpaceSetupProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProto™Google.Apps.Chat.V1 Google\\Apps\\Chat\\V1ÍGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;

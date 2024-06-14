@@ -22,7 +22,7 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the metastore federation, which is used as the final
      * component of the metastore federation's name.
@@ -32,7 +32,7 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string federation_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $federation_id = '';
+    protected $federation_id = '';
     /**
      * Required. The Metastore Federation to create. The `name` field is
      * ignored. The ID of the created metastore federation must be
@@ -40,7 +40,7 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Federation federation = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $federation = null;
+    protected $federation = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -55,7 +55,7 @@ class CreateFederationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                $parent       Required. The relative resource name of the location in which to create a

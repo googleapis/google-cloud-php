@@ -27,7 +27,7 @@ class BlurBaselineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float max_blur_sigma = 1;</code>
      */
-    private $max_blur_sigma = 0.0;
+    protected $max_blur_sigma = 0.0;
 
     /**
      * Constructor.

@@ -21,20 +21,20 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan data_scan = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_scan = null;
+    protected $data_scan = null;
     /**
      * Required. Mask of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. Only validate the request, but do not perform mutations.
      * The default is `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Dataplex\V1\DataScan $dataScan   Required. DataScan resource to be updated.

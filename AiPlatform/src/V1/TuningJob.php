@@ -21,35 +21,35 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The display name of the
-     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     * 128 characters long and can consist of any UTF-8 characters.
+     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     * characters long and can consist of any UTF-8 characters.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tuned_model_display_name = '';
+    protected $tuned_model_display_name = '';
     /**
      * Optional. The description of the
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The detailed state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.JobState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Time when the
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob] for the first time
@@ -57,7 +57,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the TuningJob entered any of the following
      * [JobStates][google.cloud.aiplatform.v1.JobState]: `JOB_STATE_SUCCEEDED`,
@@ -65,7 +65,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Time when the
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob] was most recently
@@ -73,14 +73,14 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Only populated when job's state is `JOB_STATE_FAILED` or
      * `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Optional. The labels with user-defined metadata to organize
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob] and generated resources
@@ -100,21 +100,21 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string experiment = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $experiment = '';
+    protected $experiment = '';
     /**
      * Output only. The tuned model resources assiociated with this
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TunedModel tuned_model = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tuned_model = null;
+    protected $tuned_model = null;
     /**
      * Output only. The tuning data statistics associated with this
      * [TuningJob][google.cloud.aiplatform.v1.TuningJob].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TuningDataStats tuning_data_stats = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tuning_data_stats = null;
+    protected $tuning_data_stats = null;
     protected $source_model;
     protected $tuning_spec;
 
@@ -125,7 +125,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $base_model
-     *           Model name for tuning, e.g., "gemini-1.0-pro-002".
+     *           The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningSpec $supervised_tuning_spec
      *           Tuning Spec for Supervised Fine Tuning.
      *     @type string $name
@@ -133,8 +133,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/tuningJobs/{tuning_job}`
      *     @type string $tuned_model_display_name
      *           Optional. The display name of the
-     *           [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     *           128 characters long and can consist of any UTF-8 characters.
+     *           [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     *           characters long and can consist of any UTF-8 characters.
      *     @type string $description
      *           Optional. The description of the
      *           [TuningJob][google.cloud.aiplatform.v1.TuningJob].
@@ -184,7 +184,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Model name for tuning, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      *
      * Generated from protobuf field <code>string base_model = 4;</code>
      * @return string
@@ -200,7 +200,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Model name for tuning, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      *
      * Generated from protobuf field <code>string base_model = 4;</code>
      * @param string $var
@@ -275,8 +275,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The display name of the
-     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     * 128 characters long and can consist of any UTF-8 characters.
+     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     * characters long and can consist of any UTF-8 characters.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -288,8 +288,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The display name of the
-     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     * 128 characters long and can consist of any UTF-8 characters.
+     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     * characters long and can consist of any UTF-8 characters.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

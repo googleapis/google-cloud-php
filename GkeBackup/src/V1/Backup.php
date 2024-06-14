@@ -207,6 +207,17 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 config_backup_size_bytes = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $config_backup_size_bytes = 0;
+    /**
+     * Output only. If false, Backup will fail when Backup for GKE detects
+     * Kubernetes configuration that is non-standard or
+     * requires additional setup to restore.
+     * Inherited from the parent BackupPlan's
+     * [permissive_mode][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.permissive_mode]
+     * value.
+     *
+     * Generated from protobuf field <code>bool permissive_mode = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $permissive_mode = false;
     protected $backup_scope;
 
     /**
@@ -316,6 +327,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The total number of Kubernetes Pods contained in the Backup.
      *     @type int|string $config_backup_size_bytes
      *           Output only. The size of the config backup in bytes.
+     *     @type bool $permissive_mode
+     *           Output only. If false, Backup will fail when Backup for GKE detects
+     *           Kubernetes configuration that is non-standard or
+     *           requires additional setup to restore.
+     *           Inherited from the parent BackupPlan's
+     *           [permissive_mode][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.permissive_mode]
+     *           value.
      * }
      */
     public function __construct($data = NULL) {
@@ -1200,6 +1218,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->config_backup_size_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If false, Backup will fail when Backup for GKE detects
+     * Kubernetes configuration that is non-standard or
+     * requires additional setup to restore.
+     * Inherited from the parent BackupPlan's
+     * [permissive_mode][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.permissive_mode]
+     * value.
+     *
+     * Generated from protobuf field <code>bool permissive_mode = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getPermissiveMode()
+    {
+        return $this->permissive_mode;
+    }
+
+    /**
+     * Output only. If false, Backup will fail when Backup for GKE detects
+     * Kubernetes configuration that is non-standard or
+     * requires additional setup to restore.
+     * Inherited from the parent BackupPlan's
+     * [permissive_mode][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.permissive_mode]
+     * value.
+     *
+     * Generated from protobuf field <code>bool permissive_mode = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPermissiveMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->permissive_mode = $var;
 
         return $this;
     }

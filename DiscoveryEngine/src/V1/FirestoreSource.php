@@ -31,8 +31,8 @@ class FirestoreSource extends \Google\Protobuf\Internal\Message
      */
     protected $database_id = '';
     /**
-     * Required. The Firestore collection to copy the data from with a length
-     * limit of 1,500 characters.
+     * Required. The Firestore collection (or entity) to copy the data from with a
+     * length limit of 1,500 characters.
      *
      * Generated from protobuf field <code>string collection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -62,8 +62,8 @@ class FirestoreSource extends \Google\Protobuf\Internal\Message
      *           Required. The Firestore database to copy the data from with a length limit
      *           of 256 characters.
      *     @type string $collection_id
-     *           Required. The Firestore collection to copy the data from with a length
-     *           limit of 1,500 characters.
+     *           Required. The Firestore collection (or entity) to copy the data from with a
+     *           length limit of 1,500 characters.
      *     @type string $gcs_staging_dir
      *           Intermediate Cloud Storage directory used for the import with a length
      *           limit of 2,000 characters. Can be specified if one wants to have the
@@ -136,8 +136,8 @@ class FirestoreSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Firestore collection to copy the data from with a length
-     * limit of 1,500 characters.
+     * Required. The Firestore collection (or entity) to copy the data from with a
+     * length limit of 1,500 characters.
      *
      * Generated from protobuf field <code>string collection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -148,8 +148,8 @@ class FirestoreSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Firestore collection to copy the data from with a length
-     * limit of 1,500 characters.
+     * Required. The Firestore collection (or entity) to copy the data from with a
+     * length limit of 1,500 characters.
      *
      * Generated from protobuf field <code>string collection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

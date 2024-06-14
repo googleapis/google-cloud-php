@@ -20,25 +20,25 @@ class Stats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 data_items = 1;</code>
      */
-    private $data_items = 0;
+    protected $data_items = 0;
     /**
      * The number of stored data bytes within the referenced resource.
      *
      * Generated from protobuf field <code>int64 data_size = 2;</code>
      */
-    private $data_size = 0;
+    protected $data_size = 0;
     /**
      * The count of table entities within the referenced resource.
      *
      * Generated from protobuf field <code>int64 tables = 3;</code>
      */
-    private $tables = 0;
+    protected $tables = 0;
     /**
      * The count of fileset entities within the referenced resource.
      *
      * Generated from protobuf field <code>int64 filesets = 4;</code>
      */
-    private $filesets = 0;
+    protected $filesets = 0;
 
     /**
      * Constructor.

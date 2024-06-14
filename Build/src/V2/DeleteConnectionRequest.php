@@ -21,7 +21,7 @@ class DeleteConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The current etag of the connection.
      * If an etag is provided and does not match the current etag of the
@@ -29,13 +29,13 @@ class DeleteConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * If set, validate the request, but do not actually post it.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string $name Required. The name of the Connection to delete.

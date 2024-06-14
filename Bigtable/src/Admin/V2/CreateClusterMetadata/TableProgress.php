@@ -20,7 +20,7 @@ class TableProgress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_size_bytes = 2;</code>
      */
-    private $estimated_size_bytes = 0;
+    protected $estimated_size_bytes = 0;
     /**
      * Estimate of the number of bytes copied so far for this table.
      * This will eventually reach 'estimated_size_bytes' unless the table copy
@@ -28,11 +28,11 @@ class TableProgress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 estimated_copied_bytes = 3;</code>
      */
-    private $estimated_copied_bytes = 0;
+    protected $estimated_copied_bytes = 0;
     /**
      * Generated from protobuf field <code>.google.bigtable.admin.v2.CreateClusterMetadata.TableProgress.State state = 4;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

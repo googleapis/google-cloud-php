@@ -20,13 +20,13 @@ class FetchReadTokenResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string token = 1;</code>
      */
-    private $token = '';
+    protected $token = '';
     /**
      * Expiration timestamp. Can be empty if unknown or non-expiring.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 2;</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class OutdatedLibrary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string library_name = 1;</code>
      */
-    private $library_name = '';
+    protected $library_name = '';
     /**
      * The version number.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * URLs to learn more information about the vulnerabilities in the library.
      *

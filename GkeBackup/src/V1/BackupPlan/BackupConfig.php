@@ -41,6 +41,15 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryption_key = null;
+    /**
+     * Optional. If false, Backups will fail when Backup for GKE detects
+     * Kubernetes configuration that is non-standard or
+     * requires additional setup to restore.
+     * Default: False
+     *
+     * Generated from protobuf field <code>bool permissive_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $permissive_mode = false;
     protected $backup_scope;
 
     /**
@@ -69,6 +78,11 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *           used to encrypt the "config" portion (the Kubernetes resources) of
      *           Backups created via this plan.
      *           Default (empty): Config backup artifacts will not be encrypted.
+     *     @type bool $permissive_mode
+     *           Optional. If false, Backups will fail when Backup for GKE detects
+     *           Kubernetes configuration that is non-standard or
+     *           requires additional setup to restore.
+     *           Default: False
      * }
      */
     public function __construct($data = NULL) {
@@ -269,6 +283,38 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeBackup\V1\EncryptionKey::class);
         $this->encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If false, Backups will fail when Backup for GKE detects
+     * Kubernetes configuration that is non-standard or
+     * requires additional setup to restore.
+     * Default: False
+     *
+     * Generated from protobuf field <code>bool permissive_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPermissiveMode()
+    {
+        return $this->permissive_mode;
+    }
+
+    /**
+     * Optional. If false, Backups will fail when Backup for GKE detects
+     * Kubernetes configuration that is non-standard or
+     * requires additional setup to restore.
+     * Default: False
+     *
+     * Generated from protobuf field <code>bool permissive_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPermissiveMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->permissive_mode = $var;
 
         return $this;
     }

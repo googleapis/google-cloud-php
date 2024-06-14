@@ -22,8 +22,9 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      */
     private $font_size = 0;
     /**
-     * Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
-     * _resolution_ ÷ `72.0`.
+     * Font size in pixels, equal to _unrounded
+     * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
+     * * _resolution_ ÷ `72.0`.
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      */
@@ -41,8 +42,9 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      */
     private $font_type = '';
     /**
-     * Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
-     * `700`).
+     * Whether the text is bold (equivalent to
+     * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
+     * is at least `700`).
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      */
@@ -60,25 +62,25 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      */
     private $underlined = false;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      */
     private $strikeout = false;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      */
     private $subscript = false;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      */
     private $superscript = false;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      */
@@ -118,27 +120,29 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *     @type int $font_size
      *           Font size in points (`1` point is `¹⁄₇₂` inches).
      *     @type float $pixel_font_size
-     *           Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
-     *           _resolution_ ÷ `72.0`.
+     *           Font size in pixels, equal to _unrounded
+     *           [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
+     *           * _resolution_ ÷ `72.0`.
      *     @type float $letter_spacing
      *           Letter spacing in points.
      *     @type string $font_type
      *           Name or style of the font.
      *     @type bool $bold
-     *           Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
-     *           `700`).
+     *           Whether the text is bold (equivalent to
+     *           [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
+     *           is at least `700`).
      *     @type bool $italic
      *           Whether the text is italic.
      *     @type bool $underlined
      *           Whether the text is underlined.
      *     @type bool $strikeout
-     *           Whether the text is strikethrough.
+     *           Whether the text is strikethrough. This feature is not supported yet.
      *     @type bool $subscript
-     *           Whether the text is a subscript.
+     *           Whether the text is a subscript. This feature is not supported yet.
      *     @type bool $superscript
-     *           Whether the text is a superscript.
+     *           Whether the text is a superscript. This feature is not supported yet.
      *     @type bool $smallcaps
-     *           Whether the text is in small caps.
+     *           Whether the text is in small caps. This feature is not supported yet.
      *     @type int $font_weight
      *           TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy).
      *           Normal is `400`, bold is `700`.
@@ -182,8 +186,9 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
-     * _resolution_ ÷ `72.0`.
+     * Font size in pixels, equal to _unrounded
+     * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
+     * * _resolution_ ÷ `72.0`.
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      * @return float
@@ -194,8 +199,9 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
-     * _resolution_ ÷ `72.0`.
+     * Font size in pixels, equal to _unrounded
+     * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
+     * * _resolution_ ÷ `72.0`.
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      * @param float $var
@@ -262,8 +268,9 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
-     * `700`).
+     * Whether the text is bold (equivalent to
+     * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
+     * is at least `700`).
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      * @return bool
@@ -274,8 +281,9 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
-     * `700`).
+     * Whether the text is bold (equivalent to
+     * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
+     * is at least `700`).
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      * @param bool $var
@@ -342,7 +350,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      * @return bool
@@ -353,7 +361,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      * @param bool $var
@@ -368,7 +376,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      * @return bool
@@ -379,7 +387,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      * @param bool $var
@@ -394,7 +402,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      * @return bool
@@ -405,7 +413,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      * @param bool $var
@@ -420,7 +428,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      * @return bool
@@ -431,7 +439,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      * @param bool $var

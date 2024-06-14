@@ -22,14 +22,14 @@ class Consumer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoint_uri = '';
+    protected $endpoint_uri = '';
     /**
      * Output only. The location of the endpoint URI. Format:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string endpoint_location = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint_location = '';
+    protected $endpoint_location = '';
     protected $vpc_resource;
 
     /**
@@ -168,6 +168,4 @@ class Consumer extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Consumer::class, \Google\Cloud\Metastore\V1\NetworkConfig_Consumer::class);
 

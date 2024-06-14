@@ -20,7 +20,7 @@ class NotebookRuntimeTemplateRef extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notebook_runtime_template = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $notebook_runtime_template = '';
+    protected $notebook_runtime_template = '';
 
     /**
      * Constructor.

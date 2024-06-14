@@ -21,7 +21,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The unique ID of the VM in the source.
      * The VM's name in vSphere can be changed, so this is not the VM's name but
@@ -29,64 +29,64 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_vm_id = 2;</code>
      */
-    private $source_vm_id = '';
+    protected $source_vm_id = '';
     /**
      * The display name attached to the MigratingVm by the user.
      *
      * Generated from protobuf field <code>string display_name = 18;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description attached to the migrating VM by the user.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The replication schedule policy.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.SchedulePolicy policy = 8;</code>
      */
-    private $policy = null;
+    protected $policy = null;
     /**
      * Output only. The time the migrating VM was created (this refers to this
      * resource and not to the time it was installed in the source).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last time the migrating VM resource was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The most updated snapshot created time in the source that
      * finished replication.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationSync last_sync = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_sync = null;
+    protected $last_sync = null;
     /**
      * Output only. State of the MigratingVm.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVm.State state = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The last time the migrating VM state was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. The percentage progress of the current running replication
      * cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_sync_info = null;
+    protected $current_sync_info = null;
     /**
      * Output only. The group this migrating vm is included in, if any. The group
      * is represented by the full path of the appropriate
@@ -94,7 +94,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $group = '';
+    protected $group = '';
     /**
      * The labels of the migrating VM.
      *
@@ -117,7 +117,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. The recent cutover jobs performed on the migrating VM.
      * This field holds the vm's last completed cutover job and the vm's

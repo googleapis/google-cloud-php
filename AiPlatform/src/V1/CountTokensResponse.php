@@ -20,14 +20,14 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_tokens = 1;</code>
      */
-    private $total_tokens = 0;
+    protected $total_tokens = 0;
     /**
      * The total number of billable characters counted across all instances from
      * the request.
      *
      * Generated from protobuf field <code>int32 total_billable_characters = 2;</code>
      */
-    private $total_billable_characters = 0;
+    protected $total_billable_characters = 0;
 
     /**
      * Constructor.

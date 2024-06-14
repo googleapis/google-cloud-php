@@ -23,9 +23,18 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      */
     private $ocr_config = null;
     /**
-     * Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     * Argument error if this field is set when the underlying
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     * Returns error if set on other processor types.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $layout_config = null;
+    /**
+     * Optional. Override the schema of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     * return an Invalid Argument error if this field is set when the underlying
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     * support schema override.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,10 +57,15 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\OcrConfig $ocr_config
      *           Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`.
      *           Returns error if set on other processor types.
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig $layout_config
+     *           Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     *           Returns error if set on other processor types.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $schema_override
-     *           Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     *           Argument error if this field is set when the underlying
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     *           Optional. Override the schema of the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     *           return an Invalid Argument error if this field is set when the underlying
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     *           support schema override.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,9 +207,49 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     * Argument error if this field is set when the underlying
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     * Returns error if set on other processor types.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig|null
+     */
+    public function getLayoutConfig()
+    {
+        return $this->layout_config;
+    }
+
+    public function hasLayoutConfig()
+    {
+        return isset($this->layout_config);
+    }
+
+    public function clearLayoutConfig()
+    {
+        unset($this->layout_config);
+    }
+
+    /**
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     * Returns error if set on other processor types.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig $var
+     * @return $this
+     */
+    public function setLayoutConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig::class);
+        $this->layout_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Override the schema of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     * return an Invalid Argument error if this field is set when the underlying
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     * support schema override.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\DocumentSchema|null
@@ -216,9 +270,11 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     * Argument error if this field is set when the underlying
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     * Optional. Override the schema of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     * return an Invalid Argument error if this field is set when the underlying
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     * support schema override.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\DocumentSchema $var

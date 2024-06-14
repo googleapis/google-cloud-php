@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The mode under which spell correction should take effect to
-     * replace the original search query. Default to
+     * The mode under which spell correction
+     * replaces the original search query. Defaults to
      * [Mode.AUTO][google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode mode = 1;</code>
@@ -31,8 +31,8 @@ class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $mode
-     *           The mode under which spell correction should take effect to
-     *           replace the original search query. Default to
+     *           The mode under which spell correction
+     *           replaces the original search query. Defaults to
      *           [Mode.AUTO][google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
      * }
      */
@@ -42,8 +42,8 @@ class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode under which spell correction should take effect to
-     * replace the original search query. Default to
+     * The mode under which spell correction
+     * replaces the original search query. Defaults to
      * [Mode.AUTO][google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode mode = 1;</code>
@@ -55,8 +55,8 @@ class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode under which spell correction should take effect to
-     * replace the original search query. Default to
+     * The mode under which spell correction
+     * replaces the original search query. Defaults to
      * [Mode.AUTO][google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode mode = 1;</code>

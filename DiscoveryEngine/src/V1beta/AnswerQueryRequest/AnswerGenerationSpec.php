@@ -68,6 +68,15 @@ class AnswerGenerationSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ignore_non_answer_seeking_query = 6;</code>
      */
     protected $ignore_non_answer_seeking_query = false;
+    /**
+     * Specifies whether to filter out queries that have low relevance.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true` or unset, the behavior
+     * will be determined automatically by the service.
+     *
+     * Generated from protobuf field <code>optional bool ignore_low_relevant_content = 7;</code>
+     */
+    protected $ignore_low_relevant_content = null;
 
     /**
      * Constructor.
@@ -104,6 +113,11 @@ class AnswerGenerationSpec extends \Google\Protobuf\Internal\Message
      *           non-answer seeking query. If this field is set to `true`, we skip
      *           generating answers for non-answer seeking queries and return
      *           fallback messages instead.
+     *     @type bool $ignore_low_relevant_content
+     *           Specifies whether to filter out queries that have low relevance.
+     *           If this field is set to `false`, all search results are used regardless
+     *           of relevance to generate answers. If set to `true` or unset, the behavior
+     *           will be determined automatically by the service.
      * }
      */
     public function __construct($data = NULL) {
@@ -317,6 +331,48 @@ class AnswerGenerationSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_non_answer_seeking_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether to filter out queries that have low relevance.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true` or unset, the behavior
+     * will be determined automatically by the service.
+     *
+     * Generated from protobuf field <code>optional bool ignore_low_relevant_content = 7;</code>
+     * @return bool
+     */
+    public function getIgnoreLowRelevantContent()
+    {
+        return isset($this->ignore_low_relevant_content) ? $this->ignore_low_relevant_content : false;
+    }
+
+    public function hasIgnoreLowRelevantContent()
+    {
+        return isset($this->ignore_low_relevant_content);
+    }
+
+    public function clearIgnoreLowRelevantContent()
+    {
+        unset($this->ignore_low_relevant_content);
+    }
+
+    /**
+     * Specifies whether to filter out queries that have low relevance.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true` or unset, the behavior
+     * will be determined automatically by the service.
+     *
+     * Generated from protobuf field <code>optional bool ignore_low_relevant_content = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreLowRelevantContent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_low_relevant_content = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,9 +91,7 @@ final class FeatureOnlineStoreServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -108,7 +106,8 @@ final class FeatureOnlineStoreServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/feature_online_store_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/feature_online_store_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -125,8 +124,12 @@ final class FeatureOnlineStoreServiceClient
      *
      * @return string The formatted feature_view resource.
      */
-    public static function featureViewName(string $project, string $location, string $featureOnlineStore, string $featureView): string
-    {
+    public static function featureViewName(
+        string $project,
+        string $location,
+        string $featureOnlineStore,
+        string $featureView
+    ): string {
         return self::getPathTemplate('featureView')->render([
             'project' => $project,
             'location' => $location,
@@ -252,8 +255,10 @@ final class FeatureOnlineStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchFeatureValues(FetchFeatureValuesRequest $request, array $callOptions = []): FetchFeatureValuesResponse
-    {
+    public function fetchFeatureValues(
+        FetchFeatureValuesRequest $request,
+        array $callOptions = []
+    ): FetchFeatureValuesResponse {
         return $this->startApiCall('FetchFeatureValues', $request, $callOptions)->wait();
     }
 
@@ -281,8 +286,10 @@ final class FeatureOnlineStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchNearestEntities(SearchNearestEntitiesRequest $request, array $callOptions = []): SearchNearestEntitiesResponse
-    {
+    public function searchNearestEntities(
+        SearchNearestEntitiesRequest $request,
+        array $callOptions = []
+    ): SearchNearestEntitiesResponse {
         return $this->startApiCall('SearchNearestEntities', $request, $callOptions)->wait();
     }
 
@@ -427,8 +434,10 @@ final class FeatureOnlineStoreServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

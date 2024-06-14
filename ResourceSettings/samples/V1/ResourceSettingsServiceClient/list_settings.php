@@ -32,8 +32,8 @@ use Google\Cloud\ResourceSettings\V1\Setting;
 /**
  * Lists all the settings that are available on the Cloud resource `parent`.
  *
- * @param string $parent The Cloud resource that parents the setting. Must be in one of the
- *                       following forms:
+ * @param string $parent The Cloud resource that parents the setting. Must be in one of
+ *                       the following forms:
  *
  *                       * `projects/{project_number}`
  *                       * `projects/{project_id}`

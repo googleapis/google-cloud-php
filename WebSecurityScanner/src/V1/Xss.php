@@ -26,19 +26,19 @@ class Xss extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * The attack vector of the payload triggering this XSS.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.Xss.AttackVector attack_vector = 3;</code>
      */
-    private $attack_vector = 0;
+    protected $attack_vector = 0;
     /**
      * The reproduction url for the seeding POST request of a Stored XSS.
      *
      * Generated from protobuf field <code>string stored_xss_seeding_url = 4;</code>
      */
-    private $stored_xss_seeding_url = '';
+    protected $stored_xss_seeding_url = '';
 
     /**
      * Constructor.

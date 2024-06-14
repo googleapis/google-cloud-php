@@ -15,6 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class Mutation extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The properties to write in this mutation.
+     * None of the properties in the mask may have a reserved name, except for
+     * `__key__`.
+     * This field is ignored for `delete`.
+     * If the entity already exists, only properties referenced in the mask are
+     * updated, others are left untouched.
+     * Properties referenced in the mask but not in the entity are deleted.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 9;</code>
+     */
+    private $property_mask = null;
     protected $operation;
     protected $conflict_detection_strategy;
 
@@ -44,6 +56,14 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           The update time of the entity that this mutation is being applied
      *           to. If this does not match the current update time on the server, the
      *           mutation conflicts.
+     *     @type \Google\Cloud\Datastore\V1\PropertyMask $property_mask
+     *           The properties to write in this mutation.
+     *           None of the properties in the mask may have a reserved name, except for
+     *           `__key__`.
+     *           This field is ignored for `delete`.
+     *           If the entity already exists, only properties referenced in the mask are
+     *           updated, others are left untouched.
+     *           Properties referenced in the mask but not in the entity are deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,6 +269,54 @@ class Mutation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * The properties to write in this mutation.
+     * None of the properties in the mask may have a reserved name, except for
+     * `__key__`.
+     * This field is ignored for `delete`.
+     * If the entity already exists, only properties referenced in the mask are
+     * updated, others are left untouched.
+     * Properties referenced in the mask but not in the entity are deleted.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 9;</code>
+     * @return \Google\Cloud\Datastore\V1\PropertyMask|null
+     */
+    public function getPropertyMask()
+    {
+        return $this->property_mask;
+    }
+
+    public function hasPropertyMask()
+    {
+        return isset($this->property_mask);
+    }
+
+    public function clearPropertyMask()
+    {
+        unset($this->property_mask);
+    }
+
+    /**
+     * The properties to write in this mutation.
+     * None of the properties in the mask may have a reserved name, except for
+     * `__key__`.
+     * This field is ignored for `delete`.
+     * If the entity already exists, only properties referenced in the mask are
+     * updated, others are left untouched.
+     * Properties referenced in the mask but not in the entity are deleted.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 9;</code>
+     * @param \Google\Cloud\Datastore\V1\PropertyMask $var
+     * @return $this
+     */
+    public function setPropertyMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\PropertyMask::class);
+        $this->property_mask = $var;
 
         return $this;
     }

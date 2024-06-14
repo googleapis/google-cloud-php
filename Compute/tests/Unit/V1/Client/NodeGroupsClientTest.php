@@ -44,12 +44,14 @@ use Google\Cloud\Compute\V1\NodeGroupNode;
 use Google\Cloud\Compute\V1\NodeGroupsAddNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsDeleteNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsListNodes;
+use Google\Cloud\Compute\V1\NodeGroupsPerformMaintenanceRequest;
 use Google\Cloud\Compute\V1\NodeGroupsScopedList;
 use Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest;
 use Google\Cloud\Compute\V1\NodeGroupsSimulateMaintenanceEventRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchNodeGroupRequest;
+use Google\Cloud\Compute\V1\PerformMaintenanceNodeGroupRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetIamPolicyNodeGroupRequest;
 use Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest;
@@ -577,6 +579,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $locationHint = 'locationHint-1796964143';
+        $maintenanceInterval = 'maintenanceInterval1477109873';
         $maintenancePolicy = 'maintenancePolicy1065198558';
         $name = 'name3373707';
         $nodeTemplate = 'nodeTemplate323154455';
@@ -591,6 +594,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLocationHint($locationHint);
+        $expectedResponse->setMaintenanceInterval($maintenanceInterval);
         $expectedResponse->setMaintenancePolicy($maintenancePolicy);
         $expectedResponse->setName($name);
         $expectedResponse->setNodeTemplate($nodeTemplate);
@@ -1163,6 +1167,139 @@ class NodeGroupsClientTest extends GeneratedTest
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->patch($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function performMaintenanceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/performMaintenanceTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/performMaintenanceTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsPerformMaintenanceRequestResource = new NodeGroupsPerformMaintenanceRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new PerformMaintenanceNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsPerformMaintenanceRequestResource($nodeGroupsPerformMaintenanceRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->performMaintenance($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.NodeGroups/PerformMaintenance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNodeGroup();
+        $this->assertProtobufEquals($nodeGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getNodeGroupsPerformMaintenanceRequestResource();
+        $this->assertProtobufEquals($nodeGroupsPerformMaintenanceRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function performMaintenanceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/performMaintenanceExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $nodeGroup = 'nodeGroup1543699970';
+        $nodeGroupsPerformMaintenanceRequestResource = new NodeGroupsPerformMaintenanceRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new PerformMaintenanceNodeGroupRequest())
+            ->setNodeGroup($nodeGroup)
+            ->setNodeGroupsPerformMaintenanceRequestResource($nodeGroupsPerformMaintenanceRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->performMaintenance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

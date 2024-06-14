@@ -21,13 +21,13 @@ class Range extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float low = 1;</code>
      */
-    private $low = 0.0;
+    protected $low = 0.0;
     /**
      * Exclusive high value for the range.
      *
      * Generated from protobuf field <code>float high = 2;</code>
      */
-    private $high = 0.0;
+    protected $high = 0.0;
 
     /**
      * Constructor.

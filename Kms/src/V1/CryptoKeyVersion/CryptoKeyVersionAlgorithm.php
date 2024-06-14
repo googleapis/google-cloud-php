@@ -228,6 +228,12 @@ class CryptoKeyVersionAlgorithm
      */
     const EC_SIGN_SECP256K1_SHA256 = 31;
     /**
+     * EdDSA on the Curve25519 in pure mode (taking data as input).
+     *
+     * Generated from protobuf enum <code>EC_SIGN_ED25519 = 40;</code>
+     */
+    const EC_SIGN_ED25519 = 40;
+    /**
      * HMAC-SHA256 signing with a 256 bit key.
      *
      * Generated from protobuf enum <code>HMAC_SHA256 = 32;</code>
@@ -294,6 +300,7 @@ class CryptoKeyVersionAlgorithm
         self::EC_SIGN_P256_SHA256 => 'EC_SIGN_P256_SHA256',
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
         self::EC_SIGN_SECP256K1_SHA256 => 'EC_SIGN_SECP256K1_SHA256',
+        self::EC_SIGN_ED25519 => 'EC_SIGN_ED25519',
         self::HMAC_SHA256 => 'HMAC_SHA256',
         self::HMAC_SHA1 => 'HMAC_SHA1',
         self::HMAC_SHA384 => 'HMAC_SHA384',

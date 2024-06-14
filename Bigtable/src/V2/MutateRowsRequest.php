@@ -23,7 +23,7 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * Optional. The unique name of the AuthorizedView to which the mutations
      * should be applied.
@@ -32,14 +32,14 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_view_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $authorized_view_name = '';
+    protected $authorized_view_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 3;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
     /**
      * Required. The row keys and corresponding mutations to be applied in bulk.
      * Each entry is applied as an atomic mutation, but the entries may be

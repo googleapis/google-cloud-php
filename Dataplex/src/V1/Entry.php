@@ -22,30 +22,33 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The resource name of the EntryType used to create this
      * Entry.
      *
      * Generated from protobuf field <code>string entry_type = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $entry_type = '';
+    protected $entry_type = '';
     /**
      * Output only. The time when the Entry was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the Entry was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
-     * Optional. The Aspects attached to the Entry. The key is either the resource
-     * name of the aspect type (if the aspect is attached directly to the entry)
-     * or "aspectType&#64;path" if the aspect is attached to an entry's path.
+     * Optional. The Aspects attached to the Entry.
+     * The format for the key can be one of the following:
+     * 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
+     * directly to the entry)
+     * 2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
+     * attached to an entry's path)
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,20 +58,20 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_entry = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $parent_entry = '';
+    protected $parent_entry = '';
     /**
      * Optional. A name for the entry that can reference it in an external system.
      * The maximum size of the field is 4000 characters.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $fully_qualified_name = '';
+    protected $fully_qualified_name = '';
     /**
      * Optional. Source system related information for an entry.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntrySource entry_source = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $entry_source = null;
+    protected $entry_source = null;
 
     /**
      * Constructor.
@@ -87,9 +90,12 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the Entry was last updated.
      *     @type array|\Google\Protobuf\Internal\MapField $aspects
-     *           Optional. The Aspects attached to the Entry. The key is either the resource
-     *           name of the aspect type (if the aspect is attached directly to the entry)
-     *           or "aspectType&#64;path" if the aspect is attached to an entry's path.
+     *           Optional. The Aspects attached to the Entry.
+     *           The format for the key can be one of the following:
+     *           1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
+     *           directly to the entry)
+     *           2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
+     *           attached to an entry's path)
      *     @type string $parent_entry
      *           Optional. Immutable. The resource name of the parent entry.
      *     @type string $fully_qualified_name
@@ -233,9 +239,12 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Aspects attached to the Entry. The key is either the resource
-     * name of the aspect type (if the aspect is attached directly to the entry)
-     * or "aspectType&#64;path" if the aspect is attached to an entry's path.
+     * Optional. The Aspects attached to the Entry.
+     * The format for the key can be one of the following:
+     * 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
+     * directly to the entry)
+     * 2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
+     * attached to an entry's path)
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -246,9 +255,12 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Aspects attached to the Entry. The key is either the resource
-     * name of the aspect type (if the aspect is attached directly to the entry)
-     * or "aspectType&#64;path" if the aspect is attached to an entry's path.
+     * Optional. The Aspects attached to the Entry.
+     * The format for the key can be one of the following:
+     * 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached
+     * directly to the entry)
+     * 2. {projectId}.{locationId}.{aspectTypeId}&#64;{path} (if the aspect is
+     * attached to an entry's path)
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

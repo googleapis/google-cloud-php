@@ -53,7 +53,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      */
     private $prefixes;
     /**
-     * Only get facet values that contains the given strings. For example,
+     * Only get facet values that contain the given strings. For example,
      * suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
      * "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
@@ -116,7 +116,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           "category" facet only contains "Action > 2022" and "Action > 2021".
      *           Only supported on textual fields. Maximum is 10.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contains
-     *           Only get facet values that contains the given strings. For example,
+     *           Only get facet values that contain the given strings. For example,
      *           suppose "category" has three values "Action > 2022",
      *           "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
      *           "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
@@ -276,7 +276,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only get facet values that contains the given strings. For example,
+     * Only get facet values that contain the given strings. For example,
      * suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
      * "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".
@@ -291,7 +291,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only get facet values that contains the given strings. For example,
+     * Only get facet values that contain the given strings. For example,
      * suppose "category" has three values "Action > 2022",
      * "Action > 2021" and "Sci-Fi > 2022". If set "contains" to "2022", the
      * "category" facet only contains "Action > 2022" and "Sci-Fi > 2022".

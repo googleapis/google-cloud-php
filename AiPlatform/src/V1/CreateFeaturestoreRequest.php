@@ -23,13 +23,13 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Featurestore to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore featurestore = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $featurestore = null;
+    protected $featurestore = null;
     /**
      * Required. The ID to use for this Featurestore, which will become the final
      * component of the Featurestore's resource name.
@@ -39,7 +39,7 @@ class CreateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string featurestore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $featurestore_id = '';
+    protected $featurestore_id = '';
 
     /**
      * @param string                                   $parent       Required. The resource name of the Location to create Featurestores.

@@ -33,14 +33,14 @@ class SendTestMessageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * Required. The notification category to send the test message for. All
      * contacts must be subscribed to this category.
      *
      * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.NotificationCategory notification_category = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notification_category = 0;
+    protected $notification_category = 0;
 
     /**
      * Constructor.

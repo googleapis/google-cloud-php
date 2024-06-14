@@ -20,20 +20,20 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required. Input only. The password of the custom account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Required. The login form URL of the website.
      *
      * Generated from protobuf field <code>string login_url = 3;</code>
      */
-    private $login_url = '';
+    protected $login_url = '';
 
     /**
      * Constructor.

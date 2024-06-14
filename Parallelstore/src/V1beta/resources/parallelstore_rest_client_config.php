@@ -73,9 +73,33 @@ return [
                     ],
                 ],
             ],
+            'ExportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:exportData',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetInstance' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:importData',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

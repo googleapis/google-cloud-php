@@ -40,26 +40,26 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The hard time window end time. If unspecified it will be set to
      * `ShipmentModel.global_end_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The soft start time of the time window.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp soft_start_time = 3;</code>
      */
-    private $soft_start_time = null;
+    protected $soft_start_time = null;
     /**
      * The soft end time of the time window.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp soft_end_time = 4;</code>
      */
-    private $soft_end_time = null;
+    protected $soft_end_time = null;
     /**
      * A cost per hour added to other costs in the model if the event occurs
      * before soft_start_time, computed as:
@@ -73,7 +73,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double cost_per_hour_before_soft_start_time = 5;</code>
      */
-    private $cost_per_hour_before_soft_start_time = null;
+    protected $cost_per_hour_before_soft_start_time = null;
     /**
      * A cost per hour added to other costs in the model if the event occurs after
      * `soft_end_time`, computed as:
@@ -87,7 +87,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double cost_per_hour_after_soft_end_time = 6;</code>
      */
-    private $cost_per_hour_after_soft_end_time = null;
+    protected $cost_per_hour_after_soft_end_time = null;
 
     /**
      * Constructor.

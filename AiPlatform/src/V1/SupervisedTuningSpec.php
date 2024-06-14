@@ -17,24 +17,24 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Cloud Storage path to file containing training dataset for
-     * tuning.
+     * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string training_dataset_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $training_dataset_uri = '';
+    protected $training_dataset_uri = '';
     /**
      * Optional. Cloud Storage path to file containing validation dataset for
-     * tuning.
+     * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string validation_dataset_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validation_dataset_uri = '';
+    protected $validation_dataset_uri = '';
     /**
      * Optional. Hyperparameters for SFT.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedHyperParameters hyper_parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $hyper_parameters = null;
+    protected $hyper_parameters = null;
 
     /**
      * Constructor.
@@ -44,10 +44,10 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type string $training_dataset_uri
      *           Required. Cloud Storage path to file containing training dataset for
-     *           tuning.
+     *           tuning. The dataset must be formatted as a JSONL file.
      *     @type string $validation_dataset_uri
      *           Optional. Cloud Storage path to file containing validation dataset for
-     *           tuning.
+     *           tuning. The dataset must be formatted as a JSONL file.
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedHyperParameters $hyper_parameters
      *           Optional. Hyperparameters for SFT.
      * }
@@ -59,7 +59,7 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Cloud Storage path to file containing training dataset for
-     * tuning.
+     * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string training_dataset_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -71,7 +71,7 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Cloud Storage path to file containing training dataset for
-     * tuning.
+     * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string training_dataset_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -87,7 +87,7 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Cloud Storage path to file containing validation dataset for
-     * tuning.
+     * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string validation_dataset_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -99,7 +99,7 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Cloud Storage path to file containing validation dataset for
-     * tuning.
+     * tuning. The dataset must be formatted as a JSONL file.
      *
      * Generated from protobuf field <code>string validation_dataset_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

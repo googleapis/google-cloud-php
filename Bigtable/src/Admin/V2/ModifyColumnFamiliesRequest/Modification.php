@@ -20,7 +20,7 @@ class Modification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update`
      * mod should be updated, ignored for other modification types. If unset or
@@ -28,7 +28,7 @@ class Modification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     protected $mod;
 
     /**

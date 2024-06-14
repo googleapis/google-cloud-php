@@ -18,11 +18,12 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. Proceeds only after phase name matched any one in the list.
      * This value must consist of lower-case letters, numbers, and hyphens,
@@ -38,13 +39,13 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Output only. Information around the state of the Automation rule.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRuleCondition condition = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $condition = null;
+    protected $condition = null;
 
     /**
      * Constructor.
@@ -54,7 +55,8 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Required. ID of the rule. This id must be unique in the `Automation`
-     *           resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     *           resource to which this rule belongs. The format is
+     *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_phases
      *           Optional. Proceeds only after phase name matched any one in the list.
      *           This value must consist of lower-case letters, numbers, and hyphens,
@@ -74,7 +76,8 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,7 +89,8 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

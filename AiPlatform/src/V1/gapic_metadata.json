@@ -100,6 +100,11 @@
                                 "updateDataset"
                             ]
                         },
+                        "UpdateDatasetVersion": {
+                            "methods": [
+                                "updateDatasetVersion"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -1508,6 +1513,45 @@
                 }
             }
         },
+        "ModelGardenService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ModelGardenServiceGapicClient",
+                    "rpcs": {
+                        "GetPublisherModel": {
+                            "methods": [
+                                "getPublisherModel"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ModelService": {
             "clients": {
                 "grpc": {
@@ -1632,45 +1676,6 @@
                 }
             }
         },
-        "ModelGardenService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "ModelGardenServiceGapicClient",
-                    "rpcs": {
-                        "GetPublisherModel": {
-                            "methods": [
-                                "getPublisherModel"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "NotebookService": {
             "clients": {
                 "grpc": {
@@ -1719,6 +1724,11 @@
                         "StartNotebookRuntime": {
                             "methods": [
                                 "startNotebookRuntime"
+                            ]
+                        },
+                        "UpdateNotebookRuntimeTemplate": {
+                            "methods": [
+                                "updateNotebookRuntimeTemplate"
                             ]
                         },
                         "UpgradeNotebookRuntime": {

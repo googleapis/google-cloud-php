@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\Annotation;
@@ -62,6 +61,7 @@ use Google\Cloud\AIPlatform\V1\SavedQuery;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsResponse;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\UpdateDatasetVersionRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -71,6 +71,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -96,7 +97,9 @@ class DatasetServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DatasetServiceClient */
@@ -136,6 +139,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -144,6 +148,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -160,9 +165,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
-        $request = (new CreateDatasetRequest())
-            ->setParent($formattedParent)
-            ->setDataset($dataset);
+        $request = (new CreateDatasetRequest())->setParent($formattedParent)->setDataset($dataset);
         $response = $gapicClient->createDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -220,12 +223,15 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -236,9 +242,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
-        $request = (new CreateDatasetRequest())
-            ->setParent($formattedParent)
-            ->setDataset($dataset);
+        $request = (new CreateDatasetRequest())->setParent($formattedParent)->setDataset($dataset);
         $response = $gapicClient->createDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -286,11 +290,13 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -303,9 +309,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $datasetVersion = new DatasetVersion();
         $datasetVersionMetadata = new Value();
         $datasetVersion->setMetadata($datasetVersionMetadata);
-        $request = (new CreateDatasetVersionRequest())
-            ->setParent($formattedParent)
-            ->setDatasetVersion($datasetVersion);
+        $request = (new CreateDatasetVersionRequest())->setParent($formattedParent)->setDatasetVersion($datasetVersion);
         $response = $gapicClient->createDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -363,21 +367,22 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $datasetVersion = new DatasetVersion();
         $datasetVersionMetadata = new Value();
         $datasetVersion->setMetadata($datasetVersionMetadata);
-        $request = (new CreateDatasetVersionRequest())
-            ->setParent($formattedParent)
-            ->setDatasetVersion($datasetVersion);
+        $request = (new CreateDatasetVersionRequest())->setParent($formattedParent)->setDatasetVersion($datasetVersion);
         $response = $gapicClient->createDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -431,8 +436,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new DeleteDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatasetRequest())->setName($formattedName);
         $response = $gapicClient->deleteDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -488,17 +492,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new DeleteDatasetRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatasetRequest())->setName($formattedName);
         $response = $gapicClient->deleteDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -552,8 +558,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-        $request = (new DeleteDatasetVersionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatasetVersionRequest())->setName($formattedName);
         $response = $gapicClient->deleteDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -609,17 +614,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-        $request = (new DeleteDatasetVersionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDatasetVersionRequest())->setName($formattedName);
         $response = $gapicClient->deleteDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -673,8 +680,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
-        $request = (new DeleteSavedQueryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSavedQueryRequest())->setName($formattedName);
         $response = $gapicClient->deleteSavedQuery($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -730,17 +736,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[LOCATION]', '[DATASET]', '[SAVED_QUERY]');
-        $request = (new DeleteSavedQueryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSavedQueryRequest())->setName($formattedName);
         $response = $gapicClient->deleteSavedQuery($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -795,9 +803,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $exportConfig = new ExportDataConfig();
-        $request = (new ExportDataRequest())
-            ->setName($formattedName)
-            ->setExportConfig($exportConfig);
+        $request = (new ExportDataRequest())->setName($formattedName)->setExportConfig($exportConfig);
         $response = $gapicClient->exportData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -855,19 +861,20 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $exportConfig = new ExportDataConfig();
-        $request = (new ExportDataRequest())
-            ->setName($formattedName)
-            ->setExportConfig($exportConfig);
+        $request = (new ExportDataRequest())->setName($formattedName)->setExportConfig($exportConfig);
         $response = $gapicClient->exportData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -909,8 +916,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
-        $request = (new GetAnnotationSpecRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotationSpecRequest())->setName($formattedName);
         $response = $gapicClient->getAnnotationSpec($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -934,17 +940,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
-        $request = (new GetAnnotationSpecRequest())
-            ->setName($formattedName);
+        $request = (new GetAnnotationSpecRequest())->setName($formattedName);
         try {
             $gapicClient->getAnnotationSpec($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -974,6 +982,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -982,11 +991,11 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new GetDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetDatasetRequest())->setName($formattedName);
         $response = $gapicClient->getDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1010,17 +1019,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new GetDatasetRequest())
-            ->setName($formattedName);
+        $request = (new GetDatasetRequest())->setName($formattedName);
         try {
             $gapicClient->getDataset($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1047,16 +1058,17 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-        $request = (new GetDatasetVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetDatasetVersionRequest())->setName($formattedName);
         $response = $gapicClient->getDatasetVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1080,17 +1092,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-        $request = (new GetDatasetVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetDatasetVersionRequest())->setName($formattedName);
         try {
             $gapicClient->getDatasetVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1136,9 +1150,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $importConfigs = [];
-        $request = (new ImportDataRequest())
-            ->setName($formattedName)
-            ->setImportConfigs($importConfigs);
+        $request = (new ImportDataRequest())->setName($formattedName)->setImportConfigs($importConfigs);
         $response = $gapicClient->importData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1196,19 +1208,20 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $importConfigs = [];
-        $request = (new ImportDataRequest())
-            ->setName($formattedName)
-            ->setImportConfigs($importConfigs);
+        $request = (new ImportDataRequest())->setName($formattedName)->setImportConfigs($importConfigs);
         $response = $gapicClient->importData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1242,17 +1255,14 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $annotationsElement = new Annotation();
-        $annotations = [
-            $annotationsElement,
-        ];
+        $annotations = [$annotationsElement];
         $expectedResponse = new ListAnnotationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotations($annotations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
-        $request = (new ListAnnotationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnnotationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAnnotations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1279,17 +1289,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
-        $request = (new ListAnnotationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnnotationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnnotations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1314,17 +1326,14 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataItemsElement = new DataItem();
-        $dataItems = [
-            $dataItemsElement,
-        ];
+        $dataItems = [$dataItemsElement];
         $expectedResponse = new ListDataItemsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataItems($dataItems);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new ListDataItemsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataItemsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDataItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1351,17 +1360,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new ListDataItemsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataItemsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataItems($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1386,17 +1397,14 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $datasetVersionsElement = new DatasetVersion();
-        $datasetVersions = [
-            $datasetVersionsElement,
-        ];
+        $datasetVersions = [$datasetVersionsElement];
         $expectedResponse = new ListDatasetVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasetVersions($datasetVersions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new ListDatasetVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatasetVersionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatasetVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1423,17 +1431,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new ListDatasetVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatasetVersionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatasetVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1458,17 +1468,14 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $datasetsElement = new Dataset();
-        $datasets = [
-            $datasetsElement,
-        ];
+        $datasets = [$datasetsElement];
         $expectedResponse = new ListDatasetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatasetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatasets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1495,17 +1502,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDatasetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatasetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatasets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1530,17 +1539,14 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $savedQueriesElement = new SavedQuery();
-        $savedQueries = [
-            $savedQueriesElement,
-        ];
+        $savedQueries = [$savedQueriesElement];
         $expectedResponse = new ListSavedQueriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSavedQueries($savedQueries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new ListSavedQueriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSavedQueriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSavedQueries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1567,17 +1573,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new ListSavedQueriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSavedQueriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSavedQueries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1616,11 +1624,13 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1630,8 +1640,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-        $request = (new RestoreDatasetVersionRequest())
-            ->setName($formattedName);
+        $request = (new RestoreDatasetVersionRequest())->setName($formattedName);
         $response = $gapicClient->restoreDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1687,17 +1696,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
-        $request = (new RestoreDatasetVersionRequest())
-            ->setName($formattedName);
+        $request = (new RestoreDatasetVersionRequest())->setName($formattedName);
         $response = $gapicClient->restoreDatasetVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1731,17 +1742,14 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataItemViewsElement = new DataItemView();
-        $dataItemViews = [
-            $dataItemViewsElement,
-        ];
+        $dataItemViews = [$dataItemViewsElement];
         $expectedResponse = new SearchDataItemsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataItemViews($dataItemViews);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDataset = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new SearchDataItemsRequest())
-            ->setDataset($formattedDataset);
+        $request = (new SearchDataItemsRequest())->setDataset($formattedDataset);
         $response = $gapicClient->searchDataItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1768,17 +1776,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDataset = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $request = (new SearchDataItemsRequest())
-            ->setDataset($formattedDataset);
+        $request = (new SearchDataItemsRequest())->setDataset($formattedDataset);
         try {
             $gapicClient->searchDataItems($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1808,6 +1818,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1816,6 +1827,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataset = new Dataset();
@@ -1826,9 +1838,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
         $updateMask = new FieldMask();
-        $request = (new UpdateDatasetRequest())
-            ->setDataset($dataset)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDatasetRequest())->setDataset($dataset)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDataset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1854,12 +1864,15 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $dataset = new Dataset();
@@ -1870,11 +1883,90 @@ class DatasetServiceClientTest extends GeneratedTest
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
         $updateMask = new FieldMask();
-        $request = (new UpdateDatasetRequest())
-            ->setDataset($dataset)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDatasetRequest())->setDataset($dataset)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateDataset($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDatasetVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
+        $expectedResponse = new DatasetVersion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDatasetVersionRequest())->setDatasetVersion($datasetVersion)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateDatasetVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/UpdateDatasetVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatasetVersion();
+        $this->assertProtobufEquals($datasetVersion, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDatasetVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDatasetVersionRequest())->setDatasetVersion($datasetVersion)->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateDatasetVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1925,12 +2017,15 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1957,9 +2052,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1989,12 +2082,15 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2027,8 +2123,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2052,17 +2147,19 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2094,9 +2191,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2122,19 +2217,20 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2162,9 +2258,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2190,19 +2284,20 @@ class DatasetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2244,6 +2339,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2252,6 +2348,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2268,9 +2365,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
-        $request = (new CreateDatasetRequest())
-            ->setParent($formattedParent)
-            ->setDataset($dataset);
+        $request = (new CreateDatasetRequest())->setParent($formattedParent)->setDataset($dataset);
         $response = $gapicClient->createDatasetAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

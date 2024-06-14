@@ -22,19 +22,19 @@ class CreateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. ID of the `CustomTargetType`.
      *
      * Generated from protobuf field <code>string custom_target_type_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_target_type_id = '';
+    protected $custom_target_type_id = '';
     /**
      * Required. The `CustomTargetType` to create.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.CustomTargetType custom_target_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_target_type = null;
+    protected $custom_target_type = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -50,14 +50,14 @@ class CreateCustomTargetTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                   $parent             Required. The parent collection in which the `CustomTargetType` should be

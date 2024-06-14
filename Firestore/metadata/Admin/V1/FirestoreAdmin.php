@@ -30,10 +30,11 @@ class FirestoreAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-îD
-/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Q
+©H
+/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/firestore/admin/v1/backup.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto(google/firestore/admin/v1/schedule.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"g
 ListDatabasesRequest9
-parent (	B)àAúA#!firestore.googleapis.com/Database"¨
+parent (	B)àAúA#!firestore.googleapis.com/Database
+show_deleted ("¨
 CreateDatabaseRequest9
 parent (	B)àAúA#!firestore.googleapis.com/Database:
 database (2#.google.firestore.admin.v1.DatabaseBàA
@@ -120,7 +121,13 @@ page_token (	"_
 !firestore.googleapis.com/Database
 collection_ids (	
 input_uri_prefix (	
-namespace_ids (	"I
+namespace_ids (	"
+BulkDeleteDocumentsRequest7
+name (	B)àAúA#
+!firestore.googleapis.com/Database
+collection_ids (	BàA
+namespace_ids (	BàA"
+BulkDeleteDocumentsResponse"I
 GetBackupRequest5
 name (	B\'àAúA!
 firestore.googleapis.com/Backup"O
@@ -137,7 +144,7 @@ page_token (	"_
 parent (	B)àAúA#!firestore.googleapis.com/Database
 database_id (	BàA7
 backup (	B\'àAúA!
-firestore.googleapis.com/Backup2Ö#
+firestore.googleapis.com/Backup2Ë%
 FirestoreAdminÛ
 CreateIndex-.google.firestore.admin.v1.CreateIndexRequest.google.longrunning.Operation"~ÊA
 IndexIndexOperationMetadataÚAparent,index‚Óä“G">/v1/{parent=projects/*/databases/*/collectionGroups/*}/indexes:index½
@@ -152,7 +159,9 @@ ListFields,.google.firestore.admin.v1.ListFieldsRequest-.google.firestore.admi
 ExportDocuments1.google.firestore.admin.v1.ExportDocumentsRequest.google.longrunning.Operation"xÊA2
 ExportDocumentsResponseExportDocumentsMetadataÚAname‚Óä“6"1/v1/{name=projects/*/databases/*}:exportDocuments:*Û
 ImportDocuments1.google.firestore.admin.v1.ImportDocumentsRequest.google.longrunning.Operation"vÊA0
-google.protobuf.EmptyImportDocumentsMetadataÚAname‚Óä“6"1/v1/{name=projects/*/databases/*}:importDocuments:*Ù
+google.protobuf.EmptyImportDocumentsMetadataÚAname‚Óä“6"1/v1/{name=projects/*/databases/*}:importDocuments:*ò
+BulkDeleteDocuments5.google.firestore.admin.v1.BulkDeleteDocumentsRequest.google.longrunning.Operation"„ÊA:
+BulkDeleteDocumentsResponseBulkDeleteDocumentsMetadataÚAname‚Óä“:"5/v1/{name=projects/*/databases/*}:bulkDeleteDocuments:*Ù
 CreateDatabase0.google.firestore.admin.v1.CreateDatabaseRequest.google.longrunning.Operation"vÊA"
 DatabaseCreateDatabaseMetadataÚAparent,database,database_id‚Óä“-"!/v1/{parent=projects/*}/databases:database“
 GetDatabase-.google.firestore.admin.v1.GetDatabaseRequest#.google.firestore.admin.v1.Database"0ÚAname‚Óä“#!/v1/{name=projects/*/databases/*}¦

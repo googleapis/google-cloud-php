@@ -22,7 +22,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The current etag of policy. If an etag is provided and does not
      * match the current etag of the policy, deletion will be blocked and an
@@ -30,7 +30,7 @@ class DeletePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. Name of the policy to delete.

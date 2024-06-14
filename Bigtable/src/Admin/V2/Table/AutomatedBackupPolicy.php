@@ -21,14 +21,14 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_period = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $retention_period = null;
+    protected $retention_period = null;
     /**
      * Required. How frequently automated backups should occur. The only
      * supported value at this time is 24 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $frequency = null;
+    protected $frequency = null;
 
     /**
      * Constructor.

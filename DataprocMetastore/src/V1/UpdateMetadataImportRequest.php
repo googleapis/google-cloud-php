@@ -24,7 +24,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The metadata import to update. The server only merges fields
      * in the import if they are specified in `update_mask`.
@@ -33,7 +33,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MetadataImport metadata_import = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_import = null;
+    protected $metadata_import = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -48,7 +48,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\Metastore\V1\MetadataImport $metadataImport Required. The metadata import to update. The server only merges fields

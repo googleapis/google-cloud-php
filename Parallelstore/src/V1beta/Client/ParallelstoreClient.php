@@ -29,7 +29,6 @@ namespace Google\Cloud\Parallelstore\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -42,10 +41,13 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\Parallelstore\V1beta\CreateInstanceRequest;
 use Google\Cloud\Parallelstore\V1beta\DeleteInstanceRequest;
+use Google\Cloud\Parallelstore\V1beta\ExportDataRequest;
 use Google\Cloud\Parallelstore\V1beta\GetInstanceRequest;
+use Google\Cloud\Parallelstore\V1beta\ImportDataRequest;
 use Google\Cloud\Parallelstore\V1beta\Instance;
 use Google\Cloud\Parallelstore\V1beta\ListInstancesRequest;
 use Google\Cloud\Parallelstore\V1beta\UpdateInstanceRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -78,7 +80,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -165,6 +169,25 @@ final class ParallelstoreClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -407,6 +430,34 @@ final class ParallelstoreClient
     }
 
     /**
+     * ExportData copies data from Parallelstore to Cloud Storage
+     *
+     * The async variant is {@see ParallelstoreClient::exportDataAsync()} .
+     *
+     * @example samples/V1beta/ParallelstoreClient/export_data.php
+     *
+     * @param ExportDataRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function exportData(ExportDataRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportData', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Instance.
      *
      * The async variant is {@see ParallelstoreClient::getInstanceAsync()} .
@@ -432,6 +483,34 @@ final class ParallelstoreClient
     public function getInstance(GetInstanceRequest $request, array $callOptions = []): Instance
     {
         return $this->startApiCall('GetInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * ImportData copies data from Cloud Storage to Parallelstore.
+     *
+     * The async variant is {@see ParallelstoreClient::importDataAsync()} .
+     *
+     * @example samples/V1beta/ParallelstoreClient/import_data.php
+     *
+     * @param ImportDataRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function importData(ImportDataRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ImportData', $request, $callOptions)->wait();
     }
 
     /**

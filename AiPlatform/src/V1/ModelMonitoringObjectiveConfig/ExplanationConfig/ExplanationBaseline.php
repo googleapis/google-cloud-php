@@ -23,7 +23,7 @@ class ExplanationBaseline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline.PredictionFormat prediction_format = 1;</code>
      */
-    private $prediction_format = 0;
+    protected $prediction_format = 0;
     protected $destination;
 
     /**

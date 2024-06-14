@@ -22,7 +22,7 @@ class Authorization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alternate_use_permission = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $alternate_use_permission = '';
+    protected $alternate_use_permission = '';
 
     /**
      * Constructor.

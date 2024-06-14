@@ -39,6 +39,12 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.ImportErrorConfig error_config = 4;</code>
      */
     protected $error_config = null;
+    /**
+     * If not provided, a UUID will be generated.
+     *
+     * Generated from protobuf field <code>string model_id = 5;</code>
+     */
+    protected $model_id = '';
     protected $training_input;
 
     /**
@@ -59,6 +65,8 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\ImportErrorConfig $error_config
      *           The desired location of errors incurred during the data ingestion and
      *           training.
+     *     @type string $model_id
+     *           If not provided, a UUID will be generated.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +197,32 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\ImportErrorConfig::class);
         $this->error_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * If not provided, a UUID will be generated.
+     *
+     * Generated from protobuf field <code>string model_id = 5;</code>
+     * @return string
+     */
+    public function getModelId()
+    {
+        return $this->model_id;
+    }
+
+    /**
+     * If not provided, a UUID will be generated.
+     *
+     * Generated from protobuf field <code>string model_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_id = $var;
 
         return $this;
     }

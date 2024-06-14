@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The input data used to train a new [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+ * The input data used to train a new
+ * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData</code>
  */

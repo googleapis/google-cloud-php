@@ -124,6 +124,7 @@ class Database
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_JSON = TypeCode::JSON;
+    const TYPE_PG_OID = 'pgOid';
 
     /**
      * @var ConnectionInterface

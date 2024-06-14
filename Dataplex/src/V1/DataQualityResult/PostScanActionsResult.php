@@ -20,7 +20,7 @@ class PostScanActionsResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.PostScanActionsResult.BigQueryExportResult bigquery_export_result = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bigquery_export_result = null;
+    protected $bigquery_export_result = null;
 
     /**
      * Constructor.

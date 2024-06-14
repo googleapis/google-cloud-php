@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response message for the
- * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] method.
+ * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ProcessResponse</code>
  */

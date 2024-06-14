@@ -57,6 +57,4 @@ class GlobalPolicyEvaluationMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GlobalPolicyEvaluationMode::class, \Google\Cloud\BinaryAuthorization\V1\Policy_GlobalPolicyEvaluationMode::class);
 

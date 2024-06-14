@@ -21,14 +21,14 @@ class FetchInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * If this flag is set to true, the source will be queried instead of using
      * cached results. Using this flag will make the call slower.
      *
      * Generated from protobuf field <code>bool force_refresh = 2;</code>
      */
-    private $force_refresh = false;
+    protected $force_refresh = false;
 
     /**
      * @param string $source Required. The name of the Source. Please see

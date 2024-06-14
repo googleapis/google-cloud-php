@@ -37,7 +37,7 @@ use Google\Rpc\Status;
  *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
  *                                {@see SchemaServiceClient::dataStoreName()} for help formatting this field.
  * @param string $schemaId        The ID to use for the
- *                                [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
+ *                                [Schema][google.cloud.discoveryengine.v1beta.Schema], which becomes the
  *                                final component of the
  *                                [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
  *
