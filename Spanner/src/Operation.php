@@ -517,7 +517,8 @@ class Operation
             $res['id'],
             $options['isRetry'],
             $options['tag'],
-            $options['transactionOptions']
+            $options['transactionOptions'],
+            $this->mapper
         );
     }
 

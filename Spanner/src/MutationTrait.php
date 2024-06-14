@@ -301,7 +301,7 @@ trait MutationTrait
     /**
      * Returns the mutation data as associative array.
      * @return array
-     */
+    */
     private function getMutations()
     {
         return $this->mutationData;
@@ -310,10 +310,7 @@ trait MutationTrait
     private function getValueMapper()
     {
         if (!isset($this->mapper)) {
-            throw new ValidationException(
-                'MutationTrait usage requires `ValueMapper` to be ' .
-                'present in the user class in the `$this->mapper` property.'
-            );
+            $this->mapper = new ValueMapper(false);
         }
 
         return $this->mapper;

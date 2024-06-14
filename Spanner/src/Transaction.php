@@ -82,6 +82,8 @@ class Transaction implements TransactionalReadInterface
      */
     private $isRetry = false;
 
+    private ValueMapper $mapper;
+
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
@@ -96,6 +98,7 @@ class Transaction implements TransactionalReadInterface
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
+     * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
@@ -104,7 +107,8 @@ class Transaction implements TransactionalReadInterface
         $transactionId = null,
         $isRetry = false,
         $tag = null,
-        $options = []
+        $options = [],
+        $mapper = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -124,6 +128,9 @@ class Transaction implements TransactionalReadInterface
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
         $this->options = $options;
+        if (!is_null($mapper)) {
+            $this->mapper = $mapper;
+        }
     }
 
     /**
