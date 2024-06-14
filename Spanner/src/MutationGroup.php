@@ -18,6 +18,9 @@
 namespace Google\Cloud\Spanner;
 
 /**
+ * This should not be used directly. It should be accessed via
+ * Google\Cloud\Spanner\Database::mutationGroup().
+ *
  * @internal
  */
 class MutationGroup
