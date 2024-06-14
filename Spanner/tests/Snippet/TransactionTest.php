@@ -254,7 +254,7 @@ class TransactionTest extends SnippetTestCase
     public function testInsert()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insert');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -268,7 +268,7 @@ class TransactionTest extends SnippetTestCase
     public function testInsertBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -281,7 +281,7 @@ class TransactionTest extends SnippetTestCase
     public function testUpdate()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'update');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -295,7 +295,7 @@ class TransactionTest extends SnippetTestCase
     public function testUpdateBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'updateBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -308,7 +308,7 @@ class TransactionTest extends SnippetTestCase
     public function testInsertOrUpdate()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdate');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -324,7 +324,7 @@ class TransactionTest extends SnippetTestCase
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdateBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -337,7 +337,7 @@ class TransactionTest extends SnippetTestCase
     public function testReplace()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'replace');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -351,7 +351,7 @@ class TransactionTest extends SnippetTestCase
     public function testReplaceBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'replaceBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
@@ -365,7 +365,7 @@ class TransactionTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'delete');
         $snippet->addUse(KeySet::class);
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
