@@ -542,6 +542,36 @@ class PgQueryTest extends SpannerPgTestCase
         $this->assertCount($currentCount + 1, iterator_to_array($res));
     }
 
+    public function testBindPgOidParameter()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT $1', [
+            'parameters' => [
+                'p1' => 1,
+            ],
+            'types' => [
+                'p1' => Database::TYPE_PG_OID
+            ]
+        ]);
+        $this->assertCount(1, iterator_to_array($res));
+    }
+
+    public function testBindPgOidParameterNull()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT $1', [
+            'parameters' => [
+                'p1' => null,
+            ],
+            'types' => [
+                'p1' => Database::TYPE_PG_OID
+            ]
+        ]);
+        $this->assertCount(1, iterator_to_array($res));
+    }
+
     public function arrayTypesProvider()
     {
         return [
@@ -639,7 +669,9 @@ class PgQueryTest extends SpannerPgTestCase
 
                     return $res;
                 }
-            ]
+            ],
+            // pg_oid
+            [[5,4,3,2,1]],
         ];
     }
 
@@ -685,6 +717,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_DATE],
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
+            [Database::TYPE_PG_OID],
         ];
     }
 
@@ -722,6 +755,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_DATE],
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
+            [Database::TYPE_PG_OID],
         ];
     }
 

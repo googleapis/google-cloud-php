@@ -21,27 +21,27 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool status = 1;</code>
      */
-    private $status = false;
+    protected $status = false;
     /**
      * The Skaffold support state for this release's version of Skaffold.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.SkaffoldSupportState skaffold_support_state = 2;</code>
      */
-    private $skaffold_support_state = 0;
+    protected $skaffold_support_state = 0;
     /**
      * The time at which this release's version of Skaffold will enter
      * maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
      */
-    private $maintenance_mode_time = null;
+    protected $maintenance_mode_time = null;
     /**
      * The time at which this release's version of Skaffold will no longer be
      * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
      */
-    private $support_expiration_time = null;
+    protected $support_expiration_time = null;
 
     /**
      * Constructor.

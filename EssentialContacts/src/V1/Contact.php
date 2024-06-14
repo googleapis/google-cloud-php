@@ -21,14 +21,14 @@ class Contact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The email address to send notifications to. The email address
      * does not need to be a Google Account.
      *
      * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * Required. The categories of notifications that the contact will receive
      * communications for.
@@ -44,14 +44,14 @@ class Contact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_tag = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $language_tag = '';
+    protected $language_tag = '';
     /**
      * The validity of the contact. A contact is considered valid if it is the
      * correct recipient for notifications for a particular resource.
      *
      * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8;</code>
      */
-    private $validation_state = 0;
+    protected $validation_state = 0;
     /**
      * The last time the validation_state was updated, either manually or
      * automatically. A contact is considered stale if its validation state was
@@ -59,7 +59,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp validate_time = 9;</code>
      */
-    private $validate_time = null;
+    protected $validate_time = null;
 
     /**
      * Constructor.

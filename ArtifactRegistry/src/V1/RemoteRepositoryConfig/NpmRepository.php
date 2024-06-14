@@ -76,6 +76,4 @@ class NpmRepository extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NpmRepository::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_NpmRepository::class);
 

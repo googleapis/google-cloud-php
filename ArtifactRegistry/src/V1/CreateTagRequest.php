@@ -20,19 +20,19 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The tag id to use for this repository.
      *
      * Generated from protobuf field <code>string tag_id = 2;</code>
      */
-    private $tag_id = '';
+    protected $tag_id = '';
     /**
      * The tag to be created.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Tag tag = 3;</code>
      */
-    private $tag = null;
+    protected $tag = null;
 
     /**
      * @param string                                $parent The name of the parent resource where the tag will be created.

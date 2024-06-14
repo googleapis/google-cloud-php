@@ -18,18 +18,19 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. How long the release need to be paused until being promoted to
      * the next target.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Optional. The ID of the stage in the pipeline to which this `Release` is
      * deploying. If unspecified, default it to the next stage in the promotion
@@ -41,20 +42,20 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_target_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $destination_target_id = '';
+    protected $destination_target_id = '';
     /**
      * Output only. Information around the state of the Automation rule.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRuleCondition condition = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $condition = null;
+    protected $condition = null;
     /**
      * Optional. The starting phase of the rollout created by this operation.
      * Default to the first phase.
      *
      * Generated from protobuf field <code>string destination_phase = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $destination_phase = '';
+    protected $destination_phase = '';
 
     /**
      * Constructor.
@@ -64,7 +65,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Required. ID of the rule. This id must be unique in the `Automation`
-     *           resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     *           resource to which this rule belongs. The format is
+     *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *     @type \Google\Protobuf\Duration $wait
      *           Optional. How long the release need to be paused until being promoted to
      *           the next target.
@@ -90,7 +92,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -102,7 +105,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

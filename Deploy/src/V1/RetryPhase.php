@@ -21,26 +21,26 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 total_attempts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $total_attempts = 0;
+    protected $total_attempts = 0;
     /**
      * Output only. The pattern of how the wait time of the retry attempt is
      * calculated.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.BackoffMode backoff_mode = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $backoff_mode = 0;
+    protected $backoff_mode = 0;
     /**
      * Output only. The phase ID of the phase that includes the job being retried.
      *
      * Generated from protobuf field <code>string phase_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phase_id = '';
+    protected $phase_id = '';
     /**
      * Output only. The job ID for the Job to retry.
      *
      * Generated from protobuf field <code>string job_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Output only. Detail of a retry action.
      *

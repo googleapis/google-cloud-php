@@ -22,44 +22,44 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user email of the NotebookRuntime.
      *
      * Generated from protobuf field <code>string runtime_user = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $runtime_user = '';
+    protected $runtime_user = '';
     /**
      * Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is
      * created from.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeTemplateRef notebook_runtime_template_ref = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $notebook_runtime_template_ref = null;
+    protected $notebook_runtime_template_ref = null;
     /**
      * Output only. The proxy endpoint used to access the NotebookRuntime.
      *
      * Generated from protobuf field <code>string proxy_uri = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $proxy_uri = '';
+    protected $proxy_uri = '';
     /**
      * Output only. Timestamp when this NotebookRuntime was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this NotebookRuntime was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The health state of the NotebookRuntime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntime.HealthState health_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_state = 0;
+    protected $health_state = 0;
     /**
      * Required. The display name of the NotebookRuntime.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -67,31 +67,31 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the NotebookRuntime.
      *
      * Generated from protobuf field <code>string description = 11;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The service account that the NotebookRuntime workload runs as.
      *
      * Generated from protobuf field <code>string service_account = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Output only. The runtime (instance) state of the NotebookRuntime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntime.RuntimeState runtime_state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $runtime_state = 0;
+    protected $runtime_state = 0;
     /**
      * Output only. Whether NotebookRuntime is upgradable.
      *
      * Generated from protobuf field <code>bool is_upgradable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_upgradable = false;
+    protected $is_upgradable = false;
     /**
      * The labels with user-defined metadata to organize your
      * NotebookRuntime.
@@ -121,19 +121,25 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     /**
      * Output only. The VM os image version of NotebookRuntime.
      *
      * Generated from protobuf field <code>string version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. The type of the notebook runtime.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeType notebook_runtime_type = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $notebook_runtime_type = 0;
+    protected $notebook_runtime_type = 0;
+    /**
+     * Output only. The idle shutdown configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $idle_shutdown_config = null;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
@@ -141,6 +147,24 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string network_tags = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $network_tags;
+    /**
+     * Output only. Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $encryption_spec = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -201,9 +225,17 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *           Output only. The VM os image version of NotebookRuntime.
      *     @type int $notebook_runtime_type
      *           Output only. The type of the notebook runtime.
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookIdleShutdownConfig $idle_shutdown_config
+     *           Output only. The idle shutdown configuration of the notebook runtime.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Output only. Customer-managed encryption key spec for the notebook runtime.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -710,6 +742,42 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The idle shutdown configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\NotebookIdleShutdownConfig|null
+     */
+    public function getIdleShutdownConfig()
+    {
+        return $this->idle_shutdown_config;
+    }
+
+    public function hasIdleShutdownConfig()
+    {
+        return isset($this->idle_shutdown_config);
+    }
+
+    public function clearIdleShutdownConfig()
+    {
+        unset($this->idle_shutdown_config);
+    }
+
+    /**
+     * Output only. The idle shutdown configuration of the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\NotebookIdleShutdownConfig $var
+     * @return $this
+     */
+    public function setIdleShutdownConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NotebookIdleShutdownConfig::class);
+        $this->idle_shutdown_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
@@ -733,6 +801,94 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->network_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Output only. Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

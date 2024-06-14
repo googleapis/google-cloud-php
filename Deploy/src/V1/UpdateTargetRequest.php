@@ -24,13 +24,13 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The `Target` to update.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Target target = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target = null;
+    protected $target = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -46,21 +46,21 @@ class UpdateTargetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, updating a `Target` that does not exist will
      * result in the creation of a new `Target`.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Deploy\V1\Target $target     Required. The `Target` to update.

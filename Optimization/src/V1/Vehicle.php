@@ -23,14 +23,14 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Vehicle.TravelMode travel_mode = 1;</code>
      */
-    private $travel_mode = 0;
+    protected $travel_mode = 0;
     /**
      * Optional. A set of conditions to satisfy that affect the way routes are
      * calculated for the given vehicle.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.RouteModifiers route_modifiers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $route_modifiers = null;
+    protected $route_modifiers = null;
     /**
      * Geographic location where the vehicle starts before picking up any
      * shipments. If not specified, the vehicle starts at its first pickup.
@@ -39,7 +39,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.LatLng start_location = 3;</code>
      */
-    private $start_location = null;
+    protected $start_location = null;
     /**
      * Waypoint representing a geographic location where the vehicle starts before
      * picking up any shipments. If neither `start_waypoint` nor `start_location`
@@ -49,7 +49,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Waypoint start_waypoint = 4;</code>
      */
-    private $start_waypoint = null;
+    protected $start_waypoint = null;
     /**
      * Geographic location where the vehicle ends after it has completed its last
      * `VisitRequest`. If not specified the vehicle's `ShipmentRoute` ends
@@ -59,7 +59,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.LatLng end_location = 5;</code>
      */
-    private $end_location = null;
+    protected $end_location = null;
     /**
      * Waypoint representing a geographic location where the vehicle ends after
      * it has completed its last `VisitRequest`. If neither `end_waypoint` nor
@@ -70,7 +70,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Waypoint end_waypoint = 6;</code>
      */
-    private $end_waypoint = null;
+    protected $end_waypoint = null;
     /**
      * Specifies tags attached to the start of the vehicle's route.
      * Empty or duplicate strings are not allowed.
@@ -130,13 +130,13 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double travel_duration_multiple = 11;</code>
      */
-    private $travel_duration_multiple = null;
+    protected $travel_duration_multiple = null;
     /**
      * Unloading policy enforced on the vehicle.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Vehicle.UnloadingPolicy unloading_policy = 12;</code>
      */
-    private $unloading_policy = 0;
+    protected $unloading_policy = 0;
     /**
      * Capacities of the vehicle (weight, volume, # of pallets for example).
      * The keys in the map are the identifiers of the type of load, consistent
@@ -158,7 +158,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost_per_hour = 16;</code>
      */
-    private $cost_per_hour = 0.0;
+    protected $cost_per_hour = 0.0;
     /**
      * Cost per traveled hour of the vehicle route. This cost is applied only to
      * travel time taken by the route (i.e., that reported in
@@ -167,7 +167,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost_per_traveled_hour = 17;</code>
      */
-    private $cost_per_traveled_hour = 0.0;
+    protected $cost_per_traveled_hour = 0.0;
     /**
      * Cost per kilometer of the vehicle route. This cost is applied to the
      * distance reported in the
@@ -177,13 +177,13 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost_per_kilometer = 18;</code>
      */
-    private $cost_per_kilometer = 0.0;
+    protected $cost_per_kilometer = 0.0;
     /**
      * Fixed cost applied if this vehicle is used to handle a shipment.
      *
      * Generated from protobuf field <code>double fixed_cost = 19;</code>
      */
-    private $fixed_cost = 0.0;
+    protected $fixed_cost = 0.0;
     /**
      * This field only applies to vehicles when their route does not serve any
      * shipments. It indicates if the vehicle should be considered as used or not
@@ -198,7 +198,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool used_if_route_is_empty = 20;</code>
      */
-    private $used_if_route_is_empty = false;
+    protected $used_if_route_is_empty = false;
     /**
      * Limit applied to the total duration of the vehicle's route. In a given
      * `OptimizeToursResponse`, the route duration of a vehicle is the
@@ -206,7 +206,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Vehicle.DurationLimit route_duration_limit = 21;</code>
      */
-    private $route_duration_limit = null;
+    protected $route_duration_limit = null;
     /**
      * Limit applied to the travel duration of the vehicle's route. In a given
      * `OptimizeToursResponse`, the route travel duration is the sum of all its
@@ -214,7 +214,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Vehicle.DurationLimit travel_duration_limit = 22;</code>
      */
-    private $travel_duration_limit = null;
+    protected $travel_duration_limit = null;
     /**
      * Limit applied to the total distance of the vehicle's route. In a given
      * `OptimizeToursResponse`, the route distance is the sum of all its
@@ -222,7 +222,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.DistanceLimit route_distance_limit = 23;</code>
      */
-    private $route_distance_limit = null;
+    protected $route_distance_limit = null;
     /**
      * Specifies a map from visit_types strings to durations. The duration is time
      * in addition to
@@ -242,7 +242,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.BreakRule break_rule = 25;</code>
      */
-    private $break_rule = null;
+    protected $break_rule = null;
     /**
      * Specifies a label for this vehicle. This label is reported in the response
      * as the `vehicle_label` of the corresponding
@@ -250,7 +250,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label = 27;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * If true, `used_if_route_is_empty` must be false, and this vehicle will
      * remain unused.
@@ -266,7 +266,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore = 28;</code>
      */
-    private $ignore = false;
+    protected $ignore = false;
     /**
      * Deprecated: No longer used.
      * Indices in the `break_rule` field in the source

@@ -20,13 +20,13 @@ class VmUtilizationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_id = 3;</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * Utilization metrics for this VM.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.VmUtilizationMetrics utilization = 2;</code>
      */
-    private $utilization = null;
+    protected $utilization = null;
     protected $VmDetails;
 
     /**

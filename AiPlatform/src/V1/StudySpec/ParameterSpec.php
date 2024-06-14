@@ -21,14 +21,14 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parameter_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parameter_id = '';
+    protected $parameter_id = '';
     /**
      * How the parameter should be scaled.
      * Leave unset for `CATEGORICAL` parameters.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ScaleType scale_type = 6;</code>
      */
-    private $scale_type = 0;
+    protected $scale_type = 0;
     /**
      * A conditional parameter node is active if the parameter's value matches
      * the conditional node's parent_value_condition.

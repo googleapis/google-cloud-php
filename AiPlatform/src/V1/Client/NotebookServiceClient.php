@@ -27,7 +27,6 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -46,6 +45,7 @@ use Google\Cloud\AIPlatform\V1\ListNotebookRuntimesRequest;
 use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\UpdateNotebookRuntimeTemplateRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -55,6 +55,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -78,6 +79,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listNotebookRuntimeTemplatesAsync(ListNotebookRuntimeTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNotebookRuntimesAsync(ListNotebookRuntimesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startNotebookRuntimeAsync(StartNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateNotebookRuntimeTemplateAsync(UpdateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface upgradeNotebookRuntimeAsync(UpgradeNotebookRuntimeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -110,9 +112,7 @@ final class NotebookServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -158,10 +158,31 @@ final class NotebookServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -227,8 +248,11 @@ final class NotebookServiceClient
      *
      * @return string The formatted notebook_runtime_template resource.
      */
-    public static function notebookRuntimeTemplateName(string $project, string $location, string $notebookRuntimeTemplate): string
-    {
+    public static function notebookRuntimeTemplateName(
+        string $project,
+        string $location,
+        string $notebookRuntimeTemplate
+    ): string {
         return self::getPathTemplate('notebookRuntimeTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -378,8 +402,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function assignNotebookRuntime(AssignNotebookRuntimeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function assignNotebookRuntime(
+        AssignNotebookRuntimeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AssignNotebookRuntime', $request, $callOptions)->wait();
     }
 
@@ -405,8 +431,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNotebookRuntimeTemplate(CreateNotebookRuntimeTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createNotebookRuntimeTemplate(
+        CreateNotebookRuntimeTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateNotebookRuntimeTemplate', $request, $callOptions)->wait();
     }
 
@@ -432,8 +460,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteNotebookRuntime(DeleteNotebookRuntimeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteNotebookRuntime(
+        DeleteNotebookRuntimeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteNotebookRuntime', $request, $callOptions)->wait();
     }
 
@@ -459,8 +489,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteNotebookRuntimeTemplate(DeleteNotebookRuntimeTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteNotebookRuntimeTemplate(
+        DeleteNotebookRuntimeTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteNotebookRuntimeTemplate', $request, $callOptions)->wait();
     }
 
@@ -512,8 +544,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotebookRuntimeTemplate(GetNotebookRuntimeTemplateRequest $request, array $callOptions = []): NotebookRuntimeTemplate
-    {
+    public function getNotebookRuntimeTemplate(
+        GetNotebookRuntimeTemplateRequest $request,
+        array $callOptions = []
+    ): NotebookRuntimeTemplate {
         return $this->startApiCall('GetNotebookRuntimeTemplate', $request, $callOptions)->wait();
     }
 
@@ -539,8 +573,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotebookRuntimeTemplates(ListNotebookRuntimeTemplatesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotebookRuntimeTemplates(
+        ListNotebookRuntimeTemplatesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotebookRuntimeTemplates', $request, $callOptions);
     }
 
@@ -565,8 +601,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotebookRuntimes(ListNotebookRuntimesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotebookRuntimes(
+        ListNotebookRuntimesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotebookRuntimes', $request, $callOptions);
     }
 
@@ -591,9 +629,40 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startNotebookRuntime(StartNotebookRuntimeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function startNotebookRuntime(
+        StartNotebookRuntimeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('StartNotebookRuntime', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a NotebookRuntimeTemplate.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::updateNotebookRuntimeTemplateAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/update_notebook_runtime_template.php
+     *
+     * @param UpdateNotebookRuntimeTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NotebookRuntimeTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateNotebookRuntimeTemplate(
+        UpdateNotebookRuntimeTemplateRequest $request,
+        array $callOptions = []
+    ): NotebookRuntimeTemplate {
+        return $this->startApiCall('UpdateNotebookRuntimeTemplate', $request, $callOptions)->wait();
     }
 
     /**
@@ -618,8 +687,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function upgradeNotebookRuntime(UpgradeNotebookRuntimeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function upgradeNotebookRuntime(
+        UpgradeNotebookRuntimeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpgradeNotebookRuntime', $request, $callOptions)->wait();
     }
 
@@ -759,8 +830,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

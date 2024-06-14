@@ -21,25 +21,25 @@ class DataProfileResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_count = 3;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * The profile information per field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile profile = 4;</code>
      */
-    private $profile = null;
+    protected $profile = null;
     /**
      * The data scanned for this result.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 5;</code>
      */
-    private $scanned_data = null;
+    protected $scanned_data = null;
     /**
      * Output only. The result of post scan actions.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.PostScanActionsResult post_scan_actions_result = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $post_scan_actions_result = null;
+    protected $post_scan_actions_result = null;
 
     /**
      * Constructor.

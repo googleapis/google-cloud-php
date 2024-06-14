@@ -21,7 +21,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the Endpoint.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -29,13 +29,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the Endpoint.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The models deployed in this Endpoint.
      * To add or remove DeployedModels use
@@ -64,7 +64,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Endpoints.
      * Label keys and values can be no longer than 64 characters
@@ -80,13 +80,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Endpoint was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Customer-managed encryption key spec for an Endpoint. If set, this
      * Endpoint and all sub-resources of this Endpoint will be secured by
@@ -94,7 +94,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 10;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Optional. The full name of the Google Compute Engine
      * [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
@@ -112,7 +112,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields,
@@ -125,6 +125,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $enable_private_service_connect = false;
     /**
+     * Optional. Configuration for private service connect.
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $private_service_connect_config = null;
+    /**
      * Output only. Resource name of the Model Monitoring job associated with this
      * Endpoint if monitoring is enabled by
      * [JobService.CreateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob].
@@ -133,13 +142,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_deployment_monitoring_job = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $model_deployment_monitoring_job = '';
+    protected $model_deployment_monitoring_job = '';
     /**
      * Configures the request-response logging for online prediction.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PredictRequestResponseLoggingConfig predict_request_response_logging_config = 18;</code>
      */
-    private $predict_request_response_logging_config = null;
+    protected $predict_request_response_logging_config = null;
 
     /**
      * Constructor.
@@ -206,6 +215,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           [network][google.cloud.aiplatform.v1.Endpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      *           can be set.
+     *     @type \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig $private_service_connect_config
+     *           Optional. Configuration for private service connect.
+     *           [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     *           [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     *           are mutually exclusive.
      *     @type string $model_deployment_monitoring_job
      *           Output only. Resource name of the Model Monitoring job associated with this
      *           Endpoint if monitoring is enabled by
@@ -633,6 +647,48 @@ class Endpoint extends \Google\Protobuf\Internal\Message
         @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_private_service_connect = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for private service connect.
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig|null
+     */
+    public function getPrivateServiceConnectConfig()
+    {
+        return $this->private_service_connect_config;
+    }
+
+    public function hasPrivateServiceConnectConfig()
+    {
+        return isset($this->private_service_connect_config);
+    }
+
+    public function clearPrivateServiceConnectConfig()
+    {
+        unset($this->private_service_connect_config);
+    }
+
+    /**
+     * Optional. Configuration for private service connect.
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig $var
+     * @return $this
+     */
+    public function setPrivateServiceConnectConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig::class);
+        $this->private_service_connect_config = $var;
 
         return $this;
     }

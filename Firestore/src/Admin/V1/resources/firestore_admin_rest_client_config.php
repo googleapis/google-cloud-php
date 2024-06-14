@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.firestore.admin.v1.FirestoreAdmin' => [
+            'BulkDeleteDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}:bulkDeleteDocuments',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackupSchedule' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*}/backupSchedules',

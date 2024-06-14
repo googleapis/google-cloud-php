@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the NotebookRuntimeTemplate.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -30,26 +30,26 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the NotebookRuntimeTemplate.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The default template to use if not specified.
      *
      * Generated from protobuf field <code>bool is_default = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_default = false;
+    protected $is_default = false;
     /**
      * Optional. Immutable. The specification of a single machine for the
      * template.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_spec = null;
+    protected $machine_spec = null;
     /**
      * Optional. The specification of [persistent
      * disk][https://cloud.google.com/compute/docs/disks/persistent-disks]
@@ -57,13 +57,13 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentDiskSpec data_persistent_disk_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_persistent_disk_spec = null;
+    protected $data_persistent_disk_spec = null;
     /**
      * Optional. Network spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NetworkSpec network_spec = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $network_spec = null;
+    protected $network_spec = null;
     /**
      * The service account that the runtime workload runs as.
      * You can use any service account within the same project, but you
@@ -74,14 +74,14 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 13;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 14;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize the
      * NotebookRuntimeTemplates.
@@ -99,38 +99,38 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookIdleShutdownConfig idle_shutdown_config = 17;</code>
      */
-    private $idle_shutdown_config = null;
+    protected $idle_shutdown_config = null;
     /**
      * EUC configuration of the NotebookRuntimeTemplate.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookEucConfig euc_config = 18;</code>
      */
-    private $euc_config = null;
+    protected $euc_config = null;
     /**
      * Output only. Timestamp when this NotebookRuntimeTemplate was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this NotebookRuntimeTemplate was most recently
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Immutable. The type of the notebook runtime template.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntimeType notebook_runtime_type = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $notebook_runtime_type = 0;
+    protected $notebook_runtime_type = 0;
     /**
      * Optional. Immutable. Runtime Shielded VM spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ShieldedVmConfig shielded_vm_config = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $shielded_vm_config = null;
+    protected $shielded_vm_config = null;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
@@ -138,6 +138,12 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string network_tags = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $network_tags;
+    /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
+     */
+    protected $encryption_spec = null;
 
     /**
      * Constructor.
@@ -146,7 +152,7 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the NotebookRuntimeTemplate.
+     *           The resource name of the NotebookRuntimeTemplate.
      *     @type string $display_name
      *           Required. The display name of the NotebookRuntimeTemplate.
      *           The name can be up to 128 characters long and can consist of any UTF-8
@@ -198,6 +204,8 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Customer-managed encryption key spec for the notebook runtime.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,9 +214,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -217,9 +225,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -761,6 +769,42 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->network_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }

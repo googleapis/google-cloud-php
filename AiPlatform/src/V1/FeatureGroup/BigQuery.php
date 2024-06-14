@@ -21,7 +21,7 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BigQuerySource big_query_source = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $big_query_source = null;
+    protected $big_query_source = null;
     /**
      * Optional. Columns to construct entity_id / row keys.
      * If not provided defaults to `entity_id`.

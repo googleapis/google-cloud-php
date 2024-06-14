@@ -20,14 +20,14 @@ class DeleteVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * By default, a version that is tagged may not be deleted. If force=true, the
      * version and any tags pointing to the version are deleted.
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name The name of the version to delete.

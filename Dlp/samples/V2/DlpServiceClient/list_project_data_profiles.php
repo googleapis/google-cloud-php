@@ -30,7 +30,7 @@ use Google\Cloud\Dlp\V2\ListProjectDataProfilesRequest;
 use Google\Cloud\Dlp\V2\ProjectDataProfile;
 
 /**
- * Lists data profiles for an organization.
+ * Lists project data profiles for an organization.
  *
  * @param string $formattedParent organizations/{org_id}/locations/{loc_id}
  *                                Please see {@see DlpServiceClient::organizationLocationName()} for help formatting this field.

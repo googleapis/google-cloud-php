@@ -23,13 +23,13 @@ class NotebookIdleShutdownConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_timeout = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $idle_timeout = null;
+    protected $idle_timeout = null;
     /**
      * Whether Idle Shutdown is disabled in this NotebookRuntimeTemplate.
      *
      * Generated from protobuf field <code>bool idle_shutdown_disabled = 2;</code>
      */
-    private $idle_shutdown_disabled = false;
+    protected $idle_shutdown_disabled = false;
 
     /**
      * Constructor.

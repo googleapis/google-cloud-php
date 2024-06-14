@@ -40,16 +40,19 @@ use Google\Cloud\Video\Stitcher\V1\CreateCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\CreateVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\DeleteVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveAdTagDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodAdTagDetailRequest;
+use Google\Cloud\Video\Stitcher\V1\GetVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodStitchDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\ListCdnKeysRequest;
@@ -57,14 +60,18 @@ use Google\Cloud\Video\Stitcher\V1\ListLiveAdTagDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListLiveConfigsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListSlatesRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsRequest;
+use Google\Cloud\Video\Stitcher\V1\ListVodConfigsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail;
 use Google\Cloud\Video\Stitcher\V1\LiveConfig;
 use Google\Cloud\Video\Stitcher\V1\LiveSession;
 use Google\Cloud\Video\Stitcher\V1\Slate;
 use Google\Cloud\Video\Stitcher\V1\UpdateCdnKeyRequest;
+use Google\Cloud\Video\Stitcher\V1\UpdateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\UpdateVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
+use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
 use Google\LongRunning\Operation;
@@ -89,16 +96,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createLiveConfigAsync(CreateLiveConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createLiveSessionAsync(CreateLiveSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSlateAsync(CreateSlateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createVodConfigAsync(CreateVodConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createVodSessionAsync(CreateVodSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCdnKeyAsync(DeleteCdnKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteLiveConfigAsync(DeleteLiveConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSlateAsync(DeleteSlateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteVodConfigAsync(DeleteVodConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCdnKeyAsync(GetCdnKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLiveAdTagDetailAsync(GetLiveAdTagDetailRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLiveConfigAsync(GetLiveConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLiveSessionAsync(GetLiveSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSlateAsync(GetSlateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVodAdTagDetailAsync(GetVodAdTagDetailRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getVodConfigAsync(GetVodConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVodSessionAsync(GetVodSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getVodStitchDetailAsync(GetVodStitchDetailRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listCdnKeysAsync(ListCdnKeysRequest $request, array $optionalArgs = [])
@@ -106,9 +116,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listLiveConfigsAsync(ListLiveConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSlatesAsync(ListSlatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listVodAdTagDetailsAsync(ListVodAdTagDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listVodConfigsAsync(ListVodConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listVodStitchDetailsAsync(ListVodStitchDetailsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCdnKeyAsync(UpdateCdnKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateLiveConfigAsync(UpdateLiveConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSlateAsync(UpdateSlateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateVodConfigAsync(UpdateVodConfigRequest $request, array $optionalArgs = [])
  */
 final class VideoStitcherServiceClient
 {
@@ -325,6 +338,25 @@ final class VideoStitcherServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a vod_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $vodConfig
+     *
+     * @return string The formatted vod_config resource.
+     */
+    public static function vodConfigName(string $project, string $location, string $vodConfig): string
+    {
+        return self::getPathTemplate('vodConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'vod_config' => $vodConfig,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a vod_session
      * resource.
      *
@@ -375,6 +407,7 @@ final class VideoStitcherServiceClient
      * - location: projects/{project}/locations/{location}
      * - slate: projects/{project}/locations/{location}/slates/{slate}
      * - vodAdTagDetail: projects/{project}/locations/{location}/vodSessions/{vod_session}/vodAdTagDetails/{vod_ad_tag_detail}
+     * - vodConfig: projects/{project}/locations/{location}/vodConfigs/{vod_config}
      * - vodSession: projects/{project}/locations/{location}/vodSessions/{vod_session}
      * - vodStitchDetail: projects/{project}/locations/{location}/vodSessions/{vod_session}/vodStitchDetails/{vod_stitch_detail}
      *
@@ -576,6 +609,33 @@ final class VideoStitcherServiceClient
     }
 
     /**
+     * Registers the VOD config with the provided unique ID in
+     * the specified region.
+     *
+     * The async variant is {@see VideoStitcherServiceClient::createVodConfigAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/create_vod_config.php
+     *
+     * @param CreateVodConfigRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createVodConfig(CreateVodConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateVodConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a client side playback VOD session and returns the full
      * tracking and playback metadata of the session.
      *
@@ -680,6 +740,32 @@ final class VideoStitcherServiceClient
     public function deleteSlate(DeleteSlateRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteSlate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes the specified VOD config.
+     *
+     * The async variant is {@see VideoStitcherServiceClient::deleteVodConfigAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/delete_vod_config.php
+     *
+     * @param DeleteVodConfigRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteVodConfig(DeleteVodConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteVodConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -839,6 +925,33 @@ final class VideoStitcherServiceClient
     public function getVodAdTagDetail(GetVodAdTagDetailRequest $request, array $callOptions = []): VodAdTagDetail
     {
         return $this->startApiCall('GetVodAdTagDetail', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the specified VOD config managed by the Video
+     * Stitcher API service.
+     *
+     * The async variant is {@see VideoStitcherServiceClient::getVodConfigAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/get_vod_config.php
+     *
+     * @param GetVodConfigRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VodConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getVodConfig(GetVodConfigRequest $request, array $callOptions = []): VodConfig
+    {
+        return $this->startApiCall('GetVodConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1029,6 +1142,33 @@ final class VideoStitcherServiceClient
     }
 
     /**
+     * Lists all VOD configs managed by the Video Stitcher API that
+     * belong to the specified project and region.
+     *
+     * The async variant is {@see VideoStitcherServiceClient::listVodConfigsAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/list_vod_configs.php
+     *
+     * @param ListVodConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listVodConfigs(ListVodConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListVodConfigs', $request, $callOptions);
+    }
+
+    /**
      * Returns a list of detailed stitching information of the specified VOD
      * session.
      *
@@ -1084,6 +1224,34 @@ final class VideoStitcherServiceClient
     }
 
     /**
+     * Updates the specified LiveConfig. Only update fields specified
+     * in the call method body.
+     *
+     * The async variant is {@see VideoStitcherServiceClient::updateLiveConfigAsync()}
+     * .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/update_live_config.php
+     *
+     * @param UpdateLiveConfigRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateLiveConfig(UpdateLiveConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateLiveConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the specified slate.
      *
      * The async variant is {@see VideoStitcherServiceClient::updateSlateAsync()} .
@@ -1107,5 +1275,32 @@ final class VideoStitcherServiceClient
     public function updateSlate(UpdateSlateRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateSlate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the specified VOD config. Only update fields specified
+     * in the call method body.
+     *
+     * The async variant is {@see VideoStitcherServiceClient::updateVodConfigAsync()} .
+     *
+     * @example samples/V1/VideoStitcherServiceClient/update_vod_config.php
+     *
+     * @param UpdateVodConfigRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateVodConfig(UpdateVodConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateVodConfig', $request, $callOptions)->wait();
     }
 }

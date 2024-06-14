@@ -28,19 +28,19 @@ class Slice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dimension = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dimension = '';
+    protected $dimension = '';
     /**
      * Output only. The value of the dimension in this slice.
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Output only. Specification for how the data was sliced.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec slice_spec = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $slice_spec = null;
+    protected $slice_spec = null;
 
     /**
      * Constructor.

@@ -19,17 +19,17 @@ class CreateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create FeatureGroups.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The FeatureGroup to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureGroup feature_group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_group = null;
+    protected $feature_group = null;
     /**
      * Required. The ID to use for this FeatureGroup, which will become the final
      * component of the FeatureGroup's resource name.
@@ -39,12 +39,12 @@ class CreateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_group_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_group_id = '';
+    protected $feature_group_id = '';
 
     /**
      * @param string                                   $parent         Required. The resource name of the Location to create FeatureGroups.
      *                                                                 Format:
-     *                                                                 `projects/{project}/locations/{location}'`
+     *                                                                 `projects/{project}/locations/{location}`
      *                                                                 Please see {@see FeatureRegistryServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\AIPlatform\V1\FeatureGroup $featureGroup   Required. The FeatureGroup to create.
      * @param string                                   $featureGroupId Required. The ID to use for this FeatureGroup, which will become the final
@@ -76,7 +76,7 @@ class CreateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the Location to create FeatureGroups.
      *           Format:
-     *           `projects/{project}/locations/{location}'`
+     *           `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\AIPlatform\V1\FeatureGroup $feature_group
      *           Required. The FeatureGroup to create.
      *     @type string $feature_group_id
@@ -95,7 +95,7 @@ class CreateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create FeatureGroups.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,7 +108,7 @@ class CreateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Location to create FeatureGroups.
      * Format:
-     * `projects/{project}/locations/{location}'`
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

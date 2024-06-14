@@ -21,13 +21,13 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Parameters for creating transcoding job.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
 
     /**
      * @param string                                $parent Required. The parent location to create and process this job.

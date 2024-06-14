@@ -20,13 +20,13 @@ class ClusterAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AutoscalingLimits autoscaling_limits = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autoscaling_limits = null;
+    protected $autoscaling_limits = null;
     /**
      * Required. Autoscaling targets for this cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AutoscalingTargets autoscaling_targets = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autoscaling_targets = null;
+    protected $autoscaling_targets = null;
 
     /**
      * Constructor.

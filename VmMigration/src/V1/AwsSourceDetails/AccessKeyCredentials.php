@@ -20,13 +20,13 @@ class AccessKeyCredentials extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string access_key_id = 1;</code>
      */
-    private $access_key_id = '';
+    protected $access_key_id = '';
     /**
      * Input only. AWS secret access key.
      *
      * Generated from protobuf field <code>string secret_access_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $secret_access_key = '';
+    protected $secret_access_key = '';
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double saturation = 1;</code>
      */
-    private $saturation = 0.0;
+    protected $saturation = 0.0;
     /**
      * Control black and white contrast of the video. Enter a value between -1
      * and 1, where -1 is minimum contrast and 1 is maximum contrast. 0 is no
@@ -31,7 +31,7 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double contrast = 2;</code>
      */
-    private $contrast = 0.0;
+    protected $contrast = 0.0;
     /**
      * Control brightness of the video. Enter a value between -1 and 1, where -1
      * is minimum brightness and 1 is maximum brightness. 0 is no change. The
@@ -39,7 +39,7 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double brightness = 3;</code>
      */
-    private $brightness = 0.0;
+    protected $brightness = 0.0;
 
     /**
      * Constructor.

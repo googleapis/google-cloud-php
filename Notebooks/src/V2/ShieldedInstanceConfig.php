@@ -26,14 +26,14 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_secure_boot = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_secure_boot = false;
+    protected $enable_secure_boot = false;
     /**
      * Optional. Defines whether the VM instance has the vTPM enabled. Enabled by
      * default.
      *
      * Generated from protobuf field <code>bool enable_vtpm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_vtpm = false;
+    protected $enable_vtpm = false;
     /**
      * Optional. Defines whether the VM instance has integrity monitoring enabled.
      * Enables monitoring and attestation of the boot integrity of the VM
@@ -43,7 +43,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_integrity_monitoring = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_integrity_monitoring = false;
+    protected $enable_integrity_monitoring = false;
 
     /**
      * Constructor.

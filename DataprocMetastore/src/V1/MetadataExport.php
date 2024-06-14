@@ -20,25 +20,25 @@ class MetadataExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time when the export ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The current state of the export.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MetadataExport.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The type of the database dump.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.DatabaseDumpSpec.Type database_dump_type = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $database_dump_type = 0;
+    protected $database_dump_type = 0;
     protected $destination;
 
     /**

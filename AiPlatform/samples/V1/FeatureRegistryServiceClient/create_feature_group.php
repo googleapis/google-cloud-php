@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The resource name of the Location to create FeatureGroups.
  *                                Format:
- *                                `projects/{project}/locations/{location}'`
+ *                                `projects/{project}/locations/{location}`
  *                                Please see {@see FeatureRegistryServiceClient::locationName()} for help formatting this field.
  * @param string $featureGroupId  The ID to use for this FeatureGroup, which will become the final
  *                                component of the FeatureGroup's resource name.

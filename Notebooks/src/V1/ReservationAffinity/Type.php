@@ -67,6 +67,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Notebooks\V1\ReservationAffinity_Type::class);
 

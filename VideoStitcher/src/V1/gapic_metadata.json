@@ -30,6 +30,11 @@
                                 "createSlate"
                             ]
                         },
+                        "CreateVodConfig": {
+                            "methods": [
+                                "createVodConfig"
+                            ]
+                        },
                         "CreateVodSession": {
                             "methods": [
                                 "createVodSession"
@@ -48,6 +53,11 @@
                         "DeleteSlate": {
                             "methods": [
                                 "deleteSlate"
+                            ]
+                        },
+                        "DeleteVodConfig": {
+                            "methods": [
+                                "deleteVodConfig"
                             ]
                         },
                         "GetCdnKey": {
@@ -78,6 +88,11 @@
                         "GetVodAdTagDetail": {
                             "methods": [
                                 "getVodAdTagDetail"
+                            ]
+                        },
+                        "GetVodConfig": {
+                            "methods": [
+                                "getVodConfig"
                             ]
                         },
                         "GetVodSession": {
@@ -115,6 +130,11 @@
                                 "listVodAdTagDetails"
                             ]
                         },
+                        "ListVodConfigs": {
+                            "methods": [
+                                "listVodConfigs"
+                            ]
+                        },
                         "ListVodStitchDetails": {
                             "methods": [
                                 "listVodStitchDetails"
@@ -125,9 +145,19 @@
                                 "updateCdnKey"
                             ]
                         },
+                        "UpdateLiveConfig": {
+                            "methods": [
+                                "updateLiveConfig"
+                            ]
+                        },
                         "UpdateSlate": {
                             "methods": [
                                 "updateSlate"
+                            ]
+                        },
+                        "UpdateVodConfig": {
+                            "methods": [
+                                "updateVodConfig"
                             ]
                         }
                     }

@@ -21,7 +21,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the Index.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -29,13 +29,13 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the Index.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Immutable. Points to a YAML file stored on Google Cloud Storage describing
      * additional information about the Index, that is specific to it. Unset if
@@ -48,7 +48,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $metadata_schema_uri = '';
+    protected $metadata_schema_uri = '';
     /**
      * An additional information about the Index; the schema of the metadata can
      * be found in
@@ -56,7 +56,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 6;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. The pointers to DeployedIndexes created from this Index.
      * An Index can be only deleted if all its DeployedIndexes had been undeployed
@@ -71,7 +71,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Indexes.
      * Label keys and values can be no longer than 64 characters
@@ -87,7 +87,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Index was most recently updated.
      * This also includes any update to the contents of the Index.
@@ -100,27 +100,27 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Stats of the index resource.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexStats index_stats = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index_stats = null;
+    protected $index_stats = null;
     /**
      * Immutable. The update method to use with this Index. If not set,
      * BATCH_UPDATE will be used by default.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $index_update_method = 0;
+    protected $index_update_method = 0;
     /**
      * Immutable. Customer-managed encryption key spec for an Index. If set, this
      * Index and all sub-resources of this Index will be secured by this key.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 17 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.DataFormat data_format = 2;</code>
      */
-    private $data_format = 0;
+    protected $data_format = 0;
     protected $destination;
 
     /**

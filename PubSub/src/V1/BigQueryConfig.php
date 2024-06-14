@@ -65,6 +65,17 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $use_table_schema = false;
+    /**
+     * Optional. The service account to use to write to BigQuery. The subscription
+     * creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub [service
+     * agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account_email = '';
 
     /**
      * Constructor.
@@ -98,6 +109,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *           Optional. When true, use the BigQuery table's schema as the columns to
      *           write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
      *           enabled at the same time.
+     *     @type string $service_account_email
+     *           Optional. The service account to use to write to BigQuery. The subscription
+     *           creator or updater that specifies this field must have
+     *           `iam.serviceAccounts.actAs` permission on the service account. If not
+     *           specified, the Pub/Sub [service
+     *           agent](https://cloud.google.com/iam/docs/service-agents),
+     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -285,6 +303,42 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->use_table_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account to use to write to BigQuery. The subscription
+     * creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub [service
+     * agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccountEmail()
+    {
+        return $this->service_account_email;
+    }
+
+    /**
+     * Optional. The service account to use to write to BigQuery. The subscription
+     * creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub [service
+     * agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_email = $var;
 
         return $this;
     }

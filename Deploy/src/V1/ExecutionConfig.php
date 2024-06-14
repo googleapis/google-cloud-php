@@ -29,7 +29,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_pool = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $worker_pool = '';
+    protected $worker_pool = '';
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
@@ -37,7 +37,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Optional. Cloud Storage location in which to store execution outputs. This
      * can either be a bucket ("gs://my-bucket") or a path within a bucket
@@ -46,7 +46,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_storage = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $artifact_storage = '';
+    protected $artifact_storage = '';
     /**
      * Optional. Execution timeout for a Cloud Build Execution. This must be
      * between 10m and 24h in seconds format. If unspecified, a default timeout of
@@ -54,7 +54,14 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_timeout = null;
+    protected $execution_timeout = null;
+    /**
+     * Optional. If true, additional logging will be enabled when running builds
+     * in this execution environment.
+     *
+     * Generated from protobuf field <code>bool verbose = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $verbose = false;
     protected $execution_environment;
 
     /**
@@ -87,6 +94,9 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Execution timeout for a Cloud Build Execution. This must be
      *           between 10m and 24h in seconds format. If unspecified, a default timeout of
      *           1h is used.
+     *     @type bool $verbose
+     *           Optional. If true, additional logging will be enabled when running builds
+     *           in this execution environment.
      * }
      */
     public function __construct($data = NULL) {
@@ -312,6 +322,34 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->execution_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, additional logging will be enabled when running builds
+     * in this execution environment.
+     *
+     * Generated from protobuf field <code>bool verbose = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getVerbose()
+    {
+        return $this->verbose;
+    }
+
+    /**
+     * Optional. If true, additional logging will be enabled when running builds
+     * in this execution environment.
+     *
+     * Generated from protobuf field <code>bool verbose = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setVerbose($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->verbose = $var;
 
         return $this;
     }

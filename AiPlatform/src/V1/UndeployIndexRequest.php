@@ -23,14 +23,14 @@ class UndeployIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index_endpoint = '';
+    protected $index_endpoint = '';
     /**
      * Required. The ID of the DeployedIndex to be undeployed from the
      * IndexEndpoint.
      *
      * Generated from protobuf field <code>string deployed_index_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployed_index_id = '';
+    protected $deployed_index_id = '';
 
     /**
      * @param string $indexEndpoint   Required. The name of the IndexEndpoint resource from which to undeploy an

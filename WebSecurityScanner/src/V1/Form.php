@@ -20,7 +20,7 @@ class Form extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string action_uri = 1;</code>
      */
-    private $action_uri = '';
+    protected $action_uri = '';
     /**
      * ! The names of form fields related to the vulnerability.
      *

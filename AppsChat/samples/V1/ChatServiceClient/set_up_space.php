@@ -36,17 +36,17 @@ use Google\Apps\Chat\V1\Space;
  * members](https://developers.google.com/workspace/chat/set-up-spaces).
  *
  * To specify the human members to add, add memberships with the appropriate
- * `member.name` in the `SetUpSpaceRequest`. To add a human user, use
- * `users/{user}`, where `{user}` can be the email address for the user. For
- * users in the same Workspace organization `{user}` can also be the `id` for
- * the person from the People API, or the `id` for the user in the Directory
- * API. For example, if the People API Person profile ID for
- * `user&#64;example.com` is `123456789`, you can add the user to the space by
- * setting the `membership.member.name` to `users/user&#64;example.com` or
- * `users/123456789`.
+ * `membership.member.name`. To add a human user, use `users/{user}`, where
+ * `{user}` can be the email address for the user. For users in the same
+ * Workspace organization `{user}` can also be the `id` for the person from
+ * the People API, or the `id` for the user in the Directory API. For example,
+ * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+ * you can add the user to the space by setting the `membership.member.name`
+ * to `users/user&#64;example.com` or `users/123456789`.
  *
- * For a space or group chat, if the caller blocks or is blocked by some
- * members, then those members aren't added to the created space.
+ * For a named space or group chat, if the caller blocks, or is blocked
+ * by some members, or doesn't have permission to add some members, then
+ * those members aren't added to the created space.
  *
  * To create a direct message (DM) between the calling user and another human
  * user, specify exactly one membership to represent the human user. If

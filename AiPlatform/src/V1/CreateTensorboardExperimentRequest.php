@@ -23,13 +23,13 @@ class CreateTensorboardExperimentRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The TensorboardExperiment to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardExperiment tensorboard_experiment = 2;</code>
      */
-    private $tensorboard_experiment = null;
+    protected $tensorboard_experiment = null;
     /**
      * Required. The ID to use for the Tensorboard experiment, which becomes the
      * final component of the Tensorboard experiment's resource name.
@@ -38,7 +38,7 @@ class CreateTensorboardExperimentRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string tensorboard_experiment_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tensorboard_experiment_id = '';
+    protected $tensorboard_experiment_id = '';
 
     /**
      * @param string                                            $parent                  Required. The resource name of the Tensorboard to create the

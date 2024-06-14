@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * information like price and availability for a given product in a specific
  * [`region`][google.shopping.merchant.inventories.v1beta.RegionalInventory.region].
  * For a list of all accepted attribute values, see the [regional product
- * inventory feed
+ * inventory data
  * specification](https://support.google.com/merchants/answer/9698880).
  *
  * Generated from protobuf message <code>google.shopping.merchant.inventories.v1beta.RegionalInventory</code>
@@ -67,7 +67,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
     protected $sale_price_effective_date = null;
     /**
      * Availability of the product in this region.
-     * For accepted attribute values, see the [regional product inventory feed
+     * For accepted attribute values, see the [regional product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string availability = 7;</code>
@@ -75,7 +75,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
     protected $availability = null;
     /**
      * A list of custom (merchant-provided) attributes. You can also use
-     * `CustomAttribute` to submit any attribute of the feed specification in its
+     * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8;</code>
@@ -111,11 +111,11 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
      *           sale price in this region.
      *     @type string $availability
      *           Availability of the product in this region.
-     *           For accepted attribute values, see the [regional product inventory feed
+     *           For accepted attribute values, see the [regional product inventory data
      *           specification](https://support.google.com/merchants/answer/3061342)
      *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
      *           A list of custom (merchant-provided) attributes. You can also use
-     *           `CustomAttribute` to submit any attribute of the feed specification in its
+     *           `CustomAttribute` to submit any attribute of the data specification in its
      *           generic form.
      * }
      */
@@ -330,7 +330,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability of the product in this region.
-     * For accepted attribute values, see the [regional product inventory feed
+     * For accepted attribute values, see the [regional product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string availability = 7;</code>
@@ -353,7 +353,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability of the product in this region.
-     * For accepted attribute values, see the [regional product inventory feed
+     * For accepted attribute values, see the [regional product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string availability = 7;</code>
@@ -370,7 +370,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of custom (merchant-provided) attributes. You can also use
-     * `CustomAttribute` to submit any attribute of the feed specification in its
+     * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8;</code>
@@ -383,7 +383,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of custom (merchant-provided) attributes. You can also use
-     * `CustomAttribute` to submit any attribute of the feed specification in its
+     * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8;</code>

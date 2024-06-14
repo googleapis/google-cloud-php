@@ -20,7 +20,7 @@ class SqlScript extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Content.SqlScript.QueryEngine engine = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $engine = 0;
+    protected $engine = 0;
 
     /**
      * Constructor.

@@ -83,6 +83,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $priceRerankingLevel = 'priceRerankingLevel1240955890';
         $diversityLevel = 'diversityLevel1294448926';
         $enableCategoryFilterLevel = 'enableCategoryFilterLevel-215507998';
+        $ignoreRecsDenylist = false;
         $expectedResponse = new ServingConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -90,6 +91,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPriceRerankingLevel($priceRerankingLevel);
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
+        $expectedResponse->setIgnoreRecsDenylist($ignoreRecsDenylist);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
@@ -163,6 +165,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $priceRerankingLevel = 'priceRerankingLevel1240955890';
         $diversityLevel = 'diversityLevel1294448926';
         $enableCategoryFilterLevel = 'enableCategoryFilterLevel-215507998';
+        $ignoreRecsDenylist = false;
         $expectedResponse = new ServingConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -170,6 +173,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPriceRerankingLevel($priceRerankingLevel);
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
+        $expectedResponse->setIgnoreRecsDenylist($ignoreRecsDenylist);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
@@ -318,6 +322,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $priceRerankingLevel = 'priceRerankingLevel1240955890';
         $diversityLevel = 'diversityLevel1294448926';
         $enableCategoryFilterLevel = 'enableCategoryFilterLevel-215507998';
+        $ignoreRecsDenylist = false;
         $expectedResponse = new ServingConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -325,6 +330,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPriceRerankingLevel($priceRerankingLevel);
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
+        $expectedResponse->setIgnoreRecsDenylist($ignoreRecsDenylist);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
@@ -464,6 +470,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $priceRerankingLevel = 'priceRerankingLevel1240955890';
         $diversityLevel = 'diversityLevel1294448926';
         $enableCategoryFilterLevel = 'enableCategoryFilterLevel-215507998';
+        $ignoreRecsDenylist = false;
         $expectedResponse = new ServingConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -471,6 +478,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPriceRerankingLevel($priceRerankingLevel);
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
+        $expectedResponse->setIgnoreRecsDenylist($ignoreRecsDenylist);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');
@@ -544,6 +552,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $priceRerankingLevel = 'priceRerankingLevel1240955890';
         $diversityLevel = 'diversityLevel1294448926';
         $enableCategoryFilterLevel = 'enableCategoryFilterLevel-215507998';
+        $ignoreRecsDenylist = false;
         $expectedResponse = new ServingConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -551,6 +560,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPriceRerankingLevel($priceRerankingLevel);
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
+        $expectedResponse->setIgnoreRecsDenylist($ignoreRecsDenylist);
         $transport->addResponse($expectedResponse);
         // Mock request
         $servingConfig = new ServingConfig();
@@ -626,6 +636,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $priceRerankingLevel = 'priceRerankingLevel1240955890';
         $diversityLevel = 'diversityLevel1294448926';
         $enableCategoryFilterLevel = 'enableCategoryFilterLevel-215507998';
+        $ignoreRecsDenylist = false;
         $expectedResponse = new ServingConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -633,6 +644,7 @@ class ServingConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPriceRerankingLevel($priceRerankingLevel);
         $expectedResponse->setDiversityLevel($diversityLevel);
         $expectedResponse->setEnableCategoryFilterLevel($enableCategoryFilterLevel);
+        $expectedResponse->setIgnoreRecsDenylist($ignoreRecsDenylist);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[SERVING_CONFIG]');

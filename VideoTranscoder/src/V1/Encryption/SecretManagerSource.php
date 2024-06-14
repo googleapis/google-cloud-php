@@ -24,7 +24,7 @@ class SecretManagerSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $secret_version = '';
+    protected $secret_version = '';
 
     /**
      * Constructor.

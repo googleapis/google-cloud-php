@@ -27,31 +27,31 @@ class PrecedenceRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 first_index = 1;</code>
      */
-    private $first_index = null;
+    protected $first_index = null;
     /**
      * Indicates if the "first" event is a delivery.
      *
      * Generated from protobuf field <code>bool first_is_delivery = 3;</code>
      */
-    private $first_is_delivery = false;
+    protected $first_is_delivery = false;
     /**
      * Shipment index of the "second" event. This field must be specified.
      *
      * Generated from protobuf field <code>optional int32 second_index = 2;</code>
      */
-    private $second_index = null;
+    protected $second_index = null;
     /**
      * Indicates if the "second" event is a delivery.
      *
      * Generated from protobuf field <code>bool second_is_delivery = 4;</code>
      */
-    private $second_is_delivery = false;
+    protected $second_is_delivery = false;
     /**
      * The offset between the "first" and "second" event. It can be negative.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration offset_duration = 5;</code>
      */
-    private $offset_duration = null;
+    protected $offset_duration = null;
 
     /**
      * Constructor.

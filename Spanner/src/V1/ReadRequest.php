@@ -121,6 +121,24 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool data_boost_enabled = 15;</code>
      */
     private $data_boost_enabled = false;
+    /**
+     * Optional. Order for the returned rows.
+     * By default, Spanner will return result rows in primary key order except for
+     * PartitionRead requests. For applications that do not require rows to be
+     * returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
+     * `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
+     * resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.OrderBy order_by = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $order_by = 0;
+    /**
+     * Optional. Lock Hint for the request, it can only be used with read-write
+     * transactions.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.LockHint lock_hint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $lock_hint = 0;
 
     /**
      * Constructor.
@@ -185,6 +203,16 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           request is executed with Spanner Data Boost independent compute resources.
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
+     *     @type int $order_by
+     *           Optional. Order for the returned rows.
+     *           By default, Spanner will return result rows in primary key order except for
+     *           PartitionRead requests. For applications that do not require rows to be
+     *           returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
+     *           `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
+     *           resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *     @type int $lock_hint
+     *           Optional. Lock Hint for the request, it can only be used with read-write
+     *           transactions.
      * }
      */
     public function __construct($data = NULL) {
@@ -606,6 +634,70 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->data_boost_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Order for the returned rows.
+     * By default, Spanner will return result rows in primary key order except for
+     * PartitionRead requests. For applications that do not require rows to be
+     * returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
+     * `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
+     * resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.OrderBy order_by = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. Order for the returned rows.
+     * By default, Spanner will return result rows in primary key order except for
+     * PartitionRead requests. For applications that do not require rows to be
+     * returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
+     * `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
+     * resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.OrderBy order_by = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\ReadRequest\OrderBy::class);
+        $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Lock Hint for the request, it can only be used with read-write
+     * transactions.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.LockHint lock_hint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getLockHint()
+    {
+        return $this->lock_hint;
+    }
+
+    /**
+     * Optional. Lock Hint for the request, it can only be used with read-write
+     * transactions.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.ReadRequest.LockHint lock_hint = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLockHint($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\ReadRequest\LockHint::class);
+        $this->lock_hint = $var;
 
         return $this;
     }

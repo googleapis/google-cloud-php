@@ -21,13 +21,13 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The display name of the ModelEvaluation.
      *
      * Generated from protobuf field <code>string display_name = 10;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Points to a YAML file stored on Google Cloud Storage describing the
      * [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this
@@ -36,20 +36,20 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metrics_schema_uri = 2;</code>
      */
-    private $metrics_schema_uri = '';
+    protected $metrics_schema_uri = '';
     /**
      * Evaluation metrics of the Model. The schema of the metrics is stored in
      * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
      *
      * Generated from protobuf field <code>.google.protobuf.Value metrics = 3;</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
     /**
      * Output only. Timestamp when this ModelEvaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * All possible
      * [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
@@ -71,7 +71,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_item_schema_uri = 6;</code>
      */
-    private $data_item_schema_uri = '';
+    protected $data_item_schema_uri = '';
     /**
      * Points to a YAML file stored on Google Cloud Storage describing
      * [EvaluatedDataItemView.predictions][],
@@ -86,7 +86,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_schema_uri = 7;</code>
      */
-    private $annotation_schema_uri = '';
+    protected $annotation_schema_uri = '';
     /**
      * Aggregated explanation metrics for the Model's prediction output over the
      * data this ModelEvaluation uses. This field is populated only if the Model
@@ -94,7 +94,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8;</code>
      */
-    private $model_explanation = null;
+    protected $model_explanation = null;
     /**
      * Describes the values of
      * [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used
@@ -111,7 +111,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

@@ -20,15 +20,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the custom module.
-     * Its format is
-     * "organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     * or
-     * "folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     * or
-     * "projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}"
-     * The id {customModule} is server-generated and is not user settable.
-     * It will be a numeric id containing 1-20 digits.
+     * Identifier. The full resource name of the custom module, specified in one
+     * of the following formats:
+     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -84,15 +80,11 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the custom module.
-     *           Its format is
-     *           "organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     *           or
-     *           "folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     *           or
-     *           "projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}"
-     *           The id {customModule} is server-generated and is not user settable.
-     *           It will be a numeric id containing 1-20 digits.
+     *           Identifier. The full resource name of the custom module, specified in one
+     *           of the following formats:
+     *           * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     *           * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     *           * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
      *     @type string $display_name
      *           Optional. The display name of the Security Health Analytics custom module.
      *           This display name becomes the finding category for all findings that are
@@ -120,15 +112,11 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Identifier. The resource name of the custom module.
-     * Its format is
-     * "organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     * or
-     * "folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     * or
-     * "projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}"
-     * The id {customModule} is server-generated and is not user settable.
-     * It will be a numeric id containing 1-20 digits.
+     * Identifier. The full resource name of the custom module, specified in one
+     * of the following formats:
+     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -139,15 +127,11 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Identifier. The resource name of the custom module.
-     * Its format is
-     * "organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     * or
-     * "folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}",
-     * or
-     * "projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}"
-     * The id {customModule} is server-generated and is not user settable.
-     * It will be a numeric id containing 1-20 digits.
+     * Identifier. The full resource name of the custom module, specified in one
+     * of the following formats:
+     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

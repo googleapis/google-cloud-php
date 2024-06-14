@@ -43,7 +43,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
      *     @type int $array_config
      *           Indicates that this field supports operations on `array_value`s.
      *     @type \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig $vector_config
-     *           Indicates that this field supports nearest neighbors and distance
+     *           Indicates that this field supports nearest neighbor and distance
      *           operations on vector.
      * }
      */
@@ -147,7 +147,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates that this field supports nearest neighbors and distance
+     * Indicates that this field supports nearest neighbor and distance
      * operations on vector.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.VectorConfig vector_config = 4;</code>
@@ -164,7 +164,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates that this field supports nearest neighbors and distance
+     * Indicates that this field supports nearest neighbor and distance
      * operations on vector.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.VectorConfig vector_config = 4;</code>

@@ -23,7 +23,7 @@ class ColumnRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string family_name = 1;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
     protected $start_qualifier;
     protected $end_qualifier;
 

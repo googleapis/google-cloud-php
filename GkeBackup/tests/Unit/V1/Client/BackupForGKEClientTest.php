@@ -148,6 +148,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -165,6 +166,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1248,6 +1250,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1265,6 +1268,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
@@ -2242,6 +2246,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2259,6 +2264,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3164,6 +3170,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -3181,6 +3188,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

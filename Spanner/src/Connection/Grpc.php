@@ -43,9 +43,11 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
+use Google\Cloud\Spanner\MutationGroup;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\RequestHeaderTrait;
+use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup as BatchWriteRequestMutationGroup;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions;
@@ -243,15 +245,29 @@ class Grpc implements ConnectionInterface
             PartialResultSet::class => function ($msg) {
                 $data = json_decode($msg->serializeToJsonString(), true);
 
-                // The transaction id is serialized as a base64 encoded string in $data. So, we
-                // add a step to get the transaction id using a getter instead of the serialized value.
-                // The null-safe operator is used to handle edge cases where the relevant fields are not present.
-                $data['metadata']['transaction']['id'] = (string) $msg?->getMetadata()?->getTransaction()?->getId();
+                // We only override metadata fields, if it actually exists in the response.
+                // This is specially important for large data sets which is received in chunks.
+                // Metadata is only received in the first 'chunk' and we don't want to set empty metadata fields
+                // when metadata was not returned from the server.
+                if (isset($data['metadata'])) {
+                    // The transaction id is serialized as a base64 encoded string in $data. So, we
+                    // add a step to get the transaction id using a getter instead of the serialized value.
+                    // The null-safe operator is used to handle edge cases where the relevant fields are not present.
+                    $data['metadata']['transaction']['id'] = (string) $msg?->getMetadata()?->getTransaction()?->getId();
 
-                // Helps convert metadata enum values from string types to their respective code/annotation
-                // pairs. Ex: INT64 is converted to {code: 2, typeAnnotation: 0}.
-                $fields = $msg->getMetadata()?->getRowType()?->getFields();
-                $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
+                    // Helps convert metadata enum values from string types to their respective code/annotation
+                    // pairs. Ex: INT64 is converted to {code: 2, typeAnnotation: 0}.
+                    $fields = $msg->getMetadata()?->getRowType()?->getFields();
+                    $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
+                }
+
+                // These fields in stats should be an int
+                if (isset($data['stats']['rowCountLowerBound'])) {
+                    $data['stats']['rowCountLowerBound'] = (int) $data['stats']['rowCountLowerBound'];
+                }
+                if (isset($data['stats']['rowCountExact'])) {
+                    $data['stats']['rowCountExact'] = (int) $data['stats']['rowCountExact'];
+                }
 
                 return $data;
             }
@@ -1110,47 +1126,7 @@ class Grpc implements ConnectionInterface
     {
         $inputMutations = $this->pluck('mutations', $args);
 
-        $mutations = [];
-        if (is_array($inputMutations)) {
-            foreach ($inputMutations as $mutation) {
-                $type = array_keys($mutation)[0];
-                $data = $mutation[$type];
-
-                switch ($type) {
-                    case Operation::OP_DELETE:
-                        if (isset($data['keySet'])) {
-                            $data['keySet'] = $this->formatKeySet($data['keySet']);
-                        }
-
-                        $operation = $this->serializer->decodeMessage(
-                            new Delete,
-                            $data
-                        );
-                        break;
-                    default:
-                        $operation = new Write;
-                        $operation->setTable($data['table']);
-                        $operation->setColumns($data['columns']);
-
-                        $modifiedData = [];
-                        foreach ($data['values'] as $key => $param) {
-                            $modifiedData[$key] = $this->fieldValue($param);
-                        }
-
-                        $list = new ListValue;
-                        $list->setValues($modifiedData);
-                        $values = [$list];
-                        $operation->setValues($values);
-
-                        break;
-                }
-
-                $setterName = $this->mutationSetters[$type];
-                $mutation = new Mutation;
-                $mutation->$setterName($operation);
-                $mutations[] = $mutation;
-            }
-        }
+        $mutations = $this->parseMutations($inputMutations);
 
         if (isset($args['singleUseTransaction'])) {
             $readWrite = $this->serializer->decodeMessage(
@@ -1176,6 +1152,40 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
             $mutations,
+            $this->addResourcePrefixHeader($args, $databaseName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return \Generator
+     */
+    public function batchWrite(array $args)
+    {
+        $databaseName = $this->pluck('database', $args);
+        $mutationGroups = $this->pluck('mutationGroups', $args);
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+
+        array_walk(
+            $mutationGroups,
+            fn(&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
+        );
+
+        array_walk($mutationGroups, fn(&$x) => $x = $this->serializer->decodeMessage(
+            new BatchWriteRequestMutationGroup,
+            $x
+        ));
+
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
+
+        return $this->send([$this->spannerClient, 'batchWrite'], [
+            $this->pluck('session', $args),
+            $mutationGroups,
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
@@ -1706,5 +1716,53 @@ class Grpc implements ConnectionInterface
         }
 
         return $fieldsData;
+    }
+
+    private function parseMutations($rawMutations)
+    {
+        if (!is_array($rawMutations)) {
+            return [];
+        }
+
+        $mutations = [];
+        foreach ($rawMutations as $mutation) {
+            $type = array_keys($mutation)[0];
+            $data = $mutation[$type];
+
+            switch ($type) {
+                case Operation::OP_DELETE:
+                    if (isset($data['keySet'])) {
+                        $data['keySet'] = $this->formatKeySet($data['keySet']);
+                    }
+
+                    $operation = $this->serializer->decodeMessage(
+                        new Delete,
+                        $data
+                    );
+                    break;
+                default:
+                    $operation = new Write;
+                    $operation->setTable($data['table']);
+                    $operation->setColumns($data['columns']);
+
+                    $modifiedData = [];
+                    foreach ($data['values'] as $key => $param) {
+                        $modifiedData[$key] = $this->fieldValue($param);
+                    }
+
+                    $list = new ListValue;
+                    $list->setValues($modifiedData);
+                    $values = [$list];
+                    $operation->setValues($values);
+
+                    break;
+            }
+
+            $setterName = $this->mutationSetters[$type];
+            $mutation = new Mutation;
+            $mutation->$setterName($operation);
+            $mutations[] = $mutation;
+        }
+        return $mutations;
     }
 }

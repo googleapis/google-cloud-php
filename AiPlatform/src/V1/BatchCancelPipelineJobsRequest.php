@@ -22,7 +22,7 @@ class BatchCancelPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The names of the PipelineJobs to cancel.
      * A maximum of 32 PipelineJobs can be cancelled in a batch.

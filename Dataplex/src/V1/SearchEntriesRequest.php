@@ -19,29 +19,29 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The query against which entries in scope should be matched.
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Optional. Pagination.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Ordering of the results. Supported options to be added later.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Optional. The scope under which the search should be operating. Should
      * either be organizations/<org_id> or projects/<project_ref>. If left
@@ -50,7 +50,7 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scope = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scope = '';
+    protected $scope = '';
 
     /**
      * @param string $name  Required. The project to which the request should be attributed in the

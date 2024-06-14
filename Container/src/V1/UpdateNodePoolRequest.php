@@ -197,6 +197,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $windows_node_config = null;
     /**
+     * A list of hardware accelerators to be attached to each node.
+     * See https://cloud.google.com/compute/docs/gpus for more information about
+     * support for GPUs.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
+     */
+    private $accelerators;
+    /**
      * Optional. The desired [Google Compute Engine machine
      * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
      * node pool. Initiates an upgrade operation that migrates the nodes in the
@@ -231,6 +239,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 39;</code>
      */
     private $resource_manager_tags = null;
+    /**
+     * The desired containerd config for nodes in the node pool.
+     * Initiates an upgrade operation that recreates the nodes with the new
+     * config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 40;</code>
+     */
+    private $containerd_config = null;
     /**
      * Specifies the configuration of queued provisioning.
      *
@@ -325,6 +341,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Google Compute Engine resources.
      *     @type \Google\Cloud\Container\V1\WindowsNodeConfig $windows_node_config
      *           Parameters that can be configured on Windows nodes.
+     *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *           A list of hardware accelerators to be attached to each node.
+     *           See https://cloud.google.com/compute/docs/gpus for more information about
+     *           support for GPUs.
      *     @type string $machine_type
      *           Optional. The desired [Google Compute Engine machine
      *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
@@ -344,6 +364,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Desired resource manager tag keys and values to be attached to the nodes
      *           for managing Compute Engine firewalls using Network Firewall Policies.
      *           Existing tags will be replaced with new values.
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig $containerd_config
+     *           The desired containerd config for nodes in the node pool.
+     *           Initiates an upgrade operation that recreates the nodes with the new
+     *           config.
      *     @type \Google\Cloud\Container\V1\NodePool\QueuedProvisioning $queued_provisioning
      *           Specifies the configuration of queued provisioning.
      * }
@@ -1210,6 +1234,36 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A list of hardware accelerators to be attached to each node.
+     * See https://cloud.google.com/compute/docs/gpus for more information about
+     * support for GPUs.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAccelerators()
+    {
+        return $this->accelerators;
+    }
+
+    /**
+     * A list of hardware accelerators to be attached to each node.
+     * See https://cloud.google.com/compute/docs/gpus for more information about
+     * support for GPUs.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
+     * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAccelerators($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\AcceleratorConfig::class);
+        $this->accelerators = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. The desired [Google Compute Engine machine
      * type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
      * node pool. Initiates an upgrade operation that migrates the nodes in the
@@ -1341,6 +1395,46 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
         $this->resource_manager_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired containerd config for nodes in the node pool.
+     * Initiates an upgrade operation that recreates the nodes with the new
+     * config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 40;</code>
+     * @return \Google\Cloud\Container\V1\ContainerdConfig|null
+     */
+    public function getContainerdConfig()
+    {
+        return $this->containerd_config;
+    }
+
+    public function hasContainerdConfig()
+    {
+        return isset($this->containerd_config);
+    }
+
+    public function clearContainerdConfig()
+    {
+        unset($this->containerd_config);
+    }
+
+    /**
+     * The desired containerd config for nodes in the node pool.
+     * Initiates an upgrade operation that recreates the nodes with the new
+     * config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 40;</code>
+     * @param \Google\Cloud\Container\V1\ContainerdConfig $var
+     * @return $this
+     */
+    public function setContainerdConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig::class);
+        $this->containerd_config = $var;
 
         return $this;
     }

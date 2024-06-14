@@ -53,8 +53,8 @@ class ListDataStoresRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Filter by solution type. For example: filter =
-     * 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type .
+     * For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
@@ -110,8 +110,8 @@ class ListDataStoresRequest extends \Google\Protobuf\Internal\Message
      *           must match the call that provided the page token. Otherwise, an
      *           INVALID_ARGUMENT error is returned.
      *     @type string $filter
-     *           Filter by solution type. For example: filter =
-     *           'solution_type:SOLUTION_TYPE_SEARCH'
+     *           Filter by solution type .
+     *           For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
      * }
      */
     public function __construct($data = NULL) {
@@ -232,8 +232,8 @@ class ListDataStoresRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter by solution type. For example: filter =
-     * 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type .
+     * For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      * @return string
@@ -244,8 +244,8 @@ class ListDataStoresRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter by solution type. For example: filter =
-     * 'solution_type:SOLUTION_TYPE_SEARCH'
+     * Filter by solution type .
+     * For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      * @param string $var

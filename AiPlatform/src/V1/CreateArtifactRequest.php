@@ -24,13 +24,13 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Artifact to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Artifact artifact = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $artifact = null;
+    protected $artifact = null;
     /**
      * The {artifact} portion of the resource name with the format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
@@ -42,7 +42,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_id = 3;</code>
      */
-    private $artifact_id = '';
+    protected $artifact_id = '';
 
     /**
      * @param string                               $parent     Required. The resource name of the MetadataStore where the Artifact should

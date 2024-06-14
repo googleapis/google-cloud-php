@@ -21,7 +21,7 @@ class OrderByAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string saved_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $saved_query = '';
+    protected $saved_query = '';
     /**
      * A comma-separated list of annotation fields to order by, sorted in
      * ascending order. Use "desc" after a field name for descending. Must also
@@ -29,7 +29,7 @@ class OrderByAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 2;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * Constructor.

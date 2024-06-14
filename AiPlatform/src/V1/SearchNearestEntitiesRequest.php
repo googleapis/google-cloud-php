@@ -22,13 +22,13 @@ class SearchNearestEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_view = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $feature_view = '';
+    protected $feature_view = '';
     /**
      * Required. The query.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NearestNeighborQuery query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = null;
+    protected $query = null;
     /**
      * Optional. If set to true, the full entities (including all vector values
      * and metadata) of the nearest neighbors are returned; otherwise only entity
@@ -37,7 +37,7 @@ class SearchNearestEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_full_entity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $return_full_entity = false;
+    protected $return_full_entity = false;
 
     /**
      * Constructor.

@@ -29,14 +29,16 @@ namespace Google\Cloud\DiscoveryEngine\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1beta\ListCustomModelsRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\ListCustomModelsResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\TrainCustomModelRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -53,6 +55,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface listCustomModelsAsync(ListCustomModelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface trainCustomModelAsync(TrainCustomModelRequest $request, array $optionalArgs = [])
  */
 final class SearchTuningServiceClient
@@ -136,6 +139,25 @@ final class SearchTuningServiceClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -307,6 +329,36 @@ final class SearchTuningServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Gets a list of all the custom models.
+     *
+     * The async variant is {@see SearchTuningServiceClient::listCustomModelsAsync()} .
+     *
+     * @example samples/V1beta/SearchTuningServiceClient/list_custom_models.php
+     *
+     * @param ListCustomModelsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListCustomModelsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listCustomModels(
+        ListCustomModelsRequest $request,
+        array $callOptions = []
+    ): ListCustomModelsResponse {
+        return $this->startApiCall('ListCustomModels', $request, $callOptions)->wait();
     }
 
     /**

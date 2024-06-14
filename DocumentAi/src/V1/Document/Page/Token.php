@@ -16,13 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Token extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Token][google.cloud.documentai.v1.Document.Page.Token].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
     private $layout = null;
     /**
-     * Detected break at the end of a [Token][google.cloud.documentai.v1.Document.Page.Token].
+     * Detected break at the end of a
+     * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.DetectedBreak detected_break = 2;</code>
      */
@@ -54,9 +56,11 @@ class Token extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Token][google.cloud.documentai.v1.Document.Page.Token].
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     *           [Token][google.cloud.documentai.v1.Document.Page.Token].
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Token\DetectedBreak $detected_break
-     *           Detected break at the end of a [Token][google.cloud.documentai.v1.Document.Page.Token].
+     *           Detected break at the end of a
+     *           [Token][google.cloud.documentai.v1.Document.Page.Token].
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
@@ -71,7 +75,8 @@ class Token extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Token][google.cloud.documentai.v1.Document.Page.Token].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -92,7 +97,8 @@ class Token extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Token][google.cloud.documentai.v1.Document.Page.Token].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -107,7 +113,8 @@ class Token extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detected break at the end of a [Token][google.cloud.documentai.v1.Document.Page.Token].
+     * Detected break at the end of a
+     * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.DetectedBreak detected_break = 2;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Token\DetectedBreak|null
@@ -128,7 +135,8 @@ class Token extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detected break at the end of a [Token][google.cloud.documentai.v1.Document.Page.Token].
+     * Detected break at the end of a
+     * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.DetectedBreak detected_break = 2;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Token\DetectedBreak $var

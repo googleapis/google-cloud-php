@@ -24,7 +24,6 @@ namespace Google\Cloud\Storage\Control\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
@@ -43,6 +42,7 @@ use Google\Cloud\Storage\Control\V2\ListManagedFoldersResponse;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -316,7 +316,7 @@ class StorageControlClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new DeleteManagedFolderRequest())->setName($formattedName);
         $gapicClient->deleteManagedFolder($request);
         $actualRequests = $transport->popReceivedCalls();
@@ -351,7 +351,7 @@ class StorageControlClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new DeleteManagedFolderRequest())->setName($formattedName);
         try {
             $gapicClient->deleteManagedFolder($request);
@@ -449,7 +449,7 @@ class StorageControlClientTest extends GeneratedTest
         $expectedResponse->setMetageneration($metageneration);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new GetManagedFolderRequest())->setName($formattedName);
         $response = $gapicClient->getManagedFolder($request);
         $this->assertEquals($expectedResponse, $response);
@@ -485,7 +485,7 @@ class StorageControlClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new GetManagedFolderRequest())->setName($formattedName);
         try {
             $gapicClient->getManagedFolder($request);

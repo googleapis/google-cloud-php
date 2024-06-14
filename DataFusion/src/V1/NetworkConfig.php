@@ -28,7 +28,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The IP range in CIDR notation to use for the managed Data Fusion instance
      * nodes. This range must not overlap with any other ranges used in the
@@ -36,7 +36,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_allocation = 2;</code>
      */
-    private $ip_allocation = '';
+    protected $ip_allocation = '';
 
     /**
      * Constructor.

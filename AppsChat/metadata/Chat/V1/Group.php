@@ -16,12 +16,12 @@ class Group
         }
         $pool->internalAddGeneratedFile(
             '
-ã
+ñ
 google/chat/v1/group.protogoogle.chat.v1"
 Group
-name (	B•
+name (	B£
 com.google.chat.v1B
-GroupProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpbªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
+GroupProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProtoªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;

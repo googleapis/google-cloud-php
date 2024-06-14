@@ -20,37 +20,37 @@ class DiscoveryEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The id of the associated lake.
      *
      * Generated from protobuf field <code>string lake_id = 2;</code>
      */
-    private $lake_id = '';
+    protected $lake_id = '';
     /**
      * The id of the associated zone.
      *
      * Generated from protobuf field <code>string zone_id = 3;</code>
      */
-    private $zone_id = '';
+    protected $zone_id = '';
     /**
      * The id of the associated asset.
      *
      * Generated from protobuf field <code>string asset_id = 4;</code>
      */
-    private $asset_id = '';
+    protected $asset_id = '';
     /**
      * The data location associated with the event.
      *
      * Generated from protobuf field <code>string data_location = 5;</code>
      */
-    private $data_location = '';
+    protected $data_location = '';
     /**
      * The type of the event being logged.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.EventType type = 10;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     protected $details;
 
     /**

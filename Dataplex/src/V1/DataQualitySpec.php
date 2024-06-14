@@ -32,7 +32,7 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float sampling_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sampling_percent = 0.0;
+    protected $sampling_percent = 0.0;
     /**
      * Optional. A filter applied to all rows in a single DataScan job.
      * The filter needs to be a valid SQL expression for a WHERE clause in
@@ -41,13 +41,13 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string row_filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $row_filter = '';
+    protected $row_filter = '';
     /**
      * Optional. Actions to take upon job completion.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions post_scan_actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $post_scan_actions = null;
+    protected $post_scan_actions = null;
 
     /**
      * Constructor.

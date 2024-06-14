@@ -33,6 +33,12 @@ class DNSConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster_dns_domain = 3;</code>
      */
     private $cluster_dns_domain = '';
+    /**
+     * Optional. The domain used in Additive VPC scope.
+     *
+     * Generated from protobuf field <code>string additive_vpc_scope_dns_domain = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $additive_vpc_scope_dns_domain = '';
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class DNSConfig extends \Google\Protobuf\Internal\Message
      *           cluster_dns_scope indicates the scope of access to cluster DNS records.
      *     @type string $cluster_dns_domain
      *           cluster_dns_domain is the suffix used for all cluster service records.
+     *     @type string $additive_vpc_scope_dns_domain
+     *           Optional. The domain used in Additive VPC scope.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class DNSConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_dns_domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The domain used in Additive VPC scope.
+     *
+     * Generated from protobuf field <code>string additive_vpc_scope_dns_domain = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAdditiveVpcScopeDnsDomain()
+    {
+        return $this->additive_vpc_scope_dns_domain;
+    }
+
+    /**
+     * Optional. The domain used in Additive VPC scope.
+     *
+     * Generated from protobuf field <code>string additive_vpc_scope_dns_domain = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdditiveVpcScopeDnsDomain($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->additive_vpc_scope_dns_domain = $var;
 
         return $this;
     }

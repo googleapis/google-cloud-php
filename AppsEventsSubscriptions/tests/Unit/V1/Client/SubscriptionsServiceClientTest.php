@@ -24,7 +24,6 @@ namespace Google\Apps\Events\Subscriptions\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Apps\Events\Subscriptions\V1\Client\SubscriptionsServiceClient;
@@ -37,6 +36,7 @@ use Google\Apps\Events\Subscriptions\V1\NotificationEndpoint;
 use Google\Apps\Events\Subscriptions\V1\ReactivateSubscriptionRequest;
 use Google\Apps\Events\Subscriptions\V1\Subscription;
 use Google\Apps\Events\Subscriptions\V1\UpdateSubscriptionRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

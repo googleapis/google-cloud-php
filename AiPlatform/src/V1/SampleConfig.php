@@ -22,7 +22,7 @@ class SampleConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SampleConfig.SampleStrategy sample_strategy = 5;</code>
      */
-    private $sample_strategy = 0;
+    protected $sample_strategy = 0;
     protected $initial_batch_sample_size;
     protected $following_batch_sample_size;
 

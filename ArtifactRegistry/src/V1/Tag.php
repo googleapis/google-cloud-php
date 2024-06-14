@@ -25,7 +25,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the version the tag refers to, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
@@ -34,7 +34,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

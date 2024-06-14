@@ -20,6 +20,11 @@
                                 "cancelDlpJob"
                             ]
                         },
+                        "CreateConnection": {
+                            "methods": [
+                                "createConnection"
+                            ]
+                        },
                         "CreateDeidentifyTemplate": {
                             "methods": [
                                 "createDeidentifyTemplate"
@@ -55,6 +60,11 @@
                                 "deidentifyContent"
                             ]
                         },
+                        "DeleteConnection": {
+                            "methods": [
+                                "deleteConnection"
+                            ]
+                        },
                         "DeleteDeidentifyTemplate": {
                             "methods": [
                                 "deleteDeidentifyTemplate"
@@ -85,6 +95,11 @@
                                 "deleteStoredInfoType"
                             ]
                         },
+                        "DeleteTableDataProfile": {
+                            "methods": [
+                                "deleteTableDataProfile"
+                            ]
+                        },
                         "FinishDlpJob": {
                             "methods": [
                                 "finishDlpJob"
@@ -93,6 +108,11 @@
                         "GetColumnDataProfile": {
                             "methods": [
                                 "getColumnDataProfile"
+                            ]
+                        },
+                        "GetConnection": {
+                            "methods": [
+                                "getConnection"
                             ]
                         },
                         "GetDeidentifyTemplate": {
@@ -155,6 +175,11 @@
                                 "listColumnDataProfiles"
                             ]
                         },
+                        "ListConnections": {
+                            "methods": [
+                                "listConnections"
+                            ]
+                        },
                         "ListDeidentifyTemplates": {
                             "methods": [
                                 "listDeidentifyTemplates"
@@ -208,6 +233,16 @@
                         "ReidentifyContent": {
                             "methods": [
                                 "reidentifyContent"
+                            ]
+                        },
+                        "SearchConnections": {
+                            "methods": [
+                                "searchConnections"
+                            ]
+                        },
+                        "UpdateConnection": {
+                            "methods": [
+                                "updateConnection"
                             ]
                         },
                         "UpdateDeidentifyTemplate": {

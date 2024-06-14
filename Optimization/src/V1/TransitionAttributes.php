@@ -28,14 +28,14 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string src_tag = 1;</code>
      */
-    private $src_tag = '';
+    protected $src_tag = '';
     /**
      * See `src_tag`. Exactly one of `src_tag` and `excluded_src_tag` must be
      * non-empty.
      *
      * Generated from protobuf field <code>string excluded_src_tag = 2;</code>
      */
-    private $excluded_src_tag = '';
+    protected $excluded_src_tag = '';
     /**
      * A destination visit or vehicle end matches iff its
      * [VisitRequest.tags][google.cloud.optimization.v1.Shipment.VisitRequest.tags]
@@ -45,14 +45,14 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dst_tag = 3;</code>
      */
-    private $dst_tag = '';
+    protected $dst_tag = '';
     /**
      * See `dst_tag`. Exactly one of `dst_tag` and `excluded_dst_tag` must be
      * non-empty.
      *
      * Generated from protobuf field <code>string excluded_dst_tag = 4;</code>
      */
-    private $excluded_dst_tag = '';
+    protected $excluded_dst_tag = '';
     /**
      * Specifies a cost for performing this transition. This is in the same unit
      * as all other costs in the model and must not be negative. It is applied on
@@ -60,7 +60,7 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost = 5;</code>
      */
-    private $cost = 0.0;
+    protected $cost = 0.0;
     /**
      * Specifies a cost per kilometer applied to the distance traveled while
      * performing this transition. It adds up to any
@@ -69,7 +69,7 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost_per_kilometer = 6;</code>
      */
-    private $cost_per_kilometer = 0.0;
+    protected $cost_per_kilometer = 0.0;
     /**
      * Specifies a limit on the distance traveled while performing this
      * transition.
@@ -77,7 +77,7 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.DistanceLimit distance_limit = 7;</code>
      */
-    private $distance_limit = null;
+    protected $distance_limit = null;
     /**
      * Specifies a delay incurred when performing this transition.
      * This delay always occurs *after* finishing the source visit and *before*
@@ -85,7 +85,7 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration delay = 8;</code>
      */
-    private $delay = null;
+    protected $delay = null;
 
     /**
      * Constructor.

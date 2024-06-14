@@ -35,10 +35,10 @@ use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
  * default.
  *
  * @param string $formattedParent Name of parent for the module. Its format is
- *                                "organizations/{organization}/locations/{location}",
- *                                "folders/{folder}/locations/{location}",
+ *                                `organizations/{organization}/locations/{location}`,
+ *                                `folders/{folder}/locations/{location}`,
  *                                or
- *                                "projects/{project}/locations/{location}"
+ *                                `projects/{project}/locations/{location}`
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
 function create_event_threat_detection_custom_module_sample(string $formattedParent): void

@@ -17,12 +17,12 @@ class MatchedUrl
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-÷
+…
  google/chat/v1/matched_url.protogoogle.chat.v1"
 
 MatchedUrl
-url (	BàABš
-com.google.chat.v1BMatchedUrlProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpbªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
+url (	BàAB¨
+com.google.chat.v1BMatchedUrlProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProtoªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;

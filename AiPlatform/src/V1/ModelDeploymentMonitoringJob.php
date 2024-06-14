@@ -22,7 +22,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of the ModelDeploymentMonitoringJob.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -31,14 +31,14 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Endpoint resource name.
      * Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string endpoint = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Output only. The detailed state of the monitoring job.
      * When the job is still creating, the state will be 'PENDING'.
@@ -48,19 +48,19 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.JobState state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Schedule state when the monitoring job is in Running state.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.MonitoringScheduleState schedule_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $schedule_state = 0;
+    protected $schedule_state = 0;
     /**
      * Output only. Latest triggered monitoring pipeline metadata.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.LatestMonitoringPipelineMetadata latest_monitoring_pipeline_metadata = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_monitoring_pipeline_metadata = null;
+    protected $latest_monitoring_pipeline_metadata = null;
     /**
      * Required. The config for monitoring objectives. This is a per DeployedModel
      * config. Each DeployedModel needs to be configured separately.
@@ -73,19 +73,19 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringScheduleConfig model_deployment_monitoring_schedule_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model_deployment_monitoring_schedule_config = null;
+    protected $model_deployment_monitoring_schedule_config = null;
     /**
      * Required. Sample Strategy for logging.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SamplingStrategy logging_sampling_strategy = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $logging_sampling_strategy = null;
+    protected $logging_sampling_strategy = null;
     /**
      * Alert config for model monitoring.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelMonitoringAlertConfig model_monitoring_alert_config = 15;</code>
      */
-    private $model_monitoring_alert_config = null;
+    protected $model_monitoring_alert_config = null;
     /**
      * YAML schema file uri describing the format of a single instance,
      * which are given to format this Endpoint's prediction (and explanation).
@@ -94,7 +94,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string predict_instance_schema_uri = 9;</code>
      */
-    private $predict_instance_schema_uri = '';
+    protected $predict_instance_schema_uri = '';
     /**
      * Sample Predict instance, same format as
      * [PredictRequest.instances][google.cloud.aiplatform.v1.PredictRequest.instances],
@@ -105,7 +105,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value sample_predict_instance = 19;</code>
      */
-    private $sample_predict_instance = null;
+    protected $sample_predict_instance = null;
     /**
      * YAML schema file uri describing the format of a single instance that you
      * want Tensorflow Data Validation (TFDV) to analyze.
@@ -120,7 +120,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string analysis_instance_schema_uri = 16;</code>
      */
-    private $analysis_instance_schema_uri = '';
+    protected $analysis_instance_schema_uri = '';
     /**
      * Output only. The created bigquery tables for the job under customer
      * project. Customer could do their own query & analysis. There could be 4 log
@@ -138,7 +138,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration log_ttl = 17;</code>
      */
-    private $log_ttl = null;
+    protected $log_ttl = null;
     /**
      * The labels with user-defined metadata to organize your
      * ModelDeploymentMonitoringJob.
@@ -155,27 +155,27 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this ModelDeploymentMonitoringJob was updated
      * most recently.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Timestamp when this monitoring pipeline will be scheduled to
      * run for the next round.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_schedule_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_schedule_time = null;
+    protected $next_schedule_time = null;
     /**
      * Stats anomalies base folder path.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination stats_anomalies_base_directory = 20;</code>
      */
-    private $stats_anomalies_base_directory = null;
+    protected $stats_anomalies_base_directory = null;
     /**
      * Customer-managed encryption key spec for a ModelDeploymentMonitoringJob. If
      * set, this ModelDeploymentMonitoringJob and all sub-resources of this
@@ -183,7 +183,7 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 21;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * If true, the scheduled monitoring pipeline logs are sent to
      * Google Cloud Logging, including pipeline status and anomalies detected.
@@ -192,14 +192,14 @@ class ModelDeploymentMonitoringJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_monitoring_pipeline_logs = 22;</code>
      */
-    private $enable_monitoring_pipeline_logs = false;
+    protected $enable_monitoring_pipeline_logs = false;
     /**
      * Output only. Only populated when the job's state is `JOB_STATE_FAILED` or
      * `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

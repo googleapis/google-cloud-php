@@ -23,13 +23,13 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 1;</code>
      */
-    private $travel_duration = null;
+    protected $travel_duration = null;
     /**
      * Distance traveled during the transition.
      *
      * Generated from protobuf field <code>double travel_distance_meters = 2;</code>
      */
-    private $travel_distance_meters = 0.0;
+    protected $travel_distance_meters = 0.0;
     /**
      * When traffic is requested via
      * [OptimizeToursRequest.consider_road_traffic]
@@ -40,7 +40,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool traffic_info_unavailable = 3;</code>
      */
-    private $traffic_info_unavailable = false;
+    protected $traffic_info_unavailable = false;
     /**
      * Sum of the delay durations applied to this transition. If any, the delay
      * starts exactly `delay_duration` seconds before the next event (visit or
@@ -49,7 +49,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration delay_duration = 4;</code>
      */
-    private $delay_duration = null;
+    protected $delay_duration = null;
     /**
      * Sum of the duration of the breaks occurring during this transition, if
      * any. Details about each break's start time and duration are stored in
@@ -57,7 +57,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration break_duration = 5;</code>
      */
-    private $break_duration = null;
+    protected $break_duration = null;
     /**
      * Time spent waiting during this transition. Wait duration corresponds to
      * idle time and does not include break time. Also note that this wait time
@@ -65,7 +65,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait_duration = 6;</code>
      */
-    private $wait_duration = null;
+    protected $wait_duration = null;
     /**
      * Total duration of the transition, provided for convenience. It is equal
      * to:
@@ -77,13 +77,13 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      */
-    private $total_duration = null;
+    protected $total_duration = null;
     /**
      * Start time of this transition.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The encoded polyline representation of the route followed during the
      * transition.
@@ -93,7 +93,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentRoute.EncodedPolyline route_polyline = 9;</code>
      */
-    private $route_polyline = null;
+    protected $route_polyline = null;
     /**
      * Vehicle loads during this transition, for each type that either appears
      * in this vehicle's

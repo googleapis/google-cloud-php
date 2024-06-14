@@ -21,13 +21,13 @@ class ModelEvaluationExplanationSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string explanation_type = 1;</code>
      */
-    private $explanation_type = '';
+    protected $explanation_type = '';
     /**
      * Explanation spec details.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 2;</code>
      */
-    private $explanation_spec = null;
+    protected $explanation_spec = null;
 
     /**
      * Constructor.

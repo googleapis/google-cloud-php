@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -57,6 +56,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -116,9 +116,7 @@ final class PipelineServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -164,10 +162,31 @@ final class PipelineServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -181,8 +200,12 @@ final class PipelineServiceClient
      *
      * @return string The formatted artifact resource.
      */
-    public static function artifactName(string $project, string $location, string $metadataStore, string $artifact): string
-    {
+    public static function artifactName(
+        string $project,
+        string $location,
+        string $metadataStore,
+        string $artifact
+    ): string {
         return self::getPathTemplate('artifact')->render([
             'project' => $project,
             'location' => $location,
@@ -202,8 +225,12 @@ final class PipelineServiceClient
      *
      * @return string The formatted context resource.
      */
-    public static function contextName(string $project, string $location, string $metadataStore, string $context): string
-    {
+    public static function contextName(
+        string $project,
+        string $location,
+        string $metadataStore,
+        string $context
+    ): string {
         return self::getPathTemplate('context')->render([
             'project' => $project,
             'location' => $location,
@@ -261,8 +288,12 @@ final class PipelineServiceClient
      *
      * @return string The formatted execution resource.
      */
-    public static function executionName(string $project, string $location, string $metadataStore, string $execution): string
-    {
+    public static function executionName(
+        string $project,
+        string $location,
+        string $metadataStore,
+        string $execution
+    ): string {
         return self::getPathTemplate('execution')->render([
             'project' => $project,
             'location' => $location,
@@ -392,8 +423,12 @@ final class PipelineServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
-    {
+    public static function projectLocationPublisherModelName(
+        string $project,
+        string $location,
+        string $publisher,
+        string $model
+    ): string {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -557,8 +592,10 @@ final class PipelineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCancelPipelineJobs(BatchCancelPipelineJobsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchCancelPipelineJobs(
+        BatchCancelPipelineJobsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchCancelPipelineJobs', $request, $callOptions)->wait();
     }
 
@@ -586,8 +623,10 @@ final class PipelineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchDeletePipelineJobs(BatchDeletePipelineJobsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchDeletePipelineJobs(
+        BatchDeletePipelineJobsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchDeletePipelineJobs', $request, $callOptions)->wait();
     }
 
@@ -714,8 +753,10 @@ final class PipelineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTrainingPipeline(CreateTrainingPipelineRequest $request, array $callOptions = []): TrainingPipeline
-    {
+    public function createTrainingPipeline(
+        CreateTrainingPipelineRequest $request,
+        array $callOptions = []
+    ): TrainingPipeline {
         return $this->startApiCall('CreateTrainingPipeline', $request, $callOptions)->wait();
     }
 
@@ -767,8 +808,10 @@ final class PipelineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteTrainingPipeline(DeleteTrainingPipelineRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteTrainingPipeline(
+        DeleteTrainingPipelineRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteTrainingPipeline', $request, $callOptions)->wait();
     }
 
@@ -872,8 +915,10 @@ final class PipelineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTrainingPipelines(ListTrainingPipelinesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTrainingPipelines(
+        ListTrainingPipelinesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTrainingPipelines', $request, $callOptions);
     }
 
@@ -1013,8 +1058,10 @@ final class PipelineServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

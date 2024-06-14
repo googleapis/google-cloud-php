@@ -22,7 +22,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Output only. The Cloud Run Service urls that are associated with a
      * `Rollout`.
@@ -35,7 +35,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision = '';
+    protected $revision = '';
     /**
      * Output only. The name of the Cloud Run job that is associated with a
      * `Rollout`. Format is
@@ -43,7 +43,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $job = '';
+    protected $job = '';
 
     /**
      * Constructor.

@@ -22,14 +22,14 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 max_load = 1;</code>
      */
-    private $max_load = null;
+    protected $max_load = null;
     /**
      * A soft limit of the load. See
      * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
      *
      * Generated from protobuf field <code>int64 soft_max_load = 2;</code>
      */
-    private $soft_max_load = 0;
+    protected $soft_max_load = 0;
     /**
      * If the load ever exceeds
      * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]
@@ -42,19 +42,19 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      */
-    private $cost_per_unit_above_soft_max = 0.0;
+    protected $cost_per_unit_above_soft_max = 0.0;
     /**
      * The acceptable load interval of the vehicle at the start of the route.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Vehicle.LoadLimit.Interval start_load_interval = 4;</code>
      */
-    private $start_load_interval = null;
+    protected $start_load_interval = null;
     /**
      * The acceptable load interval of the vehicle at the end of the route.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Vehicle.LoadLimit.Interval end_load_interval = 5;</code>
      */
-    private $end_load_interval = null;
+    protected $end_load_interval = null;
 
     /**
      * Constructor.

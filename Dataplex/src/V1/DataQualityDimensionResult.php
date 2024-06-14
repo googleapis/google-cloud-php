@@ -21,13 +21,13 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityDimension dimension = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dimension = null;
+    protected $dimension = null;
     /**
      * Whether the dimension passed or failed.
      *
      * Generated from protobuf field <code>bool passed = 3;</code>
      */
-    private $passed = false;
+    protected $passed = false;
     /**
      * Output only. The dimension-level data quality score for this data scan job
      * if and only if the 'dimension' field is set.
@@ -36,7 +36,7 @@ class DataQualityDimensionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional float score = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $score = null;
+    protected $score = null;
 
     /**
      * Constructor.

@@ -9,29 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Evaluates the given [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] against the supplied documents.
+ * Evaluates the given
+ * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] against the
+ * supplied documents.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.EvaluateProcessorVersionRequest</code>
  */
 class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
+     * Required. The resource name of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     * evaluate.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string processor_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $processor_version = '';
     /**
-     * Optional. The documents used in the evaluation. If unspecified, use the processor's
-     * dataset as evaluation input.
+     * Optional. The documents used in the evaluation. If unspecified, use the
+     * processor's dataset as evaluation input.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig evaluation_documents = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $evaluation_documents = null;
 
     /**
-     * @param string $processorVersion Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
+     * @param string $processorVersion Required. The resource name of the
+     *                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     *                                 evaluate.
      *                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *                                 Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
      *
@@ -52,11 +58,13 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $processor_version
-     *           Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
+     *           Required. The resource name of the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     *           evaluate.
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig $evaluation_documents
-     *           Optional. The documents used in the evaluation. If unspecified, use the processor's
-     *           dataset as evaluation input.
+     *           Optional. The documents used in the evaluation. If unspecified, use the
+     *           processor's dataset as evaluation input.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +73,9 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
+     * Required. The resource name of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     * evaluate.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string processor_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -77,7 +87,9 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
+     * Required. The resource name of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
+     * evaluate.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string processor_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -93,8 +105,8 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The documents used in the evaluation. If unspecified, use the processor's
-     * dataset as evaluation input.
+     * Optional. The documents used in the evaluation. If unspecified, use the
+     * processor's dataset as evaluation input.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig evaluation_documents = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig|null
@@ -115,8 +127,8 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The documents used in the evaluation. If unspecified, use the processor's
-     * dataset as evaluation input.
+     * Optional. The documents used in the evaluation. If unspecified, use the
+     * processor's dataset as evaluation input.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig evaluation_documents = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig $var

@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the parent for the module. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
-     * or
-     * "projects/{project}/locations/{location}"
+     * Required. Name of the parent organization, folder, or project of the
+     * module, specified in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,11 +46,12 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     protected $validate_only = false;
 
     /**
-     * @param string                                                                        $parent                              Required. Name of the parent for the module. Its format is
-     *                                                                                                                           "organizations/{organization}/locations/{location}",
-     *                                                                                                                           "folders/{folder}/locations/{location}",
-     *                                                                                                                           or
-     *                                                                                                                           "projects/{project}/locations/{location}"
+     * @param string                                                                        $parent                              Required. Name of the parent organization, folder, or project of the
+     *                                                                                                                           module, specified in one of the following formats:
+     *
+     *                                                                                                                           * `organizations/{organization}/locations/{location}`
+     *                                                                                                                           * `folders/{folder}/locations/{location}`
+     *                                                                                                                           * `projects/{project}/locations/{location}`
      *                                                                                                                           Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The resource being created
      *
@@ -72,11 +73,11 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the parent for the module. Its format is
-     *           "organizations/{organization}/locations/{location}",
-     *           "folders/{folder}/locations/{location}",
-     *           or
-     *           "projects/{project}/locations/{location}"
+     *           Required. Name of the parent organization, folder, or project of the
+     *           module, specified in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $security_health_analytics_custom_module
      *           Required. The resource being created
      *     @type bool $validate_only
@@ -96,11 +97,11 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Required. Name of the parent for the module. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
-     * or
-     * "projects/{project}/locations/{location}"
+     * Required. Name of the parent organization, folder, or project of the
+     * module, specified in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -111,11 +112,11 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Required. Name of the parent for the module. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
-     * or
-     * "projects/{project}/locations/{location}"
+     * Required. Name of the parent organization, folder, or project of the
+     * module, specified in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -24,7 +24,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Required. The Compute Engine machine type used for runtimes.
      * Short name is valid. Examples:
@@ -33,7 +33,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Optional. Use a list of container images to use as Kernels in the notebook instance.
      *
@@ -45,25 +45,25 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.LocalDisk data_disk = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_disk = null;
+    protected $data_disk = null;
     /**
      * Optional. Encryption settings for virtual machine data disk.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.EncryptionConfig encryption_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Optional. Shielded VM Instance configuration settings.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeShieldedInstanceConfig shielded_instance_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $shielded_instance_config = null;
+    protected $shielded_instance_config = null;
     /**
      * Optional. The Compute Engine accelerator configuration for this runtime.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeAcceleratorConfig accelerator_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $accelerator_config = null;
+    protected $accelerator_config = null;
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork. If neither
@@ -82,7 +82,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network.
@@ -92,7 +92,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnet = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subnet = '';
+    protected $subnet = '';
     /**
      * Optional. If true, runtime will only have internal IP
      * addresses. By default, runtimes are not restricted to internal IP
@@ -103,7 +103,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool internal_ip_only = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $internal_ip_only = false;
+    protected $internal_ip_only = false;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
@@ -146,7 +146,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.VirtualMachineConfig.NicType nic_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $nic_type = 0;
+    protected $nic_type = 0;
     /**
      * Optional. Reserved IP Range name is used for VPC Peering.
      * The subnetwork allocation will use the range *name* if it's assigned.
@@ -163,13 +163,13 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reserved_ip_range = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reserved_ip_range = '';
+    protected $reserved_ip_range = '';
     /**
      * Optional. Boot image metadata used for runtime upgradeability.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.VirtualMachineConfig.BootImage boot_image = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boot_image = null;
+    protected $boot_image = null;
 
     /**
      * Constructor.

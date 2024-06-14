@@ -20,7 +20,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of the Dataset.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -28,13 +28,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the Dataset.
      *
      * Generated from protobuf field <code>string description = 16;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Points to a YAML file stored on Google Cloud Storage describing
      * additional information about the Dataset. The schema is defined as an
@@ -43,39 +43,39 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_schema_uri = '';
+    protected $metadata_schema_uri = '';
     /**
      * Required. Additional information about the Dataset.
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. The number of DataItems in this Dataset. Only apply for
      * non-structured Dataset.
      *
      * Generated from protobuf field <code>int64 data_item_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_item_count = 0;
+    protected $data_item_count = 0;
     /**
      * Output only. Timestamp when this Dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Dataset was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Datasets.
      * Label keys and values can be no longer than 64 characters
@@ -112,7 +112,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Output only. The resource name of the Artifact that was created in
      * MetadataStore when creating the Dataset. The Artifact resource name pattern
@@ -121,7 +121,14 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata_artifact = '';
+    protected $metadata_artifact = '';
+    /**
+     * Optional. Reference to the public base model last used by the dataset. Only
+     * set for prompt datasets.
+     *
+     * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model_reference = '';
 
     /**
      * Constructor.
@@ -184,6 +191,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           MetadataStore when creating the Dataset. The Artifact resource name pattern
      *           is
      *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *     @type string $model_reference
+     *           Optional. Reference to the public base model last used by the dataset. Only
+     *           set for prompt datasets.
      * }
      */
     public function __construct($data = NULL) {
@@ -623,6 +633,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metadata_artifact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reference to the public base model last used by the dataset. Only
+     * set for prompt datasets.
+     *
+     * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModelReference()
+    {
+        return $this->model_reference;
+    }
+
+    /**
+     * Optional. Reference to the public base model last used by the dataset. Only
+     * set for prompt datasets.
+     *
+     * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelReference($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_reference = $var;
 
         return $this;
     }

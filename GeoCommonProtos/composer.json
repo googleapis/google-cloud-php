@@ -1,0 +1,30 @@
+{
+    "name": "google/geo-common-protos",
+    "description": "Google Geo Common Protos for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Geo\\": "src",
+            "GPBMetadata\\Google\\Geo\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "geo-common-protos",
+            "path": "GeoCommonProtos",
+            "target": "googleapis/php-geo-common-protos"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "google/protobuf": "^4.26.1",
+        "google/common-protos": "^4.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google."
+    }
+}

@@ -64,6 +64,12 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlBakImportOptions bak_import_options = 7;</code>
      */
     private $bak_import_options = null;
+    /**
+     * Optional. Options for importing data from SQL statements.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions sql_import_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sql_import_options = null;
 
     /**
      * Constructor.
@@ -92,6 +98,8 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      *           The PostgreSQL user for this import operation. PostgreSQL instances only.
      *     @type \Google\Cloud\Sql\V1\ImportContext\SqlBakImportOptions $bak_import_options
      *           Import parameters specific to SQL Server .BAK files
+     *     @type \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions $sql_import_options
+     *           Optional. Options for importing data from SQL statements.
      * }
      */
     public function __construct($data = NULL) {
@@ -311,6 +319,42 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ImportContext\SqlBakImportOptions::class);
         $this->bak_import_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Options for importing data from SQL statements.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions sql_import_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions|null
+     */
+    public function getSqlImportOptions()
+    {
+        return $this->sql_import_options;
+    }
+
+    public function hasSqlImportOptions()
+    {
+        return isset($this->sql_import_options);
+    }
+
+    public function clearSqlImportOptions()
+    {
+        unset($this->sql_import_options);
+    }
+
+    /**
+     * Optional. Options for importing data from SQL statements.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions sql_import_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions $var
+     * @return $this
+     */
+    public function setSqlImportOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions::class);
+        $this->sql_import_options = $var;
 
         return $this;
     }

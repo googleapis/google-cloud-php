@@ -26,39 +26,45 @@ class Setting extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Metadata about a setting which is not editable by the end user.
+     * Output only. Metadata about a setting which is not editable by the end
+     * user.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.SettingMetadata metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metadata = null;
     /**
      * The configured value of the setting at the given parent resource (ignoring
-     * the resource hierarchy). The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     * consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     * the resource hierarchy). The data type of
+     * [Value][google.cloud.resourcesettings.v1.Value] must always be consistent
+     * with the data type defined in
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value local_value = 8;</code>
      */
     private $local_value = null;
     /**
-     * Output only. The computed effective value of the setting at the given parent resource
-     * (based on the resource hierarchy).
+     * Output only. The computed effective value of the setting at the given
+     * parent resource (based on the resource hierarchy).
      * The effective value evaluates to one of the following options in the given
      * order (the next option is used if the previous one does not exist):
-     * 1. the local setting value on the given resource: [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
+     * 1. the local setting value on the given resource:
+     * [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
      * 2. if one of the given resource's ancestors have a local setting value,
      *    the local value at the nearest such ancestor
-     * 3. the setting's default value: [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
+     * 3. the setting's default value:
+     * [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
      * 4. an empty value (defined as a `Value` with all fields unset)
-     * The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     * consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     * The data type of [Value][google.cloud.resourcesettings.v1.Value] must
+     * always be consistent with the data type defined in
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value effective_value = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $effective_value = null;
     /**
      * A fingerprint used for optimistic concurrency. See
-     * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting] for more
-     * details.
+     * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting]
+     * for more details.
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      */
@@ -77,27 +83,33 @@ class Setting extends \Google\Protobuf\Internal\Message
      *           * `organizations/{organization_id}/settings/{setting_name}`
      *           For example, "/projects/123/settings/gcp-enableMyFeature"
      *     @type \Google\Cloud\ResourceSettings\V1\SettingMetadata $metadata
-     *           Output only. Metadata about a setting which is not editable by the end user.
+     *           Output only. Metadata about a setting which is not editable by the end
+     *           user.
      *     @type \Google\Cloud\ResourceSettings\V1\Value $local_value
      *           The configured value of the setting at the given parent resource (ignoring
-     *           the resource hierarchy). The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     *           consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     *           the resource hierarchy). The data type of
+     *           [Value][google.cloud.resourcesettings.v1.Value] must always be consistent
+     *           with the data type defined in
+     *           [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *     @type \Google\Cloud\ResourceSettings\V1\Value $effective_value
-     *           Output only. The computed effective value of the setting at the given parent resource
-     *           (based on the resource hierarchy).
+     *           Output only. The computed effective value of the setting at the given
+     *           parent resource (based on the resource hierarchy).
      *           The effective value evaluates to one of the following options in the given
      *           order (the next option is used if the previous one does not exist):
-     *           1. the local setting value on the given resource: [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
+     *           1. the local setting value on the given resource:
+     *           [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
      *           2. if one of the given resource's ancestors have a local setting value,
      *              the local value at the nearest such ancestor
-     *           3. the setting's default value: [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
+     *           3. the setting's default value:
+     *           [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
      *           4. an empty value (defined as a `Value` with all fields unset)
-     *           The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     *           consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     *           The data type of [Value][google.cloud.resourcesettings.v1.Value] must
+     *           always be consistent with the data type defined in
+     *           [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *     @type string $etag
      *           A fingerprint used for optimistic concurrency. See
-     *           [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting] for more
-     *           details.
+     *           [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting]
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,7 +152,8 @@ class Setting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Metadata about a setting which is not editable by the end user.
+     * Output only. Metadata about a setting which is not editable by the end
+     * user.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.SettingMetadata metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\ResourceSettings\V1\SettingMetadata|null
@@ -161,7 +174,8 @@ class Setting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Metadata about a setting which is not editable by the end user.
+     * Output only. Metadata about a setting which is not editable by the end
+     * user.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.SettingMetadata metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\ResourceSettings\V1\SettingMetadata $var
@@ -177,8 +191,10 @@ class Setting extends \Google\Protobuf\Internal\Message
 
     /**
      * The configured value of the setting at the given parent resource (ignoring
-     * the resource hierarchy). The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     * consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     * the resource hierarchy). The data type of
+     * [Value][google.cloud.resourcesettings.v1.Value] must always be consistent
+     * with the data type defined in
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value local_value = 8;</code>
      * @return \Google\Cloud\ResourceSettings\V1\Value|null
@@ -200,8 +216,10 @@ class Setting extends \Google\Protobuf\Internal\Message
 
     /**
      * The configured value of the setting at the given parent resource (ignoring
-     * the resource hierarchy). The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     * consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     * the resource hierarchy). The data type of
+     * [Value][google.cloud.resourcesettings.v1.Value] must always be consistent
+     * with the data type defined in
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value local_value = 8;</code>
      * @param \Google\Cloud\ResourceSettings\V1\Value $var
@@ -216,17 +234,20 @@ class Setting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The computed effective value of the setting at the given parent resource
-     * (based on the resource hierarchy).
+     * Output only. The computed effective value of the setting at the given
+     * parent resource (based on the resource hierarchy).
      * The effective value evaluates to one of the following options in the given
      * order (the next option is used if the previous one does not exist):
-     * 1. the local setting value on the given resource: [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
+     * 1. the local setting value on the given resource:
+     * [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
      * 2. if one of the given resource's ancestors have a local setting value,
      *    the local value at the nearest such ancestor
-     * 3. the setting's default value: [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
+     * 3. the setting's default value:
+     * [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
      * 4. an empty value (defined as a `Value` with all fields unset)
-     * The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     * consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     * The data type of [Value][google.cloud.resourcesettings.v1.Value] must
+     * always be consistent with the data type defined in
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value effective_value = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\ResourceSettings\V1\Value|null
@@ -247,17 +268,20 @@ class Setting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The computed effective value of the setting at the given parent resource
-     * (based on the resource hierarchy).
+     * Output only. The computed effective value of the setting at the given
+     * parent resource (based on the resource hierarchy).
      * The effective value evaluates to one of the following options in the given
      * order (the next option is used if the previous one does not exist):
-     * 1. the local setting value on the given resource: [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
+     * 1. the local setting value on the given resource:
+     * [Setting.local_value][google.cloud.resourcesettings.v1.Setting.local_value]
      * 2. if one of the given resource's ancestors have a local setting value,
      *    the local value at the nearest such ancestor
-     * 3. the setting's default value: [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
+     * 3. the setting's default value:
+     * [SettingMetadata.default_value][google.cloud.resourcesettings.v1.SettingMetadata.default_value]
      * 4. an empty value (defined as a `Value` with all fields unset)
-     * The data type of [Value][google.cloud.resourcesettings.v1.Value] must always be
-     * consistent with the data type defined in [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
+     * The data type of [Value][google.cloud.resourcesettings.v1.Value] must
+     * always be consistent with the data type defined in
+     * [Setting.metadata][google.cloud.resourcesettings.v1.Setting.metadata].
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value effective_value = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\ResourceSettings\V1\Value $var
@@ -273,8 +297,8 @@ class Setting extends \Google\Protobuf\Internal\Message
 
     /**
      * A fingerprint used for optimistic concurrency. See
-     * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting] for more
-     * details.
+     * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting]
+     * for more details.
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      * @return string
@@ -286,8 +310,8 @@ class Setting extends \Google\Protobuf\Internal\Message
 
     /**
      * A fingerprint used for optimistic concurrency. See
-     * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting] for more
-     * details.
+     * [UpdateSetting][google.cloud.resourcesettings.v1.ResourceSettingsService.UpdateSetting]
+     * for more details.
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      * @param string $var

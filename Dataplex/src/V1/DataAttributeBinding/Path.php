@@ -23,7 +23,7 @@ class Path extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. List of attributes to be associated with the path of the
      * resource, provided in the form:

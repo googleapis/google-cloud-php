@@ -21,27 +21,27 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 header_rows = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $header_rows = 0;
+    protected $header_rows = 0;
     /**
      * Optional. The delimiter being used to separate values. This defaults to
      * ','.
      *
      * Generated from protobuf field <code>string delimiter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $delimiter = '';
+    protected $delimiter = '';
     /**
      * Optional. The character encoding of the data. The default is UTF-8.
      *
      * Generated from protobuf field <code>string encoding = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encoding = '';
+    protected $encoding = '';
     /**
      * Optional. Whether to disable the inference of data type for CSV data.
      * If true, all columns will be registered as strings.
      *
      * Generated from protobuf field <code>bool disable_type_inference = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_type_inference = false;
+    protected $disable_type_inference = false;
 
     /**
      * Constructor.

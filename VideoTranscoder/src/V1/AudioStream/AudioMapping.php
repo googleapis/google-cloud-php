@@ -21,38 +21,38 @@ class AudioMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string atom_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $atom_key = '';
+    protected $atom_key = '';
     /**
      * Required. The `Input.key` that identifies the input file.
      *
      * Generated from protobuf field <code>string input_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_key = '';
+    protected $input_key = '';
     /**
      * Required. The zero-based index of the track in the input file.
      *
      * Generated from protobuf field <code>int32 input_track = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_track = 0;
+    protected $input_track = 0;
     /**
      * Required. The zero-based index of the channel in the input audio stream.
      *
      * Generated from protobuf field <code>int32 input_channel = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_channel = 0;
+    protected $input_channel = 0;
     /**
      * Required. The zero-based index of the channel in the output audio stream.
      *
      * Generated from protobuf field <code>int32 output_channel = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_channel = 0;
+    protected $output_channel = 0;
     /**
      * Audio volume control in dB. Negative values decrease volume,
      * positive values increase. The default is 0.
      *
      * Generated from protobuf field <code>double gain_db = 6;</code>
      */
-    private $gain_db = 0.0;
+    protected $gain_db = 0.0;
 
     /**
      * Constructor.

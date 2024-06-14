@@ -35,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1beta4\DatabaseInstance;
+use Google\Cloud\Sql\V1beta4\InstancesAcquireSsrsLeaseRequest;
 use Google\Cloud\Sql\V1beta4\InstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\InstancesDemoteMasterRequest;
 use Google\Cloud\Sql\V1beta4\InstancesDemoteRequest;
@@ -50,6 +51,8 @@ use Google\Cloud\Sql\V1beta4\InstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1beta4\MySqlSyncConfig;
 use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\PerformDiskShrinkContext;
+use Google\Cloud\Sql\V1beta4\SqlInstancesAcquireSsrsLeaseRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesAcquireSsrsLeaseResponse;
 use Google\Cloud\Sql\V1beta4\SqlInstancesAddServerCaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCreateEphemeralCertRequest;
@@ -71,6 +74,8 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesPatchRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesPromoteReplicaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesReencryptRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesReleaseSsrsLeaseRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesReleaseSsrsLeaseResponse;
 use Google\Cloud\Sql\V1beta4\SqlInstancesRescheduleMaintenanceRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesRescheduleMaintenanceRequestBody;
 use Google\Cloud\Sql\V1beta4\SqlInstancesResetReplicaSizeRequest;
@@ -85,6 +90,7 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesSwitchoverRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesUpdateRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest;
+use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsResponse;
 use Google\Cloud\Sql\V1beta4\SslCert;
 use Google\Cloud\Sql\V1beta4\SslCertsCreateEphemeralRequest;
@@ -99,7 +105,9 @@ use Google\Protobuf\Duration;
  * ```
  * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
  * try {
- *     $response = $sqlInstancesServiceClient->addServerCa();
+ *     $instance = 'instance';
+ *     $project = 'project';
+ *     $response = $sqlInstancesServiceClient->acquireSsrsLease($instance, $project);
  * } finally {
  *     $sqlInstancesServiceClient->close();
  * }
@@ -226,6 +234,73 @@ class SqlInstancesServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $response = $sqlInstancesServiceClient->acquireSsrsLease($instance, $project);
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance     Required. Cloud SQL instance ID. This doesn't include the project ID. It's
+     *                             composed of lowercase letters, numbers, and hyphens, and it must start with
+     *                             a letter. The total length must be 98 characters or less (Example:
+     *                             instance-id).
+     * @param string $project      Required. ID of the project that contains the instance (Example:
+     *                             project-id).
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type InstancesAcquireSsrsLeaseRequest $body
+     *           The body for request to acquire an SSRS lease.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\SqlInstancesAcquireSsrsLeaseResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function acquireSsrsLease(
+        $instance,
+        $project,
+        array $optionalArgs = []
+    ) {
+        $request = new SqlInstancesAcquireSsrsLeaseRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['body'])) {
+            $request->setBody($optionalArgs['body']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AcquireSsrsLease',
+            SqlInstancesAcquireSsrsLeaseResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1337,7 +1412,8 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
-     * Promotes the read replica instance to be a stand-alone Cloud SQL instance.
+     * Promotes the read replica instance to be an independent Cloud SQL
+     * primary instance.
      * Using this operation might cause your instance to restart.
      *
      * Sample code:
@@ -1358,9 +1434,13 @@ class SqlInstancesServiceGapicClient
      *     @type string $project
      *           ID of the project that contains the read replica.
      *     @type bool $failover
-     *           Set to true if the promote operation should attempt to re-add the original
-     *           primary as a replica when it comes back online. Otherwise, if this value is
-     *           false or not set, the original primary will be a standalone instance.
+     *           Set to true to invoke a replica failover to the designated DR replica.
+     *           As part of replica failover, the promote operation attempts
+     *           to add the original primary instance as a replica of the promoted
+     *           DR replica when the original primary instance comes back online.
+     *           If set to false or not specified, then the original primary
+     *           instance becomes an independent Cloud SQL primary instance.
+     *           Only applicable to MySQL.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1466,6 +1546,67 @@ class SqlInstancesServiceGapicClient
         return $this->startCall(
             'Reencrypt',
             Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Release a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * Sample code:
+     * ```
+     * $sqlInstancesServiceClient = new SqlInstancesServiceClient();
+     * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $response = $sqlInstancesServiceClient->releaseSsrsLease($instance, $project);
+     * } finally {
+     *     $sqlInstancesServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance     Required. The Cloud SQL instance ID. This doesn't include the project ID.
+     *                             It's composed of lowercase letters, numbers, and hyphens, and it must start
+     *                             with a letter. The total length must be 98 characters or less (Example:
+     *                             instance-id).
+     * @param string $project      Required. The ID of the project that contains the instance (Example:
+     *                             project-id).
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Sql\V1beta4\SqlInstancesReleaseSsrsLeaseResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function releaseSsrsLease(
+        $instance,
+        $project,
+        array $optionalArgs = []
+    ) {
+        $request = new SqlInstancesReleaseSsrsLeaseRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReleaseSsrsLease',
+            SqlInstancesReleaseSsrsLeaseResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1880,6 +2021,11 @@ class SqlInstancesServiceGapicClient
      *           Optional. Parallel level for initial data sync. Currently only applicable
      *           for MySQL.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel}
+     *     @type int $migrationType
+     *           Optional. MigrationType configures the migration to use physical files or
+     *           logical dump files. If not set, then the logical dump file configuration is
+     *           used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1920,6 +2066,10 @@ class SqlInstancesServiceGapicClient
 
         if (isset($optionalArgs['syncParallelLevel'])) {
             $request->setSyncParallelLevel($optionalArgs['syncParallelLevel']);
+        }
+
+        if (isset($optionalArgs['migrationType'])) {
+            $request->setMigrationType($optionalArgs['migrationType']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2057,7 +2207,8 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
-     * Switches over from the primary instance to a replica instance.
+     * Switches over from the primary instance to the designated DR replica
+     * instance.
      *
      * Sample code:
      * ```
@@ -2285,6 +2436,15 @@ class SqlInstancesServiceGapicClient
      *           Optional. Flag to verify settings required by replication setup only
      *     @type MySqlSyncConfig $mysqlSyncConfig
      *           Optional. MySQL-specific settings for start external sync.
+     *     @type int $migrationType
+     *           Optional. MigrationType configures the migration to use physical files or
+     *           logical dump files. If not set, then the logical dump file configuration is
+     *           used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType}
+     *     @type int $syncParallelLevel
+     *           Optional. Parallel level for initial data sync. Only applicable for
+     *           PostgreSQL.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2329,6 +2489,14 @@ class SqlInstancesServiceGapicClient
 
         if (isset($optionalArgs['mysqlSyncConfig'])) {
             $request->setMysqlSyncConfig($optionalArgs['mysqlSyncConfig']);
+        }
+
+        if (isset($optionalArgs['migrationType'])) {
+            $request->setMigrationType($optionalArgs['migrationType']);
+        }
+
+        if (isset($optionalArgs['syncParallelLevel'])) {
+            $request->setSyncParallelLevel($optionalArgs['syncParallelLevel']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

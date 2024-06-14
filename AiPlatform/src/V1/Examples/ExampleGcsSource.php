@@ -21,13 +21,13 @@ class ExampleGcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Examples.ExampleGcsSource.DataFormat data_format = 1;</code>
      */
-    private $data_format = 0;
+    protected $data_format = 0;
     /**
      * The Cloud Storage location for the input instances.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsSource gcs_source = 2;</code>
      */
-    private $gcs_source = null;
+    protected $gcs_source = null;
 
     /**
      * Constructor.

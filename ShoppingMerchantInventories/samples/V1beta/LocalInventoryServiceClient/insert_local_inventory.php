@@ -44,7 +44,7 @@ use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
  *                                        Please see {@see LocalInventoryServiceClient::productName()} for help formatting this field.
  * @param string $localInventoryStoreCode Immutable. Store code (the store ID from your Business Profile)
  *                                        of the physical store the product is sold in. See the [Local product
- *                                        inventory feed
+ *                                        inventory data
  *                                        specification](https://support.google.com/merchants/answer/3061342) for
  *                                        more information.
  */

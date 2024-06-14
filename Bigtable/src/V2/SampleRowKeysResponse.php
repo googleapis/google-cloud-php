@@ -26,7 +26,7 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes row_key = 1;</code>
      */
-    private $row_key = '';
+    protected $row_key = '';
     /**
      * Approximate total storage space used by all rows in the table which precede
      * `row_key`. Buffering the contents of all rows between two subsequent
@@ -35,7 +35,7 @@ class SampleRowKeysResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset_bytes = 2;</code>
      */
-    private $offset_bytes = 0;
+    protected $offset_bytes = 0;
 
     /**
      * Constructor.

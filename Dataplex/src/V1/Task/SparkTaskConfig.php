@@ -35,7 +35,7 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.InfrastructureSpec infrastructure_spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $infrastructure_spec = null;
+    protected $infrastructure_spec = null;
     protected $driver;
 
     /**

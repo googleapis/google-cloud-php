@@ -56,7 +56,8 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * Output only. For databases that are using customer managed encryption, this
      * field contains the encryption information for the database, such as
-     * encryption state and the Cloud KMS key versions that are in use.
+     * all Cloud KMS key versions that are in use. The `encryption_status' field
+     * inside of each `EncryptionInfo` is not populated.
      * For databases that are using Google default or other types of encryption,
      * this field is empty.
      * This field is propagated lazily from the backend. There might be a delay
@@ -69,8 +70,8 @@ class Database extends \Google\Protobuf\Internal\Message
      * Output only. The period in which Cloud Spanner retains all versions of data
      * for the database. This is the same as the value of version_retention_period
      * database option set using
-     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]. Defaults to 1 hour,
-     * if not set.
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
+     * Defaults to 1 hour, if not set.
      *
      * Generated from protobuf field <code>string version_retention_period = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -103,7 +104,9 @@ class Database extends \Google\Protobuf\Internal\Message
     private $database_dialect = 0;
     /**
      * Whether drop protection is enabled for this database. Defaults to false,
-     * if not set.
+     * if not set. For more details, please see how to [prevent accidental
+     * database
+     * deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).
      *
      * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
      */
@@ -143,7 +146,8 @@ class Database extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $encryption_info
      *           Output only. For databases that are using customer managed encryption, this
      *           field contains the encryption information for the database, such as
-     *           encryption state and the Cloud KMS key versions that are in use.
+     *           all Cloud KMS key versions that are in use. The `encryption_status' field
+     *           inside of each `EncryptionInfo` is not populated.
      *           For databases that are using Google default or other types of encryption,
      *           this field is empty.
      *           This field is propagated lazily from the backend. There might be a delay
@@ -152,8 +156,8 @@ class Database extends \Google\Protobuf\Internal\Message
      *           Output only. The period in which Cloud Spanner retains all versions of data
      *           for the database. This is the same as the value of version_retention_period
      *           database option set using
-     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]. Defaults to 1 hour,
-     *           if not set.
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
+     *           Defaults to 1 hour, if not set.
      *     @type \Google\Protobuf\Timestamp $earliest_version_time
      *           Output only. Earliest timestamp at which older versions of the data can be
      *           read. This value is continuously updated by Cloud Spanner and becomes stale
@@ -170,7 +174,9 @@ class Database extends \Google\Protobuf\Internal\Message
      *           Output only. The dialect of the Cloud Spanner Database.
      *     @type bool $enable_drop_protection
      *           Whether drop protection is enabled for this database. Defaults to false,
-     *           if not set.
+     *           if not set. For more details, please see how to [prevent accidental
+     *           database
+     *           deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).
      *     @type bool $reconciling
      *           Output only. If true, the database is being updated. If false, there are no
      *           ongoing update operations for the database.
@@ -360,7 +366,8 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * Output only. For databases that are using customer managed encryption, this
      * field contains the encryption information for the database, such as
-     * encryption state and the Cloud KMS key versions that are in use.
+     * all Cloud KMS key versions that are in use. The `encryption_status' field
+     * inside of each `EncryptionInfo` is not populated.
      * For databases that are using Google default or other types of encryption,
      * this field is empty.
      * This field is propagated lazily from the backend. There might be a delay
@@ -377,7 +384,8 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * Output only. For databases that are using customer managed encryption, this
      * field contains the encryption information for the database, such as
-     * encryption state and the Cloud KMS key versions that are in use.
+     * all Cloud KMS key versions that are in use. The `encryption_status' field
+     * inside of each `EncryptionInfo` is not populated.
      * For databases that are using Google default or other types of encryption,
      * this field is empty.
      * This field is propagated lazily from the backend. There might be a delay
@@ -399,8 +407,8 @@ class Database extends \Google\Protobuf\Internal\Message
      * Output only. The period in which Cloud Spanner retains all versions of data
      * for the database. This is the same as the value of version_retention_period
      * database option set using
-     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]. Defaults to 1 hour,
-     * if not set.
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
+     * Defaults to 1 hour, if not set.
      *
      * Generated from protobuf field <code>string version_retention_period = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -414,8 +422,8 @@ class Database extends \Google\Protobuf\Internal\Message
      * Output only. The period in which Cloud Spanner retains all versions of data
      * for the database. This is the same as the value of version_retention_period
      * database option set using
-     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]. Defaults to 1 hour,
-     * if not set.
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
+     * Defaults to 1 hour, if not set.
      *
      * Generated from protobuf field <code>string version_retention_period = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -535,7 +543,9 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether drop protection is enabled for this database. Defaults to false,
-     * if not set.
+     * if not set. For more details, please see how to [prevent accidental
+     * database
+     * deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).
      *
      * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
      * @return bool
@@ -547,7 +557,9 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether drop protection is enabled for this database. Defaults to false,
-     * if not set.
+     * if not set. For more details, please see how to [prevent accidental
+     * database
+     * deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).
      *
      * Generated from protobuf field <code>bool enable_drop_protection = 11;</code>
      * @param bool $var

@@ -24,19 +24,19 @@ class BreakRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_start_time = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $earliest_start_time = null;
+    protected $earliest_start_time = null;
     /**
      * Required. Upper bound (inclusive) on the start of the break.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_start_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $latest_start_time = null;
+    protected $latest_start_time = null;
     /**
      * Required. Minimum duration of the break. Must be positive.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_duration = null;
+    protected $min_duration = null;
 
     /**
      * Constructor.

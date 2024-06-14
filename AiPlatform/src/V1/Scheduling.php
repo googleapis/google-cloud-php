@@ -20,7 +20,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 1;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Restarts the entire CustomJob if a worker gets restarted.
      * This feature can be used by distributed training jobs that are not
@@ -28,7 +28,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool restart_job_on_worker_restart = 3;</code>
      */
-    private $restart_job_on_worker_restart = false;
+    protected $restart_job_on_worker_restart = false;
     /**
      * Optional. Indicates if the job should retry for internal errors after the
      * job starts running. If true, overrides
@@ -36,7 +36,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_retries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_retries = false;
+    protected $disable_retries = false;
 
     /**
      * Constructor.

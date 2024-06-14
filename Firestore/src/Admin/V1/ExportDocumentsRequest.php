@@ -24,7 +24,8 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Which collection ids to export. Unspecified means all collections.
+     * Which collection ids to export. Unspecified means all collections. Each
+     * collection id in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
      */
@@ -90,7 +91,8 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Database to export. Should be of the form:
      *           `projects/{project_id}/databases/{database_id}`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
-     *           Which collection ids to export. Unspecified means all collections.
+     *           Which collection ids to export. Unspecified means all collections. Each
+     *           collection id in this list must be unique.
      *     @type string $output_uri_prefix
      *           The output URI. Currently only supports Google Cloud Storage URIs of the
      *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
@@ -150,7 +152,8 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids to export. Unspecified means all collections.
+     * Which collection ids to export. Unspecified means all collections. Each
+     * collection id in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -161,7 +164,8 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids to export. Unspecified means all collections.
+     * Which collection ids to export. Unspecified means all collections. Each
+     * collection id in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

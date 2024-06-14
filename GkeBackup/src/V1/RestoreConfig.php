@@ -70,6 +70,20 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $transformation_rules;
+    /**
+     * Optional. A table that binds volumes by their scope to a restore policy.
+     * Bindings must have a unique scope. Any volumes not scoped in the bindings
+     * are subject to the policy defined in volume_data_restore_policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicyBinding volume_data_restore_policy_bindings = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $volume_data_restore_policy_bindings;
+    /**
+     * Optional. RestoreOrder contains custom ordering to use on a Restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder restore_order = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $restore_order = null;
     protected $namespaced_resource_restore_scope;
 
     /**
@@ -125,6 +139,12 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *           executed in order defined - this order matters, as changes made by a rule
      *           may impact the filtering logic of subsequent rules. An empty list means no
      *           transformation will occur.
+     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding>|\Google\Protobuf\Internal\RepeatedField $volume_data_restore_policy_bindings
+     *           Optional. A table that binds volumes by their scope to a restore policy.
+     *           Bindings must have a unique scope. Any volumes not scoped in the bindings
+     *           are subject to the policy defined in volume_data_restore_policy.
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder $restore_order
+     *           Optional. RestoreOrder contains custom ordering to use on a Restore.
      * }
      */
     public function __construct($data = NULL) {
@@ -499,6 +519,72 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule::class);
         $this->transformation_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A table that binds volumes by their scope to a restore policy.
+     * Bindings must have a unique scope. Any volumes not scoped in the bindings
+     * are subject to the policy defined in volume_data_restore_policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicyBinding volume_data_restore_policy_bindings = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getVolumeDataRestorePolicyBindings()
+    {
+        return $this->volume_data_restore_policy_bindings;
+    }
+
+    /**
+     * Optional. A table that binds volumes by their scope to a restore policy.
+     * Bindings must have a unique scope. Any volumes not scoped in the bindings
+     * are subject to the policy defined in volume_data_restore_policy.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicyBinding volume_data_restore_policy_bindings = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setVolumeDataRestorePolicyBindings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding::class);
+        $this->volume_data_restore_policy_bindings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. RestoreOrder contains custom ordering to use on a Restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder restore_order = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder|null
+     */
+    public function getRestoreOrder()
+    {
+        return $this->restore_order;
+    }
+
+    public function hasRestoreOrder()
+    {
+        return isset($this->restore_order);
+    }
+
+    public function clearRestoreOrder()
+    {
+        unset($this->restore_order);
+    }
+
+    /**
+     * Optional. RestoreOrder contains custom ordering to use on a Restore.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder restore_order = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder $var
+     * @return $this
+     */
+    public function setRestoreOrder($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder::class);
+        $this->restore_order = $var;
 
         return $this;
     }

@@ -21,19 +21,19 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 1;</code>
      */
-    private $field = '';
+    protected $field = '';
     /**
      * Value that marks the start of the range.
      *
      * Generated from protobuf field <code>string start = 2;</code>
      */
-    private $start = '';
+    protected $start = '';
     /**
      * Value that marks the end of the range.
      *
      * Generated from protobuf field <code>string end = 3;</code>
      */
-    private $end = '';
+    protected $end = '';
 
     /**
      * Constructor.

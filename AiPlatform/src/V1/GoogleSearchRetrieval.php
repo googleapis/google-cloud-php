@@ -15,14 +15,6 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class GoogleSearchRetrieval extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
-     *
-     * Generated from protobuf field <code>bool disable_attribution = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $disable_attribution = false;
 
     /**
      * Constructor.
@@ -30,45 +22,11 @@ class GoogleSearchRetrieval extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type bool $disable_attribution
-     *           Optional. Disable using the result from this tool in detecting grounding
-     *           attribution. This does not affect how the result is given to the model for
-     *           generation.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Tool::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
-     *
-     * Generated from protobuf field <code>bool disable_attribution = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getDisableAttribution()
-    {
-        return $this->disable_attribution;
-    }
-
-    /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
-     *
-     * Generated from protobuf field <code>bool disable_attribution = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setDisableAttribution($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->disable_attribution = $var;
-
-        return $this;
     }
 
 }

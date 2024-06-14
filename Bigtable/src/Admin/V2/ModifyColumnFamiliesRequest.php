@@ -23,7 +23,7 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Modifications to be atomically applied to the specified table's
      * families. Entries are applied in order, meaning that earlier modifications
@@ -38,7 +38,7 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore_warnings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_warnings = false;
+    protected $ignore_warnings = false;
 
     /**
      * @param string                                                                     $name          Required. The unique name of the table whose families should be modified.

@@ -21,7 +21,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The instances that are the input to token computing API call.
      * Schema is identical to the prediction schema of the text model, even for

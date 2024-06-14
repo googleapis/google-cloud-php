@@ -37,14 +37,14 @@ class Constraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The human readable name.
      * Mutable.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Detailed description of what this constraint controls as well as how and
      * where it is enforced.
@@ -52,19 +52,19 @@ class Constraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The evaluation behavior of this constraint in the absence of a policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.ConstraintDefault constraint_default = 4;</code>
      */
-    private $constraint_default = 0;
+    protected $constraint_default = 0;
     /**
      * Shows if dry run is supported for this constraint or not.
      *
      * Generated from protobuf field <code>bool supports_dry_run = 7;</code>
      */
-    private $supports_dry_run = false;
+    protected $supports_dry_run = false;
     protected $constraint_type;
 
     /**

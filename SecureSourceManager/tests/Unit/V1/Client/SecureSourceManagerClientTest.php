@@ -24,7 +24,6 @@ namespace Google\Cloud\SecureSourceManager\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -49,6 +48,7 @@ use Google\Cloud\SecureSourceManager\V1\ListInstancesResponse;
 use Google\Cloud\SecureSourceManager\V1\ListRepositoriesRequest;
 use Google\Cloud\SecureSourceManager\V1\ListRepositoriesResponse;
 use Google\Cloud\SecureSourceManager\V1\Repository;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

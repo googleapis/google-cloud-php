@@ -32,7 +32,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.Algorithm algorithm = 3;</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * The observation noise level of the study.
      * Currently only supported by the Vertex AI Vizier service. Not supported by
@@ -40,20 +40,20 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ObservationNoise observation_noise = 6;</code>
      */
-    private $observation_noise = 0;
+    protected $observation_noise = 0;
     /**
      * Describe which measurement selection type will be used
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.MeasurementSelectionType measurement_selection_type = 7;</code>
      */
-    private $measurement_selection_type = 0;
+    protected $measurement_selection_type = 0;
     /**
      * Conditions for automated stopping of a Study. Enable automated stopping by
      * configuring at least one condition.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig study_stopping_config = 11;</code>
      */
-    private $study_stopping_config = null;
+    protected $study_stopping_config = null;
     protected $automated_stopping_spec;
 
     /**

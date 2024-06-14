@@ -17,10 +17,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
 {
     /**
      * Required. Name of parent for the module. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
+     * `organizations/{organization}/locations/{location}`,
+     * `folders/{folder}/locations/{location}`,
      * or
-     * "projects/{project}/locations/{location}"
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -48,10 +48,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
 
     /**
      * @param string                                                                     $parent                           Required. Name of parent for the module. Its format is
-     *                                                                                                                     "organizations/{organization}/locations/{location}",
-     *                                                                                                                     "folders/{folder}/locations/{location}",
+     *                                                                                                                     `organizations/{organization}/locations/{location}`,
+     *                                                                                                                     `folders/{folder}/locations/{location}`,
      *                                                                                                                     or
-     *                                                                                                                     "projects/{project}/locations/{location}"
+     *                                                                                                                     `projects/{project}/locations/{location}`
      *                                                                                                                     Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule $eventThreatDetectionCustomModule Required. The module to create. The
      *                                                                                                                     event_threat_detection_custom_module.name will be ignored and server
@@ -76,10 +76,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *
      *     @type string $parent
      *           Required. Name of parent for the module. Its format is
-     *           "organizations/{organization}/locations/{location}",
-     *           "folders/{folder}/locations/{location}",
+     *           `organizations/{organization}/locations/{location}`,
+     *           `folders/{folder}/locations/{location}`,
      *           or
-     *           "projects/{project}/locations/{location}"
+     *           `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule $event_threat_detection_custom_module
      *           Required. The module to create. The
      *           event_threat_detection_custom_module.name will be ignored and server
@@ -101,10 +101,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
 
     /**
      * Required. Name of parent for the module. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
+     * `organizations/{organization}/locations/{location}`,
+     * `folders/{folder}/locations/{location}`,
      * or
-     * "projects/{project}/locations/{location}"
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -116,10 +116,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
 
     /**
      * Required. Name of parent for the module. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
+     * `organizations/{organization}/locations/{location}`,
+     * `folders/{folder}/locations/{location}`,
      * or
-     * "projects/{project}/locations/{location}"
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

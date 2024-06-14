@@ -79,6 +79,4 @@ class EventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EventType::class, \Google\Cloud\Notebooks\V1\Event_EventType::class);
 

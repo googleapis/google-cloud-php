@@ -29,10 +29,13 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1\Client\SqlInstancesServiceClient;
 use Google\Cloud\Sql\V1\DatabaseInstance;
 use Google\Cloud\Sql\V1\DemoteContext;
+use Google\Cloud\Sql\V1\InstancesAcquireSsrsLeaseRequest;
 use Google\Cloud\Sql\V1\InstancesDemoteRequest;
 use Google\Cloud\Sql\V1\InstancesListResponse;
 use Google\Cloud\Sql\V1\InstancesListServerCasResponse;
 use Google\Cloud\Sql\V1\Operation;
+use Google\Cloud\Sql\V1\SqlInstancesAcquireSsrsLeaseRequest;
+use Google\Cloud\Sql\V1\SqlInstancesAcquireSsrsLeaseResponse;
 use Google\Cloud\Sql\V1\SqlInstancesAddServerCaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
@@ -54,6 +57,8 @@ use Google\Cloud\Sql\V1\SqlInstancesPatchRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPromoteReplicaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReencryptRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseResponse;
 use Google\Cloud\Sql\V1\SqlInstancesRescheduleMaintenanceRequest;
 use Google\Cloud\Sql\V1\SqlInstancesResetReplicaSizeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesResetSslConfigRequest;
@@ -98,6 +103,82 @@ class SqlInstancesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new SqlInstancesServiceClient($options);
+    }
+
+    /** @test */
+    public function acquireSsrsLeaseTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $operationId = 'operationId-274116877';
+        $expectedResponse = new SqlInstancesAcquireSsrsLeaseResponse();
+        $expectedResponse->setOperationId($operationId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesAcquireSsrsLeaseRequest();
+        $request = (new SqlInstancesAcquireSsrsLeaseRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        $response = $gapicClient->acquireSsrsLease($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/AcquireSsrsLease', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function acquireSsrsLeaseExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesAcquireSsrsLeaseRequest();
+        $request = (new SqlInstancesAcquireSsrsLeaseRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        try {
+            $gapicClient->acquireSsrsLease($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1405,6 +1486,76 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function releaseSsrsLeaseTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $operationId = 'operationId-274116877';
+        $expectedResponse = new SqlInstancesReleaseSsrsLeaseResponse();
+        $expectedResponse->setOperationId($operationId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesReleaseSsrsLeaseRequest())
+            ->setInstance($instance)
+            ->setProject($project);
+        $response = $gapicClient->releaseSsrsLease($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/ReleaseSsrsLease', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function releaseSsrsLeaseExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $request = (new SqlInstancesReleaseSsrsLeaseRequest())
+            ->setInstance($instance)
+            ->setProject($project);
+        try {
+            $gapicClient->releaseSsrsLease($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function rescheduleMaintenanceTest()
     {
         $transport = $this->createTransport();
@@ -2277,7 +2428,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function addServerCaAsyncTest()
+    public function acquireSsrsLeaseAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -2285,30 +2436,31 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $kind = 'kind3292052';
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $name = 'name3373707';
-        $targetId = 'targetId-815576439';
-        $selfLink = 'selfLink-1691268851';
-        $targetProject = 'targetProject392184427';
-        $expectedResponse = new Operation();
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setName($name);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setTargetProject($targetProject);
+        $operationId = 'operationId-274116877';
+        $expectedResponse = new SqlInstancesAcquireSsrsLeaseResponse();
+        $expectedResponse->setOperationId($operationId);
         $transport->addResponse($expectedResponse);
-        $request = new SqlInstancesAddServerCaRequest();
-        $response = $gapicClient->addServerCaAsync($request)->wait();
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $body = new InstancesAcquireSsrsLeaseRequest();
+        $request = (new SqlInstancesAcquireSsrsLeaseRequest())
+            ->setInstance($instance)
+            ->setProject($project)
+            ->setBody($body);
+        $response = $gapicClient->acquireSsrsLeaseAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/AddServerCa', $actualFuncCall);
+        $this->assertSame('/google.cloud.sql.v1.SqlInstancesService/AcquireSsrsLease', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

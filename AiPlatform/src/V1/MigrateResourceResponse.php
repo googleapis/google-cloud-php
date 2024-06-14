@@ -21,7 +21,7 @@ class MigrateResourceResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MigratableResource migratable_resource = 3;</code>
      */
-    private $migratable_resource = null;
+    protected $migratable_resource = null;
     protected $migrated_resource;
 
     /**

@@ -20,13 +20,13 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.SnapshotAnalysis snapshot_analysis = 1;</code>
      */
-    private $snapshot_analysis = null;
+    protected $snapshot_analysis = null;
     /**
      * The config for ImportFeatures Analysis Based Feature Monitoring.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis import_features_analysis = 2;</code>
      */
-    private $import_features_analysis = null;
+    protected $import_features_analysis = null;
     /**
      * Threshold for numerical features of anomaly detection.
      * This is shared by all objectives of Featurestore Monitoring for numerical
@@ -36,7 +36,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig numerical_threshold_config = 3;</code>
      */
-    private $numerical_threshold_config = null;
+    protected $numerical_threshold_config = null;
     /**
      * Threshold for categorical features of anomaly detection.
      * This is shared by all types of Featurestore Monitoring for categorical
@@ -46,7 +46,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig categorical_threshold_config = 4;</code>
      */
-    private $categorical_threshold_config = null;
+    protected $categorical_threshold_config = null;
 
     /**
      * Constructor.
