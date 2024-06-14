@@ -1747,8 +1747,7 @@ class Database
      *           transactions.
      * }
      *
-     * @return \Google\ApiCore\ServerStream<BatchWriteResponse> A stream of BatchWriteResponse
-     *          {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     * @retur \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
      *
      * @throws ApiException if the remote call fails
      */

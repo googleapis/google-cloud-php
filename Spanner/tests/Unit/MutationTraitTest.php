@@ -130,6 +130,7 @@ class MutationTraitTest extends TestCase
     }
 }
 
+//@codingStandardsIgnoreStart
 class MutationTraitImpl
 {
     use MutationTrait {
@@ -143,3 +144,4 @@ class MutationTraitImpl
         $this->mapper = new ValueMapper(false);
     }
 }
+//@codingStandardsIgnoreEnd
