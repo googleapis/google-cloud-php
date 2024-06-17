@@ -40,6 +40,24 @@ class MembershipSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string version = 10;</code>
      */
     private $version = '';
+    /**
+     * The user-specified cluster name used by Config Sync cluster-name-selector
+     * annotation or ClusterSelector, for applying configs to only a subset
+     * of clusters.
+     * Omit this field if the cluster's fleet membership name is used by Config
+     * Sync cluster-name-selector annotation or ClusterSelector.
+     * Set this field if a name different from the cluster's fleet membership name
+     * is used by Config Sync cluster-name-selector annotation or ClusterSelector.
+     *
+     * Generated from protobuf field <code>string cluster = 11;</code>
+     */
+    private $cluster = '';
+    /**
+     * Enables automatic Feature management.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.MembershipSpec.Management management = 12;</code>
+     */
+    private $management = 0;
 
     /**
      * Constructor.
@@ -55,6 +73,16 @@ class MembershipSpec extends \Google\Protobuf\Internal\Message
      *           Hierarchy Controller configuration for the cluster.
      *     @type string $version
      *           Version of ACM installed.
+     *     @type string $cluster
+     *           The user-specified cluster name used by Config Sync cluster-name-selector
+     *           annotation or ClusterSelector, for applying configs to only a subset
+     *           of clusters.
+     *           Omit this field if the cluster's fleet membership name is used by Config
+     *           Sync cluster-name-selector annotation or ClusterSelector.
+     *           Set this field if a name different from the cluster's fleet membership name
+     *           is used by Config Sync cluster-name-selector annotation or ClusterSelector.
+     *     @type int $management
+     *           Enables automatic Feature management.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +220,70 @@ class MembershipSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user-specified cluster name used by Config Sync cluster-name-selector
+     * annotation or ClusterSelector, for applying configs to only a subset
+     * of clusters.
+     * Omit this field if the cluster's fleet membership name is used by Config
+     * Sync cluster-name-selector annotation or ClusterSelector.
+     * Set this field if a name different from the cluster's fleet membership name
+     * is used by Config Sync cluster-name-selector annotation or ClusterSelector.
+     *
+     * Generated from protobuf field <code>string cluster = 11;</code>
+     * @return string
+     */
+    public function getCluster()
+    {
+        return $this->cluster;
+    }
+
+    /**
+     * The user-specified cluster name used by Config Sync cluster-name-selector
+     * annotation or ClusterSelector, for applying configs to only a subset
+     * of clusters.
+     * Omit this field if the cluster's fleet membership name is used by Config
+     * Sync cluster-name-selector annotation or ClusterSelector.
+     * Set this field if a name different from the cluster's fleet membership name
+     * is used by Config Sync cluster-name-selector annotation or ClusterSelector.
+     *
+     * Generated from protobuf field <code>string cluster = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCluster($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enables automatic Feature management.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.MembershipSpec.Management management = 12;</code>
+     * @return int
+     */
+    public function getManagement()
+    {
+        return $this->management;
+    }
+
+    /**
+     * Enables automatic Feature management.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.MembershipSpec.Management management = 12;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setManagement($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\ConfigManagement\V1\MembershipSpec\Management::class);
+        $this->management = $var;
 
         return $this;
     }

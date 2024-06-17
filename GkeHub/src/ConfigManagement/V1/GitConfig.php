@@ -47,7 +47,9 @@ class GitConfig extends \Google\Protobuf\Internal\Message
      */
     private $sync_rev = '';
     /**
-     * Type of secret configured for access to the Git repo.
+     * Type of secret configured for access to the Git repo. Must be one of ssh,
+     * cookiefile, gcenode, token, gcpserviceaccount or none. The
+     * validation of this is case-sensitive. Required.
      *
      * Generated from protobuf field <code>string secret_type = 6;</code>
      */
@@ -59,7 +61,7 @@ class GitConfig extends \Google\Protobuf\Internal\Message
      */
     private $https_proxy = '';
     /**
-     * The GCP Service Account Email used for auth when secret_type is
+     * The Google Cloud Service Account Email used for auth when secret_type is
      * gcpServiceAccount.
      *
      * Generated from protobuf field <code>string gcp_service_account_email = 8;</code>
@@ -84,11 +86,13 @@ class GitConfig extends \Google\Protobuf\Internal\Message
      *     @type string $sync_rev
      *           Git revision (tag or hash) to check out. Default HEAD.
      *     @type string $secret_type
-     *           Type of secret configured for access to the Git repo.
+     *           Type of secret configured for access to the Git repo. Must be one of ssh,
+     *           cookiefile, gcenode, token, gcpserviceaccount or none. The
+     *           validation of this is case-sensitive. Required.
      *     @type string $https_proxy
      *           URL for the HTTPS proxy to be used when communicating with the Git repo.
      *     @type string $gcp_service_account_email
-     *           The GCP Service Account Email used for auth when secret_type is
+     *           The Google Cloud Service Account Email used for auth when secret_type is
      *           gcpServiceAccount.
      * }
      */
@@ -230,7 +234,9 @@ class GitConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of secret configured for access to the Git repo.
+     * Type of secret configured for access to the Git repo. Must be one of ssh,
+     * cookiefile, gcenode, token, gcpserviceaccount or none. The
+     * validation of this is case-sensitive. Required.
      *
      * Generated from protobuf field <code>string secret_type = 6;</code>
      * @return string
@@ -241,7 +247,9 @@ class GitConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of secret configured for access to the Git repo.
+     * Type of secret configured for access to the Git repo. Must be one of ssh,
+     * cookiefile, gcenode, token, gcpserviceaccount or none. The
+     * validation of this is case-sensitive. Required.
      *
      * Generated from protobuf field <code>string secret_type = 6;</code>
      * @param string $var
@@ -282,7 +290,7 @@ class GitConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP Service Account Email used for auth when secret_type is
+     * The Google Cloud Service Account Email used for auth when secret_type is
      * gcpServiceAccount.
      *
      * Generated from protobuf field <code>string gcp_service_account_email = 8;</code>
@@ -294,7 +302,7 @@ class GitConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP Service Account Email used for auth when secret_type is
+     * The Google Cloud Service Account Email used for auth when secret_type is
      * gcpServiceAccount.
      *
      * Generated from protobuf field <code>string gcp_service_account_email = 8;</code>

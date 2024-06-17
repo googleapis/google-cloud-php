@@ -21,33 +21,33 @@ class OciConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sync_repo = 1;</code>
      */
-    protected $sync_repo = '';
+    private $sync_repo = '';
     /**
      * The absolute path of the directory that contains
      * the local resources.  Default: the root directory of the image.
      *
      * Generated from protobuf field <code>string policy_dir = 2;</code>
      */
-    protected $policy_dir = '';
+    private $policy_dir = '';
     /**
      * Period in seconds between consecutive syncs. Default: 15.
      *
      * Generated from protobuf field <code>int64 sync_wait_secs = 3;</code>
      */
-    protected $sync_wait_secs = 0;
+    private $sync_wait_secs = 0;
     /**
      * Type of secret configured for access to the Git repo.
      *
      * Generated from protobuf field <code>string secret_type = 4;</code>
      */
-    protected $secret_type = '';
+    private $secret_type = '';
     /**
      * The Google Cloud Service Account Email used for auth when secret_type is
      * gcpServiceAccount.
      *
      * Generated from protobuf field <code>string gcp_service_account_email = 5;</code>
      */
-    protected $gcp_service_account_email = '';
+    private $gcp_service_account_email = '';
 
     /**
      * Constructor.
