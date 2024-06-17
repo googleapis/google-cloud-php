@@ -37,6 +37,7 @@ use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Psr\Log\LoggerInterface;
 
 /**
  * @group bigtable
@@ -91,12 +92,22 @@ class SmartRetriesTest extends TestCase
         $this->expectExceptionMessage('DEADLINE_EXCEEDED');
 
         $expectedArgs = $this->options;
+        $attempt = 0;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(4)
             ->willThrow(
                 $this->retryingApiException
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($optionalArgs) use ($expectedArgs, &$attempt) {
+                $attemptHeader = $optionalArgs['headers']['bigtable-attempt'][0] ?? null;
+                unset($optionalArgs['headers']['bigtable-attempt']);
+
+                return $optionalArgs === $expectedArgs
+                    && ($attemptHeader === (string) $attempt++ || $attempt === 1);
+            })
+        )
             ->shouldBeCalledTimes(4)
             ->willReturn(
                 $this->serverStream->reveal()
@@ -112,12 +123,22 @@ class SmartRetriesTest extends TestCase
         $this->expectExceptionMessage('DEADLINE_EXCEEDED');
 
         $expectedArgs = $this->options;
+        $attempt = 0;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(6)
             ->willThrow(
                 $this->retryingApiException
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($optionalArgs) use ($expectedArgs, &$attempt) {
+                $attemptHeader = $optionalArgs['headers']['bigtable-attempt'][0] ?? null;
+                unset($optionalArgs['headers']['bigtable-attempt']);
+
+                return $optionalArgs === $expectedArgs
+                    && ($attemptHeader === (string) $attempt++ || $attempt === 1);
+            })
+        )
             ->shouldBeCalledTimes(6)
             ->willReturn(
                 $this->serverStream->reveal()
@@ -147,6 +168,7 @@ class SmartRetriesTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
+        $expectedArgs['headers']['bigtable-attempt'] = ['1'];
         $secondCallArgument = [
             'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk2')])
         ] + $expectedArgs;
@@ -169,6 +191,39 @@ class SmartRetriesTest extends TestCase
         }
     }
 
+    public function testReadRowsContainsAttemptHeader()
+    {
+        $attempt = 0;
+        $expectedArgs = $this->options;
+        $retryingApiException = $this->retryingApiException;
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($callOptions) use (&$attempt) {
+                $attemptHeader = $callOptions['headers']['bigtable-attempt'][0] ?? null;
+                ($attempt === 0)
+                    ? $this->assertNull($attemptHeader)
+                    : $this->assertSame('1', $attemptHeader);
+
+                return true;
+            })
+        )->shouldBeCalledTimes(2)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $this->serverStream->readAll()
+            ->will(function () use (&$attempt, $retryingApiException) {
+                // throw a retriable exception on the first call
+                if (0 === $attempt++) {
+                    throw $retryingApiException;
+                }
+                return [];
+            });
+
+        $iterator = $this->table->readRows();
+        $iterator->getIterator()->current();
+    }
+
     public function testReadRowsWithRowsLimit()
     {
         $args = ['rowsLimit' => 5];
@@ -189,6 +244,7 @@ class SmartRetriesTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
+        $expectedArgs['headers']['bigtable-attempt'] = ['1'];
         $secondCallArgument = [
             'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk2')]),
             'rowsLimit' => 3
@@ -519,7 +575,18 @@ class SmartRetriesTest extends TestCase
             );
         $mutations = $this->generateMutations(1, 5);
         $entries = $this->generateEntries(1, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
+        $attempt = 0;
+        $this->bigtableClient->mutateRows(
+            self::TABLE_NAME,
+            $entries,
+            Argument::that(function ($optionalArgs) use (&$attempt) {
+                $attemptHeader = $optionalArgs['headers']['bigtable-attempt'][0] ?? null;
+                unset($optionalArgs['headers']['bigtable-attempt']);
+
+                return $optionalArgs === $this->options
+                    && ($attemptHeader === (string) $attempt++ || $attempt === 1);
+            })
+        )
             ->shouldBeCalledTimes(4)
             ->willReturn(
                 $this->serverStream->reveal()
@@ -539,7 +606,19 @@ class SmartRetriesTest extends TestCase
             );
         $mutations = $this->generateMutations(1, 5);
         $entries = $this->generateEntries(1, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, ['retries' => 5] + $this->options)
+        $expectedArgs = ['retries' => 5] + $this->options;
+        $attempt = 0;
+        $this->bigtableClient->mutateRows(
+            self::TABLE_NAME,
+            $entries,
+            Argument::that(function ($optionalArgs) use ($expectedArgs, &$attempt) {
+                $attemptHeader = $optionalArgs['headers']['bigtable-attempt'][0] ?? null;
+                unset($optionalArgs['headers']['bigtable-attempt']);
+
+                return $optionalArgs === $expectedArgs
+                    && ($attemptHeader === (string) $attempt++ || $attempt === 1);
+            })
+        )
             ->shouldBeCalledTimes(6)
             ->willReturn(
                 $this->serverStream->reveal()
@@ -549,6 +628,7 @@ class SmartRetriesTest extends TestCase
 
     public function testMutateRowsOnlyRetriesFailedEntries()
     {
+        $expectedArgs = $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -560,13 +640,14 @@ class SmartRetriesTest extends TestCase
                 )
             );
         $entries = $this->generateEntries(0, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $expectedArgs)
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
+        $expectedArgs['headers']['bigtable-attempt'] = ['1'];
         $entries = $this->generateEntries(2, 3);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -577,6 +658,7 @@ class SmartRetriesTest extends TestCase
 
     public function testMutateRowsExceptionShouldAddEntryToPendingMutations()
     {
+        $expectedArgs = $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->willReturn(
@@ -589,13 +671,14 @@ class SmartRetriesTest extends TestCase
                 )
             );
         $entries = $this->generateEntries(0, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $expectedArgs)
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
         $entries = array_merge($this->generateEntries(1, 2), $this->generateEntries(4, 5));
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
+        $expectedArgs['headers']['bigtable-attempt'] = ['1'];
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
@@ -665,6 +748,66 @@ class SmartRetriesTest extends TestCase
             }
             $this->assertEquals($expectedFailedMutations, $ex->getMetadata());
         }
+    }
+
+    public function testReadRowsShouldLogRetryableExeception()
+    {
+        $attempt = 0;
+        $expectedArgs = $this->options;
+        $retryingApiException = $this->retryingApiException;
+        $logger = $this->prophesize(LoggerInterface::class);
+        $logger->error('DEADLINE_EXCEEDED')
+            ->shouldBeCalledOnce();
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($callOptions) use (&$attempt) {
+                $attemptHeader = $callOptions['headers']['bigtable-attempt'][0] ?? null;
+                ($attempt === 0)
+                    ? $this->assertNull($attemptHeader)
+                    : $this->assertSame('1', $attemptHeader);
+
+                return true;
+            })
+        )->shouldBeCalledTimes(2)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $this->serverStream->readAll()
+            ->will(function () use (&$attempt, $retryingApiException) {
+                // throw a retriable exception on the first call
+                if (0 === $attempt++) {
+                    throw $retryingApiException;
+                }
+                return [];
+            });
+
+        $iterator = $this->table->readRows(['logger' => $logger->reveal()]);
+        $iterator->getIterator()->current();
+    }
+
+    public function testReadRowsShouldLogNonRetryableExeception()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('UNAUTHENTICATED');
+
+        $logger = $this->prophesize(LoggerInterface::class);
+        $logger->error('UNAUTHENTICATED')
+            ->shouldBeCalledOnce();
+
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            $this->options
+        )->shouldBeCalledOnce()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $this->serverStream->readAll()
+            ->willThrow($this->nonRetryingApiException);
+
+        $iterator = $this->table->readRows(['logger' => $logger->reveal()]);
+        $iterator->getIterator()->current();
     }
 
     private function generateRowsResponse($from, $to)

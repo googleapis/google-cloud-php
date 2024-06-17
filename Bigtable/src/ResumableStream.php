@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Rpc\Code;
+use Psr\Log\LoggerInterface;
 
 /**
  * User stream which handles failure from upstream, retries if necessary and
@@ -59,6 +60,11 @@ class ResumableStream implements \IteratorAggregate
     private $retryFunction;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Constructs a resumable stream.
      *
      * @param callable $apiFunction Function to execute to get server stream. Function signature
@@ -72,12 +78,14 @@ class ResumableStream implements \IteratorAggregate
         callable $apiFunction,
         callable $argumentFunction,
         callable $retryFunction,
-        $retries = self::DEFAULT_MAX_RETRIES
+        $retries = self::DEFAULT_MAX_RETRIES,
+        LoggerInterface $logger = null
     ) {
         $this->retries = $retries ?: self::DEFAULT_MAX_RETRIES;
         $this->apiFunction = $apiFunction;
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
+        $this->logger = $logger;
     }
 
     /**
@@ -95,12 +103,23 @@ class ResumableStream implements \IteratorAggregate
             $ex = null;
             $args = $argumentFunction();
             if (!isset($args[1]['requestCompleted']) || $args[1]['requestCompleted'] !== true) {
+                if ($tries > 0) {
+                    // Send in "bigtable-attempt" header on retry
+                    $optionalArgs = array_pop($args);
+                    $headers = $optionalArgs['headers'] ?? [];
+                    $headers['bigtable-attempt'] = [(string) $tries];
+                    $optionalArgs['headers'] = $headers;
+                    $args[] = $optionalArgs;
+                }
                 $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $args);
                 try {
                     foreach ($stream->readAll() as $item) {
                         yield $item;
                     }
                 } catch (\Exception $ex) {
+                    if ($this->logger) {
+                        $this->logger->error($ex->getMessage());
+                    }
                 }
             }
             $tries++;
