@@ -51,6 +51,12 @@ class ConfigSyncDeploymentState extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState root_reconciler = 6;</code>
      */
     private $root_reconciler = 0;
+    /**
+     * Deployment state of admission-webhook
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState admission_webhook = 7;</code>
+     */
+    private $admission_webhook = 0;
 
     /**
      * Constructor.
@@ -70,6 +76,8 @@ class ConfigSyncDeploymentState extends \Google\Protobuf\Internal\Message
      *           Deployment state of reconciler-manager pod
      *     @type int $root_reconciler
      *           Deployment state of root-reconciler
+     *     @type int $admission_webhook
+     *           Deployment state of admission-webhook
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +237,32 @@ class ConfigSyncDeploymentState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\ConfigManagement\V1\DeploymentState::class);
         $this->root_reconciler = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deployment state of admission-webhook
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState admission_webhook = 7;</code>
+     * @return int
+     */
+    public function getAdmissionWebhook()
+    {
+        return $this->admission_webhook;
+    }
+
+    /**
+     * Deployment state of admission-webhook
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState admission_webhook = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAdmissionWebhook($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\ConfigManagement\V1\DeploymentState::class);
+        $this->admission_webhook = $var;
 
         return $this;
     }
