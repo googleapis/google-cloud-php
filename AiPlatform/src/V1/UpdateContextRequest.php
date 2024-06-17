@@ -24,20 +24,20 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Context context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $context = null;
+    protected $context = null;
     /**
      * Optional. A FieldMask indicating which fields should be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is
      * not found, a new [Context][google.cloud.aiplatform.v1.Context] is created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Context $context    Required. The Context containing updates.

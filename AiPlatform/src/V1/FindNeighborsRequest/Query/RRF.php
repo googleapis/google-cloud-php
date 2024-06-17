@@ -22,7 +22,7 @@ class RRF extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float alpha = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $alpha = 0.0;
+    protected $alpha = 0.0;
 
     /**
      * Constructor.

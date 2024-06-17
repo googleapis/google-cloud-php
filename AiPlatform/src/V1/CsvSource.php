@@ -20,7 +20,7 @@ class CsvSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsSource gcs_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gcs_source = null;
+    protected $gcs_source = null;
 
     /**
      * Constructor.

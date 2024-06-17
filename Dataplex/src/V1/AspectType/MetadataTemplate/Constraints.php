@@ -20,7 +20,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool required = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $required = false;
+    protected $required = false;
 
     /**
      * Constructor.

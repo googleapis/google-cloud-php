@@ -40,7 +40,7 @@ class TrainingPredictionSkewDetectionConfig extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ThresholdConfig default_skew_threshold = 6;</code>
      */
-    private $default_skew_threshold = null;
+    protected $default_skew_threshold = null;
 
     /**
      * Constructor.

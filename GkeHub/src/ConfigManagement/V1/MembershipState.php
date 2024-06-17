@@ -16,11 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MembershipState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The user-defined name for the cluster used by ClusterSelectors to group
-     * clusters together. This should match Membership's membership_name,
-     * unless the user installed ACM on the cluster manually prior to enabling
-     * the ACM hub feature.
-     * Unique within a Anthos Config Management installation.
+     * This field is set to the `cluster_name` field of the Membership Spec if it
+     * is not empty. Otherwise, it is set to the cluster's fleet membership name.
      *
      * Generated from protobuf field <code>string cluster_name = 1;</code>
      */
@@ -65,11 +62,8 @@ class MembershipState extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cluster_name
-     *           The user-defined name for the cluster used by ClusterSelectors to group
-     *           clusters together. This should match Membership's membership_name,
-     *           unless the user installed ACM on the cluster manually prior to enabling
-     *           the ACM hub feature.
-     *           Unique within a Anthos Config Management installation.
+     *           This field is set to the `cluster_name` field of the Membership Spec if it
+     *           is not empty. Otherwise, it is set to the cluster's fleet membership name.
      *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\MembershipSpec $membership_spec
      *           Membership configuration in the cluster. This represents the actual state
      *           in the cluster, while the MembershipSpec in the FeatureSpec represents
@@ -90,11 +84,8 @@ class MembershipState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user-defined name for the cluster used by ClusterSelectors to group
-     * clusters together. This should match Membership's membership_name,
-     * unless the user installed ACM on the cluster manually prior to enabling
-     * the ACM hub feature.
-     * Unique within a Anthos Config Management installation.
+     * This field is set to the `cluster_name` field of the Membership Spec if it
+     * is not empty. Otherwise, it is set to the cluster's fleet membership name.
      *
      * Generated from protobuf field <code>string cluster_name = 1;</code>
      * @return string
@@ -105,11 +96,8 @@ class MembershipState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user-defined name for the cluster used by ClusterSelectors to group
-     * clusters together. This should match Membership's membership_name,
-     * unless the user installed ACM on the cluster manually prior to enabling
-     * the ACM hub feature.
-     * Unique within a Anthos Config Management installation.
+     * This field is set to the `cluster_name` field of the Membership Spec if it
+     * is not empty. Otherwise, it is set to the cluster's fleet membership name.
      *
      * Generated from protobuf field <code>string cluster_name = 1;</code>
      * @param string $var

@@ -20,7 +20,7 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image = 3;</code>
      */
-    private $image = '';
+    protected $image = '';
     /**
      * Image tag to use. This will generally be the full path to an image, such
      * as "gcr.io/my-project/busybox:1.2.3" or
@@ -28,7 +28,7 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag = 2;</code>
      */
-    private $tag = '';
+    protected $tag = '';
 
     /**
      * Constructor.

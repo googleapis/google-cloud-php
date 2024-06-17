@@ -23,38 +23,38 @@ class ListDatasetVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The standard list filter.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The standard list page size.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The standard list page token.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Mask specifying which fields to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_mask = null;
+    protected $read_mask = null;
     /**
      * Optional. A comma-separated list of fields to order by, sorted in ascending
      * order. Use "desc" after a field name for descending.
      *
      * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The resource name of the Dataset to list DatasetVersions from.

@@ -20,13 +20,13 @@ class FileData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Required. URI.
      *
      * Generated from protobuf field <code>string file_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $file_uri = '';
+    protected $file_uri = '';
 
     /**
      * Constructor.

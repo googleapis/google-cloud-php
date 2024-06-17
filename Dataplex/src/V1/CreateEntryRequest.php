@@ -19,7 +19,7 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Entry identifier. It has to be unique within an Entry Group.
      * Entries corresponding to Google Cloud resources use Entry ID format based
@@ -39,13 +39,13 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entry_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_id = '';
+    protected $entry_id = '';
     /**
      * Required. Entry resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry entry = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry = null;
+    protected $entry = null;
 
     /**
      * @param string                          $parent  Required. The resource name of the parent Entry Group:

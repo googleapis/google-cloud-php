@@ -77,6 +77,4 @@ class ResourceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourceType::class, \Google\Cloud\AssuredWorkloads\V1\Workload_ResourceInfo_ResourceType::class);
 

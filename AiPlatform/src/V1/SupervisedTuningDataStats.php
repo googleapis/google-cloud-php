@@ -20,43 +20,43 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 tuning_dataset_example_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tuning_dataset_example_count = 0;
+    protected $tuning_dataset_example_count = 0;
     /**
      * Output only. Number of tuning characters in the tuning dataset.
      *
      * Generated from protobuf field <code>int64 total_tuning_character_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $total_tuning_character_count = 0;
+    protected $total_tuning_character_count = 0;
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
      * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $total_billable_character_count = 0;
+    protected $total_billable_character_count = 0;
     /**
      * Output only. Number of tuning steps for this Tuning Job.
      *
      * Generated from protobuf field <code>int64 tuning_step_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tuning_step_count = 0;
+    protected $tuning_step_count = 0;
     /**
      * Output only. Dataset distributions for the user input tokens.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedTuningDatasetDistribution user_input_token_distribution = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $user_input_token_distribution = null;
+    protected $user_input_token_distribution = null;
     /**
      * Output only. Dataset distributions for the user output tokens.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedTuningDatasetDistribution user_output_token_distribution = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $user_output_token_distribution = null;
+    protected $user_output_token_distribution = null;
     /**
      * Output only. Dataset distributions for the messages per example.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SupervisedTuningDatasetDistribution user_message_per_example_distribution = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $user_message_per_example_distribution = null;
+    protected $user_message_per_example_distribution = null;
     /**
      * Output only. Sample user messages in the training dataset uri.
      *

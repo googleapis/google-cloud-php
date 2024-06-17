@@ -26,13 +26,13 @@ class BackendMetastore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of the backend metastore.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.BackendMetastore.MetastoreType metastore_type = 2;</code>
      */
-    private $metastore_type = 0;
+    protected $metastore_type = 0;
 
     /**
      * Constructor.

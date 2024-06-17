@@ -23,7 +23,7 @@ class Probe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 period_seconds = 2;</code>
      */
-    private $period_seconds = 0;
+    protected $period_seconds = 0;
     /**
      * Number of seconds after which the probe times out. Defaults to 1 second.
      * Minimum value is 1. Must be greater or equal to period_seconds.
@@ -31,7 +31,7 @@ class Probe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 timeout_seconds = 3;</code>
      */
-    private $timeout_seconds = 0;
+    protected $timeout_seconds = 0;
     protected $probe_type;
 
     /**

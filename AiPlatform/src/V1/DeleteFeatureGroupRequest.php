@@ -23,7 +23,7 @@ class DeleteFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set to true, any Features under this FeatureGroup
      * will also be deleted. (Otherwise, the request will only work if the
@@ -31,7 +31,7 @@ class DeleteFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name  Required. The name of the FeatureGroup to be deleted.

@@ -66,6 +66,4 @@ class RedirectionState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RedirectionState::class, \Google\Cloud\ArtifactRegistry\V1\ProjectSettings_RedirectionState::class);
 

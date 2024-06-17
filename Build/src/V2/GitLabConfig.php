@@ -22,7 +22,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_uri = 1;</code>
      */
-    private $host_uri = '';
+    protected $host_uri = '';
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * of a GitLab Enterprise project, formatted as
@@ -30,20 +30,20 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $webhook_secret_secret_version = '';
+    protected $webhook_secret_secret_version = '';
     /**
      * Required. A GitLab personal access token with the minimum `read_api` scope
      * access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential read_authorizer_credential = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $read_authorizer_credential = null;
+    protected $read_authorizer_credential = null;
     /**
      * Required. A GitLab personal access token with the `api` scope access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential authorizer_credential = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorizer_credential = null;
+    protected $authorizer_credential = null;
     /**
      * Configuration for using Service Directory to privately connect to a GitLab
      * Enterprise server. This should only be set if the GitLab Enterprise server
@@ -53,20 +53,20 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5;</code>
      */
-    private $service_directory_config = null;
+    protected $service_directory_config = null;
     /**
      * SSL certificate to use for requests to GitLab Enterprise.
      *
      * Generated from protobuf field <code>string ssl_ca = 6;</code>
      */
-    private $ssl_ca = '';
+    protected $ssl_ca = '';
     /**
      * Output only. Version of the GitLab Enterprise server running on the
      * `host_uri`.
      *
      * Generated from protobuf field <code>string server_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $server_version = '';
+    protected $server_version = '';
 
     /**
      * Constructor.

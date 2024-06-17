@@ -20,20 +20,20 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Output only. Content parts of the candidate.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Content content = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $content = null;
+    protected $content = null;
     /**
      * Output only. The reason why the model stopped generating tokens.
      * If empty, the model has not stopped generating the tokens.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Candidate.FinishReason finish_reason = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $finish_reason = 0;
+    protected $finish_reason = 0;
     /**
      * Output only. List of ratings for the safety of a response candidate.
      * There is at most one rating per category.
@@ -47,19 +47,19 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string finish_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $finish_message = null;
+    protected $finish_message = null;
     /**
      * Output only. Source attribution of the generated content.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CitationMetadata citation_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $citation_metadata = null;
+    protected $citation_metadata = null;
     /**
      * Output only. Metadata specifies sources used to ground generated content.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingMetadata grounding_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $grounding_metadata = null;
+    protected $grounding_metadata = null;
 
     /**
      * Constructor.

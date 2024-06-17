@@ -20,7 +20,7 @@ class DeployedIndexAuthConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndexAuthConfig.AuthProvider auth_provider = 1;</code>
      */
-    private $auth_provider = null;
+    protected $auth_provider = null;
 
     /**
      * Constructor.

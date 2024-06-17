@@ -21,7 +21,7 @@ class ListOptimalTrialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string $parent Required. The name of the Study that the optimal Trial belongs to. Please see

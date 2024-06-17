@@ -21,13 +21,13 @@ class ValidateAttestationOccurrenceResponse extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.ValidateAttestationOccurrenceResponse.Result result = 1;</code>
      */
-    private $result = 0;
+    protected $result = 0;
     /**
      * The reason for denial if the Attestation couldn't be validated.
      *
      * Generated from protobuf field <code>string denial_reason = 2;</code>
      */
-    private $denial_reason = '';
+    protected $denial_reason = '';
 
     /**
      * Constructor.

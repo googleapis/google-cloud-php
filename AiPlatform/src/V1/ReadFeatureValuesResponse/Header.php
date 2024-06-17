@@ -25,7 +25,7 @@ class Header extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * List of Feature metadata corresponding to each piece of
      * [ReadFeatureValuesResponse.EntityView.data][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.data].

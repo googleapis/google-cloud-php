@@ -23,7 +23,7 @@ class MigrateDataLabelingAnnotatedDatasetConfig extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string annotated_dataset = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $annotated_dataset = '';
+    protected $annotated_dataset = '';
 
     /**
      * Constructor.

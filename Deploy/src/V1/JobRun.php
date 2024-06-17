@@ -22,49 +22,49 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Unique identifier of the `JobRun`.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. ID of the `Rollout` phase this `JobRun` belongs in.
      *
      * Generated from protobuf field <code>string phase_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phase_id = '';
+    protected $phase_id = '';
     /**
      * Output only. ID of the `Rollout` job this `JobRun` corresponds to.
      *
      * Generated from protobuf field <code>string job_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Output only. Time at which the `JobRun` was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time at which the `JobRun` was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time at which the `JobRun` ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The current state of the `JobRun`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.JobRun.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. This checksum is computed by the server based on the value of
      * other fields, and may be sent on update and delete requests to ensure the
@@ -72,7 +72,7 @@ class JobRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     protected $job_run;
 
     /**

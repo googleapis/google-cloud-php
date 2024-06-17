@@ -21,7 +21,7 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Specifies the time window for retrieving active Violations.
      * When specified, retrieves Violations that were active between start_time
@@ -29,25 +29,25 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.TimeWindow interval = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $interval = null;
+    protected $interval = null;
     /**
      * Optional. Page size.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token returned from previous request.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. A custom filter for filtering by the Violations properties.
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The Workload name.

@@ -23,7 +23,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * If this timeout is set, the server returns a response before the timeout
      * period has elapsed or the server deadline for synchronous requests is
@@ -33,25 +33,25 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 2;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Shipment model to solve.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentModel model = 3;</code>
      */
-    private $model = null;
+    protected $model = null;
     /**
      * By default, the solving mode is `DEFAULT_SOLVE` (0).
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.OptimizeToursRequest.SolvingMode solving_mode = 4;</code>
      */
-    private $solving_mode = 0;
+    protected $solving_mode = 0;
     /**
      * Search mode used to solve the request.
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.OptimizeToursRequest.SearchMode search_mode = 6;</code>
      */
-    private $search_mode = 0;
+    protected $search_mode = 0;
     /**
      * Guide the optimization algorithm in finding a first solution that is
      * similar to a previous solution.
@@ -93,7 +93,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.InjectedSolutionConstraint injected_solution_constraint = 8;</code>
      */
-    private $injected_solution_constraint = null;
+    protected $injected_solution_constraint = null;
     /**
      * If non-empty, the given routes will be refreshed, without modifying their
      * underlying sequence of visits or travel times: only other details will be
@@ -173,7 +173,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool interpret_injected_solutions_using_labels = 10;</code>
      */
-    private $interpret_injected_solutions_using_labels = false;
+    protected $interpret_injected_solutions_using_labels = false;
     /**
      * Consider traffic estimation in calculating `ShipmentRoute` fields
      * [Transition.travel_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.travel_duration],
@@ -186,13 +186,13 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool consider_road_traffic = 11;</code>
      */
-    private $consider_road_traffic = false;
+    protected $consider_road_traffic = false;
     /**
      * If true, polylines will be populated in response `ShipmentRoute`s.
      *
      * Generated from protobuf field <code>bool populate_polylines = 12;</code>
      */
-    private $populate_polylines = false;
+    protected $populate_polylines = false;
     /**
      * If true, polylines will be populated in response
      * [ShipmentRoute.transitions][google.cloud.optimization.v1.ShipmentRoute.transitions].
@@ -201,7 +201,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool populate_transition_polylines = 13;</code>
      */
-    private $populate_transition_polylines = false;
+    protected $populate_transition_polylines = false;
     /**
      * If this is set, then the request can have a deadline
      * (see https://grpc.io/blog/deadlines) of up to 60 minutes.
@@ -211,7 +211,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_large_deadline_despite_interruption_risk = 14;</code>
      */
-    private $allow_large_deadline_despite_interruption_risk = false;
+    protected $allow_large_deadline_despite_interruption_risk = false;
     /**
      * If true, travel distances will be computed using geodesic distances instead
      * of Google Maps distances, and travel times will be computed using geodesic
@@ -219,7 +219,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_geodesic_distances = 15;</code>
      */
-    private $use_geodesic_distances = false;
+    protected $use_geodesic_distances = false;
     /**
      * When `use_geodesic_distances` is true, this field must be set and defines
      * the speed applied to compute travel times. Its value must be at least 1.0
@@ -227,7 +227,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double geodesic_meters_per_second = 16;</code>
      */
-    private $geodesic_meters_per_second = null;
+    protected $geodesic_meters_per_second = null;
     /**
      * Truncates the number of validation errors returned. These errors are
      * typically attached to an INVALID_ARGUMENT error payload as a BadRequest
@@ -239,14 +239,14 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_validation_errors = 5;</code>
      */
-    private $max_validation_errors = null;
+    protected $max_validation_errors = null;
     /**
      * Label that may be used to identify this request, reported back in the
      * [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
      *
      * Generated from protobuf field <code>string label = 17;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * Deprecated: Use
      * [OptimizeToursRequest.populate_transition_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_transition_polylines]

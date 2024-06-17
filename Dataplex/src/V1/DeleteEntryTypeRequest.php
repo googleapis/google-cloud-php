@@ -21,14 +21,14 @@ class DeleteEntryTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If the client provided etag value does not match the current etag
      * value, the DeleteEntryTypeRequest method returns an ABORTED error response
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name of the EntryType:

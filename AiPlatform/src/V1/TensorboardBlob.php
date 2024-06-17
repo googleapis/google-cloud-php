@@ -21,14 +21,14 @@ class TensorboardBlob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. The bytes of the blob is not present unless it's returned by the
      * ReadTensorboardBlobData endpoint.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data = '';
+    protected $data = '';
 
     /**
      * Constructor.

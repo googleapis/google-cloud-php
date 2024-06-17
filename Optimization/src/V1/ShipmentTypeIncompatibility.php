@@ -29,7 +29,7 @@ class ShipmentTypeIncompatibility extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.ShipmentTypeIncompatibility.IncompatibilityMode incompatibility_mode = 2;</code>
      */
-    private $incompatibility_mode = 0;
+    protected $incompatibility_mode = 0;
 
     /**
      * Constructor.

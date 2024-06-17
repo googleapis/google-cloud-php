@@ -21,13 +21,13 @@ class LatestMonitoringPipelineMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp run_time = 1;</code>
      */
-    private $run_time = null;
+    protected $run_time = null;
     /**
      * The status of the most recent monitoring pipeline.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

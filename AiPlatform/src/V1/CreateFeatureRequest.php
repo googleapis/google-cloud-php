@@ -27,13 +27,13 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Feature to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature feature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature = null;
+    protected $feature = null;
     /**
      * Required. The ID to use for the Feature, which will become the final
      * component of the Feature's resource name.
@@ -43,7 +43,7 @@ class CreateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_id = '';
+    protected $feature_id = '';
 
     /**
      * @param string                              $parent  Required. The resource name of the EntityType or FeatureGroup to create a

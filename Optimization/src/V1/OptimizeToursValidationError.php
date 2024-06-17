@@ -257,13 +257,13 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * The error display name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * An error context may involve 0, 1 (most of the time) or more fields. For
      * example, referring to vehicle #4 and shipment #2's first pickup can be
@@ -287,7 +287,7 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_message = 4;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * May contain the value(s) of the field(s). This is not always available. You
      * should absolutely not rely on it and use it only for manual model
@@ -295,7 +295,7 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string offending_values = 5;</code>
      */
-    private $offending_values = '';
+    protected $offending_values = '';
 
     /**
      * Constructor.

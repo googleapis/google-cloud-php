@@ -25,13 +25,13 @@ class PersistentDiskSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 1;</code>
      */
-    private $disk_type = '';
+    protected $disk_type = '';
     /**
      * Size in GB of the disk (default is 100GB).
      *
      * Generated from protobuf field <code>int64 disk_size_gb = 2;</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
 
     /**
      * Constructor.

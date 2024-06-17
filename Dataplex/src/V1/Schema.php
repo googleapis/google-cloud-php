@@ -30,7 +30,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool user_managed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_managed = false;
+    protected $user_managed = false;
     /**
      * Optional. The sequence of fields describing data in table entities.
      * **Note:** BigQuery SchemaFields are immutable.
@@ -51,7 +51,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.PartitionStyle partition_style = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $partition_style = 0;
+    protected $partition_style = 0;
 
     /**
      * Constructor.

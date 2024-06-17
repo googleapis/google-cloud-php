@@ -26,7 +26,7 @@
     "AiPlatform": {
         "language": "php",
         "distribution_name": "google/cloud-ai-platform",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-ai-platform/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "aiplatform"
@@ -132,7 +132,7 @@
     "ArtifactRegistry": {
         "language": "php",
         "distribution_name": "google/cloud-artifact-registry",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-artifact-registry/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "artifactregistry"
@@ -148,7 +148,7 @@
     "AssuredWorkloads": {
         "language": "php",
         "distribution_name": "google/cloud-assured-workloads",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-assured-workloads/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "assuredworkloads"
@@ -334,7 +334,7 @@
     "BinaryAuthorization": {
         "language": "php",
         "distribution_name": "google/cloud-binary-authorization",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-binary-authorization/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "binaryauthorization"
@@ -342,7 +342,7 @@
     "Build": {
         "language": "php",
         "distribution_name": "google/cloud-build",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-build/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudbuild"
@@ -462,7 +462,7 @@
     "DataFusion": {
         "language": "php",
         "distribution_name": "google/cloud-data-fusion",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-data-fusion/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datafusion"
@@ -496,7 +496,7 @@
     "Dataplex": {
         "language": "php",
         "distribution_name": "google/cloud-dataplex",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-dataplex/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "dataplex"
@@ -512,7 +512,7 @@
     "DataprocMetastore": {
         "language": "php",
         "distribution_name": "google/cloud-dataproc-metastore",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-dataproc-metastore/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "metastore"
@@ -552,7 +552,7 @@
     "Deploy": {
         "language": "php",
         "distribution_name": "google/cloud-deploy",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-deploy/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "clouddeploy"
@@ -640,7 +640,7 @@
     "EssentialContacts": {
         "language": "php",
         "distribution_name": "google/cloud-essential-contacts",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-essential-contacts/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "essentialcontacts"
@@ -778,7 +778,7 @@
     "Ids": {
         "language": "php",
         "distribution_name": "google/cloud-ids",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-ids/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "ids"
@@ -962,7 +962,7 @@
     "Optimization": {
         "language": "php",
         "distribution_name": "google/cloud-optimization",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-optimization/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudoptimization"

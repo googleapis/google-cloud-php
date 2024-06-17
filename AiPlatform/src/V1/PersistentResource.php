@@ -23,7 +23,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The display name of the PersistentResource.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -31,7 +31,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The spec of the pools of different resources.
      *
@@ -43,33 +43,33 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentResource.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Only populated when persistent resource's state is `STOPPING`
      * or `ERROR`.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. Time when the PersistentResource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the PersistentResource for the first time entered
      * the `RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the PersistentResource was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. The labels with user-defined metadata to organize
      * PersistentResource.
@@ -83,10 +83,10 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * Optional. The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to peered with
+     * [network](/compute/docs/networks-and-firewalls#networks) to peered with
      * Vertex AI to host the persistent resources.
      * For example, `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
@@ -98,7 +98,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Optional. Customer-managed encryption key spec for a PersistentResource.
      * If set, this PersistentResource and all sub-resources of this
@@ -106,20 +106,20 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Optional. Persistent Resource runtime spec.
      * For example, used for Ray cluster configuration.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourceRuntimeSpec resource_runtime_spec = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_runtime_spec = null;
+    protected $resource_runtime_spec = null;
     /**
      * Output only. Runtime information of the Persistent Resource.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourceRuntime resource_runtime = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resource_runtime = null;
+    protected $resource_runtime = null;
     /**
      * Optional. A list of names for the reserved IP ranges under the VPC network
      * that can be used for this persistent resource.
@@ -167,10 +167,10 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *     @type string $network
      *           Optional. The full name of the Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to peered with
+     *           [network](/compute/docs/networks-and-firewalls#networks) to peered with
      *           Vertex AI to host the persistent resources.
      *           For example, `projects/12345/global/networks/myVPC`.
-     *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     *           [Format](/compute/docs/reference/rest/v1/networks/insert)
      *           is of the form `projects/{project}/global/networks/{network}`.
      *           Where {project} is a project number, as in `12345`, and {network} is a
      *           network name.
@@ -496,10 +496,10 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to peered with
+     * [network](/compute/docs/networks-and-firewalls#networks) to peered with
      * Vertex AI to host the persistent resources.
      * For example, `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
@@ -519,10 +519,10 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to peered with
+     * [network](/compute/docs/networks-and-firewalls#networks) to peered with
      * Vertex AI to host the persistent resources.
      * For example, `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.

@@ -21,13 +21,13 @@ class UpdateSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SpecialistPool specialist_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $specialist_pool = null;
+    protected $specialist_pool = null;
     /**
      * Required. The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\SpecialistPool $specialistPool Required. The SpecialistPool which replaces the resource on the server.

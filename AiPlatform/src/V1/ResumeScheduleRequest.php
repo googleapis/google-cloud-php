@@ -23,7 +23,7 @@ class ResumeScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Whether to backfill missed runs when the schedule is resumed from
      * PAUSED state. If set to true, all missed runs will be scheduled. New runs
@@ -33,7 +33,7 @@ class ResumeScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool catch_up = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $catch_up = false;
+    protected $catch_up = false;
 
     /**
      * @param string $name Required. The name of the Schedule resource to be resumed.

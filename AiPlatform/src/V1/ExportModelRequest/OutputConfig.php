@@ -24,7 +24,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string export_format_id = 1;</code>
      */
-    private $export_format_id = '';
+    protected $export_format_id = '';
     /**
      * The Cloud Storage location where the Model artifact is to be
      * written to. Under the directory given as the destination a new one with
@@ -37,7 +37,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GcsDestination artifact_destination = 3;</code>
      */
-    private $artifact_destination = null;
+    protected $artifact_destination = null;
     /**
      * The Google Container Registry or Artifact Registry uri where the
      * Model container image will be copied to.
@@ -46,7 +46,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ContainerRegistryDestination image_destination = 4;</code>
      */
-    private $image_destination = null;
+    protected $image_destination = null;
 
     /**
      * Constructor.

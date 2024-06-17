@@ -25,7 +25,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Skaffold profiles to use when rendering the manifest for this stage's
      * `Target`.
@@ -38,7 +38,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $strategy = null;
+    protected $strategy = null;
     /**
      * Optional. The deploy parameters to use for the target in this stage.
      *

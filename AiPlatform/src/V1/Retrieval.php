@@ -22,7 +22,7 @@ class Retrieval extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_attribution = false;
+    protected $disable_attribution = false;
     protected $source;
 
     /**

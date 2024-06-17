@@ -27,7 +27,7 @@ class AutomaticResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_replica_count = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $min_replica_count = 0;
+    protected $min_replica_count = 0;
     /**
      * Immutable. The maximum number of replicas this DeployedModel may be
      * deployed on when the traffic against it increases. If the requested value
@@ -41,7 +41,7 @@ class AutomaticResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_replica_count = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $max_replica_count = 0;
+    protected $max_replica_count = 0;
 
     /**
      * Constructor.

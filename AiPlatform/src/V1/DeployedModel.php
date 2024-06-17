@@ -22,7 +22,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. The resource name of the Model that this is the deployment of.
      * Note that the Model may be in a different location than the DeployedModel's
@@ -36,26 +36,26 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Output only. The version ID of the model that is deployed.
      *
      * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_version_id = '';
+    protected $model_version_id = '';
     /**
      * The display name of the DeployedModel. If not provided upon creation,
      * the Model's display_name is used.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Timestamp when the DeployedModel was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Explanation configuration for this DeployedModel.
      * When deploying a Model using
@@ -76,7 +76,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 9;</code>
      */
-    private $explanation_spec = null;
+    protected $explanation_spec = null;
     /**
      * If true, deploy the model without explainable feature, regardless the
      * existence of
@@ -86,7 +86,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_explanations = 19;</code>
      */
-    private $disable_explanations = false;
+    protected $disable_explanations = false;
     /**
      * The service account that the DeployedModel's container runs as. Specify the
      * email address of the service account. If this service account is not
@@ -97,7 +97,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 11;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
@@ -108,7 +108,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_container_logging = 15;</code>
      */
-    private $disable_container_logging = false;
+    protected $disable_container_logging = false;
     /**
      * If true, online prediction access logs are sent to Cloud
      * Logging.
@@ -120,7 +120,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_access_logging = 13;</code>
      */
-    private $enable_access_logging = false;
+    protected $enable_access_logging = false;
     /**
      * Output only. Provide paths for users to send predict/explain/health
      * requests directly to the deployed model services running on Cloud via
@@ -129,7 +129,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateEndpoints private_endpoints = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $private_endpoints = null;
+    protected $private_endpoints = null;
     protected $prediction_resources;
 
     /**

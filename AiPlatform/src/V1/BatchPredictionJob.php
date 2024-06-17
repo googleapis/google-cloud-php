@@ -25,13 +25,13 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The user-defined name of this BatchPredictionJob.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The name of the Model resource that produces the predictions via this job,
      * must share the same ancestor Location.
@@ -51,14 +51,14 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Output only. The version ID of the Model that produces the predictions via
      * this job.
      *
      * Generated from protobuf field <code>string model_version_id = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_version_id = '';
+    protected $model_version_id = '';
     /**
      * Contains model information necessary to perform batch prediction without
      * requiring uploading to model registry.
@@ -66,7 +66,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UnmanagedContainerModel unmanaged_container_model = 28;</code>
      */
-    private $unmanaged_container_model = null;
+    protected $unmanaged_container_model = null;
     /**
      * Required. Input configuration of the instances on which predictions are
      * performed. The schema of any single instance may be specified via the
@@ -76,14 +76,14 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig input_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Configuration for how to convert batch prediction input instances to the
      * prediction instances that are sent to the Model.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig instance_config = 27;</code>
      */
-    private $instance_config = null;
+    protected $instance_config = null;
     /**
      * The parameters that govern the predictions. The schema of the parameters
      * may be specified via the
@@ -93,7 +93,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value model_parameters = 5;</code>
      */
-    private $model_parameters = null;
+    protected $model_parameters = null;
     /**
      * Required. The Configuration specifying where output predictions should
      * be written.
@@ -106,7 +106,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig output_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * The config of resources used by the Model during the batch prediction. If
      * the Model
@@ -117,7 +117,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchDedicatedResources dedicated_resources = 7;</code>
      */
-    private $dedicated_resources = null;
+    protected $dedicated_resources = null;
     /**
      * The service account that the DeployedModel's container runs as. If not
      * specified, a system generated one will be used, which
@@ -128,7 +128,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 29;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Immutable. Parameters configuring the batch behavior. Currently only
      * applicable when
@@ -137,7 +137,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ManualBatchTuningParameters manual_batch_tuning_parameters = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $manual_batch_tuning_parameters = null;
+    protected $manual_batch_tuning_parameters = null;
     /**
      * Generate explanation with the batch prediction results.
      * When set to `true`, the batch prediction output changes based on the
@@ -160,7 +160,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool generate_explanation = 23;</code>
      */
-    private $generate_explanation = false;
+    protected $generate_explanation = false;
     /**
      * Explanation configuration for this BatchPredictionJob. Can be
      * specified only if
@@ -178,26 +178,26 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 25;</code>
      */
-    private $explanation_spec = null;
+    protected $explanation_spec = null;
     /**
      * Output only. Information further describing the output of this job.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.BatchPredictionJob.OutputInfo output_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $output_info = null;
+    protected $output_info = null;
     /**
      * Output only. The detailed state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.JobState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Only populated when the job's state is JOB_STATE_FAILED or
      * JOB_STATE_CANCELLED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. Partial failures encountered.
      * For example, single files that can't be read.
@@ -216,39 +216,39 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourcesConsumed resources_consumed = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resources_consumed = null;
+    protected $resources_consumed = null;
     /**
      * Output only. Statistics on completed and failed prediction instances.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CompletionStats completion_stats = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $completion_stats = null;
+    protected $completion_stats = null;
     /**
      * Output only. Time when the BatchPredictionJob was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the BatchPredictionJob for the first time entered
      * the `JOB_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the BatchPredictionJob entered any of the following
      * states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Time when the BatchPredictionJob was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The labels with user-defined metadata to organize BatchPredictionJobs.
      * Label keys and values can be no longer than 64 characters
@@ -266,7 +266,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * For custom-trained Models and AutoML Tabular Models, the container of the
      * DeployedModel instances will send `stderr` and `stdout` streams to
@@ -277,7 +277,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_container_logging = 34;</code>
      */
-    private $disable_container_logging = false;
+    protected $disable_container_logging = false;
 
     /**
      * Constructor.

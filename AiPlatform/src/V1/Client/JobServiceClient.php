@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -85,6 +84,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -214,10 +214,31 @@ final class JobServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -250,8 +271,12 @@ final class JobServiceClient
      *
      * @return string The formatted context resource.
      */
-    public static function contextName(string $project, string $location, string $metadataStore, string $context): string
-    {
+    public static function contextName(
+        string $project,
+        string $location,
+        string $metadataStore,
+        string $context
+    ): string {
         return self::getPathTemplate('context')->render([
             'project' => $project,
             'location' => $location,
@@ -346,8 +371,11 @@ final class JobServiceClient
      *
      * @return string The formatted hyperparameter_tuning_job resource.
      */
-    public static function hyperparameterTuningJobName(string $project, string $location, string $hyperparameterTuningJob): string
-    {
+    public static function hyperparameterTuningJobName(
+        string $project,
+        string $location,
+        string $hyperparameterTuningJob
+    ): string {
         return self::getPathTemplate('hyperparameterTuningJob')->render([
             'project' => $project,
             'location' => $location,
@@ -401,8 +429,11 @@ final class JobServiceClient
      *
      * @return string The formatted model_deployment_monitoring_job resource.
      */
-    public static function modelDeploymentMonitoringJobName(string $project, string $location, string $modelDeploymentMonitoringJob): string
-    {
+    public static function modelDeploymentMonitoringJobName(
+        string $project,
+        string $location,
+        string $modelDeploymentMonitoringJob
+    ): string {
         return self::getPathTemplate('modelDeploymentMonitoringJob')->render([
             'project' => $project,
             'location' => $location,
@@ -440,8 +471,12 @@ final class JobServiceClient
      *
      * @return string The formatted nas_trial_detail resource.
      */
-    public static function nasTrialDetailName(string $project, string $location, string $nasJob, string $nasTrialDetail): string
-    {
+    public static function nasTrialDetailName(
+        string $project,
+        string $location,
+        string $nasJob,
+        string $nasTrialDetail
+    ): string {
         return self::getPathTemplate('nasTrialDetail')->render([
             'project' => $project,
             'location' => $location,
@@ -533,8 +568,12 @@ final class JobServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
-    {
+    public static function projectLocationPublisherModelName(
+        string $project,
+        string $location,
+        string $publisher,
+        string $model
+    ): string {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -825,8 +864,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function cancelHyperparameterTuningJob(CancelHyperparameterTuningJobRequest $request, array $callOptions = []): void
-    {
+    public function cancelHyperparameterTuningJob(
+        CancelHyperparameterTuningJobRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('CancelHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -888,8 +929,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createBatchPredictionJob(CreateBatchPredictionJobRequest $request, array $callOptions = []): BatchPredictionJob
-    {
+    public function createBatchPredictionJob(
+        CreateBatchPredictionJobRequest $request,
+        array $callOptions = []
+    ): BatchPredictionJob {
         return $this->startApiCall('CreateBatchPredictionJob', $request, $callOptions)->wait();
     }
 
@@ -941,8 +984,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDataLabelingJob(CreateDataLabelingJobRequest $request, array $callOptions = []): DataLabelingJob
-    {
+    public function createDataLabelingJob(
+        CreateDataLabelingJobRequest $request,
+        array $callOptions = []
+    ): DataLabelingJob {
         return $this->startApiCall('CreateDataLabelingJob', $request, $callOptions)->wait();
     }
 
@@ -968,8 +1013,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createHyperparameterTuningJob(CreateHyperparameterTuningJobRequest $request, array $callOptions = []): HyperparameterTuningJob
-    {
+    public function createHyperparameterTuningJob(
+        CreateHyperparameterTuningJobRequest $request,
+        array $callOptions = []
+    ): HyperparameterTuningJob {
         return $this->startApiCall('CreateHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -996,8 +1043,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createModelDeploymentMonitoringJob(CreateModelDeploymentMonitoringJobRequest $request, array $callOptions = []): ModelDeploymentMonitoringJob
-    {
+    public function createModelDeploymentMonitoringJob(
+        CreateModelDeploymentMonitoringJobRequest $request,
+        array $callOptions = []
+    ): ModelDeploymentMonitoringJob {
         return $this->startApiCall('CreateModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1049,8 +1098,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteBatchPredictionJob(DeleteBatchPredictionJobRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteBatchPredictionJob(
+        DeleteBatchPredictionJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteBatchPredictionJob', $request, $callOptions)->wait();
     }
 
@@ -1101,8 +1152,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDataLabelingJob(DeleteDataLabelingJobRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteDataLabelingJob(
+        DeleteDataLabelingJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteDataLabelingJob', $request, $callOptions)->wait();
     }
 
@@ -1128,8 +1181,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteHyperparameterTuningJob(DeleteHyperparameterTuningJobRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteHyperparameterTuningJob(
+        DeleteHyperparameterTuningJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -1155,8 +1210,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteModelDeploymentMonitoringJob(DeleteModelDeploymentMonitoringJobRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteModelDeploymentMonitoringJob(
+        DeleteModelDeploymentMonitoringJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1207,8 +1264,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBatchPredictionJob(GetBatchPredictionJobRequest $request, array $callOptions = []): BatchPredictionJob
-    {
+    public function getBatchPredictionJob(
+        GetBatchPredictionJobRequest $request,
+        array $callOptions = []
+    ): BatchPredictionJob {
         return $this->startApiCall('GetBatchPredictionJob', $request, $callOptions)->wait();
     }
 
@@ -1286,8 +1345,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHyperparameterTuningJob(GetHyperparameterTuningJobRequest $request, array $callOptions = []): HyperparameterTuningJob
-    {
+    public function getHyperparameterTuningJob(
+        GetHyperparameterTuningJobRequest $request,
+        array $callOptions = []
+    ): HyperparameterTuningJob {
         return $this->startApiCall('GetHyperparameterTuningJob', $request, $callOptions)->wait();
     }
 
@@ -1313,8 +1374,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getModelDeploymentMonitoringJob(GetModelDeploymentMonitoringJobRequest $request, array $callOptions = []): ModelDeploymentMonitoringJob
-    {
+    public function getModelDeploymentMonitoringJob(
+        GetModelDeploymentMonitoringJobRequest $request,
+        array $callOptions = []
+    ): ModelDeploymentMonitoringJob {
         return $this->startApiCall('GetModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1391,8 +1454,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBatchPredictionJobs(ListBatchPredictionJobsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listBatchPredictionJobs(
+        ListBatchPredictionJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListBatchPredictionJobs', $request, $callOptions);
     }
 
@@ -1443,8 +1508,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDataLabelingJobs(ListDataLabelingJobsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDataLabelingJobs(
+        ListDataLabelingJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDataLabelingJobs', $request, $callOptions);
     }
 
@@ -1470,8 +1537,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listHyperparameterTuningJobs(ListHyperparameterTuningJobsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listHyperparameterTuningJobs(
+        ListHyperparameterTuningJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListHyperparameterTuningJobs', $request, $callOptions);
     }
 
@@ -1497,8 +1566,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelDeploymentMonitoringJobs(ListModelDeploymentMonitoringJobsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listModelDeploymentMonitoringJobs(
+        ListModelDeploymentMonitoringJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListModelDeploymentMonitoringJobs', $request, $callOptions);
     }
 
@@ -1577,8 +1648,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function pauseModelDeploymentMonitoringJob(PauseModelDeploymentMonitoringJobRequest $request, array $callOptions = []): void
-    {
+    public function pauseModelDeploymentMonitoringJob(
+        PauseModelDeploymentMonitoringJobRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('PauseModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1604,8 +1677,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resumeModelDeploymentMonitoringJob(ResumeModelDeploymentMonitoringJobRequest $request, array $callOptions = []): void
-    {
+    public function resumeModelDeploymentMonitoringJob(
+        ResumeModelDeploymentMonitoringJobRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('ResumeModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1631,8 +1706,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchModelDeploymentMonitoringStatsAnomalies(SearchModelDeploymentMonitoringStatsAnomaliesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchModelDeploymentMonitoringStatsAnomalies(
+        SearchModelDeploymentMonitoringStatsAnomaliesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchModelDeploymentMonitoringStatsAnomalies', $request, $callOptions);
     }
 
@@ -1658,8 +1735,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateModelDeploymentMonitoringJob(UpdateModelDeploymentMonitoringJobRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateModelDeploymentMonitoringJob(
+        UpdateModelDeploymentMonitoringJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateModelDeploymentMonitoringJob', $request, $callOptions)->wait();
     }
 
@@ -1799,8 +1878,10 @@ final class JobServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

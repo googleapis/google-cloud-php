@@ -22,7 +22,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string promote_automation_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $promote_automation_run = '';
+    protected $promote_automation_run = '';
     /**
      * Output only. The IDs of the AutomationRuns initiated by an advance rollout
      * rule.

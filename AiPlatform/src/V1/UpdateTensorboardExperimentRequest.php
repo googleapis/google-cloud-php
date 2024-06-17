@@ -26,7 +26,7 @@ class UpdateTensorboardExperimentRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The TensorboardExperiment's `name` field is used to identify the
      * TensorboardExperiment to be updated. Format:
@@ -34,7 +34,7 @@ class UpdateTensorboardExperimentRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TensorboardExperiment tensorboard_experiment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tensorboard_experiment = null;
+    protected $tensorboard_experiment = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\TensorboardExperiment $tensorboardExperiment Required. The TensorboardExperiment's `name` field is used to identify the

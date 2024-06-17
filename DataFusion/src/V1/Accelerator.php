@@ -20,13 +20,13 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.Accelerator.AcceleratorType accelerator_type = 1;</code>
      */
-    private $accelerator_type = 0;
+    protected $accelerator_type = 0;
     /**
      * The state of the accelerator
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.Accelerator.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

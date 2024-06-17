@@ -39,12 +39,21 @@ class EnablementState
      * Generated from protobuf enum <code>DISABLED = 3;</code>
      */
     const DISABLED = 3;
+    /**
+     * SCC is configured to ingest findings from this service but not enable
+     * this service. Not a valid intended_enablement_state (that is, this is a
+     * readonly state).
+     *
+     * Generated from protobuf enum <code>INGEST_ONLY = 4;</code>
+     */
+    const INGEST_ONLY = 4;
 
     private static $valueToName = [
         self::ENABLEMENT_STATE_UNSPECIFIED => 'ENABLEMENT_STATE_UNSPECIFIED',
         self::INHERITED => 'INHERITED',
         self::ENABLED => 'ENABLED',
         self::DISABLED => 'DISABLED',
+        self::INGEST_ONLY => 'INGEST_ONLY',
     ];
 
     public static function name($value)

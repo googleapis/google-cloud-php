@@ -20,7 +20,7 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_private_service_connect = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enable_private_service_connect = false;
+    protected $enable_private_service_connect = false;
     /**
      * A list of Projects from which the forwarding rule will target the service
      * attachment.

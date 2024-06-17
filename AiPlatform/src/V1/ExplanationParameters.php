@@ -23,7 +23,7 @@ class ExplanationParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 top_k = 4;</code>
      */
-    private $top_k = 0;
+    protected $top_k = 0;
     /**
      * If populated, only returns attributions that have
      * [output_index][google.cloud.aiplatform.v1.Attribution.output_index]
@@ -38,7 +38,7 @@ class ExplanationParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.ListValue output_indices = 5;</code>
      */
-    private $output_indices = null;
+    protected $output_indices = null;
     protected $method;
 
     /**

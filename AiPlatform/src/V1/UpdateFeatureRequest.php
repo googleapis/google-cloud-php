@@ -27,7 +27,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature feature = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature = null;
+    protected $feature = null;
     /**
      * Field mask is used to specify the fields to be overwritten in the
      * Features resource by the update.
@@ -43,7 +43,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Feature $feature    Required. The Feature's `name` field is used to identify the Feature to be

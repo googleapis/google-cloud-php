@@ -23,26 +23,26 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when this Featurestore was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Featurestore was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Used to perform consistent read-modify-write updates. If not set,
      * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. The labels with user-defined metadata to organize your
      * Featurestore.
@@ -66,13 +66,13 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig online_serving_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $online_serving_config = null;
+    protected $online_serving_config = null;
     /**
      * Output only. State of the featurestore.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. TTL in days for feature values that will be stored in online
      * serving storage. The Feature Store online storage periodically removes
@@ -83,14 +83,14 @@ class Featurestore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 online_storage_ttl_days = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $online_storage_ttl_days = 0;
+    protected $online_storage_ttl_days = 0;
     /**
      * Optional. Customer-managed encryption key spec for data storage. If set,
      * both of the online and offline data storage will be secured by this key.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
 
     /**
      * Constructor.

@@ -25,19 +25,19 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Unique identifier of the `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Description of the `DeliveryPipeline`. Max length is 255 characters.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * User annotations. These attributes can only be set and used by the
      * user, and not by Cloud Deploy.
@@ -64,19 +64,19 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Most recent time at which the pipeline was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Information around the state of the Delivery Pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.PipelineCondition condition = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $condition = null;
+    protected $condition = null;
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -84,14 +84,14 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * When suspended, no new releases or rollouts can be created,
      * but in-progress ones will complete.
      *
      * Generated from protobuf field <code>bool suspended = 12;</code>
      */
-    private $suspended = false;
+    protected $suspended = false;
     protected $pipeline;
 
     /**

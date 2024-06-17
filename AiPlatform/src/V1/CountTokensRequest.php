@@ -22,7 +22,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The name of the publisher model requested to serve the
      * prediction. Format:
@@ -30,7 +30,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Required. The instances that are the input to token counting call.
      * Schema is identical to the prediction schema of the underlying model.

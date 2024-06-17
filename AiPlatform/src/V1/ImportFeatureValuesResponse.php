@@ -21,13 +21,13 @@ class ImportFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 imported_entity_count = 1;</code>
      */
-    private $imported_entity_count = 0;
+    protected $imported_entity_count = 0;
     /**
      * Number of Feature values that have been imported by the operation.
      *
      * Generated from protobuf field <code>int64 imported_feature_value_count = 2;</code>
      */
-    private $imported_feature_value_count = 0;
+    protected $imported_feature_value_count = 0;
     /**
      * The number of rows in input source that weren't imported due to either
      * * Not having any featureValues.
@@ -37,14 +37,14 @@ class ImportFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 invalid_row_count = 6;</code>
      */
-    private $invalid_row_count = 0;
+    protected $invalid_row_count = 0;
     /**
      * The number rows that weren't ingested due to having feature timestamps
      * outside the retention boundary.
      *
      * Generated from protobuf field <code>int64 timestamp_outside_retention_rows_count = 4;</code>
      */
-    private $timestamp_outside_retention_rows_count = 0;
+    protected $timestamp_outside_retention_rows_count = 0;
 
     /**
      * Constructor.

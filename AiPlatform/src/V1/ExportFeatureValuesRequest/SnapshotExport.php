@@ -23,7 +23,7 @@ class SnapshotExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 1;</code>
      */
-    private $snapshot_time = null;
+    protected $snapshot_time = null;
     /**
      * Excludes Feature values with feature generation timestamp before this
      * timestamp. If not set, retrieve oldest values kept in Feature Store.
@@ -31,7 +31,7 @@ class SnapshotExport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.

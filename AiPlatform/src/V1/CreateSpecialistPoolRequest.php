@@ -22,13 +22,13 @@ class CreateSpecialistPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The SpecialistPool to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SpecialistPool specialist_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $specialist_pool = null;
+    protected $specialist_pool = null;
 
     /**
      * @param string                                     $parent         Required. The parent Project name for the new SpecialistPool.
