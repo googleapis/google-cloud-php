@@ -23,13 +23,13 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 1;</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
     /**
      * Required. The duration of time between executions in days.
      *
      * Generated from protobuf field <code>int32 interval_duration_days = 2;</code>
      */
-    private $interval_duration_days = 0;
+    protected $interval_duration_days = 0;
 
     /**
      * Constructor.

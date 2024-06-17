@@ -23,6 +23,12 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int64 threads_per_core = 1;</code>
      */
     private $threads_per_core = null;
+    /**
+     * Whether or not to enable nested virtualization (defaults to false).
+     *
+     * Generated from protobuf field <code>optional bool enable_nested_virtualization = 2;</code>
+     */
+    private $enable_nested_virtualization = null;
 
     /**
      * Constructor.
@@ -34,6 +40,8 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *           The number of threads per physical core. To disable simultaneous
      *           multithreading (SMT) set this to 1. If unset, the maximum number of threads
      *           supported per core by the underlying processor is assumed.
+     *     @type bool $enable_nested_virtualization
+     *           Whether or not to enable nested virtualization (defaults to false).
      * }
      */
     public function __construct($data = NULL) {
@@ -77,6 +85,42 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->threads_per_core = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether or not to enable nested virtualization (defaults to false).
+     *
+     * Generated from protobuf field <code>optional bool enable_nested_virtualization = 2;</code>
+     * @return bool
+     */
+    public function getEnableNestedVirtualization()
+    {
+        return isset($this->enable_nested_virtualization) ? $this->enable_nested_virtualization : false;
+    }
+
+    public function hasEnableNestedVirtualization()
+    {
+        return isset($this->enable_nested_virtualization);
+    }
+
+    public function clearEnableNestedVirtualization()
+    {
+        unset($this->enable_nested_virtualization);
+    }
+
+    /**
+     * Whether or not to enable nested virtualization (defaults to false).
+     *
+     * Generated from protobuf field <code>optional bool enable_nested_virtualization = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableNestedVirtualization($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_nested_virtualization = $var;
 
         return $this;
     }

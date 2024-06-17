@@ -20,13 +20,13 @@ class DeployedModelRef extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Immutable. An ID of a DeployedModel in the above Endpoint.
      *
      * Generated from protobuf field <code>string deployed_model_id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $deployed_model_id = '';
+    protected $deployed_model_id = '';
 
     /**
      * Constructor.

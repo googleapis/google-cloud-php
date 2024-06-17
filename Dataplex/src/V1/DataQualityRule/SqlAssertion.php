@@ -27,7 +27,7 @@ class SqlAssertion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_statement = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sql_statement = '';
+    protected $sql_statement = '';
 
     /**
      * Constructor.

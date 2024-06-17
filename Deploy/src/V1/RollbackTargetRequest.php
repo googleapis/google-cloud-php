@@ -22,19 +22,19 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. ID of the `Target` that is being rolled back.
      *
      * Generated from protobuf field <code>string target_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Required. ID of the rollback `Rollout` to create.
      *
      * Generated from protobuf field <code>string rollout_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollout_id = '';
+    protected $rollout_id = '';
     /**
      * Optional. ID of the `Release` to roll back to. If this isn't specified, the
      * previous successful `Rollout` to the specified target will be used to
@@ -42,27 +42,27 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string release_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $release_id = '';
+    protected $release_id = '';
     /**
      * Optional. If provided, this must be the latest `Rollout` that is on the
      * `Target`.
      *
      * Generated from protobuf field <code>string rollout_to_roll_back = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollout_to_roll_back = '';
+    protected $rollout_to_roll_back = '';
     /**
      * Optional. Configs for the rollback `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RollbackTargetConfig rollback_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollback_config = null;
+    protected $rollback_config = null;
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with a `RollbackTargetResponse`.
      *
      * Generated from protobuf field <code>bool validate_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string $name      Required. The `DeliveryPipeline` for which the rollback `Rollout` should be

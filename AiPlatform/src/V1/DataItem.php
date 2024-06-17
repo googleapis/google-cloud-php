@@ -21,19 +21,19 @@ class DataItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when this DataItem was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this DataItem was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. The labels with user-defined metadata to organize your DataItems.
      * Label keys and values can be no longer than 64 characters
@@ -56,14 +56,14 @@ class DataItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value payload = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * Optional. Used to perform consistent read-modify-write updates. If not set,
      * a blind "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

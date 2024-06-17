@@ -23,7 +23,7 @@ class MutateDeployedModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Required. The DeployedModel to be mutated within the Endpoint. Only the
      * following fields can be mutated:
@@ -39,14 +39,14 @@ class MutateDeployedModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel deployed_model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployed_model = null;
+    protected $deployed_model = null;
     /**
      * Required. The update mask applies to the resource. See
      * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                    $endpoint      Required. The name of the Endpoint resource into which to mutate a

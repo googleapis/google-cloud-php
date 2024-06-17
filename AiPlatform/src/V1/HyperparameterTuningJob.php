@@ -22,7 +22,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the HyperparameterTuningJob.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -30,25 +30,25 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Study configuration of the HyperparameterTuningJob.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec study_spec = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $study_spec = null;
+    protected $study_spec = null;
     /**
      * Required. The desired total number of Trials.
      *
      * Generated from protobuf field <code>int32 max_trial_count = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_trial_count = 0;
+    protected $max_trial_count = 0;
     /**
      * Required. The desired number of Trials to run in parallel.
      *
      * Generated from protobuf field <code>int32 parallel_trial_count = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parallel_trial_count = 0;
+    protected $parallel_trial_count = 0;
     /**
      * The number of failed Trials that need to be seen before failing
      * the HyperparameterTuningJob.
@@ -57,14 +57,14 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_failed_trial_count = 7;</code>
      */
-    private $max_failed_trial_count = 0;
+    protected $max_failed_trial_count = 0;
     /**
      * Required. The spec of a trial job. The same spec applies to the CustomJobs
      * created in all the trials.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomJobSpec trial_job_spec = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trial_job_spec = null;
+    protected $trial_job_spec = null;
     /**
      * Output only. Trials of the HyperparameterTuningJob.
      *
@@ -76,20 +76,20 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.JobState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Time when the HyperparameterTuningJob was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the HyperparameterTuningJob for the first time
      * entered the `JOB_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the HyperparameterTuningJob entered any of the
      * following states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`,
@@ -97,21 +97,21 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Time when the HyperparameterTuningJob was most recently
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Only populated when job's state is JOB_STATE_FAILED or
      * JOB_STATE_CANCELLED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The labels with user-defined metadata to organize HyperparameterTuningJobs.
      * Label keys and values can be no longer than 64 characters
@@ -129,7 +129,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 17;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
 
     /**
      * Constructor.

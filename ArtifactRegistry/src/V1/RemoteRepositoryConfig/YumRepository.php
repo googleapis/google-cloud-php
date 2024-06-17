@@ -76,6 +76,4 @@ class YumRepository extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(YumRepository::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_YumRepository::class);
 

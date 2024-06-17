@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,9 @@ class OrgPolicyClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return OrgPolicyClient */
@@ -127,12 +129,15 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
@@ -171,9 +176,7 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($formattedParent)
-            ->setPolicy($policy);
+        $request = (new CreatePolicyRequest())->setParent($formattedParent)->setPolicy($policy);
         $response = $gapicClient->createPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -199,19 +202,20 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($formattedParent)
-            ->setPolicy($policy);
+        $request = (new CreatePolicyRequest())->setParent($formattedParent)->setPolicy($policy);
         try {
             $gapicClient->createPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -238,8 +242,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new DeleteCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomConstraintRequest())->setName($formattedName);
         $gapicClient->deleteCustomConstraint($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -262,17 +265,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new DeleteCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomConstraintRequest())->setName($formattedName);
         try {
             $gapicClient->deleteCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -299,8 +304,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new DeletePolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeletePolicyRequest())->setName($formattedName);
         $gapicClient->deletePolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -323,17 +327,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new DeletePolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeletePolicyRequest())->setName($formattedName);
         try {
             $gapicClient->deletePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -368,8 +374,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new GetCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomConstraintRequest())->setName($formattedName);
         $response = $gapicClient->getCustomConstraint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -393,17 +398,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
-        $request = (new GetCustomConstraintRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomConstraintRequest())->setName($formattedName);
         try {
             $gapicClient->getCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -434,8 +441,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetEffectivePolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetEffectivePolicyRequest())->setName($formattedName);
         $response = $gapicClient->getEffectivePolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -459,17 +465,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetEffectivePolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetEffectivePolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getEffectivePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -500,8 +508,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -525,17 +532,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
-        $request = (new GetPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -560,17 +569,14 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $constraintsElement = new Constraint();
-        $constraints = [
-            $constraintsElement,
-        ];
+        $constraints = [$constraintsElement];
         $expectedResponse = new ListConstraintsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConstraints($constraints);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConstraintsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConstraints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -597,17 +603,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConstraintsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConstraints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -632,17 +640,14 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $customConstraintsElement = new CustomConstraint();
-        $customConstraints = [
-            $customConstraintsElement,
-        ];
+        $customConstraints = [$customConstraintsElement];
         $expectedResponse = new ListCustomConstraintsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomConstraints($customConstraints);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListCustomConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomConstraintsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCustomConstraints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -669,17 +674,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListCustomConstraintsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomConstraintsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCustomConstraints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -704,17 +711,14 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $policiesElement = new Policy();
-        $policies = [
-            $policiesElement,
-        ];
+        $policies = [$policiesElement];
         $expectedResponse = new ListPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPolicies($policies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -741,17 +745,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -786,8 +792,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $customConstraint = new CustomConstraint();
-        $request = (new UpdateCustomConstraintRequest())
-            ->setCustomConstraint($customConstraint);
+        $request = (new UpdateCustomConstraintRequest())->setCustomConstraint($customConstraint);
         $response = $gapicClient->updateCustomConstraint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -811,17 +816,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $customConstraint = new CustomConstraint();
-        $request = (new UpdateCustomConstraintRequest())
-            ->setCustomConstraint($customConstraint);
+        $request = (new UpdateCustomConstraintRequest())->setCustomConstraint($customConstraint);
         try {
             $gapicClient->updateCustomConstraint($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -852,8 +859,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
         $response = $gapicClient->updatePolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -877,17 +883,19 @@ class OrgPolicyClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
         try {
             $gapicClient->updatePolicy($request);
             // If the $gapicClient method call did not throw, fail the test

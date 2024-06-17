@@ -23,38 +23,38 @@ class ResourcePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. Immutable. The specification of a single machine.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_spec = null;
+    protected $machine_spec = null;
     /**
      * Optional. The total number of machines to use for this resource pool.
      *
      * Generated from protobuf field <code>optional int64 replica_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replica_count = null;
+    protected $replica_count = null;
     /**
      * Optional. Disk spec for the machine in this node pool.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DiskSpec disk_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disk_spec = null;
+    protected $disk_spec = null;
     /**
      * Output only. The number of machines currently in use by training jobs for
      * this resource pool. Will replace idle_replica_count.
      *
      * Generated from protobuf field <code>int64 used_replica_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $used_replica_count = 0;
+    protected $used_replica_count = 0;
     /**
      * Optional. Optional spec to configure GKE autoscaling
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourcePool.AutoscalingSpec autoscaling_spec = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling_spec = null;
+    protected $autoscaling_spec = null;
 
     /**
      * Constructor.

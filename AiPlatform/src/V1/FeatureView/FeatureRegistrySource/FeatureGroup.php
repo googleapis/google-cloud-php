@@ -21,7 +21,7 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_group_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature_group_id = '';
+    protected $feature_group_id = '';
     /**
      * Required. Identifiers of features under the feature group.
      *

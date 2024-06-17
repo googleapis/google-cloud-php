@@ -20,25 +20,25 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job deploy_job = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deploy_job = null;
+    protected $deploy_job = null;
     /**
      * Output only. The verify Job. Runs after a deploy if the deploy succeeds.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job verify_job = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $verify_job = null;
+    protected $verify_job = null;
     /**
      * Output only. The predeploy Job, which is the first job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $predeploy_job = null;
+    protected $predeploy_job = null;
     /**
      * Output only. The postdeploy Job, which is the last job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $postdeploy_job = null;
+    protected $postdeploy_job = null;
 
     /**
      * Constructor.

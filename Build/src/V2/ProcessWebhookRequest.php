@@ -21,20 +21,20 @@ class ProcessWebhookRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * HTTP request body.
      *
      * Generated from protobuf field <code>.google.api.HttpBody body = 2;</code>
      */
-    private $body = null;
+    protected $body = null;
     /**
      * Arbitrary additional key to find the maching repository for a webhook event
      * if needed.
      *
      * Generated from protobuf field <code>string webhook_key = 3;</code>
      */
-    private $webhook_key = '';
+    protected $webhook_key = '';
 
     /**
      * Constructor.

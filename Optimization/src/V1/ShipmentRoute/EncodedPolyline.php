@@ -23,7 +23,7 @@ class EncodedPolyline extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string points = 1;</code>
      */
-    private $points = '';
+    protected $points = '';
 
     /**
      * Constructor.

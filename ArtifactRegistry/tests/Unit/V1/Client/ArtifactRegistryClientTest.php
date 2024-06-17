@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,7 +115,9 @@ class ArtifactRegistryClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ArtifactRegistryClient */
@@ -160,8 +162,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $formattedNames = [
             $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
         ];
-        $request = (new BatchDeleteVersionsRequest())
-            ->setNames($formattedNames);
+        $request = (new BatchDeleteVersionsRequest())->setNames($formattedNames);
         $response = $gapicClient->batchDeleteVersions($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -171,7 +172,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getNames();
         $this->assertProtobufEquals($formattedNames, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -217,19 +221,21 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedNames = [
             $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
         ];
-        $request = (new BatchDeleteVersionsRequest())
-            ->setNames($formattedNames);
+        $request = (new BatchDeleteVersionsRequest())->setNames($formattedNames);
         $response = $gapicClient->batchDeleteVersions($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -295,8 +301,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent);
+        $request = (new CreateRepositoryRequest())->setParent($formattedParent);
         $response = $gapicClient->createRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -352,17 +357,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CreateRepositoryRequest())
-            ->setParent($formattedParent);
+        $request = (new CreateRepositoryRequest())->setParent($formattedParent);
         $response = $gapicClient->createRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -422,12 +429,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new CreateTagRequest();
         try {
@@ -474,8 +484,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new DeletePackageRequest())
-            ->setName($formattedName);
+        $request = (new DeletePackageRequest())->setName($formattedName);
         $response = $gapicClient->deletePackage($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -531,17 +540,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new DeletePackageRequest())
-            ->setName($formattedName);
+        $request = (new DeletePackageRequest())->setName($formattedName);
         $response = $gapicClient->deletePackage($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -595,8 +606,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -652,17 +662,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -717,12 +729,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new DeleteTagRequest();
         try {
@@ -821,12 +836,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new DeleteVersionRequest();
         $response = $gapicClient->deleteVersion($request);
@@ -872,8 +890,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dockerImageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[DOCKER_IMAGE]');
-        $request = (new GetDockerImageRequest())
-            ->setName($formattedName);
+        $request = (new GetDockerImageRequest())->setName($formattedName);
         $response = $gapicClient->getDockerImage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -897,17 +914,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dockerImageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[DOCKER_IMAGE]');
-        $request = (new GetDockerImageRequest())
-            ->setName($formattedName);
+        $request = (new GetDockerImageRequest())->setName($formattedName);
         try {
             $gapicClient->getDockerImage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -940,8 +959,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]');
-        $request = (new GetFileRequest())
-            ->setName($formattedName);
+        $request = (new GetFileRequest())->setName($formattedName);
         $response = $gapicClient->getFile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -965,17 +983,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]');
-        $request = (new GetFileRequest())
-            ->setName($formattedName);
+        $request = (new GetFileRequest())->setName($formattedName);
         try {
             $gapicClient->getFile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1006,8 +1026,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1031,17 +1050,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1078,8 +1099,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->mavenArtifactName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[MAVEN_ARTIFACT]');
-        $request = (new GetMavenArtifactRequest())
-            ->setName($formattedName);
+        $request = (new GetMavenArtifactRequest())->setName($formattedName);
         $response = $gapicClient->getMavenArtifact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1103,17 +1123,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->mavenArtifactName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[MAVEN_ARTIFACT]');
-        $request = (new GetMavenArtifactRequest())
-            ->setName($formattedName);
+        $request = (new GetMavenArtifactRequest())->setName($formattedName);
         try {
             $gapicClient->getMavenArtifact($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1146,8 +1168,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->npmPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[NPM_PACKAGE]');
-        $request = (new GetNpmPackageRequest())
-            ->setName($formattedName);
+        $request = (new GetNpmPackageRequest())->setName($formattedName);
         $response = $gapicClient->getNpmPackage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1171,17 +1192,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->npmPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[NPM_PACKAGE]');
-        $request = (new GetNpmPackageRequest())
-            ->setName($formattedName);
+        $request = (new GetNpmPackageRequest())->setName($formattedName);
         try {
             $gapicClient->getNpmPackage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1212,8 +1235,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new GetPackageRequest())
-            ->setName($formattedName);
+        $request = (new GetPackageRequest())->setName($formattedName);
         $response = $gapicClient->getPackage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1237,17 +1259,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->packageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]');
-        $request = (new GetPackageRequest())
-            ->setName($formattedName);
+        $request = (new GetPackageRequest())->setName($formattedName);
         try {
             $gapicClient->getPackage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1276,8 +1300,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->projectSettingsName('[PROJECT]');
-        $request = (new GetProjectSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetProjectSettingsRequest())->setName($formattedName);
         $response = $gapicClient->getProjectSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1301,17 +1324,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->projectSettingsName('[PROJECT]');
-        $request = (new GetProjectSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetProjectSettingsRequest())->setName($formattedName);
         try {
             $gapicClient->getProjectSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1346,8 +1371,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->pythonPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PYTHON_PACKAGE]');
-        $request = (new GetPythonPackageRequest())
-            ->setName($formattedName);
+        $request = (new GetPythonPackageRequest())->setName($formattedName);
         $response = $gapicClient->getPythonPackage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1371,17 +1395,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->pythonPackageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PYTHON_PACKAGE]');
-        $request = (new GetPythonPackageRequest())
-            ->setName($formattedName);
+        $request = (new GetPythonPackageRequest())->setName($formattedName);
         try {
             $gapicClient->getPythonPackage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1420,8 +1446,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->getRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1445,17 +1470,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1506,12 +1533,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetTagRequest();
         try {
@@ -1542,8 +1572,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->vpcscConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetVPCSCConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetVPCSCConfigRequest())->setName($formattedName);
         $response = $gapicClient->getVPCSCConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1567,17 +1596,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->vpcscConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetVPCSCConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetVPCSCConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getVPCSCConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1628,12 +1659,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetVersionRequest();
         try {
@@ -1688,7 +1722,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportAptArtifacts', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportAptArtifacts',
+            $actualApiFuncCall
+        );
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importAptArtifactsTest');
         $response->pollUntilComplete([
@@ -1732,12 +1769,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new ImportAptArtifactsRequest();
         $response = $gapicClient->importAptArtifacts($request);
@@ -1801,7 +1841,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportYumArtifacts', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.devtools.artifactregistry.v1.ArtifactRegistry/ImportYumArtifacts',
+            $actualApiFuncCall
+        );
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/importYumArtifactsTest');
         $response->pollUntilComplete([
@@ -1845,12 +1888,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new ImportYumArtifactsRequest();
         $response = $gapicClient->importYumArtifacts($request);
@@ -1886,17 +1932,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dockerImagesElement = new DockerImage();
-        $dockerImages = [
-            $dockerImagesElement,
-        ];
+        $dockerImages = [$dockerImagesElement];
         $expectedResponse = new ListDockerImagesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDockerImages($dockerImages);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListDockerImagesRequest())
-            ->setParent($parent);
+        $request = (new ListDockerImagesRequest())->setParent($parent);
         $response = $gapicClient->listDockerImages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1923,17 +1966,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListDockerImagesRequest())
-            ->setParent($parent);
+        $request = (new ListDockerImagesRequest())->setParent($parent);
         try {
             $gapicClient->listDockerImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1958,17 +2003,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $filesElement = new File();
-        $files = [
-            $filesElement,
-        ];
+        $files = [$filesElement];
         $expectedResponse = new ListFilesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFiles($files);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListFilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFilesRequest())->setParent($formattedParent);
         $response = $gapicClient->listFiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1995,17 +2037,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListFilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFilesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2030,17 +2074,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $mavenArtifactsElement = new MavenArtifact();
-        $mavenArtifacts = [
-            $mavenArtifactsElement,
-        ];
+        $mavenArtifacts = [$mavenArtifactsElement];
         $expectedResponse = new ListMavenArtifactsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMavenArtifacts($mavenArtifacts);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListMavenArtifactsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMavenArtifactsRequest())->setParent($formattedParent);
         $response = $gapicClient->listMavenArtifacts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2067,17 +2108,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListMavenArtifactsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMavenArtifactsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMavenArtifacts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2102,17 +2145,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $npmPackagesElement = new NpmPackage();
-        $npmPackages = [
-            $npmPackagesElement,
-        ];
+        $npmPackages = [$npmPackagesElement];
         $expectedResponse = new ListNpmPackagesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNpmPackages($npmPackages);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListNpmPackagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNpmPackagesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNpmPackages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2139,17 +2179,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListNpmPackagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNpmPackagesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNpmPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2174,17 +2216,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $packagesElement = new Package();
-        $packages = [
-            $packagesElement,
-        ];
+        $packages = [$packagesElement];
         $expectedResponse = new ListPackagesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPackages($packages);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPackagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPackagesRequest())->setParent($formattedParent);
         $response = $gapicClient->listPackages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2211,17 +2250,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPackagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPackagesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2246,17 +2287,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $pythonPackagesElement = new PythonPackage();
-        $pythonPackages = [
-            $pythonPackagesElement,
-        ];
+        $pythonPackages = [$pythonPackagesElement];
         $expectedResponse = new ListPythonPackagesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPythonPackages($pythonPackages);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPythonPackagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPythonPackagesRequest())->setParent($formattedParent);
         $response = $gapicClient->listPythonPackages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2283,17 +2321,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
-        $request = (new ListPythonPackagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPythonPackagesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPythonPackages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2318,17 +2358,14 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $repositoriesElement = new Repository();
-        $repositories = [
-            $repositoriesElement,
-        ];
+        $repositories = [$repositoriesElement];
         $expectedResponse = new ListRepositoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2355,17 +2392,19 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2390,9 +2429,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tagsElement = new Tag();
-        $tags = [
-            $tagsElement,
-        ];
+        $tags = [$tagsElement];
         $expectedResponse = new ListTagsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTags($tags);
@@ -2422,12 +2459,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListTagsRequest();
         try {
@@ -2454,9 +2494,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $versionsElement = new Version();
-        $versions = [
-            $versionsElement,
-        ];
+        $versions = [$versionsElement];
         $expectedResponse = new ListVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVersions($versions);
@@ -2486,12 +2524,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListVersionsRequest();
         try {
@@ -2525,9 +2566,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2553,19 +2592,20 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2593,9 +2633,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2621,19 +2659,20 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2667,7 +2706,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateProjectSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateProjectSettings',
+            $actualFuncCall
+        );
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2682,12 +2724,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new UpdateProjectSettingsRequest();
         try {
@@ -2748,12 +2793,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new UpdateRepositoryRequest();
         try {
@@ -2806,12 +2854,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new UpdateTagRequest();
         try {
@@ -2862,12 +2913,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new UpdateVPCSCConfigRequest();
         try {
@@ -2922,12 +2976,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2954,9 +3011,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2986,12 +3041,15 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -3040,8 +3098,7 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $formattedNames = [
             $gapicClient->versionName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[PACKAGE]', '[VERSION]'),
         ];
-        $request = (new BatchDeleteVersionsRequest())
-            ->setNames($formattedNames);
+        $request = (new BatchDeleteVersionsRequest())->setNames($formattedNames);
         $response = $gapicClient->batchDeleteVersionsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3051,7 +3108,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.devtools.artifactregistry.v1.ArtifactRegistry/BatchDeleteVersions',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getNames();
         $this->assertProtobufEquals($formattedNames, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();

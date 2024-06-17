@@ -22,26 +22,26 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. User friendly field description. Must be less than or equal to
      * 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. The type of field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.Type type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. Additional field semantics.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Schema.Mode mode = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Optional. Any nested field for complex types.
      *

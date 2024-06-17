@@ -20,13 +20,13 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp report_time = 1;</code>
      */
-    private $report_time = null;
+    protected $report_time = null;
     /**
      * Event type.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Event.EventType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Optional. Event details. This field is used to pass event information.
      *

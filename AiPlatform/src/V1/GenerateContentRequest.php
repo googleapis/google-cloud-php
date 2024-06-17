@@ -22,7 +22,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Required. The content of the current conversation with the model.
      * For single-turn queries, this is a single instance. For multi-turn queries,
@@ -39,7 +39,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $system_instruction = null;
+    protected $system_instruction = null;
     /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
@@ -56,7 +56,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ToolConfig tool_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tool_config = null;
+    protected $tool_config = null;
     /**
      * Optional. Per request settings for blocking unsafe content.
      * Enforced on GenerateContentResponse.candidates.
@@ -69,7 +69,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerationConfig generation_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $generation_config = null;
+    protected $generation_config = null;
 
     /**
      * @param string                                $model    Required. The name of the publisher model requested to serve the

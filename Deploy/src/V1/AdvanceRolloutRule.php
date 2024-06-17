@@ -23,7 +23,7 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. Proceeds only after phase name matched any one in the list.
      * This value must consist of lower-case letters, numbers, and hyphens,
@@ -39,13 +39,13 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Output only. Information around the state of the Automation rule.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRuleCondition condition = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $condition = null;
+    protected $condition = null;
 
     /**
      * Constructor.

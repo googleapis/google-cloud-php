@@ -21,7 +21,7 @@ class Snippets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1;</code>
      */
-    private $dataplex_entry = null;
+    protected $dataplex_entry = null;
 
     /**
      * Constructor.

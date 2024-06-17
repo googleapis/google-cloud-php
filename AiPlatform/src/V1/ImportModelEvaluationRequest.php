@@ -22,13 +22,13 @@ class ImportModelEvaluationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Model evaluation resource to be imported.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelEvaluation model_evaluation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model_evaluation = null;
+    protected $model_evaluation = null;
 
     /**
      * @param string                                      $parent          Required. The name of the parent model resource.

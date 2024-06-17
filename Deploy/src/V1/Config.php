@@ -20,7 +20,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * All supported versions of Skaffold.
      *
@@ -33,7 +33,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_skaffold_version = 3;</code>
      */
-    private $default_skaffold_version = '';
+    protected $default_skaffold_version = '';
 
     /**
      * Constructor.

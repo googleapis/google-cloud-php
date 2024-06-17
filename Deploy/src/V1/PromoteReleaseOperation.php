@@ -22,25 +22,25 @@ class PromoteReleaseOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Output only. How long the operation will be paused.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $wait = null;
+    protected $wait = null;
     /**
      * Output only. The name of the rollout that initiates the `AutomationRun`.
      *
      * Generated from protobuf field <code>string rollout = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * Output only. The starting phase of the rollout created by this operation.
      *
      * Generated from protobuf field <code>string phase = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phase = '';
+    protected $phase = '';
 
     /**
      * Constructor.

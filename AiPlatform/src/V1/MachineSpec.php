@@ -29,7 +29,7 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Immutable. The type of accelerator(s) that may be attached to the machine
      * as per
@@ -37,20 +37,20 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.AcceleratorType accelerator_type = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $accelerator_type = 0;
+    protected $accelerator_type = 0;
     /**
      * The number of accelerators to attach to the machine.
      *
      * Generated from protobuf field <code>int32 accelerator_count = 3;</code>
      */
-    private $accelerator_count = 0;
+    protected $accelerator_count = 0;
     /**
      * Immutable. The topology of the TPUs. Corresponds to the TPU topologies
      * available from GKE. (Example: tpu_topology: "2x2x1").
      *
      * Generated from protobuf field <code>string tpu_topology = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $tpu_topology = '';
+    protected $tpu_topology = '';
 
     /**
      * Constructor.

@@ -33,6 +33,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Container\V1\AcceleratorConfig;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
@@ -42,6 +43,7 @@ use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ConfidentialNodes;
+use Google\Cloud\Container\V1\ContainerdConfig;
 use Google\Cloud\Container\V1\CreateClusterRequest;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
 use Google\Cloud\Container\V1\DeleteClusterRequest;
@@ -2811,6 +2813,10 @@ class ClusterManagerGapicClient
      *           Google Compute Engine resources.
      *     @type WindowsNodeConfig $windowsNodeConfig
      *           Parameters that can be configured on Windows nodes.
+     *     @type AcceleratorConfig[] $accelerators
+     *           A list of hardware accelerators to be attached to each node.
+     *           See https://cloud.google.com/compute/docs/gpus for more information about
+     *           support for GPUs.
      *     @type string $machineType
      *           Optional. The desired [Google Compute Engine machine
      *           type](https://cloud.google.com/compute/docs/machine-types) for nodes in the
@@ -2830,6 +2836,10 @@ class ClusterManagerGapicClient
      *           Desired resource manager tag keys and values to be attached to the nodes
      *           for managing Compute Engine firewalls using Network Firewall Policies.
      *           Existing tags will be replaced with new values.
+     *     @type ContainerdConfig $containerdConfig
+     *           The desired containerd config for nodes in the node pool.
+     *           Initiates an upgrade operation that recreates the nodes with the new
+     *           config.
      *     @type QueuedProvisioning $queuedProvisioning
      *           Specifies the configuration of queued provisioning.
      *     @type RetrySettings|array $retrySettings
@@ -2941,6 +2951,10 @@ class ClusterManagerGapicClient
             $request->setWindowsNodeConfig($optionalArgs['windowsNodeConfig']);
         }
 
+        if (isset($optionalArgs['accelerators'])) {
+            $request->setAccelerators($optionalArgs['accelerators']);
+        }
+
         if (isset($optionalArgs['machineType'])) {
             $request->setMachineType($optionalArgs['machineType']);
         }
@@ -2955,6 +2969,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['resourceManagerTags'])) {
             $request->setResourceManagerTags($optionalArgs['resourceManagerTags']);
+        }
+
+        if (isset($optionalArgs['containerdConfig'])) {
+            $request->setContainerdConfig($optionalArgs['containerdConfig']);
         }
 
         if (isset($optionalArgs['queuedProvisioning'])) {

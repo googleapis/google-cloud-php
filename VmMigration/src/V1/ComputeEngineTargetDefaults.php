@@ -21,32 +21,32 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_name = 1;</code>
      */
-    private $vm_name = '';
+    protected $vm_name = '';
     /**
      * The full path of the resource of type TargetProject which represents the
      * Compute Engine project in which to create this VM.
      *
      * Generated from protobuf field <code>string target_project = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $target_project = '';
+    protected $target_project = '';
     /**
      * The zone in which to create the VM.
      *
      * Generated from protobuf field <code>string zone = 3;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The machine type series to create the VM with.
      *
      * Generated from protobuf field <code>string machine_type_series = 4;</code>
      */
-    private $machine_type_series = '';
+    protected $machine_type_series = '';
     /**
      * The machine type to create the VM with.
      *
      * Generated from protobuf field <code>string machine_type = 5;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * A map of network tags to associate with the VM.
      *
@@ -64,13 +64,13 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 8;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The disk type to use in the VM.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineDiskType disk_type = 9;</code>
      */
-    private $disk_type = 0;
+    protected $disk_type = 0;
     /**
      * A map of labels to associate with the VM.
      *
@@ -82,32 +82,32 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineLicenseType license_type = 11;</code>
      */
-    private $license_type = 0;
+    protected $license_type = 0;
     /**
      * Output only. The OS license returned from the adaptation module report.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AppliedLicense applied_license = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $applied_license = null;
+    protected $applied_license = null;
     /**
      * Compute instance scheduling information (if empty default is used).
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeScheduling compute_scheduling = 13;</code>
      */
-    private $compute_scheduling = null;
+    protected $compute_scheduling = null;
     /**
      * Defines whether the instance has Secure Boot enabled.
      * This can be set to true only if the vm boot option is EFI.
      *
      * Generated from protobuf field <code>bool secure_boot = 14;</code>
      */
-    private $secure_boot = false;
+    protected $secure_boot = false;
     /**
      * Output only. The VM Boot Option, as set in the source vm.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeEngineBootOption boot_option = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $boot_option = 0;
+    protected $boot_option = 0;
     /**
      * The metadata key/value pairs to assign to the VM.
      *
@@ -125,7 +125,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hostname = 18;</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
 
     /**
      * Constructor.

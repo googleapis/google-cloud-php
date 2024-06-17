@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Build\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Build\V2\BatchCreateRepositoriesRequest;
@@ -56,6 +55,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -79,7 +79,9 @@ class RepositoryManagerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RepositoryManagerClient */
@@ -123,9 +125,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
         $requests = [];
-        $request = (new BatchCreateRepositoriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateRepositoriesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateRepositories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -135,7 +135,10 @@ class RepositoryManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/BatchCreateRepositories', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.devtools.cloudbuild.v2.RepositoryManager/BatchCreateRepositories',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getRequests();
@@ -183,19 +186,20 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
         $requests = [];
-        $request = (new BatchCreateRepositoriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateRepositoriesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateRepositories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -322,12 +326,15 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -465,12 +472,15 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
@@ -535,8 +545,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new DeleteConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -592,17 +601,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new DeleteConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -656,8 +667,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -713,17 +723,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new DeleteRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->deleteRepository($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -759,8 +771,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchGitRefsRequest())
-            ->setRepository($formattedRepository);
+        $request = (new FetchGitRefsRequest())->setRepository($formattedRepository);
         $response = $gapicClient->fetchGitRefs($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -784,17 +795,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchGitRefsRequest())
-            ->setRepository($formattedRepository);
+        $request = (new FetchGitRefsRequest())->setRepository($formattedRepository);
         try {
             $gapicClient->fetchGitRefs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -819,17 +832,14 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $repositoriesElement = new Repository();
-        $repositories = [
-            $repositoriesElement,
-        ];
+        $repositories = [$repositoriesElement];
         $expectedResponse = new FetchLinkableRepositoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedConnection = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new FetchLinkableRepositoriesRequest())
-            ->setConnection($formattedConnection);
+        $request = (new FetchLinkableRepositoriesRequest())->setConnection($formattedConnection);
         $response = $gapicClient->fetchLinkableRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -839,7 +849,10 @@ class RepositoryManagerClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/FetchLinkableRepositories', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.cloudbuild.v2.RepositoryManager/FetchLinkableRepositories',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getConnection();
         $this->assertProtobufEquals($formattedConnection, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -856,17 +869,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedConnection = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new FetchLinkableRepositoriesRequest())
-            ->setConnection($formattedConnection);
+        $request = (new FetchLinkableRepositoriesRequest())->setConnection($formattedConnection);
         try {
             $gapicClient->fetchLinkableRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -895,8 +910,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = (new FetchReadTokenRequest())->setRepository($formattedRepository);
         $response = $gapicClient->fetchReadToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -920,17 +934,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = (new FetchReadTokenRequest())->setRepository($formattedRepository);
         try {
             $gapicClient->fetchReadToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -959,8 +975,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadWriteTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = (new FetchReadWriteTokenRequest())->setRepository($formattedRepository);
         $response = $gapicClient->fetchReadWriteToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -984,17 +999,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new FetchReadWriteTokenRequest())
-            ->setRepository($formattedRepository);
+        $request = (new FetchReadWriteTokenRequest())->setRepository($formattedRepository);
         try {
             $gapicClient->fetchReadWriteToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1029,8 +1046,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new GetConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectionRequest())->setName($formattedName);
         $response = $gapicClient->getConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1054,17 +1070,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new GetConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectionRequest())->setName($formattedName);
         try {
             $gapicClient->getConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1099,8 +1117,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         $response = $gapicClient->getRepository($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1124,17 +1141,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
-        $request = (new GetRepositoryRequest())
-            ->setName($formattedName);
+        $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1159,17 +1178,14 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $connectionsElement = new Connection();
-        $connections = [
-            $connectionsElement,
-        ];
+        $connections = [$connectionsElement];
         $expectedResponse = new ListConnectionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1196,17 +1212,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1231,17 +1249,14 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $repositoriesElement = new Repository();
-        $repositories = [
-            $repositoriesElement,
-        ];
+        $repositories = [$repositoriesElement];
         $expectedResponse = new ListRepositoriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRepositories($repositories);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRepositories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1268,17 +1283,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
-        $request = (new ListRepositoriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRepositoriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRepositories($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1331,8 +1348,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $connection = new Connection();
-        $request = (new UpdateConnectionRequest())
-            ->setConnection($connection);
+        $request = (new UpdateConnectionRequest())->setConnection($connection);
         $response = $gapicClient->updateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1388,17 +1404,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $connection = new Connection();
-        $request = (new UpdateConnectionRequest())
-            ->setConnection($connection);
+        $request = (new UpdateConnectionRequest())->setConnection($connection);
         $response = $gapicClient->updateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1438,8 +1456,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1463,17 +1480,19 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1505,9 +1524,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1533,19 +1550,20 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1573,9 +1591,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1601,19 +1617,20 @@ class RepositoryManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1659,9 +1676,7 @@ class RepositoryManagerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
         $requests = [];
-        $request = (new BatchCreateRepositoriesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateRepositoriesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateRepositoriesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1671,7 +1686,10 @@ class RepositoryManagerClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.cloudbuild.v2.RepositoryManager/BatchCreateRepositories', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.devtools.cloudbuild.v2.RepositoryManager/BatchCreateRepositories',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getRequests();

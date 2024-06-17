@@ -20,19 +20,19 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string linked_resource = 8;</code>
      */
-    private $linked_resource = '';
+    protected $linked_resource = '';
     /**
      * Entry format of the result.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 9;</code>
      */
-    private $dataplex_entry = null;
+    protected $dataplex_entry = null;
     /**
      * Snippets.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12;</code>
      */
-    private $snippets = null;
+    protected $snippets = null;
 
     /**
      * Constructor.

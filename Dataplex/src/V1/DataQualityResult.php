@@ -20,14 +20,14 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool passed = 5;</code>
      */
-    private $passed = false;
+    protected $passed = false;
     /**
      * Output only. The overall data quality score.
      * The score ranges between [0, 100] (up to two decimal points).
      *
      * Generated from protobuf field <code>optional float score = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $score = null;
+    protected $score = null;
     /**
      * A list of results at the dimension level.
      * A dimension will have a corresponding `DataQualityDimensionResult` if and
@@ -55,19 +55,19 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_count = 4;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * The data scanned for this result.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.ScannedData scanned_data = 7;</code>
      */
-    private $scanned_data = null;
+    protected $scanned_data = null;
     /**
      * Output only. The result of post scan actions.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityResult.PostScanActionsResult post_scan_actions_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $post_scan_actions_result = null;
+    protected $post_scan_actions_result = null;
 
     /**
      * Constructor.

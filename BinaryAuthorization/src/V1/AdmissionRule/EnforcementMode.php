@@ -61,6 +61,4 @@ class EnforcementMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnforcementMode::class, \Google\Cloud\BinaryAuthorization\V1\AdmissionRule_EnforcementMode::class);
 

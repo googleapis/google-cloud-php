@@ -25,7 +25,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 1;</code>
      */
-    private $generate_time = null;
+    protected $generate_time = null;
 
     /**
      * Constructor.

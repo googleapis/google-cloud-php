@@ -21,14 +21,14 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Endpoint endpoint = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $endpoint = null;
+    protected $endpoint = null;
     /**
      * Required. The update mask applies to the resource. See
      * [google.protobuf.FieldMask][google.protobuf.FieldMask].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Endpoint $endpoint   Required. The Endpoint which replaces the resource on the server.

@@ -21,13 +21,13 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_number = 1;</code>
      */
-    private $version_number = '';
+    protected $version_number = '';
     /**
      * Whether this is currently the default version for Cloud Data Fusion
      *
      * Generated from protobuf field <code>bool default_version = 2;</code>
      */
-    private $default_version = false;
+    protected $default_version = false;
     /**
      * Represents a list of available feature names for a given version.
      *
@@ -39,7 +39,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.Version.Type type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

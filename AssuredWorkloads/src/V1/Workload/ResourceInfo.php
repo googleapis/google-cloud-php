@@ -21,13 +21,13 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 resource_id = 1;</code>
      */
-    private $resource_id = 0;
+    protected $resource_id = 0;
     /**
      * Indicates the type of resource.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1.Workload.ResourceInfo.ResourceType resource_type = 2;</code>
      */
-    private $resource_type = 0;
+    protected $resource_type = 0;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourceInfo::class, \Google\Cloud\AssuredWorkloads\V1\Workload_ResourceInfo::class);
 

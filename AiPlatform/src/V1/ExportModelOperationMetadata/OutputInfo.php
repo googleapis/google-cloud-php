@@ -23,14 +23,14 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string artifact_output_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $artifact_output_uri = '';
+    protected $artifact_output_uri = '';
     /**
      * Output only. If the Model image is being exported to Google Container
      * Registry or Artifact Registry this is the full path of the image created.
      *
      * Generated from protobuf field <code>string image_output_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $image_output_uri = '';
+    protected $image_output_uri = '';
 
     /**
      * Constructor.

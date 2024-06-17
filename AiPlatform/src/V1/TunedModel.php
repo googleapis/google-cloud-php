@@ -22,14 +22,14 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Output only. A resource name of an Endpoint. Format:
      * `projects/{project}/locations/{location}/endpoints/{endpoint}`.
      *
      * Generated from protobuf field <code>string endpoint = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
 
     /**
      * Constructor.

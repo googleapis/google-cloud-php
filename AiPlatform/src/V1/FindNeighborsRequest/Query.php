@@ -22,7 +22,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint datapoint = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $datapoint = null;
+    protected $datapoint = null;
     /**
      * The number of nearest neighbors to be retrieved from database for each
      * query. If not set, will use the default from the service configuration
@@ -30,7 +30,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 neighbor_count = 2;</code>
      */
-    private $neighbor_count = 0;
+    protected $neighbor_count = 0;
     /**
      * Crowding is a constraint on a neighbor list produced by nearest neighbor
      * search requiring that no more than some value k' of the k neighbors
@@ -40,7 +40,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 per_crowding_attribute_neighbor_count = 3;</code>
      */
-    private $per_crowding_attribute_neighbor_count = 0;
+    protected $per_crowding_attribute_neighbor_count = 0;
     /**
      * The number of neighbors to find via approximate search before
      * exact reordering is performed. If not set, the default value from scam
@@ -48,7 +48,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 approximate_neighbor_count = 4;</code>
      */
-    private $approximate_neighbor_count = 0;
+    protected $approximate_neighbor_count = 0;
     /**
      * The fraction of the number of leaves to search, set at query time allows
      * user to tune search performance. This value increase result in both
@@ -59,7 +59,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double fraction_leaf_nodes_to_search_override = 5;</code>
      */
-    private $fraction_leaf_nodes_to_search_override = 0.0;
+    protected $fraction_leaf_nodes_to_search_override = 0.0;
     protected $ranking;
 
     /**

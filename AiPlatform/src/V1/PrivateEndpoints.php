@@ -24,26 +24,26 @@ class PrivateEndpoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string predict_http_uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $predict_http_uri = '';
+    protected $predict_http_uri = '';
     /**
      * Output only. Http(s) path to send explain requests.
      *
      * Generated from protobuf field <code>string explain_http_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $explain_http_uri = '';
+    protected $explain_http_uri = '';
     /**
      * Output only. Http(s) path to send health check requests.
      *
      * Generated from protobuf field <code>string health_http_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_http_uri = '';
+    protected $health_http_uri = '';
     /**
      * Output only. The name of the service attachment resource. Populated if
      * private service connect is enabled.
      *
      * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_attachment = '';
+    protected $service_attachment = '';
 
     /**
      * Constructor.

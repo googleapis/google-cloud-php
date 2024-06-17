@@ -21,13 +21,13 @@ class FetchGitRefsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repository = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $repository = '';
+    protected $repository = '';
     /**
      * Type of refs to fetch
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.FetchGitRefsRequest.RefType ref_type = 2;</code>
      */
-    private $ref_type = 0;
+    protected $ref_type = 0;
 
     /**
      * @param string $repository Required. The resource name of the repository in the format

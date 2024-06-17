@@ -303,10 +303,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $write_endpoint = null;
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica.
+     * A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * has regional failure.
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.ReplicationCluster replication_cluster = 54;</code>
      */
@@ -444,10 +444,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $write_endpoint
      *           Output only. The dns name of the primary instance in a replication group.
      *     @type \Google\Cloud\Sql\V1beta4\ReplicationCluster $replication_cluster
-     *           The pair of a primary instance and disaster recovery (DR) replica.
+     *           A primary instance and disaster recovery (DR) replica pair.
      *           A DR replica is a cross-region replica that you designate
      *           for failover in the event that the primary instance
-     *           has regional failure.
+     *           experiences regional failure. Only applicable to MySQL.
      *     @type \Google\Cloud\Sql\V1beta4\GeminiInstanceConfig $gemini_config
      *           Gemini instance configuration.
      * }
@@ -1895,10 +1895,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica.
+     * A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * has regional failure.
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.ReplicationCluster replication_cluster = 54;</code>
      * @return \Google\Cloud\Sql\V1beta4\ReplicationCluster|null
@@ -1919,10 +1919,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica.
+     * A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * has regional failure.
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.ReplicationCluster replication_cluster = 54;</code>
      * @param \Google\Cloud\Sql\V1beta4\ReplicationCluster $var

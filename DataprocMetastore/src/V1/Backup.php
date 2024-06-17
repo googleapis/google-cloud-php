@@ -21,37 +21,37 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time when the backup was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the backup finished creating.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The current state of the backup.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Backup.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The revision of the service at the time of backup.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Service service_revision = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_revision = null;
+    protected $service_revision = null;
     /**
      * The description of the backup.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Services that are restoring from the backup.
      *

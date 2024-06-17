@@ -24,19 +24,19 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last time the connector was updated with an API call.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The connector's name.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. A unique key for this connector. This key is internal to the OVA
      * connector and is supplied with its creation during the registration process
@@ -44,48 +44,48 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string registration_id = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $registration_id = '';
+    protected $registration_id = '';
     /**
      * The service account to use in the connector when communicating with the
      * cloud.
      *
      * Generated from protobuf field <code>string service_account = 5;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The version running in the DatacenterConnector. This is supplied by the OVA
      * connector during the registration process and can not be modified.
      *
      * Generated from protobuf field <code>string version = 6;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. The communication channel between the datacenter connector and
      * Google Cloud.
      *
      * Generated from protobuf field <code>string bucket = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * Output only. State of the DatacenterConnector, as determined by the health
      * checks.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.DatacenterConnector.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time the state was last set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. Provides details on the state of the Datacenter Connector in
      * case of an error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. Appliance OVA version.
      * This is the OVA which is manually installed by the user and contains the
@@ -93,7 +93,7 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string appliance_infrastructure_version = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $appliance_infrastructure_version = '';
+    protected $appliance_infrastructure_version = '';
     /**
      * Output only. Appliance last installed update bundle version.
      * This is the version of the automatically updatable components on the
@@ -101,19 +101,19 @@ class DatacenterConnector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string appliance_software_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $appliance_software_version = '';
+    protected $appliance_software_version = '';
     /**
      * Output only. The available versions for updating this appliance.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AvailableUpdates available_versions = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $available_versions = null;
+    protected $available_versions = null;
     /**
      * Output only. The status of the current / last upgradeAppliance operation.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.UpgradeStatus upgrade_status = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $upgrade_status = null;
+    protected $upgrade_status = null;
 
     /**
      * Constructor.

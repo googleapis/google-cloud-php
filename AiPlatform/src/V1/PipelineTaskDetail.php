@@ -20,64 +20,64 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 task_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $task_id = 0;
+    protected $task_id = 0;
     /**
      * Output only. The id of the parent task if the task is within a component
      * scope. Empty if the task is at the root level.
      *
      * Generated from protobuf field <code>int64 parent_task_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parent_task_id = 0;
+    protected $parent_task_id = 0;
     /**
      * Output only. The user specified name of the task that is defined in
      * [pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec].
      *
      * Generated from protobuf field <code>string task_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $task_name = '';
+    protected $task_name = '';
     /**
      * Output only. Task create time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Task start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Task end time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The detailed execution info.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskExecutorDetail executor_detail = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $executor_detail = null;
+    protected $executor_detail = null;
     /**
      * Output only. State of the task.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTaskDetail.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The execution metadata of the task.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Execution execution = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $execution = null;
+    protected $execution = null;
     /**
      * Output only. The error that occurred during task execution.
      * Only populated when the task's state is FAILED or CANCELLED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. A list of task status. This field keeps a record of task
      * status evolving over time.

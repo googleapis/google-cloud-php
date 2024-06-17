@@ -25,7 +25,7 @@ class KMSSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $next_rotation_time = null;
+    protected $next_rotation_time = null;
     /**
      * Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key
      * Management Service automatically rotates a key. Must be at least 24 hours
@@ -33,7 +33,7 @@ class KMSSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $rotation_period = null;
+    protected $rotation_period = null;
 
     /**
      * Constructor.
@@ -135,6 +135,4 @@ class KMSSettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KMSSettings::class, \Google\Cloud\AssuredWorkloads\V1\Workload_KMSSettings::class);
 

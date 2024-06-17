@@ -25,10 +25,17 @@ class GPUSharingStrategy
      * Generated from protobuf enum <code>TIME_SHARING = 1;</code>
      */
     const TIME_SHARING = 1;
+    /**
+     * GPUs are shared between containers with NVIDIA MPS.
+     *
+     * Generated from protobuf enum <code>MPS = 2;</code>
+     */
+    const MPS = 2;
 
     private static $valueToName = [
         self::GPU_SHARING_STRATEGY_UNSPECIFIED => 'GPU_SHARING_STRATEGY_UNSPECIFIED',
         self::TIME_SHARING => 'TIME_SHARING',
+        self::MPS => 'MPS',
     ];
 
     public static function name($value)

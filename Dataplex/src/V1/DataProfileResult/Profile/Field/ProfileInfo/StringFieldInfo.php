@@ -20,19 +20,19 @@ class StringFieldInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 min_length = 1;</code>
      */
-    private $min_length = 0;
+    protected $min_length = 0;
     /**
      * Maximum length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>int64 max_length = 2;</code>
      */
-    private $max_length = 0;
+    protected $max_length = 0;
     /**
      * Average length of non-null values in the scanned data.
      *
      * Generated from protobuf field <code>double average_length = 3;</code>
      */
-    private $average_length = 0.0;
+    protected $average_length = 0.0;
 
     /**
      * Constructor.

@@ -22,55 +22,55 @@ class JobRunNotificationEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The name of the `JobRun`.
      *
      * Generated from protobuf field <code>string job_run = 2;</code>
      */
-    private $job_run = '';
+    protected $job_run = '';
     /**
      * Unique identifier of the `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>string pipeline_uid = 3;</code>
      */
-    private $pipeline_uid = '';
+    protected $pipeline_uid = '';
     /**
      * Unique identifier of the `Release`.
      *
      * Generated from protobuf field <code>string release_uid = 4;</code>
      */
-    private $release_uid = '';
+    protected $release_uid = '';
     /**
      * The name of the `Release`.
      *
      * Generated from protobuf field <code>string release = 8;</code>
      */
-    private $release = '';
+    protected $release = '';
     /**
      * Unique identifier of the `Rollout`.
      *
      * Generated from protobuf field <code>string rollout_uid = 5;</code>
      */
-    private $rollout_uid = '';
+    protected $rollout_uid = '';
     /**
      * The name of the `Rollout`.
      *
      * Generated from protobuf field <code>string rollout = 9;</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * ID of the `Target`.
      *
      * Generated from protobuf field <code>string target_id = 6;</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Type of this notification, e.g. for a Pub/Sub failure.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 7;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

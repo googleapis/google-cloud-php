@@ -21,7 +21,7 @@ class ActionDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.

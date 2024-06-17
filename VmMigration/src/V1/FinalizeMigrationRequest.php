@@ -20,7 +20,7 @@ class FinalizeMigrationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string migrating_vm = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $migrating_vm = '';
+    protected $migrating_vm = '';
 
     /**
      * @param string $migratingVm Required. The name of the MigratingVm. Please see

@@ -19,7 +19,7 @@ class AutoScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_node_count = 0;
+    protected $min_node_count = 0;
     /**
      * Required. The maximum number of nodes to scale up to. Must be greater
      * than or equal to min_node_count, and less than or equal to 10 times of
@@ -27,7 +27,7 @@ class AutoScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_node_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_node_count = 0;
+    protected $max_node_count = 0;
     /**
      * Optional. A percentage of the cluster's CPU capacity. Can be from 10%
      * to 80%. When a cluster's CPU utilization exceeds the target that you
@@ -37,7 +37,7 @@ class AutoScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 cpu_utilization_target = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cpu_utilization_target = 0;
+    protected $cpu_utilization_target = 0;
 
     /**
      * Constructor.

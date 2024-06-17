@@ -55,7 +55,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double penalty_cost = 4;</code>
      */
-    private $penalty_cost = null;
+    protected $penalty_cost = null;
     /**
      * The set of vehicles that may perform this shipment. If empty, all vehicles
      * may perform it. Vehicles are given by their index in the `ShipmentModel`'s
@@ -105,7 +105,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double pickup_to_delivery_relative_detour_limit = 8;</code>
      */
-    private $pickup_to_delivery_relative_detour_limit = null;
+    protected $pickup_to_delivery_relative_detour_limit = null;
     /**
      * Specifies the maximum absolute detour time compared to the shortest path
      * from pickup to delivery. If specified, it must be nonnegative, and the
@@ -124,7 +124,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration pickup_to_delivery_absolute_detour_limit = 9;</code>
      */
-    private $pickup_to_delivery_absolute_detour_limit = null;
+    protected $pickup_to_delivery_absolute_detour_limit = null;
     /**
      * Specifies the maximum duration from start of pickup to start of delivery of
      * a shipment. If specified, it must be nonnegative, and the shipment must
@@ -135,7 +135,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration pickup_to_delivery_time_limit = 10;</code>
      */
-    private $pickup_to_delivery_time_limit = null;
+    protected $pickup_to_delivery_time_limit = null;
     /**
      * Non-empty string specifying a "type" for this shipment.
      * This feature can be used to define incompatibilities or requirements
@@ -147,7 +147,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string shipment_type = 11;</code>
      */
-    private $shipment_type = '';
+    protected $shipment_type = '';
     /**
      * Specifies a label for this shipment. This label is reported in the response
      * in the `shipment_label` of the corresponding
@@ -155,7 +155,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label = 12;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * If true, skip this shipment, but don't apply a `penalty_cost`.
      * Ignoring a shipment results in a validation error when there are any
@@ -167,7 +167,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore = 13;</code>
      */
-    private $ignore = false;
+    protected $ignore = false;
     /**
      * Deprecated: Use
      * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]

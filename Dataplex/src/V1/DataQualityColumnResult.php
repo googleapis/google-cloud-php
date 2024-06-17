@@ -21,7 +21,7 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $column = '';
+    protected $column = '';
     /**
      * Output only. The column-level data quality score for this data scan job if
      * and only if the 'column' field is set.
@@ -30,7 +30,7 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional float score = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $score = null;
+    protected $score = null;
 
     /**
      * Constructor.

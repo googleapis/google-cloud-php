@@ -23,13 +23,13 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The desired output location and configuration.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExportModelRequest.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
 
     /**
      * @param string                                                      $name         Required. The resource name of the Model to export.

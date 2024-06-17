@@ -21,13 +21,13 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The instance configurations to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.InstanceConfig config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
 
     /**
      * Constructor.

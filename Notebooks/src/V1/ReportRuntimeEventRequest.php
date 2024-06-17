@@ -21,20 +21,20 @@ class ReportRuntimeEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The VM hardware token for authenticating the VM.
      * https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      *
      * Generated from protobuf field <code>string vm_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * Required. The Event to be reported.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Event event = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event = null;
+    protected $event = null;
 
     /**
      * @param string $name Required. Format:

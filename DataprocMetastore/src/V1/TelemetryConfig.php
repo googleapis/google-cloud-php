@@ -20,7 +20,7 @@ class TelemetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.TelemetryConfig.LogFormat log_format = 1;</code>
      */
-    private $log_format = 0;
+    protected $log_format = 0;
 
     /**
      * Constructor.

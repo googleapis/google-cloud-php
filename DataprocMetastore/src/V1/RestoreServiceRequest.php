@@ -22,7 +22,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. The relative resource name of the metastore service backup to
      * restore from, in the following form:
@@ -30,13 +30,13 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $backup = '';
+    protected $backup = '';
     /**
      * Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Restore.RestoreType restore_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $restore_type = 0;
+    protected $restore_type = 0;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -51,7 +51,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $service Required. The relative resource name of the metastore service to run

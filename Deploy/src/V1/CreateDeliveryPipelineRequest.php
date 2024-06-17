@@ -22,19 +22,19 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. ID of the `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>string delivery_pipeline_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $delivery_pipeline_id = '';
+    protected $delivery_pipeline_id = '';
     /**
      * Required. The `DeliveryPipeline` to create.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.DeliveryPipeline delivery_pipeline = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $delivery_pipeline = null;
+    protected $delivery_pipeline = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -50,14 +50,14 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                   $parent             Required. The parent collection in which the `DeliveryPipeline` should be

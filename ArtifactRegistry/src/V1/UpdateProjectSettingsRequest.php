@@ -20,13 +20,13 @@ class UpdateProjectSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.ProjectSettings project_settings = 2;</code>
      */
-    private $project_settings = null;
+    protected $project_settings = null;
     /**
      * Field mask to support partial updates.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ArtifactRegistry\V1\ProjectSettings $projectSettings The project settings.

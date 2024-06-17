@@ -51,7 +51,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Output output = 6;</code>
      */
-    private $output = null;
+    protected $output = null;
     /**
      * List of ad breaks. Specifies where to insert ad break tags in the output
      * manifests.
@@ -64,7 +64,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PubsubDestination pubsub_destination = 8;</code>
      */
-    private $pubsub_destination = null;
+    protected $pubsub_destination = null;
     /**
      * List of output sprite sheets.
      * Spritesheets require at least one VideoStream in the Jobconfig.

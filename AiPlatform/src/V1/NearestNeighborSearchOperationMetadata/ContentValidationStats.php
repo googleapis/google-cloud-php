@@ -18,19 +18,19 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_gcs_uri = 1;</code>
      */
-    private $source_gcs_uri = '';
+    protected $source_gcs_uri = '';
     /**
      * Number of records in this file that were successfully processed.
      *
      * Generated from protobuf field <code>int64 valid_record_count = 2;</code>
      */
-    private $valid_record_count = 0;
+    protected $valid_record_count = 0;
     /**
      * Number of records in this file we skipped due to validate errors.
      *
      * Generated from protobuf field <code>int64 invalid_record_count = 3;</code>
      */
-    private $invalid_record_count = 0;
+    protected $invalid_record_count = 0;
     /**
      * The detail information of the partial failures encountered for those
      * invalid records that couldn't be parsed.
@@ -44,13 +44,13 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 valid_sparse_record_count = 5;</code>
      */
-    private $valid_sparse_record_count = 0;
+    protected $valid_sparse_record_count = 0;
     /**
      * Number of sparse records in this file we skipped due to validate errors.
      *
      * Generated from protobuf field <code>int64 invalid_sparse_record_count = 6;</code>
      */
-    private $invalid_sparse_record_count = 0;
+    protected $invalid_sparse_record_count = 0;
 
     /**
      * Constructor.

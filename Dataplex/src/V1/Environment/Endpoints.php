@@ -20,13 +20,13 @@ class Endpoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notebooks = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $notebooks = '';
+    protected $notebooks = '';
     /**
      * Output only. URI to serve SQL APIs
      *
      * Generated from protobuf field <code>string sql = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sql = '';
+    protected $sql = '';
 
     /**
      * Constructor.

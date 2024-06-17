@@ -22,7 +22,7 @@ class ComputeScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeScheduling.OnHostMaintenance on_host_maintenance = 1;</code>
      */
-    private $on_host_maintenance = 0;
+    protected $on_host_maintenance = 0;
     /**
      * Whether the Instance should be automatically restarted whenever it is
      * terminated by Compute Engine (not terminated by user).
@@ -33,7 +33,7 @@ class ComputeScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ComputeScheduling.RestartType restart_type = 5;</code>
      */
-    private $restart_type = 0;
+    protected $restart_type = 0;
     /**
      * A set of node affinity and anti-affinity configurations for sole tenant
      * nodes.
@@ -48,7 +48,7 @@ class ComputeScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_node_cpus = 4;</code>
      */
-    private $min_node_cpus = 0;
+    protected $min_node_cpus = 0;
 
     /**
      * Constructor.

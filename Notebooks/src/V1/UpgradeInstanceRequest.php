@@ -21,14 +21,14 @@ class UpgradeInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The optional UpgradeType. Setting this field will search for additional
      * compute images to upgrade this instance.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.UpgradeType type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

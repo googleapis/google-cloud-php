@@ -20,7 +20,7 @@ class RegexExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string regex = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $regex = '';
+    protected $regex = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_start_time = 4;</code>
      */
-    private $latest_job_start_time = null;
+    protected $latest_job_start_time = null;
     /**
      * The time when the latest DataScanJob ended.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_job_end_time = 5;</code>
      */
-    private $latest_job_end_time = null;
+    protected $latest_job_end_time = null;
 
     /**
      * Constructor.

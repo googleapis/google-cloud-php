@@ -20,13 +20,13 @@ class RefreshRuntimeTokenInternalResponse extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string access_token = 1;</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * Output only. Token expiration time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

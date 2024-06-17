@@ -20,13 +20,13 @@ class AwsSourceVmDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.AwsSourceVmDetails.Firmware firmware = 1;</code>
      */
-    private $firmware = 0;
+    protected $firmware = 0;
     /**
      * The total size of the disks being migrated in bytes.
      *
      * Generated from protobuf field <code>int64 committed_storage_bytes = 2;</code>
      */
-    private $committed_storage_bytes = 0;
+    protected $committed_storage_bytes = 0;
 
     /**
      * Constructor.

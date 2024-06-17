@@ -21,13 +21,13 @@ class SetInstanceAcceleratorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Type of this accelerator.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Instance.AcceleratorType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. Count of cores of this accelerator. Note that not all combinations
      * of `type` and `core_count` are valid. Check [GPUs on
@@ -36,7 +36,7 @@ class SetInstanceAcceleratorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 core_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $core_count = 0;
+    protected $core_count = 0;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double null_ratio = 2;</code>
      */
-    private $null_ratio = 0.0;
+    protected $null_ratio = 0.0;
     /**
      * Ratio of rows with distinct values against total scanned rows.
      * Not available for complex non-groupable field type RECORD and fields
@@ -28,7 +28,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      */
-    private $distinct_ratio = 0.0;
+    protected $distinct_ratio = 0.0;
     /**
      * The list of top N non-null values, frequency and ratio with which
      * they occur in the scanned data. N is 10 or equal to the number of

@@ -20,13 +20,13 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rollout = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * Output only. The index of the current repair action in the repair sequence.
      *
      * Generated from protobuf field <code>int64 current_repair_mode_index = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_repair_mode_index = 0;
+    protected $current_repair_mode_index = 0;
     /**
      * Output only. Records of the repair attempts. Each repair phase may have
      * multiple retry attempts or single rollback attempt.

@@ -20,7 +20,7 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The names of the versions to delete.
      * A maximum of 10000 versions can be deleted in a batch.
@@ -33,7 +33,7 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string   $parent The name of the repository holding all requested versions.

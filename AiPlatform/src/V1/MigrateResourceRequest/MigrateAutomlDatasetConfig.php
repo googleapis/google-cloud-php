@@ -23,14 +23,14 @@ class MigrateAutomlDatasetConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. Display name of the Dataset in Vertex AI.
      * System will pick a display name if unspecified.
      *
      * Generated from protobuf field <code>string dataset_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_display_name = '';
+    protected $dataset_display_name = '';
 
     /**
      * Constructor.

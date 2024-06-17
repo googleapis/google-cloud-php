@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -181,8 +181,12 @@ final class PredictionServiceClient
      *
      * @return string The formatted project_location_publisher_model resource.
      */
-    public static function projectLocationPublisherModelName(string $project, string $location, string $publisher, string $model): string
-    {
+    public static function projectLocationPublisherModelName(
+        string $project,
+        string $location,
+        string $publisher,
+        string $model
+    ): string {
         return self::getPathTemplate('projectLocationPublisherModel')->render([
             'project' => $project,
             'location' => $location,
@@ -337,8 +341,10 @@ final class PredictionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function directRawPredict(DirectRawPredictRequest $request, array $callOptions = []): DirectRawPredictResponse
-    {
+    public function directRawPredict(
+        DirectRawPredictRequest $request,
+        array $callOptions = []
+    ): DirectRawPredictResponse {
         return $this->startApiCall('DirectRawPredict', $request, $callOptions)->wait();
     }
 
@@ -756,8 +762,10 @@ final class PredictionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

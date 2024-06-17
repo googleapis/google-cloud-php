@@ -18,7 +18,7 @@ class StatsAnomaliesObjective extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelDeploymentMonitoringObjectiveType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * If set, all attribution scores between
      * [SearchModelDeploymentMonitoringStatsAnomaliesRequest.start_time][google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest.start_time]
@@ -30,7 +30,7 @@ class StatsAnomaliesObjective extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 top_feature_count = 4;</code>
      */
-    private $top_feature_count = 0;
+    protected $top_feature_count = 0;
 
     /**
      * Constructor.

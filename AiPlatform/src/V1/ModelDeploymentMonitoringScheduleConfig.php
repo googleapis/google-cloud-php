@@ -22,7 +22,7 @@ class ModelDeploymentMonitoringScheduleConfig extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>.google.protobuf.Duration monitor_interval = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $monitor_interval = null;
+    protected $monitor_interval = null;
     /**
      * The time window of the prediction data being included in each prediction
      * dataset. This window specifies how long the data should be collected from
@@ -35,7 +35,7 @@ class ModelDeploymentMonitoringScheduleConfig extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>.google.protobuf.Duration monitor_window = 2;</code>
      */
-    private $monitor_window = null;
+    protected $monitor_window = null;
 
     /**
      * Constructor.

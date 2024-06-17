@@ -22,13 +22,13 @@ class File extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The size of the File in bytes.
      *
      * Generated from protobuf field <code>int64 size_bytes = 3;</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * The hashes of the file content.
      *
@@ -40,26 +40,26 @@ class File extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the File was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The name of the Package or Version that owns this file, if any.
      *
      * Generated from protobuf field <code>string owner = 7;</code>
      */
-    private $owner = '';
+    protected $owner = '';
     /**
      * Output only. The time when the last attempt to refresh the file's data was
      * made. Only set when the repository is remote.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp fetch_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $fetch_time = null;
+    protected $fetch_time = null;
 
     /**
      * Constructor.

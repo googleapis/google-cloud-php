@@ -22,35 +22,35 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The name of the source system.
      * The maximum size of the field is 64 characters.
      *
      * Generated from protobuf field <code>string system = 2;</code>
      */
-    private $system = '';
+    protected $system = '';
     /**
      * The platform containing the source system.
      * The maximum size of the field is 64 characters.
      *
      * Generated from protobuf field <code>string platform = 3;</code>
      */
-    private $platform = '';
+    protected $platform = '';
     /**
      * User friendly display name.
      * The maximum size of the field is 500 characters.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of the Entry.
      * The maximum size of the field is 2000 characters.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * User-defined labels.
      * The maximum size of keys and values is 128 characters each.
@@ -69,13 +69,13 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The update time of the resource in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

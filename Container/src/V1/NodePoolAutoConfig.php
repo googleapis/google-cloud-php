@@ -32,6 +32,13 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 2;</code>
      */
     private $resource_manager_tags = null;
+    /**
+     * NodeKubeletConfig controls the defaults for autoprovisioned node-pools.
+     * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 3;</code>
+     */
+    private $node_kubelet_config = null;
 
     /**
      * Constructor.
@@ -47,6 +54,9 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
      *           Resource manager tag keys and values to be attached to the nodes
      *           for managing Compute Engine firewalls using Network Firewall Policies.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $node_kubelet_config
+     *           NodeKubeletConfig controls the defaults for autoprovisioned node-pools.
+     *           Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,6 +140,44 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
         $this->resource_manager_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * NodeKubeletConfig controls the defaults for autoprovisioned node-pools.
+     * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 3;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getNodeKubeletConfig()
+    {
+        return $this->node_kubelet_config;
+    }
+
+    public function hasNodeKubeletConfig()
+    {
+        return isset($this->node_kubelet_config);
+    }
+
+    public function clearNodeKubeletConfig()
+    {
+        unset($this->node_kubelet_config);
+    }
+
+    /**
+     * NodeKubeletConfig controls the defaults for autoprovisioned node-pools.
+     * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 3;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setNodeKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->node_kubelet_config = $var;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class AnimationFade extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Overlay.FadeType fade_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $fade_type = 0;
+    protected $fade_type = 0;
     /**
      * Normalized coordinates based on output video resolution. Valid
      * values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay
@@ -30,20 +30,20 @@ class AnimationFade extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Overlay.NormalizedCoordinate xy = 2;</code>
      */
-    private $xy = null;
+    protected $xy = null;
     /**
      * The time to start the fade animation, in seconds. Default: 0
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time_offset = 3;</code>
      */
-    private $start_time_offset = null;
+    protected $start_time_offset = null;
     /**
      * The time to end the fade animation, in seconds. Default:
      * `start_time_offset` + 1s
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time_offset = 4;</code>
      */
-    private $end_time_offset = null;
+    protected $end_time_offset = null;
 
     /**
      * Constructor.

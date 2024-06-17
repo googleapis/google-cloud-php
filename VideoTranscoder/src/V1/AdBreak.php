@@ -21,7 +21,7 @@ class AdBreak extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time_offset = 1;</code>
      */
-    private $start_time_offset = null;
+    protected $start_time_offset = null;
 
     /**
      * Constructor.

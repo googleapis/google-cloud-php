@@ -21,7 +21,7 @@ class DeployIndexResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedIndex deployed_index = 1;</code>
      */
-    private $deployed_index = null;
+    protected $deployed_index = null;
 
     /**
      * Constructor.

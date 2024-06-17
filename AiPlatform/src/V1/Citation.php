@@ -20,37 +20,37 @@ class Citation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 start_index = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_index = 0;
+    protected $start_index = 0;
     /**
      * Output only. End index into the content.
      *
      * Generated from protobuf field <code>int32 end_index = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_index = 0;
+    protected $end_index = 0;
     /**
      * Output only. Url reference of the attribution.
      *
      * Generated from protobuf field <code>string uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Output only. Title of the attribution.
      *
      * Generated from protobuf field <code>string title = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Output only. License of the attribution.
      *
      * Generated from protobuf field <code>string license = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $license = '';
+    protected $license = '';
     /**
      * Output only. Publication date of the attribution.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $publication_date = null;
+    protected $publication_date = null;
 
     /**
      * Constructor.

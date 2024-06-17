@@ -20,7 +20,7 @@ class PromptFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerateContentResponse.PromptFeedback.BlockedReason block_reason = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $block_reason = 0;
+    protected $block_reason = 0;
     /**
      * Output only. Safety ratings.
      *
@@ -32,7 +32,7 @@ class PromptFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string block_reason_message = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $block_reason_message = '';
+    protected $block_reason_message = '';
 
     /**
      * Constructor.

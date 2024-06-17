@@ -21,19 +21,19 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The format of packages that are stored in the repository.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Format format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $format = 0;
+    protected $format = 0;
     /**
      * The user-provided description of the repository.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Labels with user-defined metadata.
      * This field may contain up to 64 entries. Label keys and values may be no
@@ -49,13 +49,13 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the repository was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The Cloud KMS resource name of the customer managed encryption key that's
      * used to encrypt the contents of the Repository. Has the form:
@@ -64,13 +64,13 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Optional. The mode of the repository.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository.Mode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Optional. Cleanup policies for this repository. Cleanup policies indicate
      * when certain package versions can be automatically deleted. Map keys are
@@ -87,20 +87,20 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 size_bytes = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Output only. If set, the repository satisfies physical zone separation.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Optional. If true, the cleanup pipeline is prevented from deleting versions
      * in this repository.
      *
      * Generated from protobuf field <code>bool cleanup_policy_dry_run = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cleanup_policy_dry_run = false;
+    protected $cleanup_policy_dry_run = false;
     protected $format_config;
     protected $mode_config;
 

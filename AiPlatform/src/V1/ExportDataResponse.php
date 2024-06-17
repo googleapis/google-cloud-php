@@ -32,7 +32,7 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 2;</code>
      */
-    private $data_stats = null;
+    protected $data_stats = null;
 
     /**
      * Constructor.

@@ -21,25 +21,25 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Git Clone HTTPS URI.
      *
      * Generated from protobuf field <code>string remote_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $remote_uri = '';
+    protected $remote_uri = '';
     /**
      * Output only. Server assigned timestamp for when the connection was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Server assigned timestamp for when the connection was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Allows clients to store small amounts of arbitrary data.
      *
@@ -53,13 +53,13 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 7;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. External ID of the webhook created for the repository.
      *
      * Generated from protobuf field <code>string webhook_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $webhook_id = '';
+    protected $webhook_id = '';
 
     /**
      * Constructor.

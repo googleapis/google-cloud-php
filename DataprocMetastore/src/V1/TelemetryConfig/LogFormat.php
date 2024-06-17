@@ -57,6 +57,4 @@ class LogFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LogFormat::class, \Google\Cloud\Metastore\V1\TelemetryConfig_LogFormat::class);
 

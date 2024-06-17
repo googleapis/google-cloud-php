@@ -24,41 +24,41 @@ class ScanRunLog extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string summary = 1;</code>
      */
-    private $summary = '';
+    protected $summary = '';
     /**
      * The resource name of the ScanRun being logged.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The execution state of the ScanRun.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRun.ExecutionState execution_state = 3;</code>
      */
-    private $execution_state = 0;
+    protected $execution_state = 0;
     /**
      * The result state of the ScanRun.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRun.ResultState result_state = 4;</code>
      */
-    private $result_state = 0;
+    protected $result_state = 0;
     /**
      * Generated from protobuf field <code>int64 urls_crawled_count = 5;</code>
      */
-    private $urls_crawled_count = 0;
+    protected $urls_crawled_count = 0;
     /**
      * Generated from protobuf field <code>int64 urls_tested_count = 6;</code>
      */
-    private $urls_tested_count = 0;
+    protected $urls_tested_count = 0;
     /**
      * Generated from protobuf field <code>bool has_findings = 7;</code>
      */
-    private $has_findings = false;
+    protected $has_findings = false;
     /**
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRunErrorTrace error_trace = 8;</code>
      */
-    private $error_trace = null;
+    protected $error_trace = null;
 
     /**
      * Constructor.

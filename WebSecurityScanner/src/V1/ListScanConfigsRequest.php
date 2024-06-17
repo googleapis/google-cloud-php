@@ -21,7 +21,7 @@ class ListScanConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * A token identifying a page of results to be returned. This should be a
      * `next_page_token` value returned from a previous List request.
@@ -29,7 +29,7 @@ class ListScanConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of ScanConfigs to return, can be limited by server.
      * If not specified or not positive, the implementation will select a
@@ -37,7 +37,7 @@ class ListScanConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * Constructor.

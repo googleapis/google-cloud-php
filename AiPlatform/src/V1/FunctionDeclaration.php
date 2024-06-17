@@ -27,14 +27,14 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Description and purpose of the function.
      * Model uses it to decide how and whether to call the function.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Describes the parameters to this function in JSON Schema Object
      * format. Reflects the Open API 3.03 Parameter Object. string Key: the name
@@ -53,7 +53,7 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * Constructor.

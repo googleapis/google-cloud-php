@@ -28,7 +28,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.
@@ -97,6 +97,4 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GuestOsFeature::class, \Google\Cloud\Notebooks\V1\Instance_Disk_GuestOsFeature::class);
 

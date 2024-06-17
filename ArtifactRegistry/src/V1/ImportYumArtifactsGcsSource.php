@@ -26,7 +26,7 @@ class ImportYumArtifactsGcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_wildcards = 2;</code>
      */
-    private $use_wildcards = false;
+    protected $use_wildcards = false;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,9 +97,7 @@ final class AssuredWorkloadsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -116,7 +114,8 @@ final class AssuredWorkloadsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/assured_workloads_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/assured_workloads_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -145,7 +144,9 @@ final class AssuredWorkloadsServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -198,8 +199,12 @@ final class AssuredWorkloadsServiceClient
      *
      * @return string The formatted violation resource.
      */
-    public static function violationName(string $organization, string $location, string $workload, string $violation): string
-    {
+    public static function violationName(
+        string $organization,
+        string $location,
+        string $workload,
+        string $violation
+    ): string {
         return self::getPathTemplate('violation')->render([
             'organization' => $organization,
             'location' => $location,
@@ -350,8 +355,10 @@ final class AssuredWorkloadsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function acknowledgeViolation(AcknowledgeViolationRequest $request, array $callOptions = []): AcknowledgeViolationResponse
-    {
+    public function acknowledgeViolation(
+        AcknowledgeViolationRequest $request,
+        array $callOptions = []
+    ): AcknowledgeViolationResponse {
         return $this->startApiCall('AcknowledgeViolation', $request, $callOptions)->wait();
     }
 
@@ -546,8 +553,10 @@ final class AssuredWorkloadsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restrictAllowedResources(RestrictAllowedResourcesRequest $request, array $callOptions = []): RestrictAllowedResourcesResponse
-    {
+    public function restrictAllowedResources(
+        RestrictAllowedResourcesRequest $request,
+        array $callOptions = []
+    ): RestrictAllowedResourcesResponse {
         return $this->startApiCall('RestrictAllowedResources', $request, $callOptions)->wait();
     }
 

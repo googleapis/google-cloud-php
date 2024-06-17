@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,7 +79,9 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ManagedNotebookServiceClient */
@@ -189,12 +191,15 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
@@ -257,8 +262,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
-        $request = (new DeleteRuntimeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRuntimeRequest())->setName($formattedName);
         $response = $gapicClient->deleteRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -314,17 +318,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
-        $request = (new DeleteRuntimeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRuntimeRequest())->setName($formattedName);
         $response = $gapicClient->deleteRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -383,9 +389,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $diagnosticConfig = new DiagnosticConfig();
         $diagnosticConfigGcsBucket = 'diagnosticConfigGcsBucket-1116063720';
         $diagnosticConfig->setGcsBucket($diagnosticConfigGcsBucket);
-        $request = (new DiagnoseRuntimeRequest())
-            ->setName($formattedName)
-            ->setDiagnosticConfig($diagnosticConfig);
+        $request = (new DiagnoseRuntimeRequest())->setName($formattedName)->setDiagnosticConfig($diagnosticConfig);
         $response = $gapicClient->diagnoseRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -443,21 +447,22 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
         $diagnosticConfig = new DiagnosticConfig();
         $diagnosticConfigGcsBucket = 'diagnosticConfigGcsBucket-1116063720';
         $diagnosticConfig->setGcsBucket($diagnosticConfigGcsBucket);
-        $request = (new DiagnoseRuntimeRequest())
-            ->setName($formattedName)
-            ->setDiagnosticConfig($diagnosticConfig);
+        $request = (new DiagnoseRuntimeRequest())->setName($formattedName)->setDiagnosticConfig($diagnosticConfig);
         $response = $gapicClient->diagnoseRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -495,8 +500,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
-        $request = (new GetRuntimeRequest())
-            ->setName($formattedName);
+        $request = (new GetRuntimeRequest())->setName($formattedName);
         $response = $gapicClient->getRuntime($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -520,17 +524,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
-        $request = (new GetRuntimeRequest())
-            ->setName($formattedName);
+        $request = (new GetRuntimeRequest())->setName($formattedName);
         try {
             $gapicClient->getRuntime($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -555,17 +561,14 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $runtimesElement = new Runtime();
-        $runtimes = [
-            $runtimesElement,
-        ];
+        $runtimes = [$runtimesElement];
         $expectedResponse = new ListRuntimesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRuntimes($runtimes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRuntimesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuntimesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRuntimes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -592,17 +595,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRuntimesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuntimesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRuntimes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -632,16 +637,17 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
         $vmId = 'vmId112317347';
-        $request = (new RefreshRuntimeTokenInternalRequest())
-            ->setName($formattedName)
-            ->setVmId($vmId);
+        $request = (new RefreshRuntimeTokenInternalRequest())->setName($formattedName)->setVmId($vmId);
         $response = $gapicClient->refreshRuntimeTokenInternal($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.notebooks.v1.ManagedNotebookService/RefreshRuntimeTokenInternal', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.notebooks.v1.ManagedNotebookService/RefreshRuntimeTokenInternal',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getVmId();
@@ -660,19 +666,20 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
         $vmId = 'vmId112317347';
-        $request = (new RefreshRuntimeTokenInternalRequest())
-            ->setName($formattedName)
-            ->setVmId($vmId);
+        $request = (new RefreshRuntimeTokenInternalRequest())->setName($formattedName)->setVmId($vmId);
         try {
             $gapicClient->refreshRuntimeTokenInternal($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -784,12 +791,15 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runtimeName('[PROJECT]', '[LOCATION]', '[RUNTIME]');
@@ -854,8 +864,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new ResetRuntimeRequest())
-            ->setName($name);
+        $request = (new ResetRuntimeRequest())->setName($name);
         $response = $gapicClient->resetRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -911,17 +920,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new ResetRuntimeRequest())
-            ->setName($name);
+        $request = (new ResetRuntimeRequest())->setName($name);
         $response = $gapicClient->resetRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -977,8 +988,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new StartRuntimeRequest())
-            ->setName($name);
+        $request = (new StartRuntimeRequest())->setName($name);
         $response = $gapicClient->startRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1034,17 +1044,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new StartRuntimeRequest())
-            ->setName($name);
+        $request = (new StartRuntimeRequest())->setName($name);
         $response = $gapicClient->startRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1100,8 +1112,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new StopRuntimeRequest())
-            ->setName($name);
+        $request = (new StopRuntimeRequest())->setName($name);
         $response = $gapicClient->stopRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1157,17 +1168,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new StopRuntimeRequest())
-            ->setName($name);
+        $request = (new StopRuntimeRequest())->setName($name);
         $response = $gapicClient->stopRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1223,8 +1236,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new SwitchRuntimeRequest())
-            ->setName($name);
+        $request = (new SwitchRuntimeRequest())->setName($name);
         $response = $gapicClient->switchRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1280,17 +1292,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new SwitchRuntimeRequest())
-            ->setName($name);
+        $request = (new SwitchRuntimeRequest())->setName($name);
         $response = $gapicClient->switchRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1347,9 +1361,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         // Mock request
         $runtime = new Runtime();
         $updateMask = new FieldMask();
-        $request = (new UpdateRuntimeRequest())
-            ->setRuntime($runtime)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateRuntimeRequest())->setRuntime($runtime)->setUpdateMask($updateMask);
         $response = $gapicClient->updateRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1407,19 +1419,20 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $runtime = new Runtime();
         $updateMask = new FieldMask();
-        $request = (new UpdateRuntimeRequest())
-            ->setRuntime($runtime)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateRuntimeRequest())->setRuntime($runtime)->setUpdateMask($updateMask);
         $response = $gapicClient->updateRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1475,8 +1488,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new UpgradeRuntimeRequest())
-            ->setName($name);
+        $request = (new UpgradeRuntimeRequest())->setName($name);
         $response = $gapicClient->upgradeRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1532,17 +1544,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new UpgradeRuntimeRequest())
-            ->setName($name);
+        $request = (new UpgradeRuntimeRequest())->setName($name);
         $response = $gapicClient->upgradeRuntime($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1604,12 +1618,15 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1636,9 +1653,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1668,12 +1683,15 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1706,8 +1724,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1731,17 +1748,19 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1773,9 +1792,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1801,19 +1818,20 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1841,9 +1859,7 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1869,19 +1885,20 @@ class ManagedNotebookServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test

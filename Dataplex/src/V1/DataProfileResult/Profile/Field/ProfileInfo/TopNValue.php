@@ -20,20 +20,20 @@ class TopNValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Count of the corresponding value in the scanned data.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
     /**
      * Ratio of the corresponding value in the field against the total
      * number of rows in the scanned data.
      *
      * Generated from protobuf field <code>double ratio = 3;</code>
      */
-    private $ratio = 0.0;
+    protected $ratio = 0.0;
 
     /**
      * Constructor.

@@ -25,7 +25,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.AdmissionRule.EvaluationMode evaluation_mode = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $evaluation_mode = 0;
+    protected $evaluation_mode = 0;
     /**
      * Optional. The resource names of the attestors that must attest to
      * a container image, in the format `projects/&#42;&#47;attestors/&#42;`. Each
@@ -43,7 +43,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.AdmissionRule.EnforcementMode enforcement_mode = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enforcement_mode = 0;
+    protected $enforcement_mode = 0;
 
     /**
      * Constructor.

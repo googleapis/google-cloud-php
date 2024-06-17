@@ -25,7 +25,7 @@ class SyncConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cron = 1;</code>
      */
-    private $cron = '';
+    protected $cron = '';
 
     /**
      * Constructor.
