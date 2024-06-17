@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Rpc\Code;
+use Psr\Log\LoggerInterface;
 
 /**
  * User stream which handles failure from upstream, retries if necessary and
@@ -59,6 +60,11 @@ class ResumableStream implements \IteratorAggregate
     private $retryFunction;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Constructs a resumable stream.
      *
      * @param callable $apiFunction Function to execute to get server stream. Function signature
@@ -72,12 +78,14 @@ class ResumableStream implements \IteratorAggregate
         callable $apiFunction,
         callable $argumentFunction,
         callable $retryFunction,
-        $retries = self::DEFAULT_MAX_RETRIES
+        $retries = self::DEFAULT_MAX_RETRIES,
+        LoggerInterface $logger = null
     ) {
         $this->retries = $retries ?: self::DEFAULT_MAX_RETRIES;
         $this->apiFunction = $apiFunction;
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
+        $this->logger = $logger;
     }
 
     /**
@@ -101,6 +109,9 @@ class ResumableStream implements \IteratorAggregate
                         yield $item;
                     }
                 } catch (\Exception $ex) {
+                    if ($this->logger) {
+                        $this->logger->error($ex->getMessage());
+                    }
                 }
             }
             $tries++;
