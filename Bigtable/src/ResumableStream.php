@@ -103,6 +103,14 @@ class ResumableStream implements \IteratorAggregate
             $ex = null;
             $args = $argumentFunction();
             if (!isset($args[1]['requestCompleted']) || $args[1]['requestCompleted'] !== true) {
+                $optionalArgs = array_pop($args);
+                $headers = $optionalArgs['headers'] ?? [];
+                if ($tries > 0) {
+                    // Send in "bigtable-attempt" header on retry
+                    $headers['bigtable-attempt'] = [(string) $tries];
+                    $optionalArgs['headers'] = $headers;
+                }
+                $args[] = $optionalArgs;
                 $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $args);
                 try {
                     foreach ($stream->readAll() as $item) {
