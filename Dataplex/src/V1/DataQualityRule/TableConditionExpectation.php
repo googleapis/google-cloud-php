@@ -23,7 +23,7 @@ class TableConditionExpectation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_expression = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sql_expression = '';
+    protected $sql_expression = '';
 
     /**
      * Constructor.

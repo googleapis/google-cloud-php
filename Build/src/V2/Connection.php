@@ -22,25 +22,25 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned timestamp for when the connection was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Server assigned timestamp for when the connection was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Installation state of the Connection.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.InstallationState installation_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $installation_state = null;
+    protected $installation_state = null;
     /**
      * If disabled is set to true, functionality is disabled for this connection.
      * Repository based API methods and webhooks processing for repositories in
@@ -48,14 +48,14 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 13;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Output only. Set to true when the connection is being set up or updated in
      * the background.
      *
      * Generated from protobuf field <code>bool reconciling = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Allows clients to store small amounts of arbitrary data.
      *
@@ -69,7 +69,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 16;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     protected $connection_config;
 
     /**

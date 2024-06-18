@@ -23,7 +23,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * The resource name of a SavedQuery(annotation set in UI).
      * Format:
@@ -43,7 +43,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_labeling_job = 3;</code>
      */
-    private $data_labeling_job = '';
+    protected $data_labeling_job = '';
     /**
      * An expression for filtering the DataItem that will be returned.
      *   * `data_item_id` - for = or !=.
@@ -57,7 +57,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_item_filter = 4;</code>
      */
-    private $data_item_filter = '';
+    protected $data_item_filter = '';
     /**
      * An expression for filtering the Annotations that will be returned per
      * DataItem.
@@ -83,7 +83,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
     /**
      * If set, only up to this many of Annotations will be returned per
      * DataItemView. The maximum value is 1000. If not set, the maximum value will
@@ -91,14 +91,14 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 annotations_limit = 7;</code>
      */
-    private $annotations_limit = 0;
+    protected $annotations_limit = 0;
     /**
      * Requested page size. Server may return fewer results than requested.
      * Default and maximum page size is 100.
      *
      * Generated from protobuf field <code>int32 page_size = 8;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A comma-separated list of fields to order by, sorted in ascending order.
      * Use "desc" after a field name for descending.
@@ -117,7 +117,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 10;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     protected $order;
 
     /**

@@ -27,20 +27,20 @@ class ErrorAnalysisAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ErrorAnalysisAnnotation.QueryType query_type = 2;</code>
      */
-    private $query_type = 0;
+    protected $query_type = 0;
     /**
      * The outlier score of this annotated item. Usually defined as the min of all
      * distances from attributed items.
      *
      * Generated from protobuf field <code>double outlier_score = 3;</code>
      */
-    private $outlier_score = 0.0;
+    protected $outlier_score = 0.0;
     /**
      * The threshold used to determine if this annotation is an outlier or not.
      *
      * Generated from protobuf field <code>double outlier_threshold = 4;</code>
      */
-    private $outlier_threshold = 0.0;
+    protected $outlier_threshold = 0.0;
 
     /**
      * Constructor.

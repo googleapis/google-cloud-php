@@ -23,20 +23,20 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Unique identifier of the `Rollout`.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Description of the `Rollout` for user purposes. Max length is 255
      * characters.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * User annotations. These attributes can only be set and used by the
      * user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations
@@ -64,56 +64,56 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time at which the `Rollout` was approved.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp approve_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $approve_time = null;
+    protected $approve_time = null;
     /**
      * Output only. Time at which the `Rollout` was enqueued.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueue_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $enqueue_time = null;
+    protected $enqueue_time = null;
     /**
      * Output only. Time at which the `Rollout` started deploying.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp deploy_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deploy_start_time = null;
+    protected $deploy_start_time = null;
     /**
      * Output only. Time at which the `Rollout` finished deploying.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp deploy_end_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deploy_end_time = null;
+    protected $deploy_end_time = null;
     /**
      * Required. The ID of Target to which this `Rollout` is deploying.
      *
      * Generated from protobuf field <code>string target_id = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Output only. Approval state of the `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.ApprovalState approval_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $approval_state = 0;
+    protected $approval_state = 0;
     /**
      * Output only. Current state of the `Rollout`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the rollout failure, if
      * available.
      *
      * Generated from protobuf field <code>string failure_reason = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_reason = '';
+    protected $failure_reason = '';
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to deploy the Rollout. Format is
@@ -121,7 +121,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deploying_build = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $deploying_build = '';
+    protected $deploying_build = '';
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -129,14 +129,14 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 16;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. The reason this rollout failed. This will always be
      * unspecified while the rollout is in progress.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout.FailureCause deploy_failure_cause = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deploy_failure_cause = 0;
+    protected $deploy_failure_cause = 0;
     /**
      * Output only. The phases that represent the workflows of this `Rollout`.
      *
@@ -148,21 +148,21 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Metadata metadata = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. Name of the `ControllerRollout`. Format is
      * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $controller_rollout = '';
+    protected $controller_rollout = '';
     /**
      * Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
      * Empty if this `Rollout` wasn't created as a rollback.
      *
      * Generated from protobuf field <code>string rollback_of_rollout = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rollback_of_rollout = '';
+    protected $rollback_of_rollout = '';
     /**
      * Output only. Names of `Rollouts` that rolled back this `Rollout`.
      *

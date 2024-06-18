@@ -21,13 +21,13 @@ class Ancestor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The type of the ancestor resource.
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.

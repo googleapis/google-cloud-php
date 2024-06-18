@@ -1412,7 +1412,8 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
-     * Promotes the read replica instance to be a stand-alone Cloud SQL instance.
+     * Promotes the read replica instance to be an independent Cloud SQL
+     * primary instance.
      * Using this operation might cause your instance to restart.
      *
      * Sample code:
@@ -1433,9 +1434,13 @@ class SqlInstancesServiceGapicClient
      *     @type string $project
      *           ID of the project that contains the read replica.
      *     @type bool $failover
-     *           Set to true if the promote operation should attempt to re-add the original
-     *           primary as a replica when it comes back online. Otherwise, if this value is
-     *           false or not set, the original primary will be a standalone instance.
+     *           Set to true to invoke a replica failover to the designated DR replica.
+     *           As part of replica failover, the promote operation attempts
+     *           to add the original primary instance as a replica of the promoted
+     *           DR replica when the original primary instance comes back online.
+     *           If set to false or not specified, then the original primary
+     *           instance becomes an independent Cloud SQL primary instance.
+     *           Only applicable to MySQL.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2017,8 +2022,9 @@ class SqlInstancesServiceGapicClient
      *           for MySQL.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel}
      *     @type int $migrationType
-     *           Optional. MigrationType decides if the migration is a physical file based
-     *           migration or logical migration.
+     *           Optional. MigrationType configures the migration to use physical files or
+     *           logical dump files. If not set, then the logical dump file configuration is
+     *           used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -2201,7 +2207,8 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
-     * Switches over from the primary instance to a replica instance.
+     * Switches over from the primary instance to the designated DR replica
+     * instance.
      *
      * Sample code:
      * ```
@@ -2430,12 +2437,13 @@ class SqlInstancesServiceGapicClient
      *     @type MySqlSyncConfig $mysqlSyncConfig
      *           Optional. MySQL-specific settings for start external sync.
      *     @type int $migrationType
-     *           Optional. MigrationType field decides if the migration is a physical file
-     *           based migration or logical migration
+     *           Optional. MigrationType configures the migration to use physical files or
+     *           logical dump files. If not set, then the logical dump file configuration is
+     *           used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType}
      *     @type int $syncParallelLevel
-     *           Optional. Parallel level for initial data sync. Currently only applicable
-     *           for PostgreSQL.
+     *           Optional. Parallel level for initial data sync. Only applicable for
+     *           PostgreSQL.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,9 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BinauthzManagementServiceV1Client */
@@ -103,7 +105,10 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/CreateAttestor', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/CreateAttestor',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getAttestorId();
@@ -124,12 +129,15 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -167,14 +175,16 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
-        $request = (new DeleteAttestorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAttestorRequest())->setName($formattedName);
         $gapicClient->deleteAttestor($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/DeleteAttestor', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/DeleteAttestor',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -191,17 +201,19 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
-        $request = (new DeleteAttestorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAttestorRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAttestor($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -232,15 +244,17 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
-        $request = (new GetAttestorRequest())
-            ->setName($formattedName);
+        $request = (new GetAttestorRequest())->setName($formattedName);
         $response = $gapicClient->getAttestor($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/GetAttestor', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/GetAttestor',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -257,17 +271,19 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
-        $request = (new GetAttestorRequest())
-            ->setName($formattedName);
+        $request = (new GetAttestorRequest())->setName($formattedName);
         try {
             $gapicClient->getAttestor($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -298,15 +314,17 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]');
-        $request = (new GetPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/GetPolicy', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/GetPolicy',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -323,17 +341,19 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->policyName('[PROJECT]');
-        $request = (new GetPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -358,17 +378,14 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $attestorsElement = new Attestor();
-        $attestors = [
-            $attestorsElement,
-        ];
+        $attestors = [$attestorsElement];
         $expectedResponse = new ListAttestorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAttestors($attestors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAttestorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttestorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAttestors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -378,7 +395,10 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/ListAttestors', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/ListAttestors',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -395,17 +415,19 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAttestorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAttestorsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAttestors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -438,15 +460,17 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $attestor = new Attestor();
         $attestorName = 'attestorName-125367661';
         $attestor->setName($attestorName);
-        $request = (new UpdateAttestorRequest())
-            ->setAttestor($attestor);
+        $request = (new UpdateAttestorRequest())->setAttestor($attestor);
         $response = $gapicClient->updateAttestor($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/UpdateAttestor', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/UpdateAttestor',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getAttestor();
         $this->assertProtobufEquals($attestor, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -463,19 +487,21 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $attestor = new Attestor();
         $attestorName = 'attestorName-125367661';
         $attestor->setName($attestorName);
-        $request = (new UpdateAttestorRequest())
-            ->setAttestor($attestor);
+        $request = (new UpdateAttestorRequest())->setAttestor($attestor);
         try {
             $gapicClient->updateAttestor($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -512,15 +538,17 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $defaultAdmissionRuleEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
         $policyDefaultAdmissionRule->setEnforcementMode($defaultAdmissionRuleEnforcementMode);
         $policy->setDefaultAdmissionRule($policyDefaultAdmissionRule);
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
         $response = $gapicClient->updatePolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/UpdatePolicy', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/UpdatePolicy',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getPolicy();
         $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -537,12 +565,15 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $policy = new Policy();
@@ -552,8 +583,7 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $defaultAdmissionRuleEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
         $policyDefaultAdmissionRule->setEnforcementMode($defaultAdmissionRuleEnforcementMode);
         $policy->setDefaultAdmissionRule($policyDefaultAdmissionRule);
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
         try {
             $gapicClient->updatePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -598,7 +628,10 @@ class BinauthzManagementServiceV1ClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/CreateAttestor', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1/CreateAttestor',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getAttestorId();

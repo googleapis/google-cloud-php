@@ -20,7 +20,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The display name of the Pipeline.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -28,56 +28,56 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Pipeline creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Pipeline start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Pipeline end time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Timestamp when this PipelineJob was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The spec of the pipeline.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7;</code>
      */
-    private $pipeline_spec = null;
+    protected $pipeline_spec = null;
     /**
      * Output only. The detailed state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineState state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The details of pipeline run. Not available in the list view.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineJobDetail job_detail = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_detail = null;
+    protected $job_detail = null;
     /**
      * Output only. The error that occurred during pipeline execution.
      * Only populated when the pipeline's state is FAILED or CANCELLED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The labels with user-defined metadata to organize PipelineJob.
      * Label keys and values can be no longer than 64 characters
@@ -95,14 +95,14 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig runtime_config = 12;</code>
      */
-    private $runtime_config = null;
+    protected $runtime_config = null;
     /**
      * Customer-managed encryption key spec for a pipelineJob. If set, this
      * PipelineJob and all of its sub-resources will be secured by this key.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 16;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * The service account that the pipeline workload runs as.
      * If not specified, the Compute Engine default service account in the project
@@ -114,13 +114,13 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 17;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
      * Pipeline Job's workload should be peered. For example,
      * `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
@@ -132,7 +132,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 18 [(.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * A list of names for the reserved ip ranges under the VPC network
      * that can be used for this Pipeline Job's workload.
@@ -153,7 +153,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string template_uri = 19;</code>
      */
-    private $template_uri = '';
+    protected $template_uri = '';
     /**
      * Output only. Pipeline template metadata. Will fill up fields if
      * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
@@ -161,14 +161,14 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $template_metadata = null;
+    protected $template_metadata = null;
     /**
      * Output only. The schedule resource name.
      * Only returned if the Pipeline is created by Schedule API.
      *
      * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $schedule_name = '';
+    protected $schedule_name = '';
 
     /**
      * Constructor.
@@ -222,10 +222,10 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           permission on this service account.
      *     @type string $network
      *           The full name of the Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     *           [network](/compute/docs/networks-and-firewalls#networks) to which the
      *           Pipeline Job's workload should be peered. For example,
      *           `projects/12345/global/networks/myVPC`.
-     *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     *           [Format](/compute/docs/reference/rest/v1/networks/insert)
      *           is of the form `projects/{project}/global/networks/{network}`.
      *           Where {project} is a project number, as in `12345`, and {network} is a
      *           network name.
@@ -749,10 +749,10 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
      * Pipeline Job's workload should be peered. For example,
      * `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.
@@ -772,10 +772,10 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
      * Pipeline Job's workload should be peered. For example,
      * `projects/12345/global/networks/myVPC`.
-     * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert)
+     * [Format](/compute/docs/reference/rest/v1/networks/insert)
      * is of the form `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in `12345`, and {network} is a
      * network name.

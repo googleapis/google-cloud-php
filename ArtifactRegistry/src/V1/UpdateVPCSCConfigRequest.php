@@ -20,13 +20,13 @@ class UpdateVPCSCConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.VPCSCConfig vpcsc_config = 1;</code>
      */
-    private $vpcsc_config = null;
+    protected $vpcsc_config = null;
     /**
      * Field mask to support partial updates.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ArtifactRegistry\V1\VPCSCConfig $vpcscConfig The project config.

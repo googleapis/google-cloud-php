@@ -22,14 +22,14 @@ class SelectEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offline_storage_deleted_entity_row_count = 1;</code>
      */
-    private $offline_storage_deleted_entity_row_count = 0;
+    protected $offline_storage_deleted_entity_row_count = 0;
     /**
      * The count of deleted entities in the online storage.
      * Each entity ID corresponds to one entity.
      *
      * Generated from protobuf field <code>int64 online_storage_deleted_entity_count = 2;</code>
      */
-    private $online_storage_deleted_entity_count = 0;
+    protected $online_storage_deleted_entity_count = 0;
 
     /**
      * Constructor.

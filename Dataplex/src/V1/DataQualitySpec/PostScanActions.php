@@ -21,14 +21,14 @@ class PostScanActions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.BigQueryExport bigquery_export = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bigquery_export = null;
+    protected $bigquery_export = null;
     /**
      * Optional. If set, results will be sent to the provided notification
      * receipts upon triggers.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport notification_report = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $notification_report = null;
+    protected $notification_report = null;
 
     /**
      * Constructor.

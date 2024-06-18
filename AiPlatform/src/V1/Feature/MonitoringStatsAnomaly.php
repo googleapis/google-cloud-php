@@ -26,13 +26,13 @@ class MonitoringStatsAnomaly extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly.Objective objective = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $objective = 0;
+    protected $objective = 0;
     /**
      * Output only. The stats and anomalies generated at specific timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureStatsAnomaly feature_stats_anomaly = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $feature_stats_anomaly = null;
+    protected $feature_stats_anomaly = null;
 
     /**
      * Constructor.

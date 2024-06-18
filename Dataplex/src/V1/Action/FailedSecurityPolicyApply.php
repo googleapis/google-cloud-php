@@ -24,7 +24,7 @@ class FailedSecurityPolicyApply extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset = 1;</code>
      */
-    private $asset = '';
+    protected $asset = '';
 
     /**
      * Constructor.

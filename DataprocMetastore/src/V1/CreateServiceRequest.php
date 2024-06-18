@@ -23,7 +23,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the metastore service, which is used as the final
      * component of the metastore service's name.
@@ -33,7 +33,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_id = '';
+    protected $service_id = '';
     /**
      * Required. The Metastore service to create. The `name` field is
      * ignored. The ID of the created metastore service must be provided in
@@ -41,7 +41,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Service service = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -56,7 +56,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                             $parent    Required. The relative resource name of the location in which to create a

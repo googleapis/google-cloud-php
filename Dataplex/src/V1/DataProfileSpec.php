@@ -25,7 +25,7 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float sampling_percent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sampling_percent = 0.0;
+    protected $sampling_percent = 0.0;
     /**
      * Optional. A filter applied to all rows in a single DataScan job.
      * The filter needs to be a valid SQL expression for a WHERE clause in
@@ -34,13 +34,13 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string row_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $row_filter = '';
+    protected $row_filter = '';
     /**
      * Optional. Actions to take upon job completion..
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.PostScanActions post_scan_actions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $post_scan_actions = null;
+    protected $post_scan_actions = null;
     /**
      * Optional. The fields to include in data profile.
      * If not specified, all fields at the time of profile scan job execution are
@@ -48,7 +48,7 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.SelectedFields include_fields = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_fields = null;
+    protected $include_fields = null;
     /**
      * Optional. The fields to exclude from data profile.
      * If specified, the fields will be excluded from data profile, regardless of
@@ -56,7 +56,7 @@ class DataProfileSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileSpec.SelectedFields exclude_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $exclude_fields = null;
+    protected $exclude_fields = null;
 
     /**
      * Constructor.

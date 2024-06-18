@@ -21,26 +21,26 @@ class Annotations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deprecated = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deprecated = '';
+    protected $deprecated = '';
     /**
      * Optional. Specify a displayname for a field.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Specify a description for a field
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Specify a display order for a field. Display order can be
      * used to reorder where a field is rendered
      *
      * Generated from protobuf field <code>int32 display_order = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_order = 0;
+    protected $display_order = 0;
     /**
      * Optional. String Type annotations can be used to specify special
      * meaning to string fields. The following values are supported: richText:
@@ -49,7 +49,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string string_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $string_type = '';
+    protected $string_type = '';
     /**
      * Optional. Suggested hints for string fields. These can be used to
      * suggest values to users, through an UI for example.

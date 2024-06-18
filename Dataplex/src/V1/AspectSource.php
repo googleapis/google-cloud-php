@@ -21,13 +21,13 @@ class AspectSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The update time of the aspect in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

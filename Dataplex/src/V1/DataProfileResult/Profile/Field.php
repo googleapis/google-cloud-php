@@ -20,7 +20,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The data type retrieved from the schema of the data source. For
      * instance, for a BigQuery native table, it is the [BigQuery Table
@@ -30,7 +30,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The mode of the field. Possible values include:
      * * REQUIRED, if it is a required field.
@@ -39,13 +39,13 @@ class Field extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mode = 3;</code>
      */
-    private $mode = '';
+    protected $mode = '';
     /**
      * Profile information for the corresponding field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo profile = 4;</code>
      */
-    private $profile = null;
+    protected $profile = null;
 
     /**
      * Constructor.

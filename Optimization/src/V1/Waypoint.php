@@ -26,7 +26,7 @@ class Waypoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool side_of_road = 3;</code>
      */
-    private $side_of_road = false;
+    protected $side_of_road = false;
     protected $location_type;
 
     /**

@@ -20,31 +20,31 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional float temperature = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $temperature = null;
+    protected $temperature = null;
     /**
      * Optional. If specified, nucleus sampling will be used.
      *
      * Generated from protobuf field <code>optional float top_p = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $top_p = null;
+    protected $top_p = null;
     /**
      * Optional. If specified, top-k sampling will be used.
      *
      * Generated from protobuf field <code>optional float top_k = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $top_k = null;
+    protected $top_k = null;
     /**
      * Optional. Number of candidates to generate.
      *
      * Generated from protobuf field <code>optional int32 candidate_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $candidate_count = null;
+    protected $candidate_count = null;
     /**
      * Optional. The maximum number of output tokens to generate per message.
      *
      * Generated from protobuf field <code>optional int32 max_output_tokens = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_output_tokens = null;
+    protected $max_output_tokens = null;
     /**
      * Optional. Stop sequences.
      *
@@ -56,13 +56,13 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $presence_penalty = null;
+    protected $presence_penalty = null;
     /**
      * Optional. Frequency penalties.
      *
      * Generated from protobuf field <code>optional float frequency_penalty = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $frequency_penalty = null;
+    protected $frequency_penalty = null;
     /**
      * Optional. Output response mimetype of the generated candidate text.
      * Supported mimetype:
@@ -74,7 +74,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string response_mime_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $response_mime_type = '';
+    protected $response_mime_type = '';
     /**
      * Optional. The `Schema` object allows the definition of input and output
      * data types. These types can be objects, but also primitives and arrays.
@@ -86,7 +86,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $response_schema = null;
+    protected $response_schema = null;
 
     /**
      * Constructor.

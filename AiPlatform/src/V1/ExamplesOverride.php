@@ -20,13 +20,13 @@ class ExamplesOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 neighbor_count = 1;</code>
      */
-    private $neighbor_count = 0;
+    protected $neighbor_count = 0;
     /**
      * The number of neighbors to return that have the same crowding tag.
      *
      * Generated from protobuf field <code>int32 crowding_count = 2;</code>
      */
-    private $crowding_count = 0;
+    protected $crowding_count = 0;
     /**
      * Restrict the resulting nearest neighbors to respect these constraints.
      *
@@ -38,13 +38,13 @@ class ExamplesOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_embeddings = 4;</code>
      */
-    private $return_embeddings = false;
+    protected $return_embeddings = false;
     /**
      * The format of the data being provided with each call.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExamplesOverride.DataFormat data_format = 5;</code>
      */
-    private $data_format = 0;
+    protected $data_format = 0;
 
     /**
      * Constructor.

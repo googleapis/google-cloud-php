@@ -24,19 +24,19 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. User provided name of this Tensorboard.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of this Tensorboard.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Customer-managed encryption key spec for a Tensorboard. If set, this
      * Tensorboard and all sub-resources of this Tensorboard will be secured by
@@ -44,32 +44,32 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Output only. Consumer project Cloud Storage path prefix used to store blob
      * data, which can either be a bucket or directory. Does not end with a '/'.
      *
      * Generated from protobuf field <code>string blob_storage_path_prefix = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $blob_storage_path_prefix = '';
+    protected $blob_storage_path_prefix = '';
     /**
      * Output only. The number of Runs stored in this Tensorboard.
      *
      * Generated from protobuf field <code>int32 run_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $run_count = 0;
+    protected $run_count = 0;
     /**
      * Output only. Timestamp when this Tensorboard was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Tensorboard was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The labels with user-defined metadata to organize your Tensorboards.
      * Label keys and values can be no longer than 64 characters
@@ -90,7 +90,7 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Used to indicate if the TensorBoard instance is the default one.
      * Each project & region can have at most one default TensorBoard instance.
@@ -100,7 +100,7 @@ class Tensorboard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_default = 12;</code>
      */
-    private $is_default = false;
+    protected $is_default = false;
 
     /**
      * Constructor.

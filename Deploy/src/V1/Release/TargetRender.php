@@ -22,33 +22,33 @@ class TargetRender extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rendering_build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $rendering_build = '';
+    protected $rendering_build = '';
     /**
      * Output only. Current state of the render operation for this Target.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.TargetRender.TargetRenderState rendering_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rendering_state = 0;
+    protected $rendering_state = 0;
     /**
      * Output only. Metadata related to the `Release` render for this Target.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RenderMetadata metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. Reason this render failed. This will always be unspecified
      * while the render in progress.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.TargetRender.FailureCause failure_cause = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_cause = 0;
+    protected $failure_cause = 0;
     /**
      * Output only. Additional information about the render failure, if
      * available.
      *
      * Generated from protobuf field <code>string failure_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_message = '';
+    protected $failure_message = '';
 
     /**
      * Constructor.

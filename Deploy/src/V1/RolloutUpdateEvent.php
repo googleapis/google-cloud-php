@@ -21,25 +21,25 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 6;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Unique identifier of the pipeline.
      *
      * Generated from protobuf field <code>string pipeline_uid = 1;</code>
      */
-    private $pipeline_uid = '';
+    protected $pipeline_uid = '';
     /**
      * Unique identifier of the release.
      *
      * Generated from protobuf field <code>string release_uid = 2;</code>
      */
-    private $release_uid = '';
+    protected $release_uid = '';
     /**
      * The name of the `Release`.
      *
      * Generated from protobuf field <code>string release = 8;</code>
      */
-    private $release = '';
+    protected $release = '';
     /**
      * The name of the rollout.
      * rollout_uid is not in this log message because we write some of these log
@@ -47,25 +47,25 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rollout = 3;</code>
      */
-    private $rollout = '';
+    protected $rollout = '';
     /**
      * ID of the target.
      *
      * Generated from protobuf field <code>string target_id = 4;</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Type of this notification, e.g. for a rollout update event.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 7;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The type of the rollout update.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
      */
-    private $rollout_update_type = 0;
+    protected $rollout_update_type = 0;
 
     /**
      * Constructor.

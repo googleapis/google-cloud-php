@@ -22,7 +22,7 @@ class SyncFeatureViewResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string feature_view_sync = 1;</code>
      */
-    private $feature_view_sync = '';
+    protected $feature_view_sync = '';
 
     /**
      * Constructor.

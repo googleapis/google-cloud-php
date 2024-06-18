@@ -25,7 +25,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue should_stop_asap = 1;</code>
      */
-    private $should_stop_asap = null;
+    protected $should_stop_asap = null;
     /**
      * Each "stopping rule" in this proto specifies an "if" condition. Before
      * Vizier would generate a new suggestion, it first checks each specified
@@ -50,26 +50,26 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudyTimeConstraint minimum_runtime_constraint = 2;</code>
      */
-    private $minimum_runtime_constraint = null;
+    protected $minimum_runtime_constraint = null;
     /**
      * If the specified time or duration has passed, stop the study.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudyTimeConstraint maximum_runtime_constraint = 3;</code>
      */
-    private $maximum_runtime_constraint = null;
+    protected $maximum_runtime_constraint = null;
     /**
      * If there are fewer than this many COMPLETED trials, do not stop the
      * study.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value min_num_trials = 4;</code>
      */
-    private $min_num_trials = null;
+    protected $min_num_trials = null;
     /**
      * If there are more than this many trials, stop the study.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value max_num_trials = 5;</code>
      */
-    private $max_num_trials = null;
+    protected $max_num_trials = null;
     /**
      * If the objective value has not improved for this many consecutive
      * trials, stop the study.
@@ -77,7 +77,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value max_num_trials_no_progress = 6;</code>
      */
-    private $max_num_trials_no_progress = null;
+    protected $max_num_trials_no_progress = null;
     /**
      * If the objective value has not improved for this much time, stop the
      * study.
@@ -85,7 +85,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_duration_no_progress = 7;</code>
      */
-    private $max_duration_no_progress = null;
+    protected $max_duration_no_progress = null;
 
     /**
      * Constructor.
@@ -179,7 +179,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue should_stop_asap = 1;</code>
      * @return bool|null
      */
-    public function getShouldStopAsapValue()
+    public function getShouldStopAsapUnwrapped()
     {
         return $this->readWrapperValue("should_stop_asap");
     }
@@ -216,7 +216,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setShouldStopAsapValue($var)
+    public function setShouldStopAsapUnwrapped($var)
     {
         $this->writeWrapperValue("should_stop_asap", $var);
         return $this;}
@@ -362,7 +362,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value min_num_trials = 4;</code>
      * @return int|null
      */
-    public function getMinNumTrialsValue()
+    public function getMinNumTrialsUnwrapped()
     {
         return $this->readWrapperValue("min_num_trials");
     }
@@ -393,7 +393,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setMinNumTrialsValue($var)
+    public function setMinNumTrialsUnwrapped($var)
     {
         $this->writeWrapperValue("min_num_trials", $var);
         return $this;}
@@ -427,7 +427,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value max_num_trials = 5;</code>
      * @return int|null
      */
-    public function getMaxNumTrialsValue()
+    public function getMaxNumTrialsUnwrapped()
     {
         return $this->readWrapperValue("max_num_trials");
     }
@@ -456,7 +456,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setMaxNumTrialsValue($var)
+    public function setMaxNumTrialsUnwrapped($var)
     {
         $this->writeWrapperValue("max_num_trials", $var);
         return $this;}
@@ -494,7 +494,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value max_num_trials_no_progress = 6;</code>
      * @return int|null
      */
-    public function getMaxNumTrialsNoProgressValue()
+    public function getMaxNumTrialsNoProgressUnwrapped()
     {
         return $this->readWrapperValue("max_num_trials_no_progress");
     }
@@ -527,7 +527,7 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setMaxNumTrialsNoProgressValue($var)
+    public function setMaxNumTrialsNoProgressUnwrapped($var)
     {
         $this->writeWrapperValue("max_num_trials_no_progress", $var);
         return $this;}

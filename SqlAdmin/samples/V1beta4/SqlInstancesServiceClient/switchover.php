@@ -28,7 +28,8 @@ use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\SqlInstancesServiceClient;
 
 /**
- * Switches over from the primary instance to a replica instance.
+ * Switches over from the primary instance to the designated DR replica
+ * instance.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

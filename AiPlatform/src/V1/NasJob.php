@@ -20,7 +20,7 @@ class NasJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the NasJob.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -28,58 +28,58 @@ class NasJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The specification of a NasJob.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasJobSpec nas_job_spec = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $nas_job_spec = null;
+    protected $nas_job_spec = null;
     /**
      * Output only. Output of the NasJob.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasJobOutput nas_job_output = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $nas_job_output = null;
+    protected $nas_job_output = null;
     /**
      * Output only. The detailed state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.JobState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Time when the NasJob was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the NasJob for the first time entered the
      * `JOB_STATE_RUNNING` state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the NasJob entered any of the following states:
      * `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Time when the NasJob was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Only populated when job's state is JOB_STATE_FAILED or
      * JOB_STATE_CANCELLED.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The labels with user-defined metadata to organize NasJobs.
      * Label keys and values can be no longer than 64 characters
@@ -97,7 +97,7 @@ class NasJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Optional. Enable a separation of Custom model training
      * and restricted image training for tenant project.

@@ -22,7 +22,7 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * An expression for filtering the results of the request. Filter rules are
      * case insensitive. The fields eligible for filtering are:
@@ -33,19 +33,19 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of tags to return. Maximum page size is 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The next_page_token value returned from a previous list request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent The name of the parent package whose tags will be listed.

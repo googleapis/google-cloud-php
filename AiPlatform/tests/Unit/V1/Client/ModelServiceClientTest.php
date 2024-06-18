@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\BatchImportEvaluatedAnnotationsRequest;
@@ -69,6 +68,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -93,7 +93,9 @@ class ModelServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ModelServiceClient */
@@ -119,7 +121,13 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setImportedEvaluatedAnnotationsCount($importedEvaluatedAnnotationsCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+        $formattedParent = $gapicClient->modelEvaluationSliceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL]',
+            '[EVALUATION]',
+            '[SLICE]'
+        );
         $evaluatedAnnotations = [];
         $request = (new BatchImportEvaluatedAnnotationsRequest())
             ->setParent($formattedParent)
@@ -149,15 +157,24 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+        $formattedParent = $gapicClient->modelEvaluationSliceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL]',
+            '[EVALUATION]',
+            '[SLICE]'
+        );
         $evaluatedAnnotations = [];
         $request = (new BatchImportEvaluatedAnnotationsRequest())
             ->setParent($formattedParent)
@@ -217,12 +234,15 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
@@ -279,9 +299,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $formattedSourceModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new CopyModelRequest())
-            ->setParent($formattedParent)
-            ->setSourceModel($formattedSourceModel);
+        $request = (new CopyModelRequest())->setParent($formattedParent)->setSourceModel($formattedSourceModel);
         $response = $gapicClient->copyModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -339,19 +357,20 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $formattedSourceModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new CopyModelRequest())
-            ->setParent($formattedParent)
-            ->setSourceModel($formattedSourceModel);
+        $request = (new CopyModelRequest())->setParent($formattedParent)->setSourceModel($formattedSourceModel);
         $response = $gapicClient->copyModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -405,8 +424,7 @@ class ModelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteModelRequest())->setName($formattedName);
         $response = $gapicClient->deleteModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -462,17 +480,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteModelRequest())->setName($formattedName);
         $response = $gapicClient->deleteModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -526,8 +546,7 @@ class ModelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelVersionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteModelVersionRequest())->setName($formattedName);
         $response = $gapicClient->deleteModelVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -583,17 +602,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new DeleteModelVersionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteModelVersionRequest())->setName($formattedName);
         $response = $gapicClient->deleteModelVersion($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -648,9 +669,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new OutputConfig();
-        $request = (new ExportModelRequest())
-            ->setName($formattedName)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportModelRequest())->setName($formattedName)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -708,19 +727,20 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new OutputConfig();
-        $request = (new ExportModelRequest())
-            ->setName($formattedName)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportModelRequest())->setName($formattedName)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -778,8 +798,7 @@ class ModelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new GetModelRequest())
-            ->setName($formattedName);
+        $request = (new GetModelRequest())->setName($formattedName);
         $response = $gapicClient->getModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -803,17 +822,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new GetModelRequest())
-            ->setName($formattedName);
+        $request = (new GetModelRequest())->setName($formattedName);
         try {
             $gapicClient->getModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -850,8 +871,7 @@ class ModelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new GetModelEvaluationRequest())
-            ->setName($formattedName);
+        $request = (new GetModelEvaluationRequest())->setName($formattedName);
         $response = $gapicClient->getModelEvaluation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -875,17 +895,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new GetModelEvaluationRequest())
-            ->setName($formattedName);
+        $request = (new GetModelEvaluationRequest())->setName($formattedName);
         try {
             $gapicClient->getModelEvaluation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -915,9 +937,14 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setMetricsSchemaUri($metricsSchemaUri);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $request = (new GetModelEvaluationSliceRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelEvaluationSliceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL]',
+            '[EVALUATION]',
+            '[SLICE]'
+        );
+        $request = (new GetModelEvaluationSliceRequest())->setName($formattedName);
         $response = $gapicClient->getModelEvaluationSlice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -941,17 +968,25 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
-        $request = (new GetModelEvaluationSliceRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->modelEvaluationSliceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL]',
+            '[EVALUATION]',
+            '[SLICE]'
+        );
+        $request = (new GetModelEvaluationSliceRequest())->setName($formattedName);
         try {
             $gapicClient->getModelEvaluationSlice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1017,12 +1052,15 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
@@ -1054,17 +1092,14 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $modelEvaluationSlicesElement = new ModelEvaluationSlice();
-        $modelEvaluationSlices = [
-            $modelEvaluationSlicesElement,
-        ];
+        $modelEvaluationSlices = [$modelEvaluationSlicesElement];
         $expectedResponse = new ListModelEvaluationSlicesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelEvaluationSlices($modelEvaluationSlices);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new ListModelEvaluationSlicesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelEvaluationSlicesRequest())->setParent($formattedParent);
         $response = $gapicClient->listModelEvaluationSlices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1091,17 +1126,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
-        $request = (new ListModelEvaluationSlicesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelEvaluationSlicesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listModelEvaluationSlices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1126,17 +1163,14 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $modelEvaluationsElement = new ModelEvaluation();
-        $modelEvaluations = [
-            $modelEvaluationsElement,
-        ];
+        $modelEvaluations = [$modelEvaluationsElement];
         $expectedResponse = new ListModelEvaluationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModelEvaluations($modelEvaluations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelEvaluationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listModelEvaluations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1163,17 +1197,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelEvaluationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelEvaluationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listModelEvaluations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1198,17 +1234,14 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $modelsElement = new Model();
-        $models = [
-            $modelsElement,
-        ];
+        $models = [$modelsElement];
         $expectedResponse = new ListModelVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModels($models);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelVersionsRequest())
-            ->setName($formattedName);
+        $request = (new ListModelVersionsRequest())->setName($formattedName);
         $response = $gapicClient->listModelVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1235,17 +1268,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new ListModelVersionsRequest())
-            ->setName($formattedName);
+        $request = (new ListModelVersionsRequest())->setName($formattedName);
         try {
             $gapicClient->listModelVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1270,17 +1305,14 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $modelsElement = new Model();
-        $models = [
-            $modelsElement,
-        ];
+        $models = [$modelsElement];
         $expectedResponse = new ListModelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setModels($models);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListModelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelsRequest())->setParent($formattedParent);
         $response = $gapicClient->listModels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1307,17 +1339,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListModelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListModelsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listModels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1367,9 +1401,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $versionAliases = [];
-        $request = (new MergeVersionAliasesRequest())
-            ->setName($formattedName)
-            ->setVersionAliases($versionAliases);
+        $request = (new MergeVersionAliasesRequest())->setName($formattedName)->setVersionAliases($versionAliases);
         $response = $gapicClient->mergeVersionAliases($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1395,19 +1427,20 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $versionAliases = [];
-        $request = (new MergeVersionAliasesRequest())
-            ->setName($formattedName)
-            ->setVersionAliases($versionAliases);
+        $request = (new MergeVersionAliasesRequest())->setName($formattedName)->setVersionAliases($versionAliases);
         try {
             $gapicClient->mergeVersionAliases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1452,8 +1485,7 @@ class ModelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new UpdateExplanationDatasetRequest())
-            ->setModel($formattedModel);
+        $request = (new UpdateExplanationDatasetRequest())->setModel($formattedModel);
         $response = $gapicClient->updateExplanationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1509,17 +1541,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedModel = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $request = (new UpdateExplanationDatasetRequest())
-            ->setModel($formattedModel);
+        $request = (new UpdateExplanationDatasetRequest())->setModel($formattedModel);
         $response = $gapicClient->updateExplanationDataset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1580,9 +1614,7 @@ class ModelServiceClientTest extends GeneratedTest
         $modelDisplayName = 'modelDisplayName1578770308';
         $model->setDisplayName($modelDisplayName);
         $updateMask = new FieldMask();
-        $request = (new UpdateModelRequest())
-            ->setModel($model)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateModelRequest())->setModel($model)->setUpdateMask($updateMask);
         $response = $gapicClient->updateModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1608,21 +1640,22 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $model = new Model();
         $modelDisplayName = 'modelDisplayName1578770308';
         $model->setDisplayName($modelDisplayName);
         $updateMask = new FieldMask();
-        $request = (new UpdateModelRequest())
-            ->setModel($model)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateModelRequest())->setModel($model)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1674,9 +1707,7 @@ class ModelServiceClientTest extends GeneratedTest
         $model = new Model();
         $modelDisplayName = 'modelDisplayName1578770308';
         $model->setDisplayName($modelDisplayName);
-        $request = (new UploadModelRequest())
-            ->setParent($formattedParent)
-            ->setModel($model);
+        $request = (new UploadModelRequest())->setParent($formattedParent)->setModel($model);
         $response = $gapicClient->uploadModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1734,21 +1765,22 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $model = new Model();
         $modelDisplayName = 'modelDisplayName1578770308';
         $model->setDisplayName($modelDisplayName);
-        $request = (new UploadModelRequest())
-            ->setParent($formattedParent)
-            ->setModel($model);
+        $request = (new UploadModelRequest())->setParent($formattedParent)->setModel($model);
         $response = $gapicClient->uploadModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1810,12 +1842,15 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1842,9 +1877,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1874,12 +1907,15 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1912,8 +1948,7 @@ class ModelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1937,17 +1972,19 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1979,9 +2016,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2007,19 +2042,20 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2047,9 +2083,7 @@ class ModelServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2075,19 +2109,20 @@ class ModelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2115,7 +2150,13 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setImportedEvaluatedAnnotationsCount($importedEvaluatedAnnotationsCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->modelEvaluationSliceName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]', '[SLICE]');
+        $formattedParent = $gapicClient->modelEvaluationSliceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[MODEL]',
+            '[EVALUATION]',
+            '[SLICE]'
+        );
         $evaluatedAnnotations = [];
         $request = (new BatchImportEvaluatedAnnotationsRequest())
             ->setParent($formattedParent)

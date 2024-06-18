@@ -25,7 +25,7 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bigquery_output_table = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bigquery_output_table = '';
+    protected $bigquery_output_table = '';
     protected $output_location;
 
     /**

@@ -20,19 +20,19 @@ class IndexStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 vectors_count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vectors_count = 0;
+    protected $vectors_count = 0;
     /**
      * Output only. The number of sparse vectors in the Index.
      *
      * Generated from protobuf field <code>int64 sparse_vectors_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sparse_vectors_count = 0;
+    protected $sparse_vectors_count = 0;
     /**
      * Output only. The number of shards in the Index.
      *
      * Generated from protobuf field <code>int32 shards_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $shards_count = 0;
+    protected $shards_count = 0;
 
     /**
      * Constructor.

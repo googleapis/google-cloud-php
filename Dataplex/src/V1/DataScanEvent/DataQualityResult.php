@@ -20,13 +20,13 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_count = 1;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Whether the data quality result was `pass` or not.
      *
      * Generated from protobuf field <code>bool passed = 2;</code>
      */
-    private $passed = false;
+    protected $passed = false;
     /**
      * The result of each dimension for data quality result.
      * The key of the map is the name of the dimension.
@@ -43,7 +43,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score = 4;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * The score of each dimension for data quality result.
      * The key of the map is the name of the dimension.

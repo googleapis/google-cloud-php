@@ -21,7 +21,7 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_idle_duration = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_idle_duration = null;
+    protected $max_idle_duration = null;
     /**
      * Optional. If True, this causes sessions to be pre-created and available
      * for faster startup to enable interactive exploration use-cases. This
@@ -31,7 +31,7 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_fast_startup = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_fast_startup = false;
+    protected $enable_fast_startup = false;
 
     /**
      * Constructor.

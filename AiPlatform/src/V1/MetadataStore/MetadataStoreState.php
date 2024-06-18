@@ -20,7 +20,7 @@ class MetadataStoreState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 disk_utilization_bytes = 1;</code>
      */
-    private $disk_utilization_bytes = 0;
+    protected $disk_utilization_bytes = 0;
 
     /**
      * Constructor.

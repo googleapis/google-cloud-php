@@ -18,7 +18,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry = null;
+    protected $entry = null;
     /**
      * Optional. Mask of fields to update. To update Aspects, the update_mask must
      * contain the value "aspects".
@@ -27,13 +27,13 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. If set to true and the entry does not exist, it will be created.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * Optional. If set to true and the aspect_keys specify aspect ranges, any
      * existing aspects from that range not provided in the request will be
@@ -41,7 +41,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool delete_missing_aspects = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $delete_missing_aspects = false;
+    protected $delete_missing_aspects = false;
     /**
      * Optional. The map keys of the Aspects which should be modified. Supports
      * the following syntaxes:

@@ -20,7 +20,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string datapoint_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $datapoint_id = '';
+    protected $datapoint_id = '';
     /**
      * Required. Feature embedding vector for dense index. An array of numbers
      * with the length of [NearestNeighborSearchConfig.dimensions].
@@ -33,7 +33,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.SparseEmbedding sparse_embedding = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sparse_embedding = null;
+    protected $sparse_embedding = null;
     /**
      * Optional. List of Restrict of the datapoint, used to perform "restricted
      * searches" where boolean rule are used to filter the subset of the database
@@ -57,7 +57,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.CrowdingTag crowding_tag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $crowding_tag = null;
+    protected $crowding_tag = null;
 
     /**
      * Constructor.

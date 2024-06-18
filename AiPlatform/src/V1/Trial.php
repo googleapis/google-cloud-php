@@ -22,19 +22,19 @@ class Trial extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The identifier of the Trial assigned by the service.
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Output only. The detailed state of the Trial.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Trial.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The parameters of the Trial.
      *
@@ -46,7 +46,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Measurement final_measurement = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $final_measurement = null;
+    protected $final_measurement = null;
     /**
      * Output only. A list of measurements that are strictly lexicographically
      * ordered by their induced tuples (steps, elapsed_duration).
@@ -60,14 +60,14 @@ class Trial extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Time when the Trial's status changed to `SUCCEEDED` or
      * `INFEASIBLE`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The identifier of the client that originally requested this
      * Trial. Each client is identified by a unique client_id. When a client asks
@@ -80,21 +80,21 @@ class Trial extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $client_id = '';
+    protected $client_id = '';
     /**
      * Output only. A human readable string describing why the Trial is
      * infeasible. This is set only if Trial state is `INFEASIBLE`.
      *
      * Generated from protobuf field <code>string infeasible_reason = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $infeasible_reason = '';
+    protected $infeasible_reason = '';
     /**
      * Output only. The CustomJob name linked to the Trial.
      * It's set for a HyperparameterTuningJob's Trial.
      *
      * Generated from protobuf field <code>string custom_job = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $custom_job = '';
+    protected $custom_job = '';
     /**
      * Output only. URIs for accessing [interactive
      * shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell)

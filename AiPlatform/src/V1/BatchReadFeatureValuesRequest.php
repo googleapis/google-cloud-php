@@ -23,13 +23,13 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string featurestore = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $featurestore = '';
+    protected $featurestore = '';
     /**
      * Required. Specifies output location and format.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureValueDestination destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * When not empty, the specified fields in the *_read_instances source will be
      * joined as-is in the output, in addition to those fields from the
@@ -55,7 +55,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     protected $read_option;
 
     /**

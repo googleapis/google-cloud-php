@@ -21,13 +21,13 @@ class TargetArtifact extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string skaffold_config_path = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $skaffold_config_path = '';
+    protected $skaffold_config_path = '';
     /**
      * Output only. File path of the rendered manifest relative to the URI.
      *
      * Generated from protobuf field <code>string manifest_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $manifest_path = '';
+    protected $manifest_path = '';
     /**
      * Output only. Map from the phase ID to the phase artifacts for the `Target`.
      *

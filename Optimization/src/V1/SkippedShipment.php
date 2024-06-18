@@ -23,7 +23,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Copy of the corresponding
      * [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified
@@ -31,7 +31,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label = 2;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * A list of reasons that explain why the shipment was skipped. See comment
      * above `Reason`.

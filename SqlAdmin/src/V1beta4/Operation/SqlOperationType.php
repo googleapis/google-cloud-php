@@ -266,6 +266,25 @@ class SqlOperationType
      * Generated from protobuf enum <code>RECONFIGURE_OLD_PRIMARY = 44;</code>
      */
     const RECONFIGURE_OLD_PRIMARY = 44;
+    /**
+     * Indicates that the instance, its read replicas, and its cascading
+     * replicas are in maintenance. Maintenance typically gets initiated on
+     * groups of replicas first, followed by the primary instance. For each
+     * instance, maintenance typically causes the instance to be unavailable for
+     * 1-3 minutes.
+     *
+     * Generated from protobuf enum <code>CLUSTER_MAINTENANCE = 45;</code>
+     */
+    const CLUSTER_MAINTENANCE = 45;
+    /**
+     * Indicates that the instance (and any of its replicas) are currently in
+     * maintenance. This is initiated as a self-service request by using SSM.
+     * Maintenance typically causes the instance to be unavailable for 1-3
+     * minutes.
+     *
+     * Generated from protobuf enum <code>SELF_SERVICE_MAINTENANCE = 46;</code>
+     */
+    const SELF_SERVICE_MAINTENANCE = 46;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -310,6 +329,8 @@ class SqlOperationType
         self::ACQUIRE_SSRS_LEASE => 'ACQUIRE_SSRS_LEASE',
         self::RELEASE_SSRS_LEASE => 'RELEASE_SSRS_LEASE',
         self::RECONFIGURE_OLD_PRIMARY => 'RECONFIGURE_OLD_PRIMARY',
+        self::CLUSTER_MAINTENANCE => 'CLUSTER_MAINTENANCE',
+        self::SELF_SERVICE_MAINTENANCE => 'SELF_SERVICE_MAINTENANCE',
     ];
 
     public static function name($value)

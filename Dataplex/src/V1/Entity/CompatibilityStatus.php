@@ -20,13 +20,13 @@ class CompatibilityStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entity.CompatibilityStatus.Compatibility hive_metastore = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $hive_metastore = null;
+    protected $hive_metastore = null;
     /**
      * Output only. Whether this entity is compatible with BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entity.CompatibilityStatus.Compatibility bigquery = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bigquery = null;
+    protected $bigquery = null;
 
     /**
      * Constructor.

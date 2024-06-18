@@ -24,7 +24,7 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      */
-    private $fixed_node_count = 0;
+    protected $fixed_node_count = 0;
     /**
      * Online serving scaling configuration.
      * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
@@ -32,7 +32,7 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig.Scaling scaling = 4;</code>
      */
-    private $scaling = null;
+    protected $scaling = null;
 
     /**
      * Constructor.

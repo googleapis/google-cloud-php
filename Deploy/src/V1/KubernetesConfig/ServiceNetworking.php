@@ -20,14 +20,14 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Required. Name of the Kubernetes Deployment whose traffic is managed by
      * the specified Service.
      *
      * Generated from protobuf field <code>string deployment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment = '';
+    protected $deployment = '';
     /**
      * Optional. Whether to disable Pod overprovisioning. If Pod
      * overprovisioning is disabled then Cloud Deploy will limit the number of
@@ -36,7 +36,7 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_pod_overprovisioning = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_pod_overprovisioning = false;
+    protected $disable_pod_overprovisioning = false;
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class DataTaxonomy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the dataTaxonomy. This
      * ID will be different if the DataTaxonomy is deleted and re-created with the
@@ -31,31 +31,31 @@ class DataTaxonomy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The time when the DataTaxonomy was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the DataTaxonomy was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Description of the DataTaxonomy.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. User friendly display name.
      *
      * Generated from protobuf field <code>string display_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-defined labels for the DataTaxonomy.
      *
@@ -67,7 +67,7 @@ class DataTaxonomy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 attribute_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $attribute_count = 0;
+    protected $attribute_count = 0;
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -75,13 +75,13 @@ class DataTaxonomy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 10;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. The number of classes in the DataTaxonomy.
      *
      * Generated from protobuf field <code>int32 class_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $class_count = 0;
+    protected $class_count = 0;
 
     /**
      * Constructor.

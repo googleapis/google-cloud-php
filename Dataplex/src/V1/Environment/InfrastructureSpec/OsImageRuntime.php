@@ -20,7 +20,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $image_version = '';
+    protected $image_version = '';
     /**
      * Optional. List of Java jars to be included in the runtime environment.
      * Valid input includes Cloud Storage URIs to Jar binaries.

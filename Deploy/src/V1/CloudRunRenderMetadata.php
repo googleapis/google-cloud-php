@@ -22,7 +22,7 @@ class CloudRunRenderMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
 
     /**
      * Constructor.

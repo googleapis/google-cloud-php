@@ -20,21 +20,21 @@ class EnumValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Required. Name of the enumvalue. This is the actual value that the
      * aspect will contain.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Optional deprecation message to be set if an enum value needs
      * to be deprecated.
      *
      * Generated from protobuf field <code>string deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deprecated = '';
+    protected $deprecated = '';
 
     /**
      * Constructor.

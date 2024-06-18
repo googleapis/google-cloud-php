@@ -21,7 +21,7 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 neighbor_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $neighbor_count = 0;
+    protected $neighbor_count = 0;
     /**
      * Optional. The list of string filters.
      *
@@ -36,13 +36,13 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 per_crowding_attribute_neighbor_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $per_crowding_attribute_neighbor_count = 0;
+    protected $per_crowding_attribute_neighbor_count = 0;
     /**
      * Optional. Parameters that can be set to tune query on the fly.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NearestNeighborQuery.Parameters parameters = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     protected $instance;
 
     /**

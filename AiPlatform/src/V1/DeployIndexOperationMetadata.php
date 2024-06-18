@@ -21,13 +21,13 @@ class DeployIndexOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * The unique index id specified by user
      *
      * Generated from protobuf field <code>string deployed_index_id = 2;</code>
      */
-    private $deployed_index_id = '';
+    protected $deployed_index_id = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class VideoMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_offset = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $start_offset = null;
+    protected $start_offset = null;
     /**
      * Optional. The end offset of the video.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_offset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_offset = null;
+    protected $end_offset = null;
 
     /**
      * Constructor.

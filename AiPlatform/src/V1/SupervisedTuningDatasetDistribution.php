@@ -20,43 +20,43 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>int64 sum = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sum = 0;
+    protected $sum = 0;
     /**
      * Output only. The minimum of the population values.
      *
      * Generated from protobuf field <code>double min = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $min = 0.0;
+    protected $min = 0.0;
     /**
      * Output only. The maximum of the population values.
      *
      * Generated from protobuf field <code>double max = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $max = 0.0;
+    protected $max = 0.0;
     /**
      * Output only. The arithmetic mean of the values in the population.
      *
      * Generated from protobuf field <code>double mean = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $mean = 0.0;
+    protected $mean = 0.0;
     /**
      * Output only. The median of the values in the population.
      *
      * Generated from protobuf field <code>double median = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $median = 0.0;
+    protected $median = 0.0;
     /**
      * Output only. The 5th percentile of the values in the population.
      *
      * Generated from protobuf field <code>double p5 = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $p5 = 0.0;
+    protected $p5 = 0.0;
     /**
      * Output only. The 95th percentile of the values in the population.
      *
      * Generated from protobuf field <code>double p95 = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $p95 = 0.0;
+    protected $p95 = 0.0;
     /**
      * Output only. Defines the histogram bucket.
      *
