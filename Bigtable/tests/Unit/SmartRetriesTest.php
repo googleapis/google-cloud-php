@@ -37,6 +37,7 @@ use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Psr\Log\LoggerInterface;
 
 /**
  * @group bigtable
@@ -195,7 +196,6 @@ class SmartRetriesTest extends TestCase
         $attempt = 0;
         $expectedArgs = $this->options;
         $retryingApiException = $this->retryingApiException;
-        $phpunit = $this;
         $this->bigtableClient->readRows(
             self::TABLE_NAME,
             Argument::that(function ($callOptions) use (&$attempt) {
@@ -745,6 +745,63 @@ class SmartRetriesTest extends TestCase
             }
             $this->assertEquals($expectedFailedMutations, $ex->getMetadata());
         }
+    }
+
+    public function testReadRowsShouldLogRetryableExeception()
+    {
+        $attempt = 0;
+        $expectedArgs = $this->options;
+        $retryingApiException = $this->retryingApiException;
+        $logger = $this->prophesize(LoggerInterface::class);
+        $logger->error('DEADLINE_EXCEEDED')
+            ->shouldBeCalledOnce();
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            Argument::that(function ($callOptions) use (&$attempt) {
+                $attemptHeader = $callOptions['headers']['bigtable-attempt'][0] ?? null;
+                ($attempt === 0)
+                    ? $this->assertNull($attemptHeader)
+                    : $this->assertSame('1', $attemptHeader);
+
+                return true;
+            })
+        )->shouldBeCalledTimes(2)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $this->serverStream->readAll()
+            ->will(function () use (&$attempt, $retryingApiException) {
+                // throw a retriable exception on the first call
+                return 0 === $attempt++ ? throw $retryingApiException : [];
+            });
+
+        $iterator = $this->table->readRows(['logger' => $logger->reveal()]);
+        $iterator->getIterator()->current();
+    }
+
+    public function testReadRowsShouldLogNonRetryableExeception()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('UNAUTHENTICATED');
+
+        $logger = $this->prophesize(LoggerInterface::class);
+        $logger->error('UNAUTHENTICATED')
+            ->shouldBeCalledOnce();
+
+        $this->bigtableClient->readRows(
+            self::TABLE_NAME,
+            $this->options
+        )->shouldBeCalledOnce()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $this->serverStream->readAll()
+            ->willThrow($this->nonRetryingApiException);
+
+        $iterator = $this->table->readRows(['logger' => $logger->reveal()]);
+        $iterator->getIterator()->current();
     }
 
     private function generateRowsResponse($from, $to)

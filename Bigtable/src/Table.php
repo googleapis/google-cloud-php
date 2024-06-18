@@ -30,6 +30,7 @@ use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Rpc\Code;
+use Psr\Log\LoggerInterface;
 
 /**
  * A table instance can be used to read rows and to perform insert, update, and
@@ -83,6 +84,7 @@ class Table
      *           This settings only applies to {@see \Google\Cloud\Bigtable\Table::mutateRows()},
      *           {@see \Google\Cloud\Bigtable\Table::upsert()} and
      *           {@see \Google\Cloud\Bigtable\Table::readRows()}.
+     *     @type LoggerInterface $logger
      * }
      */
     public function __construct(
@@ -519,7 +521,8 @@ class Table
             [$this->gapicClient, 'mutateRows'],
             $argumentFunction,
             $retryFunction,
-            $this->pluck('retries', $options, false)
+            $this->pluck('retries', $options, false),
+            $this->pluck('logger', $options, false)
         );
         $message = 'partial failure';
         try {

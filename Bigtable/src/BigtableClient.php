@@ -23,6 +23,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Core\ArrayTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
@@ -144,6 +145,7 @@ class BigtableClient
      *     @type string $appProfileId This value specifies routing for
      *           replication. **Defaults to** the "default" application profile.
      *     @type array $headers Headers to be passed with each request.
+     *     @type LoggerInterface $logger
      * }
      * @return Table
      */
