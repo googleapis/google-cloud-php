@@ -141,7 +141,6 @@ class SmartRetriesTest extends TestCase
         $attempt = 0;
         $expectedArgs = $this->options;
         $retryingApiException = $this->retryingApiException;
-        $phpunit = $this;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
             ->will(function () use (&$attempt, $retryingApiException) {
