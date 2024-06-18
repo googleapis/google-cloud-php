@@ -214,7 +214,10 @@ class SmartRetriesTest extends TestCase
         $this->serverStream->readAll()
             ->will(function () use (&$attempt, $retryingApiException) {
                 // throw a retriable exception on the first call
-                return 0 === $attempt++ ? throw $retryingApiException : [];
+                if (0 === $attempt++) {
+                    throw $retryingApiException;
+                }
+                return [];
             });
 
         $iterator = $this->table->readRows();
@@ -773,7 +776,10 @@ class SmartRetriesTest extends TestCase
         $this->serverStream->readAll()
             ->will(function () use (&$attempt, $retryingApiException) {
                 // throw a retriable exception on the first call
-                return 0 === $attempt++ ? throw $retryingApiException : [];
+                if (0 === $attempt++) {
+                    throw $retryingApiException;
+                }
+                return [];
             });
 
         $iterator = $this->table->readRows(['logger' => $logger->reveal()]);
