@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/language/(.*)/.*-php/(.*)
+    - source: /google/cloud/language/(v2|v1)/.*-php/(.*)
       dest: /owl-bot-staging/Language/$1/$2
 api-name: Language
