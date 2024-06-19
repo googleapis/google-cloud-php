@@ -135,7 +135,7 @@ class ResumableStream implements \IteratorAggregate
             $completed = $this->pluck('requestCompleted', $this->callOptions, false);
 
             if ($completed !== true) {
-                // Send in "bigtable-attempt" header on each request
+                // Send in "bigtable-attempt" header on retry request
                 $headers = $this->callOptions['headers'] ?? [];
                 if ($attempt > 0) {
                     $headers['bigtable-attempt'] = [(string) $attempt];
