@@ -21,27 +21,27 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnections.v1.AppConnection.Gateway.Type type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. Server-defined URI for this resource.
      *
      * Generated from protobuf field <code>string uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Output only. Ingress port reserved on the gateways for this
      * AppConnection, if not specified or zero, the default port is 19443.
      *
      * Generated from protobuf field <code>int32 ingress_port = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ingress_port = 0;
+    protected $ingress_port = 0;
     /**
      * Required. AppGateway name in following format:
      * `projects/{project_id}/locations/{location_id}/appgateways/{gateway_id}`
      *
      * Generated from protobuf field <code>string app_gateway = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $app_gateway = '';
+    protected $app_gateway = '';
 
     /**
      * Constructor.

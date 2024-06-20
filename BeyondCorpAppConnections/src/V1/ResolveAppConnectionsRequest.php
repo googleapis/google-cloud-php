@@ -21,7 +21,7 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. BeyondCorp Connector name of the connector associated with those
      * AppConnections using the form:
@@ -29,7 +29,7 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_connector_id = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $app_connector_id = '';
+    protected $app_connector_id = '';
     /**
      * Optional. The maximum number of items to return.
      * If not specified, a default value of 50 will be used by the service.
@@ -40,14 +40,14 @@ class ResolveAppConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The next_page_token value returned from a previous
      * ResolveAppConnectionsResponse, if any.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The resource name of the AppConnection location using the form:

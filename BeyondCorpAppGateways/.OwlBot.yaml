@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/beyondcorp/appgateways/v1/.*-php/(.*)
-      dest: /owl-bot-staging/BeyondCorpAppGateways/v1/$1
+    - source: /google/cloud/beyondcorp/appgateways/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/BeyondCorpAppGateways/$1/$2
 api-name: BeyondCorpAppGateways
