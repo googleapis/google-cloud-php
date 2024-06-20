@@ -26,7 +26,7 @@ class Catalog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ﬁn
+ın
 &google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
 
 AspectType8
@@ -146,7 +146,7 @@ entry_type (	B‡A‡A4
 AspectsEntry
 key (	/
 value (2 .google.cloud.dataplex.v1.Aspect:8:ÜÍAÇ
-dataplex.googleapis.com/EntryQprojects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}*entries2entry"∫
+dataplex.googleapis.com/EntryQprojects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}*entries2entry"—
 EntrySource
 resource (	
 system (	
@@ -157,7 +157,8 @@ entry_type (	B‡A‡A4
 	ancestors	 (2..google.cloud.dataplex.v1.EntrySource.AncestorB‡A/
 create_time
  (2.google.protobuf.Timestamp/
-update_time (2.google.protobuf.Timestamp0
+update_time (2.google.protobuf.Timestamp
+location (	B‡A0
 Ancestor
 name (	B‡A
 type (	B‡A-
