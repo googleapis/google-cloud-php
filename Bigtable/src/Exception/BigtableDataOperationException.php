@@ -41,7 +41,7 @@ class BigtableDataOperationException extends \Exception
     ) {
         $this->metadata = $metadata;
 
-        parent::__construct($message, $code);
+        parent::__construct($message, $code ?? 0);
     }
 
     /**
