@@ -63,7 +63,7 @@ class ComponentInfoCommand extends Command
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'get info for a single component', '')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields. The following fields are available: \n - %s\n" .
@@ -91,9 +91,12 @@ class ComponentInfoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $fields = $input->getOption('fields')
-            ? explode(',', $input->getOption('fields'))
-            : self::$defaultFields;
+        $fields = match($input->getOption('fields')) {
+            null => self::$defaultFields,
+            'all' => array_keys(array_diff_key(self::$allFields, ['available_api_versions' => ''])),
+            default => explode(',', $input->getOption('fields')),
+        };
+
         if ($input->getOption('show-available-api-versions')) {
             $fields[] = 'available_api_versions';
         }
@@ -103,8 +106,7 @@ class ComponentInfoCommand extends Command
         $requestedFields = array_intersect_key(array_flip($fields), self::$allFields);
 
         // Compile all the component data into rows
-        $componentName = $input->getOption('component');
-        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
+        $components = Component::getComponents($input->getOption('component'));
 
         $filters = $this->parseFilters($input->getOption('filter') ?: '');
 

@@ -55,10 +55,10 @@ class Component
         return $components;
     }
 
-    public static function getComponents(): array
+    public static function getComponents(array $componentNames = []): array
     {
         $components = [];
-        foreach (self::getComponentNames() as $name) {
+        foreach ($componentNames ?: self::getComponentNames() as $name) {
             $components[] = new Component($name);
         }
 
