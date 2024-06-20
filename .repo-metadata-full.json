@@ -258,7 +258,7 @@
     "BigQueryDataExchange": {
         "language": "php",
         "distribution_name": "google/cloud-bigquery-data-exchange",
-        "release_level": "stable",
+        "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-data-exchange/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "analyticshub"
