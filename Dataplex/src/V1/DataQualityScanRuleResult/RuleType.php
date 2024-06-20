@@ -20,64 +20,64 @@ class RuleType
      */
     const RULE_TYPE_UNSPECIFIED = 0;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#nonnullexpectation.
+     * See
+     * [DataQualityRule.NonNullExpectation][google.cloud.dataplex.v1.DataQualityRule.NonNullExpectation].
      *
      * Generated from protobuf enum <code>NON_NULL_EXPECTATION = 1;</code>
      */
     const NON_NULL_EXPECTATION = 1;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#rangeexpectation.
+     * See
+     * [DataQualityRule.RangeExpectation][google.cloud.dataplex.v1.DataQualityRule.RangeExpectation].
      *
      * Generated from protobuf enum <code>RANGE_EXPECTATION = 2;</code>
      */
     const RANGE_EXPECTATION = 2;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#regexexpectation.
+     * See
+     * [DataQualityRule.RegexExpectation][google.cloud.dataplex.v1.DataQualityRule.RegexExpectation].
      *
      * Generated from protobuf enum <code>REGEX_EXPECTATION = 3;</code>
      */
     const REGEX_EXPECTATION = 3;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#rowconditionexpectation.
+     * See
+     * [DataQualityRule.RowConditionExpectation][google.cloud.dataplex.v1.DataQualityRule.RowConditionExpectation].
      *
      * Generated from protobuf enum <code>ROW_CONDITION_EXPECTATION = 4;</code>
      */
     const ROW_CONDITION_EXPECTATION = 4;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#setexpectation.
+     * See
+     * [DataQualityRule.SetExpectation][google.cloud.dataplex.v1.DataQualityRule.SetExpectation].
      *
      * Generated from protobuf enum <code>SET_EXPECTATION = 5;</code>
      */
     const SET_EXPECTATION = 5;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#statisticrangeexpectation.
+     * See
+     * [DataQualityRule.StatisticRangeExpectation][google.cloud.dataplex.v1.DataQualityRule.StatisticRangeExpectation].
      *
      * Generated from protobuf enum <code>STATISTIC_RANGE_EXPECTATION = 6;</code>
      */
     const STATISTIC_RANGE_EXPECTATION = 6;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#tableconditionexpectation.
+     * See
+     * [DataQualityRule.TableConditionExpectation][google.cloud.dataplex.v1.DataQualityRule.TableConditionExpectation].
      *
      * Generated from protobuf enum <code>TABLE_CONDITION_EXPECTATION = 7;</code>
      */
     const TABLE_CONDITION_EXPECTATION = 7;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#uniquenessexpectation.
+     * See
+     * [DataQualityRule.UniquenessExpectation][google.cloud.dataplex.v1.DataQualityRule.UniquenessExpectation].
      *
      * Generated from protobuf enum <code>UNIQUENESS_EXPECTATION = 8;</code>
      */
     const UNIQUENESS_EXPECTATION = 8;
     /**
-     * Please see
-     * https://cloud.google.com/dataplex/docs/reference/rest/v1/DataQualityRule#sqlAssertion.
+     * See
+     * [DataQualityRule.SqlAssertion][google.cloud.dataplex.v1.DataQualityRule.SqlAssertion].
      *
      * Generated from protobuf enum <code>SQL_ASSERTION = 9;</code>
      */
