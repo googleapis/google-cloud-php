@@ -18,7 +18,7 @@
     "AdvisoryNotifications": {
         "language": "php",
         "distribution_name": "google/cloud-advisorynotifications",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-advisorynotifications/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "advisorynotifications"
@@ -66,7 +66,7 @@
     "ApiKeys": {
         "language": "php",
         "distribution_name": "google/cloud-api-keys",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-api-keys/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/api-keys/docs",
@@ -172,7 +172,7 @@
     "BareMetalSolution": {
         "language": "php",
         "distribution_name": "google/cloud-bare-metal-solution",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bare-metal-solution/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "baremetalsolution"
@@ -240,7 +240,7 @@
     "BigQueryAnalyticsHub": {
         "language": "php",
         "distribution_name": "google/cloud-bigquery-analyticshub",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-analyticshub/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/analytics-hub",
@@ -258,7 +258,7 @@
     "BigQueryDataExchange": {
         "language": "php",
         "distribution_name": "google/cloud-bigquery-data-exchange",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-data-exchange/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "analyticshub"
@@ -284,7 +284,7 @@
     "BigQueryMigration": {
         "language": "php",
         "distribution_name": "google/cloud-bigquery-migration",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-migration/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/bigquery/docs/migration-intro/docs",

@@ -25,7 +25,7 @@ class DcrExchangeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool single_selected_resource_sharing_restriction = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $single_selected_resource_sharing_restriction = null;
+    protected $single_selected_resource_sharing_restriction = null;
     /**
      * Output only. If True, when subscribing to this DCR, it will create only
      * one linked dataset containing all resources shared within the
@@ -35,7 +35,7 @@ class DcrExchangeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool single_linked_dataset_per_cleanroom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $single_linked_dataset_per_cleanroom = null;
+    protected $single_linked_dataset_per_cleanroom = null;
 
     /**
      * Constructor.

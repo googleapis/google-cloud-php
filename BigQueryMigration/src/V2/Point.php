@@ -28,13 +28,13 @@ class Point extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.TimeInterval interval = 1;</code>
      */
-    private $interval = null;
+    protected $interval = null;
     /**
      * The value of the data point.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.TypedValue value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

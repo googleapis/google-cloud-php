@@ -21,7 +21,7 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_database = 1;</code>
      */
-    private $default_database = '';
+    protected $default_database = '';
     /**
      * The schema search path. When SQL objects are missing schema name,
      * translation engine will search through this list to find the value.

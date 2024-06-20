@@ -21,27 +21,27 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The parent resource path of the Subscription.
      * e.g. `projects/subscriberproject/locations/US`
      *
      * Generated from protobuf field <code>string destination = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $destination = '';
+    protected $destination = '';
     /**
      * Required. Name of the subscription to create.
      * e.g. `subscription1`
      *
      * Generated from protobuf field <code>string subscription = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * Email of the subscriber.
      *
      * Generated from protobuf field <code>string subscriber_contact = 3;</code>
      */
-    private $subscriber_contact = '';
+    protected $subscriber_contact = '';
 
     /**
      * @param string $name Required. Resource name of the Data Exchange.

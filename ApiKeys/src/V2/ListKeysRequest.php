@@ -20,26 +20,26 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Specifies the maximum number of results to be returned at a time.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Requests a specific page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Indicate that keys deleted in the past 30 days should also be
      * returned.
      *
      * Generated from protobuf field <code>bool show_deleted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * @param string $parent Required. Lists all API keys associated with this project. Please see

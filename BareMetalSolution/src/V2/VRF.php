@@ -20,13 +20,13 @@ class VRF extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The possible state of VRF.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.State state = 5;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The QOS policy applied to this VRF.
      * The value is only meaningful when all the vlan attachments have the same
@@ -35,7 +35,7 @@ class VRF extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.VRF.QosPolicy qos_policy = 6;</code>
      */
-    private $qos_policy = null;
+    protected $qos_policy = null;
     /**
      * The list of VLAN attachments for the VRF.
      *

@@ -21,13 +21,13 @@ class ErrorDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.ErrorLocation location = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Required. Describes the cause of the error with structured detail.
      *
      * Generated from protobuf field <code>.google.rpc.ErrorInfo error_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $error_info = null;
+    protected $error_info = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class LunRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 quantity = 1;</code>
      */
-    private $quantity = 0;
+    protected $quantity = 0;
     /**
      * The requested size of each LUN, in GB.
      *
      * Generated from protobuf field <code>int32 size_gb = 2;</code>
      */
-    private $size_gb = 0;
+    protected $size_gb = 0;
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class LunRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LunRange::class, \Google\Cloud\BareMetalSolution\V2\VolumeConfig_LunRange::class);
 

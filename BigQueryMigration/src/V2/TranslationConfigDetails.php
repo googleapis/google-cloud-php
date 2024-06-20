@@ -21,25 +21,25 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.Dialect source_dialect = 3;</code>
      */
-    private $source_dialect = null;
+    protected $source_dialect = null;
     /**
      * The target dialect for the engine to translate the input to.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.Dialect target_dialect = 4;</code>
      */
-    private $target_dialect = null;
+    protected $target_dialect = null;
     /**
      * The default source environment values for the translation.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.SourceEnv source_env = 6;</code>
      */
-    private $source_env = null;
+    protected $source_env = null;
     /**
      * The indicator to show translation request initiator.
      *
      * Generated from protobuf field <code>string request_source = 8;</code>
      */
-    private $request_source = '';
+    protected $request_source = '';
     protected $source_location;
     protected $target_location;
     protected $output_name_mapping;
