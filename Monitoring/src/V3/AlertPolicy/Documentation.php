@@ -51,6 +51,13 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string subject = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $subject = '';
+    /**
+     * Optional. Links to content such as playbooks, repositories, and other
+     * resources. This field can contain up to 3 entries.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Documentation.Link links = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $links;
 
     /**
      * Constructor.
@@ -81,6 +88,9 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *           variables](https://cloud.google.com/monitoring/alerts/doc-variables).
      *           If this field is missing or empty, a default subject line will be
      *           generated.
+     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link>|\Google\Protobuf\Internal\RepeatedField $links
+     *           Optional. Links to content such as playbooks, repositories, and other
+     *           resources. This field can contain up to 3 entries.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,6 +206,34 @@ class Documentation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subject = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Links to content such as playbooks, repositories, and other
+     * resources. This field can contain up to 3 entries.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Documentation.Link links = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+
+    /**
+     * Optional. Links to content such as playbooks, repositories, and other
+     * resources. This field can contain up to 3 entries.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Documentation.Link links = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLinks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link::class);
+        $this->links = $arr;
 
         return $this;
     }

@@ -21,7 +21,7 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
      * The url of a webpage.
      * A url can be templatized by using variables
@@ -31,7 +31,7 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 2;</code>
      */
-    protected $url = '';
+    private $url = '';
 
     /**
      * Constructor.
