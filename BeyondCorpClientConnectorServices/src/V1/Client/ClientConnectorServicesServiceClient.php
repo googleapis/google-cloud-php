@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -49,6 +48,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -109,9 +109,7 @@ final class ClientConnectorServicesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -121,14 +119,16 @@ final class ClientConnectorServicesServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/client_connector_services_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/client_connector_services_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/client_connector_services_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/client_connector_services_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/client_connector_services_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/client_connector_services_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -157,10 +157,31 @@ final class ClientConnectorServicesServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -173,8 +194,11 @@ final class ClientConnectorServicesServiceClient
      *
      * @return string The formatted client_connector_service resource.
      */
-    public static function clientConnectorServiceName(string $project, string $location, string $clientConnectorService): string
-    {
+    public static function clientConnectorServiceName(
+        string $project,
+        string $location,
+        string $clientConnectorService
+    ): string {
         return self::getPathTemplate('clientConnectorService')->render([
             'project' => $project,
             'location' => $location,
@@ -319,8 +343,10 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createClientConnectorService(CreateClientConnectorServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createClientConnectorService(
+        CreateClientConnectorServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -347,8 +373,10 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteClientConnectorService(DeleteClientConnectorServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteClientConnectorService(
+        DeleteClientConnectorServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -374,8 +402,10 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getClientConnectorService(GetClientConnectorServiceRequest $request, array $callOptions = []): ClientConnectorService
-    {
+    public function getClientConnectorService(
+        GetClientConnectorServiceRequest $request,
+        array $callOptions = []
+    ): ClientConnectorService {
         return $this->startApiCall('GetClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -402,8 +432,10 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listClientConnectorServices(ListClientConnectorServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listClientConnectorServices(
+        ListClientConnectorServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListClientConnectorServices', $request, $callOptions);
     }
 
@@ -430,8 +462,10 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateClientConnectorService(UpdateClientConnectorServiceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateClientConnectorService(
+        UpdateClientConnectorServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateClientConnectorService', $request, $callOptions)->wait();
     }
 
@@ -576,8 +610,10 @@ final class ClientConnectorServicesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
