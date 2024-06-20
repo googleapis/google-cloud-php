@@ -169,6 +169,12 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string schedule_name = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $schedule_name = '';
+    /**
+     * Optional. Whether to do component level validations before job creation.
+     *
+     * Generated from protobuf field <code>bool preflight_validations = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $preflight_validations = false;
 
     /**
      * Constructor.
@@ -254,6 +260,8 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *     @type string $schedule_name
      *           Output only. The schedule resource name.
      *           Only returned if the Pipeline is created by Schedule API.
+     *     @type bool $preflight_validations
+     *           Optional. Whether to do component level validations before job creation.
      * }
      */
     public function __construct($data = NULL) {
@@ -931,6 +939,32 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->schedule_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to do component level validations before job creation.
+     *
+     * Generated from protobuf field <code>bool preflight_validations = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPreflightValidations()
+    {
+        return $this->preflight_validations;
+    }
+
+    /**
+     * Optional. Whether to do component level validations before job creation.
+     *
+     * Generated from protobuf field <code>bool preflight_validations = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPreflightValidations($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->preflight_validations = $var;
 
         return $this;
     }
