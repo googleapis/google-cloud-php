@@ -9,15 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response details for data quality rule recommendations.
+ * Generate recommended DataQualityRules response.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.GenerateDataQualityRulesResponse</code>
  */
 class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The data quality rules that Dataplex generates based on the results
-     * of a data profiling scan.
+     * Generated recommended {&#64;link DataQualityRule}s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rule = 1;</code>
      */
@@ -30,8 +29,7 @@ class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $rule
-     *           The data quality rules that Dataplex generates based on the results
-     *           of a data profiling scan.
+     *           Generated recommended {&#64;link DataQualityRule}s.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +38,7 @@ class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data quality rules that Dataplex generates based on the results
-     * of a data profiling scan.
+     * Generated recommended {&#64;link DataQualityRule}s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rule = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -52,8 +49,7 @@ class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The data quality rules that Dataplex generates based on the results
-     * of a data profiling scan.
+     * Generated recommended {&#64;link DataQualityRule}s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rule = 1;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $var
