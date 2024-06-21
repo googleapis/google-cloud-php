@@ -38,6 +38,13 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Flag that, when set, will be used to filter the ModuleSettings that are
+     * in scope. The default setting is that all modules will be shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 4;</code>
+     */
+    protected $show_eligible_modules_only = false;
 
     /**
      * @param string $parent Required. The name of the parent to list Security Command Center services.
@@ -76,6 +83,9 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
      *           Optional. The value returned by the last call indicating a continuation.
+     *     @type bool $show_eligible_modules_only
+     *           Flag that, when set, will be used to filter the ModuleSettings that are
+     *           in scope. The default setting is that all modules will be shown.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +177,34 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flag that, when set, will be used to filter the ModuleSettings that are
+     * in scope. The default setting is that all modules will be shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 4;</code>
+     * @return bool
+     */
+    public function getShowEligibleModulesOnly()
+    {
+        return $this->show_eligible_modules_only;
+    }
+
+    /**
+     * Flag that, when set, will be used to filter the ModuleSettings that are
+     * in scope. The default setting is that all modules will be shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowEligibleModulesOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_eligible_modules_only = $var;
 
         return $this;
     }
