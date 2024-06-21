@@ -112,6 +112,18 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string ba_proxy_uri = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $ba_proxy_uri;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -160,6 +172,10 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ba_proxy_uri
      *           Output only. The hostname or ip address of the exposed AGM endpoints, used
      *           by BAs to connect to BA proxy.
+     *     @type \Google\Protobuf\BoolValue $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -603,6 +619,95 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->ba_proxy_uri = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getSatisfiesPzs()</code>
+
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool|null
+     */
+    public function getSatisfiesPzsUnwrapped()
+    {
+        return $this->readWrapperValue("satisfies_pzs");
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setSatisfiesPzsUnwrapped($var)
+    {
+        $this->writeWrapperValue("satisfies_pzs", $var);
+        return $this;}
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }
