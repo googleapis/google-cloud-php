@@ -68,13 +68,22 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      */
     private $database_names;
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     * in the specified zone. If no zone is specified, clone to the same zone as
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the
+     * specified zone. If no zone is specified, clone to the same primary zone as
      * the source instance.
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $preferred_zone = null;
+    /**
+     * Optional. Copy clone and point-in-time recovery clone of a regional
+     * instance in the specified zones. If not specified, clone to the same
+     * secondary zone as the source instance. This value cannot be the same as the
+     * preferred_zone field.
+     *
+     * Generated from protobuf field <code>optional string preferred_secondary_zone = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $preferred_secondary_zone = null;
 
     /**
      * Constructor.
@@ -107,9 +116,14 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *           (SQL Server only) Clone only the specified databases from the source
      *           instance. Clone all databases if empty.
      *     @type string $preferred_zone
-     *           Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     *           in the specified zone. If no zone is specified, clone to the same zone as
+     *           Optional. Copy clone and point-in-time recovery clone of an instance to the
+     *           specified zone. If no zone is specified, clone to the same primary zone as
      *           the source instance.
+     *     @type string $preferred_secondary_zone
+     *           Optional. Copy clone and point-in-time recovery clone of a regional
+     *           instance in the specified zones. If not specified, clone to the same
+     *           secondary zone as the source instance. This value cannot be the same as the
+     *           preferred_zone field.
      * }
      */
     public function __construct($data = NULL) {
@@ -340,8 +354,8 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     * in the specified zone. If no zone is specified, clone to the same zone as
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the
+     * specified zone. If no zone is specified, clone to the same primary zone as
      * the source instance.
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -363,8 +377,8 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     * in the specified zone. If no zone is specified, clone to the same zone as
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the
+     * specified zone. If no zone is specified, clone to the same primary zone as
      * the source instance.
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -375,6 +389,48 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->preferred_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Copy clone and point-in-time recovery clone of a regional
+     * instance in the specified zones. If not specified, clone to the same
+     * secondary zone as the source instance. This value cannot be the same as the
+     * preferred_zone field.
+     *
+     * Generated from protobuf field <code>optional string preferred_secondary_zone = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPreferredSecondaryZone()
+    {
+        return isset($this->preferred_secondary_zone) ? $this->preferred_secondary_zone : '';
+    }
+
+    public function hasPreferredSecondaryZone()
+    {
+        return isset($this->preferred_secondary_zone);
+    }
+
+    public function clearPreferredSecondaryZone()
+    {
+        unset($this->preferred_secondary_zone);
+    }
+
+    /**
+     * Optional. Copy clone and point-in-time recovery clone of a regional
+     * instance in the specified zones. If not specified, clone to the same
+     * secondary zone as the source instance. This value cannot be the same as the
+     * preferred_zone field.
+     *
+     * Generated from protobuf field <code>optional string preferred_secondary_zone = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreferredSecondaryZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->preferred_secondary_zone = $var;
 
         return $this;
     }
