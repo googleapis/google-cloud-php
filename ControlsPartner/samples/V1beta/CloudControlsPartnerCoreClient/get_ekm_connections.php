@@ -32,7 +32,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\GetEkmConnectionsRequest;
  * Gets the EKM connections associated with a workload
  *
  * @param string $formattedName Format:
- *                              organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections
+ *                              `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`
  *                              Please see {@see CloudControlsPartnerCoreClient::ekmConnectionsName()} for help formatting this field.
  */
 function get_ekm_connections_sample(string $formattedName): void

@@ -16,14 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetPartnerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format: organizations/{organization}/locations/{location}/partner
+     * Required. Format:
+     * `organizations/{organization}/locations/{location}/partner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. Format: organizations/{organization}/locations/{location}/partner
+     * @param string $name Required. Format:
+     *                     `organizations/{organization}/locations/{location}/partner`
      *                     Please see {@see CloudControlsPartnerCoreClient::partnerName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\GetPartnerRequest
@@ -43,7 +45,8 @@ class GetPartnerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Format: organizations/{organization}/locations/{location}/partner
+     *           Required. Format:
+     *           `organizations/{organization}/locations/{location}/partner`
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +55,8 @@ class GetPartnerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: organizations/{organization}/locations/{location}/partner
+     * Required. Format:
+     * `organizations/{organization}/locations/{location}/partner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +67,8 @@ class GetPartnerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: organizations/{organization}/locations/{location}/partner
+     * Required. Format:
+     * `organizations/{organization}/locations/{location}/partner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

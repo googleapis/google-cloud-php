@@ -17,7 +17,7 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Parent resource
-     * Format: organizations/{organization}/locations/{location}
+     * Format: `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,7 +51,7 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Parent resource
-     *                       Format: organizations/{organization}/locations/{location}
+     *                       Format: `organizations/{organization}/locations/{location}`
      *                       Please see {@see CloudControlsPartnerCoreClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\ListCustomersRequest
@@ -72,7 +72,7 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Parent resource
-     *           Format: organizations/{organization}/locations/{location}
+     *           Format: `organizations/{organization}/locations/{location}`
      *     @type int $page_size
      *           The maximum number of Customers to return. The service may return fewer
      *           than this value. If unspecified, at most 500 Customers will be returned.
@@ -92,7 +92,7 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Parent resource
-     * Format: organizations/{organization}/locations/{location}
+     * Format: `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -104,7 +104,7 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Parent resource
-     * Format: organizations/{organization}/locations/{location}
+     * Format: `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

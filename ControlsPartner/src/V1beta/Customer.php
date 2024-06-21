@@ -17,7 +17,7 @@ class Customer extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -49,7 +49,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}`
      *     @type string $display_name
      *           The customer organization's display name. E.g. "google.com".
      *     @type \Google\Cloud\CloudControlsPartner\V1beta\CustomerOnboardingState $customer_onboarding_state
@@ -65,7 +65,7 @@ class Customer extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -77,7 +77,7 @@ class Customer extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}
+     * `organizations/{organization}/locations/{location}/customers/{customer}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

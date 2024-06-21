@@ -18,7 +18,7 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource
      * Format
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,7 +61,7 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. Parent resource
      *                       Format
-     *                       organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     *                       `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *                       Please see {@see CloudControlsPartnerMonitoringClient::workloadName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\ListViolationsRequest
@@ -83,7 +83,7 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent resource
      *           Format
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *     @type int $page_size
      *           Optional. The maximum number of customers row to return. The service may
      *           return fewer than this value. If unspecified, at most 10 customers will be
@@ -108,7 +108,7 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource
      * Format
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -121,7 +121,7 @@ class ListViolationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource
      * Format
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
