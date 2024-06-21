@@ -40,7 +40,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\Violation;
  *
  * @param string $formattedParent Parent resource
  *                                Format
- *                                organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+ *                                `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
  *                                Please see {@see CloudControlsPartnerMonitoringClient::workloadName()} for help formatting this field.
  */
 function list_violations_sample(string $formattedParent): void
