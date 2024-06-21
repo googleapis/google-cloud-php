@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Encapsulates a single SKU in Google Cloud Platform
+ * Encapsulates a single SKU in Google Cloud
  *
  * Generated from protobuf message <code>google.cloud.billing.v1.Sku</code>
  */
@@ -17,14 +17,14 @@ class Sku extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name for the SKU.
-     * Example: "services/DA34-426B-A397/skus/AA95-CD31-42FE"
+     * Example: "services/6F81-5844-456A/skus/D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
      * The identifier for the SKU.
-     * Example: "AA95-CD31-42FE"
+     * Example: "D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string sku_id = 2;</code>
      */
@@ -78,10 +78,10 @@ class Sku extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name for the SKU.
-     *           Example: "services/DA34-426B-A397/skus/AA95-CD31-42FE"
+     *           Example: "services/6F81-5844-456A/skus/D041-B8A1-6E0B"
      *     @type string $sku_id
      *           The identifier for the SKU.
-     *           Example: "AA95-CD31-42FE"
+     *           Example: "D041-B8A1-6E0B"
      *     @type string $description
      *           A human readable description of the SKU, has a maximum length of 256
      *           characters.
@@ -107,7 +107,7 @@ class Sku extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the SKU.
-     * Example: "services/DA34-426B-A397/skus/AA95-CD31-42FE"
+     * Example: "services/6F81-5844-456A/skus/D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -119,7 +119,7 @@ class Sku extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the SKU.
-     * Example: "services/DA34-426B-A397/skus/AA95-CD31-42FE"
+     * Example: "services/6F81-5844-456A/skus/D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -135,7 +135,7 @@ class Sku extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier for the SKU.
-     * Example: "AA95-CD31-42FE"
+     * Example: "D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string sku_id = 2;</code>
      * @return string
@@ -147,7 +147,7 @@ class Sku extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier for the SKU.
-     * Example: "AA95-CD31-42FE"
+     * Example: "D041-B8A1-6E0B"
      *
      * Generated from protobuf field <code>string sku_id = 2;</code>
      * @param string $var
