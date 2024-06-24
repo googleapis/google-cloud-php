@@ -21,7 +21,7 @@ class BatchCreateOccurrencesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The occurrences to create. Max allowed length is 1000.
      *

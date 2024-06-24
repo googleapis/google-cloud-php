@@ -20,7 +20,7 @@ class GerritSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_uri = 1;</code>
      */
-    private $host_uri = '';
+    protected $host_uri = '';
     /**
      * The full project name within the host. Projects may be nested, so
      * "project/subproject" is a valid project name. The "repo name" is the
@@ -28,7 +28,7 @@ class GerritSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gerrit_project = 2;</code>
      */
-    private $gerrit_project = '';
+    protected $gerrit_project = '';
     protected $revision;
 
     /**

@@ -16,7 +16,7 @@ class Material extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Generated from protobuf field <code>map<string, string> digest = 2;</code>
      */

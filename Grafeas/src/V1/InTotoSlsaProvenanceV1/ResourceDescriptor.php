@@ -16,11 +16,11 @@ class ResourceDescriptor extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Generated from protobuf field <code>map<string, string> digest = 3;</code>
      */
@@ -28,15 +28,15 @@ class ResourceDescriptor extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bytes content = 4;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Generated from protobuf field <code>string download_location = 5;</code>
      */
-    private $download_location = '';
+    protected $download_location = '';
     /**
      * Generated from protobuf field <code>string media_type = 6;</code>
      */
-    private $media_type = '';
+    protected $media_type = '';
     /**
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> annotations = 7;</code>
      */

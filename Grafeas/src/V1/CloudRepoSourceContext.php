@@ -21,7 +21,7 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.RepoId repo_id = 1;</code>
      */
-    private $repo_id = null;
+    protected $repo_id = null;
     protected $revision;
 
     /**

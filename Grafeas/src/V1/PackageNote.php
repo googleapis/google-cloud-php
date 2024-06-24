@@ -20,7 +20,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Deprecated.
      * The various channels by which a package is distributed.
@@ -34,7 +34,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package_type = 11;</code>
      */
-    private $package_type = '';
+    protected $package_type = '';
     /**
      * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
      * denoting the package manager version distributing a package.
@@ -42,44 +42,44 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpe_uri = 12;</code>
      */
-    private $cpe_uri = '';
+    protected $cpe_uri = '';
     /**
      * The CPU architecture for which packages in this distribution channel were
      * built. Architecture will be blank for language packages.
      *
      * Generated from protobuf field <code>.grafeas.v1.Architecture architecture = 13;</code>
      */
-    private $architecture = 0;
+    protected $architecture = 0;
     /**
      * The version of the package.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 14;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * A freeform text denoting the maintainer of this package.
      *
      * Generated from protobuf field <code>string maintainer = 15;</code>
      */
-    private $maintainer = '';
+    protected $maintainer = '';
     /**
      * The homepage for this package.
      *
      * Generated from protobuf field <code>string url = 16;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * The description of this package.
      *
      * Generated from protobuf field <code>string description = 17;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Licenses that have been declared by the authors of the package.
      *
      * Generated from protobuf field <code>.grafeas.v1.License license = 18;</code>
      */
-    private $license = null;
+    protected $license = null;
     /**
      * Hash value, typically a file digest, that allows unique
      * identification a specific package.

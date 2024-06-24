@@ -20,17 +20,17 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.ContinuousAnalysis continuous_analysis = 1;</code>
      */
-    private $continuous_analysis = 0;
+    protected $continuous_analysis = 0;
     /**
      * The status of discovery for the resource.
      *
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisStatus analysis_status = 2;</code>
      */
-    private $analysis_status = 0;
+    protected $analysis_status = 0;
     /**
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
      */
-    private $analysis_completed = null;
+    protected $analysis_completed = null;
     /**
      * Indicates any errors encountered during analysis of a resource. There
      * could be 0 or more of these errors.
@@ -45,31 +45,31 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status analysis_status_error = 3;</code>
      */
-    private $analysis_status_error = null;
+    protected $analysis_status_error = null;
     /**
      * The CPE of the resource being scanned.
      *
      * Generated from protobuf field <code>string cpe = 4;</code>
      */
-    private $cpe = '';
+    protected $cpe = '';
     /**
      * The last time this resource was scanned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_scan_time = 5;</code>
      */
-    private $last_scan_time = null;
+    protected $last_scan_time = null;
     /**
      * The time occurrences related to this discovery occurrence were archived.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $archive_time = null;
+    protected $archive_time = null;
     /**
      * The status of an SBOM generation.
      *
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.SBOMStatus sbom_status = 9;</code>
      */
-    private $sbom_status = null;
+    protected $sbom_status = null;
 
     /**
      * Constructor.

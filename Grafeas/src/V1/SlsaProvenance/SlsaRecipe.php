@@ -24,7 +24,7 @@ class SlsaRecipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Index in materials containing the recipe steps that are not implied by
      * recipe.type. For example, if the recipe type were "make", then this would
@@ -34,7 +34,7 @@ class SlsaRecipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 defined_in_material = 2;</code>
      */
-    private $defined_in_material = 0;
+    protected $defined_in_material = 0;
     /**
      * String identifying the entry point into the build.
      * This is often a path to a configuration file and/or a target label within
@@ -44,7 +44,7 @@ class SlsaRecipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entry_point = 3;</code>
      */
-    private $entry_point = '';
+    protected $entry_point = '';
     /**
      * Collection of all external inputs that influenced the build on top of
      * recipe.definedInMaterial and recipe.entryPoint. For example, if the
@@ -54,7 +54,7 @@ class SlsaRecipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any arguments = 4;</code>
      */
-    private $arguments = null;
+    protected $arguments = null;
     /**
      * Any other builder-controlled inputs necessary for correctly evaluating
      * the recipe. Usually only needed for reproducing the build but not
@@ -63,7 +63,7 @@ class SlsaRecipe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any environment = 5;</code>
      */
-    private $environment = null;
+    protected $environment = null;
 
     /**
      * Constructor.

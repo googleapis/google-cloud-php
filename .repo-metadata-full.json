@@ -744,7 +744,7 @@
     "Grafeas": {
         "language": "php",
         "distribution_name": "google/grafeas",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/grafeas/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "containeranalysis"

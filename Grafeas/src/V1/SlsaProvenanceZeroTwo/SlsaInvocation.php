@@ -18,15 +18,15 @@ class SlsaInvocation extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo.SlsaConfigSource config_source = 1;</code>
      */
-    private $config_source = null;
+    protected $config_source = null;
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct environment = 3;</code>
      */
-    private $environment = null;
+    protected $environment = null;
 
     /**
      * Constructor.
