@@ -20,13 +20,13 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The status of this run.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupRunStatus status = 2;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * The time the run was enqueued in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -34,14 +34,14 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      */
-    private $enqueued_time = null;
+    protected $enqueued_time = null;
     /**
      * The identifier for this backup run. Unique only for a specific Cloud SQL
      * instance.
      *
      * Generated from protobuf field <code>int64 id = 4;</code>
      */
-    private $id = 0;
+    protected $id = 0;
     /**
      * The time the backup operation actually started in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -49,7 +49,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time the backup operation completed in UTC timezone in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -57,14 +57,14 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Information about why the backup operation failed. This is only present if
      * the run has the FAILED status.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.OperationError error = 7;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The type of this run; can be either "AUTOMATED" or "ON_DEMAND" or "FINAL".
      * This field defaults to "ON_DEMAND" and is ignored, when specified for
@@ -72,13 +72,13 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupRunType type = 8;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The description of this run, only applicable to on-demand backups.
      *
      * Generated from protobuf field <code>string description = 9;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The start time of the backup window during which this the backup was
      * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
@@ -86,50 +86,50 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      */
-    private $window_start_time = null;
+    protected $window_start_time = null;
     /**
      * Name of the database instance.
      *
      * Generated from protobuf field <code>string instance = 11;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The URI of this resource.
      *
      * Generated from protobuf field <code>string self_link = 12;</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * Location of the backups.
      *
      * Generated from protobuf field <code>string location = 13;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Encryption configuration specific to a backup.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DiskEncryptionConfiguration disk_encryption_configuration = 16;</code>
      */
-    private $disk_encryption_configuration = null;
+    protected $disk_encryption_configuration = null;
     /**
      * Encryption status specific to a backup.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DiskEncryptionStatus disk_encryption_status = 17;</code>
      */
-    private $disk_encryption_status = null;
+    protected $disk_encryption_status = null;
     /**
      * Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackupKind backup_kind = 19;</code>
      */
-    private $backup_kind = 0;
+    protected $backup_kind = 0;
     /**
      * Backup time zone to prevent restores to an instance with
      * a different time zone. Now relevant only for SQL Server.
      *
      * Generated from protobuf field <code>string time_zone = 23;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
 
     /**
      * Constructor.

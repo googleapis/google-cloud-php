@@ -20,20 +20,20 @@ class GetConnectSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Optional. Optional snapshot read timestamp to trade freshness for
      * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
 
     /**
      * Constructor.

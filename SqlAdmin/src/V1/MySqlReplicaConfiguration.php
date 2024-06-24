@@ -25,69 +25,69 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dump_file_path = 1;</code>
      */
-    private $dump_file_path = '';
+    protected $dump_file_path = '';
     /**
      * The username for the replication connection.
      *
      * Generated from protobuf field <code>string username = 2;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The password for the replication connection.
      *
      * Generated from protobuf field <code>string password = 3;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Seconds to wait between connect retries. MySQL's default is 60 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value connect_retry_interval = 4;</code>
      */
-    private $connect_retry_interval = null;
+    protected $connect_retry_interval = null;
     /**
      * Interval in milliseconds between replication heartbeats.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value master_heartbeat_period = 5;</code>
      */
-    private $master_heartbeat_period = null;
+    protected $master_heartbeat_period = null;
     /**
      * PEM representation of the trusted CA's x509 certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 6;</code>
      */
-    private $ca_certificate = '';
+    protected $ca_certificate = '';
     /**
      * PEM representation of the replica's x509 certificate.
      *
      * Generated from protobuf field <code>string client_certificate = 7;</code>
      */
-    private $client_certificate = '';
+    protected $client_certificate = '';
     /**
      * PEM representation of the replica's private key. The corresponsing public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 8;</code>
      */
-    private $client_key = '';
+    protected $client_key = '';
     /**
      * A list of permissible ciphers to use for SSL encryption.
      *
      * Generated from protobuf field <code>string ssl_cipher = 9;</code>
      */
-    private $ssl_cipher = '';
+    protected $ssl_cipher = '';
     /**
      * Whether or not to check the primary instance's Common Name value in the
      * certificate that it sends during the SSL handshake.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_server_certificate = 10;</code>
      */
-    private $verify_server_certificate = null;
+    protected $verify_server_certificate = null;
     /**
      * This is always `sql#mysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 11;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.
@@ -248,7 +248,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value connect_retry_interval = 4;</code>
      * @return int|null
      */
-    public function getConnectRetryIntervalValue()
+    public function getConnectRetryIntervalUnwrapped()
     {
         return $this->readWrapperValue("connect_retry_interval");
     }
@@ -277,7 +277,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setConnectRetryIntervalValue($var)
+    public function setConnectRetryIntervalUnwrapped($var)
     {
         $this->writeWrapperValue("connect_retry_interval", $var);
         return $this;}
@@ -311,7 +311,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value master_heartbeat_period = 5;</code>
      * @return int|string|null
      */
-    public function getMasterHeartbeatPeriodValue()
+    public function getMasterHeartbeatPeriodUnwrapped()
     {
         return $this->readWrapperValue("master_heartbeat_period");
     }
@@ -340,7 +340,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setMasterHeartbeatPeriodValue($var)
+    public function setMasterHeartbeatPeriodUnwrapped($var)
     {
         $this->writeWrapperValue("master_heartbeat_period", $var);
         return $this;}
@@ -482,7 +482,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_server_certificate = 10;</code>
      * @return bool|null
      */
-    public function getVerifyServerCertificateValue()
+    public function getVerifyServerCertificateUnwrapped()
     {
         return $this->readWrapperValue("verify_server_certificate");
     }
@@ -513,7 +513,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setVerifyServerCertificateValue($var)
+    public function setVerifyServerCertificateUnwrapped($var)
     {
         $this->writeWrapperValue("verify_server_certificate", $var);
         return $this;}

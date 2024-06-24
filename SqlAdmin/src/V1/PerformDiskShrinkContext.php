@@ -20,7 +20,7 @@ class PerformDiskShrinkContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 target_size_gb = 1;</code>
      */
-    private $target_size_gb = 0;
+    protected $target_size_gb = 0;
 
     /**
      * Constructor.

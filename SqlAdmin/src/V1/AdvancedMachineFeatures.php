@@ -20,7 +20,7 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 threads_per_core = 1;</code>
      */
-    private $threads_per_core = 0;
+    protected $threads_per_core = 0;
 
     /**
      * Constructor.

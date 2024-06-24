@@ -20,19 +20,19 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Reserved for future use.
      *
      * Generated from protobuf field <code>int64 pitr_timestamp_ms = 2;</code>
      */
-    private $pitr_timestamp_ms = 0;
+    protected $pitr_timestamp_ms = 0;
     /**
      * Name of the Cloud SQL instance to be created as a clone.
      *
      * Generated from protobuf field <code>string destination_instance_name = 3;</code>
      */
-    private $destination_instance_name = '';
+    protected $destination_instance_name = '';
     /**
      * Binary log coordinates, if specified, identify the position up to which the
      * source instance is cloned. If not specified, the source instance is
@@ -40,14 +40,14 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BinLogCoordinates bin_log_coordinates = 4;</code>
      */
-    private $bin_log_coordinates = null;
+    protected $bin_log_coordinates = null;
     /**
      * Timestamp, if specified, identifies the time to which the source instance
      * is cloned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp point_in_time = 5;</code>
      */
-    private $point_in_time = null;
+    protected $point_in_time = null;
     /**
      * The name of the allocated ip range for the private ip Cloud SQL instance.
      * For example: "google-managed-services-default". If set, the cloned instance
@@ -59,7 +59,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
      */
-    private $allocated_ip_range = '';
+    protected $allocated_ip_range = '';
     /**
      * (SQL Server only) Clone only the specified databases from the source
      * instance. Clone all databases if empty.
@@ -74,7 +74,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $preferred_zone = null;
+    protected $preferred_zone = null;
 
     /**
      * Constructor.

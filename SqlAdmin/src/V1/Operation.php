@@ -22,23 +22,23 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Generated from protobuf field <code>string target_link = 2;</code>
      */
-    private $target_link = '';
+    protected $target_link = '';
     /**
      * The status of an operation.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Operation.SqlOperationStatus status = 3;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * The email address of the user who initiated this operation.
      *
      * Generated from protobuf field <code>string user = 4;</code>
      */
-    private $user = '';
+    protected $user = '';
     /**
      * The time this operation was enqueued in UTC timezone in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -46,7 +46,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 5;</code>
      */
-    private $insert_time = null;
+    protected $insert_time = null;
     /**
      * The time this operation actually started in UTC timezone in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -54,7 +54,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time this operation finished in UTC timezone in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -62,20 +62,20 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * If errors occurred during processing of this operation, this field will be
      * populated.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.OperationErrors error = 8;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * An Admin API warning message.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
      */
-    private $api_warning = null;
+    protected $api_warning = null;
     /**
      * The type of the operation. Valid values are:
      * *  `CREATE`
@@ -93,25 +93,25 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Operation.SqlOperationType operation_type = 9;</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
     /**
      * The context for import operation, if applicable.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext import_context = 10;</code>
      */
-    private $import_context = null;
+    protected $import_context = null;
     /**
      * The context for export operation, if applicable.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext export_context = 11;</code>
      */
-    private $export_context = null;
+    protected $export_context = null;
     /**
      * The context for backup operation, if applicable.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BackupContext backup_context = 17;</code>
      */
-    private $backup_context = null;
+    protected $backup_context = null;
     /**
      * An identifier that uniquely identifies the operation. You can use this
      * identifier to retrieve the Operations resource that has information about
@@ -119,31 +119,31 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 12;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Name of the database instance related to this operation.
      *
      * Generated from protobuf field <code>string target_id = 13;</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * The URI of this resource.
      *
      * Generated from protobuf field <code>string self_link = 14;</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * The project ID of the target instance related to this operation.
      *
      * Generated from protobuf field <code>string target_project = 15;</code>
      */
-    private $target_project = '';
+    protected $target_project = '';
     /**
      * The context for acquire SSRS lease operation, if applicable.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
      */
-    private $acquire_ssrs_lease_context = null;
+    protected $acquire_ssrs_lease_context = null;
 
     /**
      * Constructor.

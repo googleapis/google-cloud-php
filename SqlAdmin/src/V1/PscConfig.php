@@ -20,7 +20,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool psc_enabled = 1;</code>
      */
-    private $psc_enabled = null;
+    protected $psc_enabled = null;
     /**
      * Optional. The list of consumer projects that are allow-listed for PSC
      * connections to this instance. This instance can be connected to with PSC

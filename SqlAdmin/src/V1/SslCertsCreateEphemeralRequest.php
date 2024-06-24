@@ -20,13 +20,13 @@ class SslCertsCreateEphemeralRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_key = 1;</code>
      */
-    private $public_key = '';
+    protected $public_key = '';
     /**
      * Access token to include in the signed certificate.
      *
      * Generated from protobuf field <code>string access_token = 2;</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
 
     /**
      * Constructor.

@@ -1361,7 +1361,7 @@
     "SqlAdmin": {
         "language": "php",
         "distribution_name": "google/cloud-sql-admin",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-sql-admin/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "sqladmin"

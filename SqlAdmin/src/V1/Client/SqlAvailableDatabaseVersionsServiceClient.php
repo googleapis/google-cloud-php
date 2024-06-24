@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,14 +69,16 @@ final class SqlAvailableDatabaseVersionsServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/sql_available_database_versions_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/sql_available_database_versions_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/sql_available_database_versions_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/sql_available_database_versions_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/sql_available_database_versions_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/sql_available_database_versions_service_rest_client_config.php',
                 ],
             ],
         ];

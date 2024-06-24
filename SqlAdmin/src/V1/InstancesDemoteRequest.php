@@ -21,7 +21,7 @@ class InstancesDemoteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DemoteContext demote_context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $demote_context = null;
+    protected $demote_context = null;
 
     /**
      * Constructor.

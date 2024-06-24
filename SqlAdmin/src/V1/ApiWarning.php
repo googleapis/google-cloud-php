@@ -20,19 +20,19 @@ class ApiWarning extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning.SqlApiWarningCode code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * The warning message.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The region name for REGION_UNREACHABLE warning.
      *
      * Generated from protobuf field <code>string region = 3;</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

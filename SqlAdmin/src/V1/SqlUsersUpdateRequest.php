@@ -18,29 +18,29 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Database instance ID. This does not include the project ID.
      *
      * Generated from protobuf field <code>string instance = 2;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Name of the user in the instance.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.User body = 100;</code>
      */
-    private $body = null;
+    protected $body = null;
 
     /**
      * Constructor.

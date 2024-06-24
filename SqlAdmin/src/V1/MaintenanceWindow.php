@@ -21,13 +21,13 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      */
-    private $hour = null;
+    protected $hour = null;
     /**
      * day of week (1-7), starting on Monday.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      */
-    private $day = null;
+    protected $day = null;
     /**
      * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
      * [Learn
@@ -35,13 +35,13 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlUpdateTrack update_track = 3;</code>
      */
-    private $update_track = 0;
+    protected $update_track = 0;
     /**
      * This is always `sql#maintenanceWindow`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.
@@ -95,7 +95,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      * @return int|null
      */
-    public function getHourValue()
+    public function getHourUnwrapped()
     {
         return $this->readWrapperValue("hour");
     }
@@ -124,7 +124,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setHourValue($var)
+    public function setHourUnwrapped($var)
     {
         $this->writeWrapperValue("hour", $var);
         return $this;}
@@ -158,7 +158,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      * @return int|null
      */
-    public function getDayValue()
+    public function getDayUnwrapped()
     {
         return $this->readWrapperValue("day");
     }
@@ -187,7 +187,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setDayValue($var)
+    public function setDayUnwrapped($var)
     {
         $this->writeWrapperValue("day", $var);
         return $this;}

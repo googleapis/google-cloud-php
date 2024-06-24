@@ -20,7 +20,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ipv4_enabled = 1;</code>
      */
-    private $ipv4_enabled = null;
+    protected $ipv4_enabled = null;
     /**
      * The resource link for the VPC network from which the Cloud SQL instance is
      * accessible for private IP. For example,
@@ -29,7 +29,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_network = 2;</code>
      */
-    private $private_network = '';
+    protected $private_network = '';
     /**
      * Use `ssl_mode` instead.
      * Whether SSL/TLS connections over IP are enforced.
@@ -42,7 +42,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue require_ssl = 3;</code>
      */
-    private $require_ssl = null;
+    protected $require_ssl = null;
     /**
      * The list of external networks that are allowed to connect to the instance
      * using the IP. In 'CIDR' notation, also known as 'slash' notation (for
@@ -61,14 +61,14 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string allocated_ip_range = 6;</code>
      */
-    private $allocated_ip_range = '';
+    protected $allocated_ip_range = '';
     /**
      * Controls connectivity to private IP instances from Google services,
      * such as BigQuery.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
      */
-    private $enable_private_path_for_google_cloud_services = null;
+    protected $enable_private_path_for_google_cloud_services = null;
     /**
      * Specify how SSL/TLS is enforced in database connections. If you must use
      * the `require_ssl` flag for backward compatibility, then only the following
@@ -89,13 +89,13 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.IpConfiguration.SslMode ssl_mode = 8;</code>
      */
-    private $ssl_mode = 0;
+    protected $ssl_mode = 0;
     /**
      * PSC settings for this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.PscConfig psc_config = 9;</code>
      */
-    private $psc_config = null;
+    protected $psc_config = null;
 
     /**
      * Constructor.
@@ -188,7 +188,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue ipv4_enabled = 1;</code>
      * @return bool|null
      */
-    public function getIpv4EnabledValue()
+    public function getIpv4EnabledUnwrapped()
     {
         return $this->readWrapperValue("ipv4_enabled");
     }
@@ -217,7 +217,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIpv4EnabledValue($var)
+    public function setIpv4EnabledUnwrapped($var)
     {
         $this->writeWrapperValue("ipv4_enabled", $var);
         return $this;}
@@ -297,7 +297,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue require_ssl = 3;</code>
      * @return bool|null
      */
-    public function getRequireSslValue()
+    public function getRequireSslUnwrapped()
     {
         return $this->readWrapperValue("require_ssl");
     }
@@ -340,7 +340,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setRequireSslValue($var)
+    public function setRequireSslUnwrapped($var)
     {
         $this->writeWrapperValue("require_ssl", $var);
         return $this;}
@@ -442,7 +442,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_private_path_for_google_cloud_services = 7;</code>
      * @return bool|null
      */
-    public function getEnablePrivatePathForGoogleCloudServicesValue()
+    public function getEnablePrivatePathForGoogleCloudServicesUnwrapped()
     {
         return $this->readWrapperValue("enable_private_path_for_google_cloud_services");
     }
@@ -473,7 +473,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnablePrivatePathForGoogleCloudServicesValue($var)
+    public function setEnablePrivatePathForGoogleCloudServicesUnwrapped($var)
     {
         $this->writeWrapperValue("enable_private_path_for_google_cloud_services", $var);
         return $this;}
