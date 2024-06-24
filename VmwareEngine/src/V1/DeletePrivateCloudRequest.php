@@ -25,14 +25,14 @@ class DeletePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The request ID must be a valid UUID with the exception that zero
      * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, cascade delete is enabled and all children of
      * this private cloud resource are also deleted. When this flag is set to
@@ -42,7 +42,7 @@ class DeletePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $force = false;
+    protected $force = false;
     /**
      * Optional. Time delay of the deletion specified in hours. The default value
      * is `3`. Specifying a non-zero value for this field changes the value of
@@ -55,7 +55,7 @@ class DeletePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 delay_hours = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $delay_hours = null;
+    protected $delay_hours = null;
 
     /**
      * @param string $name Required. The resource name of the private cloud to delete.

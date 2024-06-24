@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\VmwareEngine\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -154,6 +153,7 @@ use Google\Cloud\VmwareEngine\V1\UpdatePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -178,7 +178,9 @@ class VmwareEngineClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return VmwareEngineClient */
@@ -299,12 +301,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
@@ -449,12 +454,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
@@ -592,12 +600,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
@@ -731,12 +742,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
@@ -880,12 +894,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
@@ -979,7 +996,10 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/CreateManagementDnsZoneBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.vmwareengine.v1.VmwareEngine/CreateManagementDnsZoneBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getManagementDnsZoneBinding();
@@ -1029,12 +1049,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
@@ -1127,7 +1150,11 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkPeering->setPeerNetwork($networkPeeringPeerNetwork);
         $networkPeeringPeerNetworkType = PeerNetworkType::PEER_NETWORK_TYPE_UNSPECIFIED;
         $networkPeering->setPeerNetworkType($networkPeeringPeerNetworkType);
-        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $networkPeering->setVmwareEngineNetwork($networkPeeringVmwareEngineNetwork);
         $request = (new CreateNetworkPeeringRequest())
             ->setParent($formattedParent)
@@ -1192,12 +1219,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1207,7 +1237,11 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkPeering->setPeerNetwork($networkPeeringPeerNetwork);
         $networkPeeringPeerNetworkType = PeerNetworkType::PEER_NETWORK_TYPE_UNSPECIFIED;
         $networkPeering->setPeerNetworkType($networkPeeringPeerNetworkType);
-        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $networkPeering->setVmwareEngineNetwork($networkPeeringVmwareEngineNetwork);
         $request = (new CreateNetworkPeeringRequest())
             ->setParent($formattedParent)
@@ -1345,12 +1379,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1501,12 +1538,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1600,7 +1640,11 @@ class VmwareEngineClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $privateConnectionId = 'privateConnectionId-1948601248';
         $privateConnection = new PrivateConnection();
-        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
         $privateConnectionType = Type::TYPE_UNSPECIFIED;
         $privateConnection->setType($privateConnectionType);
@@ -1669,18 +1713,25 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $privateConnectionId = 'privateConnectionId-1948601248';
         $privateConnection = new PrivateConnection();
-        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
         $privateConnectionType = Type::TYPE_UNSPECIFIED;
         $privateConnection->setType($privateConnectionType);
@@ -1818,12 +1869,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1888,8 +1942,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1945,17 +1998,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2008,9 +2063,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->externalAccessRuleName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]', '[EXTERNAL_ACCESS_RULE]');
-        $request = (new DeleteExternalAccessRuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAccessRuleName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[NETWORK_POLICY]',
+            '[EXTERNAL_ACCESS_RULE]'
+        );
+        $request = (new DeleteExternalAccessRuleRequest())->setName($formattedName);
         $response = $gapicClient->deleteExternalAccessRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2066,17 +2125,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->externalAccessRuleName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]', '[EXTERNAL_ACCESS_RULE]');
-        $request = (new DeleteExternalAccessRuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAccessRuleName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[NETWORK_POLICY]',
+            '[EXTERNAL_ACCESS_RULE]'
+        );
+        $request = (new DeleteExternalAccessRuleRequest())->setName($formattedName);
         $response = $gapicClient->deleteExternalAccessRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2129,9 +2195,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->externalAddressName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[EXTERNAL_ADDRESS]');
-        $request = (new DeleteExternalAddressRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAddressName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[EXTERNAL_ADDRESS]'
+        );
+        $request = (new DeleteExternalAddressRequest())->setName($formattedName);
         $response = $gapicClient->deleteExternalAddress($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2187,17 +2257,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->externalAddressName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[EXTERNAL_ADDRESS]');
-        $request = (new DeleteExternalAddressRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAddressName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[EXTERNAL_ADDRESS]'
+        );
+        $request = (new DeleteExternalAddressRequest())->setName($formattedName);
         $response = $gapicClient->deleteExternalAddress($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2250,9 +2327,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->loggingServerName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[LOGGING_SERVER]');
-        $request = (new DeleteLoggingServerRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->loggingServerName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[LOGGING_SERVER]'
+        );
+        $request = (new DeleteLoggingServerRequest())->setName($formattedName);
         $response = $gapicClient->deleteLoggingServer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2308,17 +2389,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->loggingServerName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[LOGGING_SERVER]');
-        $request = (new DeleteLoggingServerRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->loggingServerName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[LOGGING_SERVER]'
+        );
+        $request = (new DeleteLoggingServerRequest())->setName($formattedName);
         $response = $gapicClient->deleteLoggingServer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2371,9 +2459,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
-        $request = (new DeleteManagementDnsZoneBindingRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->managementDnsZoneBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[MANAGEMENT_DNS_ZONE_BINDING]'
+        );
+        $request = (new DeleteManagementDnsZoneBindingRequest())->setName($formattedName);
         $response = $gapicClient->deleteManagementDnsZoneBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2383,7 +2475,10 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/DeleteManagementDnsZoneBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.vmwareengine.v1.VmwareEngine/DeleteManagementDnsZoneBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2429,17 +2524,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
-        $request = (new DeleteManagementDnsZoneBindingRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->managementDnsZoneBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[MANAGEMENT_DNS_ZONE_BINDING]'
+        );
+        $request = (new DeleteManagementDnsZoneBindingRequest())->setName($formattedName);
         $response = $gapicClient->deleteManagementDnsZoneBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2493,8 +2595,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
-        $request = (new DeleteNetworkPeeringRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNetworkPeeringRequest())->setName($formattedName);
         $response = $gapicClient->deleteNetworkPeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2550,17 +2651,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
-        $request = (new DeleteNetworkPeeringRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNetworkPeeringRequest())->setName($formattedName);
         $response = $gapicClient->deleteNetworkPeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2614,8 +2717,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new DeleteNetworkPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNetworkPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteNetworkPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2671,17 +2773,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new DeleteNetworkPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNetworkPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteNetworkPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2741,8 +2845,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new DeletePrivateCloudRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateCloudRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateCloud($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2798,17 +2901,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new DeletePrivateCloudRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateCloudRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateCloud($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2862,8 +2967,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new DeletePrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2919,17 +3023,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new DeletePrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2983,8 +3089,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
-        $request = (new DeleteVmwareEngineNetworkRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVmwareEngineNetworkRequest())->setName($formattedName);
         $response = $gapicClient->deleteVmwareEngineNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3040,17 +3145,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
-        $request = (new DeleteVmwareEngineNetworkRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVmwareEngineNetworkRequest())->setName($formattedName);
         $response = $gapicClient->deleteVmwareEngineNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3084,17 +3191,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $externalAddressesElement = new ExternalAddress();
-        $externalAddresses = [
-            $externalAddressesElement,
-        ];
+        $externalAddresses = [$externalAddressesElement];
         $expectedResponse = new FetchNetworkPolicyExternalAddressesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExternalAddresses($externalAddresses);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedNetworkPolicy = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new FetchNetworkPolicyExternalAddressesRequest())
-            ->setNetworkPolicy($formattedNetworkPolicy);
+        $request = (new FetchNetworkPolicyExternalAddressesRequest())->setNetworkPolicy($formattedNetworkPolicy);
         $response = $gapicClient->fetchNetworkPolicyExternalAddresses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3104,7 +3208,10 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/FetchNetworkPolicyExternalAddresses', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.vmwareengine.v1.VmwareEngine/FetchNetworkPolicyExternalAddresses',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getNetworkPolicy();
         $this->assertProtobufEquals($formattedNetworkPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -3121,17 +3228,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedNetworkPolicy = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new FetchNetworkPolicyExternalAddressesRequest())
-            ->setNetworkPolicy($formattedNetworkPolicy);
+        $request = (new FetchNetworkPolicyExternalAddressesRequest())->setNetworkPolicy($formattedNetworkPolicy);
         try {
             $gapicClient->fetchNetworkPolicyExternalAddresses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3164,8 +3273,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetClusterRequest())->setName($formattedName);
         $response = $gapicClient->getCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3189,17 +3297,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3228,8 +3338,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
-        $request = (new GetDnsBindPermissionRequest())
-            ->setName($formattedName);
+        $request = (new GetDnsBindPermissionRequest())->setName($formattedName);
         $response = $gapicClient->getDnsBindPermission($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3253,17 +3362,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
-        $request = (new GetDnsBindPermissionRequest())
-            ->setName($formattedName);
+        $request = (new GetDnsBindPermissionRequest())->setName($formattedName);
         try {
             $gapicClient->getDnsBindPermission($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3292,8 +3403,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dnsForwardingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new GetDnsForwardingRequest())
-            ->setName($formattedName);
+        $request = (new GetDnsForwardingRequest())->setName($formattedName);
         $response = $gapicClient->getDnsForwarding($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3317,17 +3427,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dnsForwardingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new GetDnsForwardingRequest())
-            ->setName($formattedName);
+        $request = (new GetDnsForwardingRequest())->setName($formattedName);
         try {
             $gapicClient->getDnsForwarding($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3363,9 +3475,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->externalAccessRuleName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]', '[EXTERNAL_ACCESS_RULE]');
-        $request = (new GetExternalAccessRuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAccessRuleName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[NETWORK_POLICY]',
+            '[EXTERNAL_ACCESS_RULE]'
+        );
+        $request = (new GetExternalAccessRuleRequest())->setName($formattedName);
         $response = $gapicClient->getExternalAccessRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3389,17 +3505,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->externalAccessRuleName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]', '[EXTERNAL_ACCESS_RULE]');
-        $request = (new GetExternalAccessRuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAccessRuleName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[NETWORK_POLICY]',
+            '[EXTERNAL_ACCESS_RULE]'
+        );
+        $request = (new GetExternalAccessRuleRequest())->setName($formattedName);
         try {
             $gapicClient->getExternalAccessRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3435,9 +3558,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->externalAddressName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[EXTERNAL_ADDRESS]');
-        $request = (new GetExternalAddressRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAddressName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[EXTERNAL_ADDRESS]'
+        );
+        $request = (new GetExternalAddressRequest())->setName($formattedName);
         $response = $gapicClient->getExternalAddress($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3461,17 +3588,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->externalAddressName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[EXTERNAL_ADDRESS]');
-        $request = (new GetExternalAddressRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->externalAddressName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[EXTERNAL_ADDRESS]'
+        );
+        $request = (new GetExternalAddressRequest())->setName($formattedName);
         try {
             $gapicClient->getExternalAddress($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3503,9 +3637,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->hcxActivationKeyName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[HCX_ACTIVATION_KEY]');
-        $request = (new GetHcxActivationKeyRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hcxActivationKeyName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[HCX_ACTIVATION_KEY]'
+        );
+        $request = (new GetHcxActivationKeyRequest())->setName($formattedName);
         $response = $gapicClient->getHcxActivationKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3529,17 +3667,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->hcxActivationKeyName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[HCX_ACTIVATION_KEY]');
-        $request = (new GetHcxActivationKeyRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->hcxActivationKeyName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[HCX_ACTIVATION_KEY]'
+        );
+        $request = (new GetHcxActivationKeyRequest())->setName($formattedName);
         try {
             $gapicClient->getHcxActivationKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3573,9 +3718,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->loggingServerName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[LOGGING_SERVER]');
-        $request = (new GetLoggingServerRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->loggingServerName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[LOGGING_SERVER]'
+        );
+        $request = (new GetLoggingServerRequest())->setName($formattedName);
         $response = $gapicClient->getLoggingServer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3599,17 +3748,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->loggingServerName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[LOGGING_SERVER]');
-        $request = (new GetLoggingServerRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->loggingServerName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[LOGGING_SERVER]'
+        );
+        $request = (new GetLoggingServerRequest())->setName($formattedName);
         try {
             $gapicClient->getLoggingServer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3643,9 +3799,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
-        $request = (new GetManagementDnsZoneBindingRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->managementDnsZoneBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[MANAGEMENT_DNS_ZONE_BINDING]'
+        );
+        $request = (new GetManagementDnsZoneBindingRequest())->setName($formattedName);
         $response = $gapicClient->getManagementDnsZoneBinding($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3669,17 +3829,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
-        $request = (new GetManagementDnsZoneBindingRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->managementDnsZoneBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[MANAGEMENT_DNS_ZONE_BINDING]'
+        );
+        $request = (new GetManagementDnsZoneBindingRequest())->setName($formattedName);
         try {
             $gapicClient->getManagementDnsZoneBinding($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3730,8 +3897,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
-        $request = (new GetNetworkPeeringRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkPeeringRequest())->setName($formattedName);
         $response = $gapicClient->getNetworkPeering($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3755,17 +3921,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
-        $request = (new GetNetworkPeeringRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkPeeringRequest())->setName($formattedName);
         try {
             $gapicClient->getNetworkPeering($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3804,8 +3972,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new GetNetworkPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getNetworkPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3829,17 +3996,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new GetNetworkPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getNetworkPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3878,8 +4047,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]', '[NODE]');
-        $request = (new GetNodeRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeRequest())->setName($formattedName);
         $response = $gapicClient->getNode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3903,17 +4071,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]', '[NODE]');
-        $request = (new GetNodeRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeRequest())->setName($formattedName);
         try {
             $gapicClient->getNode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3954,8 +4124,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeTypeName('[PROJECT]', '[LOCATION]', '[NODE_TYPE]');
-        $request = (new GetNodeTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeTypeRequest())->setName($formattedName);
         $response = $gapicClient->getNodeType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3979,17 +4148,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeTypeName('[PROJECT]', '[LOCATION]', '[NODE_TYPE]');
-        $request = (new GetNodeTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeTypeRequest())->setName($formattedName);
         try {
             $gapicClient->getNodeType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4022,8 +4193,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new GetPrivateCloudRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateCloudRequest())->setName($formattedName);
         $response = $gapicClient->getPrivateCloud($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4047,17 +4217,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new GetPrivateCloudRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateCloudRequest())->setName($formattedName);
         try {
             $gapicClient->getPrivateCloud($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4098,8 +4270,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new GetPrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->getPrivateConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4123,17 +4294,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new GetPrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateConnectionRequest())->setName($formattedName);
         try {
             $gapicClient->getPrivateConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4170,8 +4343,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[SUBNET]');
-        $request = (new GetSubnetRequest())
-            ->setName($formattedName);
+        $request = (new GetSubnetRequest())->setName($formattedName);
         $response = $gapicClient->getSubnet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4195,17 +4367,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->subnetName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[SUBNET]');
-        $request = (new GetSubnetRequest())
-            ->setName($formattedName);
+        $request = (new GetSubnetRequest())->setName($formattedName);
         try {
             $gapicClient->getSubnet($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4240,8 +4414,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
-        $request = (new GetVmwareEngineNetworkRequest())
-            ->setName($formattedName);
+        $request = (new GetVmwareEngineNetworkRequest())->setName($formattedName);
         $response = $gapicClient->getVmwareEngineNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4265,17 +4438,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
-        $request = (new GetVmwareEngineNetworkRequest())
-            ->setName($formattedName);
+        $request = (new GetVmwareEngineNetworkRequest())->setName($formattedName);
         try {
             $gapicClient->getVmwareEngineNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4323,9 +4498,7 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
         $principal = new Principal();
-        $request = (new GrantDnsBindPermissionRequest())
-            ->setName($formattedName)
-            ->setPrincipal($principal);
+        $request = (new GrantDnsBindPermissionRequest())->setName($formattedName)->setPrincipal($principal);
         $response = $gapicClient->grantDnsBindPermission($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4383,19 +4556,20 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
         $principal = new Principal();
-        $request = (new GrantDnsBindPermissionRequest())
-            ->setName($formattedName)
-            ->setPrincipal($principal);
+        $request = (new GrantDnsBindPermissionRequest())->setName($formattedName)->setPrincipal($principal);
         $response = $gapicClient->grantDnsBindPermission($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4429,17 +4603,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $clustersElement = new Cluster();
-        $clusters = [
-            $clustersElement,
-        ];
+        $clusters = [$clustersElement];
         $expectedResponse = new ListClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClusters($clusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListClustersRequest())->setParent($formattedParent);
         $response = $gapicClient->listClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4466,17 +4637,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListClustersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4501,17 +4674,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $externalAccessRulesElement = new ExternalAccessRule();
-        $externalAccessRules = [
-            $externalAccessRulesElement,
-        ];
+        $externalAccessRules = [$externalAccessRulesElement];
         $expectedResponse = new ListExternalAccessRulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExternalAccessRules($externalAccessRules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new ListExternalAccessRulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExternalAccessRulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listExternalAccessRules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4538,17 +4708,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
-        $request = (new ListExternalAccessRulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExternalAccessRulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listExternalAccessRules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4573,17 +4745,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $externalAddressesElement = new ExternalAddress();
-        $externalAddresses = [
-            $externalAddressesElement,
-        ];
+        $externalAddresses = [$externalAddressesElement];
         $expectedResponse = new ListExternalAddressesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setExternalAddresses($externalAddresses);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListExternalAddressesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExternalAddressesRequest())->setParent($formattedParent);
         $response = $gapicClient->listExternalAddresses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4610,17 +4779,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListExternalAddressesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListExternalAddressesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listExternalAddresses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4645,17 +4816,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $hcxActivationKeysElement = new HcxActivationKey();
-        $hcxActivationKeys = [
-            $hcxActivationKeysElement,
-        ];
+        $hcxActivationKeys = [$hcxActivationKeysElement];
         $expectedResponse = new ListHcxActivationKeysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHcxActivationKeys($hcxActivationKeys);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListHcxActivationKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListHcxActivationKeysRequest())->setParent($formattedParent);
         $response = $gapicClient->listHcxActivationKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4682,17 +4850,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListHcxActivationKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListHcxActivationKeysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listHcxActivationKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4717,17 +4887,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $loggingServersElement = new LoggingServer();
-        $loggingServers = [
-            $loggingServersElement,
-        ];
+        $loggingServers = [$loggingServersElement];
         $expectedResponse = new ListLoggingServersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLoggingServers($loggingServers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListLoggingServersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLoggingServersRequest())->setParent($formattedParent);
         $response = $gapicClient->listLoggingServers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4754,17 +4921,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListLoggingServersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLoggingServersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLoggingServers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4789,17 +4958,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $managementDnsZoneBindingsElement = new ManagementDnsZoneBinding();
-        $managementDnsZoneBindings = [
-            $managementDnsZoneBindingsElement,
-        ];
+        $managementDnsZoneBindings = [$managementDnsZoneBindingsElement];
         $expectedResponse = new ListManagementDnsZoneBindingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setManagementDnsZoneBindings($managementDnsZoneBindings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListManagementDnsZoneBindingsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListManagementDnsZoneBindingsRequest())->setParent($formattedParent);
         $response = $gapicClient->listManagementDnsZoneBindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4826,17 +4992,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListManagementDnsZoneBindingsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListManagementDnsZoneBindingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listManagementDnsZoneBindings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4861,17 +5029,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $networkPeeringsElement = new NetworkPeering();
-        $networkPeerings = [
-            $networkPeeringsElement,
-        ];
+        $networkPeerings = [$networkPeeringsElement];
         $expectedResponse = new ListNetworkPeeringsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNetworkPeerings($networkPeerings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworkPeeringsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworkPeeringsRequest())->setParent($formattedParent);
         $response = $gapicClient->listNetworkPeerings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4898,17 +5063,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworkPeeringsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworkPeeringsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNetworkPeerings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4933,17 +5100,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $networkPoliciesElement = new NetworkPolicy();
-        $networkPolicies = [
-            $networkPoliciesElement,
-        ];
+        $networkPolicies = [$networkPoliciesElement];
         $expectedResponse = new ListNetworkPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNetworkPolicies($networkPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworkPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworkPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNetworkPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4970,17 +5134,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworkPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworkPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNetworkPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5005,17 +5171,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $nodeTypesElement = new NodeType();
-        $nodeTypes = [
-            $nodeTypesElement,
-        ];
+        $nodeTypes = [$nodeTypesElement];
         $expectedResponse = new ListNodeTypesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNodeTypes($nodeTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNodeTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNodeTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNodeTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5042,17 +5205,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNodeTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNodeTypesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNodeTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5077,17 +5242,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $nodesElement = new Node();
-        $nodes = [
-            $nodesElement,
-        ];
+        $nodes = [$nodesElement];
         $expectedResponse = new ListNodesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNodes($nodes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
-        $request = (new ListNodesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNodesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNodes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5114,17 +5276,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
-        $request = (new ListNodesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNodesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNodes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5149,17 +5313,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $peeringRoutesElement = new PeeringRoute();
-        $peeringRoutes = [
-            $peeringRoutesElement,
-        ];
+        $peeringRoutes = [$peeringRoutesElement];
         $expectedResponse = new ListPeeringRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPeeringRoutes($peeringRoutes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
-        $request = (new ListPeeringRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPeeringRoutesRequest())->setParent($formattedParent);
         $response = $gapicClient->listPeeringRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5186,17 +5347,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
-        $request = (new ListPeeringRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPeeringRoutesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPeeringRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5221,17 +5384,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $privateCloudsElement = new PrivateCloud();
-        $privateClouds = [
-            $privateCloudsElement,
-        ];
+        $privateClouds = [$privateCloudsElement];
         $expectedResponse = new ListPrivateCloudsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPrivateClouds($privateClouds);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateCloudsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateCloudsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPrivateClouds($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5258,17 +5418,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateCloudsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateCloudsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPrivateClouds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5293,17 +5455,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $peeringRoutesElement = new PeeringRoute();
-        $peeringRoutes = [
-            $peeringRoutesElement,
-        ];
+        $peeringRoutes = [$peeringRoutesElement];
         $expectedResponse = new ListPrivateConnectionPeeringRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPeeringRoutes($peeringRoutes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new ListPrivateConnectionPeeringRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionPeeringRoutesRequest())->setParent($formattedParent);
         $response = $gapicClient->listPrivateConnectionPeeringRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5313,7 +5472,10 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/ListPrivateConnectionPeeringRoutes', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.vmwareengine.v1.VmwareEngine/ListPrivateConnectionPeeringRoutes',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -5330,17 +5492,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new ListPrivateConnectionPeeringRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionPeeringRoutesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPrivateConnectionPeeringRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5365,17 +5529,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $privateConnectionsElement = new PrivateConnection();
-        $privateConnections = [
-            $privateConnectionsElement,
-        ];
+        $privateConnections = [$privateConnectionsElement];
         $expectedResponse = new ListPrivateConnectionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPrivateConnections($privateConnections);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPrivateConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5402,17 +5563,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPrivateConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5437,17 +5600,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $subnetsElement = new Subnet();
-        $subnets = [
-            $subnetsElement,
-        ];
+        $subnets = [$subnetsElement];
         $expectedResponse = new ListSubnetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubnets($subnets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListSubnetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSubnetsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSubnets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5474,17 +5634,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ListSubnetsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSubnetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSubnets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5509,17 +5671,14 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $vmwareEngineNetworksElement = new VmwareEngineNetwork();
-        $vmwareEngineNetworks = [
-            $vmwareEngineNetworksElement,
-        ];
+        $vmwareEngineNetworks = [$vmwareEngineNetworksElement];
         $expectedResponse = new ListVmwareEngineNetworksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVmwareEngineNetworks($vmwareEngineNetworks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVmwareEngineNetworksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVmwareEngineNetworksRequest())->setParent($formattedParent);
         $response = $gapicClient->listVmwareEngineNetworks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -5546,17 +5705,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVmwareEngineNetworksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVmwareEngineNetworksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVmwareEngineNetworks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -5608,9 +5769,13 @@ class VmwareEngineClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
-        $request = (new RepairManagementDnsZoneBindingRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->managementDnsZoneBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[MANAGEMENT_DNS_ZONE_BINDING]'
+        );
+        $request = (new RepairManagementDnsZoneBindingRequest())->setName($formattedName);
         $response = $gapicClient->repairManagementDnsZoneBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5620,7 +5785,10 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/RepairManagementDnsZoneBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.vmwareengine.v1.VmwareEngine/RepairManagementDnsZoneBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -5666,17 +5834,24 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
-        $request = (new RepairManagementDnsZoneBindingRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->managementDnsZoneBindingName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PRIVATE_CLOUD]',
+            '[MANAGEMENT_DNS_ZONE_BINDING]'
+        );
+        $request = (new RepairManagementDnsZoneBindingRequest())->setName($formattedName);
         $response = $gapicClient->repairManagementDnsZoneBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5736,8 +5911,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ResetNsxCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ResetNsxCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         $response = $gapicClient->resetNsxCredentials($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5793,17 +5967,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ResetNsxCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ResetNsxCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         $response = $gapicClient->resetNsxCredentials($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5863,8 +6039,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ResetVcenterCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ResetVcenterCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         $response = $gapicClient->resetVcenterCredentials($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5920,17 +6095,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ResetVcenterCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ResetVcenterCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         $response = $gapicClient->resetVcenterCredentials($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5987,9 +6164,7 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
         $principal = new Principal();
-        $request = (new RevokeDnsBindPermissionRequest())
-            ->setName($formattedName)
-            ->setPrincipal($principal);
+        $request = (new RevokeDnsBindPermissionRequest())->setName($formattedName)->setPrincipal($principal);
         $response = $gapicClient->revokeDnsBindPermission($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6047,19 +6222,20 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
         $principal = new Principal();
-        $request = (new RevokeDnsBindPermissionRequest())
-            ->setName($formattedName)
-            ->setPrincipal($principal);
+        $request = (new RevokeDnsBindPermissionRequest())->setName($formattedName)->setPrincipal($principal);
         $response = $gapicClient->revokeDnsBindPermission($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6099,8 +6275,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ShowNsxCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ShowNsxCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         $response = $gapicClient->showNsxCredentials($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -6124,17 +6299,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ShowNsxCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ShowNsxCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         try {
             $gapicClient->showNsxCredentials($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -6165,8 +6342,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ShowVcenterCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ShowVcenterCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         $response = $gapicClient->showVcenterCredentials($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -6190,17 +6366,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedPrivateCloud = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new ShowVcenterCredentialsRequest())
-            ->setPrivateCloud($formattedPrivateCloud);
+        $request = (new ShowVcenterCredentialsRequest())->setPrivateCloud($formattedPrivateCloud);
         try {
             $gapicClient->showVcenterCredentials($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -6251,8 +6429,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new UndeletePrivateCloudRequest())
-            ->setName($formattedName);
+        $request = (new UndeletePrivateCloudRequest())->setName($formattedName);
         $response = $gapicClient->undeletePrivateCloud($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6308,17 +6485,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
-        $request = (new UndeletePrivateCloudRequest())
-            ->setName($formattedName);
+        $request = (new UndeletePrivateCloudRequest())->setName($formattedName);
         $response = $gapicClient->undeletePrivateCloud($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6386,9 +6565,7 @@ class VmwareEngineClientTest extends GeneratedTest
             'nodeTypeConfigsKey' => $nodeTypeConfigsValue,
         ];
         $cluster->setNodeTypeConfigs($clusterNodeTypeConfigs);
-        $request = (new UpdateClusterRequest())
-            ->setUpdateMask($updateMask)
-            ->setCluster($cluster);
+        $request = (new UpdateClusterRequest())->setUpdateMask($updateMask)->setCluster($cluster);
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6446,12 +6623,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -6463,9 +6643,7 @@ class VmwareEngineClientTest extends GeneratedTest
             'nodeTypeConfigsKey' => $nodeTypeConfigsValue,
         ];
         $cluster->setNodeTypeConfigs($clusterNodeTypeConfigs);
-        $request = (new UpdateClusterRequest())
-            ->setUpdateMask($updateMask)
-            ->setCluster($cluster);
+        $request = (new UpdateClusterRequest())->setUpdateMask($updateMask)->setCluster($cluster);
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6524,9 +6702,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $dnsForwardingForwardingRules = [];
         $dnsForwarding->setForwardingRules($dnsForwardingForwardingRules);
         $updateMask = new FieldMask();
-        $request = (new UpdateDnsForwardingRequest())
-            ->setDnsForwarding($dnsForwarding)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDnsForwardingRequest())->setDnsForwarding($dnsForwarding)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDnsForwarding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6584,21 +6760,22 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $dnsForwarding = new DnsForwarding();
         $dnsForwardingForwardingRules = [];
         $dnsForwarding->setForwardingRules($dnsForwardingForwardingRules);
         $updateMask = new FieldMask();
-        $request = (new UpdateDnsForwardingRequest())
-            ->setDnsForwarding($dnsForwarding)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDnsForwardingRequest())->setDnsForwarding($dnsForwarding)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDnsForwarding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -6723,12 +6900,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -6860,12 +7040,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -6943,9 +7126,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $loggingServer->setProtocol($loggingServerProtocol);
         $loggingServerSourceType = SourceType::SOURCE_TYPE_UNSPECIFIED;
         $loggingServer->setSourceType($loggingServerSourceType);
-        $request = (new UpdateLoggingServerRequest())
-            ->setUpdateMask($updateMask)
-            ->setLoggingServer($loggingServer);
+        $request = (new UpdateLoggingServerRequest())->setUpdateMask($updateMask)->setLoggingServer($loggingServer);
         $response = $gapicClient->updateLoggingServer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7003,12 +7184,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -7021,9 +7205,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $loggingServer->setProtocol($loggingServerProtocol);
         $loggingServerSourceType = SourceType::SOURCE_TYPE_UNSPECIFIED;
         $loggingServer->setSourceType($loggingServerSourceType);
-        $request = (new UpdateLoggingServerRequest())
-            ->setUpdateMask($updateMask)
-            ->setLoggingServer($loggingServer);
+        $request = (new UpdateLoggingServerRequest())->setUpdateMask($updateMask)->setLoggingServer($loggingServer);
         $response = $gapicClient->updateLoggingServer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7098,7 +7280,10 @@ class VmwareEngineClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.vmwareengine.v1.VmwareEngine/UpdateManagementDnsZoneBinding', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.vmwareengine.v1.VmwareEngine/UpdateManagementDnsZoneBinding',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getManagementDnsZoneBinding();
@@ -7146,12 +7331,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -7240,12 +7428,14 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkPeering->setPeerNetwork($networkPeeringPeerNetwork);
         $networkPeeringPeerNetworkType = PeerNetworkType::PEER_NETWORK_TYPE_UNSPECIFIED;
         $networkPeering->setPeerNetworkType($networkPeeringPeerNetworkType);
-        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $networkPeering->setVmwareEngineNetwork($networkPeeringVmwareEngineNetwork);
         $updateMask = new FieldMask();
-        $request = (new UpdateNetworkPeeringRequest())
-            ->setNetworkPeering($networkPeering)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateNetworkPeeringRequest())->setNetworkPeering($networkPeering)->setUpdateMask($updateMask);
         $response = $gapicClient->updateNetworkPeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7303,12 +7493,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkPeering = new NetworkPeering();
@@ -7316,12 +7509,14 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkPeering->setPeerNetwork($networkPeeringPeerNetwork);
         $networkPeeringPeerNetworkType = PeerNetworkType::PEER_NETWORK_TYPE_UNSPECIFIED;
         $networkPeering->setPeerNetworkType($networkPeeringPeerNetworkType);
-        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $networkPeeringVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $networkPeering->setVmwareEngineNetwork($networkPeeringVmwareEngineNetwork);
         $updateMask = new FieldMask();
-        $request = (new UpdateNetworkPeeringRequest())
-            ->setNetworkPeering($networkPeering)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateNetworkPeeringRequest())->setNetworkPeering($networkPeering)->setUpdateMask($updateMask);
         $response = $gapicClient->updateNetworkPeering($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7390,9 +7585,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $networkPolicyEdgeServicesCidr = 'networkPolicyEdgeServicesCidr-602005393';
         $networkPolicy->setEdgeServicesCidr($networkPolicyEdgeServicesCidr);
         $updateMask = new FieldMask();
-        $request = (new UpdateNetworkPolicyRequest())
-            ->setNetworkPolicy($networkPolicy)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateNetworkPolicyRequest())->setNetworkPolicy($networkPolicy)->setUpdateMask($updateMask);
         $response = $gapicClient->updateNetworkPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7450,21 +7643,22 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $networkPolicy = new NetworkPolicy();
         $networkPolicyEdgeServicesCidr = 'networkPolicyEdgeServicesCidr-602005393';
         $networkPolicy->setEdgeServicesCidr($networkPolicyEdgeServicesCidr);
         $updateMask = new FieldMask();
-        $request = (new UpdateNetworkPolicyRequest())
-            ->setNetworkPolicy($networkPolicy)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateNetworkPolicyRequest())->setNetworkPolicy($networkPolicy)->setUpdateMask($updateMask);
         $response = $gapicClient->updateNetworkPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7540,9 +7734,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $privateCloudManagementCluster->setNodeTypeConfigs($managementClusterNodeTypeConfigs);
         $privateCloud->setManagementCluster($privateCloudManagementCluster);
         $updateMask = new FieldMask();
-        $request = (new UpdatePrivateCloudRequest())
-            ->setPrivateCloud($privateCloud)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdatePrivateCloudRequest())->setPrivateCloud($privateCloud)->setUpdateMask($updateMask);
         $response = $gapicClient->updatePrivateCloud($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7600,12 +7792,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $privateCloud = new PrivateCloud();
@@ -7625,9 +7820,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $privateCloudManagementCluster->setNodeTypeConfigs($managementClusterNodeTypeConfigs);
         $privateCloud->setManagementCluster($privateCloudManagementCluster);
         $updateMask = new FieldMask();
-        $request = (new UpdatePrivateCloudRequest())
-            ->setPrivateCloud($privateCloud)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdatePrivateCloudRequest())->setPrivateCloud($privateCloud)->setUpdateMask($updateMask);
         $response = $gapicClient->updatePrivateCloud($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7695,7 +7888,11 @@ class VmwareEngineClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $privateConnection = new PrivateConnection();
-        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
         $privateConnectionType = Type::TYPE_UNSPECIFIED;
         $privateConnection->setType($privateConnectionType);
@@ -7762,16 +7959,23 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $privateConnection = new PrivateConnection();
-        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName('[PROJECT]', '[LOCATION]', '[VMWARE_ENGINE_NETWORK]');
+        $privateConnectionVmwareEngineNetwork = $gapicClient->vmwareEngineNetworkName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VMWARE_ENGINE_NETWORK]'
+        );
         $privateConnection->setVmwareEngineNetwork($privateConnectionVmwareEngineNetwork);
         $privateConnectionType = Type::TYPE_UNSPECIFIED;
         $privateConnection->setType($privateConnectionType);
@@ -7845,9 +8049,7 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $subnet = new Subnet();
-        $request = (new UpdateSubnetRequest())
-            ->setUpdateMask($updateMask)
-            ->setSubnet($subnet);
+        $request = (new UpdateSubnetRequest())->setUpdateMask($updateMask)->setSubnet($subnet);
         $response = $gapicClient->updateSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -7905,19 +8107,20 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $subnet = new Subnet();
-        $request = (new UpdateSubnetRequest())
-            ->setUpdateMask($updateMask)
-            ->setSubnet($subnet);
+        $request = (new UpdateSubnetRequest())->setUpdateMask($updateMask)->setSubnet($subnet);
         $response = $gapicClient->updateSubnet($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -8042,12 +8245,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $vmwareEngineNetwork = new VmwareEngineNetwork();
@@ -8118,12 +8324,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -8150,9 +8359,7 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -8182,12 +8389,15 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -8220,8 +8430,7 @@ class VmwareEngineClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -8245,17 +8454,19 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -8287,9 +8498,7 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -8315,19 +8524,20 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -8355,9 +8565,7 @@ class VmwareEngineClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -8383,19 +8591,20 @@ class VmwareEngineClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test

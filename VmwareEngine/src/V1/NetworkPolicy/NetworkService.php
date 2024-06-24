@@ -24,14 +24,14 @@ class NetworkService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Output only. State of the service. New values may be added to this enum
      * when appropriate.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NetworkPolicy.NetworkService.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

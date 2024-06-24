@@ -20,13 +20,13 @@ class Credentials extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Initial password.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
-    private $password = '';
+    protected $password = '';
 
     /**
      * Constructor.

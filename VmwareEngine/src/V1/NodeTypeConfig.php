@@ -20,7 +20,7 @@ class NodeTypeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
     /**
      * Optional. Customized number of cores available to each node of the type.
      * This number must always be one of `nodeType.availableCustomCoreCounts`.
@@ -29,7 +29,7 @@ class NodeTypeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 custom_core_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_core_count = 0;
+    protected $custom_core_count = 0;
 
     /**
      * Constructor.

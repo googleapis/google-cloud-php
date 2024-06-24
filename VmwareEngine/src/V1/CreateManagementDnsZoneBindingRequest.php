@@ -25,13 +25,13 @@ class CreateManagementDnsZoneBindingRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The initial values for a new management DNS zone binding.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.ManagementDnsZoneBinding management_dns_zone_binding = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $management_dns_zone_binding = null;
+    protected $management_dns_zone_binding = null;
     /**
      * Required. The user-provided identifier of the `ManagementDnsZoneBinding`
      * resource to be created. This identifier must be unique among
@@ -47,7 +47,7 @@ class CreateManagementDnsZoneBindingRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string management_dns_zone_binding_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $management_dns_zone_binding_id = '';
+    protected $management_dns_zone_binding_id = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -64,7 +64,7 @@ class CreateManagementDnsZoneBindingRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                                 $parent                     Required. The resource name of the private cloud
