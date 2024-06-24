@@ -21,7 +21,7 @@ class CreateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Short name of the ServerTlsPolicy resource to be created. This value should
      * be 1-63 characters long, containing only letters, numbers, hyphens, and
@@ -29,13 +29,13 @@ class CreateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string server_tls_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $server_tls_policy_id = '';
+    protected $server_tls_policy_id = '';
     /**
      * Required. ServerTlsPolicy resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.ServerTlsPolicy server_tls_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $server_tls_policy = null;
+    protected $server_tls_policy = null;
 
     /**
      * @param string                                           $parent            Required. The parent resource of the ServerTlsPolicy. Must be in

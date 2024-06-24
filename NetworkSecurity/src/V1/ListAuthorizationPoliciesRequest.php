@@ -22,13 +22,13 @@ class ListAuthorizationPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Maximum number of AuthorizationPolicies to return per call.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last
      * `ListAuthorizationPoliciesResponse` Indicates that this is a
@@ -37,7 +37,7 @@ class ListAuthorizationPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The project and location from which the AuthorizationPolicies
