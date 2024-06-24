@@ -32,7 +32,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\Violation;
  * Gets details of a single Violation.
  *
  * @param string $formattedName Format:
- *                              organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+ *                              `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
  *                              Please see {@see CloudControlsPartnerMonitoringClient::violationName()} for help formatting this field.
  */
 function get_violation_sample(string $formattedName): void

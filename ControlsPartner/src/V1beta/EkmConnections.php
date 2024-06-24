@@ -17,7 +17,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -37,7 +37,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`
      *     @type array<\Google\Cloud\CloudControlsPartner\V1beta\EkmConnection>|\Google\Protobuf\Internal\RepeatedField $ekm_connections
      *           The EKM connections associated with the workload
      * }
@@ -49,7 +49,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -61,7 +61,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

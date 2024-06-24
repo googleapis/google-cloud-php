@@ -18,7 +18,7 @@ class ListAccessApprovalRequestsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. Parent resource
      * Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class ListAccessApprovalRequestsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string $parent Required. Parent resource
      *                       Format:
-     *                       organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     *                       `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *                       Please see {@see CloudControlsPartnerCoreClient::workloadName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\ListAccessApprovalRequestsRequest
@@ -77,7 +77,7 @@ class ListAccessApprovalRequestsRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $parent
      *           Required. Parent resource
      *           Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *     @type int $page_size
      *           Optional. The maximum number of access requests to return. The service may
      *           return fewer than this value. If unspecified, at most 500 access requests
@@ -100,7 +100,7 @@ class ListAccessApprovalRequestsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. Parent resource
      * Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +113,7 @@ class ListAccessApprovalRequestsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. Parent resource
      * Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

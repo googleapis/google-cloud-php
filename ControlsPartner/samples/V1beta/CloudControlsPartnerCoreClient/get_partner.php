@@ -31,7 +31,8 @@ use Google\Cloud\CloudControlsPartner\V1beta\Partner;
 /**
  * Get details of a Partner.
  *
- * @param string $formattedName Format: organizations/{organization}/locations/{location}/partner
+ * @param string $formattedName Format:
+ *                              `organizations/{organization}/locations/{location}/partner`
  *                              Please see {@see CloudControlsPartnerCoreClient::partnerName()} for help formatting this field.
  */
 function get_partner_sample(string $formattedName): void

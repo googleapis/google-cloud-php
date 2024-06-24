@@ -403,6 +403,10 @@ final class BigtableTableAdminClient
     /**
      * Constructor.
      *
+     * Setting the "BIGTABLE_EMULATOR_HOST" environment variable will automatically set
+     * the API Endpoint to the value specified in the variable, as well as ensure that
+     * empty credentials are used in the transport layer.
+     *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *

@@ -508,7 +508,8 @@ final class CloudControlsPartnerCoreClient
     }
 
     /**
-     * Lists access requests associated with a workload
+     * Deprecated: Only returns access approval requests directly associated with
+     * an assured workload folder.
      *
      * The async variant is
      * {@see CloudControlsPartnerCoreClient::listAccessApprovalRequestsAsync()} .
@@ -530,6 +531,8 @@ final class CloudControlsPartnerCoreClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAccessApprovalRequests(
         ListAccessApprovalRequestsRequest $request,

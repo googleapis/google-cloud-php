@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1alpha_generated_DataprocMetastore_AlterMetadataResourceLocation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Metastore\V1alpha\AlterMetadataResourceLocationRequest;
 use Google\Cloud\Metastore\V1alpha\AlterMetadataResourceLocationResponse;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreClient;
 use Google\Rpc\Status;
 
 /**
@@ -57,14 +58,16 @@ function alter_metadata_resource_location_sample(
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new AlterMetadataResourceLocationRequest())
+        ->setService($formattedService)
+        ->setResourceName($resourceName)
+        ->setLocationUri($locationUri);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->alterMetadataResourceLocation(
-            $formattedService,
-            $resourceName,
-            $locationUri
-        );
+        $response = $dataprocMetastoreClient->alterMetadataResourceLocation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

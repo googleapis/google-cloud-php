@@ -58,6 +58,13 @@ class FindingClass
      * Generated from protobuf enum <code>POSTURE_VIOLATION = 6;</code>
      */
     const POSTURE_VIOLATION = 6;
+    /**
+     * Describes a combination of security issues that represent a more severe
+     * security problem when taken together.
+     *
+     * Generated from protobuf enum <code>TOXIC_COMBINATION = 7;</code>
+     */
+    const TOXIC_COMBINATION = 7;
 
     private static $valueToName = [
         self::FINDING_CLASS_UNSPECIFIED => 'FINDING_CLASS_UNSPECIFIED',
@@ -67,6 +74,7 @@ class FindingClass
         self::OBSERVATION => 'OBSERVATION',
         self::SCC_ERROR => 'SCC_ERROR',
         self::POSTURE_VIOLATION => 'POSTURE_VIOLATION',
+        self::TOXIC_COMBINATION => 'TOXIC_COMBINATION',
     ];
 
     public static function name($value)

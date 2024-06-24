@@ -76,6 +76,15 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
     protected $update_time = null;
+    /**
+     * Output only. Location of the resource in the source system. Entry will be
+     * searchable by this location. By default, this should match the location of
+     * the EntryGroup containing this entry. A different value allows capturing
+     * source location for data external to GCP.
+     *
+     * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -107,6 +116,11 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      *           The create time of the resource in the source system.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The update time of the resource in the source system.
+     *     @type string $location
+     *           Output only. Location of the resource in the source system. Entry will be
+     *           searchable by this location. By default, this should match the location of
+     *           the EntryGroup containing this entry. A different value allows capturing
+     *           source location for data external to GCP.
      * }
      */
     public function __construct($data = NULL) {
@@ -376,6 +390,38 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Location of the resource in the source system. Entry will be
+     * searchable by this location. By default, this should match the location of
+     * the EntryGroup containing this entry. A different value allows capturing
+     * source location for data external to GCP.
+     *
+     * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Output only. Location of the resource in the source system. Entry will be
+     * searchable by this location. By default, this should match the location of
+     * the EntryGroup containing this entry. A different value allows capturing
+     * source location for data external to GCP.
+     *
+     * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }
