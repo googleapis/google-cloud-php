@@ -21,7 +21,7 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The unique identifier for the slate.
      * This value should conform to RFC-1034, which restricts to
@@ -30,13 +30,13 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string slate_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $slate_id = '';
+    protected $slate_id = '';
     /**
      * Required. The slate to create.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate slate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $slate = null;
+    protected $slate = null;
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52,7 +52,7 @@ class CreateSlateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                $parent  Required. The project in which the slate should be created, in the form of

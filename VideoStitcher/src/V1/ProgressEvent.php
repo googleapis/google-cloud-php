@@ -22,7 +22,7 @@ class ProgressEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 1;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
     /**
      * The list of progress tracking events for the ad break. These can be of
      * the following IAB types: `BREAK_START`, `BREAK_END`, `IMPRESSION`,

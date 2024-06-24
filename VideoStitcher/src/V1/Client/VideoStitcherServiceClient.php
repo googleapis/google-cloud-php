@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Video\Stitcher\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -74,6 +73,7 @@ use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -148,9 +148,7 @@ final class VideoStitcherServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -196,10 +194,31 @@ final class VideoStitcherServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -232,8 +251,12 @@ final class VideoStitcherServiceClient
      *
      * @return string The formatted live_ad_tag_detail resource.
      */
-    public static function liveAdTagDetailName(string $project, string $location, string $liveSession, string $liveAdTagDetail): string
-    {
+    public static function liveAdTagDetailName(
+        string $project,
+        string $location,
+        string $liveSession,
+        string $liveAdTagDetail
+    ): string {
         return self::getPathTemplate('liveAdTagDetail')->render([
             'project' => $project,
             'location' => $location,
@@ -327,8 +350,12 @@ final class VideoStitcherServiceClient
      *
      * @return string The formatted vod_ad_tag_detail resource.
      */
-    public static function vodAdTagDetailName(string $project, string $location, string $vodSession, string $vodAdTagDetail): string
-    {
+    public static function vodAdTagDetailName(
+        string $project,
+        string $location,
+        string $vodSession,
+        string $vodAdTagDetail
+    ): string {
         return self::getPathTemplate('vodAdTagDetail')->render([
             'project' => $project,
             'location' => $location,
@@ -386,8 +413,12 @@ final class VideoStitcherServiceClient
      *
      * @return string The formatted vod_stitch_detail resource.
      */
-    public static function vodStitchDetailName(string $project, string $location, string $vodSession, string $vodStitchDetail): string
-    {
+    public static function vodStitchDetailName(
+        string $project,
+        string $location,
+        string $vodSession,
+        string $vodStitchDetail
+    ): string {
         return self::getPathTemplate('vodStitchDetail')->render([
             'project' => $project,
             'location' => $location,
@@ -1056,8 +1087,10 @@ final class VideoStitcherServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLiveAdTagDetails(ListLiveAdTagDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listLiveAdTagDetails(
+        ListLiveAdTagDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListLiveAdTagDetails', $request, $callOptions);
     }
 
@@ -1191,8 +1224,10 @@ final class VideoStitcherServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listVodStitchDetails(ListVodStitchDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listVodStitchDetails(
+        ListVodStitchDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListVodStitchDetails', $request, $callOptions);
     }
 

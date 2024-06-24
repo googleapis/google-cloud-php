@@ -26,7 +26,7 @@ class Interstitials extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodSessionContent session_content = 2;</code>
      */
-    private $session_content = null;
+    protected $session_content = null;
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The URI to play the live session's ad-stitched stream.
      *
      * Generated from protobuf field <code>string play_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $play_uri = '';
+    protected $play_uri = '';
     /**
      * Key value pairs for ad tag macro replacement, only available for live
      * sessions that do not implement Google Ad manager ad insertion. If the
@@ -48,28 +48,28 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 10;</code>
      */
-    private $manifest_options = null;
+    protected $manifest_options = null;
     /**
      * This field should be set with appropriate values if GAM is being used for
      * ads.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.LiveSession.GamSettings gam_settings = 15;</code>
      */
-    private $gam_settings = null;
+    protected $gam_settings = null;
     /**
      * Required. The resource name of the live config for this session, in the
      * form of `projects/{project}/locations/{location}/liveConfigs/{id}`.
      *
      * Generated from protobuf field <code>string live_config = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $live_config = '';
+    protected $live_config = '';
     /**
      * Determines how the ad should be tracked. This overrides the value set in
      * the live config for this session.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 17;</code>
      */
-    private $ad_tracking = 0;
+    protected $ad_tracking = 0;
 
     /**
      * Constructor.
