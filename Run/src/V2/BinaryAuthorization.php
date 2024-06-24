@@ -23,7 +23,7 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string breakglass_justification = 2;</code>
      */
-    private $breakglass_justification = '';
+    protected $breakglass_justification = '';
     protected $binauthz_method;
 
     /**

@@ -22,7 +22,7 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Service is the name of the service to place in the gRPC HealthCheckRequest
      * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
@@ -30,7 +30,7 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 2;</code>
      */
-    private $service = '';
+    protected $service = '';
 
     /**
      * Constructor.

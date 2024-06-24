@@ -37,7 +37,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Email address of the IAM service account associated with the Task of a
      * Job. The service account represents the identity of the
@@ -46,13 +46,13 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 5;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The execution environment being used to host this Task.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6;</code>
      */
-    private $execution_environment = 0;
+    protected $execution_environment = 0;
     /**
      * A reference to a customer managed encryption key (CMEK) to use to encrypt
      * this container image. For more information, go to
@@ -60,14 +60,14 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encryption_key = 7 [(.google.api.resource_reference) = {</code>
      */
-    private $encryption_key = '';
+    protected $encryption_key = '';
     /**
      * VPC Access configuration to use for this Task. For more information,
      * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8;</code>
      */
-    private $vpc_access = null;
+    protected $vpc_access = null;
     protected $retries;
 
     /**

@@ -21,7 +21,7 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * The Cloud Secret Manager secret version.
      * Can be 'latest' for the latest value, or an integer or a secret alias for a
@@ -29,7 +29,7 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Integer octal mode bits to use on this file, must be a value between
      * 01 and 0777 (octal). If 0 or not set, the Volume's default mode will be
@@ -47,7 +47,7 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 mode = 3;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
 
     /**
      * Constructor.

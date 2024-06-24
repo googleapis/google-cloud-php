@@ -21,28 +21,28 @@ class TrafficTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TrafficTargetAllocationType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Revision to which to send this portion of traffic, if traffic allocation is
      * by revision.
      *
      * Generated from protobuf field <code>string revision = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $revision = '';
+    protected $revision = '';
     /**
      * Specifies percent of the traffic to this Revision.
      * This defaults to zero if unspecified.
      *
      * Generated from protobuf field <code>int32 percent = 3;</code>
      */
-    private $percent = 0;
+    protected $percent = 0;
     /**
      * Indicates a string to be part of the URI to exclusively reference this
      * target.
      *
      * Generated from protobuf field <code>string tag = 4;</code>
      */
-    private $tag = '';
+    protected $tag = '';
 
     /**
      * Constructor.

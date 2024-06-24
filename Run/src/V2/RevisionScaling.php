@@ -20,13 +20,13 @@ class RevisionScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
      */
-    private $min_instance_count = 0;
+    protected $min_instance_count = 0;
     /**
      * Maximum number of serving instances that this resource should have.
      *
      * Generated from protobuf field <code>int32 max_instance_count = 2;</code>
      */
-    private $max_instance_count = 0;
+    protected $max_instance_count = 0;
 
     /**
      * Constructor.

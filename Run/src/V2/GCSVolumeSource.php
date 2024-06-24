@@ -20,13 +20,13 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * If true, mount the GCS bucket as read-only
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      */
-    private $read_only = false;
+    protected $read_only = false;
 
     /**
      * Constructor.

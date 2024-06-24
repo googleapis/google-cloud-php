@@ -24,31 +24,31 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * State of the condition.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Human readable message indicating details about the current status.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Last time the condition transitioned from one status to another.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_transition_time = 4;</code>
      */
-    private $last_transition_time = null;
+    protected $last_transition_time = null;
     /**
      * How to interpret failures of this condition, one of Error, Warning, Info
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition.Severity severity = 5;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     protected $reasons;
 
     /**

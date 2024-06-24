@@ -20,14 +20,14 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Service service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * Indicates that the request should be validated and default values
      * populated, without persisting the request or updating any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * If set to true, and if the Service does not exist, it will create a new
      * one. The caller must have 'run.services.create' permissions if this is set
@@ -35,7 +35,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\Run\V2\Service $service Required. The Service to be updated.

@@ -1138,7 +1138,7 @@
     "Run": {
         "language": "php",
         "distribution_name": "google/cloud-run",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-run/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "run"

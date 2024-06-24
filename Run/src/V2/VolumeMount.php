@@ -20,7 +20,7 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Path within the container at which the volume should be mounted.
      * Must not contain ':'. For Cloud SQL volumes, it can be left empty, or must
@@ -30,7 +30,7 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mount_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mount_path = '';
+    protected $mount_path = '';
 
     /**
      * Constructor.

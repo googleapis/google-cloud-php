@@ -21,7 +21,7 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The exit code of this attempt.
      * This may be unset if the container was unable to exit cleanly with a code
@@ -30,7 +30,7 @@ class TaskAttemptResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 exit_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $exit_code = 0;
+    protected $exit_code = 0;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned unique identifier for the Revision. The value
      * is a UUID4 string and guaranteed to remain unchanged until the resource is
@@ -30,14 +30,14 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
      *
      * Generated from protobuf field <code>int64 generation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * Output only. Unstructured key value map that can be used to organize and
      * categorize objects. User-provided labels are shared with Google's billing
@@ -63,20 +63,20 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. For a deleted resource, the deletion time. It is only
      * populated as a response to a Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
      * permamently deleted. It is only populated as a response to a Delete
@@ -84,7 +84,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * The least stable launch stage needed to create this resource, as defined by
      * [Google Cloud Platform Launch
@@ -97,38 +97,38 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 10;</code>
      */
-    private $launch_stage = 0;
+    protected $launch_stage = 0;
     /**
      * Output only. The name of the parent service.
      *
      * Generated from protobuf field <code>string service = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Scaling settings for this revision.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 12;</code>
      */
-    private $scaling = null;
+    protected $scaling = null;
     /**
      * VPC Access configuration for this Revision. For more information, visit
      * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 13;</code>
      */
-    private $vpc_access = null;
+    protected $vpc_access = null;
     /**
      * Sets the maximum number of requests that each serving instance can receive.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 34;</code>
      */
-    private $max_instance_request_concurrency = 0;
+    protected $max_instance_request_concurrency = 0;
     /**
      * Max allowed time for an instance to respond to a request.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 15;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Email address of the IAM service account associated with the revision of
      * the service. The service account represents the identity of the running
@@ -136,7 +136,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 16;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Holds the single container that defines the unit of execution for this
      * Revision.
@@ -155,7 +155,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 20;</code>
      */
-    private $execution_environment = 0;
+    protected $execution_environment = 0;
     /**
      * A reference to a customer managed encryption key (CMEK) to use to encrypt
      * this container image. For more information, go to
@@ -163,20 +163,20 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encryption_key = 21 [(.google.api.resource_reference) = {</code>
      */
-    private $encryption_key = '';
+    protected $encryption_key = '';
     /**
      * The action to take if the encryption key is revoked.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EncryptionKeyRevocationAction encryption_key_revocation_action = 23;</code>
      */
-    private $encryption_key_revocation_action = 0;
+    protected $encryption_key_revocation_action = 0;
     /**
      * If encryption_key_revocation_action is SHUTDOWN, the duration before
      * shutting down all instances. The minimum increment is 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration encryption_key_shutdown_duration = 24;</code>
      */
-    private $encryption_key_shutdown_duration = null;
+    protected $encryption_key_shutdown_duration = null;
     /**
      * Output only. Indicates whether the resource's reconciliation is still in
      * progress. See comments in `Service.reconciling` for additional information
@@ -184,7 +184,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The Condition of this Revision, containing its readiness
      * status, and detailed error information in case it did not reach a serving
@@ -200,38 +200,38 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 observed_generation = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $observed_generation = 0;
+    protected $observed_generation = 0;
     /**
      * Output only. The Google Console URI to obtain logs for the Revision.
      *
      * Generated from protobuf field <code>string log_uri = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $log_uri = '';
+    protected $log_uri = '';
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Enable session affinity.
      *
      * Generated from protobuf field <code>bool session_affinity = 38;</code>
      */
-    private $session_affinity = false;
+    protected $session_affinity = false;
     /**
      * Output only. The current effective scaling settings for the revision.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScalingStatus scaling_status = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $scaling_status = null;
+    protected $scaling_status = null;
     /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

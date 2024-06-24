@@ -25,14 +25,14 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $connector = '';
+    protected $connector = '';
     /**
      * Traffic VPC egress settings. If not provided, it defaults to
      * PRIVATE_RANGES_ONLY.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
      */
-    private $egress = 0;
+    protected $egress = 0;
     /**
      * Direct VPC egress settings. Currently only single network interface is
      * supported.

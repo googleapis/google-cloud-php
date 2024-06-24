@@ -20,14 +20,14 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * Indicates that the request should be validated and default values
      * populated, without persisting the request or updating any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * If set to true, and if the Job does not exist, it will create a new
      * one. Caller must have both create and update permissions for this call if
@@ -35,7 +35,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\Run\V2\Job $job Required. The Job to be updated.

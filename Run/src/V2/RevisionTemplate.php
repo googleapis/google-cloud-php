@@ -22,7 +22,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $revision = '';
+    protected $revision = '';
     /**
      * Unstructured key value map that can be used to organize and categorize
      * objects.
@@ -58,20 +58,20 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4;</code>
      */
-    private $scaling = null;
+    protected $scaling = null;
     /**
      * VPC Access configuration to use for this Revision. For more information,
      * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6;</code>
      */
-    private $vpc_access = null;
+    protected $vpc_access = null;
     /**
      * Max allowed time for an instance to respond to a request.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Email address of the IAM service account associated with the revision of
      * the service. The service account represents the identity of the running
@@ -80,7 +80,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 9;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Holds the single container that defines the unit of execution for this
      * Revision.
@@ -99,7 +99,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13;</code>
      */
-    private $execution_environment = 0;
+    protected $execution_environment = 0;
     /**
      * A reference to a customer managed encryption key (CMEK) to use to encrypt
      * this container image. For more information, go to
@@ -107,25 +107,25 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encryption_key = 14 [(.google.api.resource_reference) = {</code>
      */
-    private $encryption_key = '';
+    protected $encryption_key = '';
     /**
      * Sets the maximum number of requests that each serving instance can receive.
      *
      * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15;</code>
      */
-    private $max_instance_request_concurrency = 0;
+    protected $max_instance_request_concurrency = 0;
     /**
      * Optional. Enable session affinity.
      *
      * Generated from protobuf field <code>bool session_affinity = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $session_affinity = false;
+    protected $session_affinity = false;
     /**
      * Optional. Disables health checking containers during deployment.
      *
      * Generated from protobuf field <code>bool health_check_disabled = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $health_check_disabled = false;
+    protected $health_check_disabled = false;
 
     /**
      * Constructor.
