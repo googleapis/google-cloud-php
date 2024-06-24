@@ -21,7 +21,7 @@ class SurgeSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_surge = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_surge = 0;
+    protected $max_surge = 0;
     /**
      * Optional. The maximum number of nodes that can be simultaneously
      * unavailable during the update process. A node is considered unavailable if
@@ -29,7 +29,7 @@ class SurgeSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_unavailable = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_unavailable = 0;
+    protected $max_unavailable = 0;
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class DeleteAzureClientRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set to true, and the
      * [AzureClient][google.cloud.gkemulticloud.v1.AzureClient] resource is not
@@ -36,13 +36,13 @@ class DeleteAzureClientRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 2;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * If set, only validate the request, but do not actually delete the resource.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string $name Required. The resource name the

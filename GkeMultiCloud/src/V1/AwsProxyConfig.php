@@ -24,14 +24,14 @@ class AwsProxyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret_arn = 1;</code>
      */
-    private $secret_arn = '';
+    protected $secret_arn = '';
     /**
      * The version string of the AWS Secret Manager secret that contains the
      * HTTP(S) proxy configuration.
      *
      * Generated from protobuf field <code>string secret_version = 2;</code>
      */
-    private $secret_version = '';
+    protected $secret_version = '';
 
     /**
      * Constructor.

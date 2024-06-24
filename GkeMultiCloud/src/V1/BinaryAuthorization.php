@@ -21,7 +21,7 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 1;</code>
      */
-    private $evaluation_mode = 0;
+    protected $evaluation_mode = 0;
 
     /**
      * Constructor.

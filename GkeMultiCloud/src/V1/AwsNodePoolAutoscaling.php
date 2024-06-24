@@ -22,14 +22,14 @@ class AwsNodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_node_count = 0;
+    protected $min_node_count = 0;
     /**
      * Required. Maximum number of nodes in the node pool. Must be greater than or
      * equal to min_node_count and less than or equal to 50.
      *
      * Generated from protobuf field <code>int32 max_node_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_node_count = 0;
+    protected $max_node_count = 0;
 
     /**
      * Constructor.

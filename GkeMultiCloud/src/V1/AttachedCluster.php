@@ -24,20 +24,20 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A human readable description of this cluster.
      * Cannot be longer than 255 UTF-8 encoded bytes.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. OpenID Connect (OIDC) configuration for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedOidcConfig oidc_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $oidc_config = null;
+    protected $oidc_config = null;
     /**
      * Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
      * You can list all supported versions on a given Google Cloud region by
@@ -46,14 +46,14 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string platform_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $platform_version = '';
+    protected $platform_version = '';
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
      * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $distribution = '';
+    protected $distribution = '';
     /**
      * Output only. The region where this cluster runs.
      * For EKS clusters, this is a AWS region. For AKS clusters,
@@ -61,43 +61,43 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_region = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_region = '';
+    protected $cluster_region = '';
     /**
      * Required. Fleet configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $fleet = null;
+    protected $fleet = null;
     /**
      * Output only. The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedCluster.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. A globally unique identifier for the cluster.
      *
      * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. If set, there are currently changes in flight to the cluster.
      *
      * Generated from protobuf field <code>bool reconciling = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The time at which this cluster was registered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this cluster was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Allows clients to perform consistent read-modify-writes
      * through optimistic concurrency control.
@@ -106,13 +106,13 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 11;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. The Kubernetes version of the cluster.
      *
      * Generated from protobuf field <code>string kubernetes_version = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kubernetes_version = '';
+    protected $kubernetes_version = '';
     /**
      * Optional. Annotations on the cluster.
      * This field has the same restrictions as Kubernetes annotations.
@@ -131,13 +131,13 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.WorkloadIdentityConfig workload_identity_config = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $workload_identity_config = null;
+    protected $workload_identity_config = null;
     /**
      * Optional. Logging configuration for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.LoggingConfig logging_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Output only. A set of errors found in the cluster.
      *
@@ -149,25 +149,25 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedClustersAuthorization authorization = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $authorization = null;
+    protected $authorization = null;
     /**
      * Optional. Monitoring configuration for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $monitoring_config = null;
+    protected $monitoring_config = null;
     /**
      * Optional. Proxy configuration for outbound HTTP(S) traffic.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
     /**
      * Optional. Binary Authorization configuration for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $binary_authorization = null;
+    protected $binary_authorization = null;
 
     /**
      * Constructor.

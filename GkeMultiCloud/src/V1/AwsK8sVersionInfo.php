@@ -20,7 +20,7 @@ class AwsK8sVersionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. True if the version is available for cluster creation. If a
      * version is enabled for creation, it can be used to create new clusters.
@@ -29,7 +29,7 @@ class AwsK8sVersionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Optional. True if this cluster version belongs to a minor version that has
      * reached its end of life and is no longer in scope to receive security and
@@ -37,7 +37,7 @@ class AwsK8sVersionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool end_of_life = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_of_life = false;
+    protected $end_of_life = false;
     /**
      * Optional. The estimated date (in Pacific Time) when this cluster version
      * will reach its end of life. Or if this version is no longer supported (the
@@ -46,13 +46,13 @@ class AwsK8sVersionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date end_of_life_date = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_of_life_date = null;
+    protected $end_of_life_date = null;
     /**
      * Optional. The date (in Pacific Time) when the cluster version was released.
      *
      * Generated from protobuf field <code>.google.type.Date release_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $release_date = null;
+    protected $release_date = null;
 
     /**
      * Constructor.
