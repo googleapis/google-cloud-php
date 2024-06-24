@@ -22,20 +22,20 @@ class PolicyController extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Installs the default template library along with Policy Controller.
      *
      * Generated from protobuf field <code>optional bool template_library_installed = 2;</code>
      */
-    private $template_library_installed = null;
+    protected $template_library_installed = null;
     /**
      * Sets the interval for Policy Controller Audit Scans (in seconds).
      * When set to 0, this disables audit functionality altogether.
      *
      * Generated from protobuf field <code>optional int64 audit_interval_seconds = 3;</code>
      */
-    private $audit_interval_seconds = null;
+    protected $audit_interval_seconds = null;
     /**
      * The set of namespaces that are excluded from Policy Controller checks.
      * Namespaces do not need to currently exist on the cluster.
@@ -49,13 +49,13 @@ class PolicyController extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool referential_rules_enabled = 5;</code>
      */
-    private $referential_rules_enabled = false;
+    protected $referential_rules_enabled = false;
     /**
      * Logs all denies and dry run failures.
      *
      * Generated from protobuf field <code>bool log_denies_enabled = 6;</code>
      */
-    private $log_denies_enabled = false;
+    protected $log_denies_enabled = false;
 
     /**
      * Constructor.

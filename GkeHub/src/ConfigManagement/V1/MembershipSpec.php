@@ -21,25 +21,25 @@ class MembershipSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSync config_sync = 1;</code>
      */
-    private $config_sync = null;
+    protected $config_sync = null;
     /**
      * Policy Controller configuration for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.PolicyController policy_controller = 2;</code>
      */
-    private $policy_controller = null;
+    protected $policy_controller = null;
     /**
      * Hierarchy Controller configuration for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.HierarchyControllerConfig hierarchy_controller = 4;</code>
      */
-    private $hierarchy_controller = null;
+    protected $hierarchy_controller = null;
     /**
      * Version of ACM installed.
      *
      * Generated from protobuf field <code>string version = 10;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The user-specified cluster name used by Config Sync cluster-name-selector
      * annotation or ClusterSelector, for applying configs to only a subset
@@ -51,13 +51,13 @@ class MembershipSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 11;</code>
      */
-    private $cluster = '';
+    protected $cluster = '';
     /**
      * Enables automatic Feature management.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.MembershipSpec.Management management = 12;</code>
      */
-    private $management = 0;
+    protected $management = 0;
 
     /**
      * Constructor.

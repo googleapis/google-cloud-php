@@ -21,13 +21,13 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.GkeCluster gke_cluster = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gke_cluster = null;
+    protected $gke_cluster = null;
     /**
      * Output only. Useful Kubernetes-specific metadata.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.KubernetesMetadata kubernetes_metadata = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kubernetes_metadata = null;
+    protected $kubernetes_metadata = null;
     /**
      * Optional. The in-cluster Kubernetes Resources that should be applied for a
      * correctly registered cluster, in the steady state. These resources:
@@ -39,14 +39,14 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.KubernetesResource kubernetes_resource = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kubernetes_resource = null;
+    protected $kubernetes_resource = null;
     /**
      * Output only. Whether the lifecycle of this membership is managed by a
      * google cluster platform service.
      *
      * Generated from protobuf field <code>bool google_managed = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $google_managed = false;
+    protected $google_managed = false;
 
     /**
      * Constructor.

@@ -29,7 +29,7 @@ class Authority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $issuer = '';
+    protected $issuer = '';
     /**
      * Output only. The name of the workload identity pool in which `issuer` will
      * be recognized.
@@ -40,14 +40,14 @@ class Authority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string workload_identity_pool = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $workload_identity_pool = '';
+    protected $workload_identity_pool = '';
     /**
      * Output only. An identity provider that reflects the `issuer` in the
      * workload identity pool.
      *
      * Generated from protobuf field <code>string identity_provider = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $identity_provider = '';
+    protected $identity_provider = '';
     /**
      * Optional. OIDC verification keys for this Membership in JWKS format (RFC
      * 7517).
@@ -56,7 +56,7 @@ class Authority extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes oidc_jwks = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $oidc_jwks = '';
+    protected $oidc_jwks = '';
 
     /**
      * Constructor.

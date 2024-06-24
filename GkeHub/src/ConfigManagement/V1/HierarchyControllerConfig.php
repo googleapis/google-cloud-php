@@ -20,19 +20,19 @@ class HierarchyControllerConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Whether pod tree labels are enabled in this cluster.
      *
      * Generated from protobuf field <code>bool enable_pod_tree_labels = 2;</code>
      */
-    private $enable_pod_tree_labels = false;
+    protected $enable_pod_tree_labels = false;
     /**
      * Whether hierarchical resource quota is enabled in this cluster.
      *
      * Generated from protobuf field <code>bool enable_hierarchical_resource_quota = 3;</code>
      */
-    private $enable_hierarchical_resource_quota = false;
+    protected $enable_hierarchical_resource_quota = false;
 
     /**
      * Constructor.
