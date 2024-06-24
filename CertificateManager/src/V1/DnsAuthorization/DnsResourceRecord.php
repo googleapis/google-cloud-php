@@ -23,20 +23,20 @@ class DnsResourceRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Type of the DNS Resource Record.
      * Currently always set to "CNAME".
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Output only. Data of the DNS Resource Record.
      *
      * Generated from protobuf field <code>string data = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data = '';
+    protected $data = '';
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\CertificateManager\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -73,6 +72,7 @@ use Google\Cloud\CertificateManager\V1\UpdateTrustConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -169,9 +169,7 @@ final class CertificateManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -217,10 +215,31 @@ final class CertificateManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -271,8 +290,11 @@ final class CertificateManagerClient
      *
      * @return string The formatted certificate_issuance_config resource.
      */
-    public static function certificateIssuanceConfigName(string $project, string $location, string $certificateIssuanceConfig): string
-    {
+    public static function certificateIssuanceConfigName(
+        string $project,
+        string $location,
+        string $certificateIssuanceConfig
+    ): string {
         return self::getPathTemplate('certificateIssuanceConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -310,8 +332,12 @@ final class CertificateManagerClient
      *
      * @return string The formatted certificate_map_entry resource.
      */
-    public static function certificateMapEntryName(string $project, string $location, string $certificateMap, string $certificateMapEntry): string
-    {
+    public static function certificateMapEntryName(
+        string $project,
+        string $location,
+        string $certificateMap,
+        string $certificateMapEntry
+    ): string {
         return self::getPathTemplate('certificateMapEntry')->render([
             'project' => $project,
             'location' => $location,
@@ -526,8 +552,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateIssuanceConfig(CreateCertificateIssuanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateIssuanceConfig(
+        CreateCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateIssuanceConfig', $request, $callOptions)->wait();
     }
 
@@ -553,8 +581,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateMap(CreateCertificateMapRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateMap(
+        CreateCertificateMapRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -580,8 +610,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateMapEntry(CreateCertificateMapEntryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateMapEntry(
+        CreateCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -607,8 +639,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDnsAuthorization(CreateDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createDnsAuthorization(
+        CreateDnsAuthorizationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateDnsAuthorization', $request, $callOptions)->wait();
     }
 
@@ -686,8 +720,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateIssuanceConfig(DeleteCertificateIssuanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateIssuanceConfig(
+        DeleteCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateIssuanceConfig', $request, $callOptions)->wait();
     }
 
@@ -715,8 +751,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateMap(DeleteCertificateMapRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateMap(
+        DeleteCertificateMapRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -742,8 +780,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateMapEntry(DeleteCertificateMapEntryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateMapEntry(
+        DeleteCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -769,8 +809,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDnsAuthorization(DeleteDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteDnsAuthorization(
+        DeleteDnsAuthorizationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteDnsAuthorization', $request, $callOptions)->wait();
     }
 
@@ -848,8 +890,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateIssuanceConfig(GetCertificateIssuanceConfigRequest $request, array $callOptions = []): CertificateIssuanceConfig
-    {
+    public function getCertificateIssuanceConfig(
+        GetCertificateIssuanceConfigRequest $request,
+        array $callOptions = []
+    ): CertificateIssuanceConfig {
         return $this->startApiCall('GetCertificateIssuanceConfig', $request, $callOptions)->wait();
     }
 
@@ -901,8 +945,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateMapEntry(GetCertificateMapEntryRequest $request, array $callOptions = []): CertificateMapEntry
-    {
+    public function getCertificateMapEntry(
+        GetCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): CertificateMapEntry {
         return $this->startApiCall('GetCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -981,8 +1027,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateIssuanceConfigs(ListCertificateIssuanceConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateIssuanceConfigs(
+        ListCertificateIssuanceConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateIssuanceConfigs', $request, $callOptions);
     }
 
@@ -1008,8 +1056,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateMapEntries(ListCertificateMapEntriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateMapEntries(
+        ListCertificateMapEntriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateMapEntries', $request, $callOptions);
     }
 
@@ -1088,8 +1138,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDnsAuthorizations(ListDnsAuthorizationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDnsAuthorizations(
+        ListDnsAuthorizationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDnsAuthorizations', $request, $callOptions);
     }
 
@@ -1167,8 +1219,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateMap(UpdateCertificateMapRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateMap(
+        UpdateCertificateMapRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateMap', $request, $callOptions)->wait();
     }
 
@@ -1194,8 +1248,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateMapEntry(UpdateCertificateMapEntryRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateMapEntry(
+        UpdateCertificateMapEntryRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateMapEntry', $request, $callOptions)->wait();
     }
 
@@ -1221,8 +1277,10 @@ final class CertificateManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateDnsAuthorization(UpdateDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateDnsAuthorization(
+        UpdateDnsAuthorizationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateDnsAuthorization', $request, $callOptions)->wait();
     }
 
