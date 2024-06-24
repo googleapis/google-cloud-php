@@ -21,7 +21,7 @@ class AuthorizationCode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 1;</code>
      */
-    private $code = '';
+    protected $code = '';
 
     /**
      * Constructor.

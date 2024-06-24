@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -110,9 +110,7 @@ final class DomainsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -158,7 +156,9 @@ final class DomainsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -338,8 +338,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function configureContactSettings(ConfigureContactSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function configureContactSettings(
+        ConfigureContactSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConfigureContactSettings', $request, $callOptions)->wait();
     }
 
@@ -364,8 +366,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function configureDnsSettings(ConfigureDnsSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function configureDnsSettings(
+        ConfigureDnsSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConfigureDnsSettings', $request, $callOptions)->wait();
     }
 
@@ -390,8 +394,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function configureManagementSettings(ConfigureManagementSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function configureManagementSettings(
+        ConfigureManagementSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConfigureManagementSettings', $request, $callOptions)->wait();
     }
 
@@ -399,11 +405,11 @@ final class DomainsClient
      * Deletes a `Registration` resource.
      *
      * This method works on any `Registration` resource using [Subscription or
-     * Commitment billing](https://cloud.google.com/domains/pricing#billing-models), provided that the
+     * Commitment billing](/domains/pricing#billing-models), provided that the
      * resource was created at least 1 day in the past.
      *
      * For `Registration` resources using
-     * [Monthly billing](https://cloud.google.com/domains/pricing#billing-models), this method works if:
+     * [Monthly billing](/domains/pricing#billing-models), this method works if:
      *
      * * `state` is `EXPORTED` with `expire_time` in the past
      * * `state` is `REGISTRATION_FAILED`
@@ -587,8 +593,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetAuthorizationCode(ResetAuthorizationCodeRequest $request, array $callOptions = []): AuthorizationCode
-    {
+    public function resetAuthorizationCode(
+        ResetAuthorizationCodeRequest $request,
+        array $callOptions = []
+    ): AuthorizationCode {
         return $this->startApiCall('ResetAuthorizationCode', $request, $callOptions)->wait();
     }
 
@@ -617,8 +625,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveAuthorizationCode(RetrieveAuthorizationCodeRequest $request, array $callOptions = []): AuthorizationCode
-    {
+    public function retrieveAuthorizationCode(
+        RetrieveAuthorizationCodeRequest $request,
+        array $callOptions = []
+    ): AuthorizationCode {
         return $this->startApiCall('RetrieveAuthorizationCode', $request, $callOptions)->wait();
     }
 
@@ -644,8 +654,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveRegisterParameters(RetrieveRegisterParametersRequest $request, array $callOptions = []): RetrieveRegisterParametersResponse
-    {
+    public function retrieveRegisterParameters(
+        RetrieveRegisterParametersRequest $request,
+        array $callOptions = []
+    ): RetrieveRegisterParametersResponse {
         return $this->startApiCall('RetrieveRegisterParameters', $request, $callOptions)->wait();
     }
 
@@ -675,8 +687,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveTransferParameters(RetrieveTransferParametersRequest $request, array $callOptions = []): RetrieveTransferParametersResponse
-    {
+    public function retrieveTransferParameters(
+        RetrieveTransferParametersRequest $request,
+        array $callOptions = []
+    ): RetrieveTransferParametersResponse {
         return $this->startApiCall('RetrieveTransferParameters', $request, $callOptions)->wait();
     }
 
