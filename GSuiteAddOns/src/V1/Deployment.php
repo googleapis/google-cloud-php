@@ -21,7 +21,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The list of Google OAuth scopes for which to request consent from the end
      * user before executing an add-on endpoint.
@@ -34,7 +34,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gsuiteaddons.v1.AddOns add_ons = 3;</code>
      */
-    private $add_ons = null;
+    protected $add_ons = null;
     /**
      * This value is computed by the server based on the version of the
      * deployment in storage, and may be sent on update and delete requests to
@@ -42,7 +42,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 5;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

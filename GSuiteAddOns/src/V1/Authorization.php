@@ -21,21 +21,21 @@ class Authorization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The email address of the service account used to authenticate requests to
      * add-on callback endpoints.
      *
      * Generated from protobuf field <code>string service_account_email = 2;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * The OAuth client ID used to obtain OAuth access tokens for a user on the
      * add-on's behalf.
      *
      * Generated from protobuf field <code>string oauth_client_id = 3;</code>
      */
-    private $oauth_client_id = '';
+    protected $oauth_client_id = '';
 
     /**
      * Constructor.
