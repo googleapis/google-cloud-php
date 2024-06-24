@@ -76,9 +76,7 @@ final class PublicCertificateAuthorityServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -86,14 +84,16 @@ final class PublicCertificateAuthorityServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/public_certificate_authority_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/public_certificate_authority_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/public_certificate_authority_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/public_certificate_authority_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/public_certificate_authority_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/public_certificate_authority_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -256,8 +256,10 @@ final class PublicCertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createExternalAccountKey(CreateExternalAccountKeyRequest $request, array $callOptions = []): ExternalAccountKey
-    {
+    public function createExternalAccountKey(
+        CreateExternalAccountKeyRequest $request,
+        array $callOptions = []
+    ): ExternalAccountKey {
         return $this->startApiCall('CreateExternalAccountKey', $request, $callOptions)->wait();
     }
 }
