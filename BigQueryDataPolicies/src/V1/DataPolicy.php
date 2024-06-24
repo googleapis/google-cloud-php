@@ -21,13 +21,13 @@ class DataPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Type of data policy.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datapolicies.v1.DataPolicy.DataPolicyType data_policy_type = 2;</code>
      */
-    private $data_policy_type = 0;
+    protected $data_policy_type = 0;
     /**
      * User-assigned (human readable) ID of the data policy that needs to be
      * unique within a project. Used as {data_policy_id} in part of the resource
@@ -35,7 +35,7 @@ class DataPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_policy_id = 3;</code>
      */
-    private $data_policy_id = '';
+    protected $data_policy_id = '';
     protected $matching_label;
     protected $policy;
 
