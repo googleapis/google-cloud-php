@@ -389,7 +389,7 @@
     "ConfidentialComputing": {
         "language": "php",
         "distribution_name": "google/cloud-confidentialcomputing",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-confidentialcomputing/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "confidentialcomputing"
