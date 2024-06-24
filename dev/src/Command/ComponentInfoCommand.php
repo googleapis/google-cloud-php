@@ -117,6 +117,7 @@ class ComponentInfoCommand extends Command
                 $requestedFields,
                 $input->getOption('expanded')
             );
+
             foreach ($filters as $filter) {
                 list($field, $value, $operator) = $filter;
                 foreach ($componentRows as $row) {
@@ -216,7 +217,7 @@ class ComponentInfoCommand extends Command
                 'github_repo' => $component->getRepoName(),
                 'proto_path' => implode("\n", $component->getProtoPackages()),
                 'service_address' => implode("\n", $component->getServiceAddresses()),
-                'api_shortname' => implode("\n", $component->getApiShortnames()),
+                'api_shortname' => implode("\n", array_filter($component->getApiShortnames())),
                 'description' => $component->getDescription(),
             ], $requestedFields));
 
