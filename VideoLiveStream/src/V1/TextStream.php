@@ -23,7 +23,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string codec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $codec = '';
+    protected $codec = '';
 
     /**
      * Constructor.

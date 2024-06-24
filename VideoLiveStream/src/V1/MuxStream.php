@@ -20,7 +20,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The container format. The default is `fmp4`.
      * Supported container formats:
@@ -29,7 +29,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string container = 3;</code>
      */
-    private $container = '';
+    protected $container = '';
     /**
      * List of `ElementaryStream`
      * [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
@@ -46,14 +46,14 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.SegmentSettings segment_settings = 5;</code>
      */
-    private $segment_settings = null;
+    protected $segment_settings = null;
     /**
      * Identifier of the encryption configuration to use. If omitted, output
      * will be unencrypted.
      *
      * Generated from protobuf field <code>string encryption_id = 6;</code>
      */
-    private $encryption_id = '';
+    protected $encryption_id = '';
 
     /**
      * Constructor.

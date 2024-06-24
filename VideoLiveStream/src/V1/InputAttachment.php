@@ -20,20 +20,20 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The resource name of an existing input, in the form of:
      * `projects/{project}/locations/{location}/inputs/{inputId}`.
      *
      * Generated from protobuf field <code>string input = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $input = '';
+    protected $input = '';
     /**
      * Automatic failover configurations.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover automatic_failover = 3;</code>
      */
-    private $automatic_failover = null;
+    protected $automatic_failover = null;
 
     /**
      * Constructor.

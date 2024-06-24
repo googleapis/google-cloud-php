@@ -24,19 +24,19 @@ class Pool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined key/value metadata.
      *
@@ -48,7 +48,7 @@ class Pool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Pool.NetworkConfig network_config = 5;</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
 
     /**
      * Constructor.

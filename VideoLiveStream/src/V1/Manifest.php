@@ -23,13 +23,13 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
      */
-    private $file_name = '';
+    protected $file_name = '';
     /**
      * Required. Type of the manifest, can be `HLS` or `DASH`.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Manifest.ManifestType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. List of `MuxStream`
      * [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
@@ -49,7 +49,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_segment_count = 4;</code>
      */
-    private $max_segment_count = 0;
+    protected $max_segment_count = 0;
     /**
      * How long to keep a segment on the output Google Cloud Storage bucket after
      * it is removed from the manifest. This field should be large enough to cover
@@ -60,7 +60,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      */
-    private $segment_keep_duration = null;
+    protected $segment_keep_duration = null;
     /**
      * Whether to use the timecode, as specified in timecode config, when setting:
      * - `availabilityStartTime` attribute in DASH manifests.
@@ -70,7 +70,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_timecode_as_timeline = 6;</code>
      */
-    private $use_timecode_as_timeline = false;
+    protected $use_timecode_as_timeline = false;
 
     /**
      * Constructor.
