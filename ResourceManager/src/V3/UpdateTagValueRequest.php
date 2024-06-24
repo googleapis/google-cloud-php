@@ -23,20 +23,20 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_value = null;
+    protected $tag_value = null;
     /**
      * Optional. Fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. True to perform validations necessary for updating the resource,
      * but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\TagValue $tagValue   Required. The new definition of the TagValue. Only fields `description` and
