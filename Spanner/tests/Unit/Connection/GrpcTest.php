@@ -543,21 +543,21 @@ class GrpcTest extends TestCase
 
     public function testBatchWrite()
     {
-        $mutationGroups = [];
-        $mutationGroups[] = (new MutationGroup(false))
-            ->insertOrUpdate(
-                "Singers",
-                ['SingerId' => 16, 'FirstName' => 'Scarlet', 'LastName' => 'Terry']
-            );
-
-        $mutationGroups[] = (new MutationGroup(false))
-            ->insertOrUpdate(
-                "Singers",
-                ['SingerId' => 17, 'FirstName' => 'Marc', 'LastName' => 'Kristen']
-            )->insertOrUpdate(
-                "Albums",
-                ['AlbumId' => 1, 'SingerId' => 17, 'AlbumTitle' => 'Total Junk']
-            );
+        $mutationGroups = [
+            (new MutationGroup(false))
+                ->insertOrUpdate(
+                    "Singers",
+                    ['SingerId' => 16, 'FirstName' => 'Scarlet', 'LastName' => 'Terry']
+                ),
+            (new MutationGroup(false))
+                ->insertOrUpdate(
+                    "Singers",
+                    ['SingerId' => 17, 'FirstName' => 'Marc', 'LastName' => 'Kristen']
+                )->insertOrUpdate(
+                    "Albums",
+                    ['AlbumId' => 1, 'SingerId' => 17, 'AlbumTitle' => 'Total Junk']
+                )
+        ];
 
         $expectedMutationGroups = [
             new MutationGroupProto(['mutations' => [
