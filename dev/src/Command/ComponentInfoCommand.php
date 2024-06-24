@@ -66,7 +66,7 @@ class ComponentInfoCommand extends Command
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
             ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
-                "Comma-separated list of fields. The following fields are available: \n - %s\n" .
+                "Comma-separated list of fields, \"all\" for all fields. The following fields are available: \n - %s\n" .
                 "NOTE: \"available_api_versions\" are omited by default because they take a long time to load.\n" .
                 "Use --show-available-api-versions to include them.\n",
                 implode("\n - ", array_keys(self::$allFields))
