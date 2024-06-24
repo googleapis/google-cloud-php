@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\GkeBackup\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -75,6 +74,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -146,9 +146,7 @@ final class BackupForGKEClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -194,10 +192,31 @@ final class BackupForGKEClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -349,8 +368,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_backup resource.
      */
-    public static function volumeBackupName(string $project, string $location, string $backupPlan, string $backup, string $volumeBackup): string
-    {
+    public static function volumeBackupName(
+        string $project,
+        string $location,
+        string $backupPlan,
+        string $backup,
+        string $volumeBackup
+    ): string {
         return self::getPathTemplate('volumeBackup')->render([
             'project' => $project,
             'location' => $location,
@@ -372,8 +396,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_restore resource.
      */
-    public static function volumeRestoreName(string $project, string $location, string $restorePlan, string $restore, string $volumeRestore): string
-    {
+    public static function volumeRestoreName(
+        string $project,
+        string $location,
+        string $restorePlan,
+        string $restore,
+        string $volumeRestore
+    ): string {
         return self::getPathTemplate('volumeRestore')->render([
             'project' => $project,
             'location' => $location,
@@ -743,8 +772,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupIndexDownloadUrl(GetBackupIndexDownloadUrlRequest $request, array $callOptions = []): GetBackupIndexDownloadUrlResponse
-    {
+    public function getBackupIndexDownloadUrl(
+        GetBackupIndexDownloadUrlRequest $request,
+        array $callOptions = []
+    ): GetBackupIndexDownloadUrlResponse {
         return $this->startApiCall('GetBackupIndexDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -1274,8 +1305,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

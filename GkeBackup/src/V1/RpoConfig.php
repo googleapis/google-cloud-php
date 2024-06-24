@@ -24,7 +24,7 @@ class RpoConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_rpo_minutes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_rpo_minutes = 0;
+    protected $target_rpo_minutes = 0;
     /**
      * Optional. User specified time windows during which backup can NOT happen
      * for this BackupPlan - backups should start and finish outside of any given

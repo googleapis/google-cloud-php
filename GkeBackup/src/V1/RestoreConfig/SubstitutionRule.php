@@ -49,7 +49,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_json_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_json_path = '';
+    protected $target_json_path = '';
     /**
      * Optional. (Filtering parameter) This is a [regular expression]
      * (https://en.wikipedia.org/wiki/Regular_expression)
@@ -63,7 +63,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string original_value_pattern = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $original_value_pattern = '';
+    protected $original_value_pattern = '';
     /**
      * Optional. This is the new value to set for any fields that pass the
      * filtering and selection criteria. To remove a value from a Kubernetes
@@ -72,7 +72,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string new_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $new_value = '';
+    protected $new_value = '';
 
     /**
      * Constructor.
