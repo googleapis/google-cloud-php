@@ -24,7 +24,6 @@ namespace Google\Cloud\ResourceManager\Tests\Unit\V3\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ResourceManager\V3\Client\TagBindingsClient;
@@ -36,6 +35,7 @@ use Google\Cloud\ResourceManager\V3\ListEffectiveTagsResponse;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsResponse;
 use Google\Cloud\ResourceManager\V3\TagBinding;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

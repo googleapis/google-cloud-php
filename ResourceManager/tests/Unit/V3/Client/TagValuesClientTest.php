@@ -24,7 +24,6 @@ namespace Google\Cloud\ResourceManager\Tests\Unit\V3\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -41,6 +40,7 @@ use Google\Cloud\ResourceManager\V3\ListTagValuesRequest;
 use Google\Cloud\ResourceManager\V3\ListTagValuesResponse;
 use Google\Cloud\ResourceManager\V3\TagValue;
 use Google\Cloud\ResourceManager\V3\UpdateTagValueRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
