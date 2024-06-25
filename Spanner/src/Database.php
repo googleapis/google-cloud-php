@@ -1763,7 +1763,7 @@ class Database
             $this->pluck('sessionOptions', $options, false) ?: []
         );
 
-        array_walk($mutationGroups, fn (&$x) => $x = $x->toArray());
+        $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
 
         try {
             return $this->connection->batchWrite([

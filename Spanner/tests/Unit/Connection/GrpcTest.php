@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Connection\Grpc;
+use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup as MutationGroupProto;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
@@ -53,6 +54,7 @@ use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Spanner\MutationGroup;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\NullValue;
@@ -537,6 +539,73 @@ class GrpcTest extends TestCase
                 'sessionTemplate' => $this->serializer->decodeMessage(new Session, $template)
             ]
         ], true, $larEnabled), null, '', $grpcConfig);
+    }
+
+    public function testBatchWrite()
+    {
+        $mutationGroups = [];
+        $mutationGroups[] = (new MutationGroup(false))
+            ->insertOrUpdate(
+                "Singers",
+                ['SingerId' => 16, 'FirstName' => 'Scarlet', 'LastName' => 'Terry']
+            );
+
+        $mutationGroups[] = (new MutationGroup(false))
+            ->insertOrUpdate(
+                "Singers",
+                ['SingerId' => 17, 'FirstName' => 'Marc', 'LastName' => 'Kristen']
+            )->insertOrUpdate(
+                "Albums",
+                ['AlbumId' => 1, 'SingerId' => 17, 'AlbumTitle' => 'Total Junk']
+            );
+
+        $expectedMutationGroups = [
+            new MutationGroupProto(['mutations' => [
+                new Mutation(['insert_or_update' => new Write([
+                    'table' => 'Singers',
+                    'columns' => ['SingerId', 'FirstName', 'LastName'],
+                    'values' => [new ListValue(['values' => [
+                        new Value(['string_value' => '16']),
+                        new Value(['string_value' => 'Scarlet']),
+                        new Value(['string_value' => 'Terry'])
+                    ]])]
+                ])])
+            ]]),
+            new MutationGroupProto(['mutations' => [
+                new Mutation(['insert_or_update' => new Write([
+                    'table' => 'Singers',
+                    'columns' => ['SingerId', 'FirstName', 'LastName'],
+                    'values' => [new ListValue(['values' => [
+                        new Value(['string_value' => '17']),
+                        new Value(['string_value' => 'Marc']),
+                        new Value(['string_value' => 'Kristen'])
+                    ]])]
+                ])]),
+                new Mutation(['insert_or_update' => new Write([
+                    'table' => 'Albums',
+                    'columns' => ['AlbumId', 'SingerId', 'AlbumTitle'],
+                    'values' => [new ListValue(['values' => [
+                        new Value(['string_value' => '1']),
+                        new Value(['string_value' => '17']),
+                        new Value(['string_value' => 'Total Junk'])
+                    ]])]
+                ])]),
+            ]]),
+        ];
+
+        $this->assertCallCorrect(
+            'batchWrite',
+            [
+                'database' => self::DATABASE,
+                'session'  => self::SESSION,
+                'mutationGroups' => array_map(fn ($x) => $x->toArray(), $mutationGroups),
+            ],
+            $this->expectResourceHeader(self::DATABASE, [
+                self::SESSION,
+                $expectedMutationGroups,
+                []
+            ]),
+        );
     }
 
     /**
@@ -1463,7 +1532,7 @@ class GrpcTest extends TestCase
             Argument::type('callable'),
             $expectedArgs,
             Argument::type('array')
-        )->willReturn($return ?: $this->successMessage);
+        )->shouldBeCalled()->willReturn($return ?: $this->successMessage);
 
         $connection = new Grpc($grpcConfig);
         $connection->setRequestWrapper($this->requestWrapper->reveal());
@@ -1506,7 +1575,6 @@ class GrpcTest extends TestCase
             $key = end($keys);
             $args[$key]['headers'] = $header;
         }
-
         return $args;
     }
 
