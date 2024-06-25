@@ -254,13 +254,13 @@ class TransactionTest extends SnippetTestCase
     public function testInsert()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insert');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('insert', $mutations[0]);
     }
 
@@ -268,26 +268,26 @@ class TransactionTest extends SnippetTestCase
     public function testInsertBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('insert', $mutations[0]);
     }
 
     public function testUpdate()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'update');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('update', $mutations[0]);
     }
 
@@ -295,26 +295,26 @@ class TransactionTest extends SnippetTestCase
     public function testUpdateBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'updateBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('update', $mutations[0]);
     }
 
     public function testInsertOrUpdate()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdate');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
 
@@ -324,26 +324,26 @@ class TransactionTest extends SnippetTestCase
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdateBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
 
     public function testReplace()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'replace');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('replace', $mutations[0]);
     }
 
@@ -351,13 +351,13 @@ class TransactionTest extends SnippetTestCase
     public function testReplaceBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'replaceBatch');
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('replace', $mutations[0]);
     }
 
@@ -365,13 +365,13 @@ class TransactionTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'delete');
         $snippet->addUse(KeySet::class);
-        $snippet->addLocal('transaction', $this->transaction);
+        $snippet->addLocal('mutationGroup', $this->transaction);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $res = $snippet->invoke();
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('delete', $mutations[0]);
     }
 
