@@ -24,7 +24,6 @@ namespace Google\Cloud\DataCatalog\Lineage\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DataCatalog\Lineage\V1\BatchSearchLinkProcessesRequest;
@@ -57,6 +56,7 @@ use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
