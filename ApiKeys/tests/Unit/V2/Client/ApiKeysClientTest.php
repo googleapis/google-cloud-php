@@ -24,7 +24,6 @@ namespace Google\Cloud\ApiKeys\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ApiKeys\V2\Client\ApiKeysClient;
@@ -40,6 +39,7 @@ use Google\Cloud\ApiKeys\V2\LookupKeyRequest;
 use Google\Cloud\ApiKeys\V2\LookupKeyResponse;
 use Google\Cloud\ApiKeys\V2\UndeleteKeyRequest;
 use Google\Cloud\ApiKeys\V2\UpdateKeyRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
