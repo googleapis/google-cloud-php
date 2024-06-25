@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -184,12 +184,28 @@ final class DatabaseAdminClient
     public function resumeOperation($operationName, $methodName = null)
     {
         $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        // OperationResponse is a V1 surface class, we need V2 surface class.
-        // [V2 LongRunning/Client/OperationsClient, getOperation]
-        // Other clients have also used the OperationResponse similarly.
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -379,7 +395,7 @@ final class DatabaseAdminClient
      */
     public function __construct(array $options = [])
     {
-        $options = $options + $this->getDefaultEmulatorConfig();
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -1050,11 +1066,11 @@ final class DatabaseAdminClient
     }
 
     /** Configure the gapic configuration to use a service emulator. */
-    private function getDefaultEmulatorConfig(): array
+    private function setDefaultEmulatorConfig(array $options): array
     {
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
         if (empty($emulatorHost)) {
-            return [];
+            return $options;
         }
 
         if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
@@ -1062,16 +1078,9 @@ final class DatabaseAdminClient
             $emulatorHost = str_replace($search, '', $emulatorHost);
         }
 
-        return [
-            'apiEndpoint' => $emulatorHost,
-            'transportConfig' => [
-                'grpc' => [
-                    'stubOpts' => [
-                        'credentials' => ChannelCredentials::createInsecure(),
-                    ],
-                ],
-            ],
-            'credentials' => new InsecureCredentialsWrapper(),
-        ];
+        $options['apiEndpoint'] ??= $emulatorHost;
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }

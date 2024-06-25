@@ -29,7 +29,7 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_failover_disabled = 2;</code>
      */
-    private $auto_failover_disabled = false;
+    protected $auto_failover_disabled = false;
 
     /**
      * Constructor.
@@ -108,6 +108,4 @@ class IncludeReplicas extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IncludeReplicas::class, \Google\Cloud\Spanner\V1\DirectedReadOptions_IncludeReplicas::class);
 

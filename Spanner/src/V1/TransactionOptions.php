@@ -286,7 +286,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5;</code>
      */
-    private $exclude_txn_from_change_streams = false;
+    protected $exclude_txn_from_change_streams = false;
     protected $mode;
 
     /**

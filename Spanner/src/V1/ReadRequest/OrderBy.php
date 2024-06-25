@@ -62,6 +62,4 @@ class OrderBy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrderBy::class, \Google\Cloud\Spanner\V1\ReadRequest_OrderBy::class);
 

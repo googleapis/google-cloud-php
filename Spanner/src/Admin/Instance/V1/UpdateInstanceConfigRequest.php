@@ -26,7 +26,7 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_config = null;
+    protected $instance_config = null;
     /**
      * Required. A mask specifying which fields in
      * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] should be
@@ -37,14 +37,14 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * An option to validate, but not actually execute, a request,
      * and provide the same response.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig Required. The user instance config to update, which must always include the

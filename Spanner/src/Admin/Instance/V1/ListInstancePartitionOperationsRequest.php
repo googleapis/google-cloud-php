@@ -22,7 +22,7 @@ class ListInstancePartitionOperationsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. An expression that filters the list of returned operations.
      * A filter expression consists of a field name, a
@@ -64,14 +64,14 @@ class ListInstancePartitionOperationsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Number of operations to be returned in the response. If 0 or
      * less, defaults to the server's maximum allowed page size.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.instance.v1.ListInstancePartitionOperationsResponse.next_page_token]
@@ -81,7 +81,7 @@ class ListInstancePartitionOperationsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Deadline used while retrieving metadata for instance partition
      * operations. Instance partitions whose operation metadata cannot be
@@ -91,7 +91,7 @@ class ListInstancePartitionOperationsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp instance_partition_deadline = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_partition_deadline = null;
+    protected $instance_partition_deadline = null;
 
     /**
      * @param string $parent Required. The parent instance of the instance partition operations.

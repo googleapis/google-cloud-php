@@ -20,7 +20,7 @@ class CopyBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CopyBackupEncryptionConfig.EncryptionType encryption_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $encryption_type = 0;
+    protected $encryption_type = 0;
     /**
      * Optional. The Cloud KMS key that will be used to protect the backup.
      * This field should be set only when
@@ -30,7 +30,7 @@ class CopyBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Optional. Specifies the KMS configuration for the one or more keys used to
      * protect the backup. Values are of the form

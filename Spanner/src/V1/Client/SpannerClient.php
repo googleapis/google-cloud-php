@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ namespace Google\Cloud\Spanner\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -57,6 +58,7 @@ use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -204,6 +206,10 @@ final class SpannerClient
     /**
      * Constructor.
      *
+     * Setting the "SPANNER_EMULATOR_HOST" environment variable will automatically set
+     * the API Endpoint to the value specified in the variable, as well as ensure that
+     * empty credentials are used in the transport layer.
+     *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
@@ -257,6 +263,7 @@ final class SpannerClient
      */
     public function __construct(array $options = [])
     {
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
     }
@@ -802,5 +809,24 @@ final class SpannerClient
     public function streamingRead(ReadRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('StreamingRead', $request, $callOptions);
+    }
+
+    /** Configure the gapic configuration to use a service emulator. */
+    private function setDefaultEmulatorConfig(array $options): array
+    {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+        if (empty($emulatorHost)) {
+            return $options;
+        }
+
+        if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
+            $search = $scheme . '://';
+            $emulatorHost = str_replace($search, '', $emulatorHost);
+        }
+
+        $options['apiEndpoint'] ??= $emulatorHost;
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }

@@ -20,7 +20,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
-    private $commit_timestamp = null;
+    protected $commit_timestamp = null;
     /**
      * The statistics about this Commit. Not returned by default.
      * For more information, see
@@ -28,7 +28,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.CommitResponse.CommitStats commit_stats = 2;</code>
      */
-    private $commit_stats = null;
+    protected $commit_stats = null;
 
     /**
      * Constructor.
