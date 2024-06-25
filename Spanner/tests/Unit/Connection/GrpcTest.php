@@ -548,7 +548,7 @@ class GrpcTest extends TestCase
                 ->insertOrUpdate(
                     "Singers",
                     ['SingerId' => 16, 'FirstName' => 'Scarlet', 'LastName' => 'Terry']
-                ),
+                )->toArray(),
             (new MutationGroup(false))
                 ->insertOrUpdate(
                     "Singers",
@@ -556,7 +556,7 @@ class GrpcTest extends TestCase
                 )->insertOrUpdate(
                     "Albums",
                     ['AlbumId' => 1, 'SingerId' => 17, 'AlbumTitle' => 'Total Junk']
-                )
+                )->toArray()
         ];
 
         $expectedMutationGroups = [
@@ -598,7 +598,7 @@ class GrpcTest extends TestCase
             [
                 'database' => self::DATABASE,
                 'session'  => self::SESSION,
-                'mutationGroups' => array_map(fn ($x) => $x->toArray(), $mutationGroups),
+                'mutationGroups' => $mutationGroups,
             ],
             $this->expectResourceHeader(self::DATABASE, [
                 self::SESSION,
