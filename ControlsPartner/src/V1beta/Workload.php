@@ -19,7 +19,7 @@ class Workload extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -81,7 +81,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *     @type int|string $folder_id
      *           Output only. Folder id this workload is associated with
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -107,7 +107,7 @@ class Workload extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -119,7 +119,7 @@ class Workload extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

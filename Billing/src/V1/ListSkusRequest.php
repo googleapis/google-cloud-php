@@ -17,7 +17,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the service.
-     * Example: "services/DA34-426B-A397"
+     * Example: "services/6F81-5844-456A"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -69,7 +69,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The name of the service.
-     *                       Example: "services/DA34-426B-A397"
+     *                       Example: "services/6F81-5844-456A"
      *                       Please see {@see CloudCatalogClient::serviceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Billing\V1\ListSkusRequest
@@ -90,7 +90,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the service.
-     *           Example: "services/DA34-426B-A397"
+     *           Example: "services/6F81-5844-456A"
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Optional inclusive start time of the time range for which the pricing
      *           versions will be returned. Timestamps in the future are not allowed.
@@ -124,7 +124,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.
-     * Example: "services/DA34-426B-A397"
+     * Example: "services/6F81-5844-456A"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -136,7 +136,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.
-     * Example: "services/DA34-426B-A397"
+     * Example: "services/6F81-5844-456A"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

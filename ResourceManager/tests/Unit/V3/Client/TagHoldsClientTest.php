@@ -24,7 +24,6 @@ namespace Google\Cloud\ResourceManager\Tests\Unit\V3\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ResourceManager\V3\Client\TagHoldsClient;
@@ -33,6 +32,7 @@ use Google\Cloud\ResourceManager\V3\DeleteTagHoldRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsRequest;
 use Google\Cloud\ResourceManager\V3\ListTagHoldsResponse;
 use Google\Cloud\ResourceManager\V3\TagHold;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

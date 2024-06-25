@@ -240,7 +240,8 @@ class SqlOperationType
      */
     const REENCRYPT = 38;
     /**
-     * Switches over to replica instance from primary.
+     * Switches the roles of the primary and replica pair. The target instance
+     * should be the replica.
      *
      * Generated from protobuf enum <code>SWITCHOVER = 39;</code>
      */
@@ -285,6 +286,13 @@ class SqlOperationType
      * Generated from protobuf enum <code>SELF_SERVICE_MAINTENANCE = 46;</code>
      */
     const SELF_SERVICE_MAINTENANCE = 46;
+    /**
+     * Switches a primary instance to a replica. This operation runs as part of
+     * a switchover operation to the original primary instance.
+     *
+     * Generated from protobuf enum <code>SWITCHOVER_TO_REPLICA = 47;</code>
+     */
+    const SWITCHOVER_TO_REPLICA = 47;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -331,6 +339,7 @@ class SqlOperationType
         self::RECONFIGURE_OLD_PRIMARY => 'RECONFIGURE_OLD_PRIMARY',
         self::CLUSTER_MAINTENANCE => 'CLUSTER_MAINTENANCE',
         self::SELF_SERVICE_MAINTENANCE => 'SELF_SERVICE_MAINTENANCE',
+        self::SWITCHOVER_TO_REPLICA => 'SWITCHOVER_TO_REPLICA',
     ];
 
     public static function name($value)

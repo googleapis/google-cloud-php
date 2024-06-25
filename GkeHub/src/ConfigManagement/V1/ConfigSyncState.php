@@ -34,6 +34,31 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.SyncState sync_state = 3;</code>
      */
     private $sync_state = null;
+    /**
+     * Errors pertaining to the installation of Config Sync.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ConfigSyncError errors = 4;</code>
+     */
+    private $errors;
+    /**
+     * The state of the RootSync CRD
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState rootsync_crd = 5;</code>
+     */
+    private $rootsync_crd = 0;
+    /**
+     * The state of the Reposync CRD
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState reposync_crd = 6;</code>
+     */
+    private $reposync_crd = 0;
+    /**
+     * The state of CS
+     * This field summarizes the other fields in this message.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.State state = 7;</code>
+     */
+    private $state = 0;
 
     /**
      * Constructor.
@@ -48,6 +73,15 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      *           of the various Pods deployed
      *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\SyncState $sync_state
      *           The state of ConfigSync's process to sync configs to a cluster
+     *     @type array<\Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *           Errors pertaining to the installation of Config Sync.
+     *     @type int $rootsync_crd
+     *           The state of the RootSync CRD
+     *     @type int $reposync_crd
+     *           The state of the Reposync CRD
+     *     @type int $state
+     *           The state of CS
+     *           This field summarizes the other fields in this message.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +195,112 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeHub\ConfigManagement\V1\SyncState::class);
         $this->sync_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Errors pertaining to the installation of Config Sync.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ConfigSyncError errors = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * Errors pertaining to the installation of Config Sync.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ConfigSyncError errors = 4;</code>
+     * @param array<\Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError::class);
+        $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The state of the RootSync CRD
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState rootsync_crd = 5;</code>
+     * @return int
+     */
+    public function getRootsyncCrd()
+    {
+        return $this->rootsync_crd;
+    }
+
+    /**
+     * The state of the RootSync CRD
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState rootsync_crd = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRootsyncCrd($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncState\CRDState::class);
+        $this->rootsync_crd = $var;
+
+        return $this;
+    }
+
+    /**
+     * The state of the Reposync CRD
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState reposync_crd = 6;</code>
+     * @return int
+     */
+    public function getReposyncCrd()
+    {
+        return $this->reposync_crd;
+    }
+
+    /**
+     * The state of the Reposync CRD
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState reposync_crd = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReposyncCrd($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncState\CRDState::class);
+        $this->reposync_crd = $var;
+
+        return $this;
+    }
+
+    /**
+     * The state of CS
+     * This field summarizes the other fields in this message.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.State state = 7;</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * The state of CS
+     * This field summarizes the other fields in this message.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.State state = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncState\State::class);
+        $this->state = $var;
 
         return $this;
     }

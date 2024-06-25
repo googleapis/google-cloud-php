@@ -376,7 +376,7 @@ final class DatabaseAdminClient
      */
     public function __construct(array $options = [])
     {
-        $options = $options + $this->getDefaultEmulatorConfig();
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -1047,11 +1047,11 @@ final class DatabaseAdminClient
     }
 
     /** Configure the gapic configuration to use a service emulator. */
-    private function getDefaultEmulatorConfig(): array
+    private function setDefaultEmulatorConfig(array $options): array
     {
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
         if (empty($emulatorHost)) {
-            return [];
+            return $options;
         }
 
         if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
@@ -1059,16 +1059,9 @@ final class DatabaseAdminClient
             $emulatorHost = str_replace($search, '', $emulatorHost);
         }
 
-        return [
-            'apiEndpoint' => $emulatorHost,
-            'transportConfig' => [
-                'grpc' => [
-                    'stubOpts' => [
-                        'credentials' => ChannelCredentials::createInsecure(),
-                    ],
-                ],
-            ],
-            'credentials' => new InsecureCredentialsWrapper(),
-        ];
+        $options['apiEndpoint'] ??= $emulatorHost;
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }

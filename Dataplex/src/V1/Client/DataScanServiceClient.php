@@ -422,7 +422,10 @@ final class DataScanServiceClient
     }
 
     /**
-     * Generates recommended DataQualityRule from a data profiling DataScan.
+     * Generates recommended data quality rules based on the results of a data
+     * profiling scan.
+     *
+     * Use the recommendations to build rules for a data quality scan.
      *
      * The async variant is
      * {@see DataScanServiceClient::generateDataQualityRulesAsync()} .

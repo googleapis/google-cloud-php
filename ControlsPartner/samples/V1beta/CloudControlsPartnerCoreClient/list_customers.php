@@ -33,7 +33,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\ListCustomersRequest;
  * Lists customers of a partner identified by its Google Cloud organization ID
  *
  * @param string $formattedParent Parent resource
- *                                Format: organizations/{organization}/locations/{location}
+ *                                Format: `organizations/{organization}/locations/{location}`
  *                                Please see {@see CloudControlsPartnerCoreClient::organizationLocationName()} for help formatting this field.
  */
 function list_customers_sample(string $formattedParent): void

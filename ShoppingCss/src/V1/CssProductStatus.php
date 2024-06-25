@@ -43,7 +43,7 @@ class CssProductStatus extends \Google\Protobuf\Internal\Message
      */
     protected $last_update_date = null;
     /**
-     * Date on which the item expires in Google Shopping, in [ISO
+     * Date on which the item expires, in [ISO
      * 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp google_expiration_date = 7;</code>
@@ -67,7 +67,7 @@ class CssProductStatus extends \Google\Protobuf\Internal\Message
      *           Date on which the item has been last updated, in [ISO
      *           8601](http://en.wikipedia.org/wiki/ISO_8601) format.
      *     @type \Google\Protobuf\Timestamp $google_expiration_date
-     *           Date on which the item expires in Google Shopping, in [ISO
+     *           Date on which the item expires, in [ISO
      *           8601](http://en.wikipedia.org/wiki/ISO_8601) format.
      * }
      */
@@ -205,7 +205,7 @@ class CssProductStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Date on which the item expires in Google Shopping, in [ISO
+     * Date on which the item expires, in [ISO
      * 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp google_expiration_date = 7;</code>
@@ -227,7 +227,7 @@ class CssProductStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Date on which the item expires in Google Shopping, in [ISO
+     * Date on which the item expires, in [ISO
      * 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp google_expiration_date = 7;</code>

@@ -32,7 +32,7 @@ use Google\Cloud\CloudControlsPartner\V1beta\GetCustomerRequest;
  * Gets details of a single customer
  *
  * @param string $formattedName Format:
- *                              organizations/{organization}/locations/{location}/customers/{customer}
+ *                              `organizations/{organization}/locations/{location}/customers/{customer}`
  *                              Please see {@see CloudControlsPartnerCoreClient::customerName()} for help formatting this field.
  */
 function get_customer_sample(string $formattedName): void

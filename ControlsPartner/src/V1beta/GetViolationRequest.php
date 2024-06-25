@@ -17,7 +17,7 @@ class GetViolationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetViolationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Format:
-     *                     organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     *                     `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *                     Please see {@see CloudControlsPartnerMonitoringClient::violationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudControlsPartner\V1beta\GetViolationRequest
@@ -46,7 +46,7 @@ class GetViolationRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Format:
-     *           organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetViolationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetViolationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format:
-     * organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}
+     * `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

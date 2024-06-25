@@ -35,7 +35,6 @@ use Google\Rpc\Status;
  * applicable to a hierarchical namespace enabled bucket. During a rename, the
  * source and destination folders are locked until the long running operation
  * completes.
- * Hierarchical namespace buckets are in allowlist preview.
  *
  * @param string $formattedName       Name of the source folder being renamed.
  *                                    Format: `projects/{project}/buckets/{bucket}/folders/{folder}`

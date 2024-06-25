@@ -67,9 +67,9 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      */
     protected $failing_rows_query = '';
     /**
-     * Output only. The number of rows returned by the sql statement in the
-     * SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * Output only. The number of rows returned by the SQL statement in a SQL
+     * assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -105,9 +105,9 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *           The query to find rows that did not pass this rule.
      *           This field is only valid for row-level type rules.
      *     @type int|string $assertion_row_count
-     *           Output only. The number of rows returned by the sql statement in the
-     *           SqlAssertion rule.
-     *           This field is only valid for SqlAssertion rules.
+     *           Output only. The number of rows returned by the SQL statement in a SQL
+     *           assertion rule.
+     *           This field is only valid for SQL assertion rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -326,9 +326,9 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of rows returned by the sql statement in the
-     * SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * Output only. The number of rows returned by the SQL statement in a SQL
+     * assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -339,9 +339,9 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of rows returned by the sql statement in the
-     * SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * Output only. The number of rows returned by the SQL statement in a SQL
+     * assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

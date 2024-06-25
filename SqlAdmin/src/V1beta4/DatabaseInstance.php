@@ -227,8 +227,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $scheduled_maintenance = null;
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      */
@@ -413,8 +413,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlScheduledMaintenance $scheduled_maintenance
      *           The start time of any upcoming scheduled maintenance for this instance.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
-     *           The status indicating if instance satisfiesPzs.
-     *           Reserved for future use.
+     *           This status indicates whether the instance satisfies PZS.
+     *           The status is reserved for future use.
      *     @type string $database_installed_version
      *           Output only. Stores the current database version running on the instance
      *           including minor version such as `MYSQL_8_0_18`.
@@ -1476,8 +1476,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -1500,8 +1500,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getSatisfiesPzs()</code>
 
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return bool|null
@@ -1512,8 +1512,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -1530,8 +1530,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @param bool|null $var

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START metastore_v1beta_generated_DataprocMetastore_QueryMetadata_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Metastore\V1beta\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1beta\QueryMetadataRequest;
 use Google\Cloud\Metastore\V1beta\QueryMetadataResponse;
 use Google\Rpc\Status;
 
@@ -45,10 +46,15 @@ function query_metadata_sample(string $formattedService, string $query): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new QueryMetadataRequest())
+        ->setService($formattedService)
+        ->setQuery($query);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataprocMetastoreClient->queryMetadata($formattedService, $query);
+        $response = $dataprocMetastoreClient->queryMetadata($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

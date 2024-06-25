@@ -101,7 +101,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *           for a table.
      *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $sql_assertion
      *           Aggregate rule which evaluates the number of rows returned for the
-     *           provided statement.
+     *           provided statement. If any rows are returned, this rule fails.
      *     @type string $column
      *           Optional. The unnested column which this rule is evaluated against.
      *     @type bool $ignore_null
@@ -401,7 +401,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregate rule which evaluates the number of rows returned for the
-     * provided statement.
+     * provided statement. If any rows are returned, this rule fails.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
      * @return \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion|null
@@ -418,7 +418,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregate rule which evaluates the number of rows returned for the
-     * provided statement.
+     * provided statement. If any rows are returned, this rule fails.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
      * @param \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $var
