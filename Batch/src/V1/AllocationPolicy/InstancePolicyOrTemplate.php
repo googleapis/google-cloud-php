@@ -32,6 +32,13 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
      */
     private $install_gpu_drivers = false;
+    /**
+     * Optional. Set this field true if you want Batch to install Ops Agent on
+     * your behalf. Default is false.
+     *
+     * Generated from protobuf field <code>bool install_ops_agent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $install_ops_agent = false;
     protected $policy_template;
 
     /**
@@ -56,6 +63,9 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/container-optimized-os/docs/release-notes. For
      *           non Container-Optimized Image cases, following
      *           https://github.com/GoogleCloudPlatform/compute-gpu-installation/blob/main/linux/install_gpu_driver.py.
+     *     @type bool $install_ops_agent
+     *           Optional. Set this field true if you want Batch to install Ops Agent on
+     *           your behalf. Default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +177,34 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->install_gpu_drivers = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set this field true if you want Batch to install Ops Agent on
+     * your behalf. Default is false.
+     *
+     * Generated from protobuf field <code>bool install_ops_agent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getInstallOpsAgent()
+    {
+        return $this->install_ops_agent;
+    }
+
+    /**
+     * Optional. Set this field true if you want Batch to install Ops Agent on
+     * your behalf. Default is false.
+     *
+     * Generated from protobuf field <code>bool install_ops_agent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInstallOpsAgent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->install_ops_agent = $var;
 
         return $this;
     }

@@ -16,11 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobNotification extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Pub/Sub topic where notifications like the job state changes
-     * will be published. The topic must exist in the same project as
-     * the job and billings will be charged to this project.
-     * If not specified, no Pub/Sub messages will be sent.
-     * Topic format: `projects/{project}/topics/{topic}`.
+     * The Pub/Sub topic where notifications for the job, like state
+     * changes, will be published. If undefined, no Pub/Sub notifications
+     * are sent for this job.
+     * Specify the topic using the following format:
+     * `projects/{project}/topics/{topic}`.
+     * Notably, if you want to specify a Pub/Sub topic that is in a
+     * different project than the job, your administrator must grant your
+     * project's Batch service agent permission to publish to that topic.
+     * For more information about configuring Pub/Sub notifications for
+     * a job, see
+     * https://cloud.google.com/batch/docs/enable-notifications.
      *
      * Generated from protobuf field <code>string pubsub_topic = 1;</code>
      */
@@ -40,11 +46,17 @@ class JobNotification extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pubsub_topic
-     *           The Pub/Sub topic where notifications like the job state changes
-     *           will be published. The topic must exist in the same project as
-     *           the job and billings will be charged to this project.
-     *           If not specified, no Pub/Sub messages will be sent.
-     *           Topic format: `projects/{project}/topics/{topic}`.
+     *           The Pub/Sub topic where notifications for the job, like state
+     *           changes, will be published. If undefined, no Pub/Sub notifications
+     *           are sent for this job.
+     *           Specify the topic using the following format:
+     *           `projects/{project}/topics/{topic}`.
+     *           Notably, if you want to specify a Pub/Sub topic that is in a
+     *           different project than the job, your administrator must grant your
+     *           project's Batch service agent permission to publish to that topic.
+     *           For more information about configuring Pub/Sub notifications for
+     *           a job, see
+     *           https://cloud.google.com/batch/docs/enable-notifications.
      *     @type \Google\Cloud\Batch\V1\JobNotification\Message $message
      *           The attribute requirements of messages to be sent to this Pub/Sub topic.
      *           Without this field, no message will be sent.
@@ -56,11 +68,17 @@ class JobNotification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Pub/Sub topic where notifications like the job state changes
-     * will be published. The topic must exist in the same project as
-     * the job and billings will be charged to this project.
-     * If not specified, no Pub/Sub messages will be sent.
-     * Topic format: `projects/{project}/topics/{topic}`.
+     * The Pub/Sub topic where notifications for the job, like state
+     * changes, will be published. If undefined, no Pub/Sub notifications
+     * are sent for this job.
+     * Specify the topic using the following format:
+     * `projects/{project}/topics/{topic}`.
+     * Notably, if you want to specify a Pub/Sub topic that is in a
+     * different project than the job, your administrator must grant your
+     * project's Batch service agent permission to publish to that topic.
+     * For more information about configuring Pub/Sub notifications for
+     * a job, see
+     * https://cloud.google.com/batch/docs/enable-notifications.
      *
      * Generated from protobuf field <code>string pubsub_topic = 1;</code>
      * @return string
@@ -71,11 +89,17 @@ class JobNotification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Pub/Sub topic where notifications like the job state changes
-     * will be published. The topic must exist in the same project as
-     * the job and billings will be charged to this project.
-     * If not specified, no Pub/Sub messages will be sent.
-     * Topic format: `projects/{project}/topics/{topic}`.
+     * The Pub/Sub topic where notifications for the job, like state
+     * changes, will be published. If undefined, no Pub/Sub notifications
+     * are sent for this job.
+     * Specify the topic using the following format:
+     * `projects/{project}/topics/{topic}`.
+     * Notably, if you want to specify a Pub/Sub topic that is in a
+     * different project than the job, your administrator must grant your
+     * project's Batch service agent permission to publish to that topic.
+     * For more information about configuring Pub/Sub notifications for
+     * a job, see
+     * https://cloud.google.com/batch/docs/enable-notifications.
      *
      * Generated from protobuf field <code>string pubsub_topic = 1;</code>
      * @param string $var
