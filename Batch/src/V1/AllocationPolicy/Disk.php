@@ -22,7 +22,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Disk type as shown in `gcloud compute disk-types list`.
      * For example, local SSD uses type "local-ssd".
      * Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     * or "pd-standard".
+     * or "pd-standard". If not specified, "pd-standard" will be used as the
+     * default type for non-boot disks, "pd-balanced" will be used as the
+     * default type for boot disks.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
@@ -88,7 +90,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Disk type as shown in `gcloud compute disk-types list`.
      *           For example, local SSD uses type "local-ssd".
      *           Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     *           or "pd-standard".
+     *           or "pd-standard". If not specified, "pd-standard" will be used as the
+     *           default type for non-boot disks, "pd-balanced" will be used as the
+     *           default type for boot disks.
      *     @type int|string $size_gb
      *           Disk size in GB.
      *           **Non-Boot Disk**:
@@ -212,7 +216,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Disk type as shown in `gcloud compute disk-types list`.
      * For example, local SSD uses type "local-ssd".
      * Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     * or "pd-standard".
+     * or "pd-standard". If not specified, "pd-standard" will be used as the
+     * default type for non-boot disks, "pd-balanced" will be used as the
+     * default type for boot disks.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @return string
@@ -226,7 +232,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Disk type as shown in `gcloud compute disk-types list`.
      * For example, local SSD uses type "local-ssd".
      * Persistent disks and boot disks use "pd-balanced", "pd-extreme", "pd-ssd"
-     * or "pd-standard".
+     * or "pd-standard". If not specified, "pd-standard" will be used as the
+     * default type for non-boot disks, "pd-balanced" will be used as the
+     * default type for boot disks.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var
