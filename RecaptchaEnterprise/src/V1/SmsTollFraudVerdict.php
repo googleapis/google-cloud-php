@@ -21,7 +21,7 @@ class SmsTollFraudVerdict extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $risk = 0.0;
+    private $risk = 0.0;
     /**
      * Output only. Reasons contributing to the SMS toll fraud verdict.
      *

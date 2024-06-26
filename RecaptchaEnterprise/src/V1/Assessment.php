@@ -83,6 +83,14 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals fraud_signals = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $fraud_signals = null;
+    /**
+     * Output only. Assessment returned when a site key, a token, and a phone
+     * number as `user_id` are provided. Account defender and SMS toll fraud
+     * protection need to be enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $phone_fraud_assessment = null;
 
     /**
      * Constructor.
@@ -118,6 +126,10 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals $fraud_signals
      *           Output only. Fraud Signals specific to the users involved in a payment
      *           transaction.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment $phone_fraud_assessment
+     *           Output only. Assessment returned when a site key, a token, and a phone
+     *           number as `user_id` are provided. Account defender and SMS toll fraud
+     *           protection need to be enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -487,6 +499,46 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals::class);
         $this->fraud_signals = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Assessment returned when a site key, a token, and a phone
+     * number as `user_id` are provided. Account defender and SMS toll fraud
+     * protection need to be enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment|null
+     */
+    public function getPhoneFraudAssessment()
+    {
+        return $this->phone_fraud_assessment;
+    }
+
+    public function hasPhoneFraudAssessment()
+    {
+        return isset($this->phone_fraud_assessment);
+    }
+
+    public function clearPhoneFraudAssessment()
+    {
+        unset($this->phone_fraud_assessment);
+    }
+
+    /**
+     * Output only. Assessment returned when a site key, a token, and a phone
+     * number as `user_id` are provided. Account defender and SMS toll fraud
+     * protection need to be enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment $var
+     * @return $this
+     */
+    public function setPhoneFraudAssessment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment::class);
+        $this->phone_fraud_assessment = $var;
 
         return $this;
     }
