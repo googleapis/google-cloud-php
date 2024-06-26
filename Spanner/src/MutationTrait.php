@@ -332,6 +332,6 @@ trait MutationTrait
             $keys['keys'] = $this->getValueMapper()->encodeValuesAsSimpleType($keys['keys'], true);
         }
 
-        return array_filter($keys, fn ($v) => !is_null($v));;
+        return array_filter($keys, fn ($v) => !is_null($v));
     }
 }
