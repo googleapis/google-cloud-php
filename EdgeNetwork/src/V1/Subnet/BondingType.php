@@ -63,6 +63,4 @@ class BondingType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BondingType::class, \Google\Cloud\EdgeNetwork\V1\Subnet_BondingType::class);
 
