@@ -22,19 +22,19 @@ class CheckTrialEarlyStoppingStateMetatdata extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * The name of the Study that the Trial belongs to.
      *
      * Generated from protobuf field <code>string study = 2;</code>
      */
-    private $study = '';
+    protected $study = '';
     /**
      * The Trial name.
      *
      * Generated from protobuf field <code>string trial = 3;</code>
      */
-    private $trial = '';
+    protected $trial = '';
 
     /**
      * Constructor.

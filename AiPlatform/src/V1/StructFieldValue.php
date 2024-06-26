@@ -20,13 +20,13 @@ class StructFieldValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The value for this field.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureValue value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

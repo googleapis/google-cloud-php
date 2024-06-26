@@ -126,19 +126,25 @@ class ResumableStream implements \IteratorAggregate
      */
     public function readAll()
     {
-        $tries = 0;
-        $argumentFunction = $this->argumentFunction;
-        $retryFunction = $this->retryFunction;
+        $attempt = 0;
         do {
             $ex = null;
-            list($this->request, $this->callOptions) = $argumentFunction($this->request, $this->callOptions);
+            list($this->request, $this->callOptions) =
+                ($this->argumentFunction)($this->request, $this->callOptions);
 
             $completed = $this->pluck('requestCompleted', $this->callOptions, false);
 
             if ($completed !== true) {
+                // Send in "bigtable-attempt" header on retry request
+                $headers = $this->callOptions['headers'] ?? [];
+                if ($attempt > 0) {
+                    $headers['bigtable-attempt'] = [(string) $attempt];
+                }
+                $attempt++;
+
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
-                    [$this->request, $this->callOptions]
+                    [$this->request, ['headers' => $headers] + $this->callOptions]
                 );
 
                 try {
@@ -148,8 +154,7 @@ class ResumableStream implements \IteratorAggregate
                 } catch (\Exception $ex) {
                 }
             }
-            $tries++;
-        } while ((!$this->retryFunction || $retryFunction($ex)) && $tries <= $this->retries);
+        } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $attempt <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }

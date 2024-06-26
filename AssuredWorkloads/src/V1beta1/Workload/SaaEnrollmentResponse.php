@@ -20,7 +20,7 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.assuredworkloads.v1beta1.Workload.SaaEnrollmentResponse.SetupState setup_status = 1;</code>
      */
-    private $setup_status = null;
+    protected $setup_status = null;
     /**
      * Indicates SAA enrollment setup error if any.
      *
@@ -109,6 +109,4 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SaaEnrollmentResponse::class, \Google\Cloud\AssuredWorkloads\V1beta1\Workload_SaaEnrollmentResponse::class);
 

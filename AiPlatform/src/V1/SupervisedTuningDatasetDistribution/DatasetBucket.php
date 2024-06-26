@@ -21,19 +21,19 @@ class DatasetBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double count = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $count = 0.0;
+    protected $count = 0.0;
     /**
      * Output only. Left bound of the bucket.
      *
      * Generated from protobuf field <code>double left = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $left = 0.0;
+    protected $left = 0.0;
     /**
      * Output only. Right bound of the bucket.
      *
      * Generated from protobuf field <code>double right = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $right = 0.0;
+    protected $right = 0.0;
 
     /**
      * Constructor.

@@ -24,13 +24,13 @@ class ProjectSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The redirection state of the legacy repositories in this project.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.ProjectSettings.RedirectionState legacy_redirection_state = 2;</code>
      */
-    private $legacy_redirection_state = 0;
+    protected $legacy_redirection_state = 0;
 
     /**
      * Constructor.

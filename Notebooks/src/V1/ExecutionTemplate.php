@@ -68,14 +68,14 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string master_type = 2;</code>
      */
-    private $master_type = '';
+    protected $master_type = '';
     /**
      * Configuration (count and accelerator type) for hardware running notebook
      * execution.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.ExecutionTemplate.SchedulerAcceleratorConfig accelerator_config = 3;</code>
      */
-    private $accelerator_config = null;
+    protected $accelerator_config = null;
     /**
      * Labels for execution.
      * If execution is scheduled, a field included will be 'nbs-scheduled'.
@@ -94,7 +94,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_notebook_file = 5;</code>
      */
-    private $input_notebook_file = '';
+    protected $input_notebook_file = '';
     /**
      * Container Image URI to a DLVM
      * Example: 'gcr.io/deeplearning-platform-release/base-cu100'
@@ -103,7 +103,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string container_image_uri = 6;</code>
      */
-    private $container_image_uri = '';
+    protected $container_image_uri = '';
     /**
      * Path to the notebook folder to write to.
      * Must be in a Google Cloud Storage bucket path.
@@ -112,7 +112,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_notebook_folder = 7;</code>
      */
-    private $output_notebook_folder = '';
+    protected $output_notebook_folder = '';
     /**
      * Parameters to be overridden in the notebook during execution.
      * Ref https://papermill.readthedocs.io/en/latest/usage-parameterize.html on
@@ -122,13 +122,13 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string params_yaml_file = 8;</code>
      */
-    private $params_yaml_file = '';
+    protected $params_yaml_file = '';
     /**
      * Parameters used within the 'input_notebook_file' notebook.
      *
      * Generated from protobuf field <code>string parameters = 9;</code>
      */
-    private $parameters = '';
+    protected $parameters = '';
     /**
      * The email address of a service account to use when running the execution.
      * You must have the `iam.serviceAccounts.actAs` permission for the specified
@@ -136,13 +136,13 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 10;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The type of Job to be used on this execution.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.ExecutionTemplate.JobType job_type = 11;</code>
      */
-    private $job_type = 0;
+    protected $job_type = 0;
     /**
      * Name of the kernel spec to use. This must be specified if the
      * kernel spec name on the execution target does not match the name in the
@@ -150,7 +150,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kernel_spec = 14;</code>
      */
-    private $kernel_spec = '';
+    protected $kernel_spec = '';
     /**
      * The name of a Vertex AI [Tensorboard] resource to which this execution
      * will upload Tensorboard logs.
@@ -159,7 +159,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tensorboard = 15 [(.google.api.resource_reference) = {</code>
      */
-    private $tensorboard = '';
+    protected $tensorboard = '';
     protected $job_parameters;
 
     /**

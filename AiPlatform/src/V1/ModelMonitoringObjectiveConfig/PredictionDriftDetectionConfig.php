@@ -38,7 +38,7 @@ class PredictionDriftDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ThresholdConfig default_drift_threshold = 5;</code>
      */
-    private $default_drift_threshold = null;
+    protected $default_drift_threshold = null;
 
     /**
      * Constructor.

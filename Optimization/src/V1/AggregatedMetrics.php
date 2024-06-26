@@ -26,37 +26,37 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 performed_shipment_count = 1;</code>
      */
-    private $performed_shipment_count = 0;
+    protected $performed_shipment_count = 0;
     /**
      * Total travel duration for a route or a solution.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 2;</code>
      */
-    private $travel_duration = null;
+    protected $travel_duration = null;
     /**
      * Total wait duration for a route or a solution.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait_duration = 3;</code>
      */
-    private $wait_duration = null;
+    protected $wait_duration = null;
     /**
      * Total delay duration for a route or a solution.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration delay_duration = 4;</code>
      */
-    private $delay_duration = null;
+    protected $delay_duration = null;
     /**
      * Total break duration for a route or a solution.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration break_duration = 5;</code>
      */
-    private $break_duration = null;
+    protected $break_duration = null;
     /**
      * Total visit duration for a route or a solution.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration visit_duration = 6;</code>
      */
-    private $visit_duration = null;
+    protected $visit_duration = null;
     /**
      * The total duration should be equal to the sum of all durations above.
      * For routes, it also corresponds to:
@@ -66,13 +66,13 @@ class AggregatedMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_duration = 7;</code>
      */
-    private $total_duration = null;
+    protected $total_duration = null;
     /**
      * Total travel distance for a route or a solution.
      *
      * Generated from protobuf field <code>double travel_distance_meters = 8;</code>
      */
-    private $travel_distance_meters = 0.0;
+    protected $travel_distance_meters = 0.0;
     /**
      * Maximum load achieved over the entire route (resp. solution), for each of
      * the quantities on this route (resp. solution), computed as the maximum over

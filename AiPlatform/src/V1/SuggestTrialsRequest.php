@@ -22,13 +22,13 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The number of suggestions requested. It must be positive.
      *
      * Generated from protobuf field <code>int32 suggestion_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $suggestion_count = 0;
+    protected $suggestion_count = 0;
     /**
      * Required. The identifier of the client that is requesting the suggestion.
      * If multiple SuggestTrialsRequests have the same `client_id`,
@@ -37,7 +37,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_id = '';
+    protected $client_id = '';
     /**
      * Optional. This allows you to specify the "context" for a Trial; a context
      * is a slice (a subspace) of the search space.

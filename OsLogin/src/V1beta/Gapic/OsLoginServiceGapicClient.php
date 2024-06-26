@@ -730,10 +730,7 @@ class OsLoginServiceGapicClient
      *     @type string $sshPublicKey
      *           The SSH public key to sign.
      *     @type string $parent
-     *           The parent project and zone for the signing request. This is needed to
-     *           properly ensure per-organization ISS processing and potentially to provide
-     *           for the possibility of zone-specific certificates used in the signing
-     *           process.
+     *           The parent project and region for the signing request.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

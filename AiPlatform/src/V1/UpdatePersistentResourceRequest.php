@@ -23,14 +23,14 @@ class UpdatePersistentResourceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentResource persistent_resource = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $persistent_resource = null;
+    protected $persistent_resource = null;
     /**
      * Required. Specify the fields to be overwritten in the PersistentResource by
      * the update method.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\PersistentResource $persistentResource Required. The PersistentResource to update.

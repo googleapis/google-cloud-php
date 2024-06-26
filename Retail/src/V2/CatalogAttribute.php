@@ -69,7 +69,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      * are indexed so that it can be filtered, faceted, or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
-     * Must be specified, otherwise throws INVALID_FORMAT error.
+     * Must be specified when
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      */
@@ -94,7 +96,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * will not be searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      * there are no text values associated to numerical attributes.
-     * Must be specified, otherwise throws INVALID_FORMAT error.
+     * Must be specified, when
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      */
@@ -117,6 +121,12 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.RetrievableOption retrievable_option = 12;</code>
      */
     private $retrievable_option = 0;
+    /**
+     * Contains facet options.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.FacetConfig facet_config = 13;</code>
+     */
+    private $facet_config = null;
 
     /**
      * Constructor.
@@ -165,7 +175,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      *           are indexed so that it can be filtered, faceted, or boosted in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
-     *           Must be specified, otherwise throws INVALID_FORMAT error.
+     *           Must be specified when
+     *           [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     *           is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *     @type int $dynamic_facetable_option
      *           If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic
      *           facet. Could only be DYNAMIC_FACETABLE_DISABLED if
@@ -182,7 +194,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           will not be searchable by text queries in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      *           there are no text values associated to numerical attributes.
-     *           Must be specified, otherwise throws INVALID_FORMAT error.
+     *           Must be specified, when
+     *           [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     *           is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *     @type int $exact_searchable_option
      *           If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable.
      *           This property only applies to textual custom attributes and requires
@@ -193,6 +207,8 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *           If RETRIEVABLE_ENABLED, attribute values are retrievable in the search
      *           results. If unset, the server behavior defaults to
      *           [RETRIEVABLE_DISABLED][google.cloud.retail.v2.CatalogAttribute.RetrievableOption.RETRIEVABLE_DISABLED].
+     *     @type \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig $facet_config
+     *           Contains facet options.
      * }
      */
     public function __construct($data = NULL) {
@@ -342,7 +358,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      * are indexed so that it can be filtered, faceted, or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
-     * Must be specified, otherwise throws INVALID_FORMAT error.
+     * Must be specified when
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      * @return int
@@ -358,7 +376,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values
      * are indexed so that it can be filtered, faceted, or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
-     * Must be specified, otherwise throws INVALID_FORMAT error.
+     * Must be specified when
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      * @param int $var
@@ -416,7 +436,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * will not be searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      * there are no text values associated to numerical attributes.
-     * Must be specified, otherwise throws INVALID_FORMAT error.
+     * Must be specified, when
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      * @return int
@@ -436,7 +458,9 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      * will not be searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search], as
      * there are no text values associated to numerical attributes.
-     * Must be specified, otherwise throws INVALID_FORMAT error.
+     * Must be specified, when
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      * @param int $var
@@ -510,6 +534,42 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\CatalogAttribute\RetrievableOption::class);
         $this->retrievable_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains facet options.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.FacetConfig facet_config = 13;</code>
+     * @return \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig|null
+     */
+    public function getFacetConfig()
+    {
+        return $this->facet_config;
+    }
+
+    public function hasFacetConfig()
+    {
+        return isset($this->facet_config);
+    }
+
+    public function clearFacetConfig()
+    {
+        unset($this->facet_config);
+    }
+
+    /**
+     * Contains facet options.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.FacetConfig facet_config = 13;</code>
+     * @param \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig $var
+     * @return $this
+     */
+    public function setFacetConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig::class);
+        $this->facet_config = $var;
 
         return $this;
     }

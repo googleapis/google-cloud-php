@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -52,6 +53,8 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\BatchWriteResponse;
+use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\Duration;
 use Google\Rpc\Code;
@@ -219,6 +222,11 @@ class Database
     private $defaultQueryOptions;
 
     /**
+     * @var bool
+     */
+    private $returnInt64AsObject;
+
+    /**
      * Create an object representing a Database.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
@@ -288,6 +296,7 @@ class Database
         );
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
+        $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
     /**
@@ -1804,6 +1813,88 @@ class Database
             unset($options['singleUse']);
             return $this->operation->execute($session, $sql, $options);
         } finally {
+            $session->setExpiration();
+        }
+    }
+
+    /**
+     * Create a new {@see \Google\Cloud\Spanner\MutationGroup} object.
+     *
+     * @return MutationGroup
+     */
+    public function mutationGroup()
+    {
+        return new MutationGroup($this->returnInt64AsObject);
+    }
+
+    /**
+     * Batches the supplied mutation groups in a collection of efficient
+     * transactions. All mutations in a group are committed atomically. However,
+     * mutations across groups can be committed non-atomically in an unspecified
+     * order and thus, they must be independent of each other. Partial failure is
+     * possible, i.e., some groups may have been committed successfully, while
+     * some may have failed. The results of individual batches are streamed into
+     * the response as the batches are applied.
+     *
+     * BatchWrite requests are not replay protected, meaning that each mutation
+     * group may be applied more than once. Replays of non-idempotent mutations
+     * may have undesirable effects. For example, replays of an insert mutation
+     * may produce an already exists error or if you use generated or commit
+     * timestamp-based keys, it may result in additional rows being added to the
+     * mutation's table. We recommend structuring your mutation groups to be
+     * idempotent to avoid this issue.
+     *
+     * Sample code:
+     * ```
+     * ```
+     *
+     * @param array<MutationGroup> $mutationGroups Required. The groups of mutations to be applied.
+     * @param array           $options   {
+     *     Optional.
+     *
+     *     @type array $requestOptions
+     *           Common options for this request.
+     *     @type bool $excludeTxnFromChangeStreams
+     *           Optional. When `exclude_txn_from_change_streams` is set to `true`:
+     *           * Mutations from all transactions in this batch write operation will not
+     *           be recorded in change streams with DDL option `allow_txn_exclusion=true`
+     *           that are tracking columns modified by these transactions.
+     *           * Mutations from all transactions in this batch write operation will be
+     *           recorded in change streams with DDL option `allow_txn_exclusion=false or
+     *           not set` that are tracking columns modified by these transactions.
+     *
+     *           When `exclude_txn_from_change_streams` is set to `false` or not set,
+     *           mutations from all transactions in this batch write operation will be
+     *           recorded in all change streams that are tracking columns modified by these
+     *           transactions.
+     * }
+     *
+     * @retur \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchWrite(array $mutationGroups, array $options = [])
+    {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+        // Prevent nested transactions.
+        $this->isRunningTransaction = true;
+        $session = $this->selectSession(
+            SessionPoolInterface::CONTEXT_READWRITE,
+            $this->pluck('sessionOptions', $options, false) ?: []
+        );
+
+        $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
+
+        try {
+            return $this->connection->batchWrite([
+                'database' => $this->name(),
+                'session' => $session->name(),
+                'mutationGroups' => $mutationGroups
+            ] + $options);
+        } finally {
+            $this->isRunningTransaction = false;
             $session->setExpiration();
         }
     }

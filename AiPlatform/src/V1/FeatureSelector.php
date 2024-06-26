@@ -20,7 +20,7 @@ class FeatureSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IdMatcher id_matcher = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id_matcher = null;
+    protected $id_matcher = null;
 
     /**
      * Constructor.

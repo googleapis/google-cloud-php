@@ -21,14 +21,14 @@ class ExportDataOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenericOperationMetadata generic_metadata = 1;</code>
      */
-    private $generic_metadata = null;
+    protected $generic_metadata = null;
     /**
      * A Google Cloud Storage directory which path ends with '/'. The exported
      * data is stored in the directory.
      *
      * Generated from protobuf field <code>string gcs_output_directory = 2;</code>
      */
-    private $gcs_output_directory = '';
+    protected $gcs_output_directory = '';
 
     /**
      * Constructor.

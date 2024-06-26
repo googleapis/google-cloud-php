@@ -59,6 +59,4 @@ class RepositoryBase
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RepositoryBase::class, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig_AptRepository_PublicRepository_RepositoryBase::class);
 

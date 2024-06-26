@@ -846,6 +846,45 @@ class DatabaseTest extends TestCase
         });
     }
 
+    public function testBatchWrite()
+    {
+        $expectedMutationGroup = ['mutations' => [
+            [
+                Operation::OP_INSERT_OR_UPDATE => [
+                    'table' => 'foo',
+                    'columns' => ['bar1', 'bar2'],
+                    'values' => [1, 2]
+                ]
+            ]
+        ]];
+        $this->connection->batchWrite(Argument::allOf(
+            Argument::withEntry(
+                'database',
+                DatabaseAdminClient::databaseName(
+                    self::PROJECT,
+                    self::INSTANCE,
+                    self::DATABASE
+                )
+            ),
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('mutationGroups', [$expectedMutationGroup])
+        ))->shouldBeCalled()->willReturn(['foo result']);
+
+
+        $mutationGroups = [
+            ($this->database->mutationGroup(false))
+                ->insertOrUpdate(
+                    'foo',
+                    ['bar1' => 1, 'bar2' => 2]
+                )
+        ];
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $result = $this->database->batchWrite($mutationGroups);
+        $this->assertIsArray($result);
+    }
+
     public function testRunTransaction()
     {
         $this->stubCommit(false);

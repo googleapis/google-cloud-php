@@ -92,6 +92,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Notebooks\V1\Schedule_State::class);
 

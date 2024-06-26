@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START metastore_v1alpha_generated_DataprocMetastoreFederation_GetFederation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreFederationClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreFederationClient;
 use Google\Cloud\Metastore\V1alpha\Federation;
+use Google\Cloud\Metastore\V1alpha\GetFederationRequest;
 
 /**
  * Gets the details of a single federation.
@@ -41,10 +42,14 @@ function get_federation_sample(string $formattedName): void
     // Create a client.
     $dataprocMetastoreFederationClient = new DataprocMetastoreFederationClient();
 
+    // Prepare the request message.
+    $request = (new GetFederationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Federation $response */
-        $response = $dataprocMetastoreFederationClient->getFederation($formattedName);
+        $response = $dataprocMetastoreFederationClient->getFederation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

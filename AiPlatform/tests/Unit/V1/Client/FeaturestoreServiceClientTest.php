@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AIPlatform\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest;
@@ -73,6 +72,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -96,7 +96,9 @@ class FeaturestoreServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FeaturestoreServiceClient */
@@ -140,9 +142,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $requests = [];
-        $request = (new BatchCreateFeaturesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateFeaturesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateFeatures($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -200,19 +200,20 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $requests = [];
-        $request = (new BatchCreateFeaturesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateFeaturesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateFeatures($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -331,12 +332,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedFeaturestore = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
@@ -408,9 +412,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
         $entityTypeId = 'entityTypeId1181734884';
-        $request = (new CreateEntityTypeRequest())
-            ->setParent($formattedParent)
-            ->setEntityTypeId($entityTypeId);
+        $request = (new CreateEntityTypeRequest())->setParent($formattedParent)->setEntityTypeId($entityTypeId);
         $response = $gapicClient->createEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -468,19 +470,20 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
         $entityTypeId = 'entityTypeId1181734884';
-        $request = (new CreateEntityTypeRequest())
-            ->setParent($formattedParent)
-            ->setEntityTypeId($entityTypeId);
+        $request = (new CreateEntityTypeRequest())->setParent($formattedParent)->setEntityTypeId($entityTypeId);
         $response = $gapicClient->createEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -611,12 +614,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
@@ -750,12 +756,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -818,8 +827,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEntityTypeRequest())->setName($formattedName);
         $response = $gapicClient->deleteEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -875,17 +883,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEntityTypeRequest())->setName($formattedName);
         $response = $gapicClient->deleteEntityType($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -938,9 +948,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new DeleteFeatureRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->featureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]',
+            '[FEATURE]'
+        );
+        $request = (new DeleteFeatureRequest())->setName($formattedName);
         $response = $gapicClient->deleteFeature($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -996,17 +1011,25 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new DeleteFeatureRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->featureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]',
+            '[FEATURE]'
+        );
+        $request = (new DeleteFeatureRequest())->setName($formattedName);
         $response = $gapicClient->deleteFeature($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1059,9 +1082,13 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteFeatureValuesRequest())
-            ->setEntityType($formattedEntityType);
+        $formattedEntityType = $gapicClient->entityTypeName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]'
+        );
+        $request = (new DeleteFeatureValuesRequest())->setEntityType($formattedEntityType);
         $response = $gapicClient->deleteFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1117,17 +1144,24 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new DeleteFeatureValuesRequest())
-            ->setEntityType($formattedEntityType);
+        $formattedEntityType = $gapicClient->entityTypeName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]'
+        );
+        $request = (new DeleteFeatureValuesRequest())->setEntityType($formattedEntityType);
         $response = $gapicClient->deleteFeatureValues($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1181,8 +1215,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new DeleteFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFeaturestoreRequest())->setName($formattedName);
         $response = $gapicClient->deleteFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1238,17 +1271,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new DeleteFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFeaturestoreRequest())->setName($formattedName);
         $response = $gapicClient->deleteFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1301,7 +1336,12 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]'
+        );
         $destination = new FeatureValueDestination();
         $featureSelector = new FeatureSelector();
         $featureSelectorIdMatcher = new IdMatcher();
@@ -1371,15 +1411,23 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]'
+        );
         $destination = new FeatureValueDestination();
         $featureSelector = new FeatureSelector();
         $featureSelectorIdMatcher = new IdMatcher();
@@ -1433,8 +1481,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new GetEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetEntityTypeRequest())->setName($formattedName);
         $response = $gapicClient->getEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1458,17 +1505,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new GetEntityTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetEntityTypeRequest())->setName($formattedName);
         try {
             $gapicClient->getEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1506,9 +1555,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $expectedResponse->setPointOfContact($pointOfContact);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new GetFeatureRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->featureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]',
+            '[FEATURE]'
+        );
+        $request = (new GetFeatureRequest())->setName($formattedName);
         $response = $gapicClient->getFeature($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1532,17 +1586,25 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
-        $request = (new GetFeatureRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->featureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]',
+            '[FEATURE]'
+        );
+        $request = (new GetFeatureRequest())->setName($formattedName);
         try {
             $gapicClient->getFeature($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1575,8 +1637,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new GetFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = (new GetFeaturestoreRequest())->setName($formattedName);
         $response = $gapicClient->getFeaturestore($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1600,17 +1661,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new GetFeaturestoreRequest())
-            ->setName($formattedName);
+        $request = (new GetFeaturestoreRequest())->setName($formattedName);
         try {
             $gapicClient->getFeaturestore($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1662,7 +1725,12 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]'
+        );
         $featureSpecs = [];
         $request = (new ImportFeatureValuesRequest())
             ->setEntityType($formattedEntityType)
@@ -1724,15 +1792,23 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[FEATURESTORE]',
+            '[ENTITY_TYPE]'
+        );
         $featureSpecs = [];
         $request = (new ImportFeatureValuesRequest())
             ->setEntityType($formattedEntityType)
@@ -1770,17 +1846,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $entityTypesElement = new EntityType();
-        $entityTypes = [
-            $entityTypesElement,
-        ];
+        $entityTypes = [$entityTypesElement];
         $expectedResponse = new ListEntityTypesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntityTypes($entityTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new ListEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntityTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->listEntityTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1807,17 +1880,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->featurestoreName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]');
-        $request = (new ListEntityTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntityTypesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEntityTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1842,17 +1917,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $featuresElement = new Feature();
-        $features = [
-            $featuresElement,
-        ];
+        $features = [$featuresElement];
         $expectedResponse = new ListFeaturesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatures($features);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new ListFeaturesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFeaturesRequest())->setParent($formattedParent);
         $response = $gapicClient->listFeatures($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1879,17 +1951,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
-        $request = (new ListFeaturesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFeaturesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFeatures($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1914,17 +1988,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $featurestoresElement = new Featurestore();
-        $featurestores = [
-            $featurestoresElement,
-        ];
+        $featurestores = [$featurestoresElement];
         $expectedResponse = new ListFeaturestoresResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeaturestores($featurestores);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFeaturestoresRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFeaturestoresRequest())->setParent($formattedParent);
         $response = $gapicClient->listFeaturestores($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1951,17 +2022,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFeaturestoresRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFeaturestoresRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFeaturestores($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1986,17 +2059,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $featuresElement = new Feature();
-        $features = [
-            $featuresElement,
-        ];
+        $features = [$featuresElement];
         $expectedResponse = new SearchFeaturesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFeatures($features);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchFeaturesRequest())
-            ->setLocation($formattedLocation);
+        $request = (new SearchFeaturesRequest())->setLocation($formattedLocation);
         $response = $gapicClient->searchFeatures($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2023,17 +2093,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchFeaturesRequest())
-            ->setLocation($formattedLocation);
+        $request = (new SearchFeaturesRequest())->setLocation($formattedLocation);
         try {
             $gapicClient->searchFeatures($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2068,8 +2140,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $entityType = new EntityType();
-        $request = (new UpdateEntityTypeRequest())
-            ->setEntityType($entityType);
+        $request = (new UpdateEntityTypeRequest())->setEntityType($entityType);
         $response = $gapicClient->updateEntityType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2093,17 +2164,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $entityType = new EntityType();
-        $request = (new UpdateEntityTypeRequest())
-            ->setEntityType($entityType);
+        $request = (new UpdateEntityTypeRequest())->setEntityType($entityType);
         try {
             $gapicClient->updateEntityType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2142,8 +2215,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $feature = new Feature();
-        $request = (new UpdateFeatureRequest())
-            ->setFeature($feature);
+        $request = (new UpdateFeatureRequest())->setFeature($feature);
         $response = $gapicClient->updateFeature($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2167,17 +2239,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $feature = new Feature();
-        $request = (new UpdateFeatureRequest())
-            ->setFeature($feature);
+        $request = (new UpdateFeatureRequest())->setFeature($feature);
         try {
             $gapicClient->updateFeature($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2228,8 +2302,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $featurestore = new Featurestore();
-        $request = (new UpdateFeaturestoreRequest())
-            ->setFeaturestore($featurestore);
+        $request = (new UpdateFeaturestoreRequest())->setFeaturestore($featurestore);
         $response = $gapicClient->updateFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2285,17 +2358,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $featurestore = new Featurestore();
-        $request = (new UpdateFeaturestoreRequest())
-            ->setFeaturestore($featurestore);
+        $request = (new UpdateFeaturestoreRequest())->setFeaturestore($featurestore);
         $response = $gapicClient->updateFeaturestore($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2357,12 +2432,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2389,9 +2467,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2421,12 +2497,15 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2459,8 +2538,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2484,17 +2562,19 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2526,9 +2606,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2554,19 +2632,20 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2594,9 +2673,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2622,19 +2699,20 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2680,9 +2758,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $requests = [];
-        $request = (new BatchCreateFeaturesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateFeaturesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateFeaturesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

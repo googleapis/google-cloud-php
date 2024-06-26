@@ -22,13 +22,13 @@ class CreateCustomConstraintRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Custom constraint to create.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.CustomConstraint custom_constraint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_constraint = null;
+    protected $custom_constraint = null;
 
     /**
      * @param string                                      $parent           Required. Must be in the following form:

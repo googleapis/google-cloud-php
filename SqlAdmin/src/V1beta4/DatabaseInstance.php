@@ -227,8 +227,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $scheduled_maintenance = null;
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      */
@@ -303,10 +303,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $write_endpoint = null;
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica.
+     * A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * has regional failure.
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.ReplicationCluster replication_cluster = 54;</code>
      */
@@ -413,8 +413,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlScheduledMaintenance $scheduled_maintenance
      *           The start time of any upcoming scheduled maintenance for this instance.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
-     *           The status indicating if instance satisfiesPzs.
-     *           Reserved for future use.
+     *           This status indicates whether the instance satisfies PZS.
+     *           The status is reserved for future use.
      *     @type string $database_installed_version
      *           Output only. Stores the current database version running on the instance
      *           including minor version such as `MYSQL_8_0_18`.
@@ -444,10 +444,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $write_endpoint
      *           Output only. The dns name of the primary instance in a replication group.
      *     @type \Google\Cloud\Sql\V1beta4\ReplicationCluster $replication_cluster
-     *           The pair of a primary instance and disaster recovery (DR) replica.
+     *           A primary instance and disaster recovery (DR) replica pair.
      *           A DR replica is a cross-region replica that you designate
      *           for failover in the event that the primary instance
-     *           has regional failure.
+     *           experiences regional failure. Only applicable to MySQL.
      *     @type \Google\Cloud\Sql\V1beta4\GeminiInstanceConfig $gemini_config
      *           Gemini instance configuration.
      * }
@@ -1476,8 +1476,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -1500,8 +1500,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getSatisfiesPzs()</code>
 
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return bool|null
@@ -1512,8 +1512,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -1530,8 +1530,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @param bool|null $var
@@ -1895,10 +1895,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica.
+     * A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * has regional failure.
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.ReplicationCluster replication_cluster = 54;</code>
      * @return \Google\Cloud\Sql\V1beta4\ReplicationCluster|null
@@ -1919,10 +1919,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The pair of a primary instance and disaster recovery (DR) replica.
+     * A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * has regional failure.
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.ReplicationCluster replication_cluster = 54;</code>
      * @param \Google\Cloud\Sql\V1beta4\ReplicationCluster $var

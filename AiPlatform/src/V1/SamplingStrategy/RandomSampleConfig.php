@@ -20,7 +20,7 @@ class RandomSampleConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double sample_rate = 1;</code>
      */
-    private $sample_rate = 0.0;
+    protected $sample_rate = 0.0;
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Query string that is a conjunction of field-restricted queries and/or
      * field-restricted filters.  Field-restricted queries and filters can be
@@ -76,7 +76,7 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 3;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The maximum number of Features to return. The service may return fewer
      * than this value. If unspecified, at most 100 Features will be returned.
@@ -85,7 +85,7 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous
      * [FeaturestoreService.SearchFeatures][google.cloud.aiplatform.v1.FeaturestoreService.SearchFeatures]
@@ -96,7 +96,7 @@ class SearchFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $location Required. The resource name of the Location to search Features.

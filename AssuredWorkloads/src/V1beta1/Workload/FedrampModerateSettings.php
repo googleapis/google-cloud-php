@@ -21,7 +21,7 @@ class FedrampModerateSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 1 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $kms_settings = null;
+    protected $kms_settings = null;
 
     /**
      * Constructor.
@@ -76,6 +76,4 @@ class FedrampModerateSettings extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FedrampModerateSettings::class, \Google\Cloud\AssuredWorkloads\V1beta1\Workload_FedrampModerateSettings::class);
 

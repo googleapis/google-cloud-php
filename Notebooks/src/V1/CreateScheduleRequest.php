@@ -21,19 +21,19 @@ class CreateScheduleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User-defined unique ID of this schedule.
      *
      * Generated from protobuf field <code>string schedule_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schedule_id = '';
+    protected $schedule_id = '';
     /**
      * Required. The schedule to be created.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Schedule schedule = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
 
     /**
      * @param string                              $parent     Required. Format:

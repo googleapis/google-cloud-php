@@ -23,7 +23,7 @@ class DedicatedServingEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_endpoint_domain_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $public_endpoint_domain_name = '';
+    protected $public_endpoint_domain_name = '';
 
     /**
      * Constructor.

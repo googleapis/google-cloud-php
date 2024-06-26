@@ -22,7 +22,7 @@ class ScanRunWarningTrace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1.ScanRunWarningTrace.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
 
     /**
      * Constructor.

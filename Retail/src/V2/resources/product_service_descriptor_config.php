@@ -80,6 +80,25 @@ return [
                     ],
                 ],
             ],
+            'PurgeProducts' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Retail\V2\PurgeProductsResponse',
+                    'metadataReturnType' => '\Google\Cloud\Retail\V2\PurgeProductsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RemoveFulfillmentPlaces' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Retail\V2\RemoveFulfillmentPlacesResponse',

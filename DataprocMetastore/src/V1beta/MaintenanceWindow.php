@@ -21,13 +21,13 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour_of_day = 1;</code>
      */
-    private $hour_of_day = null;
+    protected $hour_of_day = null;
     /**
      * The day of week, when the window starts.
      *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2;</code>
      */
-    private $day_of_week = 0;
+    protected $day_of_week = 0;
 
     /**
      * Constructor.
@@ -75,7 +75,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour_of_day = 1;</code>
      * @return int|null
      */
-    public function getHourOfDayValue()
+    public function getHourOfDayUnwrapped()
     {
         return $this->readWrapperValue("hour_of_day");
     }
@@ -104,7 +104,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setHourOfDayValue($var)
+    public function setHourOfDayUnwrapped($var)
     {
         $this->writeWrapperValue("hour_of_day", $var);
         return $this;}

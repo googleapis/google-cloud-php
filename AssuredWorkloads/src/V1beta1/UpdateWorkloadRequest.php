@@ -23,13 +23,31 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload workload = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workload = null;
+    protected $workload = null;
     /**
      * Required. The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
+
+    /**
+     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload $workload   Required. The workload to update.
+     *                                                                    The workload's `name` field is used to identify the workload to be updated.
+     *                                                                    Format:
+     *                                                                    organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
+     * @param \Google\Protobuf\FieldMask                      $updateMask Required. The list of fields to be updated.
+     *
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\UpdateWorkloadRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\AssuredWorkloads\V1beta1\Workload $workload, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setWorkload($workload)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

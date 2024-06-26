@@ -21,7 +21,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each
      * element of `Job.config.inputs` or `JobTemplate.config.inputs` when using
@@ -32,7 +32,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
     /**
      * Input only. Specify the `output_uri` to populate an empty
      * `Job.config.output.uri` or `JobTemplate.config.output.uri` when using
@@ -42,31 +42,31 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $output_uri = '';
+    protected $output_uri = '';
     /**
      * Output only. The current state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.ProcessingState state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time the job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the transcoding started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time the transcoding finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Job time to live value in days, which will be effective after job
      * completion. Job should be deleted automatically after the given TTL. Enter
@@ -74,7 +74,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 ttl_after_completion_days = 15;</code>
      */
-    private $ttl_after_completion_days = 0;
+    protected $ttl_after_completion_days = 0;
     /**
      * The labels associated with this job. You can use these to organize and
      * group your jobs.
@@ -88,14 +88,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The processing mode of the job.
      * The default is `PROCESSING_MODE_INTERACTIVE`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.ProcessingMode mode = 20;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * The processing priority of a batch job.
      * This field can only be set for batch mode jobs. The default value is 0.
@@ -104,14 +104,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 batch_mode_priority = 21;</code>
      */
-    private $batch_mode_priority = 0;
+    protected $batch_mode_priority = 0;
     /**
      * Optional. The optimization strategy of the job. The default is
      * `AUTODETECT`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Job.OptimizationStrategy optimization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $optimization = 0;
+    protected $optimization = 0;
     protected $job_config;
 
     /**

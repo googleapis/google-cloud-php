@@ -21,14 +21,14 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string workspace = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workspace = '';
+    protected $workspace = '';
     /**
      * Required. SecretManager resource containing the webhook secret used to
      * verify webhook events, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $webhook_secret_secret_version = '';
+    protected $webhook_secret_secret_version = '';
     /**
      * Required. An access token with the `repository` access. It can be either a
      * workspace, project or repository access token. It's recommended to use a
@@ -36,7 +36,7 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential read_authorizer_credential = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $read_authorizer_credential = null;
+    protected $read_authorizer_credential = null;
     /**
      * Required. An access token with the `webhook`, `repository`,
      * `repository:admin` and `pullrequest` scope access. It can be either a
@@ -45,7 +45,7 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential authorizer_credential = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorizer_credential = null;
+    protected $authorizer_credential = null;
 
     /**
      * Constructor.

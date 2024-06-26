@@ -56,6 +56,7 @@ class Operation
     use ApiHelperTrait;
     use ArrayTrait;
     use RequestTrait;
+    use MutationTrait;
     use TimeTrait;
     use ValidateTrait;
 
@@ -117,43 +118,6 @@ class Operation
         $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?: true;
         $this->defaultQueryOptions =
             $this->pluck('defaultQueryOptions', $config, false) ?: [];
-    }
-
-    /**
-     * Create a formatted mutation.
-     *
-     * @param string $operation The operation type.
-     * @param string $table The table name.
-     * @param array $mutation The mutation data, represented as a set of
-     *        key/value pairs.
-     * @return array
-     */
-    public function mutation($operation, $table, $mutation)
-    {
-        return [
-            $operation => [
-                'table' => $table,
-                'columns' => array_keys($mutation),
-                'values' => $this->mapper->encodeValuesAsSimpleType(array_values($mutation))
-            ]
-        ];
-    }
-
-    /**
-     * Create a formatted delete mutation.
-     *
-     * @param string $table The table name.
-     * @param KeySet $keySet The keys to delete.
-     * @return array
-     */
-    public function deleteMutation($table, KeySet $keySet)
-    {
-        return [
-            self::OP_DELETE => [
-                'table' => $table,
-                'keySet' => $this->flattenKeySet($keySet),
-            ]
-        ];
     }
 
     /**
@@ -610,7 +574,8 @@ class Operation
             $res['id'],
             $options['isRetry'],
             $options['tag'],
-            $options['transactionOptions']
+            $options['transactionOptions'],
+            $this->mapper
         );
     }
 

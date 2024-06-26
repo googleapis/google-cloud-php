@@ -23,13 +23,13 @@ class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The MetadataSchema to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetadataSchema metadata_schema = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_schema = null;
+    protected $metadata_schema = null;
     /**
      * The {metadata_schema} portion of the resource name with the format:
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/metadataSchemas/{metadataschema}`
@@ -42,7 +42,7 @@ class CreateMetadataSchemaRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_schema_id = 3;</code>
      */
-    private $metadata_schema_id = '';
+    protected $metadata_schema_id = '';
 
     /**
      * @param string                                     $parent           Required. The resource name of the MetadataStore where the MetadataSchema

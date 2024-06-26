@@ -21,13 +21,13 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A descriptive comment.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Controls the evaluation of a Google-maintained global admission
      * policy for common system-level images. Images not covered by the global
@@ -36,7 +36,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Policy.GlobalPolicyEvaluationMode global_policy_evaluation_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $global_policy_evaluation_mode = 0;
+    protected $global_policy_evaluation_mode = 0;
     /**
      * Optional. Admission policy allowlisting. A matching admission request will
      * always be permitted. This feature is typically used to exclude Google or
@@ -87,13 +87,13 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.AdmissionRule default_admission_rule = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $default_admission_rule = null;
+    protected $default_admission_rule = null;
     /**
      * Output only. Time when the policy was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

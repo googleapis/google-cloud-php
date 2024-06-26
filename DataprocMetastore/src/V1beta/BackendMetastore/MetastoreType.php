@@ -66,6 +66,4 @@ class MetastoreType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetastoreType::class, \Google\Cloud\Metastore\V1beta\BackendMetastore_MetastoreType::class);
 

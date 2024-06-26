@@ -21,7 +21,7 @@ class Rollback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_phase = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $destination_phase = '';
+    protected $destination_phase = '';
 
     /**
      * Constructor.

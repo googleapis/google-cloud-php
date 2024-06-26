@@ -28,7 +28,7 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Optional. Required if image_uri isn't set. A map of resource_pool_id to
      * prebuild Ray image if user need to use different images for different
@@ -51,13 +51,13 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string head_node_resource_pool_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $head_node_resource_pool_id = '';
+    protected $head_node_resource_pool_id = '';
     /**
      * Optional. Ray metrics configurations.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RayMetricSpec ray_metric_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ray_metric_spec = null;
+    protected $ray_metric_spec = null;
 
     /**
      * Constructor.

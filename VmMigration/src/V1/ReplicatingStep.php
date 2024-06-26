@@ -20,27 +20,27 @@ class ReplicatingStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 total_bytes = 1;</code>
      */
-    private $total_bytes = 0;
+    protected $total_bytes = 0;
     /**
      * Replicated bytes in the step.
      *
      * Generated from protobuf field <code>int64 replicated_bytes = 2;</code>
      */
-    private $replicated_bytes = 0;
+    protected $replicated_bytes = 0;
     /**
      * The source disks replication rate for the last 2 minutes in bytes per
      * second.
      *
      * Generated from protobuf field <code>int64 last_two_minutes_average_bytes_per_second = 3;</code>
      */
-    private $last_two_minutes_average_bytes_per_second = 0;
+    protected $last_two_minutes_average_bytes_per_second = 0;
     /**
      * The source disks replication rate for the last 30 minutes in bytes per
      * second.
      *
      * Generated from protobuf field <code>int64 last_thirty_minutes_average_bytes_per_second = 4;</code>
      */
-    private $last_thirty_minutes_average_bytes_per_second = 0;
+    protected $last_thirty_minutes_average_bytes_per_second = 0;
 
     /**
      * Constructor.

@@ -22,43 +22,43 @@ class AutomationRunEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * The name of the `AutomationRun`.
      *
      * Generated from protobuf field <code>string automation_run = 2;</code>
      */
-    private $automation_run = '';
+    protected $automation_run = '';
     /**
      * Unique identifier of the `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>string pipeline_uid = 3;</code>
      */
-    private $pipeline_uid = '';
+    protected $pipeline_uid = '';
     /**
      * Identifier of the `Automation`.
      *
      * Generated from protobuf field <code>string automation_id = 4;</code>
      */
-    private $automation_id = '';
+    protected $automation_id = '';
     /**
      * Identifier of the `Automation` rule.
      *
      * Generated from protobuf field <code>string rule_id = 5;</code>
      */
-    private $rule_id = '';
+    protected $rule_id = '';
     /**
      * ID of the `Target` to which the `AutomationRun` is created.
      *
      * Generated from protobuf field <code>string destination_target_id = 6;</code>
      */
-    private $destination_target_id = '';
+    protected $destination_target_id = '';
     /**
      * Type of this notification, e.g. for a Pub/Sub failure.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 7;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

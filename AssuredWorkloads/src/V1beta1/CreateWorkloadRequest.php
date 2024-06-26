@@ -21,13 +21,13 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Assured Workload to create
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload workload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workload = null;
+    protected $workload = null;
     /**
      * Optional. A identifier associated with the workload and underlying projects which
      * allows for the break down of billing costs for a workload. The value
@@ -36,7 +36,24 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $external_id = '';
+    protected $external_id = '';
+
+    /**
+     * @param string                                          $parent   Required. The resource name of the new Workload's parent.
+     *                                                                  Must be of the form `organizations/{org_id}/locations/{location_id}`. Please see
+     *                                                                  {@see AssuredWorkloadsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload $workload Required. Assured Workload to create
+     *
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\CreateWorkloadRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\AssuredWorkloads\V1beta1\Workload $workload): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setWorkload($workload);
+    }
 
     /**
      * Constructor.

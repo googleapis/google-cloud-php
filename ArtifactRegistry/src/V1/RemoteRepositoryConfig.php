@@ -20,13 +20,13 @@ class RemoteRepositoryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. The credentials used to access the remote repository.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.UpstreamCredentials upstream_credentials = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $upstream_credentials = null;
+    protected $upstream_credentials = null;
     protected $remote_source;
 
     /**

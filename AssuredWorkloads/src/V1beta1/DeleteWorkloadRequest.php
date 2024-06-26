@@ -22,14 +22,30 @@ class DeleteWorkloadRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The etag of the workload.
      * If this is provided, it must match the server's etag.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
+
+    /**
+     * @param string $name Required. The `name` field is used to identify the workload.
+     *                     Format:
+     *                     organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
+     *                     Please see {@see AssuredWorkloadsServiceClient::workloadName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\DeleteWorkloadRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

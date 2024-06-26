@@ -78,6 +78,4 @@ class RemediationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RemediationType::class, \Google\Cloud\AssuredWorkloads\V1\Violation_Remediation_RemediationType::class);
 

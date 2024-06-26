@@ -21,7 +21,7 @@ class ReadFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReadFeatureValuesResponse.Header header = 1;</code>
      */
-    private $header = null;
+    protected $header = null;
     /**
      * Entity view with Feature values. This may be the entity in the
      * Featurestore if values for all Features were requested, or a projection
@@ -30,7 +30,7 @@ class ReadFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView entity_view = 2;</code>
      */
-    private $entity_view = null;
+    protected $entity_view = null;
 
     /**
      * Constructor.

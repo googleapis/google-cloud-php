@@ -24,13 +24,13 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Overlay.NormalizedCoordinate xy = 1;</code>
      */
-    private $xy = null;
+    protected $xy = null;
     /**
      * The time to start displaying the overlay object, in seconds. Default: 0
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time_offset = 2;</code>
      */
-    private $start_time_offset = null;
+    protected $start_time_offset = null;
 
     /**
      * Constructor.

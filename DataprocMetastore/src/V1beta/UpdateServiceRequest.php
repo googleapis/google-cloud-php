@@ -24,7 +24,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The metastore service to update. The server only merges fields
      * in the service if they are specified in `update_mask`.
@@ -33,7 +33,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1beta.Service service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -48,7 +48,29 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
+
+    /**
+     * @param \Google\Cloud\Metastore\V1beta\Service $service    Required. The metastore service to update. The server only merges fields
+     *                                                           in the service if they are specified in `update_mask`.
+     *
+     *                                                           The metastore service's `name` field is used to identify the metastore
+     *                                                           service to be updated.
+     * @param \Google\Protobuf\FieldMask             $updateMask Required. A field mask used to specify the fields to be overwritten in the
+     *                                                           metastore service resource by the update.
+     *                                                           Fields specified in the `update_mask` are relative to the resource (not
+     *                                                           to the full request). A field is overwritten if it is in the mask.
+     *
+     * @return \Google\Cloud\Metastore\V1beta\UpdateServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Metastore\V1beta\Service $service, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setService($service)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

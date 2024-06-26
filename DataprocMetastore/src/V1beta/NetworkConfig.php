@@ -29,7 +29,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool custom_routes_enabled = 2;</code>
      */
-    private $custom_routes_enabled = false;
+    protected $custom_routes_enabled = false;
 
     /**
      * Constructor.

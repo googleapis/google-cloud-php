@@ -22,7 +22,7 @@ class ElementaryStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 4;</code>
      */
-    private $key = '';
+    protected $key = '';
     protected $elementary_stream;
 
     /**

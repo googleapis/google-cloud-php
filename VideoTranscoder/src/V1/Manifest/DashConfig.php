@@ -21,7 +21,7 @@ class DashConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Manifest.DashConfig.SegmentReferenceScheme segment_reference_scheme = 1;</code>
      */
-    private $segment_reference_scheme = 0;
+    protected $segment_reference_scheme = 0;
 
     /**
      * Constructor.

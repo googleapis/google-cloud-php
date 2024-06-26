@@ -21,14 +21,14 @@ class TensorboardTensor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Optional. Version number of TensorProto used to serialize
      * [value][google.cloud.aiplatform.v1.TensorboardTensor.value].
      *
      * Generated from protobuf field <code>int32 version_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version_number = 0;
+    protected $version_number = 0;
 
     /**
      * Constructor.

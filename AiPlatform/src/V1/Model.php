@@ -20,7 +20,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Immutable. The version ID of the model.
      * A new version is committed when a new model version is uploaded or
@@ -29,7 +29,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_id = 28 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version_id = '';
+    protected $version_id = '';
     /**
      * User provided version aliases so that a model version can be referenced via
      * alias (i.e.
@@ -49,13 +49,13 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_create_time = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version_create_time = null;
+    protected $version_create_time = null;
     /**
      * Output only. Timestamp when this version was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_update_time = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $version_update_time = null;
+    protected $version_update_time = null;
     /**
      * Required. The display name of the Model.
      * The name can be up to 128 characters long and can consist of any UTF-8
@@ -63,19 +63,19 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description of the Model.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The description of this version.
      *
      * Generated from protobuf field <code>string version_description = 30;</code>
      */
-    private $version_description = '';
+    protected $version_description = '';
     /**
      * The schemata that describe formats of the Model's predictions and
      * explanations as given and returned via
@@ -85,7 +85,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PredictSchemata predict_schemata = 4;</code>
      */
-    private $predict_schemata = null;
+    protected $predict_schemata = null;
     /**
      * Immutable. Points to a YAML file stored on Google Cloud Storage describing
      * additional information about the Model, that is specific to it. Unset if
@@ -100,7 +100,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_schema_uri = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $metadata_schema_uri = '';
+    protected $metadata_schema_uri = '';
     /**
      * Immutable. An additional information about the Model; the schema of the
      * metadata can be found in
@@ -109,7 +109,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. The formats in which this Model may be exported. If empty,
      * this Model is not available for export.
@@ -123,14 +123,14 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string training_pipeline = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $training_pipeline = '';
+    protected $training_pipeline = '';
     /**
      * Optional. This field is populated if the model is produced by a pipeline
      * job.
      *
      * Generated from protobuf field <code>string pipeline_job = 47 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $pipeline_job = '';
+    protected $pipeline_job = '';
     /**
      * Input only. The specification of the container that is to be used when
      * deploying this Model. The specification is ingested upon
@@ -140,14 +140,14 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 9 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $container_spec = null;
+    protected $container_spec = null;
     /**
      * Immutable. The path to the directory containing the Model artifact and any
      * of its supporting files. Not required for AutoML Models.
      *
      * Generated from protobuf field <code>string artifact_uri = 26 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $artifact_uri = '';
+    protected $artifact_uri = '';
     /**
      * Output only. When this Model is deployed, its prediction resources are
      * described by the `prediction_resources` field of the
@@ -254,13 +254,13 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this Model was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The pointers to DeployedModels created from this Model. Note
      * that Model could have been deployed to Endpoints in different Locations.
@@ -300,14 +300,14 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationSpec explanation_spec = 23;</code>
      */
-    private $explanation_spec = null;
+    protected $explanation_spec = null;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 16;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The labels with user-defined metadata to organize your Models.
      * Label keys and values can be no longer than 64 characters
@@ -325,14 +325,14 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      */
-    private $data_stats = null;
+    protected $data_stats = null;
     /**
      * Customer-managed encryption key spec for a Model. If set, this
      * Model and all sub-resources of this Model will be secured by this key.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
     /**
      * Output only. Source of a model. It can either be automl training pipeline,
      * custom training pipeline, BigQuery ML, or saved and tuned from Genie or
@@ -340,14 +340,14 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_source_info = null;
+    protected $model_source_info = null;
     /**
      * Output only. If this Model is a copy of another Model, this contains info
      * about the original.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.OriginalModelInfo original_model_info = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $original_model_info = null;
+    protected $original_model_info = null;
     /**
      * Output only. The resource name of the Artifact that was created in
      * MetadataStore when creating the Model. The Artifact resource name pattern
@@ -356,14 +356,14 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metadata_artifact = '';
+    protected $metadata_artifact = '';
     /**
      * Optional. User input field to specify the base model source. Currently it
      * only supports specifing the Model Garden models and Genie models.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.BaseModelSource base_model_source = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $base_model_source = null;
+    protected $base_model_source = null;
 
     /**
      * Constructor.

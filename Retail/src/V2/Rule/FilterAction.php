@@ -10,12 +10,12 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * * Rule Condition:
- *   - No
- *   [Condition.query_terms][google.cloud.retail.v2.Condition.query_terms]
- *   provided is a global match.
- *   - 1 or more
- *   [Condition.query_terms][google.cloud.retail.v2.Condition.query_terms]
- *   provided are combined with OR operator.
+ *     - No
+ *     [Condition.query_terms][google.cloud.retail.v2.Condition.query_terms]
+ *     provided is a global match.
+ *     - 1 or more
+ *     [Condition.query_terms][google.cloud.retail.v2.Condition.query_terms]
+ *     provided are combined with OR operator.
  * * Action Input: The request query and filter that are applied to the
  * retrieved products, in addition to any filters already provided with the
  * SearchRequest. The AND operator is used to combine the query's existing
@@ -32,10 +32,9 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      * A filter to apply on the matching condition results. Supported features:
      * * [filter][google.cloud.retail.v2.Rule.FilterAction.filter] must be set.
      * * Filter syntax is identical to
-     * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. See
+     * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      * more
-     *   details at the Retail Search
-     *   [user guide](https://cloud.google.com/retail/search/docs/filter-and-order#filter).
+     *   information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
      * * To filter products with product ID "product_1" or "product_2", and
      * color
      *   "Red" or "Blue":<br>
@@ -57,10 +56,9 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      *           A filter to apply on the matching condition results. Supported features:
      *           * [filter][google.cloud.retail.v2.Rule.FilterAction.filter] must be set.
      *           * Filter syntax is identical to
-     *           [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. See
+     *           [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      *           more
-     *             details at the Retail Search
-     *             [user guide](https://cloud.google.com/retail/search/docs/filter-and-order#filter).
+     *             information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
      *           * To filter products with product ID "product_1" or "product_2", and
      *           color
      *             "Red" or "Blue":<br>
@@ -78,10 +76,9 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      * A filter to apply on the matching condition results. Supported features:
      * * [filter][google.cloud.retail.v2.Rule.FilterAction.filter] must be set.
      * * Filter syntax is identical to
-     * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. See
+     * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      * more
-     *   details at the Retail Search
-     *   [user guide](https://cloud.google.com/retail/search/docs/filter-and-order#filter).
+     *   information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
      * * To filter products with product ID "product_1" or "product_2", and
      * color
      *   "Red" or "Blue":<br>
@@ -101,10 +98,9 @@ class FilterAction extends \Google\Protobuf\Internal\Message
      * A filter to apply on the matching condition results. Supported features:
      * * [filter][google.cloud.retail.v2.Rule.FilterAction.filter] must be set.
      * * Filter syntax is identical to
-     * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. See
+     * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter]. For
      * more
-     *   details at the Retail Search
-     *   [user guide](https://cloud.google.com/retail/search/docs/filter-and-order#filter).
+     *   information, see [Filter](https://cloud.google.com/retail/docs/filter-and-order#filter).
      * * To filter products with product ID "product_1" or "product_2", and
      * color
      *   "Red" or "Blue":<br>

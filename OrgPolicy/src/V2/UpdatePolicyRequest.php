@@ -21,7 +21,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy = null;
+    protected $policy = null;
     /**
      * Field mask used to specify the fields to be overwritten in the policy
      * by the set. The fields specified in the update_mask are relative to the
@@ -29,7 +29,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\OrgPolicy\V2\Policy $policy Required. Policy to update.

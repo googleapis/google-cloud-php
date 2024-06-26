@@ -61,6 +61,4 @@ class Tier
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Tier::class, \Google\Cloud\Metastore\V1beta\Service_Tier::class);
 

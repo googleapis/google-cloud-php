@@ -21,21 +21,21 @@ class DoubleFieldInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double average = 1;</code>
      */
-    private $average = 0.0;
+    protected $average = 0.0;
     /**
      * Standard deviation of non-null values in the scanned data. NaN, if
      * the field has a NaN.
      *
      * Generated from protobuf field <code>double standard_deviation = 3;</code>
      */
-    private $standard_deviation = 0.0;
+    protected $standard_deviation = 0.0;
     /**
      * Minimum of non-null values in the scanned data. NaN, if the field
      * has a NaN.
      *
      * Generated from protobuf field <code>double min = 4;</code>
      */
-    private $min = 0.0;
+    protected $min = 0.0;
     /**
      * A quartile divides the number of data points into four parts, or
      * quarters, of more-or-less equal size. Three main quartiles used
@@ -58,7 +58,7 @@ class DoubleFieldInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double max = 5;</code>
      */
-    private $max = 0.0;
+    protected $max = 0.0;
 
     /**
      * Constructor.

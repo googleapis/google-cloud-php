@@ -67,6 +67,7 @@ use Google\Protobuf\Duration;
  */
 class Transaction implements TransactionalReadInterface
 {
+    use MutationTrait;
     use TransactionalReadTrait;
 
     /**
@@ -83,6 +84,8 @@ class Transaction implements TransactionalReadInterface
      * @var bool
      */
     private $isRetry = false;
+
+    private ValueMapper $mapper;
 
     /**
      * @var RequestHandler
@@ -108,6 +111,7 @@ class Transaction implements TransactionalReadInterface
      *     @type array $begin The begin Transaction options.
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
+     * @param ValueMapper $mapper Consumed internally for properly map mutation data.
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
@@ -116,7 +120,8 @@ class Transaction implements TransactionalReadInterface
         $transactionId = null,
         $isRetry = false,
         $tag = null,
-        $options = []
+        $options = [],
+        $mapper = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -136,6 +141,9 @@ class Transaction implements TransactionalReadInterface
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
         $this->options = $options;
+        if (!is_null($mapper)) {
+            $this->mapper = $mapper;
+        }
     }
 
     /**
@@ -154,213 +162,6 @@ class Transaction implements TransactionalReadInterface
     public function getCommitStats()
     {
         return $this->commitStats;
-    }
-
-    /**
-     * Enqueue an insert mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->insert('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post',
-     *     'content' => 'Hello World'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into.
-     * @param array $data The data to insert.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insert($table, array $data)
-    {
-        return $this->insertBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more insert mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->insertBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post',
-     *         'content' => 'Hello World'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into.
-     * @param array $dataSet The data to insert.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insertBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_INSERT, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an update mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->update('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post [Updated!]',
-     *     'content' => 'Modified Content'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to update.
-     * @param array $data The data to update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function update($table, array $data)
-    {
-        return $this->updateBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more update mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->updateBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post [Updated!]',
-     *         'content' => 'Modified Content'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to update.
-     * @param array $dataSet The data to update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function updateBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_UPDATE, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an insert or update mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->insertOrUpdate('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post',
-     *     'content' => 'Hello World'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into or update.
-     * @param array $data The data to insert or update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insertOrUpdate($table, array $data)
-    {
-        return $this->insertOrUpdateBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more insert or update mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->insertOrUpdateBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post',
-     *         'content' => 'Hello World'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to insert into or update.
-     * @param array $dataSet The data to insert or update.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function insertOrUpdateBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_INSERT_OR_UPDATE, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an replace mutation.
-     *
-     * Example:
-     * ```
-     * $transaction->replace('Posts', [
-     *     'ID' => 10,
-     *     'title' => 'My New Post [Replaced]',
-     *     'content' => 'Hello Moon'
-     * ]);
-     * ```
-     *
-     * @param string $table The table to replace into.
-     * @param array $data The data to replace.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function replace($table, array $data)
-    {
-        return $this->replaceBatch($table, [$data]);
-    }
-
-    /**
-     * Enqueue one or more replace mutations.
-     *
-     * Example:
-     * ```
-     * $transaction->replaceBatch('Posts', [
-     *     [
-     *         'ID' => 10,
-     *         'title' => 'My New Post [Replaced]',
-     *         'content' => 'Hello Moon'
-     *     ]
-     * ]);
-     * ```
-     *
-     * @param string $table The table to replace into.
-     * @param array $dataSet The data to replace.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function replaceBatch($table, array $dataSet)
-    {
-        $this->enqueue(Operation::OP_REPLACE, $table, $dataSet);
-
-        return $this;
-    }
-
-    /**
-     * Enqueue an delete mutation.
-     *
-     * Example:
-     * ```
-     * $keySet = new KeySet([
-     *     'keys' => [10]
-     * ]);
-     *
-     * $transaction->delete('Posts', $keySet);
-     * ```
-     *
-     * @param string $table The table to mutate.
-     * @param KeySet $keySet The KeySet to identify rows to delete.
-     * @return Transaction The transaction, to enable method chaining.
-     */
-    public function delete($table, KeySet $keySet)
-    {
-        $this->enqueue(Operation::OP_DELETE, $table, [$keySet]);
-
-        return $this;
     }
 
     /**
@@ -650,7 +451,7 @@ class Transaction implements TransactionalReadInterface
             'requestOptions' => []
         ];
 
-        $options['mutations'] += $this->mutations;
+        $options['mutations'] += $this->getMutations();
 
         $options['transactionId'] = $this->transactionId;
 
@@ -710,25 +511,6 @@ class Transaction implements TransactionalReadInterface
     public function isRetry()
     {
         return $this->isRetry;
-    }
-
-    /**
-     * Format, validate and enqueue mutations in the transaction.
-     *
-     * @param string $op The operation type.
-     * @param string $table The table name
-     * @param array $dataSet the mutations to enqueue
-     * @return void
-     */
-    private function enqueue($op, $table, array $dataSet)
-    {
-        foreach ($dataSet as $data) {
-            if ($op === Operation::OP_DELETE) {
-                $this->mutations[] = $this->operation->deleteMutation($table, $data);
-            } else {
-                $this->mutations[] = $this->operation->mutation($op, $table, $data);
-            }
-        }
     }
 
     /**

@@ -20,7 +20,7 @@ class GetInstanceHealthResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.GetInstanceHealthResponse.HealthState health_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_state = 0;
+    protected $health_state = 0;
     /**
      * Output only. Additional information about instance health.
      * Example:

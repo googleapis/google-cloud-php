@@ -23,7 +23,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the backup, which is used as the final component of the
      * backup's name.
@@ -33,14 +33,14 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_id = '';
+    protected $backup_id = '';
     /**
      * Required. The backup to create. The `name` field is ignored. The ID of the
      * created backup must be provided in the request's `backup_id` field.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup = null;
+    protected $backup = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -55,7 +55,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                            $parent   Required. The relative resource name of the service in which to create a

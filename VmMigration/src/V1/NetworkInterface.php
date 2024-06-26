@@ -20,13 +20,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The subnetwork to connect the NIC to.
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * The internal IP to define in the NIC.
      * The formats accepted are: `ephemeral` \ ipv4 address \ a named address
@@ -34,13 +34,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string internal_ip = 3;</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
      * The external IP to define in the NIC.
      *
      * Generated from protobuf field <code>string external_ip = 4;</code>
      */
-    private $external_ip = '';
+    protected $external_ip = '';
 
     /**
      * Constructor.

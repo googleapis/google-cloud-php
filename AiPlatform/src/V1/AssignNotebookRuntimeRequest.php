@@ -22,27 +22,27 @@ class AssignNotebookRuntimeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The resource name of the NotebookRuntimeTemplate based on which a
      * NotebookRuntime will be assigned (reuse or create a new one).
      *
      * Generated from protobuf field <code>string notebook_runtime_template = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $notebook_runtime_template = '';
+    protected $notebook_runtime_template = '';
     /**
      * Required. Provide runtime specific information (e.g. runtime owner,
      * notebook id) used for NotebookRuntime assignment.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookRuntime notebook_runtime = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notebook_runtime = null;
+    protected $notebook_runtime = null;
     /**
      * Optional. User specified ID for the notebook runtime.
      *
      * Generated from protobuf field <code>string notebook_runtime_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $notebook_runtime_id = '';
+    protected $notebook_runtime_id = '';
 
     /**
      * @param string                                      $parent                  Required. The resource name of the Location to get the NotebookRuntime

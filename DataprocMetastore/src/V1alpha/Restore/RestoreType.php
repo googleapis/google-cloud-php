@@ -59,6 +59,4 @@ class RestoreType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RestoreType::class, \Google\Cloud\Metastore\V1alpha\Restore_RestoreType::class);
 

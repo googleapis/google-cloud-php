@@ -23,14 +23,14 @@ class DeleteContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The force deletion semantics is still undefined.
      * Users should not use this field.
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      */
-    private $force = false;
+    protected $force = false;
     /**
      * Optional. The etag of the Context to delete.
      * If this is provided, it must match the server's etag. Otherwise, the
@@ -38,7 +38,7 @@ class DeleteContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name of the Context to delete.

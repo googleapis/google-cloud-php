@@ -23,7 +23,7 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the metadata import, which is used as the final
      * component of the metadata import's name.
@@ -33,7 +33,7 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metadata_import_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_import_id = '';
+    protected $metadata_import_id = '';
     /**
      * Required. The metadata import to create. The `name` field is ignored. The
      * ID of the created metadata import must be provided in the request's
@@ -41,7 +41,7 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MetadataImport metadata_import = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_import = null;
+    protected $metadata_import = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -56,7 +56,7 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                    $parent           Required. The relative resource name of the service in which to create a

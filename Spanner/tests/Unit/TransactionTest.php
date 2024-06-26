@@ -134,7 +134,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->insert('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['insert']['table']);
         $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
@@ -145,7 +145,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->insertBatch('Posts', [['foo' => 'bar']]);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['insert']['table']);
         $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
@@ -156,7 +156,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->update('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['update']['table']);
         $this->assertEquals('foo', $mutations[0]['update']['columns'][0]);
@@ -167,7 +167,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->updateBatch('Posts', [['foo' => 'bar']]);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['update']['table']);
         $this->assertEquals('foo', $mutations[0]['update']['columns'][0]);
@@ -178,7 +178,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->insertOrUpdate('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['insertOrUpdate']['table']);
         $this->assertEquals('foo', $mutations[0]['insertOrUpdate']['columns'][0]);
@@ -189,7 +189,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->insertOrUpdateBatch('Posts', [['foo' => 'bar']]);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['insertOrUpdate']['table']);
         $this->assertEquals('foo', $mutations[0]['insertOrUpdate']['columns'][0]);
@@ -200,7 +200,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->replace('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['replace']['table']);
         $this->assertEquals('foo', $mutations[0]['replace']['columns'][0]);
@@ -211,7 +211,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->replaceBatch('Posts', [['foo' => 'bar']]);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $this->assertEquals('Posts', $mutations[0]['replace']['table']);
         $this->assertEquals('foo', $mutations[0]['replace']['columns'][0]);
@@ -222,7 +222,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->delete('Posts', new KeySet(['keys' => ['foo']]));
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertEquals('Posts', $mutations[0]['delete']['table']);
         $this->assertEquals('foo', $mutations[0]['delete']['keySet']['keys'][0]);
         $this->assertArrayNotHasKey('all', $mutations[0]['delete']['keySet']);
@@ -601,7 +601,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->insert('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(
@@ -624,7 +624,7 @@ class TransactionTest extends TestCase
     {
         $this->transaction->insert('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(
@@ -651,7 +651,7 @@ class TransactionTest extends TestCase
         $duration = new Duration(['seconds' => 0, 'nanos' => 100000000]);
         $this->transaction->insert('Posts', ['foo' => 'bar']);
 
-        $mutations = $this->transaction->___getProperty('mutations');
+        $mutations = $this->transaction->___getProperty('mutationData');
 
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(

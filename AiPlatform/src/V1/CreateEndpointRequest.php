@@ -22,13 +22,13 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Endpoint to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Endpoint endpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $endpoint = null;
+    protected $endpoint = null;
     /**
      * Immutable. The ID to use for endpoint, which will become the final
      * component of the endpoint resource name.
@@ -44,7 +44,7 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_id = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $endpoint_id = '';
+    protected $endpoint_id = '';
 
     /**
      * @param string                               $parent   Required. The resource name of the Location to create the Endpoint in.

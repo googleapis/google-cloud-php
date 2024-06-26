@@ -26,13 +26,13 @@ class CreatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Policy to create.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Policy policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * @param string                            $parent Required. The Google Cloud resource that will parent the new policy. Must

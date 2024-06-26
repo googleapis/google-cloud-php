@@ -21,38 +21,38 @@ class Study extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Describes the Study, default value is empty string.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Configuration of the Study.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec study_spec = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $study_spec = null;
+    protected $study_spec = null;
     /**
      * Output only. The detailed state of a Study.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Study.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Time at which the study was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. A human readable reason why the Study is inactive.
      * This should be empty if a study is ACTIVE or COMPLETED.
      *
      * Generated from protobuf field <code>string inactive_reason = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $inactive_reason = '';
+    protected $inactive_reason = '';
 
     /**
      * Constructor.

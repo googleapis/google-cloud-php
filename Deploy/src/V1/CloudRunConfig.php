@@ -23,7 +23,7 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool automatic_traffic_control = 1;</code>
      */
-    private $automatic_traffic_control = false;
+    protected $automatic_traffic_control = false;
     /**
      * Optional. A list of tags that are added to the canary revision while the
      * canary phase is in progress.

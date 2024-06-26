@@ -21,26 +21,26 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Input only. The credentials password. This is write only and can not be
      * read in a GET operation.
      *
      * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * The ip address of the vcenter this Source represents.
      *
      * Generated from protobuf field <code>string vcenter_ip = 3;</code>
      */
-    private $vcenter_ip = '';
+    protected $vcenter_ip = '';
     /**
      * The thumbprint representing the certificate for the vcenter.
      *
      * Generated from protobuf field <code>string thumbprint = 4;</code>
      */
-    private $thumbprint = '';
+    protected $thumbprint = '';
 
     /**
      * Constructor.

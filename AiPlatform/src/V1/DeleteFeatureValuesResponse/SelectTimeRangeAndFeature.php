@@ -21,7 +21,7 @@ class SelectTimeRangeAndFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 impacted_feature_count = 1;</code>
      */
-    private $impacted_feature_count = 0;
+    protected $impacted_feature_count = 0;
     /**
      * The count of modified entity rows in the offline storage.
      * Each row corresponds to the combination of an entity ID and a timestamp.
@@ -31,7 +31,7 @@ class SelectTimeRangeAndFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offline_storage_modified_entity_row_count = 2;</code>
      */
-    private $offline_storage_modified_entity_row_count = 0;
+    protected $offline_storage_modified_entity_row_count = 0;
     /**
      * The count of modified entities in the online storage.
      * Each entity ID corresponds to one entity.
@@ -40,7 +40,7 @@ class SelectTimeRangeAndFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 online_storage_modified_entity_count = 3;</code>
      */
-    private $online_storage_modified_entity_count = 0;
+    protected $online_storage_modified_entity_count = 0;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class AutomationRuleCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsPresentCondition targets_present_condition = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $targets_present_condition = null;
+    protected $targets_present_condition = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $machine_spec = null;
+    protected $machine_spec = null;
     /**
      * Required. Immutable. The minimum number of machine replicas this
      * DeployedModel will be always deployed on. This value must be greater than
@@ -33,7 +33,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_replica_count = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $min_replica_count = 0;
+    protected $min_replica_count = 0;
     /**
      * Immutable. The maximum number of replicas this DeployedModel may be
      * deployed on when the traffic against it increases. If the requested value
@@ -51,7 +51,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_replica_count = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $max_replica_count = 0;
+    protected $max_replica_count = 0;
     /**
      * Immutable. The metric specifications that overrides a resource
      * utilization metric (CPU utilization, accelerator's duty cycle, and so on)

@@ -22,50 +22,50 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Runtime state.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Runtime.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Runtime health_state.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Runtime.HealthState health_state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_state = 0;
+    protected $health_state = 0;
     /**
      * The config settings for accessing runtime.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeAccessConfig access_config = 5;</code>
      */
-    private $access_config = null;
+    protected $access_config = null;
     /**
      * The config settings for software inside the runtime.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeSoftwareConfig software_config = 6;</code>
      */
-    private $software_config = null;
+    protected $software_config = null;
     /**
      * Output only. Contains Runtime daemon metrics such as Service status and JupyterLab
      * stats.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeMetrics metrics = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
     /**
      * Output only. Runtime creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Runtime update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $runtime_type;
 
     /**

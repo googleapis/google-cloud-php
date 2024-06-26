@@ -33,7 +33,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\User;
  * Lists all users of a Merchant Center account.
  *
  * @param string $formattedParent The parent, which owns this collection of users.
- *                                Format: `accounts/{account}
+ *                                Format: `accounts/{account}`
  *                                Please see {@see UserServiceClient::accountName()} for help formatting this field.
  */
 function list_users_sample(string $formattedParent): void

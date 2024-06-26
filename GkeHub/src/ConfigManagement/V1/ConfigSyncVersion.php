@@ -51,6 +51,12 @@ class ConfigSyncVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string root_reconciler = 6;</code>
      */
     private $root_reconciler = '';
+    /**
+     * Version of the deployed admission_webhook pod
+     *
+     * Generated from protobuf field <code>string admission_webhook = 7;</code>
+     */
+    private $admission_webhook = '';
 
     /**
      * Constructor.
@@ -70,6 +76,8 @@ class ConfigSyncVersion extends \Google\Protobuf\Internal\Message
      *           Version of the deployed reconciler-manager pod
      *     @type string $root_reconciler
      *           Version of the deployed reconciler container in root-reconciler pod
+     *     @type string $admission_webhook
+     *           Version of the deployed admission_webhook pod
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +237,32 @@ class ConfigSyncVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->root_reconciler = $var;
+
+        return $this;
+    }
+
+    /**
+     * Version of the deployed admission_webhook pod
+     *
+     * Generated from protobuf field <code>string admission_webhook = 7;</code>
+     * @return string
+     */
+    public function getAdmissionWebhook()
+    {
+        return $this->admission_webhook;
+    }
+
+    /**
+     * Version of the deployed admission_webhook pod
+     *
+     * Generated from protobuf field <code>string admission_webhook = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdmissionWebhook($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->admission_webhook = $var;
 
         return $this;
     }

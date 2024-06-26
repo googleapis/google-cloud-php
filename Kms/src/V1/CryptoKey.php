@@ -124,6 +124,19 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string crypto_key_backend = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     private $crypto_key_backend = '';
+    /**
+     * Optional. The policy used for Key Access Justifications Policy Enforcement.
+     * If this field is present and this key is enrolled in Key Access
+     * Justifications Policy Enforcement, the policy will be evaluated in encrypt,
+     * decrypt, and sign operations, and the operation will fail if rejected by
+     * the policy. The policy is defined by specifying zero or more allowed
+     * justification codes.
+     * https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
+     * By default, this field is absent, and all justification codes are allowed.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $key_access_justifications_policy = null;
     protected $rotation_schedule;
 
     /**
@@ -208,6 +221,15 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           resource name in the format `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`.
      *           Note, this list is non-exhaustive and may apply to additional
      *           [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel] in the future.
+     *     @type \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy $key_access_justifications_policy
+     *           Optional. The policy used for Key Access Justifications Policy Enforcement.
+     *           If this field is present and this key is enrolled in Key Access
+     *           Justifications Policy Enforcement, the policy will be evaluated in encrypt,
+     *           decrypt, and sign operations, and the operation will fail if rejected by
+     *           the policy. The policy is defined by specifying zero or more allowed
+     *           justification codes.
+     *           https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
+     *           By default, this field is absent, and all justification codes are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -660,6 +682,56 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->crypto_key_backend = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The policy used for Key Access Justifications Policy Enforcement.
+     * If this field is present and this key is enrolled in Key Access
+     * Justifications Policy Enforcement, the policy will be evaluated in encrypt,
+     * decrypt, and sign operations, and the operation will fail if rejected by
+     * the policy. The policy is defined by specifying zero or more allowed
+     * justification codes.
+     * https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
+     * By default, this field is absent, and all justification codes are allowed.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy|null
+     */
+    public function getKeyAccessJustificationsPolicy()
+    {
+        return $this->key_access_justifications_policy;
+    }
+
+    public function hasKeyAccessJustificationsPolicy()
+    {
+        return isset($this->key_access_justifications_policy);
+    }
+
+    public function clearKeyAccessJustificationsPolicy()
+    {
+        unset($this->key_access_justifications_policy);
+    }
+
+    /**
+     * Optional. The policy used for Key Access Justifications Policy Enforcement.
+     * If this field is present and this key is enrolled in Key Access
+     * Justifications Policy Enforcement, the policy will be evaluated in encrypt,
+     * decrypt, and sign operations, and the operation will fail if rejected by
+     * the policy. The policy is defined by specifying zero or more allowed
+     * justification codes.
+     * https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
+     * By default, this field is absent, and all justification codes are allowed.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy $var
+     * @return $this
+     */
+    public function setKeyAccessJustificationsPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy::class);
+        $this->key_access_justifications_policy = $var;
 
         return $this;
     }

@@ -349,7 +349,6 @@ final class StorageControlClient
     /**
      * Creates a new folder. This operation is only applicable to a hierarchical
      * namespace enabled bucket.
-     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::createFolderAsync()} .
      *
@@ -403,7 +402,6 @@ final class StorageControlClient
     /**
      * Permanently deletes an empty folder. This operation is only applicable to a
      * hierarchical namespace enabled bucket.
-     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::deleteFolderAsync()} .
      *
@@ -453,7 +451,6 @@ final class StorageControlClient
     /**
      * Returns metadata for the specified folder. This operation is only
      * applicable to a hierarchical namespace enabled bucket.
-     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::getFolderAsync()} .
      *
@@ -533,7 +530,6 @@ final class StorageControlClient
     /**
      * Retrieves a list of folders. This operation is only applicable to a
      * hierarchical namespace enabled bucket.
-     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::listFoldersAsync()} .
      *
@@ -589,7 +585,6 @@ final class StorageControlClient
      * applicable to a hierarchical namespace enabled bucket. During a rename, the
      * source and destination folders are locked until the long running operation
      * completes.
-     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::renameFolderAsync()} .
      *

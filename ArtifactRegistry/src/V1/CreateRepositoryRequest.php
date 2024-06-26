@@ -21,19 +21,19 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The repository id to use for this repository.
      *
      * Generated from protobuf field <code>string repository_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repository_id = '';
+    protected $repository_id = '';
     /**
      * Required. The repository to be created.
      *
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.Repository repository = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repository = null;
+    protected $repository = null;
 
     /**
      * @param string                                       $parent       Required. The name of the parent resource where the repository will be

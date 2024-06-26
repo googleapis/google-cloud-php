@@ -22,19 +22,19 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. ID of the `Rollout`.
      *
      * Generated from protobuf field <code>string rollout_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollout_id = '';
+    protected $rollout_id = '';
     /**
      * Required. The `Rollout` to create.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout rollout = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollout = null;
+    protected $rollout = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -50,21 +50,21 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set to true, the request is validated and the user is provided
      * with an expected result, but no actual change is made.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
      * will start at the first phase.
      *
      * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $starting_phase_id = '';
+    protected $starting_phase_id = '';
 
     /**
      * @param string                          $parent    Required. The parent collection in which the `Rollout` should be created.

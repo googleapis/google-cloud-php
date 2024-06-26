@@ -22,7 +22,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Optional. The hardware accelerators used on this instance. If you use
      * accelerators, make sure that your configuration has
@@ -45,7 +45,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.BootDisk boot_disk = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boot_disk = null;
+    protected $boot_disk = null;
     /**
      * Optional. Data disks attached to the VM instance.
      * Currently supports only one data disk.
@@ -60,7 +60,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.ShieldedInstanceConfig shielded_instance_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $shielded_instance_config = null;
+    protected $shielded_instance_config = null;
     /**
      * Optional. The network interfaces for the VM.
      * Supports only one interface.
@@ -73,7 +73,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_public_ip = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_public_ip = false;
+    protected $disable_public_ip = false;
     /**
      * Optional. The Compute Engine tags to add to runtime (see [Tagging
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
@@ -93,13 +93,13 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_ip_forwarding = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_ip_forwarding = false;
+    protected $enable_ip_forwarding = false;
     /**
      * Optional. Configuration for GPU drivers.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.GPUDriverConfig gpu_driver_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gpu_driver_config = null;
+    protected $gpu_driver_config = null;
     protected $image;
 
     /**

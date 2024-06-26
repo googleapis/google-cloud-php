@@ -21,31 +21,31 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A description of this instance.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Instance type.
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance.Type type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Option to enable Stackdriver Logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 4;</code>
      */
-    private $enable_stackdriver_logging = false;
+    protected $enable_stackdriver_logging = false;
     /**
      * Option to enable Stackdriver Monitoring.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_monitoring = 5;</code>
      */
-    private $enable_stackdriver_monitoring = false;
+    protected $enable_stackdriver_monitoring = false;
     /**
      * Specifies whether the Data Fusion instance should be private. If set to
      * true, all Data Fusion nodes will have private IP addresses and will not be
@@ -53,14 +53,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool private_instance = 6;</code>
      */
-    private $private_instance = false;
+    protected $private_instance = false;
     /**
      * Network configuration options. These are required when a private Data
      * Fusion instance is to be created.
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.NetworkConfig network_config = 7;</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
     /**
      * The resource labels for instance to use to annotate any related underlying
      * resources such as Compute Engine VMs. The character '=' is not allowed to
@@ -81,45 +81,45 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the instance was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The current state of this Data Fusion instance.
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the current state of this Data
      * Fusion instance if available.
      *
      * Generated from protobuf field <code>string state_message = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. Endpoint on which the Data Fusion UI is accessible.
      *
      * Generated from protobuf field <code>string service_endpoint = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_endpoint = '';
+    protected $service_endpoint = '';
     /**
      * Name of the zone in which the Data Fusion instance will be created. Only
      * DEVELOPER instances use this field.
      *
      * Generated from protobuf field <code>string zone = 15;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Current version of the Data Fusion. Only specifiable in Update.
      *
      * Generated from protobuf field <code>string version = 16;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Output only. Deprecated. Use tenant_project_id instead to extract the tenant project ID.
      *
@@ -132,7 +132,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 18;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Available versions that the instance can be upgraded to using
      * UpdateInstanceRequest.
@@ -145,13 +145,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_endpoint = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $api_endpoint = '';
+    protected $api_endpoint = '';
     /**
      * Output only. Cloud Storage bucket generated by Data Fusion in the customer project.
      *
      * Generated from protobuf field <code>string gcs_bucket = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $gcs_bucket = '';
+    protected $gcs_bucket = '';
     /**
      * List of accelerators enabled for this CDF instance.
      *
@@ -163,13 +163,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string p4_service_account = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $p4_service_account = '';
+    protected $p4_service_account = '';
     /**
      * Output only. The name of the tenant project.
      *
      * Generated from protobuf field <code>string tenant_project_id = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tenant_project_id = '';
+    protected $tenant_project_id = '';
     /**
      * User-managed service account to set on Dataproc when Cloud Data Fusion
      * creates Dataproc to run data processing pipelines.
@@ -178,20 +178,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataproc_service_account = 25;</code>
      */
-    private $dataproc_service_account = '';
+    protected $dataproc_service_account = '';
     /**
      * Option to enable granular role-based access control.
      *
      * Generated from protobuf field <code>bool enable_rbac = 27;</code>
      */
-    private $enable_rbac = false;
+    protected $enable_rbac = false;
     /**
      * The crypto key configuration. This field is used by the Customer-Managed
      * Encryption Keys (CMEK) feature.
      *
      * Generated from protobuf field <code>.google.cloud.datafusion.v1.CryptoKeyConfig crypto_key_config = 28;</code>
      */
-    private $crypto_key_config = null;
+    protected $crypto_key_config = null;
     /**
      * Output only. If the instance state is DISABLED, the reason for disabling the instance.
      *

@@ -23,7 +23,24 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
+
+    /**
+     * @param string $name Required. The relative resource name of the metastore service to retrieve,
+     *                     in the following form:
+     *
+     *                     `projects/{project_number}/locations/{location_id}/services/{service_id}`. Please see
+     *                     {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Metastore\V1beta\GetServiceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
 
     /**
      * Constructor.

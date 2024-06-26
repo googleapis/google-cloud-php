@@ -23,19 +23,19 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string http_method = 1;</code>
      */
-    private $http_method = '';
+    protected $http_method = '';
     /**
      * Output only. The URL that was crawled.
      *
      * Generated from protobuf field <code>string url = 2;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * Output only. The body of the request that was used to visit the URL.
      *
      * Generated from protobuf field <code>string body = 3;</code>
      */
-    private $body = '';
+    protected $body = '';
 
     /**
      * Constructor.

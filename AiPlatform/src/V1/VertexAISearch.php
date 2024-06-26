@@ -23,7 +23,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string datastore = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $datastore = '';
+    protected $datastore = '';
 
     /**
      * Constructor.

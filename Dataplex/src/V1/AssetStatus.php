@@ -20,20 +20,20 @@ class AssetStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 1;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Number of active assets.
      *
      * Generated from protobuf field <code>int32 active_assets = 2;</code>
      */
-    private $active_assets = 0;
+    protected $active_assets = 0;
     /**
      * Number of assets that are in process of updating the security policy on
      * attached resources.
      *
      * Generated from protobuf field <code>int32 security_policy_applying_assets = 3;</code>
      */
-    private $security_policy_applying_assets = 0;
+    protected $security_policy_applying_assets = 0;
 
     /**
      * Constructor.

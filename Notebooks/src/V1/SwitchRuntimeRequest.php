@@ -21,25 +21,25 @@ class SwitchRuntimeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * machine type.
      *
      * Generated from protobuf field <code>string machine_type = 2;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * accelerator config.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.RuntimeAcceleratorConfig accelerator_config = 3;</code>
      */
-    private $accelerator_config = null;
+    protected $accelerator_config = null;
     /**
      * Idempotent request UUID.
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $name Required. Format:

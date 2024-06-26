@@ -23,7 +23,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of backups to return. The response may contain
      * less than the maximum number. If unspecified, no more than 500 backups are
@@ -31,7 +31,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * [DataprocMetastore.ListBackups][google.cloud.metastore.v1alpha.DataprocMetastore.ListBackups]
@@ -43,13 +43,13 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The filter to apply to list results.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Specify the ordering of results as described in [Sorting
      * Order](https://cloud.google.com/apis/design/design_patterns#sorting_order).
@@ -57,7 +57,24 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
+
+    /**
+     * @param string $parent Required. The relative resource name of the service whose backups to
+     *                       list, in the following form:
+     *
+     *                       `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`. Please see
+     *                       {@see DataprocMetastoreClient::serviceName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Metastore\V1alpha\ListBackupsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.

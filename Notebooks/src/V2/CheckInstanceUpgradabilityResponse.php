@@ -20,20 +20,20 @@ class CheckInstanceUpgradabilityResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>bool upgradeable = 1;</code>
      */
-    private $upgradeable = false;
+    protected $upgradeable = false;
     /**
      * The version this instance will be upgraded to if calling the upgrade
      * endpoint. This field will only be populated if field upgradeable is true.
      *
      * Generated from protobuf field <code>string upgrade_version = 2;</code>
      */
-    private $upgrade_version = '';
+    protected $upgrade_version = '';
     /**
      * Additional information about upgrade.
      *
      * Generated from protobuf field <code>string upgrade_info = 3;</code>
      */
-    private $upgrade_info = '';
+    protected $upgrade_info = '';
     /**
      * The new image self link this instance will be upgraded to if calling the
      * upgrade endpoint. This field will only be populated if field upgradeable
@@ -41,7 +41,7 @@ class CheckInstanceUpgradabilityResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string upgrade_image = 4;</code>
      */
-    private $upgrade_image = '';
+    protected $upgrade_image = '';
 
     /**
      * Constructor.

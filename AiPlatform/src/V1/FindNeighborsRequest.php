@@ -23,7 +23,7 @@ class FindNeighborsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string index_endpoint = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $index_endpoint = '';
+    protected $index_endpoint = '';
     /**
      * The ID of the DeployedIndex that will serve the request. This request is
      * sent to a specific IndexEndpoint, as per the IndexEndpoint.network. That
@@ -34,7 +34,7 @@ class FindNeighborsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deployed_index_id = 2;</code>
      */
-    private $deployed_index_id = '';
+    protected $deployed_index_id = '';
     /**
      * The list of queries.
      *
@@ -49,7 +49,7 @@ class FindNeighborsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_full_datapoint = 4;</code>
      */
-    private $return_full_datapoint = false;
+    protected $return_full_datapoint = false;
 
     /**
      * Constructor.

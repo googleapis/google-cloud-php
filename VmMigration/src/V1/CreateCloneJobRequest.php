@@ -20,19 +20,19 @@ class CreateCloneJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The clone job identifier.
      *
      * Generated from protobuf field <code>string clone_job_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $clone_job_id = '';
+    protected $clone_job_id = '';
     /**
      * Required. The clone request body.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.CloneJob clone_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $clone_job = null;
+    protected $clone_job = null;
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48,7 +48,7 @@ class CreateCloneJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                $parent     Required. The Clone's parent. Please see

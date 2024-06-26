@@ -21,13 +21,13 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notebook_upgrade_schedule = 1;</code>
      */
-    private $notebook_upgrade_schedule = '';
+    protected $notebook_upgrade_schedule = '';
     /**
      * Verifies core internal services are running.
      *
      * Generated from protobuf field <code>bool enable_health_monitoring = 2;</code>
      */
-    private $enable_health_monitoring = false;
+    protected $enable_health_monitoring = false;
 
     /**
      * Constructor.

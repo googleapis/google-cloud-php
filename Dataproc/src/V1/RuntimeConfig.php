@@ -41,6 +41,19 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RepositoryConfig repository_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $repository_config = null;
+    /**
+     * Optional. Autotuning configuration of the workload.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutotuningConfig autotuning_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $autotuning_config = null;
+    /**
+     * Optional. Cohort identifier. Identifies families of the workloads having
+     * the same shape, e.g. daily ETL jobs.
+     *
+     * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cohort = '';
 
     /**
      * Constructor.
@@ -58,6 +71,11 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *           configure workload execution.
      *     @type \Google\Cloud\Dataproc\V1\RepositoryConfig $repository_config
      *           Optional. Dependency repository configuration.
+     *     @type \Google\Cloud\Dataproc\V1\AutotuningConfig $autotuning_config
+     *           Optional. Autotuning configuration of the workload.
+     *     @type string $cohort
+     *           Optional. Cohort identifier. Identifies families of the workloads having
+     *           the same shape, e.g. daily ETL jobs.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,6 +197,70 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\RepositoryConfig::class);
         $this->repository_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Autotuning configuration of the workload.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutotuningConfig autotuning_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\AutotuningConfig|null
+     */
+    public function getAutotuningConfig()
+    {
+        return $this->autotuning_config;
+    }
+
+    public function hasAutotuningConfig()
+    {
+        return isset($this->autotuning_config);
+    }
+
+    public function clearAutotuningConfig()
+    {
+        unset($this->autotuning_config);
+    }
+
+    /**
+     * Optional. Autotuning configuration of the workload.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutotuningConfig autotuning_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\AutotuningConfig $var
+     * @return $this
+     */
+    public function setAutotuningConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\AutotuningConfig::class);
+        $this->autotuning_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Cohort identifier. Identifies families of the workloads having
+     * the same shape, e.g. daily ETL jobs.
+     *
+     * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCohort()
+    {
+        return $this->cohort;
+    }
+
+    /**
+     * Optional. Cohort identifier. Identifies families of the workloads having
+     * the same shape, e.g. daily ETL jobs.
+     *
+     * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCohort($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cohort = $var;
 
         return $this;
     }

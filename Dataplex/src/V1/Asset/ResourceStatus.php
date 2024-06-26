@@ -20,25 +20,25 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Asset.ResourceStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Additional information about the current state.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Last update time of the status.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Service account associated with the BigQuery Connection.
      *
      * Generated from protobuf field <code>string managed_access_identity = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $managed_access_identity = '';
+    protected $managed_access_identity = '';
 
     /**
      * Constructor.

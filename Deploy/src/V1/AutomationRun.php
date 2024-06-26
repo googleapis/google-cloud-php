@@ -23,19 +23,19 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Time at which the `AutomationRun` was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time at which the automationRun was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The weak etag of the `AutomationRun` resource.
      * This checksum is computed by the server based on the value of other
@@ -44,21 +44,21 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. Email address of the user-managed IAM service account that
      * performs the operations against Cloud Deploy resources.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Output only. Snapshot of the Automation taken at AutomationRun creation
      * time.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Automation automation_snapshot = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $automation_snapshot = null;
+    protected $automation_snapshot = null;
     /**
      * Output only. The ID of the target that represents the promotion stage that
      * initiates the `AutomationRun`. The value of this field is the last segment
@@ -66,46 +66,46 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target_id = '';
+    protected $target_id = '';
     /**
      * Output only. Current state of the `AutomationRun`.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.AutomationRun.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Explains the current state of the `AutomationRun`. Present
      * only when an explanation is needed.
      *
      * Generated from protobuf field <code>string state_description = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_description = '';
+    protected $state_description = '';
     /**
      * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
      * after 14 days from its creation date.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. The ID of the automation rule that initiated the operation.
      *
      * Generated from protobuf field <code>string rule_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rule_id = '';
+    protected $rule_id = '';
     /**
      * Output only. The ID of the automation that initiated the operation.
      *
      * Generated from protobuf field <code>string automation_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $automation_id = '';
+    protected $automation_id = '';
     /**
      * Output only. Earliest time the `AutomationRun` will attempt to resume.
      * Wait-time is configured by `wait` in automation rule.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp wait_until_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $wait_until_time = null;
+    protected $wait_until_time = null;
     protected $operation;
 
     /**

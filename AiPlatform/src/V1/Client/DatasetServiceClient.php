@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -65,6 +64,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -129,9 +129,7 @@ final class DatasetServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -177,10 +175,31 @@ final class DatasetServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -194,8 +213,12 @@ final class DatasetServiceClient
      *
      * @return string The formatted annotation_spec resource.
      */
-    public static function annotationSpecName(string $project, string $location, string $dataset, string $annotationSpec): string
-    {
+    public static function annotationSpecName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $annotationSpec
+    ): string {
         return self::getPathTemplate('annotationSpec')->render([
             'project' => $project,
             'location' => $location,
@@ -255,8 +278,12 @@ final class DatasetServiceClient
      *
      * @return string The formatted dataset_version resource.
      */
-    public static function datasetVersionName(string $project, string $location, string $dataset, string $datasetVersion): string
-    {
+    public static function datasetVersionName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $datasetVersion
+    ): string {
         return self::getPathTemplate('datasetVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -293,8 +320,12 @@ final class DatasetServiceClient
      *
      * @return string The formatted saved_query resource.
      */
-    public static function savedQueryName(string $project, string $location, string $dataset, string $savedQuery): string
-    {
+    public static function savedQueryName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $savedQuery
+    ): string {
         return self::getPathTemplate('savedQuery')->render([
             'project' => $project,
             'location' => $location,
@@ -451,8 +482,10 @@ final class DatasetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createDatasetVersion(CreateDatasetVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createDatasetVersion(
+        CreateDatasetVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateDatasetVersion', $request, $callOptions)->wait();
     }
 
@@ -503,8 +536,10 @@ final class DatasetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteDatasetVersion(DeleteDatasetVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteDatasetVersion(
+        DeleteDatasetVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteDatasetVersion', $request, $callOptions)->wait();
     }
 
@@ -815,8 +850,10 @@ final class DatasetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreDatasetVersion(RestoreDatasetVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function restoreDatasetVersion(
+        RestoreDatasetVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RestoreDatasetVersion', $request, $callOptions)->wait();
     }
 
@@ -1034,8 +1071,10 @@ final class DatasetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

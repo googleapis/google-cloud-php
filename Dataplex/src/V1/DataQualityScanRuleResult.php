@@ -21,82 +21,82 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_id = 1;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The data source of the data scan (e.g. BigQuery table name).
      *
      * Generated from protobuf field <code>string data_source = 2;</code>
      */
-    private $data_source = '';
+    protected $data_source = '';
     /**
      * The column which this rule is evaluated against.
      *
      * Generated from protobuf field <code>string column = 3;</code>
      */
-    private $column = '';
+    protected $column = '';
     /**
      * The name of the data quality rule.
      *
      * Generated from protobuf field <code>string rule_name = 4;</code>
      */
-    private $rule_name = '';
+    protected $rule_name = '';
     /**
      * The type of the data quality rule.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityScanRuleResult.RuleType rule_type = 5;</code>
      */
-    private $rule_type = 0;
+    protected $rule_type = 0;
     /**
      * The evaluation type of the data quality rule.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityScanRuleResult.EvaluationType evalution_type = 6;</code>
      */
-    private $evalution_type = 0;
+    protected $evalution_type = 0;
     /**
      * The dimension of the data quality rule.
      *
      * Generated from protobuf field <code>string rule_dimension = 7;</code>
      */
-    private $rule_dimension = '';
+    protected $rule_dimension = '';
     /**
      * The passing threshold ([0.0, 100.0]) of the data quality rule.
      *
      * Generated from protobuf field <code>double threshold_percent = 8;</code>
      */
-    private $threshold_percent = 0.0;
+    protected $threshold_percent = 0.0;
     /**
      * The result of the data quality rule.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityScanRuleResult.Result result = 9;</code>
      */
-    private $result = 0;
+    protected $result = 0;
     /**
      * The number of rows evaluated against the data quality rule.
      * This field is only valid for rules of PER_ROW evaluation type.
      *
      * Generated from protobuf field <code>int64 evaluated_row_count = 10;</code>
      */
-    private $evaluated_row_count = 0;
+    protected $evaluated_row_count = 0;
     /**
      * The number of rows which passed a rule evaluation.
      * This field is only valid for rules of PER_ROW evaluation type.
      *
      * Generated from protobuf field <code>int64 passed_row_count = 11;</code>
      */
-    private $passed_row_count = 0;
+    protected $passed_row_count = 0;
     /**
      * The number of rows with null values in the specified column.
      *
      * Generated from protobuf field <code>int64 null_row_count = 12;</code>
      */
-    private $null_row_count = 0;
+    protected $null_row_count = 0;
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
      */
-    private $assertion_row_count = 0;
+    protected $assertion_row_count = 0;
 
     /**
      * Constructor.
@@ -131,8 +131,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
      *     @type int|string $null_row_count
      *           The number of rows with null values in the specified column.
      *     @type int|string $assertion_row_count
-     *           The number of rows returned by the sql statement in the SqlAssertion rule.
-     *           This field is only valid for SqlAssertion rules.
+     *           The number of rows returned by the SQL statement in a SQL assertion rule.
+     *           This field is only valid for SQL assertion rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -457,8 +457,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
      * @return int|string
@@ -469,8 +469,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
      * @param int|string $var

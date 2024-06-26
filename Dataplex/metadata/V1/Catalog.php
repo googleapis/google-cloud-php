@@ -26,7 +26,7 @@ class Catalog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-În
+õn
 &google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ó
 
 AspectType8
@@ -146,7 +146,7 @@ entry_type (	BàAàA4
 AspectsEntry
 key (	/
 value (2 .google.cloud.dataplex.v1.Aspect:8:†êA‚
-dataplex.googleapis.com/EntryQprojects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}*entries2entry"º
+dataplex.googleapis.com/EntryQprojects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}*entries2entry"Ñ
 EntrySource
 resource (	
 system (	
@@ -157,7 +157,8 @@ entry_type (	BàAàA4
 	ancestors	 (2..google.cloud.dataplex.v1.EntrySource.AncestorBàA/
 create_time
  (2.google.protobuf.Timestamp/
-update_time (2.google.protobuf.Timestamp0
+update_time (2.google.protobuf.Timestamp
+location (	BàA0
 Ancestor
 name (	BàA
 type (	BàA-
@@ -297,13 +298,13 @@ page_token (	BàA
 
 page_token (	BàA
 order_by (	BàA
-scope (	BàA"ö
-SearchEntriesResult
-linked_resource (	7
-dataplex_entry	 (2.google.cloud.dataplex.v1.EntryH
-snippets (26.google.cloud.dataplex.v1.SearchEntriesResult.SnippetsC
-Snippets7
-dataplex_entry (2.google.cloud.dataplex.v1.Entry"™
+scope (	BàA"†
+SearchEntriesResult
+linked_resource (	B7
+dataplex_entry	 (2.google.cloud.dataplex.v1.EntryL
+snippets (26.google.cloud.dataplex.v1.SearchEntriesResult.SnippetsBK
+Snippets;
+dataplex_entry (2.google.cloud.dataplex.v1.EntryB:"™
 SearchEntriesResponse>
 results (2-.google.cloud.dataplex.v1.SearchEntriesResult
 

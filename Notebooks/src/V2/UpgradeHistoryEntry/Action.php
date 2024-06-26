@@ -59,6 +59,4 @@ class Action
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Action::class, \Google\Cloud\Notebooks\V2\UpgradeHistoryEntry_Action::class);
 

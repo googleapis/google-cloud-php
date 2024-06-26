@@ -23,14 +23,14 @@ class Scaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_node_count = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_node_count = 0;
+    protected $min_node_count = 0;
     /**
      * The maximum number of nodes to scale up to. Must be greater than
      * min_node_count, and less than or equal to 10 times of 'min_node_count'.
      *
      * Generated from protobuf field <code>int32 max_node_count = 2;</code>
      */
-    private $max_node_count = 0;
+    protected $max_node_count = 0;
     /**
      * Optional. The cpu utilization that the Autoscaler should be trying to
      * achieve. This number is on a scale from 0 (no utilization) to 100
@@ -42,7 +42,7 @@ class Scaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 cpu_utilization_target = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cpu_utilization_target = 0;
+    protected $cpu_utilization_target = 0;
 
     /**
      * Constructor.

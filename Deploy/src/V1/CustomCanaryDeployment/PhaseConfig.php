@@ -25,13 +25,13 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string phase_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phase_id = '';
+    protected $phase_id = '';
     /**
      * Required. Percentage deployment for the phase.
      *
      * Generated from protobuf field <code>int32 percentage = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $percentage = 0;
+    protected $percentage = 0;
     /**
      * Skaffold profiles to use when rendering the manifest for this phase.
      * These are in addition to the profiles list specified in the
@@ -45,21 +45,21 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verify = 4;</code>
      */
-    private $verify = false;
+    protected $verify = false;
     /**
      * Optional. Configuration for the predeploy job of this phase. If this is
      * not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $predeploy = null;
+    protected $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job of this phase. If this is
      * not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postdeploy = null;
+    protected $postdeploy = null;
 
     /**
      * Constructor.

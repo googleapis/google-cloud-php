@@ -30,28 +30,28 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System generated globally unique ID for the scan. This ID will
      * be different if the scan is deleted and re-created with the same name.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Optional. Description of the scan.
      * * Must be between 1-1024 characters.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. User friendly display name.
      * * Must be between 1-256 characters.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-defined labels for the scan.
      *
@@ -63,44 +63,44 @@ class DataScan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time when the scan was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the scan was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. The data source for DataScan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataSource data = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data = null;
+    protected $data = null;
     /**
      * Optional. DataScan execution settings.
      * If not specified, the fields in it will use their default values.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionSpec execution_spec = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_spec = null;
+    protected $execution_spec = null;
     /**
      * Output only. Status of the data scan execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScan.ExecutionStatus execution_status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $execution_status = null;
+    protected $execution_status = null;
     /**
      * Output only. The type of DataScan.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanType type = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     protected $spec;
     protected $result;
 

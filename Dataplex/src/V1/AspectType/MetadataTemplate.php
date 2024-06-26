@@ -25,13 +25,13 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Required. The name of the field.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The datatype of this field. The following values are supported:
      * Primitive types (string, integer, boolean, double, datetime); datetime
@@ -41,7 +41,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Optional. Field definition, needs to be specified if the type is record.
      * Defines the nested fields.
@@ -65,7 +65,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate map_items = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $map_items = null;
+    protected $map_items = null;
     /**
      * Optional. array_items needs to be set if the type is array. array_items
      * can refer to a primitive field or a complex (record only) field. To
@@ -75,7 +75,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate array_items = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $array_items = null;
+    protected $array_items = null;
     /**
      * Optional. Id can be used if this definition of the field needs to be
      * reused later. Id needs to be unique across the entire template. Id can
@@ -83,7 +83,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type_id = '';
+    protected $type_id = '';
     /**
      * Optional. A reference to another field definition (instead of an inline
      * definition). The value must be equal to the value of an id field defined
@@ -92,19 +92,19 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type_ref = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type_ref = '';
+    protected $type_ref = '';
     /**
      * Optional. Specifies the constraints on this field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate.Constraints constraints = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $constraints = null;
+    protected $constraints = null;
     /**
      * Optional. Specifies annotations on this field.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate.Annotations annotations = 51 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $annotations = null;
+    protected $annotations = null;
 
     /**
      * Constructor.

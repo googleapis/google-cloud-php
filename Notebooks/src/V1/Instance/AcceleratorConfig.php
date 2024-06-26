@@ -23,13 +23,13 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1.Instance.AcceleratorType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Count of cores of this accelerator.
      *
      * Generated from protobuf field <code>int64 core_count = 2;</code>
      */
-    private $core_count = 0;
+    protected $core_count = 0;
 
     /**
      * Constructor.
@@ -102,6 +102,4 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AcceleratorConfig::class, \Google\Cloud\Notebooks\V1\Instance_AcceleratorConfig::class);
 

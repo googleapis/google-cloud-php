@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Snippets for the entry, contains HTML-style highlighting for
  * matched tokens, will be used in UI.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.dataplex.v1.SearchEntriesResult.Snippets</code>
  */
 class Snippets extends \Google\Protobuf\Internal\Message
@@ -19,9 +20,10 @@ class Snippets extends \Google\Protobuf\Internal\Message
     /**
      * Entry
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $dataplex_entry = null;
+    protected $dataplex_entry = null;
 
     /**
      * Constructor.
@@ -41,33 +43,39 @@ class Snippets extends \Google\Protobuf\Internal\Message
     /**
      * Entry
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1 [deprecated = true];</code>
      * @return \Google\Cloud\Dataplex\V1\Entry|null
+     * @deprecated
      */
     public function getDataplexEntry()
     {
+        @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
         return $this->dataplex_entry;
     }
 
     public function hasDataplexEntry()
     {
+        @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
         return isset($this->dataplex_entry);
     }
 
     public function clearDataplexEntry()
     {
+        @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
         unset($this->dataplex_entry);
     }
 
     /**
      * Entry
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 1 [deprecated = true];</code>
      * @param \Google\Cloud\Dataplex\V1\Entry $var
      * @return $this
+     * @deprecated
      */
     public function setDataplexEntry($var)
     {
+        @trigger_error('dataplex_entry is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Entry::class);
         $this->dataplex_entry = $var;
 

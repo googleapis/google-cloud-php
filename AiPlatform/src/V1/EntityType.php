@@ -28,25 +28,25 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Description of the EntityType.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Timestamp when this EntityType was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this EntityType was most recently updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. The labels with user-defined metadata to organize your
      * EntityTypes.
@@ -68,7 +68,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. The default monitoring configuration for all Features with value
      * type
@@ -81,7 +81,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig monitoring_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $monitoring_config = null;
+    protected $monitoring_config = null;
     /**
      * Optional. Config for data retention policy in offline storage.
      * TTL in days for feature values that will be stored in offline storage.
@@ -91,7 +91,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offline_storage_ttl_days = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $offline_storage_ttl_days = 0;
+    protected $offline_storage_ttl_days = 0;
 
     /**
      * Constructor.

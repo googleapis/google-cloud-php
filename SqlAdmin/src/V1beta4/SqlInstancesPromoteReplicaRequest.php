@@ -26,9 +26,13 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      */
     private $project = '';
     /**
-     * Set to true if the promote operation should attempt to re-add the original
-     * primary as a replica when it comes back online. Otherwise, if this value is
-     * false or not set, the original primary will be a standalone instance.
+     * Set to true to invoke a replica failover to the designated DR replica.
+     * As part of replica failover, the promote operation attempts
+     * to add the original primary instance as a replica of the promoted
+     * DR replica when the original primary instance comes back online.
+     * If set to false or not specified, then the original primary
+     * instance becomes an independent Cloud SQL primary instance.
+     * Only applicable to MySQL.
      *
      * Generated from protobuf field <code>bool failover = 3;</code>
      */
@@ -45,9 +49,13 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $project
      *           ID of the project that contains the read replica.
      *     @type bool $failover
-     *           Set to true if the promote operation should attempt to re-add the original
-     *           primary as a replica when it comes back online. Otherwise, if this value is
-     *           false or not set, the original primary will be a standalone instance.
+     *           Set to true to invoke a replica failover to the designated DR replica.
+     *           As part of replica failover, the promote operation attempts
+     *           to add the original primary instance as a replica of the promoted
+     *           DR replica when the original primary instance comes back online.
+     *           If set to false or not specified, then the original primary
+     *           instance becomes an independent Cloud SQL primary instance.
+     *           Only applicable to MySQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,9 +116,13 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Set to true if the promote operation should attempt to re-add the original
-     * primary as a replica when it comes back online. Otherwise, if this value is
-     * false or not set, the original primary will be a standalone instance.
+     * Set to true to invoke a replica failover to the designated DR replica.
+     * As part of replica failover, the promote operation attempts
+     * to add the original primary instance as a replica of the promoted
+     * DR replica when the original primary instance comes back online.
+     * If set to false or not specified, then the original primary
+     * instance becomes an independent Cloud SQL primary instance.
+     * Only applicable to MySQL.
      *
      * Generated from protobuf field <code>bool failover = 3;</code>
      * @return bool
@@ -121,9 +133,13 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Set to true if the promote operation should attempt to re-add the original
-     * primary as a replica when it comes back online. Otherwise, if this value is
-     * false or not set, the original primary will be a standalone instance.
+     * Set to true to invoke a replica failover to the designated DR replica.
+     * As part of replica failover, the promote operation attempts
+     * to add the original primary instance as a replica of the promoted
+     * DR replica when the original primary instance comes back online.
+     * If set to false or not specified, then the original primary
+     * instance becomes an independent Cloud SQL primary instance.
+     * Only applicable to MySQL.
      *
      * Generated from protobuf field <code>bool failover = 3;</code>
      * @param bool $var

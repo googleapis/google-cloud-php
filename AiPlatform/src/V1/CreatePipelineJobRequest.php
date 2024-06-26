@@ -22,13 +22,13 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The PipelineJob to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineJob pipeline_job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $pipeline_job = null;
+    protected $pipeline_job = null;
     /**
      * The ID to use for the PipelineJob, which will become the final component of
      * the PipelineJob name. If not provided, an ID will be automatically
@@ -38,7 +38,7 @@ class CreatePipelineJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pipeline_job_id = 3;</code>
      */
-    private $pipeline_job_id = '';
+    protected $pipeline_job_id = '';
 
     /**
      * @param string                                  $parent        Required. The resource name of the Location to create the PipelineJob in.

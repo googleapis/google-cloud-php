@@ -25,7 +25,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.LatLng arrival_location = 1;</code>
      */
-    private $arrival_location = null;
+    protected $arrival_location = null;
     /**
      * The waypoint where the vehicle arrives when performing this
      * `VisitRequest`. If the shipment model has duration distance matrices,
@@ -33,7 +33,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Waypoint arrival_waypoint = 2;</code>
      */
-    private $arrival_waypoint = null;
+    protected $arrival_waypoint = null;
     /**
      * The geo-location where the vehicle departs after completing this
      * `VisitRequest`. Can be omitted if it is the same as `arrival_location`.
@@ -42,7 +42,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.LatLng departure_location = 3;</code>
      */
-    private $departure_location = null;
+    protected $departure_location = null;
     /**
      * The waypoint where the vehicle departs after completing this
      * `VisitRequest`. Can be omitted if it is the same as `arrival_waypoint`.
@@ -51,7 +51,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.optimization.v1.Waypoint departure_waypoint = 4;</code>
      */
-    private $departure_waypoint = null;
+    protected $departure_waypoint = null;
     /**
      * Specifies tags attached to the visit request.
      * Empty or duplicate strings are not allowed.
@@ -82,7 +82,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 7;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Cost to service this visit request on a vehicle route. This can be used
      * to pay different costs for each alternative pickup or delivery of a
@@ -91,7 +91,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cost = 8;</code>
      */
-    private $cost = 0.0;
+    protected $cost = 0.0;
     /**
      * Load demands of this visit request. This is just like
      * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
@@ -120,7 +120,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label = 11;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * Deprecated: Use
      * [VisitRequest.load_demands][google.cloud.optimization.v1.Shipment.VisitRequest.load_demands]

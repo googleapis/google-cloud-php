@@ -22,13 +22,13 @@ class CreatePersistentResourceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The PersistentResource to create.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PersistentResource persistent_resource = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $persistent_resource = null;
+    protected $persistent_resource = null;
     /**
      * Required. The ID to use for the PersistentResource, which become the final
      * component of the PersistentResource's resource name.
@@ -37,7 +37,7 @@ class CreatePersistentResourceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string persistent_resource_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $persistent_resource_id = '';
+    protected $persistent_resource_id = '';
 
     /**
      * @param string                                         $parent               Required. The resource name of the Location to create the

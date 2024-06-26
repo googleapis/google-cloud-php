@@ -23,11 +23,48 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
     private $git = null;
     /**
      * Specifies whether the Config Sync Repo is
-     * in “hierarchical” or “unstructured” mode.
+     * in "hierarchical" or "unstructured" mode.
      *
      * Generated from protobuf field <code>string source_format = 8;</code>
      */
     private $source_format = '';
+    /**
+     * Enables the installation of ConfigSync.
+     * If set to true, ConfigSync resources will be created and the other
+     * ConfigSync fields will be applied if exist.
+     * If set to false, all other ConfigSync fields will be ignored, ConfigSync
+     * resources will be deleted.
+     * If omitted, ConfigSync resources will be managed depends on the presence
+     * of the git or oci field.
+     *
+     * Generated from protobuf field <code>optional bool enabled = 10;</code>
+     */
+    private $enabled = null;
+    /**
+     * Set to true to enable the Config Sync admission webhook to prevent drifts.
+     * If set to `false`, disables the Config Sync admission webhook and does not
+     * prevent drifts.
+     *
+     * Generated from protobuf field <code>bool prevent_drift = 11;</code>
+     */
+    private $prevent_drift = false;
+    /**
+     * OCI repo configuration for the cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.OciConfig oci = 12;</code>
+     */
+    private $oci = null;
+    /**
+     * The Email of the Google Cloud Service Account (GSA) used for exporting
+     * Config Sync metrics to Cloud Monitoring when Workload Identity is enabled.
+     * The GSA should have the Monitoring Metric Writer
+     * (roles/monitoring.metricWriter) IAM role.
+     * The Kubernetes ServiceAccount `default` in the namespace
+     * `config-management-monitoring` should be bound to the GSA.
+     *
+     * Generated from protobuf field <code>string metrics_gcp_service_account_email = 15;</code>
+     */
+    private $metrics_gcp_service_account_email = '';
 
     /**
      * Constructor.
@@ -39,7 +76,28 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
      *           Git repo configuration for the cluster.
      *     @type string $source_format
      *           Specifies whether the Config Sync Repo is
-     *           in “hierarchical” or “unstructured” mode.
+     *           in "hierarchical" or "unstructured" mode.
+     *     @type bool $enabled
+     *           Enables the installation of ConfigSync.
+     *           If set to true, ConfigSync resources will be created and the other
+     *           ConfigSync fields will be applied if exist.
+     *           If set to false, all other ConfigSync fields will be ignored, ConfigSync
+     *           resources will be deleted.
+     *           If omitted, ConfigSync resources will be managed depends on the presence
+     *           of the git or oci field.
+     *     @type bool $prevent_drift
+     *           Set to true to enable the Config Sync admission webhook to prevent drifts.
+     *           If set to `false`, disables the Config Sync admission webhook and does not
+     *           prevent drifts.
+     *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\OciConfig $oci
+     *           OCI repo configuration for the cluster
+     *     @type string $metrics_gcp_service_account_email
+     *           The Email of the Google Cloud Service Account (GSA) used for exporting
+     *           Config Sync metrics to Cloud Monitoring when Workload Identity is enabled.
+     *           The GSA should have the Monitoring Metric Writer
+     *           (roles/monitoring.metricWriter) IAM role.
+     *           The Kubernetes ServiceAccount `default` in the namespace
+     *           `config-management-monitoring` should be bound to the GSA.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +143,7 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies whether the Config Sync Repo is
-     * in “hierarchical” or “unstructured” mode.
+     * in "hierarchical" or "unstructured" mode.
      *
      * Generated from protobuf field <code>string source_format = 8;</code>
      * @return string
@@ -97,7 +155,7 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies whether the Config Sync Repo is
-     * in “hierarchical” or “unstructured” mode.
+     * in "hierarchical" or "unstructured" mode.
      *
      * Generated from protobuf field <code>string source_format = 8;</code>
      * @param string $var
@@ -107,6 +165,156 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_format = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enables the installation of ConfigSync.
+     * If set to true, ConfigSync resources will be created and the other
+     * ConfigSync fields will be applied if exist.
+     * If set to false, all other ConfigSync fields will be ignored, ConfigSync
+     * resources will be deleted.
+     * If omitted, ConfigSync resources will be managed depends on the presence
+     * of the git or oci field.
+     *
+     * Generated from protobuf field <code>optional bool enabled = 10;</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
+    }
+
+    /**
+     * Enables the installation of ConfigSync.
+     * If set to true, ConfigSync resources will be created and the other
+     * ConfigSync fields will be applied if exist.
+     * If set to false, all other ConfigSync fields will be ignored, ConfigSync
+     * resources will be deleted.
+     * If omitted, ConfigSync resources will be managed depends on the presence
+     * of the git or oci field.
+     *
+     * Generated from protobuf field <code>optional bool enabled = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Set to true to enable the Config Sync admission webhook to prevent drifts.
+     * If set to `false`, disables the Config Sync admission webhook and does not
+     * prevent drifts.
+     *
+     * Generated from protobuf field <code>bool prevent_drift = 11;</code>
+     * @return bool
+     */
+    public function getPreventDrift()
+    {
+        return $this->prevent_drift;
+    }
+
+    /**
+     * Set to true to enable the Config Sync admission webhook to prevent drifts.
+     * If set to `false`, disables the Config Sync admission webhook and does not
+     * prevent drifts.
+     *
+     * Generated from protobuf field <code>bool prevent_drift = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPreventDrift($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->prevent_drift = $var;
+
+        return $this;
+    }
+
+    /**
+     * OCI repo configuration for the cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.OciConfig oci = 12;</code>
+     * @return \Google\Cloud\GkeHub\ConfigManagement\V1\OciConfig|null
+     */
+    public function getOci()
+    {
+        return $this->oci;
+    }
+
+    public function hasOci()
+    {
+        return isset($this->oci);
+    }
+
+    public function clearOci()
+    {
+        unset($this->oci);
+    }
+
+    /**
+     * OCI repo configuration for the cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.OciConfig oci = 12;</code>
+     * @param \Google\Cloud\GkeHub\ConfigManagement\V1\OciConfig $var
+     * @return $this
+     */
+    public function setOci($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeHub\ConfigManagement\V1\OciConfig::class);
+        $this->oci = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Email of the Google Cloud Service Account (GSA) used for exporting
+     * Config Sync metrics to Cloud Monitoring when Workload Identity is enabled.
+     * The GSA should have the Monitoring Metric Writer
+     * (roles/monitoring.metricWriter) IAM role.
+     * The Kubernetes ServiceAccount `default` in the namespace
+     * `config-management-monitoring` should be bound to the GSA.
+     *
+     * Generated from protobuf field <code>string metrics_gcp_service_account_email = 15;</code>
+     * @return string
+     */
+    public function getMetricsGcpServiceAccountEmail()
+    {
+        return $this->metrics_gcp_service_account_email;
+    }
+
+    /**
+     * The Email of the Google Cloud Service Account (GSA) used for exporting
+     * Config Sync metrics to Cloud Monitoring when Workload Identity is enabled.
+     * The GSA should have the Monitoring Metric Writer
+     * (roles/monitoring.metricWriter) IAM role.
+     * The Kubernetes ServiceAccount `default` in the namespace
+     * `config-management-monitoring` should be bound to the GSA.
+     *
+     * Generated from protobuf field <code>string metrics_gcp_service_account_email = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetricsGcpServiceAccountEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metrics_gcp_service_account_email = $var;
 
         return $this;
     }

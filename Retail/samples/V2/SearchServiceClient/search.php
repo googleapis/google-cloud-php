@@ -40,7 +40,7 @@ use Google\Cloud\Retail\V2\SearchResponse\SearchResult;
  *                          or the name of the legacy placement resource, such as
  *                          `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
  *                          This field is used to identify the serving config name and the set
- *                          of models that will be used to make the search.
+ *                          of models that are used to make the search.
  * @param string $visitorId A unique identifier for tracking visitors. For example, this
  *                          could be implemented with an HTTP cookie, which should be able to uniquely
  *                          identify a visitor on a single device. This unique identifier should not

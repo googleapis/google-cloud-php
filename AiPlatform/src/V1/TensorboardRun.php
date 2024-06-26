@@ -23,7 +23,7 @@ class TensorboardRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. User provided name of this TensorboardRun.
      * This value must be unique among all TensorboardRuns
@@ -31,25 +31,25 @@ class TensorboardRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of this TensorboardRun.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Timestamp when this TensorboardRun was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when this TensorboardRun was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The labels with user-defined metadata to organize your TensorboardRuns.
      * This field will be used to filter and visualize Runs in the Tensorboard UI.
@@ -76,7 +76,7 @@ class TensorboardRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 9;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

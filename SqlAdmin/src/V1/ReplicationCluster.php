@@ -19,6 +19,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReplicationCluster extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Output only. If set, it indicates this instance has a private service
+     * access (PSA) dns endpoint that is pointing to the primary instance of the
+     * cluster. If this instance is the primary, the dns should be pointing to
+     * this instance. After Switchover or Replica failover, this DNS endpoint
+     * points to the promoted instance. This is a read-only field, returned to the
+     * user as information. This field can exist even if a standalone instance
+     * does not yet have a replica, or had a DR replica that was deleted.
+     *
+     * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $psa_write_endpoint = '';
+    /**
      * Optional. If the instance is a primary instance, then this field identifies
      * the disaster recovery (DR) replica. A DR replica is an optional
      * configuration for Enterprise Plus edition instances. If the instance is a
@@ -43,6 +55,14 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $psa_write_endpoint
+     *           Output only. If set, it indicates this instance has a private service
+     *           access (PSA) dns endpoint that is pointing to the primary instance of the
+     *           cluster. If this instance is the primary, the dns should be pointing to
+     *           this instance. After Switchover or Replica failover, this DNS endpoint
+     *           points to the promoted instance. This is a read-only field, returned to the
+     *           user as information. This field can exist even if a standalone instance
+     *           does not yet have a replica, or had a DR replica that was deleted.
      *     @type string $failover_dr_replica_name
      *           Optional. If the instance is a primary instance, then this field identifies
      *           the disaster recovery (DR) replica. A DR replica is an optional
@@ -58,6 +78,44 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Sql\V1\CloudSqlInstances::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. If set, it indicates this instance has a private service
+     * access (PSA) dns endpoint that is pointing to the primary instance of the
+     * cluster. If this instance is the primary, the dns should be pointing to
+     * this instance. After Switchover or Replica failover, this DNS endpoint
+     * points to the promoted instance. This is a read-only field, returned to the
+     * user as information. This field can exist even if a standalone instance
+     * does not yet have a replica, or had a DR replica that was deleted.
+     *
+     * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPsaWriteEndpoint()
+    {
+        return $this->psa_write_endpoint;
+    }
+
+    /**
+     * Output only. If set, it indicates this instance has a private service
+     * access (PSA) dns endpoint that is pointing to the primary instance of the
+     * cluster. If this instance is the primary, the dns should be pointing to
+     * this instance. After Switchover or Replica failover, this DNS endpoint
+     * points to the promoted instance. This is a read-only field, returned to the
+     * user as information. This field can exist even if a standalone instance
+     * does not yet have a replica, or had a DR replica that was deleted.
+     *
+     * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPsaWriteEndpoint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psa_write_endpoint = $var;
+
+        return $this;
     }
 
     /**

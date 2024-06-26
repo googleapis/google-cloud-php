@@ -20,13 +20,13 @@ class ExplanationSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationParameters parameters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * Optional. Metadata describing the Model's input and output for explanation.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class GPUDriverConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_gpu_driver = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_gpu_driver = false;
+    protected $enable_gpu_driver = false;
     /**
      * Optional. Specify a custom Cloud Storage path where the GPU driver is
      * stored. If not specified, we'll automatically choose from official GPU
@@ -30,7 +30,7 @@ class GPUDriverConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string custom_gpu_driver_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_gpu_driver_path = '';
+    protected $custom_gpu_driver_path = '';
 
     /**
      * Constructor.

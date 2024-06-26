@@ -21,7 +21,7 @@ class UpdateCustomConstraintRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.CustomConstraint custom_constraint = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_constraint = null;
+    protected $custom_constraint = null;
 
     /**
      * @param \Google\Cloud\OrgPolicy\V2\CustomConstraint $customConstraint Required. `CustomConstraint` to update.

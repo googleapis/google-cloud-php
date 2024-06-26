@@ -21,20 +21,20 @@ class MultiTrialAlgorithmSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasJobSpec.MultiTrialAlgorithmSpec.MultiTrialAlgorithm multi_trial_algorithm = 1;</code>
      */
-    private $multi_trial_algorithm = 0;
+    protected $multi_trial_algorithm = 0;
     /**
      * Metric specs for the NAS job.
      * Validation for this field is done at `multi_trial_algorithm_spec` field.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasJobSpec.MultiTrialAlgorithmSpec.MetricSpec metric = 2;</code>
      */
-    private $metric = null;
+    protected $metric = null;
     /**
      * Required. Spec for search trials.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasJobSpec.MultiTrialAlgorithmSpec.SearchTrialSpec search_trial_spec = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $search_trial_spec = null;
+    protected $search_trial_spec = null;
     /**
      * Spec for train trials. Top N [TrainTrialSpec.max_parallel_trial_count]
      * search trials will be trained for every M
@@ -42,7 +42,7 @@ class MultiTrialAlgorithmSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NasJobSpec.MultiTrialAlgorithmSpec.TrainTrialSpec train_trial_spec = 4;</code>
      */
-    private $train_trial_spec = null;
+    protected $train_trial_spec = null;
 
     /**
      * Constructor.

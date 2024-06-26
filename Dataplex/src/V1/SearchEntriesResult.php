@@ -18,21 +18,21 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
     /**
      * Linked resource name.
      *
-     * Generated from protobuf field <code>string linked_resource = 8;</code>
+     * Generated from protobuf field <code>string linked_resource = 8 [deprecated = true];</code>
+     * @deprecated
      */
-    private $linked_resource = '';
+    protected $linked_resource = '';
     /**
-     * Entry format of the result.
-     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 9;</code>
      */
-    private $dataplex_entry = null;
+    protected $dataplex_entry = null;
     /**
      * Snippets.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12 [deprecated = true];</code>
+     * @deprecated
      */
-    private $snippets = null;
+    protected $snippets = null;
 
     /**
      * Constructor.
@@ -43,7 +43,6 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
      *     @type string $linked_resource
      *           Linked resource name.
      *     @type \Google\Cloud\Dataplex\V1\Entry $dataplex_entry
-     *           Entry format of the result.
      *     @type \Google\Cloud\Dataplex\V1\SearchEntriesResult\Snippets $snippets
      *           Snippets.
      * }
@@ -56,23 +55,27 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
     /**
      * Linked resource name.
      *
-     * Generated from protobuf field <code>string linked_resource = 8;</code>
+     * Generated from protobuf field <code>string linked_resource = 8 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getLinkedResource()
     {
+        @trigger_error('linked_resource is deprecated.', E_USER_DEPRECATED);
         return $this->linked_resource;
     }
 
     /**
      * Linked resource name.
      *
-     * Generated from protobuf field <code>string linked_resource = 8;</code>
+     * Generated from protobuf field <code>string linked_resource = 8 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setLinkedResource($var)
     {
+        @trigger_error('linked_resource is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->linked_resource = $var;
 
@@ -80,8 +83,6 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry format of the result.
-     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 9;</code>
      * @return \Google\Cloud\Dataplex\V1\Entry|null
      */
@@ -101,8 +102,6 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry format of the result.
-     *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Entry dataplex_entry = 9;</code>
      * @param \Google\Cloud\Dataplex\V1\Entry $var
      * @return $this
@@ -118,33 +117,39 @@ class SearchEntriesResult extends \Google\Protobuf\Internal\Message
     /**
      * Snippets.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12 [deprecated = true];</code>
      * @return \Google\Cloud\Dataplex\V1\SearchEntriesResult\Snippets|null
+     * @deprecated
      */
     public function getSnippets()
     {
+        @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
         return $this->snippets;
     }
 
     public function hasSnippets()
     {
+        @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
         return isset($this->snippets);
     }
 
     public function clearSnippets()
     {
+        @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
         unset($this->snippets);
     }
 
     /**
      * Snippets.
      *
-     * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.SearchEntriesResult.Snippets snippets = 12 [deprecated = true];</code>
      * @param \Google\Cloud\Dataplex\V1\SearchEntriesResult\Snippets $var
      * @return $this
+     * @deprecated
      */
     public function setSnippets($var)
     {
+        @trigger_error('snippets is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\SearchEntriesResult\Snippets::class);
         $this->snippets = $var;
 

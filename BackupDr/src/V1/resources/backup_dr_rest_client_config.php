@@ -124,13 +124,6 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/managementServers/*}:testIamPermissions',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/backupVaults/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

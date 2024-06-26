@@ -136,6 +136,38 @@ class SmartRetriesTest extends TestCase
         $iterator->getIterator()->current();
     }
 
+    public function testReadRowsContainsAttemptHeader()
+    {
+        $attempt = 0;
+        $expectedArgs = $this->options;
+        $retryingApiException = $this->retryingApiException;
+        $this->serverStream->readAll()
+            ->shouldBeCalledTimes(2)
+            ->will(function () use (&$attempt, $retryingApiException) {
+                // throw a retriable exception on the first call
+                return 0 === $attempt++ ? throw $retryingApiException : [];
+            });
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::that(function ($callOptions) use (&$attempt) {
+                $attemptHeader = $callOptions['headers']['bigtable-attempt'][0] ?? null;
+                if ($attempt === 0) {
+                    $this->assertNull($attemptHeader);
+                } else {
+                    $this->assertSame((string) $attempt, $attemptHeader);
+                }
+
+                return true;
+            })
+        )->shouldBeCalledTimes(2)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $iterator = $this->table->readRows();
+        $iterator->getIterator()->current();
+    }
+
     public function testReadRowsPartialSuccess()
     {
         $expectedArgs = $this->options;
@@ -186,7 +218,7 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(3, 4)
                 )
             );
-        
+
         $allowedRowsLimit = ['5' => 1, '3' => 1];
         $this->bigtableClient->readRows(
             Argument::that(function ($request) use (&$allowedRowsLimit) {

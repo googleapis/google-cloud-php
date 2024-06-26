@@ -24,7 +24,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The metadata import to update. The server only merges fields
      * in the import if they are specified in `update_mask`.
@@ -33,7 +33,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1beta.MetadataImport metadata_import = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metadata_import = null;
+    protected $metadata_import = null;
     /**
      * Optional. A request ID. Specify a unique request ID to allow the server to
      * ignore the request if it has completed. The server will ignore subsequent
@@ -48,7 +48,29 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
+
+    /**
+     * @param \Google\Cloud\Metastore\V1beta\MetadataImport $metadataImport Required. The metadata import to update. The server only merges fields
+     *                                                                      in the import if they are specified in `update_mask`.
+     *
+     *                                                                      The metadata import's `name` field is used to identify the metastore
+     *                                                                      import to be updated.
+     * @param \Google\Protobuf\FieldMask                    $updateMask     Required. A field mask used to specify the fields to be overwritten in the
+     *                                                                      metadata import resource by the update.
+     *                                                                      Fields specified in the `update_mask` are relative to the resource (not
+     *                                                                      to the full request). A field is overwritten if it is in the mask.
+     *
+     * @return \Google\Cloud\Metastore\V1beta\UpdateMetadataImportRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\Metastore\V1beta\MetadataImport $metadataImport, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMetadataImport($metadataImport)
+            ->setUpdateMask($updateMask);
+    }
 
     /**
      * Constructor.

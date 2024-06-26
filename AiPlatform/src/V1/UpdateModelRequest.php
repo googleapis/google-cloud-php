@@ -38,7 +38,7 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = null;
+    protected $model = null;
     /**
      * Required. The update mask applies to the resource.
      * For the `FieldMask` definition, see
@@ -46,7 +46,7 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AIPlatform\V1\Model $model      Required. The Model which replaces the resource on the server.
