@@ -44,14 +44,18 @@ use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Protobuf\Duration;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -848,28 +852,26 @@ class DatabaseTest extends TestCase
 
     public function testBatchWrite()
     {
-        $expectedMutationGroup = ['mutations' => [
-            [
-                Operation::OP_INSERT_OR_UPDATE => [
-                    'table' => 'foo',
-                    'columns' => ['bar1', 'bar2'],
-                    'values' => [1, 2]
-                ]
-            ]
-        ]];
-        $this->connection->batchWrite(Argument::allOf(
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('mutationGroups', [$expectedMutationGroup])
-        ))->shouldBeCalled()->willReturn(['foo result']);
+        $expectedMutationGroup = new MutationGroup(['mutations' => [
+            new Mutation(['insert_or_update' => new Mutation\Write([
+                'table' => 'foo',
+                'columns' => ['bar1', 'bar2'],
+                'values' => [new ListValue(['values' => [
+                    new Value(['string_value' => '1']),
+                    new Value(['string_value' => '2']),
+                ]])]
+            ])])
+        ]]);
 
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'batchWrite',
+            function ($request) use ($expectedMutationGroup) {
+                return $request->getSession() === $this->session->name()
+                    && $request->getMutationGroups()[0] == $expectedMutationGroup;
+            },
+            ['foo result']
+        );
 
         $mutationGroups = [
             ($this->database->mutationGroup(false))
@@ -879,10 +881,9 @@ class DatabaseTest extends TestCase
                 )
         ];
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $result = $this->database->batchWrite($mutationGroups);
-        $this->assertIsArray($result);
     }
 
     public function testRunTransaction()
@@ -1105,15 +1106,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1140,15 +1141,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1175,15 +1176,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_UPDATE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_UPDATE]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1210,15 +1211,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_UPDATE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_UPDATE]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1245,15 +1246,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1280,15 +1281,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1315,15 +1316,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_REPLACE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_REPLACE]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1350,15 +1351,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][OPERATION::OP_REPLACE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][OPERATION::OP_REPLACE]['values'][0][0] !== current($row)) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()
@@ -1385,15 +1386,15 @@ class DatabaseTest extends TestCase
                 if ($arg['mutations'][0][Operation::OP_DELETE]['table'] !== $table) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0][0] !== (string) $keys[0]) {
                     return false;
                 }
-    
+
                 if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1][0] !== $keys[1]) {
                     return false;
                 }
-    
+
                 return true;
             },
             $this->commitResponse()

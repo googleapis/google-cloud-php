@@ -28,8 +28,6 @@ use Google\ApiCore\ValidationException;
  */
 trait MutationTrait
 {
-    use ArrayTrait;
-
     /**
      * @var array
      */
@@ -334,6 +332,6 @@ trait MutationTrait
             $keys['keys'] = $this->getValueMapper()->encodeValuesAsSimpleType($keys['keys'], true);
         }
 
-        return $this->arrayFilterRemoveNull($keys);
+        return array_filter($keys, fn ($v) => !is_null($v));;
     }
 }

@@ -46,17 +46,23 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
+use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
+use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation\Delete;
+use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\Duration;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\Struct;
+use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -225,6 +231,17 @@ class Database
      * @var bool
      */
     private $returnInt64AsObject;
+
+    /**
+     * @var array
+     */
+    private $mutationSetters = [
+        'insert' => 'setInsert',
+        'update' => 'setUpdate',
+        'insertOrUpdate' => 'setInsertOrUpdate',
+        'replace' => 'setReplace',
+        'delete' => 'setDelete'
+    ];
 
     /**
      * Create an object representing a Database.
@@ -1886,13 +1903,27 @@ class Database
         );
 
         $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
+        array_walk(
+            $mutationGroups,
+            fn(&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
+        );
 
         try {
-            return $this->connection->batchWrite([
-                'database' => $this->name(),
+            list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+            $data += [
                 'session' => $session->name(),
                 'mutationGroups' => $mutationGroups
-            ] + $options);
+            ];
+
+            return $this->createAndSendRequest(
+                GapicSpannerClient::class,
+                'batchWrite',
+                $data,
+                $optionalArgs,
+                BatchWriteRequest::class,
+                $this->name,
+                $this->routeToLeader
+            );
         } finally {
             $this->isRunningTransaction = false;
             $session->setExpiration();
@@ -2592,6 +2623,108 @@ class Database
         } catch (ValidationException $e) {
             return $name;
         }
+    }
+
+    private function parseMutations($rawMutations)
+    {
+        if (!is_array($rawMutations)) {
+            return [];
+        }
+
+        $mutations = [];
+        foreach ($rawMutations as $mutation) {
+            $type = array_keys($mutation)[0];
+            $data = $mutation[$type];
+
+            switch ($type) {
+                case Operation::OP_DELETE:
+                    if (isset($data['keySet'])) {
+                        $data['keySet'] = $this->formatKeySet($data['keySet']);
+                    }
+
+                    $operation = $this->serializer->decodeMessage(
+                        new Delete,
+                        $data
+                    );
+                    break;
+                default:
+                    $operation = new Write;
+                    $operation->setTable($data['table']);
+                    $operation->setColumns($data['columns']);
+
+                    $modifiedData = [];
+                    foreach ($data['values'] as $key => $param) {
+                        $modifiedData[$key] = $this->fieldValue($param);
+                    }
+
+                    $list = new ListValue;
+                    $list->setValues($modifiedData);
+                    $values = [$list];
+                    $operation->setValues($values);
+
+                    break;
+            }
+
+            $setterName = $this->mutationSetters[$type];
+            $mutation = new Mutation;
+            $mutation->$setterName($operation);
+            $mutations[] = $mutation;
+        }
+        return $mutations;
+    }
+
+    /**
+     * @param mixed $param
+     * @return Value
+     */
+    private function fieldValue($param)
+    {
+        $field = new Value;
+        $value = $this->formatValueForApi($param);
+
+        $setter = null;
+        switch (array_keys($value)[0]) {
+            case 'string_value':
+                $setter = 'setStringValue';
+                break;
+            case 'number_value':
+                $setter = 'setNumberValue';
+                break;
+            case 'bool_value':
+                $setter = 'setBoolValue';
+                break;
+            case 'null_value':
+                $setter = 'setNullValue';
+                break;
+            case 'struct_value':
+                $setter = 'setStructValue';
+                $modifiedParams = [];
+                foreach ($param as $key => $value) {
+                    $modifiedParams[$key] = $this->fieldValue($value);
+                }
+                $value = new Struct;
+                $value->setFields($modifiedParams);
+
+                break;
+            case 'list_value':
+                $setter = 'setListValue';
+                $modifiedParams = [];
+                foreach ($param as $item) {
+                    $modifiedParams[] = $this->fieldValue($item);
+                }
+                $list = new ListValue;
+                $list->setValues($modifiedParams);
+                $value = $list;
+
+                break;
+        }
+
+        $value = is_array($value) ? current($value) : $value;
+        if ($setter) {
+            $field->$setter($value);
+        }
+
+        return $field;
     }
 
     /**
