@@ -20,7 +20,7 @@ class SnapshotReservationDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 reserved_space_gib = 1;</code>
      */
-    private $reserved_space_gib = 0;
+    protected $reserved_space_gib = 0;
     /**
      * The percent of snapshot space on this storage volume actually being used
      * by the snapshot copies. This value might be higher than 100% if the
@@ -29,14 +29,14 @@ class SnapshotReservationDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 reserved_space_used_percent = 2;</code>
      */
-    private $reserved_space_used_percent = 0;
+    protected $reserved_space_used_percent = 0;
     /**
      * The amount, in GiB, of available space in this storage volume's reserved
      * snapshot space.
      *
      * Generated from protobuf field <code>int64 reserved_space_remaining_gib = 3;</code>
      */
-    private $reserved_space_remaining_gib = 0;
+    protected $reserved_space_remaining_gib = 0;
     /**
      * Percent of the total Volume size reserved for snapshot copies.
      * Enabling snapshots requires reserving 20% or more of
@@ -46,7 +46,7 @@ class SnapshotReservationDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 reserved_space_percent = 4;</code>
      */
-    private $reserved_space_percent = 0;
+    protected $reserved_space_percent = 0;
 
     /**
      * Constructor.
@@ -199,6 +199,4 @@ class SnapshotReservationDetail extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SnapshotReservationDetail::class, \Google\Cloud\BareMetalSolution\V2\Volume_SnapshotReservationDetail::class);
 

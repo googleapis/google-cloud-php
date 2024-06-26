@@ -27,7 +27,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Optional. Resources in this dataset that are selectively shared.
      * If this field is empty, then the entire dataset (all resources) are

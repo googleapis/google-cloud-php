@@ -21,7 +21,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Instances to be created.
      *
@@ -45,14 +45,14 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ticket_id = 5;</code>
      */
-    private $ticket_id = '';
+    protected $ticket_id = '';
     /**
      * A service account to enable customers to access instance credentials upon
      * handover.
      *
      * Generated from protobuf field <code>string handover_service_account = 6;</code>
      */
-    private $handover_service_account = '';
+    protected $handover_service_account = '';
     /**
      * Email provided to send a confirmation with provisioning config to.
      * Deprecated in favour of email field in request messages.
@@ -66,44 +66,44 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.ProvisioningConfig.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. Location name of this ProvisioningConfig.
      * It is optional only for Intake UI transition period.
      *
      * Generated from protobuf field <code>string location = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Output only. Last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. URI to Cloud Console UI view of this provisioning config.
      *
      * Generated from protobuf field <code>string cloud_console_uri = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cloud_console_uri = '';
+    protected $cloud_console_uri = '';
     /**
      * If true, VPC SC is enabled for the cluster.
      *
      * Generated from protobuf field <code>bool vpc_sc_enabled = 12;</code>
      */
-    private $vpc_sc_enabled = false;
+    protected $vpc_sc_enabled = false;
     /**
      * Optional status messages associated with the FAILED state.
      *
      * Generated from protobuf field <code>string status_message = 13;</code>
      */
-    private $status_message = '';
+    protected $status_message = '';
     /**
      * Optional. The user-defined identifier of the provisioning config.
      *
      * Generated from protobuf field <code>string custom_id = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_id = '';
+    protected $custom_id = '';
 
     /**
      * Constructor.

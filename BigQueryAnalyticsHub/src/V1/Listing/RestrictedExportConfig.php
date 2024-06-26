@@ -21,21 +21,21 @@ class RestrictedExportConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Output only. If true, restrict direct table access(read
      * api/tabledata.list) on linked table.
      *
      * Generated from protobuf field <code>bool restrict_direct_table_access = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $restrict_direct_table_access = false;
+    protected $restrict_direct_table_access = false;
     /**
      * Optional. If true, restrict export of query result derived from
      * restricted linked dataset table.
      *
      * Generated from protobuf field <code>bool restrict_query_result = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $restrict_query_result = false;
+    protected $restrict_query_result = false;
 
     /**
      * Constructor.

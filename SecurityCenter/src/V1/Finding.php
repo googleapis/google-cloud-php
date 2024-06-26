@@ -365,6 +365,24 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Notebook notebook = 63;</code>
      */
     private $notebook = null;
+    /**
+     * Contains details about a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ToxicCombination toxic_combination = 64;</code>
+     */
+    private $toxic_combination = null;
+    /**
+     * Contains details about groups of which this finding is a member. A group is
+     * a collection of findings that are related in some way.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.GroupMembership group_memberships = 65;</code>
+     */
+    private $group_memberships;
 
     /**
      * Constructor.
@@ -533,6 +551,16 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Fields related to Cloud Armor findings.
      *     @type \Google\Cloud\SecurityCenter\V1\Notebook $notebook
      *           Notebook associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\ToxicCombination $toxic_combination
+     *           Contains details about a group of security issues that, when the issues
+     *           occur together, represent a greater risk than when the issues occur
+     *           independently. A group of such issues is referred to as a toxic
+     *           combination.
+     *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\GroupMembership>|\Google\Protobuf\Internal\RepeatedField $group_memberships
+     *           Contains details about groups of which this finding is a member. A group is
+     *           a collection of findings that are related in some way.
+     *           This field cannot be updated. Its value is ignored in all update requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -2060,6 +2088,80 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Notebook::class);
         $this->notebook = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains details about a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ToxicCombination toxic_combination = 64;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\ToxicCombination|null
+     */
+    public function getToxicCombination()
+    {
+        return $this->toxic_combination;
+    }
+
+    public function hasToxicCombination()
+    {
+        return isset($this->toxic_combination);
+    }
+
+    public function clearToxicCombination()
+    {
+        unset($this->toxic_combination);
+    }
+
+    /**
+     * Contains details about a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ToxicCombination toxic_combination = 64;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\ToxicCombination $var
+     * @return $this
+     */
+    public function setToxicCombination($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\ToxicCombination::class);
+        $this->toxic_combination = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains details about groups of which this finding is a member. A group is
+     * a collection of findings that are related in some way.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.GroupMembership group_memberships = 65;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGroupMemberships()
+    {
+        return $this->group_memberships;
+    }
+
+    /**
+     * Contains details about groups of which this finding is a member. A group is
+     * a collection of findings that are related in some way.
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.GroupMembership group_memberships = 65;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\GroupMembership>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGroupMemberships($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\GroupMembership::class);
+        $this->group_memberships = $arr;
 
         return $this;
     }

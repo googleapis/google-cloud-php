@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,9 +88,7 @@ final class MigrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -139,8 +137,12 @@ final class MigrationServiceClient
      *
      * @return string The formatted migration_subtask resource.
      */
-    public static function migrationSubtaskName(string $project, string $location, string $workflow, string $subtask): string
-    {
+    public static function migrationSubtaskName(
+        string $project,
+        string $location,
+        string $workflow,
+        string $subtask
+    ): string {
         return self::getPathTemplate('migrationSubtask')->render([
             'project' => $project,
             'location' => $location,
@@ -287,8 +289,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMigrationWorkflow(CreateMigrationWorkflowRequest $request, array $callOptions = []): MigrationWorkflow
-    {
+    public function createMigrationWorkflow(
+        CreateMigrationWorkflowRequest $request,
+        array $callOptions = []
+    ): MigrationWorkflow {
         return $this->startApiCall('CreateMigrationWorkflow', $request, $callOptions)->wait();
     }
 
@@ -365,8 +369,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getMigrationWorkflow(GetMigrationWorkflowRequest $request, array $callOptions = []): MigrationWorkflow
-    {
+    public function getMigrationWorkflow(
+        GetMigrationWorkflowRequest $request,
+        array $callOptions = []
+    ): MigrationWorkflow {
         return $this->startApiCall('GetMigrationWorkflow', $request, $callOptions)->wait();
     }
 
@@ -392,8 +398,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMigrationSubtasks(ListMigrationSubtasksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMigrationSubtasks(
+        ListMigrationSubtasksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMigrationSubtasks', $request, $callOptions);
     }
 
@@ -419,8 +427,10 @@ final class MigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMigrationWorkflows(ListMigrationWorkflowsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMigrationWorkflows(
+        ListMigrationWorkflowsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMigrationWorkflows', $request, $callOptions);
     }
 

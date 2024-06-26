@@ -59,6 +59,4 @@ class Permissions
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Permissions::class, \Google\Cloud\BareMetalSolution\V2\VolumeConfig_NfsExport_Permissions::class);
 

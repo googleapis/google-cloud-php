@@ -72,6 +72,16 @@ class Subnet extends \Google\Protobuf\Internal\Message
      */
     protected $vlan_id = 0;
     /**
+     * Optional. A bonding type in the subnet creation specifies whether a VLAN
+     * being created will be present on Bonded or Non-Bonded or Both port types.
+     * In addition, this flag is to be used to set the specific network
+     * configuration which clusters can then use for their workloads based on the
+     * bonding choice.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.Subnet.BondingType bonding_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $bonding_type = 0;
+    /**
      * Output only. Current stage of the resource to the device by config push.
      *
      * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.ResourceState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -104,6 +114,12 @@ class Subnet extends \Google\Protobuf\Internal\Message
      *     @type int $vlan_id
      *           Optional. VLAN id provided by user. If not specified we assign one
      *           automatically.
+     *     @type int $bonding_type
+     *           Optional. A bonding type in the subnet creation specifies whether a VLAN
+     *           being created will be present on Bonded or Non-Bonded or Both port types.
+     *           In addition, this flag is to be used to set the specific network
+     *           configuration which clusters can then use for their workloads based on the
+     *           bonding choice.
      *     @type int $state
      *           Output only. Current stage of the resource to the device by config push.
      * }
@@ -367,6 +383,40 @@ class Subnet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->vlan_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A bonding type in the subnet creation specifies whether a VLAN
+     * being created will be present on Bonded or Non-Bonded or Both port types.
+     * In addition, this flag is to be used to set the specific network
+     * configuration which clusters can then use for their workloads based on the
+     * bonding choice.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.Subnet.BondingType bonding_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBondingType()
+    {
+        return $this->bonding_type;
+    }
+
+    /**
+     * Optional. A bonding type in the subnet creation specifies whether a VLAN
+     * being created will be present on Bonded or Non-Bonded or Both port types.
+     * In addition, this flag is to be used to set the specific network
+     * configuration which clusters can then use for their workloads based on the
+     * bonding choice.
+     *
+     * Generated from protobuf field <code>.google.cloud.edgenetwork.v1.Subnet.BondingType bonding_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBondingType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\EdgeNetwork\V1\Subnet\BondingType::class);
+        $this->bonding_type = $var;
 
         return $this;
     }

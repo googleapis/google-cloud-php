@@ -22,7 +22,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.Volume volume = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $volume = null;
+    protected $volume = null;
     /**
      * The list of fields to update.
      * The only currently supported fields are:
@@ -30,7 +30,7 @@ class UpdateVolumeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\BareMetalSolution\V2\Volume $volume     Required. The volume to update.

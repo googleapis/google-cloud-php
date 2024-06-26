@@ -68,9 +68,9 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      */
     private $database_names;
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     * in the specified zone. If no zone is specified, clone to the same zone as
-     * the source instance.
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the
+     * specified zone. If no zone is specified, clone to the same primary zone as
+     * the source instance. This field applies to all DB types.
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -107,9 +107,9 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *           (SQL Server only) Clone only the specified databases from the source
      *           instance. Clone all databases if empty.
      *     @type string $preferred_zone
-     *           Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     *           in the specified zone. If no zone is specified, clone to the same zone as
-     *           the source instance.
+     *           Optional. Copy clone and point-in-time recovery clone of an instance to the
+     *           specified zone. If no zone is specified, clone to the same primary zone as
+     *           the source instance. This field applies to all DB types.
      * }
      */
     public function __construct($data = NULL) {
@@ -340,9 +340,9 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     * in the specified zone. If no zone is specified, clone to the same zone as
-     * the source instance.
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the
+     * specified zone. If no zone is specified, clone to the same primary zone as
+     * the source instance. This field applies to all DB types.
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -363,9 +363,9 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. (Point-in-time recovery for PostgreSQL only) Clone to an instance
-     * in the specified zone. If no zone is specified, clone to the same zone as
-     * the source instance.
+     * Optional. Copy clone and point-in-time recovery clone of an instance to the
+     * specified zone. If no zone is specified, clone to the same primary zone as
+     * the source instance. This field applies to all DB types.
      *
      * Generated from protobuf field <code>optional string preferred_zone = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

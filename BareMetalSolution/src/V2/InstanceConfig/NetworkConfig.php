@@ -60,6 +60,4 @@ class NetworkConfig
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NetworkConfig::class, \Google\Cloud\BareMetalSolution\V2\InstanceConfig_NetworkConfig::class);
 

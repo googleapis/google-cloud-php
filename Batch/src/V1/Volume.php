@@ -22,15 +22,18 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     private $mount_path = '';
     /**
-     * For Google Cloud Storage (GCS), mount options are the options supported by
-     * the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
-     * For existing persistent disks, mount options provided by the
-     * mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
-     * writing are supported. This is due to restrictions of multi-writer mode
-     * (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
-     * For other attached disks and Network File System (NFS), mount options are
-     * these supported by the mount command
-     * (https://man7.org/linux/man-pages/man8/mount.8.html).
+     * Mount options vary based on the type of storage volume:
+     * * For a Cloud Storage bucket, all the mount options provided
+     * by
+     *   the [`gcsfuse` tool](https://cloud.google.com/storage/docs/gcsfuse-cli)
+     *   are supported.
+     * * For an existing persistent disk, all mount options provided by the
+     *   [`mount` command](https://man7.org/linux/man-pages/man8/mount.8.html)
+     *   except writing are supported. This is due to restrictions of
+     *   [multi-writer
+     *   mode](https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     * * For any other disk or a Network File System (NFS), all the
+     *   mount options provided by the `mount` command are supported.
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
      */
@@ -57,15 +60,18 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type string $mount_path
      *           The mount path for the volume, e.g. /mnt/disks/share.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mount_options
-     *           For Google Cloud Storage (GCS), mount options are the options supported by
-     *           the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
-     *           For existing persistent disks, mount options provided by the
-     *           mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
-     *           writing are supported. This is due to restrictions of multi-writer mode
-     *           (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
-     *           For other attached disks and Network File System (NFS), mount options are
-     *           these supported by the mount command
-     *           (https://man7.org/linux/man-pages/man8/mount.8.html).
+     *           Mount options vary based on the type of storage volume:
+     *           * For a Cloud Storage bucket, all the mount options provided
+     *           by
+     *             the [`gcsfuse` tool](https://cloud.google.com/storage/docs/gcsfuse-cli)
+     *             are supported.
+     *           * For an existing persistent disk, all mount options provided by the
+     *             [`mount` command](https://man7.org/linux/man-pages/man8/mount.8.html)
+     *             except writing are supported. This is due to restrictions of
+     *             [multi-writer
+     *             mode](https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     *           * For any other disk or a Network File System (NFS), all the
+     *             mount options provided by the `mount` command are supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,15 +209,18 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For Google Cloud Storage (GCS), mount options are the options supported by
-     * the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
-     * For existing persistent disks, mount options provided by the
-     * mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
-     * writing are supported. This is due to restrictions of multi-writer mode
-     * (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
-     * For other attached disks and Network File System (NFS), mount options are
-     * these supported by the mount command
-     * (https://man7.org/linux/man-pages/man8/mount.8.html).
+     * Mount options vary based on the type of storage volume:
+     * * For a Cloud Storage bucket, all the mount options provided
+     * by
+     *   the [`gcsfuse` tool](https://cloud.google.com/storage/docs/gcsfuse-cli)
+     *   are supported.
+     * * For an existing persistent disk, all mount options provided by the
+     *   [`mount` command](https://man7.org/linux/man-pages/man8/mount.8.html)
+     *   except writing are supported. This is due to restrictions of
+     *   [multi-writer
+     *   mode](https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     * * For any other disk or a Network File System (NFS), all the
+     *   mount options provided by the `mount` command are supported.
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -222,15 +231,18 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For Google Cloud Storage (GCS), mount options are the options supported by
-     * the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
-     * For existing persistent disks, mount options provided by the
-     * mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
-     * writing are supported. This is due to restrictions of multi-writer mode
-     * (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
-     * For other attached disks and Network File System (NFS), mount options are
-     * these supported by the mount command
-     * (https://man7.org/linux/man-pages/man8/mount.8.html).
+     * Mount options vary based on the type of storage volume:
+     * * For a Cloud Storage bucket, all the mount options provided
+     * by
+     *   the [`gcsfuse` tool](https://cloud.google.com/storage/docs/gcsfuse-cli)
+     *   are supported.
+     * * For an existing persistent disk, all mount options provided by the
+     *   [`mount` command](https://man7.org/linux/man-pages/man8/mount.8.html)
+     *   except writing are supported. This is due to restrictions of
+     *   [multi-writer
+     *   mode](https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     * * For any other disk or a Network File System (NFS), all the
+     *   mount options provided by the `mount` command are supported.
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

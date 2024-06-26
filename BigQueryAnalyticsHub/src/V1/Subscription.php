@@ -23,37 +23,37 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Timestamp when the subscription was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_time = null;
+    protected $creation_time = null;
     /**
      * Output only. Timestamp when the subscription was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modify_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modify_time = null;
+    protected $last_modify_time = null;
     /**
      * Output only. Organization of the project this subscription belongs to.
      *
      * Generated from protobuf field <code>string organization_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $organization_id = '';
+    protected $organization_id = '';
     /**
      * Output only. Display name of the project of this subscription.
      *
      * Generated from protobuf field <code>string organization_display_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $organization_display_name = '';
+    protected $organization_display_name = '';
     /**
      * Output only. Current state of the subscription.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Subscription.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Map of listing resource names to associated linked resource,
      * e.g. projects/123/locations/US/dataExchanges/456/listings/789
@@ -70,7 +70,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscriber_contact = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subscriber_contact = '';
+    protected $subscriber_contact = '';
     protected $resource_name;
 
     /**

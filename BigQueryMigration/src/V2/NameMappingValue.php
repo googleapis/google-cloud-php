@@ -22,27 +22,27 @@ class NameMappingValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The schema name (BigQuery dataset equivalent in the target data warehouse).
      *
      * Generated from protobuf field <code>string schema = 2;</code>
      */
-    private $schema = '';
+    protected $schema = '';
     /**
      * The relation name (BigQuery table or view equivalent in the target data
      * warehouse).
      *
      * Generated from protobuf field <code>string relation = 3;</code>
      */
-    private $relation = '';
+    protected $relation = '';
     /**
      * The attribute name (BigQuery column equivalent in the target data
      * warehouse).
      *
      * Generated from protobuf field <code>string attribute = 4;</code>
      */
-    private $attribute = '';
+    protected $attribute = '';
 
     /**
      * Constructor.

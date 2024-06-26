@@ -20,14 +20,14 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A transient unique identifier to idenfity an instance within an
      * ProvisioningConfig request.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Instance type.
      * [Available
@@ -35,13 +35,13 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_type = 3;</code>
      */
-    private $instance_type = '';
+    protected $instance_type = '';
     /**
      * Whether the instance should be provisioned with Hyperthreading enabled.
      *
      * Generated from protobuf field <code>bool hyperthreading = 4;</code>
      */
-    private $hyperthreading = false;
+    protected $hyperthreading = false;
     /**
      * OS image to initialize the instance.
      * [Available
@@ -49,7 +49,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string os_image = 5;</code>
      */
-    private $os_image = '';
+    protected $os_image = '';
     /**
      * Client network address. Filled if InstanceConfig.multivlan_config is false.
      *
@@ -71,26 +71,26 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_note = 8;</code>
      */
-    private $user_note = '';
+    protected $user_note = '';
     /**
      * If true networks can be from different projects of the same vendor account.
      *
      * Generated from protobuf field <code>bool account_networks_enabled = 9;</code>
      */
-    private $account_networks_enabled = false;
+    protected $account_networks_enabled = false;
     /**
      * The type of network configuration on the instance.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.InstanceConfig.NetworkConfig network_config = 10;</code>
      */
-    private $network_config = 0;
+    protected $network_config = 0;
     /**
      * Server network template name. Filled if InstanceConfig.multivlan_config is
      * true.
      *
      * Generated from protobuf field <code>string network_template = 11;</code>
      */
-    private $network_template = '';
+    protected $network_template = '';
     /**
      * List of logical interfaces for the instance. The number of logical
      * interfaces will be the same as number of hardware bond/nic on the chosen
