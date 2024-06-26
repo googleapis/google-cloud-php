@@ -64,7 +64,7 @@ class ComponentInfoCommand extends Command
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
-            ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
+            ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields, \"all\" for all fields. The following fields are available: \n - %s\n" .
                 "NOTE: \"available_api_versions\" are omited by default because they take a long time to load.\n" .
@@ -153,14 +153,20 @@ class ComponentInfoCommand extends Command
             array_intersect_key(self::$allFields, $requestedFields)
         ));
 
-        if ($csv = $input->getOption('csv')) {
-            $fp = fopen($csv, 'wa+');
-            fputcsv($fp, $headers);
-            foreach ($rows as $row) {
-                fputcsv($fp, $row);
+        if (false !== $csv = $input->getOption('csv')) {
+            if (null === $csv) {
+                foreach ($rows as $row) {
+                    $output->writeln(implode(',', $row));
+                }
+            } else {
+                $fp = fopen($csv, 'wa+');
+                fputcsv($fp, $headers);
+                foreach ($rows as $row) {
+                    fputcsv($fp, $row);
+                }
+                fclose($fp);
+                $output->writeln('Output written to ' . $csv);
             }
-            fclose($fp);
-            $output->writeln('Output written to ' . $csv);
         } else {
             $table = new Table($output);
             $table
