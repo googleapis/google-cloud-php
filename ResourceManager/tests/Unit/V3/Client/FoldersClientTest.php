@@ -24,7 +24,6 @@ namespace Google\Cloud\ResourceManager\Tests\Unit\V3\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -44,6 +43,7 @@ use Google\Cloud\ResourceManager\V3\SearchFoldersRequest;
 use Google\Cloud\ResourceManager\V3\SearchFoldersResponse;
 use Google\Cloud\ResourceManager\V3\UndeleteFolderRequest;
 use Google\Cloud\ResourceManager\V3\UpdateFolderRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

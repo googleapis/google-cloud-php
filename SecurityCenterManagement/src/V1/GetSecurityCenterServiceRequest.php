@@ -31,6 +31,13 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Flag that, when set, will be used to filter the ModuleSettings that are
+     * in scope. The default setting is that all modules will be shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 2;</code>
+     */
+    protected $show_eligible_modules_only = false;
 
     /**
      * @param string $name Required. The Security Command Center service to retrieve.
@@ -78,6 +85,9 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
      *             * security-health-analytics
      *             * vm-threat-detection
      *             * web-security-scanner
+     *     @type bool $show_eligible_modules_only
+     *           Flag that, when set, will be used to filter the ModuleSettings that are
+     *           in scope. The default setting is that all modules will be shown.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +137,34 @@ class GetSecurityCenterServiceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flag that, when set, will be used to filter the ModuleSettings that are
+     * in scope. The default setting is that all modules will be shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 2;</code>
+     * @return bool
+     */
+    public function getShowEligibleModulesOnly()
+    {
+        return $this->show_eligible_modules_only;
+    }
+
+    /**
+     * Flag that, when set, will be used to filter the ModuleSettings that are
+     * in scope. The default setting is that all modules will be shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowEligibleModulesOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_eligible_modules_only = $var;
 
         return $this;
     }

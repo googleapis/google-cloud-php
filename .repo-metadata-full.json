@@ -366,7 +366,7 @@
     "CommerceConsumerProcurement": {
         "language": "php",
         "distribution_name": "google/cloud-commerce-consumer-procurement",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-commerce-consumer-procurement/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudcommerceconsumerprocurement"
@@ -397,7 +397,7 @@
     "Config": {
         "language": "php",
         "distribution_name": "google/cloud-config",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-config/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "config"
@@ -624,7 +624,7 @@
     "EdgeNetwork": {
         "language": "php",
         "distribution_name": "google/cloud-edgenetwork",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-edgenetwork/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "edgenetwork"
@@ -898,7 +898,7 @@
     "MigrationCenter": {
         "language": "php",
         "distribution_name": "google/cloud-migrationcenter",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-migrationcenter/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "migrationcenter"
@@ -914,7 +914,7 @@
     "NetApp": {
         "language": "php",
         "distribution_name": "google/cloud-netapp",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-netapp/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "netapp"
@@ -1010,7 +1010,7 @@
     "PolicySimulator": {
         "language": "php",
         "distribution_name": "google/cloud-policysimulator",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-policysimulator/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "policysimulator"
@@ -1058,7 +1058,7 @@
     "Quotas": {
         "language": "php",
         "distribution_name": "google/cloud-quotas",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-quotas/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudquotas"
@@ -1066,7 +1066,7 @@
     "RapidMigrationAssessment": {
         "language": "php",
         "distribution_name": "google/cloud-rapidmigrationassessment",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-rapidmigrationassessment/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "rapidmigrationassessment"
@@ -1162,7 +1162,7 @@
     "SecureSourceManager": {
         "language": "php",
         "distribution_name": "google/cloud-securesourcemanager",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-securesourcemanager/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "securesourcemanager"
@@ -1178,7 +1178,7 @@
     "SecurityCenterManagement": {
         "language": "php",
         "distribution_name": "google/cloud-securitycentermanagement",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-securitycentermanagement/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "securitycentermanagement"
@@ -1401,7 +1401,7 @@
     "Support": {
         "language": "php",
         "distribution_name": "google/cloud-support",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-support/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudsupport"
@@ -1425,7 +1425,7 @@
     "TelcoAutomation": {
         "language": "php",
         "distribution_name": "google/cloud-telcoautomation",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-telcoautomation/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "telcoautomation"

@@ -240,8 +240,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     private $time_zone = '';
     /**
-     * Specifies advance machine configuration for the instance
-     * relevant only for SQL Server.
+     * Specifies advanced machine configuration for the instances relevant only
+     * for SQL Server.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
      */
@@ -370,8 +370,8 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type string $time_zone
      *           Server timezone, relevant only for Cloud SQL for SQL Server.
      *     @type \Google\Cloud\Sql\V1\AdvancedMachineFeatures $advanced_machine_features
-     *           Specifies advance machine configuration for the instance
-     *           relevant only for SQL Server.
+     *           Specifies advanced machine configuration for the instances relevant only
+     *           for SQL Server.
      *     @type \Google\Cloud\Sql\V1\DataCacheConfig $data_cache_config
      *           Configuration for data cache.
      *     @type \Google\Protobuf\BoolValue $enable_google_ml_integration
@@ -1621,8 +1621,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies advance machine configuration for the instance
-     * relevant only for SQL Server.
+     * Specifies advanced machine configuration for the instances relevant only
+     * for SQL Server.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
      * @return \Google\Cloud\Sql\V1\AdvancedMachineFeatures|null
@@ -1643,8 +1643,8 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies advance machine configuration for the instance
-     * relevant only for SQL Server.
+     * Specifies advanced machine configuration for the instances relevant only
+     * for SQL Server.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
      * @param \Google\Cloud\Sql\V1\AdvancedMachineFeatures $var

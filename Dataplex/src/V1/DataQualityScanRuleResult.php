@@ -91,8 +91,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
      */
     protected $null_row_count = 0;
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
      */
@@ -131,8 +131,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
      *     @type int|string $null_row_count
      *           The number of rows with null values in the specified column.
      *     @type int|string $assertion_row_count
-     *           The number of rows returned by the sql statement in the SqlAssertion rule.
-     *           This field is only valid for SqlAssertion rules.
+     *           The number of rows returned by the SQL statement in a SQL assertion rule.
+     *           This field is only valid for SQL assertion rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -457,8 +457,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
      * @return int|string
@@ -469,8 +469,8 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of rows returned by the sql statement in the SqlAssertion rule.
-     * This field is only valid for SqlAssertion rules.
+     * The number of rows returned by the SQL statement in a SQL assertion rule.
+     * This field is only valid for SQL assertion rules.
      *
      * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
      * @param int|string $var

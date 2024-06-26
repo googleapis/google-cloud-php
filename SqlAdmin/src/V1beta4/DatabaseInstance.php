@@ -227,8 +227,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $scheduled_maintenance = null;
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      */
@@ -271,6 +271,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string maintenance_version = 42;</code>
      */
     private $maintenance_version = '';
+    /**
+     * Output only. All database versions that are available for upgrade.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $upgradable_database_versions;
     /**
      * The SQL network architecture for the instance.
      *
@@ -413,8 +419,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlScheduledMaintenance $scheduled_maintenance
      *           The start time of any upcoming scheduled maintenance for this instance.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
-     *           The status indicating if instance satisfiesPzs.
-     *           Reserved for future use.
+     *           This status indicates whether the instance satisfies PZS.
+     *           The status is reserved for future use.
      *     @type string $database_installed_version
      *           Output only. Stores the current database version running on the instance
      *           including minor version such as `MYSQL_8_0_18`.
@@ -433,6 +439,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. List all maintenance versions applicable on the instance
      *     @type string $maintenance_version
      *           The current software version on the instance.
+     *     @type array<\Google\Cloud\Sql\V1beta4\AvailableDatabaseVersion>|\Google\Protobuf\Internal\RepeatedField $upgradable_database_versions
+     *           Output only. All database versions that are available for upgrade.
      *     @type int $sql_network_architecture
      *           The SQL network architecture for the instance.
      *     @type string $psc_service_attachment_link
@@ -1476,8 +1484,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -1500,8 +1508,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getSatisfiesPzs()</code>
 
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return bool|null
@@ -1512,8 +1520,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -1530,8 +1538,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * The status indicating if instance satisfiesPzs.
-     * Reserved for future use.
+     * This status indicates whether the instance satisfies PZS.
+     * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @param bool|null $var
@@ -1704,6 +1712,32 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->maintenance_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All database versions that are available for upgrade.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUpgradableDatabaseVersions()
+    {
+        return $this->upgradable_database_versions;
+    }
+
+    /**
+     * Output only. All database versions that are available for upgrade.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Sql\V1beta4\AvailableDatabaseVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUpgradableDatabaseVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1beta4\AvailableDatabaseVersion::class);
+        $this->upgradable_database_versions = $arr;
 
         return $this;
     }

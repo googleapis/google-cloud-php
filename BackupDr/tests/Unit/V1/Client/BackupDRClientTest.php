@@ -105,11 +105,13 @@ class BackupDRClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $oauth2ClientId = 'oauth2ClientId-1833466037';
+        $satisfiesPzi = false;
         $expectedResponse = new ManagementServer();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOauth2ClientId($oauth2ClientId);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -363,11 +365,13 @@ class BackupDRClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $oauth2ClientId = 'oauth2ClientId-1833466037';
+        $satisfiesPzi = false;
         $expectedResponse = new ManagementServer();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOauth2ClientId($oauth2ClientId);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->managementServerName('[PROJECT]', '[LOCATION]', '[MANAGEMENTSERVER]');
@@ -850,11 +854,13 @@ class BackupDRClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $etag = 'etag3123477';
         $oauth2ClientId = 'oauth2ClientId-1833466037';
+        $satisfiesPzi = false;
         $expectedResponse = new ManagementServer();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setOauth2ClientId($oauth2ClientId);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

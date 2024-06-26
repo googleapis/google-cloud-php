@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START assuredworkloads_v1beta1_generated_AssuredWorkloadsService_AnalyzeWorkloadMove_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveResponse;
-use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
+use Google\Cloud\AssuredWorkloads\V1beta1\Client\AssuredWorkloadsServiceClient;
 
 /**
  * Analyze if the source Assured Workloads can be moved to the target Assured
@@ -43,10 +44,14 @@ function analyze_workload_move_sample(string $target): void
     // Create a client.
     $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
 
+    // Prepare the request message.
+    $request = (new AnalyzeWorkloadMoveRequest())
+        ->setTarget($target);
+
     // Call the API and handle any network failures.
     try {
         /** @var AnalyzeWorkloadMoveResponse $response */
-        $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove($target);
+        $response = $assuredWorkloadsServiceClient->analyzeWorkloadMove($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

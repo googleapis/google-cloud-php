@@ -58,6 +58,15 @@ class FindingClass
      * Generated from protobuf enum <code>POSTURE_VIOLATION = 6;</code>
      */
     const POSTURE_VIOLATION = 6;
+    /**
+     * Describes a group of security issues that, when the issues
+     * occur together, represent a greater risk than when the issues occur
+     * independently. A group of such issues is referred to as a toxic
+     * combination.
+     *
+     * Generated from protobuf enum <code>TOXIC_COMBINATION = 7;</code>
+     */
+    const TOXIC_COMBINATION = 7;
 
     private static $valueToName = [
         self::FINDING_CLASS_UNSPECIFIED => 'FINDING_CLASS_UNSPECIFIED',
@@ -67,6 +76,7 @@ class FindingClass
         self::OBSERVATION => 'OBSERVATION',
         self::SCC_ERROR => 'SCC_ERROR',
         self::POSTURE_VIOLATION => 'POSTURE_VIOLATION',
+        self::TOXIC_COMBINATION => 'TOXIC_COMBINATION',
     ];
 
     public static function name($value)
