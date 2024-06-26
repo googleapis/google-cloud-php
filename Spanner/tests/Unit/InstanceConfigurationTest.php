@@ -284,19 +284,4 @@ class InstanceConfigurationTest extends TestCase
     {
         return json_decode(file_get_contents(Fixtures::INSTANCE_CONFIG_FIXTURE()), true);
     }
-
-    private function getOperationResponseMock()
-    {
-        $operation = $this->serializer->decodeMessage(
-            new \Google\LongRunning\Operation(),
-            ['metadata' => [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
-            ]]
-        );
-        $operationResponse = $this->prophesize(OperationResponse::class);
-        $operationResponse->getLastProtoResponse()->willReturn($operation);
-        $operationResponse->isDone()->willReturn(false);
-        $operationResponse->getError()->willReturn(null);
-        return $operationResponse;
-    }
 }

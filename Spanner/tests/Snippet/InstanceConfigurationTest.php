@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -103,7 +103,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet->addLocal('instanceConfig', $this->config);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testUpdate()

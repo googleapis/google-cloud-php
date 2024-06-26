@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Spanner;
 
+use Closure;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -27,15 +29,12 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
-use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
@@ -87,49 +86,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
- *
- * @method resumeOperation() {
- *     Resume a Long Running Operation
- *
- *     Example:
- *     ```
- *     $operation = $database->resumeOperation($operationName);
- *     ```
- *
- *     @param string $operationName The Long Running Operation name.
- *     @param array $info [optional] The operation data.
- *     @return LongRunningOperationManager
- * }
- * @method longRunningOperations() {
- *     List long running operations.
- *
- *     Example:
- *     ```
- *     $operations = $database->longRunningOperations();
- *     ```
- *
- *     @param array $options [optional] {
- *         Configuration Options.
- *
- *         @type string $name The name of the operation collection.
- *         @type string $filter The standard list filter.
- *         @type int $pageSize Maximum number of results to return per
- *               request.
- *         @type int $resultLimit Limit the number of results returned in total.
- *               **Defaults to** `0` (return all results).
- *         @type string $pageToken A previously-returned page token used to
- *               resume the loading of results from a specific point.
- *     }
- *     @return ItemIterator<InstanceConfiguration>
- * }
  */
 class Database
 {
-    use LongRunningOperationTrait;
     use TransactionConfigurationTrait;
     use RequestTrait;
     use ApiHelperTrait;
-    use OperationResponseTrait;
 
     const STATE_CREATING = State::CREATING;
     const STATE_READY = State::READY;
@@ -250,7 +212,6 @@ class Database
      *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the database exists.
-     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
      * @param SessionPoolInterface $sessionPool [optional] The session pool
@@ -271,7 +232,6 @@ class Database
         RequestHandler $requestHandler,
         Serializer $serializer,
         Instance $instance,
-        array $lroCallables,
         string $projectId,
         string $name,
         SessionPoolInterface $sessionPool = null,
@@ -303,14 +263,6 @@ class Database
             $this->sessionPool->setDatabase($this);
         }
 
-        $this->setLroProperties(
-            $requestHandler,
-            $serializer,
-            $lroCallables,
-            $this->getLROResponseMappers(),
-            $this->name,
-            DatabaseAdminClient::class
-        );
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
         $this->returnInt64AsObject = $returnInt64AsObject;
@@ -395,7 +347,7 @@ class Database
      *        eligible to be automatically deleted by Cloud Spanner.
      * @param array $options [optional] Configuration options.
      *
-     * @return LongRunningOperationManager<Backup>
+     * @return OperationResponse
      */
     public function createBackup($name, \DateTimeInterface $expireTime, array $options = [])
     {
@@ -513,7 +465,7 @@ class Database
      *
      *     @type string[] $statements Additional DDL statements.
      * }
-     * @return LongRunningOperationManager<Database>
+     * @return OperationResponse
      */
     public function create(array $options = [])
     {
@@ -526,21 +478,14 @@ class Database
             'extraStatements' => $this->pluck('statements', $data, false) ?: []
         ];
 
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'createDatabase',
             $data,
             $optionalArgs,
             CreateDatabaseRequest::class,
             $this->instance->name()
-        );
-
-        $operation = $this->operationToArray(
-            $res,
-            $this->serializer,
-            $this->getLROResponseMappers()
-        );
-        return $this->resumeOperation($operation['name'], $operation);
+        )->withResultFunction($this->databaseResultFunction());
     }
 
     /**
@@ -557,7 +502,7 @@ class Database
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return LongRunningOperationManager<Database>
+     * @return OperationResponse
      */
     public function restore($backup, array $options = [])
     {
@@ -582,7 +527,7 @@ class Database
      *     @type bool $enableDropProtection If `true`, delete operations for Database
      *           and Instance will be blocked. **Defaults to** `false`.
      * }
-     * @return LongRunningOperationManager<Database>
+     * @return OperationResponse
      */
     public function updateDatabase(array $options = [])
     {
@@ -607,7 +552,7 @@ class Database
             $optionalArgs,
             UpdateDatabaseRequest::class,
             $this->name
-        );
+        )->withResultFunction($this->databaseResultFunction());
     }
 
     /**
@@ -633,7 +578,7 @@ class Database
      *
      * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation
+     * @return OperationResponse
      */
     public function updateDdl($statement, array $options = [])
     {
@@ -668,7 +613,7 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperationManager
+     * @return OperationResponse
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
@@ -678,7 +623,7 @@ class Database
             'statements' => $statements
         ];
 
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'updateDatabaseDdl',
             $data,
@@ -686,13 +631,6 @@ class Database
             UpdateDatabaseDdlRequest::class,
             $this->name
         );
-
-        $operation = $this->operationToArray(
-            $res,
-            $this->serializer,
-            $this->getLROResponseMappers()
-        );
-        return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
@@ -1903,6 +1841,7 @@ class Database
         );
 
         $mutationGroups = array_map(fn ($x) => $x->toArray(), $mutationGroups);
+
         array_walk(
             $mutationGroups,
             fn(&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
@@ -2384,7 +2323,7 @@ class Database
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperationManager>
+     * @return ItemIterator<OperationResponse>
      */
     public function backupOperations(array $options = [])
     {
@@ -2395,14 +2334,19 @@ class Database
         return new ItemIterator(
             new PageIterator(
                 function (array $operation) {
-                    return $this->resumeOperation($operation['name'], $operation);
+                    return new OperationResponse(
+                        $operation['name'],
+                        $this->requestHandler
+                            ->getClientObject(DatabaseAdminClient::class)
+                            ->getOperationsClient(),
+                    );
                 },
                 function ($callOptions) use ($optionalArgs, $data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    $result = $this->createAndSendRequest(
+                    return $this->createAndSendRequest(
                         DatabaseAdminClient::class,
                         'listBackupOperations',
                         $data,
@@ -2410,8 +2354,6 @@ class Database
                         ListBackupOperationsRequest::class,
                         $this->name
                     );
-                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
-                    return $result;
                 },
                 $options,
                 [
@@ -2431,7 +2373,7 @@ class Database
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return LongRunningOperationManager<Database>
+     * @return OperationResponse
      */
     public function createDatabaseFromBackup($name, $backup, array $options = [])
     {
@@ -2442,21 +2384,14 @@ class Database
             'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
 
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'restoreDatabase',
             $data,
             $optionalArgs,
             RestoreDatabaseRequest::class,
             $this->name
-        );
-        $operation = $this->operationToArray(
-            $res,
-            $this->serializer,
-            $this->getLROResponseMappers()
-        );
-
-        return $this->resumeOperation($operation['name'], $operation);
+        )->withResultFunction($this->databaseResultFunction());
     }
 
     /**
@@ -2478,7 +2413,7 @@ class Database
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperationManager>
+     * @return ItemIterator<OperationResponse>
      */
     public function databaseOperations(array $options = [])
     {
@@ -2489,14 +2424,19 @@ class Database
         return new ItemIterator(
             new PageIterator(
                 function (array $operation) {
-                    return $this->resumeOperation($operation['name'], $operation);
+                    return new OperationResponse(
+                        $operation['name'],
+                        $this->requestHandler
+                            ->getClientObject(DatabaseAdminClient::class)
+                            ->getOperationsClient(),
+                    );
                 },
                 function ($callOptions) use ($optionalArgs, $data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    $result = $this->createAndSendRequest(
+                    return $this->createAndSendRequest(
                         DatabaseAdminClient::class,
                         'listDatabaseOperations',
                         $data,
@@ -2504,8 +2444,6 @@ class Database
                         ListDatabaseOperationsRequest::class,
                         $this->instance->name()
                     );
-                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
-                    return $result;
                 },
                 $options,
                 [
@@ -2725,6 +2663,18 @@ class Database
         }
 
         return $field;
+    }
+
+    private function databaseResultFunction(): Closure
+    {
+        return function (DatabaseProto $database) {
+            $name = DatabaseAdminClient::parseName($database->getName());
+            return $this->instance->database($name['name'], [
+                'sessionPool' => $this->sessionPool,
+                'database' => $this->serializer->encodeMessage($database),
+                'databaseRole' => $this->databaseRole,
+            ]);
+        };
     }
 
     /**

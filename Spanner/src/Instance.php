@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Closure;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
@@ -25,9 +26,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
-use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
@@ -36,6 +34,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Backup;
@@ -52,48 +51,11 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *
  * $instance = $spanner->instance('my-instance');
  * ```
- *
- * @method resumeOperation() {
- *     Resume a Long Running Operation
- *
- *     Example:
- *     ```
- *     $operation = $instance->resumeOperation($operationName);
- *     ```
- *
- *     @param string $operationName The Long Running Operation name.
- *     @param array $info [optional] The operation data.
- *     @return LongRunningOperationManager
- * }
- * @method longRunningOperations() {
- *     List long running operations.
- *
- *     Example:
- *     ```
- *     $operations = $instance->longRunningOperations();
- *     ```
- *
- *     @param array $options [optional] {
- *         Configuration Options.
- *
- *         @type string $name The name of the operation collection.
- *         @type string $filter The standard list filter.
- *         @type int $pageSize Maximum number of results to return per
- *               request.
- *         @type int $resultLimit Limit the number of results returned in total.
- *               **Defaults to** `0` (return all results).
- *         @type string $pageToken A previously-returned page token used to
- *               resume the loading of results from a specific point.
- *     }
- *     @return ItemIterator<InstanceConfiguration>
- * }
  */
 class Instance
 {
     use ApiHelperTrait;
     use ArrayTrait;
-    use LongRunningOperationTrait;
-    use OperationResponseTrait;
     use RequestTrait;
 
     const STATE_READY = State::READY;
@@ -142,11 +104,6 @@ class Instance
     /**
      * @var array
      */
-    private $lroCallables;
-
-    /**
-     * @var array
-     */
     private $directedReadOptions;
 
     /**
@@ -165,7 +122,6 @@ class Instance
      * @param RequestHandler The request handler that is responsible for sending a request
      *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
-     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The instance name or ID.
      * @param bool $returnInt64AsObject [optional] If true, 64 bit integers will be
@@ -186,7 +142,6 @@ class Instance
     public function __construct(
         RequestHandler $requestHandler,
         Serializer $serializer,
-        array $lroCallables,
         $projectId,
         $name,
         $returnInt64AsObject = false,
@@ -199,14 +154,6 @@ class Instance
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
-        $this->setLroProperties(
-            $requestHandler,
-            $serializer,
-            $lroCallables,
-            $this->getLROResponseMappers(),
-            $this->name,
-            InstanceAdminClient::class
-        );
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
@@ -375,7 +322,7 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
-     * @return LongRunningOperationManager<Instance>
+     * @return OperationResponse
      * @throws \InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
@@ -398,22 +345,14 @@ class Instance
             'instance' => $this->createInstanceArray($instance, $config)
         ];
 
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             InstanceAdminClient::class,
             'createInstance',
             $data,
             $optionalArgs,
             CreateInstanceRequest::class,
             $this->name
-        );
-
-        $operation = $this->operationToArray(
-            $res,
-            $this->serializer,
-            $this->getLROResponseMappers()
-        );
-
-        return $this->resumeOperation($operation['name'], $operation);
+        )->withResultFunction($this->instanceResultFunction());
     }
 
     /**
@@ -470,7 +409,7 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
-     * @return LongRunningOperationManager
+     * @return OperationResponse
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -486,21 +425,14 @@ class Instance
             'fieldMask' => $fieldMask,
             'instance' => $this->createInstanceArray($instance)
         ];
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             InstanceAdminClient::class,
             'updateInstance',
             $data,
             $optionalArgs,
             UpdateInstanceRequest::class,
             $this->name
-        );
-        $operation = $this->operationToArray(
-            $res,
-            $this->serializer,
-            $this->getLROResponseMappers()
-        );
-
-        return $this->resumeOperation($operation['name'], $operation);
+        )->withResultFunction($this->instanceResultFunction());
     }
 
     /**
@@ -552,7 +484,7 @@ class Instance
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      * }
-     * @return LongRunningOperationManager<Database>
+     * @return OperationResponse
      */
     public function createDatabase($name, array $options = [])
     {
@@ -576,7 +508,7 @@ class Instance
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return LongRunningOperationManager<Database>
+     * @return OperationResponse
      */
     public function createDatabaseFromBackup($name, $backup, array $options = [])
     {
@@ -613,7 +545,6 @@ class Instance
             $this->requestHandler,
             $this->serializer,
             $this,
-            $this->lroCallables,
             $this->projectId,
             $name,
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
@@ -703,7 +634,6 @@ class Instance
             $this->requestHandler,
             $this->serializer,
             $this,
-            $this->lroCallables,
             $this->projectId,
             $name,
             $backup
@@ -802,7 +732,7 @@ class Instance
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperationManager>
+     * @return ItemIterator<OperationResponse>
      */
     public function backupOperations(array $options = [])
     {
@@ -833,7 +763,7 @@ class Instance
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperationManager>
+     * @return ItemIterator<OperationResponse>
      */
     public function databaseOperations(array $options = [])
     {
@@ -936,5 +866,25 @@ class Instance
             'labels' => [],
             'config' => $config ? $config->name() : ''
         ];
+    }
+
+    private function instanceResultFunction(): Closure
+    {
+        return function (InstanceProto $result) {
+            $name = InstanceAdminClient::parseName($result->getName());
+            return new self(
+                $this->requestHandler,
+                $this->serializer,
+                $this->projectId,
+                $name['instance'],
+                $this->returnInt64AsObject,
+                $this->serialize->encodeMessage($result),
+                [
+                    'directedReadOptions' => $this->directedReadOptions,
+                    'routeToLeader' => $this->routeToLeader,
+                    'defaultQueryOptions' => $this->defaultQueryOptions,
+                ]
+            );
+        };
     }
 }

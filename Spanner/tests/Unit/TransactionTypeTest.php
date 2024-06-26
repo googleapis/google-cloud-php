@@ -566,11 +566,11 @@ class TransactionTypeTest extends TestCase
             },
             $this->resultGenerator($chunks)
         );
-   
+
         $database = $this->database($this->requestHandler->reveal(), $this->serializer);
-   
+
         $snapshot = $database->snapshot();
-   
+
         $snapshot->execute('SELECT * FROM Table')->rows()->current();
     }
 
@@ -948,7 +948,6 @@ class TransactionTypeTest extends TestCase
             $requestHandler,
             $serializer,
             $instance->reveal(),
-            [],
             self::PROJECT,
             self::DATABASE
         ], ['operation']);

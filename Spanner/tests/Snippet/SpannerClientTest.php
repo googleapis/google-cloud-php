@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -158,7 +158,7 @@ class SpannerClientTest extends SnippetTestCase
         $this->client->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     /**
@@ -292,7 +292,7 @@ class SpannerClientTest extends SnippetTestCase
         $snippet->addLocal('operationName', 'operations/foo');
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testEmulator()

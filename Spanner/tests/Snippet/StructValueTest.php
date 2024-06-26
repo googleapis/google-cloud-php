@@ -82,7 +82,6 @@ class StructValueTest extends SnippetTestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             $instance->reveal(),
-            [],
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()

@@ -98,7 +98,7 @@ however the underlying `LongRunningOperation` class has changed.
 // In V1, this used to return an instance of Google\Cloud\Core\LongRunning\LongRunningOperation.
 $lro = $instance->create($configuration);
 
-// In V2, this will return an instance of Google\Cloud\Core\LongRunning\LongRunningOperationManager.
+// In V2, this will return an instance of Google\Cloud\Core\LongRunning\OperationResponse.
 $lro = $instance->create($configuration);
 
 // Both the classes share the same functionality, so the following methods will work for both versions.

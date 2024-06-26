@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
@@ -250,7 +249,7 @@ class SpannerClientTest extends TestCase
 
         $operation = $this->client->createInstance($config->reveal(), self::INSTANCE);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $operation);
+        $this->assertInstanceOf(OperationResponse::class, $operation);
     }
 
     /**
@@ -266,7 +265,7 @@ class SpannerClientTest extends TestCase
                 if ($message['instance']['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
                     return false;
                 }
-    
+
                 if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(
                     self::PROJECT,
                     self::CONFIG
@@ -289,7 +288,7 @@ class SpannerClientTest extends TestCase
             'nodeCount' => 2
         ]);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $operation);
+        $this->assertInstanceOf(OperationResponse::class, $operation);
     }
 
     /**
@@ -331,7 +330,7 @@ class SpannerClientTest extends TestCase
             'processingUnits' => 2000
         ]);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $operation);
+        $this->assertInstanceOf(OperationResponse::class, $operation);
     }
 
     /**
@@ -411,8 +410,8 @@ class SpannerClientTest extends TestCase
         $opName = 'operations/foo';
 
         $op = $this->client->resumeOperation($opName);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
-        $this->assertEquals($op->name(), $opName);
+        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertEquals($op->getName(), $opName);
     }
 
     public function testConnect()
@@ -529,20 +528,5 @@ class SpannerClientTest extends TestCase
             $instance->directedReadOptions(),
             $this->directedReadOptionsIncludeReplicas
         );
-    }
-
-    private function getOperationResponseMock()
-    {
-        $operation = $this->serializer->decodeMessage(
-            new \Google\LongRunning\Operation(),
-            ['metadata' => [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
-            ]]
-        );
-        $operationResponse = $this->prophesize(OperationResponse::class);
-        $operationResponse->getLastProtoResponse()->willReturn($operation);
-        $operationResponse->isDone()->willReturn(false);
-        $operationResponse->getError()->willReturn(null);
-        return $operationResponse;
     }
 }

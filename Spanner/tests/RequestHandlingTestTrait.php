@@ -107,6 +107,9 @@ trait RequestHandlingTestTrait
         $operationResponse->getLastProtoResponse()->willReturn($operation);
         $operationResponse->isDone()->willReturn(false);
         $operationResponse->getError()->willReturn(null);
+        $operationResponse->withResultFunction(Argument::any())
+            ->willReturn($operationResponse->reveal());
+
         return $operationResponse;
     }
 }

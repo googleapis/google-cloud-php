@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\LongRunning\Client\OperationsClient;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -63,7 +63,6 @@ class InstanceTest extends SnippetTestCase
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->requestHandler->reveal(),
             $this->serializer,
-            [],
             self::PROJECT,
             self::INSTANCE
         ], ['requestHandler', 'serializer']);
@@ -107,7 +106,7 @@ class InstanceTest extends SnippetTestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testName()
@@ -263,7 +262,7 @@ class InstanceTest extends SnippetTestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testCreateDatabaseFromBackup()
@@ -287,7 +286,7 @@ class InstanceTest extends SnippetTestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testDatabase()
@@ -411,7 +410,7 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('backupOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal()->current());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal()->current());
     }
 
     public function testDatabaseOperations()
@@ -447,7 +446,7 @@ class InstanceTest extends SnippetTestCase
         $res = $snippet->invoke('databaseOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal()->current());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal()->current());
     }
 
     public function testIam()
@@ -466,7 +465,7 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('operationName', 'foo');
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
         $this->assertEquals('foo', $res->returnVal()->name());
     }
 
@@ -494,7 +493,7 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertContainsOnlyInstancesOf(LongRunningOperationManager::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testDatabaseWithDatabaseRole()

@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -51,7 +50,6 @@ class BackupTest extends TestCase
     private $serializer;
     private $instance;
     private $database;
-    private $lroCallables;
     private $expireTime;
     private $createTime;
     private $versionTime;
@@ -71,7 +69,6 @@ class BackupTest extends TestCase
         );
         $this->instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE));
         $this->instance->database(Argument::any())->willReturn($this->database);
-        $this->lroCallables = [];
         $this->expireTime = new \DateTime("+ 7 hours");
         $this->createTime = $this->expireTime;
         $this->versionTime = new \DateTime("- 2 hours");
@@ -80,7 +77,6 @@ class BackupTest extends TestCase
            $this->requestHandler->reveal(),
            $this->serializer,
            $this->instance->reveal(),
-           $this->lroCallables,
            self::PROJECT_ID,
            self::BACKUP
         ];
@@ -92,7 +88,7 @@ class BackupTest extends TestCase
         // copiedBackup will contain a mock of the backup object where
         // $backup will be copied into
         $copyArgs = $args;
-        $copyArgs[5] = self::COPIED_BACKUP;
+        $copyArgs[4] = self::COPIED_BACKUP;
         $this->copiedBackup = TestHelpers::stub(Backup::class, $copyArgs, $props);
     }
 
@@ -138,7 +134,7 @@ class BackupTest extends TestCase
         $op = $this->backup->create(self::DATABASE, $this->expireTime, [
             'versionTime' => $this->versionTime,
         ]);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testCreateCopy()
@@ -163,7 +159,7 @@ class BackupTest extends TestCase
             $this->getOperationResponseMock()
         );
         $op = $this->backup->createCopy($this->copiedBackup, $this->expireTime);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testDelete()
@@ -314,20 +310,5 @@ class BackupTest extends TestCase
 
         $info = $this->backup->updateExpireTime($this->expireTime);
         $this->assertEquals($res, $info);
-    }
-
-    private function getOperationResponseMock()
-    {
-        $operation = $this->serializer->decodeMessage(
-            new \Google\LongRunning\Operation(),
-            ['metadata' => [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
-            ]]
-        );
-        $operationResponse = $this->prophesize(OperationResponse::class);
-        $operationResponse->getLastProtoResponse()->willReturn($operation);
-        $operationResponse->isDone()->willReturn(false);
-        $operationResponse->getError()->willReturn(null);
-        return $operationResponse;
     }
 }

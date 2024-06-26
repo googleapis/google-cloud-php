@@ -21,7 +21,7 @@ use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\OperationResponse;
 use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
@@ -55,7 +55,6 @@ class InstanceConfiguration
 {
     use ApiHelperTrait;
     use ArrayTrait;
-    use LongRunningOperationTrait;
     use OperationResponseTrait;
     use RequestTrait;
 
@@ -120,24 +119,6 @@ class InstanceConfiguration
                 $instanceConfig
             );
         };
-        $lroCallables = [
-            [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
-                'callable' => $instanceConfigFactoryFn
-            ],
-            [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
-                'callable' => $instanceConfigFactoryFn
-            ]
-        ];
-        $this->setLroProperties(
-            $requestHandler,
-            $serializer,
-            $lroCallables,
-            $this->getLROResponseMappers(),
-            $this->name,
-            InstanceAdminClient::class
-        );
     }
 
     /**
@@ -269,7 +250,7 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperationManager<InstanceConfiguration>
+     * @return OperationResponse
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
@@ -294,7 +275,7 @@ class InstanceConfiguration
             'validateOnly' => $validateOnly
         ];
 
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             InstanceAdminClient::class,
             'createInstanceConfig',
             $requestArray,
@@ -302,9 +283,6 @@ class InstanceConfiguration
             CreateInstanceConfigRequest::class,
             $this->name
         );
-        $operation = $this->operationToArray($res, $this->serializer, $this->getLROResponseMappers());
-
-        return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
@@ -331,7 +309,7 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperationManager<InstanceConfiguration>
+     * @return OperationResponse
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -349,7 +327,7 @@ class InstanceConfiguration
             'validateOnly' => $validateOnly
         ];
 
-        $res = $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             InstanceAdminClient::class,
             'updateInstanceConfig',
             $requestArray,
@@ -357,9 +335,6 @@ class InstanceConfiguration
             UpdateInstanceConfigRequest::class,
             $this->name
         );
-        $operation = $this->operationToArray($res, $this->serializer, $this->getLROResponseMappers());
-
-        return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**

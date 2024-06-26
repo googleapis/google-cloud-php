@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\OperationResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -475,7 +475,7 @@ class BackupTest extends SpannerTestCase
         }, $backupOps);
 
         $this->assertTrue(count($backupOps) > 0);
-        $this->assertContainsOnlyInstancesOf(LongRunningOperationManager::class, $backupOps);
+        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $backupOps);
         $this->assertTrue(in_array(self::$backupOperationName, $backupOpsNames));
     }
 
@@ -589,7 +589,7 @@ class BackupTest extends SpannerTestCase
         }, $databaseOps);
 
         $this->assertTrue(count($databaseOps) > 0);
-        $this->assertContainsOnlyInstancesOf(LongRunningOperationManager::class, $databaseOps);
+        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $databaseOps);
         $this->assertTrue(in_array(self::$restoreOperationName, $databaseOpsNames));
     }
 
