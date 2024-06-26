@@ -22,7 +22,7 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The type of the task. This must be one of the supported task types:
      * Translation_Teradata2BQ, Translation_Redshift2BQ, Translation_Bteq2BQ,
@@ -34,32 +34,32 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Output only. The current state of the task.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.MigrationTask.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. An explanation that may be populated when the task is in
      * FAILED state.
      *
      * Generated from protobuf field <code>.google.rpc.ErrorInfo processing_error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $processing_error = null;
+    protected $processing_error = null;
     /**
      * Time when the task was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time when the task was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7;</code>
      */
-    private $last_update_time = null;
+    protected $last_update_time = null;
     protected $task_details;
 
     /**

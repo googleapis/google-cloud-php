@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,7 +126,9 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BareMetalSolutionClient */
@@ -180,9 +182,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $nfsShare = new NfsShare();
-        $request = (new CreateNfsShareRequest())
-            ->setParent($formattedParent)
-            ->setNfsShare($nfsShare);
+        $request = (new CreateNfsShareRequest())->setParent($formattedParent)->setNfsShare($nfsShare);
         $response = $gapicClient->createNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -240,19 +240,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $nfsShare = new NfsShare();
-        $request = (new CreateNfsShareRequest())
-            ->setParent($formattedParent)
-            ->setNfsShare($nfsShare);
+        $request = (new CreateNfsShareRequest())->setParent($formattedParent)->setNfsShare($nfsShare);
         $response = $gapicClient->createNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -316,7 +317,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateProvisioningConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateProvisioningConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getProvisioningConfig();
@@ -335,12 +339,15 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -411,12 +418,15 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -461,9 +471,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $volumeSnapshot = new VolumeSnapshot();
-        $request = (new CreateVolumeSnapshotRequest())
-            ->setParent($formattedParent)
-            ->setVolumeSnapshot($volumeSnapshot);
+        $request = (new CreateVolumeSnapshotRequest())->setParent($formattedParent)->setVolumeSnapshot($volumeSnapshot);
         $response = $gapicClient->createVolumeSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -489,19 +497,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $volumeSnapshot = new VolumeSnapshot();
-        $request = (new CreateVolumeSnapshotRequest())
-            ->setParent($formattedParent)
-            ->setVolumeSnapshot($volumeSnapshot);
+        $request = (new CreateVolumeSnapshotRequest())->setParent($formattedParent)->setVolumeSnapshot($volumeSnapshot);
         try {
             $gapicClient->createVolumeSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -546,8 +555,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
-        $request = (new DeleteNfsShareRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNfsShareRequest())->setName($formattedName);
         $response = $gapicClient->deleteNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -603,17 +611,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
-        $request = (new DeleteNfsShareRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNfsShareRequest())->setName($formattedName);
         $response = $gapicClient->deleteNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -649,8 +659,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
-        $request = (new DeleteSSHKeyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSSHKeyRequest())->setName($formattedName);
         $gapicClient->deleteSSHKey($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -673,17 +682,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->sshKeyName('[PROJECT]', '[LOCATION]', '[SSH_KEY]');
-        $request = (new DeleteSSHKeyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSSHKeyRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSSHKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -710,8 +721,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new DeleteVolumeSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVolumeSnapshotRequest())->setName($formattedName);
         $gapicClient->deleteVolumeSnapshot($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -734,17 +744,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new DeleteVolumeSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVolumeSnapshotRequest())->setName($formattedName);
         try {
             $gapicClient->deleteVolumeSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -810,9 +822,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         $formattedLun = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $request = (new DetachLunRequest())
-            ->setInstance($formattedInstance)
-            ->setLun($formattedLun);
+        $request = (new DetachLunRequest())->setInstance($formattedInstance)->setLun($formattedLun);
         $response = $gapicClient->detachLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -870,19 +880,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         $formattedLun = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $request = (new DetachLunRequest())
-            ->setInstance($formattedInstance)
-            ->setLun($formattedLun);
+        $request = (new DetachLunRequest())->setInstance($formattedInstance)->setLun($formattedLun);
         $response = $gapicClient->detachLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -936,8 +947,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DisableInteractiveSerialConsoleRequest())
-            ->setName($formattedName);
+        $request = (new DisableInteractiveSerialConsoleRequest())->setName($formattedName);
         $response = $gapicClient->disableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -947,7 +957,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DisableInteractiveSerialConsole', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/DisableInteractiveSerialConsole',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -993,17 +1006,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new DisableInteractiveSerialConsoleRequest())
-            ->setName($formattedName);
+        $request = (new DisableInteractiveSerialConsoleRequest())->setName($formattedName);
         $response = $gapicClient->disableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1057,8 +1072,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new EnableInteractiveSerialConsoleRequest())
-            ->setName($formattedName);
+        $request = (new EnableInteractiveSerialConsoleRequest())->setName($formattedName);
         $response = $gapicClient->enableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1068,7 +1082,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/EnableInteractiveSerialConsole', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/EnableInteractiveSerialConsole',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1114,17 +1131,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new EnableInteractiveSerialConsoleRequest())
-            ->setName($formattedName);
+        $request = (new EnableInteractiveSerialConsoleRequest())->setName($formattedName);
         $response = $gapicClient->enableInteractiveSerialConsole($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1178,8 +1197,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $request = (new EvictLunRequest())
-            ->setName($formattedName);
+        $request = (new EvictLunRequest())->setName($formattedName);
         $response = $gapicClient->evictLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1235,17 +1253,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $request = (new EvictLunRequest())
-            ->setName($formattedName);
+        $request = (new EvictLunRequest())->setName($formattedName);
         $response = $gapicClient->evictLun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1299,8 +1319,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new EvictVolumeRequest())
-            ->setName($formattedName);
+        $request = (new EvictVolumeRequest())->setName($formattedName);
         $response = $gapicClient->evictVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1356,17 +1375,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new EvictVolumeRequest())
-            ->setName($formattedName);
+        $request = (new EvictVolumeRequest())->setName($formattedName);
         $response = $gapicClient->evictVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1422,8 +1443,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new GetInstanceRequest())->setName($formattedName);
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1447,17 +1467,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new GetInstanceRequest())->setName($formattedName);
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1498,8 +1520,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $request = (new GetLunRequest())
-            ->setName($formattedName);
+        $request = (new GetLunRequest())->setName($formattedName);
         $response = $gapicClient->getLun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1523,17 +1544,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $request = (new GetLunRequest())
-            ->setName($formattedName);
+        $request = (new GetLunRequest())->setName($formattedName);
         try {
             $gapicClient->getLun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1578,8 +1601,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
-        $request = (new GetNetworkRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkRequest())->setName($formattedName);
         $response = $gapicClient->getNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1603,17 +1625,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
-        $request = (new GetNetworkRequest())
-            ->setName($formattedName);
+        $request = (new GetNetworkRequest())->setName($formattedName);
         try {
             $gapicClient->getNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1650,8 +1674,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
-        $request = (new GetNfsShareRequest())
-            ->setName($formattedName);
+        $request = (new GetNfsShareRequest())->setName($formattedName);
         $response = $gapicClient->getNfsShare($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1675,17 +1698,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
-        $request = (new GetNfsShareRequest())
-            ->setName($formattedName);
+        $request = (new GetNfsShareRequest())->setName($formattedName);
         try {
             $gapicClient->getNfsShare($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1730,15 +1755,17 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->provisioningConfigName('[PROJECT]', '[LOCATION]', '[PROVISIONING_CONFIG]');
-        $request = (new GetProvisioningConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetProvisioningConfigRequest())->setName($formattedName);
         $response = $gapicClient->getProvisioningConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetProvisioningConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/GetProvisioningConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1755,17 +1782,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->provisioningConfigName('[PROJECT]', '[LOCATION]', '[PROVISIONING_CONFIG]');
-        $request = (new GetProvisioningConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetProvisioningConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getProvisioningConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1820,8 +1849,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new GetVolumeRequest())
-            ->setName($formattedName);
+        $request = (new GetVolumeRequest())->setName($formattedName);
         $response = $gapicClient->getVolume($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1845,17 +1873,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new GetVolumeRequest())
-            ->setName($formattedName);
+        $request = (new GetVolumeRequest())->setName($formattedName);
         try {
             $gapicClient->getVolume($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1890,8 +1920,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new GetVolumeSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new GetVolumeSnapshotRequest())->setName($formattedName);
         $response = $gapicClient->getVolumeSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1915,17 +1944,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new GetVolumeSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new GetVolumeSnapshotRequest())->setName($formattedName);
         try {
             $gapicClient->getVolumeSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1950,17 +1981,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $instancesElement = new Instance();
-        $instances = [
-            $instancesElement,
-        ];
+        $instances = [$instancesElement];
         $expectedResponse = new ListInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstancesRequest())->setParent($formattedParent);
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1987,17 +2015,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstancesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2022,17 +2052,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $lunsElement = new Lun();
-        $luns = [
-            $lunsElement,
-        ];
+        $luns = [$lunsElement];
         $expectedResponse = new ListLunsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLuns($luns);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListLunsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLunsRequest())->setParent($formattedParent);
         $response = $gapicClient->listLuns($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2059,17 +2086,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListLunsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLunsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2096,8 +2125,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworkUsageRequest())
-            ->setLocation($formattedLocation);
+        $request = (new ListNetworkUsageRequest())->setLocation($formattedLocation);
         $response = $gapicClient->listNetworkUsage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2121,17 +2149,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworkUsageRequest())
-            ->setLocation($formattedLocation);
+        $request = (new ListNetworkUsageRequest())->setLocation($formattedLocation);
         try {
             $gapicClient->listNetworkUsage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2156,17 +2186,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $networksElement = new Network();
-        $networks = [
-            $networksElement,
-        ];
+        $networks = [$networksElement];
         $expectedResponse = new ListNetworksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworksRequest())->setParent($formattedParent);
         $response = $gapicClient->listNetworks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2193,17 +2220,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNetworksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNetworksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNetworks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2228,17 +2257,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $nfsSharesElement = new NfsShare();
-        $nfsShares = [
-            $nfsSharesElement,
-        ];
+        $nfsShares = [$nfsSharesElement];
         $expectedResponse = new ListNfsSharesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNfsShares($nfsShares);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNfsSharesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNfsSharesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNfsShares($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2265,17 +2291,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNfsSharesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNfsSharesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNfsShares($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2300,17 +2328,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $osImagesElement = new OSImage();
-        $osImages = [
-            $osImagesElement,
-        ];
+        $osImages = [$osImagesElement];
         $expectedResponse = new ListOSImagesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOsImages($osImages);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListOSImagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListOSImagesRequest())->setParent($formattedParent);
         $response = $gapicClient->listOSImages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2337,17 +2362,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListOSImagesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListOSImagesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listOSImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2372,17 +2399,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $provisioningQuotasElement = new ProvisioningQuota();
-        $provisioningQuotas = [
-            $provisioningQuotasElement,
-        ];
+        $provisioningQuotas = [$provisioningQuotasElement];
         $expectedResponse = new ListProvisioningQuotasResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProvisioningQuotas($provisioningQuotas);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProvisioningQuotasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProvisioningQuotasRequest())->setParent($formattedParent);
         $response = $gapicClient->listProvisioningQuotas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2392,7 +2416,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListProvisioningQuotas', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/ListProvisioningQuotas',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2409,17 +2436,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProvisioningQuotasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProvisioningQuotasRequest())->setParent($formattedParent);
         try {
             $gapicClient->listProvisioningQuotas($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2444,17 +2473,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $sshKeysElement = new SSHKey();
-        $sshKeys = [
-            $sshKeysElement,
-        ];
+        $sshKeys = [$sshKeysElement];
         $expectedResponse = new ListSSHKeysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSshKeys($sshKeys);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSSHKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSSHKeysRequest())->setParent($formattedParent);
         $response = $gapicClient->listSSHKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2481,17 +2507,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSSHKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSSHKeysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSSHKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2516,17 +2544,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $volumeSnapshotsElement = new VolumeSnapshot();
-        $volumeSnapshots = [
-            $volumeSnapshotsElement,
-        ];
+        $volumeSnapshots = [$volumeSnapshotsElement];
         $expectedResponse = new ListVolumeSnapshotsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumeSnapshots($volumeSnapshots);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListVolumeSnapshotsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVolumeSnapshotsRequest())->setParent($formattedParent);
         $response = $gapicClient->listVolumeSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2553,17 +2578,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ListVolumeSnapshotsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVolumeSnapshotsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVolumeSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2588,17 +2615,14 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $volumesElement = new Volume();
-        $volumes = [
-            $volumesElement,
-        ];
+        $volumes = [$volumesElement];
         $expectedResponse = new ListVolumesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVolumes($volumes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVolumesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVolumesRequest())->setParent($formattedParent);
         $response = $gapicClient->listVolumes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2625,17 +2649,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVolumesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVolumesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVolumes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2683,9 +2709,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         $newInstanceId = 'newInstanceId-179130138';
-        $request = (new RenameInstanceRequest())
-            ->setName($formattedName)
-            ->setNewInstanceId($newInstanceId);
+        $request = (new RenameInstanceRequest())->setName($formattedName)->setNewInstanceId($newInstanceId);
         $response = $gapicClient->renameInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2711,19 +2735,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         $newInstanceId = 'newInstanceId-179130138';
-        $request = (new RenameInstanceRequest())
-            ->setName($formattedName)
-            ->setNewInstanceId($newInstanceId);
+        $request = (new RenameInstanceRequest())->setName($formattedName)->setNewInstanceId($newInstanceId);
         try {
             $gapicClient->renameInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2769,9 +2794,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
         $newNetworkId = 'newNetworkId-554751797';
-        $request = (new RenameNetworkRequest())
-            ->setName($formattedName)
-            ->setNewNetworkId($newNetworkId);
+        $request = (new RenameNetworkRequest())->setName($formattedName)->setNewNetworkId($newNetworkId);
         $response = $gapicClient->renameNetwork($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2797,19 +2820,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
         $newNetworkId = 'newNetworkId-554751797';
-        $request = (new RenameNetworkRequest())
-            ->setName($formattedName)
-            ->setNewNetworkId($newNetworkId);
+        $request = (new RenameNetworkRequest())->setName($formattedName)->setNewNetworkId($newNetworkId);
         try {
             $gapicClient->renameNetwork($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2847,9 +2871,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
         $newNfsshareId = 'newNfsshareId814577687';
-        $request = (new RenameNfsShareRequest())
-            ->setName($formattedName)
-            ->setNewNfsshareId($newNfsshareId);
+        $request = (new RenameNfsShareRequest())->setName($formattedName)->setNewNfsshareId($newNfsshareId);
         $response = $gapicClient->renameNfsShare($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2875,19 +2897,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
         $newNfsshareId = 'newNfsshareId814577687';
-        $request = (new RenameNfsShareRequest())
-            ->setName($formattedName)
-            ->setNewNfsshareId($newNfsshareId);
+        $request = (new RenameNfsShareRequest())->setName($formattedName)->setNewNfsshareId($newNfsshareId);
         try {
             $gapicClient->renameNfsShare($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2943,9 +2966,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $newVolumeId = 'newVolumeId-468182911';
-        $request = (new RenameVolumeRequest())
-            ->setName($formattedName)
-            ->setNewVolumeId($newVolumeId);
+        $request = (new RenameVolumeRequest())->setName($formattedName)->setNewVolumeId($newVolumeId);
         $response = $gapicClient->renameVolume($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2971,19 +2992,20 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $newVolumeId = 'newVolumeId-468182911';
-        $request = (new RenameVolumeRequest())
-            ->setName($formattedName)
-            ->setNewVolumeId($newVolumeId);
+        $request = (new RenameVolumeRequest())->setName($formattedName)->setNewVolumeId($newVolumeId);
         try {
             $gapicClient->renameVolume($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3028,8 +3050,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ResetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new ResetInstanceRequest())->setName($formattedName);
         $response = $gapicClient->resetInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3085,17 +3106,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ResetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new ResetInstanceRequest())->setName($formattedName);
         $response = $gapicClient->resetInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3177,8 +3200,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedVolume = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ResizeVolumeRequest())
-            ->setVolume($formattedVolume);
+        $request = (new ResizeVolumeRequest())->setVolume($formattedVolume);
         $response = $gapicClient->resizeVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3234,17 +3256,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedVolume = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $request = (new ResizeVolumeRequest())
-            ->setVolume($formattedVolume);
+        $request = (new ResizeVolumeRequest())->setVolume($formattedVolume);
         $response = $gapicClient->resizeVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3305,9 +3329,13 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new RestoreVolumeSnapshotRequest())
-            ->setVolumeSnapshot($formattedVolumeSnapshot);
+        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VOLUME]',
+            '[SNAPSHOT]'
+        );
+        $request = (new RestoreVolumeSnapshotRequest())->setVolumeSnapshot($formattedVolumeSnapshot);
         $response = $gapicClient->restoreVolumeSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3317,7 +3345,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RestoreVolumeSnapshot', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/RestoreVolumeSnapshot',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getVolumeSnapshot();
         $this->assertProtobufEquals($formattedVolumeSnapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3363,17 +3394,24 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $request = (new RestoreVolumeSnapshotRequest())
-            ->setVolumeSnapshot($formattedVolumeSnapshot);
+        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VOLUME]',
+            '[SNAPSHOT]'
+        );
+        $request = (new RestoreVolumeSnapshotRequest())->setVolumeSnapshot($formattedVolumeSnapshot);
         $response = $gapicClient->restoreVolumeSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3427,8 +3465,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new StartInstanceRequest())
-            ->setName($formattedName);
+        $request = (new StartInstanceRequest())->setName($formattedName);
         $response = $gapicClient->startInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3484,17 +3521,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new StartInstanceRequest())
-            ->setName($formattedName);
+        $request = (new StartInstanceRequest())->setName($formattedName);
         $response = $gapicClient->startInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3548,8 +3587,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new StopInstanceRequest())
-            ->setName($formattedName);
+        $request = (new StopInstanceRequest())->setName($formattedName);
         $response = $gapicClient->stopInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3605,17 +3643,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new StopInstanceRequest())
-            ->setName($formattedName);
+        $request = (new StopInstanceRequest())->setName($formattedName);
         $response = $gapicClient->stopInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3661,7 +3701,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/SubmitProvisioningConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/SubmitProvisioningConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getProvisioningConfig();
@@ -3680,12 +3723,15 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -3757,8 +3803,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $instance = new Instance();
-        $request = (new UpdateInstanceRequest())
-            ->setInstance($instance);
+        $request = (new UpdateInstanceRequest())->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3814,17 +3859,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instance = new Instance();
-        $request = (new UpdateInstanceRequest())
-            ->setInstance($instance);
+        $request = (new UpdateInstanceRequest())->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3896,8 +3943,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $network = new Network();
-        $request = (new UpdateNetworkRequest())
-            ->setNetwork($network);
+        $request = (new UpdateNetworkRequest())->setNetwork($network);
         $response = $gapicClient->updateNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3953,17 +3999,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $network = new Network();
-        $request = (new UpdateNetworkRequest())
-            ->setNetwork($network);
+        $request = (new UpdateNetworkRequest())->setNetwork($network);
         $response = $gapicClient->updateNetwork($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4027,8 +4075,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $nfsShare = new NfsShare();
-        $request = (new UpdateNfsShareRequest())
-            ->setNfsShare($nfsShare);
+        $request = (new UpdateNfsShareRequest())->setNfsShare($nfsShare);
         $response = $gapicClient->updateNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4084,17 +4131,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $nfsShare = new NfsShare();
-        $request = (new UpdateNfsShareRequest())
-            ->setNfsShare($nfsShare);
+        $request = (new UpdateNfsShareRequest())->setNfsShare($nfsShare);
         $response = $gapicClient->updateNfsShare($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4158,7 +4207,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateProvisioningConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateProvisioningConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProvisioningConfig();
         $this->assertProtobufEquals($provisioningConfig, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
@@ -4177,12 +4229,15 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $provisioningConfig = new ProvisioningConfig();
@@ -4262,8 +4317,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $volume = new Volume();
-        $request = (new UpdateVolumeRequest())
-            ->setVolume($volume);
+        $request = (new UpdateVolumeRequest())->setVolume($volume);
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4319,17 +4373,19 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $volume = new Volume();
-        $request = (new UpdateVolumeRequest())
-            ->setVolume($volume);
+        $request = (new UpdateVolumeRequest())->setVolume($volume);
         $response = $gapicClient->updateVolume($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4391,12 +4447,15 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -4423,9 +4482,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -4455,12 +4512,15 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -4518,9 +4578,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $nfsShare = new NfsShare();
-        $request = (new CreateNfsShareRequest())
-            ->setParent($formattedParent)
-            ->setNfsShare($nfsShare);
+        $request = (new CreateNfsShareRequest())->setParent($formattedParent)->setNfsShare($nfsShare);
         $response = $gapicClient->createNfsShareAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

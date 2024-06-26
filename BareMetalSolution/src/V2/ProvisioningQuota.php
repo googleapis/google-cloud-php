@@ -20,31 +20,31 @@ class ProvisioningQuota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The asset type of this provisioning quota.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.ProvisioningQuota.AssetType asset_type = 2;</code>
      */
-    private $asset_type = 0;
+    protected $asset_type = 0;
     /**
      * The gcp service of the provisioning quota.
      *
      * Generated from protobuf field <code>string gcp_service = 3;</code>
      */
-    private $gcp_service = '';
+    protected $gcp_service = '';
     /**
      * The specific location of the provisioining quota.
      *
      * Generated from protobuf field <code>string location = 4;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The available count of the provisioning quota.
      *
      * Generated from protobuf field <code>int32 available_count = 5;</code>
      */
-    private $available_count = 0;
+    protected $available_count = 0;
     protected $quota;
     protected $availability;
 

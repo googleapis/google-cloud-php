@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -180,7 +180,9 @@ final class AnalyticsHubServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -727,8 +729,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrgDataExchanges(
+        ListOrgDataExchangesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -754,8 +758,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSharedResourceSubscriptions(ListSharedResourceSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSharedResourceSubscriptions(
+        ListSharedResourceSubscriptionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSharedResourceSubscriptions', $request, $callOptions);
     }
 
@@ -837,8 +843,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function revokeSubscription(RevokeSubscriptionRequest $request, array $callOptions = []): RevokeSubscriptionResponse
-    {
+    public function revokeSubscription(
+        RevokeSubscriptionRequest $request,
+        array $callOptions = []
+    ): RevokeSubscriptionResponse {
         return $this->startApiCall('RevokeSubscription', $request, $callOptions)->wait();
     }
 
@@ -891,8 +899,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function subscribeDataExchange(SubscribeDataExchangeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function subscribeDataExchange(
+        SubscribeDataExchangeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SubscribeDataExchange', $request, $callOptions)->wait();
     }
 
@@ -922,8 +932,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
-    {
+    public function subscribeListing(
+        SubscribeListingRequest $request,
+        array $callOptions = []
+    ): SubscribeListingResponse {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -949,8 +961,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

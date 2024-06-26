@@ -24,19 +24,19 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Interface type.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.ServerNetworkTemplate.LogicalInterface.InterfaceType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * If true, interface must have network connected.
      *
      * Generated from protobuf field <code>bool required = 3;</code>
      */
-    private $required = false;
+    protected $required = false;
 
     /**
      * Constructor.
@@ -149,6 +149,4 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LogicalInterface::class, \Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate_LogicalInterface::class);
 
