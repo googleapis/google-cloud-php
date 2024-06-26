@@ -272,6 +272,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_version = '';
     /**
+     * Output only. All database versions that are available for upgrade.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $upgradable_database_versions;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
      */
     private $sql_network_architecture = null;
@@ -431,6 +437,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. List all maintenance versions applicable on the instance
      *     @type string $maintenance_version
      *           The current software version on the instance.
+     *     @type array<\Google\Cloud\Sql\V1\AvailableDatabaseVersion>|\Google\Protobuf\Internal\RepeatedField $upgradable_database_versions
+     *           Output only. All database versions that are available for upgrade.
      *     @type int $sql_network_architecture
      *     @type string $psc_service_attachment_link
      *           Output only. The link to service attachment of PSC instance.
@@ -1701,6 +1709,32 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->maintenance_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All database versions that are available for upgrade.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUpgradableDatabaseVersions()
+    {
+        return $this->upgradable_database_versions;
+    }
+
+    /**
+     * Output only. All database versions that are available for upgrade.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Sql\V1\AvailableDatabaseVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUpgradableDatabaseVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\AvailableDatabaseVersion::class);
+        $this->upgradable_database_versions = $arr;
 
         return $this;
     }
