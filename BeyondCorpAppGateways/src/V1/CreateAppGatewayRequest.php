@@ -21,7 +21,7 @@ class CreateAppGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. User-settable AppGateway resource ID.
      *  * Must start with a letter.
@@ -30,13 +30,13 @@ class CreateAppGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_gateway_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $app_gateway_id = '';
+    protected $app_gateway_id = '';
     /**
      * Required. A BeyondCorp AppGateway resource.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appgateways.v1.AppGateway app_gateway = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $app_gateway = null;
+    protected $app_gateway = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -52,14 +52,14 @@ class CreateAppGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set, validates request by executing a dry-run which would not
      * alter the resource in any way.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                             $parent       Required. The resource project name of the AppGateway location using the

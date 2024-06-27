@@ -20,13 +20,13 @@ class ApplicationEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Required. Port of the remote application endpoint.
      *
      * Generated from protobuf field <code>int32 port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $port = 0;
+    protected $port = 0;
 
     /**
      * Constructor.

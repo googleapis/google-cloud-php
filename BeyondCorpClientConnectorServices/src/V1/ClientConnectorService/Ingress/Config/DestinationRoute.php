@@ -23,14 +23,14 @@ class DestinationRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string address = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $address = '';
+    protected $address = '';
     /**
      * Required. The network mask of the subnet
      * for which the packet is routed to the ClientGateway.
      *
      * Generated from protobuf field <code>string netmask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $netmask = '';
+    protected $netmask = '';
 
     /**
      * Constructor.
