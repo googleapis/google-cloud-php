@@ -22,7 +22,7 @@ class MpegCommonEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scheme = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scheme = '';
+    protected $scheme = '';
 
     /**
      * Constructor.

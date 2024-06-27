@@ -24,25 +24,25 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. State of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Cluster.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. True if the cluster is a management cluster; false otherwise.
      * There can only be one management cluster in a private cloud
@@ -50,13 +50,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool management = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $management = false;
+    protected $management = false;
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Required. The map of cluster node types in this cluster, where the key is
      * canonical identifier of the node type (corresponds to the `NodeType`).
@@ -70,7 +70,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.StretchedClusterConfig stretched_cluster_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stretched_cluster_config = null;
+    protected $stretched_cluster_config = null;
 
     /**
      * Constructor.

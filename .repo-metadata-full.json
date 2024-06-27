@@ -688,7 +688,7 @@
     "GSuiteAddOns": {
         "language": "php",
         "distribution_name": "google/cloud-gsuite-addons",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gsuite-addons/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://developers.google.com/workspace/add-ons/overview",
@@ -736,7 +736,7 @@
     "GkeMultiCloud": {
         "language": "php",
         "distribution_name": "google/cloud-gke-multi-cloud",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gke-multi-cloud/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "gkemulticloud"
@@ -1138,7 +1138,7 @@
     "Run": {
         "language": "php",
         "distribution_name": "google/cloud-run",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-run/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "run"
@@ -1385,7 +1385,7 @@
     "StorageInsights": {
         "language": "php",
         "distribution_name": "google/cloud-storageinsights",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-storageinsights/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "storageinsights"
@@ -1473,7 +1473,7 @@
     "VideoLiveStream": {
         "language": "php",
         "distribution_name": "google/cloud-video-live-stream",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-video-live-stream/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "livestream"
@@ -1481,7 +1481,7 @@
     "VideoStitcher": {
         "language": "php",
         "distribution_name": "google/cloud-video-stitcher",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-video-stitcher/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "videostitcher"
@@ -1513,7 +1513,7 @@
     "VmwareEngine": {
         "language": "php",
         "distribution_name": "google/cloud-vmware-engine",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-vmware-engine/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/vmware-engine/docs",

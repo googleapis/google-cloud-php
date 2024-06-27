@@ -22,13 +22,13 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedCluster attached_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attached_cluster = null;
+    protected $attached_cluster = null;
     /**
      * If set, only validate the request, but do not actually update the cluster.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field. The elements of the repeated paths field can only include these
@@ -47,7 +47,7 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\GkeMultiCloud\V1\AttachedCluster $attachedCluster Required. The

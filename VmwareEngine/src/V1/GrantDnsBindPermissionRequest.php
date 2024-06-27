@@ -26,7 +26,7 @@ class GrantDnsBindPermissionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The consumer provided user/service account which needs to be
      * granted permission to bind with the intranet VPC corresponding to the
@@ -34,7 +34,7 @@ class GrantDnsBindPermissionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Principal principal = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $principal = null;
+    protected $principal = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -51,7 +51,7 @@ class GrantDnsBindPermissionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                  $name      Required. The name of the resource which stores the users/service accounts

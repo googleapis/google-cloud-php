@@ -21,14 +21,14 @@ class DeleteDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The etag of the deployment to delete.
      * If this is provided, it must match the server's etag.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The full resource name of the deployment to delete.

@@ -22,28 +22,28 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Indicates that the request should be validated without actually
      * deleting any resources.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Overrides specification for a given execution of a job. If provided,
      * overrides will be applied to update the execution or task spec.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.RunJobRequest.Overrides overrides = 4;</code>
      */
-    private $overrides = null;
+    protected $overrides = null;
 
     /**
      * @param string $name Required. The full name of the Job.

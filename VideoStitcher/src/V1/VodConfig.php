@@ -21,37 +21,37 @@ class VodConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Source URI for the VOD stream manifest.
      *
      * Generated from protobuf field <code>string source_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_uri = '';
+    protected $source_uri = '';
     /**
      * Required. The default ad tag associated with this VOD config.
      *
      * Generated from protobuf field <code>string ad_tag_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ad_tag_uri = '';
+    protected $ad_tag_uri = '';
     /**
      * Optional. Google Ad Manager (GAM) metadata.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.GamVodConfig gam_vod_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gam_vod_config = null;
+    protected $gam_vod_config = null;
     /**
      * Output only. State of the VOD config.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Options for fetching source manifests and segments.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.FetchOptions source_fetch_options = 8;</code>
      */
-    private $source_fetch_options = null;
+    protected $source_fetch_options = null;
 
     /**
      * Constructor.

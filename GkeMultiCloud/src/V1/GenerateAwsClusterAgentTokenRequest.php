@@ -18,61 +18,61 @@ class GenerateAwsClusterAgentTokenRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string aws_cluster = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $aws_cluster = '';
+    protected $aws_cluster = '';
     /**
      * Required.
      *
      * Generated from protobuf field <code>string subject_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subject_token = '';
+    protected $subject_token = '';
     /**
      * Required.
      *
      * Generated from protobuf field <code>string subject_token_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subject_token_type = '';
+    protected $subject_token_type = '';
     /**
      * Required.
      *
      * Generated from protobuf field <code>string version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional.
      *
      * Generated from protobuf field <code>string node_pool_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $node_pool_id = '';
+    protected $node_pool_id = '';
     /**
      * Optional.
      *
      * Generated from protobuf field <code>string grant_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $grant_type = '';
+    protected $grant_type = '';
     /**
      * Optional.
      *
      * Generated from protobuf field <code>string audience = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $audience = '';
+    protected $audience = '';
     /**
      * Optional.
      *
      * Generated from protobuf field <code>string scope = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * Optional.
      *
      * Generated from protobuf field <code>string requested_token_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $requested_token_type = '';
+    protected $requested_token_type = '';
     /**
      * Optional.
      *
      * Generated from protobuf field <code>string options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $options = '';
+    protected $options = '';
 
     /**
      * Constructor.

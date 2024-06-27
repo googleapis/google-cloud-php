@@ -20,7 +20,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct headers = 1;</code>
      */
-    private $headers = null;
+    protected $headers = null;
 
     /**
      * Constructor.

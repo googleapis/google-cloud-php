@@ -26,7 +26,7 @@ class AzureDatabaseEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
 
     /**
      * Constructor.

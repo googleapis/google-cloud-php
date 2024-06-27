@@ -26,7 +26,7 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string virtual_network_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $virtual_network_id = '';
+    protected $virtual_network_id = '';
     /**
      * Required. The IP address range of the pods in this cluster, in CIDR
      * notation (e.g. `10.96.0.0/14`).
@@ -56,7 +56,7 @@ class AzureClusterNetworking extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_load_balancer_subnet_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_load_balancer_subnet_id = '';
+    protected $service_load_balancer_subnet_id = '';
 
     /**
      * Constructor.

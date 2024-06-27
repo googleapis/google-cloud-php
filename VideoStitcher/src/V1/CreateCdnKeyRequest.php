@@ -21,13 +21,13 @@ class CreateCdnKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The CDN key resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.CdnKey cdn_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cdn_key = null;
+    protected $cdn_key = null;
     /**
      * Required. The ID to use for the CDN key, which will become the final
      * component of the CDN key's resource name.
@@ -37,7 +37,7 @@ class CreateCdnKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cdn_key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cdn_key_id = '';
+    protected $cdn_key_id = '';
 
     /**
      * @param string                                 $parent   Required. The project in which the CDN key should be created, in the form

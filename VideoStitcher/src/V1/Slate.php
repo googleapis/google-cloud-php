@@ -21,20 +21,20 @@ class Slate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The URI to fetch the source content for the slate. This URI must return an
      * MP4 video with at least one audio track.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * gam_slate has all the GAM-related attributes of slates.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Slate.GamSlate gam_slate = 3;</code>
      */
-    private $gam_slate = null;
+    protected $gam_slate = null;
 
     /**
      * Constructor.

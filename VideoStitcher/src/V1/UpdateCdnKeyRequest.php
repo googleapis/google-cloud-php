@@ -20,7 +20,7 @@ class UpdateCdnKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.CdnKey cdn_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cdn_key = null;
+    protected $cdn_key = null;
     /**
      * Required. The update mask applies to the resource.
      * For the `FieldMask` definition, see
@@ -28,7 +28,7 @@ class UpdateCdnKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Video\Stitcher\V1\CdnKey $cdnKey     Required. The CDN key resource which replaces the resource on the server.

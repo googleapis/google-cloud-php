@@ -25,19 +25,19 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined key/value metadata.
      *
@@ -61,14 +61,14 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string active_input = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $active_input = '';
+    protected $active_input = '';
     /**
      * Required. Information about the output (that is, the Cloud Storage bucket
      * to store the generated live stream).
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.Output output = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output = null;
+    protected $output = null;
     /**
      * List of elementary streams.
      *
@@ -98,7 +98,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Channel.StreamingState streaming_state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $streaming_state = 0;
+    protected $streaming_state = 0;
     /**
      * Output only. A description of the reason for the streaming error. This
      * property is always present when
@@ -108,19 +108,19 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status streaming_error = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $streaming_error = null;
+    protected $streaming_error = null;
     /**
      * Configuration of platform logs for this channel.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.LogConfig log_config = 19;</code>
      */
-    private $log_config = null;
+    protected $log_config = null;
     /**
      * Configuration of timecode for this channel.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.TimecodeConfig timecode_config = 21;</code>
      */
-    private $timecode_config = null;
+    protected $timecode_config = null;
     /**
      * Encryption configurations for this channel. Each configuration has an ID
      * which is referred to by each MuxStream to indicate which configuration is
@@ -135,7 +135,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig input_config = 25;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
 
     /**
      * Constructor.

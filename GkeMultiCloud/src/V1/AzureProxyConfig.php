@@ -22,7 +22,7 @@ class AzureProxyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_group_id = 1;</code>
      */
-    private $resource_group_id = '';
+    protected $resource_group_id = '';
     /**
      * The URL the of the proxy setting secret with its version.
      * The secret must be a JSON encoded proxy configuration
@@ -33,7 +33,7 @@ class AzureProxyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret_id = 2;</code>
      */
-    private $secret_id = '';
+    protected $secret_id = '';
 
     /**
      * Constructor.

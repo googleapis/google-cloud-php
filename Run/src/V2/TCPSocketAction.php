@@ -22,7 +22,7 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      */
-    private $port = 0;
+    protected $port = 0;
 
     /**
      * Constructor.

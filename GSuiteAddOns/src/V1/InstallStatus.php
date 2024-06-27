@@ -21,13 +21,13 @@ class InstallStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * True if the deployment is installed for the user
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue installed = 2;</code>
      */
-    private $installed = null;
+    protected $installed = null;
 
     /**
      * Constructor.
@@ -104,7 +104,7 @@ class InstallStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue installed = 2;</code>
      * @return bool|null
      */
-    public function getInstalledValue()
+    public function getInstalledUnwrapped()
     {
         return $this->readWrapperValue("installed");
     }
@@ -133,7 +133,7 @@ class InstallStatus extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setInstalledValue($var)
+    public function setInstalledUnwrapped($var)
     {
         $this->writeWrapperValue("installed", $var);
         return $this;}

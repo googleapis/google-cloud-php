@@ -25,27 +25,27 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The description of the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Cluster cluster = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * Optional. The request ID must be a valid UUID with the exception that
      * zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. True if you want the request to be validated and not executed;
      * false otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\Cluster $cluster    Required. The description of the cluster.

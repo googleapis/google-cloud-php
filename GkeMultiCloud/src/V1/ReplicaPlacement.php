@@ -22,14 +22,14 @@ class ReplicaPlacement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnet_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subnet_id = '';
+    protected $subnet_id = '';
     /**
      * Required. For a given replica, the Azure availability zone where to
      * provision the control plane VM and the ETCD disk.
      *
      * Generated from protobuf field <code>string azure_availability_zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $azure_availability_zone = '';
+    protected $azure_availability_zone = '';
 
     /**
      * Constructor.

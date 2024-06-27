@@ -21,13 +21,13 @@ class CreateInputRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The input resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Input input = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input = null;
+    protected $input = null;
     /**
      * Required. The ID of the input resource to be created.
      * This value must be 1-63 characters, begin and end with `[a-z0-9]`,
@@ -35,7 +35,7 @@ class CreateInputRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_id = '';
+    protected $input_id = '';
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -51,7 +51,7 @@ class CreateInputRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                  $parent  Required. The parent location for the resource, in the form of:

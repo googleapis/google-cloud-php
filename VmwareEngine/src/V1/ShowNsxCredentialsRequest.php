@@ -26,7 +26,7 @@ class ShowNsxCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_cloud = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $private_cloud = '';
+    protected $private_cloud = '';
 
     /**
      * @param string $privateCloud Required. The resource name of the private cloud

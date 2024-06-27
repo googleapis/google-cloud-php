@@ -25,7 +25,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $secret = '';
+    protected $secret = '';
     /**
      * If unspecified, the volume will expose a file whose name is the
      * secret, relative to VolumeMount.mount_path.
@@ -55,7 +55,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 default_mode = 3;</code>
      */
-    private $default_mode = 0;
+    protected $default_mode = 0;
 
     /**
      * Constructor.

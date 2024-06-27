@@ -25,25 +25,25 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update time of this resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-provided description for this external access rule.
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * External access rule priority, which determines the external access rule to
      * use when multiple rules apply. If multiple rules have the same priority,
@@ -55,13 +55,13 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 priority = 6;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * The action that the external access rule performs.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.ExternalAccessRule.Action action = 7;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * The IP protocol to which the external access rule applies. This value can
      * be one of the following three protocol strings (not case-sensitive):
@@ -69,7 +69,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_protocol = 8;</code>
      */
-    private $ip_protocol = '';
+    protected $ip_protocol = '';
     /**
      * If source ranges are specified, the external access rule applies only to
      * traffic that has a source IP address in these ranges. These ranges can
@@ -118,13 +118,13 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.ExternalAccessRule.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

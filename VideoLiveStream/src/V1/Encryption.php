@@ -20,13 +20,13 @@ class Encryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. Configuration for DRM systems.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.DrmSystems drm_systems = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $drm_systems = null;
+    protected $drm_systems = null;
     protected $secret_source;
     protected $encryption_mode;
 

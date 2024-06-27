@@ -20,37 +20,37 @@ class ResponseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error = 1;</code>
      */
-    private $error = '';
+    protected $error = '';
     /**
      * Headers from the response.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct headers = 2;</code>
      */
-    private $headers = null;
+    protected $headers = null;
     /**
      * Status code for the response.
      *
      * Generated from protobuf field <code>string status_code = 3;</code>
      */
-    private $status_code = '';
+    protected $status_code = '';
     /**
      * Size in bytes of the response.
      *
      * Generated from protobuf field <code>int32 size_bytes = 4;</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Total time elapsed for the response.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * The body of the response.
      *
      * Generated from protobuf field <code>string body = 6;</code>
      */
-    private $body = '';
+    protected $body = '';
 
     /**
      * Constructor.

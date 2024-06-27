@@ -21,19 +21,19 @@ class ExecutionReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Creation timestamp of the execution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Creation timestamp of the execution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 3;</code>
      */
-    private $completion_time = null;
+    protected $completion_time = null;
 
     /**
      * Constructor.

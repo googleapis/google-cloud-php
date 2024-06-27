@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,9 +93,7 @@ final class StorageInsightsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -163,8 +161,12 @@ final class StorageInsightsClient
      *
      * @return string The formatted report_detail resource.
      */
-    public static function reportDetailName(string $project, string $location, string $reportConfig, string $reportDetail): string
-    {
+    public static function reportDetailName(
+        string $project,
+        string $location,
+        string $reportConfig,
+        string $reportDetail
+    ): string {
         return self::getPathTemplate('reportDetail')->render([
             'project' => $project,
             'location' => $location,

@@ -21,13 +21,13 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureCluster azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $azure_cluster = null;
+    protected $azure_cluster = null;
     /**
      * If set, only validate the request, but do not actually update the cluster.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field. The elements of the repeated paths field can only include these
@@ -52,7 +52,7 @@ class UpdateAzureClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureCluster $azureCluster Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]

@@ -25,39 +25,39 @@ class Subnet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The IP address range of the subnet in CIDR format '10.0.0.0/24'.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 7;</code>
      */
-    private $ip_cidr_range = '';
+    protected $ip_cidr_range = '';
     /**
      * The IP address of the gateway of this subnet.
      * Must fall within the IP prefix defined above.
      *
      * Generated from protobuf field <code>string gateway_ip = 8;</code>
      */
-    private $gateway_ip = '';
+    protected $gateway_ip = '';
     /**
      * Output only. The type of the subnet. For example "management" or
      * "userDefined".
      *
      * Generated from protobuf field <code>string type = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Output only. The state of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.Subnet.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. VLAN ID of the VLAN on which the subnet is configured
      *
      * Generated from protobuf field <code>int32 vlan_id = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vlan_id = 0;
+    protected $vlan_id = 0;
 
     /**
      * Constructor.

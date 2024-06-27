@@ -20,25 +20,25 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.Event.EventType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The URI to trigger for this event.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The ID of the event.
      *
      * Generated from protobuf field <code>string id = 3;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The offset in seconds if the event type is `PROGRESS`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration offset = 4;</code>
      */
-    private $offset = null;
+    protected $offset = null;
 
     /**
      * Constructor.

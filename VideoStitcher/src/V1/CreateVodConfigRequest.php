@@ -21,19 +21,19 @@ class CreateVodConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The unique identifier ID to use for the VOD config.
      *
      * Generated from protobuf field <code>string vod_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vod_config_id = '';
+    protected $vod_config_id = '';
     /**
      * Required. The VOD config resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.VodConfig vod_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vod_config = null;
+    protected $vod_config = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -49,7 +49,7 @@ class CreateVodConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                    $parent      Required. The project in which the VOD config should be created, in

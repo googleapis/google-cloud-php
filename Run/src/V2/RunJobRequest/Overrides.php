@@ -27,7 +27,7 @@ class Overrides extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 task_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $task_count = 0;
+    protected $task_count = 0;
     /**
      * Duration in seconds the task may be active before the system will
      * actively try to mark it failed and kill associated containers. Will
@@ -35,7 +35,7 @@ class Overrides extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
 
     /**
      * Constructor.

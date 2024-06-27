@@ -20,7 +20,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned unique identifier for the Task. The value is a
      * UUID4 string and guaranteed to remain unchanged until the resource is
@@ -28,14 +28,14 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
      *
      * Generated from protobuf field <code>int64 generation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * Output only. Unstructured key value map that can be used to organize and
      * categorize objects. User-provided labels are shared with Google's billing
@@ -63,7 +63,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Represents time when the task was scheduled to run by the
      * system. It is not guaranteed to be set in happens-before order across
@@ -71,7 +71,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $scheduled_time = null;
+    protected $scheduled_time = null;
     /**
      * Output only. Represents time when the task started to run.
      * It is not guaranteed to be set in happens-before order across separate
@@ -79,27 +79,27 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Represents time when the Task was completed. It is not
      * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $completion_time = null;
+    protected $completion_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. For a deleted resource, the deletion time. It is only
      * populated as a response to a Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
      * permamently deleted. It is only populated as a response to a Delete
@@ -107,19 +107,19 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. The name of the parent Job.
      *
      * Generated from protobuf field <code>string job = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $job = '';
+    protected $job = '';
     /**
      * Output only. The name of the parent Execution.
      *
      * Generated from protobuf field <code>string execution = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $execution = '';
+    protected $execution = '';
     /**
      * Holds the single container that defines the unit of execution for this
      * task.
@@ -138,7 +138,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_retries = 16;</code>
      */
-    private $max_retries = 0;
+    protected $max_retries = 0;
     /**
      * Max allowed time duration the Task may be active before the system will
      * actively try to mark it failed and kill associated containers. This applies
@@ -146,7 +146,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 17;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Email address of the IAM service account associated with the Task of a
      * Job. The service account represents the identity of the
@@ -155,13 +155,13 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 18;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The execution environment being used to host this Task.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 20;</code>
      */
-    private $execution_environment = 0;
+    protected $execution_environment = 0;
     /**
      * Output only. Indicates whether the resource's reconciliation is still in
      * progress. See comments in `Job.reconciling` for additional information on
@@ -169,7 +169,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The Condition of this Task, containing its readiness status,
      * and detailed error information in case it did not reach the desired state.
@@ -183,26 +183,26 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 observed_generation = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $observed_generation = 0;
+    protected $observed_generation = 0;
     /**
      * Output only. Index of the Task, unique per execution, and beginning at 0.
      *
      * Generated from protobuf field <code>int32 index = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Output only. The number of times this Task was retried.
      * Tasks are retried when they fail up to the maxRetries limit.
      *
      * Generated from protobuf field <code>int32 retried = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $retried = 0;
+    protected $retried = 0;
     /**
      * Output only. Result of the last attempt of this Task.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskAttemptResult last_attempt_result = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_attempt_result = null;
+    protected $last_attempt_result = null;
     /**
      * Output only. A reference to a customer managed encryption key (CMEK) to use
      * to encrypt this container image. For more information, go to
@@ -210,7 +210,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encryption_key = 28 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $encryption_key = '';
+    protected $encryption_key = '';
     /**
      * Output only. VPC Access configuration to use for this Task. For more
      * information, visit
@@ -218,27 +218,27 @@ class Task extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vpc_access = null;
+    protected $vpc_access = null;
     /**
      * Output only. URI where logs for this execution can be found in Cloud
      * Console.
      *
      * Generated from protobuf field <code>string log_uri = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $log_uri = '';
+    protected $log_uri = '';
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

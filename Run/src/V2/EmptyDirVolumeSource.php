@@ -24,7 +24,7 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.EmptyDirVolumeSource.Medium medium = 1;</code>
      */
-    private $medium = 0;
+    protected $medium = 0;
     /**
      * Limit on the storage usable by this EmptyDir volume.
      * The size limit is also applicable for memory medium.
@@ -38,7 +38,7 @@ class EmptyDirVolumeSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string size_limit = 2;</code>
      */
-    private $size_limit = '';
+    protected $size_limit = '';
 
     /**
      * Constructor.

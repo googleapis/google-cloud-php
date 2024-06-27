@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,9 @@ class StorageInsightsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return StorageInsightsClient */
@@ -93,9 +95,7 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $reportConfig = new ReportConfig();
-        $request = (new CreateReportConfigRequest())
-            ->setParent($formattedParent)
-            ->setReportConfig($reportConfig);
+        $request = (new CreateReportConfigRequest())->setParent($formattedParent)->setReportConfig($reportConfig);
         $response = $gapicClient->createReportConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -121,19 +121,20 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $reportConfig = new ReportConfig();
-        $request = (new CreateReportConfigRequest())
-            ->setParent($formattedParent)
-            ->setReportConfig($reportConfig);
+        $request = (new CreateReportConfigRequest())->setParent($formattedParent)->setReportConfig($reportConfig);
         try {
             $gapicClient->createReportConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -160,8 +161,7 @@ class StorageInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new DeleteReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReportConfigRequest())->setName($formattedName);
         $gapicClient->deleteReportConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -184,17 +184,19 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new DeleteReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteReportConfigRequest())->setName($formattedName);
         try {
             $gapicClient->deleteReportConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -225,8 +227,7 @@ class StorageInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new GetReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetReportConfigRequest())->setName($formattedName);
         $response = $gapicClient->getReportConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -250,17 +251,19 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new GetReportConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetReportConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getReportConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -292,9 +295,13 @@ class StorageInsightsClientTest extends GeneratedTest
         $expectedResponse->setShardsCount($shardsCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->reportDetailName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT_DETAIL]');
-        $request = (new GetReportDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->reportDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPORT_CONFIG]',
+            '[REPORT_DETAIL]'
+        );
+        $request = (new GetReportDetailRequest())->setName($formattedName);
         $response = $gapicClient->getReportDetail($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -318,17 +325,24 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->reportDetailName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]', '[REPORT_DETAIL]');
-        $request = (new GetReportDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->reportDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[REPORT_CONFIG]',
+            '[REPORT_DETAIL]'
+        );
+        $request = (new GetReportDetailRequest())->setName($formattedName);
         try {
             $gapicClient->getReportDetail($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -353,17 +367,14 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reportConfigsElement = new ReportConfig();
-        $reportConfigs = [
-            $reportConfigsElement,
-        ];
+        $reportConfigs = [$reportConfigsElement];
         $expectedResponse = new ListReportConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportConfigs($reportConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListReportConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReportConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -390,17 +401,19 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListReportConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReportConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -425,17 +438,14 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reportDetailsElement = new ReportDetail();
-        $reportDetails = [
-            $reportDetailsElement,
-        ];
+        $reportDetails = [$reportDetailsElement];
         $expectedResponse = new ListReportDetailsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportDetails($reportDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new ListReportDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportDetailsRequest())->setParent($formattedParent);
         $response = $gapicClient->listReportDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -462,17 +472,19 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->reportConfigName('[PROJECT]', '[LOCATION]', '[REPORT_CONFIG]');
-        $request = (new ListReportDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportDetailsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReportDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -504,9 +516,7 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $reportConfig = new ReportConfig();
-        $request = (new UpdateReportConfigRequest())
-            ->setUpdateMask($updateMask)
-            ->setReportConfig($reportConfig);
+        $request = (new UpdateReportConfigRequest())->setUpdateMask($updateMask)->setReportConfig($reportConfig);
         $response = $gapicClient->updateReportConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -532,19 +542,20 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $reportConfig = new ReportConfig();
-        $request = (new UpdateReportConfigRequest())
-            ->setUpdateMask($updateMask)
-            ->setReportConfig($reportConfig);
+        $request = (new UpdateReportConfigRequest())->setUpdateMask($updateMask)->setReportConfig($reportConfig);
         try {
             $gapicClient->updateReportConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -597,12 +608,15 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -629,9 +643,7 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -661,12 +673,15 @@ class StorageInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -700,9 +715,7 @@ class StorageInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $reportConfig = new ReportConfig();
-        $request = (new CreateReportConfigRequest())
-            ->setParent($formattedParent)
-            ->setReportConfig($reportConfig);
+        $request = (new CreateReportConfigRequest())->setParent($formattedParent)->setReportConfig($reportConfig);
         $response = $gapicClient->createReportConfigAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

@@ -20,20 +20,20 @@ class WorkloadIdentityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer_uri = 1;</code>
      */
-    private $issuer_uri = '';
+    protected $issuer_uri = '';
     /**
      * The Workload Identity Pool associated to the cluster.
      *
      * Generated from protobuf field <code>string workload_pool = 2;</code>
      */
-    private $workload_pool = '';
+    protected $workload_pool = '';
     /**
      * The ID of the OIDC Identity Provider (IdP) associated to the Workload
      * Identity Pool.
      *
      * Generated from protobuf field <code>string identity_provider = 3;</code>
      */
-    private $identity_provider = '';
+    protected $identity_provider = '';
 
     /**
      * Constructor.

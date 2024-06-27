@@ -25,14 +25,14 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The specification of the
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $aws_node_pool = null;
+    protected $aws_node_pool = null;
     /**
      * Required. A client provided ID the resource. Must be unique within the
      * parent resource.
@@ -44,14 +44,14 @@ class CreateAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aws_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $aws_node_pool_id = '';
+    protected $aws_node_pool_id = '';
     /**
      * If set, only validate the request, but do not actually create the node
      * pool.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                     $parent        Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]

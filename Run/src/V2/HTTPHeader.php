@@ -20,13 +20,13 @@ class HTTPHeader extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The header field value
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

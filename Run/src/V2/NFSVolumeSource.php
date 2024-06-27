@@ -20,19 +20,19 @@ class NFSVolumeSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string server = 1;</code>
      */
-    private $server = '';
+    protected $server = '';
     /**
      * Path that is exported by the NFS server.
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * If true, mount the NFS volume as read only
      *
      * Generated from protobuf field <code>bool read_only = 3;</code>
      */
-    private $read_only = false;
+    protected $read_only = false;
 
     /**
      * Constructor.

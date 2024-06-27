@@ -21,7 +21,7 @@ class SlateTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 1;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * Slate asset to use for the duration. If its duration is less than the
      * duration of the SlateTask, then it will be looped. The slate must be
@@ -30,7 +30,7 @@ class SlateTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $asset = '';
+    protected $asset = '';
 
     /**
      * Constructor.

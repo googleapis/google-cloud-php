@@ -20,13 +20,13 @@ class GenerateAzureAccessTokenResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string access_token = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * Output only. Timestamp at which the token will expire.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
 
     /**
      * Constructor.

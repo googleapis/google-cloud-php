@@ -20,39 +20,39 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this operation was completed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The name of the resource associated to this operation.
      *
      * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target = '';
+    protected $target = '';
     /**
      * Output only. Human-readable status of the operation, if any.
      *
      * Generated from protobuf field <code>string status_detail = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status_detail = '';
+    protected $status_detail = '';
     /**
      * Output only. Human-readable status of any error that occurred during the
      * operation.
      *
      * Generated from protobuf field <code>string error_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error_detail = '';
+    protected $error_detail = '';
     /**
      * Output only. The verb associated with the API method which triggered this
      * operation. Possible values are "create", "delete", "update" and "import".
      *
      * Generated from protobuf field <code>string verb = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $verb = '';
+    protected $verb = '';
     /**
      * Output only. Identifies whether it has been requested cancellation
      * for the operation. Operations that have successfully been cancelled
@@ -62,7 +62,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $requested_cancellation = false;
+    protected $requested_cancellation = false;
 
     /**
      * Constructor.

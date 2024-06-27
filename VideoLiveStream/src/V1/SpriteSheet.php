@@ -22,7 +22,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string format = 1;</code>
      */
-    private $format = '';
+    protected $format = '';
     /**
      * Required. File name prefix for the generated sprite sheets. If multiple
      * sprite sheets are added to the channel, each must have a unique file
@@ -32,26 +32,26 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $file_prefix = '';
+    protected $file_prefix = '';
     /**
      * Required. The width of the sprite in pixels. Must be an even integer.
      *
      * Generated from protobuf field <code>int32 sprite_width_pixels = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sprite_width_pixels = 0;
+    protected $sprite_width_pixels = 0;
     /**
      * Required. The height of the sprite in pixels. Must be an even integer.
      *
      * Generated from protobuf field <code>int32 sprite_height_pixels = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sprite_height_pixels = 0;
+    protected $sprite_height_pixels = 0;
     /**
      * The maximum number of sprites per row in a sprite sheet. Valid range is
      * [1, 10] and the default value is 1.
      *
      * Generated from protobuf field <code>int32 column_count = 5;</code>
      */
-    private $column_count = 0;
+    protected $column_count = 0;
     /**
      * The maximum number of rows per sprite sheet. When the sprite sheet is full,
      * a new sprite sheet is created. Valid range is [1, 10] and the default value
@@ -59,14 +59,14 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 6;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Create sprites at regular intervals. Valid range is [1 second, 1 hour] and
      * the default value is `10s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration interval = 7;</code>
      */
-    private $interval = null;
+    protected $interval = null;
     /**
      * The quality of the generated sprite sheet. Enter a value between 1
      * and 100, where 1 is the lowest quality and 100 is the highest quality.
@@ -75,7 +75,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 quality = 8;</code>
      */
-    private $quality = 0;
+    protected $quality = 0;
 
     /**
      * Constructor.

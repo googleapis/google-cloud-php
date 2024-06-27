@@ -26,7 +26,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of subnets to return in one page.
      * The service may return fewer than this value.
@@ -35,7 +35,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListSubnetsRequest` call.
      * Provide this to retrieve the subsequent page.
@@ -44,7 +44,7 @@ class ListSubnetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The resource name of the private cloud to be queried for
