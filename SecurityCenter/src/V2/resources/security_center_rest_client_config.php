@@ -27,6 +27,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=organizations/*}/resourceValueConfigs:batchCreate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/resourceValueConfigs:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -312,6 +319,12 @@ return [
             'DeleteResourceValueConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=organizations/*/resourceValueConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/resourceValueConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -410,6 +423,12 @@ return [
             'GetResourceValueConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=organizations/*/resourceValueConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/resourceValueConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -421,6 +440,12 @@ return [
             'GetSimulation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=organizations/*/simulations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/simulations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -443,6 +468,12 @@ return [
             'GetValuedResource' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=organizations/*/simulations/*/valuedResources/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/simulations/*/valuedResources/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -500,7 +531,15 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*/simulations/*/valuedResources/*}/attackPaths',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=organizations/*/simulations/*/attackExposureResults/*}/attackPaths',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*/simulations/*/attackExposureResults/*}/attackPaths',
                     ],
                 ],
                 'placeholders' => [
@@ -622,6 +661,12 @@ return [
             'ListResourceValueConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=organizations/*}/resourceValueConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/resourceValueConfigs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -944,6 +989,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{resource_value_config.name=organizations/*/resourceValueConfigs/*}',
                 'body' => 'resource_value_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{resource_value_config.name=organizations/*/locations/*/resourceValueConfigs/*}',
+                        'body' => 'resource_value_config',
+                    ],
+                ],
                 'placeholders' => [
                     'resource_value_config.name' => [
                         'getters' => [

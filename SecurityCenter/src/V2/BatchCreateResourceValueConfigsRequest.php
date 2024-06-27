@@ -34,7 +34,7 @@ class BatchCreateResourceValueConfigsRequest extends \Google\Protobuf\Internal\M
      * @param string                                                             $parent   Required. Resource name of the new ResourceValueConfig's parent.
      *                                                                                     The parent field in the CreateResourceValueConfigRequest
      *                                                                                     messages must either be empty or match this field. Please see
-     *                                                                                     {@see SecurityCenterClient::organizationName()} for help formatting this field.
+     *                                                                                     {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenter\V2\CreateResourceValueConfigRequest[] $requests Required. The resource value configs to be created.
      *
      * @return \Google\Cloud\SecurityCenter\V2\BatchCreateResourceValueConfigsRequest

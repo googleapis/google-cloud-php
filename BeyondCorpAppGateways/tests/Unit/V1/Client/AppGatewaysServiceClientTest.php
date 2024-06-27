@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,7 +68,9 @@ class AppGatewaysServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AppGatewaysServiceClient */
@@ -126,9 +128,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $appGateway->setType($appGatewayType);
         $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
         $appGateway->setHostType($appGatewayHostType);
-        $request = (new CreateAppGatewayRequest())
-            ->setParent($formattedParent)
-            ->setAppGateway($appGateway);
+        $request = (new CreateAppGatewayRequest())->setParent($formattedParent)->setAppGateway($appGateway);
         $response = $gapicClient->createAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -138,7 +138,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/CreateAppGateway', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/CreateAppGateway',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAppGateway();
@@ -186,12 +189,15 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -202,9 +208,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $appGateway->setType($appGatewayType);
         $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
         $appGateway->setHostType($appGatewayHostType);
-        $request = (new CreateAppGatewayRequest())
-            ->setParent($formattedParent)
-            ->setAppGateway($appGateway);
+        $request = (new CreateAppGatewayRequest())->setParent($formattedParent)->setAppGateway($appGateway);
         $response = $gapicClient->createAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -258,8 +262,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
-        $request = (new DeleteAppGatewayRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAppGatewayRequest())->setName($formattedName);
         $response = $gapicClient->deleteAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -269,7 +272,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/DeleteAppGateway', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/DeleteAppGateway',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -315,17 +321,19 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
-        $request = (new DeleteAppGatewayRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAppGatewayRequest())->setName($formattedName);
         $response = $gapicClient->deleteAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -369,8 +377,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
-        $request = (new GetAppGatewayRequest())
-            ->setName($formattedName);
+        $request = (new GetAppGatewayRequest())->setName($formattedName);
         $response = $gapicClient->getAppGateway($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -394,17 +401,19 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
-        $request = (new GetAppGatewayRequest())
-            ->setName($formattedName);
+        $request = (new GetAppGatewayRequest())->setName($formattedName);
         try {
             $gapicClient->getAppGateway($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -429,17 +438,14 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $appGatewaysElement = new AppGateway();
-        $appGateways = [
-            $appGatewaysElement,
-        ];
+        $appGateways = [$appGatewaysElement];
         $expectedResponse = new ListAppGatewaysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAppGateways($appGateways);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAppGatewaysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAppGatewaysRequest())->setParent($formattedParent);
         $response = $gapicClient->listAppGateways($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -449,7 +455,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/ListAppGateways', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/ListAppGateways',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -466,17 +475,19 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAppGatewaysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAppGatewaysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAppGateways($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -529,12 +540,15 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -561,9 +575,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -593,12 +605,15 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -631,8 +646,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -656,17 +670,19 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -698,9 +714,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -726,19 +740,20 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -766,9 +781,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -794,19 +807,20 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -866,9 +880,7 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $appGateway->setType($appGatewayType);
         $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
         $appGateway->setHostType($appGatewayHostType);
-        $request = (new CreateAppGatewayRequest())
-            ->setParent($formattedParent)
-            ->setAppGateway($appGateway);
+        $request = (new CreateAppGatewayRequest())->setParent($formattedParent)->setAppGateway($appGateway);
         $response = $gapicClient->createAppGatewayAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -878,7 +890,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/CreateAppGateway', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/CreateAppGateway',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAppGateway();

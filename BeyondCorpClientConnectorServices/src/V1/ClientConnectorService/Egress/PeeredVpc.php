@@ -20,7 +20,7 @@ class PeeredVpc extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_vpc = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_vpc = '';
+    protected $network_vpc = '';
 
     /**
      * Constructor.

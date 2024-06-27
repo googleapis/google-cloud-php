@@ -190,7 +190,7 @@
     "BeyondCorpAppConnections": {
         "language": "php",
         "distribution_name": "google/cloud-beyondcorp-appconnections",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-beyondcorp-appconnections/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/beyondcorp-enterprise/docs",
@@ -200,7 +200,7 @@
     "BeyondCorpAppConnectors": {
         "language": "php",
         "distribution_name": "google/cloud-beyondcorp-appconnectors",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-beyondcorp-appconnectors/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "beyondcorp"
@@ -208,7 +208,7 @@
     "BeyondCorpAppGateways": {
         "language": "php",
         "distribution_name": "google/cloud-beyondcorp-appgateways",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-beyondcorp-appgateways/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "beyondcorp"
@@ -216,7 +216,7 @@
     "BeyondCorpClientConnectorServices": {
         "language": "php",
         "distribution_name": "google/cloud-beyondcorp-clientconnectorservices",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-beyondcorp-clientconnectorservices/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "beyondcorp"
@@ -224,7 +224,7 @@
     "BeyondCorpClientGateways": {
         "language": "php",
         "distribution_name": "google/cloud-beyondcorp-clientgateways",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-beyondcorp-clientgateways/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "beyondcorp"

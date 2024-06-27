@@ -35,7 +35,7 @@ use Google\Cloud\SecurityCenter\V2\ResourceValueConfig;
  * @param string $formattedParent The parent, which owns the collection of resource value configs.
  *                                Its format is
  *                                "organizations/[organization_id]"
- *                                Please see {@see SecurityCenterClient::organizationName()} for help formatting this field.
+ *                                Please see {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  */
 function list_resource_value_configs_sample(string $formattedParent): void
 {
@@ -71,7 +71,7 @@ function list_resource_value_configs_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = SecurityCenterClient::organizationName('[ORGANIZATION]');
+    $formattedParent = SecurityCenterClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
 
     list_resource_value_configs_sample($formattedParent);
 }

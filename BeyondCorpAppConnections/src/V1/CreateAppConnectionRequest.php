@@ -21,7 +21,7 @@ class CreateAppConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. User-settable AppConnection resource ID.
      *  * Must start with a letter.
@@ -30,13 +30,13 @@ class CreateAppConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_connection_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $app_connection_id = '';
+    protected $app_connection_id = '';
     /**
      * Required. A BeyondCorp AppConnection resource.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnections.v1.AppConnection app_connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $app_connection = null;
+    protected $app_connection = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -52,14 +52,14 @@ class CreateAppConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set, validates request by executing a dry-run which would not
      * alter the resource in any way.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                                   $parent          Required. The resource project name of the AppConnection location using the
