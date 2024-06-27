@@ -40,7 +40,7 @@ use Google\Cloud\SecurityCenter\V2\ListAttackPathsRequest;
  *                                "organizations/{organization}/simulations/{simulation}"
  *                                "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
  *                                "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
- *                                Please see {@see SecurityCenterClient::valuedResourceName()} for help formatting this field.
+ *                                Please see {@see SecurityCenterClient::organizationValuedResourceName()} for help formatting this field.
  */
 function list_attack_paths_sample(string $formattedParent): void
 {
@@ -76,8 +76,9 @@ function list_attack_paths_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = SecurityCenterClient::valuedResourceName(
+    $formattedParent = SecurityCenterClient::organizationValuedResourceName(
         '[ORGANIZATION]',
+        '[LOCATION]',
         '[SIMULATION]',
         '[VALUED_RESOURCE]'
     );

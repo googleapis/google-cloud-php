@@ -84,12 +84,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * Required. Expression that defines what assets fields to use for grouping.
      * The string value should follow SQL syntax: comma separated list of fields.
      * For example: "parent,resource_name".
-     * The following fields are supported:
-     * * resource_name
-     * * category
-     * * state
-     * * parent
-     * * severity
      *
      * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -136,14 +130,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * @param string $groupBy Required. Expression that defines what assets fields to use for grouping.
      *                        The string value should follow SQL syntax: comma separated list of fields.
      *                        For example: "parent,resource_name".
-     *
-     *                        The following fields are supported:
-     *
-     *                        * resource_name
-     *                        * category
-     *                        * state
-     *                        * parent
-     *                        * severity
      *
      * @return \Google\Cloud\SecurityCenter\V2\GroupFindingsRequest
      *
@@ -223,12 +209,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Expression that defines what assets fields to use for grouping.
      *           The string value should follow SQL syntax: comma separated list of fields.
      *           For example: "parent,resource_name".
-     *           The following fields are supported:
-     *           * resource_name
-     *           * category
-     *           * state
-     *           * parent
-     *           * severity
      *     @type string $page_token
      *           The value returned by the last `GroupFindingsResponse`; indicates
      *           that this is a continuation of a prior `GroupFindings` call, and
@@ -405,12 +385,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * Required. Expression that defines what assets fields to use for grouping.
      * The string value should follow SQL syntax: comma separated list of fields.
      * For example: "parent,resource_name".
-     * The following fields are supported:
-     * * resource_name
-     * * category
-     * * state
-     * * parent
-     * * severity
      *
      * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -424,12 +398,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * Required. Expression that defines what assets fields to use for grouping.
      * The string value should follow SQL syntax: comma separated list of fields.
      * For example: "parent,resource_name".
-     * The following fields are supported:
-     * * resource_name
-     * * category
-     * * state
-     * * parent
-     * * severity
      *
      * Generated from protobuf field <code>string group_by = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

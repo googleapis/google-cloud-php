@@ -776,6 +776,65 @@ final class SecurityCenterClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted organization_location_resource_value_config resource.
+     */
+    public static function organizationLocationResourceValueConfigName(string $organization, string $location, string $resourceValueConfig): string
+    {
+        return self::getPathTemplate('organizationLocationResourceValueConfig')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_simluation resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simluation
+     *
+     * @return string The formatted organization_location_simluation resource.
+     */
+    public static function organizationLocationSimluationName(string $organization, string $location, string $simluation): string
+    {
+        return self::getPathTemplate('organizationLocationSimluation')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simluation' => $simluation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_simluation_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simluation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_location_simluation_valued_resource resource.
+     */
+    public static function organizationLocationSimluationValuedResourceName(string $organization, string $location, string $simluation, string $valuedResource): string
+    {
+        return self::getPathTemplate('organizationLocationSimluationValuedResource')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simluation' => $simluation,
+            'valued_resource' => $valuedResource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_mute_config resource.
      *
      * @param string $organization
@@ -788,6 +847,59 @@ final class SecurityCenterClient
         return self::getPathTemplate('organizationMuteConfig')->render([
             'organization' => $organization,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted organization_resource_value_config resource.
+     */
+    public static function organizationResourceValueConfigName(string $organization, string $resourceValueConfig): string
+    {
+        return self::getPathTemplate('organizationResourceValueConfig')->render([
+            'organization' => $organization,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_simulation resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     *
+     * @return string The formatted organization_simulation resource.
+     */
+    public static function organizationSimulationName(string $organization, string $simulation): string
+    {
+        return self::getPathTemplate('organizationSimulation')->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_simulation_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_simulation_valued_resource resource.
+     */
+    public static function organizationSimulationValuedResourceName(string $organization, string $simulation, string $valuedResource): string
+    {
+        return self::getPathTemplate('organizationSimulationValuedResource')->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -929,6 +1041,27 @@ final class SecurityCenterClient
             'source' => $source,
             'location' => $location,
             'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_valued_resource resource.
+     */
+    public static function organizationValuedResourceName(string $organization, string $location, string $simulation, string $valuedResource): string
+    {
+        return self::getPathTemplate('organizationValuedResource')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -1439,7 +1572,13 @@ final class SecurityCenterClient
      * - organizationLocationExport: organizations/{organization}/locations/{location}/bigQueryExports/{export}
      * - organizationLocationMuteConfig: organizations/{organization}/locations/{location}/muteConfigs/{mute_config}
      * - organizationLocationNotificationConfig: organizations/{organization}/locations/{location}/notificationConfigs/{notification_config}
+     * - organizationLocationResourceValueConfig: organizations/{organization}/locations/{location}/resourceValueConfigs/{resource_value_config}
+     * - organizationLocationSimluation: organizations/{organization}/locations/{location}/simulations/{simluation}
+     * - organizationLocationSimluationValuedResource: organizations/{organization}/locations/{location}/simulations/{simluation}/valuedResources/{valued_resource}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
+     * - organizationResourceValueConfig: organizations/{organization}/resourceValueConfigs/{resource_value_config}
+     * - organizationSimulation: organizations/{organization}/simulations/{simulation}
+     * - organizationSimulationValuedResource: organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1447,6 +1586,7 @@ final class SecurityCenterClient
      * - organizationSourceLocationFinding: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}
      * - organizationSourceLocationFindingExternalsystem: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceLocationFindingSecurityMarks: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}/securityMarks
+     * - organizationValuedResource: organizations/{organization}/locations/{location}/simulations/{simulation}/valuedResources/{valued_resource}
      * - policy: organizations/{organization}/policies/{constraint_name}
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks

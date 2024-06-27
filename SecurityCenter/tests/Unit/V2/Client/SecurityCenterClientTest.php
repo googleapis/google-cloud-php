@@ -144,7 +144,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse = new BatchCreateResourceValueConfigsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $requests = [];
         $request = (new BatchCreateResourceValueConfigsRequest())
             ->setParent($formattedParent)
@@ -182,7 +182,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $requests = [];
         $request = (new BatchCreateResourceValueConfigsRequest())
             ->setParent($formattedParent)
@@ -1650,7 +1650,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setAttackPaths($attackPaths);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->valuedResourceName('[ORGANIZATION]', '[SIMULATION]', '[VALUED_RESOURCE]');
+        $formattedParent = $gapicClient->organizationValuedResourceName('[ORGANIZATION]', '[LOCATION]', '[SIMULATION]', '[VALUED_RESOURCE]');
         $request = (new ListAttackPathsRequest())
             ->setParent($formattedParent);
         $response = $gapicClient->listAttackPaths($request);
@@ -1687,7 +1687,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->valuedResourceName('[ORGANIZATION]', '[SIMULATION]', '[VALUED_RESOURCE]');
+        $formattedParent = $gapicClient->organizationValuedResourceName('[ORGANIZATION]', '[LOCATION]', '[SIMULATION]', '[VALUED_RESOURCE]');
         $request = (new ListAttackPathsRequest())
             ->setParent($formattedParent);
         try {
@@ -2012,7 +2012,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setResourceValueConfigs($resourceValueConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $request = (new ListResourceValueConfigsRequest())
             ->setParent($formattedParent);
         $response = $gapicClient->listResourceValueConfigs($request);
@@ -2049,7 +2049,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $request = (new ListResourceValueConfigsRequest())
             ->setParent($formattedParent);
         try {
@@ -3131,7 +3131,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse = new BatchCreateResourceValueConfigsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $requests = [];
         $request = (new BatchCreateResourceValueConfigsRequest())
             ->setParent($formattedParent)

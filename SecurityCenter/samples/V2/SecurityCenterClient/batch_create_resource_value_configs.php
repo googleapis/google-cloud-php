@@ -37,12 +37,12 @@ use Google\Cloud\SecurityCenter\V2\ResourceValueConfig;
  * @param string $formattedParent                             Resource name of the new ResourceValueConfig's parent.
  *                                                            The parent field in the CreateResourceValueConfigRequest
  *                                                            messages must either be empty or match this field. Please see
- *                                                            {@see SecurityCenterClient::organizationName()} for help formatting this field.
+ *                                                            {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  * @param string $formattedRequestsParent                     Resource name of the new ResourceValueConfig's parent. Please see
- *                                                            {@see SecurityCenterClient::organizationName()} for help formatting this field.
- * @param string $requestsResourceValueConfigTagValuesElement Tag values combined with AND to check against.
+ *                                                            {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
+ * @param string $requestsResourceValueConfigTagValuesElement Tag values combined with <code>AND</code> to check against.
  *                                                            Values in the form "tagValues/123"
- *                                                            E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ]
+ *                                                            Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
  *                                                            https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
  */
 function batch_create_resource_value_configs_sample(
@@ -86,8 +86,11 @@ function batch_create_resource_value_configs_sample(
  */
 function callSample(): void
 {
-    $formattedParent = SecurityCenterClient::organizationName('[ORGANIZATION]');
-    $formattedRequestsParent = SecurityCenterClient::organizationName('[ORGANIZATION]');
+    $formattedParent = SecurityCenterClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+    $formattedRequestsParent = SecurityCenterClient::organizationLocationName(
+        '[ORGANIZATION]',
+        '[LOCATION]'
+    );
     $requestsResourceValueConfigTagValuesElement = '[TAG_VALUES]';
 
     batch_create_resource_value_configs_sample(

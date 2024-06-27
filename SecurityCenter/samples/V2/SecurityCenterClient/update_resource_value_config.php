@@ -31,9 +31,9 @@ use Google\Cloud\SecurityCenter\V2\UpdateResourceValueConfigRequest;
 /**
  * Updates an existing ResourceValueConfigs with new rules.
  *
- * @param string $resourceValueConfigTagValuesElement Tag values combined with AND to check against.
+ * @param string $resourceValueConfigTagValuesElement Tag values combined with <code>AND</code> to check against.
  *                                                    Values in the form "tagValues/123"
- *                                                    E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ]
+ *                                                    Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
  *                                                    https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
  */
 function update_resource_value_config_sample(string $resourceValueConfigTagValuesElement): void
