@@ -102,13 +102,17 @@ class ComponentInfoCommand extends Command
         }
         $this->token = $input->getOption('token');
 
+        // Parse filters
+        $filters = $this->parseFilters($input->getOption('filter') ?: '');
+
         // Filter out invalid fields
-        $requestedFields = array_intersect_key(array_flip($fields), self::$allFields);
+        $requestedFields = array_intersect_key(
+            array_flip($fields) + array_flip(array_column($filters, 0)),
+            self::$allFields
+        );
 
         // Compile all the component data into rows
         $components = Component::getComponents($input->getOption('component'));
-
-        $filters = $this->parseFilters($input->getOption('filter') ?: '');
 
         $rows = [];
         foreach ($components as $component) {
@@ -118,9 +122,9 @@ class ComponentInfoCommand extends Command
                 $input->getOption('expanded')
             );
 
-            foreach ($filters as $filter) {
-                list($field, $value, $operator) = $filter;
-                foreach ($componentRows as $row) {
+            foreach ($componentRows as $row) {
+                foreach ($filters as $filter) {
+                    list($field, $value, $operator) = $filter;
                     if (!match ($operator) {
                         '=' => ($row[$field] === $value),
                         '!=' => ($row[$field] !== $value),
