@@ -24,6 +24,9 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to be updated.
      * If empty all mutable fields will be updated.
+     * To update nested fields, include the top level field in the mask
+     * For example, to update gcp_metadata.resource_type, include the
+     * "gcp_metadata" field mask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -33,6 +36,10 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\SecurityCenter\V2\ResourceValueConfig $resourceValueConfig Required. The resource value config being updated.
      * @param \Google\Protobuf\FieldMask                          $updateMask          The list of fields to be updated.
      *                                                                                 If empty all mutable fields will be updated.
+     *
+     *                                                                                 To update nested fields, include the top level field in the mask
+     *                                                                                 For example, to update gcp_metadata.resource_type, include the
+     *                                                                                 "gcp_metadata" field mask
      *
      * @return \Google\Cloud\SecurityCenter\V2\UpdateResourceValueConfigRequest
      *
@@ -56,6 +63,9 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to be updated.
      *           If empty all mutable fields will be updated.
+     *           To update nested fields, include the top level field in the mask
+     *           For example, to update gcp_metadata.resource_type, include the
+     *           "gcp_metadata" field mask
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +112,9 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to be updated.
      * If empty all mutable fields will be updated.
+     * To update nested fields, include the top level field in the mask
+     * For example, to update gcp_metadata.resource_type, include the
+     * "gcp_metadata" field mask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -124,6 +137,9 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * The list of fields to be updated.
      * If empty all mutable fields will be updated.
+     * To update nested fields, include the top level field in the mask
+     * For example, to update gcp_metadata.resource_type, include the
+     * "gcp_metadata" field mask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

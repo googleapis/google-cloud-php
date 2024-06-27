@@ -59,7 +59,7 @@ class ListAttackPathsRequest extends \Google\Protobuf\Internal\Message
      *                       "organizations/{organization}/simulations/{simulation}"
      *                       "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
      *                       "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
-     *                       Please see {@see SecurityCenterClient::valuedResourceName()} for help formatting this field.
+     *                       Please see {@see SecurityCenterClient::organizationValuedResourceName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\ListAttackPathsRequest
      *

@@ -35,6 +35,46 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string type = 3;</code>
      */
     private $type = '';
+    /**
+     * Indicates which cloud provider the finding is from.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
+     */
+    private $cloud_provider = 0;
+    /**
+     * The service or resource provider associated with the resource.
+     *
+     * Generated from protobuf field <code>string service = 5;</code>
+     */
+    private $service = '';
+    /**
+     * The region or location of the service (if applicable).
+     *
+     * Generated from protobuf field <code>string location = 6;</code>
+     */
+    private $location = '';
+    /**
+     * Provides the path to the resource within the resource hierarchy.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourcePath resource_path = 10;</code>
+     */
+    private $resource_path = null;
+    /**
+     * A string representation of the resource path.
+     * For Google Cloud, it has the format of
+     * organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
+     * where there can be any number of folders.
+     * For AWS, it has the format of
+     * org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
+     * where there can be any number of organizational units.
+     * For Azure, it has the format of
+     * mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
+     * where there can be any number of management groups.
+     *
+     * Generated from protobuf field <code>string resource_path_string = 11;</code>
+     */
+    private $resource_path_string = '';
+    protected $cloud_provider_metadata;
 
     /**
      * Constructor.
@@ -49,6 +89,31 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           The human readable name of the resource.
      *     @type string $type
      *           The full resource type of the resource.
+     *     @type int $cloud_provider
+     *           Indicates which cloud provider the finding is from.
+     *     @type string $service
+     *           The service or resource provider associated with the resource.
+     *     @type string $location
+     *           The region or location of the service (if applicable).
+     *     @type \Google\Cloud\SecurityCenter\V2\GcpMetadata $gcp_metadata
+     *           The GCP metadata associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\AwsMetadata $aws_metadata
+     *           The AWS metadata associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\AzureMetadata $azure_metadata
+     *           The Azure metadata associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\ResourcePath $resource_path
+     *           Provides the path to the resource within the resource hierarchy.
+     *     @type string $resource_path_string
+     *           A string representation of the resource path.
+     *           For Google Cloud, it has the format of
+     *           organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
+     *           where there can be any number of folders.
+     *           For AWS, it has the format of
+     *           org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
+     *           where there can be any number of organizational units.
+     *           For Azure, it has the format of
+     *           mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
+     *           where there can be any number of management groups.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +199,265 @@ class Resource extends \Google\Protobuf\Internal\Message
         $this->type = $var;
 
         return $this;
+    }
+
+    /**
+     * Indicates which cloud provider the finding is from.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
+     * @return int
+     */
+    public function getCloudProvider()
+    {
+        return $this->cloud_provider;
+    }
+
+    /**
+     * Indicates which cloud provider the finding is from.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCloudProvider($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\CloudProvider::class);
+        $this->cloud_provider = $var;
+
+        return $this;
+    }
+
+    /**
+     * The service or resource provider associated with the resource.
+     *
+     * Generated from protobuf field <code>string service = 5;</code>
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * The service or resource provider associated with the resource.
+     *
+     * Generated from protobuf field <code>string service = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service = $var;
+
+        return $this;
+    }
+
+    /**
+     * The region or location of the service (if applicable).
+     *
+     * Generated from protobuf field <code>string location = 6;</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * The region or location of the service (if applicable).
+     *
+     * Generated from protobuf field <code>string location = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * The GCP metadata associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.GcpMetadata gcp_metadata = 7;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\GcpMetadata|null
+     */
+    public function getGcpMetadata()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasGcpMetadata()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * The GCP metadata associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.GcpMetadata gcp_metadata = 7;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\GcpMetadata $var
+     * @return $this
+     */
+    public function setGcpMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\GcpMetadata::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The AWS metadata associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AwsMetadata aws_metadata = 8;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\AwsMetadata|null
+     */
+    public function getAwsMetadata()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasAwsMetadata()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The AWS metadata associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AwsMetadata aws_metadata = 8;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AwsMetadata $var
+     * @return $this
+     */
+    public function setAwsMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AwsMetadata::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * The Azure metadata associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata azure_metadata = 9;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\AzureMetadata|null
+     */
+    public function getAzureMetadata()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasAzureMetadata()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * The Azure metadata associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata azure_metadata = 9;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AzureMetadata $var
+     * @return $this
+     */
+    public function setAzureMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AzureMetadata::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Provides the path to the resource within the resource hierarchy.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourcePath resource_path = 10;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\ResourcePath|null
+     */
+    public function getResourcePath()
+    {
+        return $this->resource_path;
+    }
+
+    public function hasResourcePath()
+    {
+        return isset($this->resource_path);
+    }
+
+    public function clearResourcePath()
+    {
+        unset($this->resource_path);
+    }
+
+    /**
+     * Provides the path to the resource within the resource hierarchy.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourcePath resource_path = 10;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\ResourcePath $var
+     * @return $this
+     */
+    public function setResourcePath($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\ResourcePath::class);
+        $this->resource_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * A string representation of the resource path.
+     * For Google Cloud, it has the format of
+     * organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
+     * where there can be any number of folders.
+     * For AWS, it has the format of
+     * org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
+     * where there can be any number of organizational units.
+     * For Azure, it has the format of
+     * mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
+     * where there can be any number of management groups.
+     *
+     * Generated from protobuf field <code>string resource_path_string = 11;</code>
+     * @return string
+     */
+    public function getResourcePathString()
+    {
+        return $this->resource_path_string;
+    }
+
+    /**
+     * A string representation of the resource path.
+     * For Google Cloud, it has the format of
+     * organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
+     * where there can be any number of folders.
+     * For AWS, it has the format of
+     * org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
+     * where there can be any number of organizational units.
+     * For Azure, it has the format of
+     * mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
+     * where there can be any number of management groups.
+     *
+     * Generated from protobuf field <code>string resource_path_string = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourcePathString($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_path_string = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCloudProviderMetadata()
+    {
+        return $this->whichOneof("cloud_provider_metadata");
     }
 
 }
