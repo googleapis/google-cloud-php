@@ -24,7 +24,6 @@ namespace Google\Cloud\GkeMultiCloud\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeMultiCloud\V1\AzureAuthorization;
@@ -66,6 +65,7 @@ use Google\Cloud\GkeMultiCloud\V1\ListAzureNodePoolsResponse;
 use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAzureClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAzureNodePoolRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

@@ -24,7 +24,6 @@ namespace Google\Cloud\GkeMultiCloud\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeMultiCloud\V1\AttachedCluster;
@@ -44,6 +43,7 @@ use Google\Cloud\GkeMultiCloud\V1\ImportAttachedClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersResponse;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAttachedClusterRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

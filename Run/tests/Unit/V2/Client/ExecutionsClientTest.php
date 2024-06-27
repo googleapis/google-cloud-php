@@ -24,7 +24,6 @@ namespace Google\Cloud\Run\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Run\V2\CancelExecutionRequest;
@@ -34,6 +33,7 @@ use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\GetExecutionRequest;
 use Google\Cloud\Run\V2\ListExecutionsRequest;
 use Google\Cloud\Run\V2\ListExecutionsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

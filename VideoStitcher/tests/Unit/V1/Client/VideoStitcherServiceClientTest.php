@@ -24,7 +24,6 @@ namespace Google\Cloud\Video\Stitcher\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Video\Stitcher\V1\AdTracking;
@@ -75,6 +74,7 @@ use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
