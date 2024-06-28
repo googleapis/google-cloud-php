@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -146,9 +146,7 @@ final class BackupForGKEClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -194,7 +192,9 @@ final class BackupForGKEClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -368,8 +368,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_backup resource.
      */
-    public static function volumeBackupName(string $project, string $location, string $backupPlan, string $backup, string $volumeBackup): string
-    {
+    public static function volumeBackupName(
+        string $project,
+        string $location,
+        string $backupPlan,
+        string $backup,
+        string $volumeBackup
+    ): string {
         return self::getPathTemplate('volumeBackup')->render([
             'project' => $project,
             'location' => $location,
@@ -391,8 +396,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_restore resource.
      */
-    public static function volumeRestoreName(string $project, string $location, string $restorePlan, string $restore, string $volumeRestore): string
-    {
+    public static function volumeRestoreName(
+        string $project,
+        string $location,
+        string $restorePlan,
+        string $restore,
+        string $volumeRestore
+    ): string {
         return self::getPathTemplate('volumeRestore')->render([
             'project' => $project,
             'location' => $location,
@@ -762,8 +772,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupIndexDownloadUrl(GetBackupIndexDownloadUrlRequest $request, array $callOptions = []): GetBackupIndexDownloadUrlResponse
-    {
+    public function getBackupIndexDownloadUrl(
+        GetBackupIndexDownloadUrlRequest $request,
+        array $callOptions = []
+    ): GetBackupIndexDownloadUrlResponse {
         return $this->startApiCall('GetBackupIndexDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -1293,8 +1305,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

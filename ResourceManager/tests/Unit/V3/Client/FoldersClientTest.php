@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,9 @@ class FoldersClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FoldersClient */
@@ -120,8 +122,7 @@ class FoldersClientTest extends GeneratedTest
         $folder = new Folder();
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
-        $request = (new CreateFolderRequest())
-            ->setFolder($folder);
+        $request = (new CreateFolderRequest())->setFolder($folder);
         $response = $gapicClient->createFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -177,19 +178,21 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $folder = new Folder();
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
-        $request = (new CreateFolderRequest())
-            ->setFolder($folder);
+        $request = (new CreateFolderRequest())->setFolder($folder);
         $response = $gapicClient->createFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -251,8 +254,7 @@ class FoldersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new DeleteFolderRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFolderRequest())->setName($formattedName);
         $response = $gapicClient->deleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -308,17 +310,19 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new DeleteFolderRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFolderRequest())->setName($formattedName);
         $response = $gapicClient->deleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -362,8 +366,7 @@ class FoldersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new GetFolderRequest())
-            ->setName($formattedName);
+        $request = (new GetFolderRequest())->setName($formattedName);
         $response = $gapicClient->getFolder($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -387,17 +390,19 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new GetFolderRequest())
-            ->setName($formattedName);
+        $request = (new GetFolderRequest())->setName($formattedName);
         try {
             $gapicClient->getFolder($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -428,8 +433,7 @@ class FoldersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -453,17 +457,19 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -488,17 +494,14 @@ class FoldersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $foldersElement = new Folder();
-        $folders = [
-            $foldersElement,
-        ];
+        $folders = [$foldersElement];
         $expectedResponse = new ListFoldersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFolders($folders);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListFoldersRequest())
-            ->setParent($parent);
+        $request = (new ListFoldersRequest())->setParent($parent);
         $response = $gapicClient->listFolders($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -525,17 +528,19 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListFoldersRequest())
-            ->setParent($parent);
+        $request = (new ListFoldersRequest())->setParent($parent);
         try {
             $gapicClient->listFolders($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -589,9 +594,7 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
         $destinationParent = 'destinationParent-1362053637';
-        $request = (new MoveFolderRequest())
-            ->setName($formattedName)
-            ->setDestinationParent($destinationParent);
+        $request = (new MoveFolderRequest())->setName($formattedName)->setDestinationParent($destinationParent);
         $response = $gapicClient->moveFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -649,19 +652,20 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
         $destinationParent = 'destinationParent-1362053637';
-        $request = (new MoveFolderRequest())
-            ->setName($formattedName)
-            ->setDestinationParent($destinationParent);
+        $request = (new MoveFolderRequest())->setName($formattedName)->setDestinationParent($destinationParent);
         $response = $gapicClient->moveFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -695,9 +699,7 @@ class FoldersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $foldersElement = new Folder();
-        $folders = [
-            $foldersElement,
-        ];
+        $folders = [$foldersElement];
         $expectedResponse = new SearchFoldersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFolders($folders);
@@ -727,12 +729,15 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new SearchFoldersRequest();
         try {
@@ -766,9 +771,7 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -794,19 +797,20 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -834,9 +838,7 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -862,19 +864,20 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -927,8 +930,7 @@ class FoldersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new UndeleteFolderRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteFolderRequest())->setName($formattedName);
         $response = $gapicClient->undeleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -984,17 +986,19 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->folderName('[FOLDER]');
-        $request = (new UndeleteFolderRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteFolderRequest())->setName($formattedName);
         $response = $gapicClient->undeleteFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1059,9 +1063,7 @@ class FoldersClientTest extends GeneratedTest
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
         $updateMask = new FieldMask();
-        $request = (new UpdateFolderRequest())
-            ->setFolder($folder)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateFolderRequest())->setFolder($folder)->setUpdateMask($updateMask);
         $response = $gapicClient->updateFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1119,21 +1121,22 @@ class FoldersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $folder = new Folder();
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
         $updateMask = new FieldMask();
-        $request = (new UpdateFolderRequest())
-            ->setFolder($folder)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateFolderRequest())->setFolder($folder)->setUpdateMask($updateMask);
         $response = $gapicClient->updateFolder($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1197,8 +1200,7 @@ class FoldersClientTest extends GeneratedTest
         $folder = new Folder();
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
-        $request = (new CreateFolderRequest())
-            ->setFolder($folder);
+        $request = (new CreateFolderRequest())->setFolder($folder);
         $response = $gapicClient->createFolderAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

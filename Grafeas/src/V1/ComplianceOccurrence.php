@@ -23,7 +23,7 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string non_compliance_reason = 3;</code>
      */
-    private $non_compliance_reason = '';
+    protected $non_compliance_reason = '';
 
     /**
      * Constructor.

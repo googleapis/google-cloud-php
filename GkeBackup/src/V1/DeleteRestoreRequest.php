@@ -21,7 +21,7 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If provided, this value must match the current value of the
      * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
@@ -29,7 +29,7 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. If set to true, any VolumeRestores below this restore will also
      * be deleted. Otherwise, the request will only succeed if the restore has no
@@ -37,7 +37,7 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name Required. Full name of the Restore

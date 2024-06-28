@@ -22,7 +22,7 @@ class GetBackupIndexDownloadUrlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $backup = '';
+    protected $backup = '';
 
     /**
      * @param string $backup Required. Full name of Backup resource.

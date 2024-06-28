@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,9 @@ class LineageClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return LineageClient */
@@ -105,9 +107,7 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $processLinksElement = new ProcessLinks();
-        $processLinks = [
-            $processLinksElement,
-        ];
+        $processLinks = [$processLinksElement];
         $expectedResponse = new BatchSearchLinkProcessesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessLinks($processLinks);
@@ -115,9 +115,7 @@ class LineageClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $links = [];
-        $request = (new BatchSearchLinkProcessesRequest())
-            ->setParent($formattedParent)
-            ->setLinks($links);
+        $request = (new BatchSearchLinkProcessesRequest())->setParent($formattedParent)->setLinks($links);
         $response = $gapicClient->batchSearchLinkProcesses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -146,19 +144,20 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $links = [];
-        $request = (new BatchSearchLinkProcessesRequest())
-            ->setParent($formattedParent)
-            ->setLinks($links);
+        $request = (new BatchSearchLinkProcessesRequest())->setParent($formattedParent)->setLinks($links);
         try {
             $gapicClient->batchSearchLinkProcesses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -190,9 +189,7 @@ class LineageClientTest extends GeneratedTest
         $lineageEvent = new LineageEvent();
         $lineageEventStartTime = new Timestamp();
         $lineageEvent->setStartTime($lineageEventStartTime);
-        $request = (new CreateLineageEventRequest())
-            ->setParent($formattedParent)
-            ->setLineageEvent($lineageEvent);
+        $request = (new CreateLineageEventRequest())->setParent($formattedParent)->setLineageEvent($lineageEvent);
         $response = $gapicClient->createLineageEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -218,21 +215,22 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
         $lineageEvent = new LineageEvent();
         $lineageEventStartTime = new Timestamp();
         $lineageEvent->setStartTime($lineageEventStartTime);
-        $request = (new CreateLineageEventRequest())
-            ->setParent($formattedParent)
-            ->setLineageEvent($lineageEvent);
+        $request = (new CreateLineageEventRequest())->setParent($formattedParent)->setLineageEvent($lineageEvent);
         try {
             $gapicClient->createLineageEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -264,9 +262,7 @@ class LineageClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $process = new Process();
-        $request = (new CreateProcessRequest())
-            ->setParent($formattedParent)
-            ->setProcess($process);
+        $request = (new CreateProcessRequest())->setParent($formattedParent)->setProcess($process);
         $response = $gapicClient->createProcess($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -292,19 +288,20 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $process = new Process();
-        $request = (new CreateProcessRequest())
-            ->setParent($formattedParent)
-            ->setProcess($process);
+        $request = (new CreateProcessRequest())->setParent($formattedParent)->setProcess($process);
         try {
             $gapicClient->createProcess($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -340,9 +337,7 @@ class LineageClientTest extends GeneratedTest
         $run->setStartTime($runStartTime);
         $runState = State::UNKNOWN;
         $run->setState($runState);
-        $request = (new CreateRunRequest())
-            ->setParent($formattedParent)
-            ->setRun($run);
+        $request = (new CreateRunRequest())->setParent($formattedParent)->setRun($run);
         $response = $gapicClient->createRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -368,12 +363,15 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
@@ -382,9 +380,7 @@ class LineageClientTest extends GeneratedTest
         $run->setStartTime($runStartTime);
         $runState = State::UNKNOWN;
         $run->setState($runState);
-        $request = (new CreateRunRequest())
-            ->setParent($formattedParent)
-            ->setRun($run);
+        $request = (new CreateRunRequest())->setParent($formattedParent)->setRun($run);
         try {
             $gapicClient->createRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -410,9 +406,14 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new DeleteLineageEventRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->lineageEventName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PROCESS]',
+            '[RUN]',
+            '[LINEAGE_EVENT]'
+        );
+        $request = (new DeleteLineageEventRequest())->setName($formattedName);
         $gapicClient->deleteLineageEvent($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -435,17 +436,25 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new DeleteLineageEventRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->lineageEventName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PROCESS]',
+            '[RUN]',
+            '[LINEAGE_EVENT]'
+        );
+        $request = (new DeleteLineageEventRequest())->setName($formattedName);
         try {
             $gapicClient->deleteLineageEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -490,8 +499,7 @@ class LineageClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new DeleteProcessRequest())
-            ->setName($formattedName);
+        $request = (new DeleteProcessRequest())->setName($formattedName);
         $response = $gapicClient->deleteProcess($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -547,17 +555,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new DeleteProcessRequest())
-            ->setName($formattedName);
+        $request = (new DeleteProcessRequest())->setName($formattedName);
         $response = $gapicClient->deleteProcess($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -611,8 +621,7 @@ class LineageClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new DeleteRunRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRunRequest())->setName($formattedName);
         $response = $gapicClient->deleteRun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -668,17 +677,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new DeleteRunRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRunRequest())->setName($formattedName);
         $response = $gapicClient->deleteRun($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -715,9 +726,14 @@ class LineageClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new GetLineageEventRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->lineageEventName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PROCESS]',
+            '[RUN]',
+            '[LINEAGE_EVENT]'
+        );
+        $request = (new GetLineageEventRequest())->setName($formattedName);
         $response = $gapicClient->getLineageEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -741,17 +757,25 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->lineageEventName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]', '[LINEAGE_EVENT]');
-        $request = (new GetLineageEventRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->lineageEventName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[PROCESS]',
+            '[RUN]',
+            '[LINEAGE_EVENT]'
+        );
+        $request = (new GetLineageEventRequest())->setName($formattedName);
         try {
             $gapicClient->getLineageEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -782,8 +806,7 @@ class LineageClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new GetProcessRequest())
-            ->setName($formattedName);
+        $request = (new GetProcessRequest())->setName($formattedName);
         $response = $gapicClient->getProcess($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -807,17 +830,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new GetProcessRequest())
-            ->setName($formattedName);
+        $request = (new GetProcessRequest())->setName($formattedName);
         try {
             $gapicClient->getProcess($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -848,8 +873,7 @@ class LineageClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new GetRunRequest())
-            ->setName($formattedName);
+        $request = (new GetRunRequest())->setName($formattedName);
         $response = $gapicClient->getRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -873,17 +897,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new GetRunRequest())
-            ->setName($formattedName);
+        $request = (new GetRunRequest())->setName($formattedName);
         try {
             $gapicClient->getRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -908,17 +934,14 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $lineageEventsElement = new LineageEvent();
-        $lineageEvents = [
-            $lineageEventsElement,
-        ];
+        $lineageEvents = [$lineageEventsElement];
         $expectedResponse = new ListLineageEventsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLineageEvents($lineageEvents);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new ListLineageEventsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLineageEventsRequest())->setParent($formattedParent);
         $response = $gapicClient->listLineageEvents($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -945,17 +968,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->runName('[PROJECT]', '[LOCATION]', '[PROCESS]', '[RUN]');
-        $request = (new ListLineageEventsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLineageEventsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLineageEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -980,17 +1005,14 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $processesElement = new Process();
-        $processes = [
-            $processesElement,
-        ];
+        $processes = [$processesElement];
         $expectedResponse = new ListProcessesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcesses($processes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProcessesRequest())->setParent($formattedParent);
         $response = $gapicClient->listProcesses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1017,17 +1039,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProcessesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProcessesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listProcesses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1052,17 +1076,14 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $runsElement = new Run();
-        $runs = [
-            $runsElement,
-        ];
+        $runs = [$runsElement];
         $expectedResponse = new ListRunsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRuns($runs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new ListRunsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRunsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRuns($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1089,17 +1110,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->processName('[PROJECT]', '[LOCATION]', '[PROCESS]');
-        $request = (new ListRunsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRunsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1131,9 +1154,7 @@ class LineageClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $openLineage = new Struct();
-        $request = (new ProcessOpenLineageRunEventRequest())
-            ->setParent($parent)
-            ->setOpenLineage($openLineage);
+        $request = (new ProcessOpenLineageRunEventRequest())->setParent($parent)->setOpenLineage($openLineage);
         $response = $gapicClient->processOpenLineageRunEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1159,19 +1180,20 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $openLineage = new Struct();
-        $request = (new ProcessOpenLineageRunEventRequest())
-            ->setParent($parent)
-            ->setOpenLineage($openLineage);
+        $request = (new ProcessOpenLineageRunEventRequest())->setParent($parent)->setOpenLineage($openLineage);
         try {
             $gapicClient->processOpenLineageRunEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1196,17 +1218,14 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $linksElement = new Link();
-        $links = [
-            $linksElement,
-        ];
+        $links = [$linksElement];
         $expectedResponse = new SearchLinksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLinks($links);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchLinksRequest())
-            ->setParent($formattedParent);
+        $request = (new SearchLinksRequest())->setParent($formattedParent);
         $response = $gapicClient->searchLinks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1233,17 +1252,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new SearchLinksRequest())
-            ->setParent($formattedParent);
+        $request = (new SearchLinksRequest())->setParent($formattedParent);
         try {
             $gapicClient->searchLinks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1274,8 +1295,7 @@ class LineageClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $process = new Process();
-        $request = (new UpdateProcessRequest())
-            ->setProcess($process);
+        $request = (new UpdateProcessRequest())->setProcess($process);
         $response = $gapicClient->updateProcess($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1299,17 +1319,19 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $process = new Process();
-        $request = (new UpdateProcessRequest())
-            ->setProcess($process);
+        $request = (new UpdateProcessRequest())->setProcess($process);
         try {
             $gapicClient->updateProcess($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1344,8 +1366,7 @@ class LineageClientTest extends GeneratedTest
         $run->setStartTime($runStartTime);
         $runState = State::UNKNOWN;
         $run->setState($runState);
-        $request = (new UpdateRunRequest())
-            ->setRun($run);
+        $request = (new UpdateRunRequest())->setRun($run);
         $response = $gapicClient->updateRun($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1369,12 +1390,15 @@ class LineageClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $run = new Run();
@@ -1382,8 +1406,7 @@ class LineageClientTest extends GeneratedTest
         $run->setStartTime($runStartTime);
         $runState = State::UNKNOWN;
         $run->setState($runState);
-        $request = (new UpdateRunRequest())
-            ->setRun($run);
+        $request = (new UpdateRunRequest())->setRun($run);
         try {
             $gapicClient->updateRun($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1408,9 +1431,7 @@ class LineageClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $processLinksElement = new ProcessLinks();
-        $processLinks = [
-            $processLinksElement,
-        ];
+        $processLinks = [$processLinksElement];
         $expectedResponse = new BatchSearchLinkProcessesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProcessLinks($processLinks);
@@ -1418,9 +1439,7 @@ class LineageClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $links = [];
-        $request = (new BatchSearchLinkProcessesRequest())
-            ->setParent($formattedParent)
-            ->setLinks($links);
+        $request = (new BatchSearchLinkProcessesRequest())->setParent($formattedParent)->setLinks($links);
         $response = $gapicClient->batchSearchLinkProcessesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

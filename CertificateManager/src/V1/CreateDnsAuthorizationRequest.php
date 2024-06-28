@@ -21,19 +21,19 @@ class CreateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A user-provided name of the dns authorization.
      *
      * Generated from protobuf field <code>string dns_authorization_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dns_authorization_id = '';
+    protected $dns_authorization_id = '';
     /**
      * Required. A definition of the dns authorization to create.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.DnsAuthorization dns_authorization = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dns_authorization = null;
+    protected $dns_authorization = null;
 
     /**
      * @param string                                               $parent             Required. The parent resource of the dns authorization. Must be in the

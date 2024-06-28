@@ -20,13 +20,13 @@ class Digest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string algo = 1;</code>
      */
-    private $algo = '';
+    protected $algo = '';
     /**
      * Value of the digest.
      *
      * Generated from protobuf field <code>bytes digest_bytes = 2;</code>
      */
-    private $digest_bytes = '';
+    protected $digest_bytes = '';
 
     /**
      * Constructor.

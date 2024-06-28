@@ -21,7 +21,7 @@ class FileLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_path = 1;</code>
      */
-    private $file_path = '';
+    protected $file_path = '';
 
     /**
      * Constructor.

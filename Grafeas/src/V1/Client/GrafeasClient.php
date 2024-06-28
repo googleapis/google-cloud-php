@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -305,8 +305,10 @@ final class GrafeasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateNotes(BatchCreateNotesRequest $request, array $callOptions = []): BatchCreateNotesResponse
-    {
+    public function batchCreateNotes(
+        BatchCreateNotesRequest $request,
+        array $callOptions = []
+    ): BatchCreateNotesResponse {
         return $this->startApiCall('BatchCreateNotes', $request, $callOptions)->wait();
     }
 
@@ -331,8 +333,10 @@ final class GrafeasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateOccurrences(BatchCreateOccurrencesRequest $request, array $callOptions = []): BatchCreateOccurrencesResponse
-    {
+    public function batchCreateOccurrences(
+        BatchCreateOccurrencesRequest $request,
+        array $callOptions = []
+    ): BatchCreateOccurrencesResponse {
         return $this->startApiCall('BatchCreateOccurrences', $request, $callOptions)->wait();
     }
 

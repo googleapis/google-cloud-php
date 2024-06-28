@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,9 @@ class TagValuesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TagValuesClient */
@@ -120,8 +122,7 @@ class TagValuesClientTest extends GeneratedTest
         $tagValue = new TagValue();
         $tagValueShortName = 'tagValueShortName397125872';
         $tagValue->setShortName($tagValueShortName);
-        $request = (new CreateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = (new CreateTagValueRequest())->setTagValue($tagValue);
         $response = $gapicClient->createTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -177,19 +178,21 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tagValue = new TagValue();
         $tagValueShortName = 'tagValueShortName397125872';
         $tagValue->setShortName($tagValueShortName);
-        $request = (new CreateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = (new CreateTagValueRequest())->setTagValue($tagValue);
         $response = $gapicClient->createTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -255,8 +258,7 @@ class TagValuesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new DeleteTagValueRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTagValueRequest())->setName($formattedName);
         $response = $gapicClient->deleteTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -312,17 +314,19 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new DeleteTagValueRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTagValueRequest())->setName($formattedName);
         $response = $gapicClient->deleteTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -362,8 +366,7 @@ class TagValuesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -387,17 +390,19 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -436,8 +441,7 @@ class TagValuesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetNamespacedTagValueRequest())
-            ->setName($formattedName);
+        $request = (new GetNamespacedTagValueRequest())->setName($formattedName);
         $response = $gapicClient->getNamespacedTagValue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -461,17 +465,19 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetNamespacedTagValueRequest())
-            ->setName($formattedName);
+        $request = (new GetNamespacedTagValueRequest())->setName($formattedName);
         try {
             $gapicClient->getNamespacedTagValue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -510,8 +516,7 @@ class TagValuesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetTagValueRequest())
-            ->setName($formattedName);
+        $request = (new GetTagValueRequest())->setName($formattedName);
         $response = $gapicClient->getTagValue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -535,17 +540,19 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new GetTagValueRequest())
-            ->setName($formattedName);
+        $request = (new GetTagValueRequest())->setName($formattedName);
         try {
             $gapicClient->getTagValue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -570,17 +577,14 @@ class TagValuesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tagValuesElement = new TagValue();
-        $tagValues = [
-            $tagValuesElement,
-        ];
+        $tagValues = [$tagValuesElement];
         $expectedResponse = new ListTagValuesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagValues($tagValues);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListTagValuesRequest())
-            ->setParent($parent);
+        $request = (new ListTagValuesRequest())->setParent($parent);
         $response = $gapicClient->listTagValues($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -607,17 +611,19 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListTagValuesRequest())
-            ->setParent($parent);
+        $request = (new ListTagValuesRequest())->setParent($parent);
         try {
             $gapicClient->listTagValues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -649,9 +655,7 @@ class TagValuesClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -677,19 +681,20 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -717,9 +722,7 @@ class TagValuesClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -745,19 +748,20 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -816,8 +820,7 @@ class TagValuesClientTest extends GeneratedTest
         $tagValue = new TagValue();
         $tagValueShortName = 'tagValueShortName397125872';
         $tagValue->setShortName($tagValueShortName);
-        $request = (new UpdateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = (new UpdateTagValueRequest())->setTagValue($tagValue);
         $response = $gapicClient->updateTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -873,19 +876,21 @@ class TagValuesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tagValue = new TagValue();
         $tagValueShortName = 'tagValueShortName397125872';
         $tagValue->setShortName($tagValueShortName);
-        $request = (new UpdateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = (new UpdateTagValueRequest())->setTagValue($tagValue);
         $response = $gapicClient->updateTagValue($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -953,8 +958,7 @@ class TagValuesClientTest extends GeneratedTest
         $tagValue = new TagValue();
         $tagValueShortName = 'tagValueShortName397125872';
         $tagValue->setShortName($tagValueShortName);
-        $request = (new CreateTagValueRequest())
-            ->setTagValue($tagValue);
+        $request = (new CreateTagValueRequest())->setTagValue($tagValue);
         $response = $gapicClient->createTagValueAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -24,7 +24,7 @@ class GroupKind extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_group = '';
+    protected $resource_group = '';
     /**
      * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase
      * (PascalCase) and singular form. E.g. "CustomResourceDefinition",
@@ -32,7 +32,7 @@ class GroupKind extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_kind = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_kind = '';
+    protected $resource_kind = '';
 
     /**
      * Constructor.

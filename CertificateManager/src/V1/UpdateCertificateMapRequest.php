@@ -20,7 +20,7 @@ class UpdateCertificateMapRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.CertificateMap certificate_map = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_map = null;
+    protected $certificate_map = null;
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
@@ -28,7 +28,7 @@ class UpdateCertificateMapRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\CertificateManager\V1\CertificateMap $certificateMap Required. A definition of the certificate map to update.

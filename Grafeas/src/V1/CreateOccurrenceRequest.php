@@ -21,13 +21,13 @@ class CreateOccurrenceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The occurrence to create.
      *
      * Generated from protobuf field <code>.grafeas.v1.Occurrence occurrence = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $occurrence = null;
+    protected $occurrence = null;
 
     /**
      * @param string                 $parent     The name of the project in the form of `projects/[PROJECT_ID]`, under which

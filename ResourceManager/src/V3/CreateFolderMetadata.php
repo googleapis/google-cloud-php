@@ -20,14 +20,14 @@ class CreateFolderMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The resource name of the folder or organization we are creating the folder
      * under.
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * Constructor.

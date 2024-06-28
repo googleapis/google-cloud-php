@@ -16,11 +16,11 @@ class EnvelopeSignature extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bytes sig = 1;</code>
      */
-    private $sig = '';
+    protected $sig = '';
     /**
      * Generated from protobuf field <code>string keyid = 2;</code>
      */
-    private $keyid = '';
+    protected $keyid = '';
 
     /**
      * Constructor.

@@ -350,7 +350,7 @@
     "CertificateManager": {
         "language": "php",
         "distribution_name": "google/cloud-certificate-manager",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-certificate-manager/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "certificatemanager"
@@ -389,7 +389,7 @@
     "ConfidentialComputing": {
         "language": "php",
         "distribution_name": "google/cloud-confidentialcomputing",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-confidentialcomputing/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "confidentialcomputing"
@@ -422,7 +422,7 @@
     "ContainerAnalysis": {
         "language": "php",
         "distribution_name": "google/cloud-container-analysis",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-container-analysis/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "containeranalysis"
@@ -454,7 +454,7 @@
     "DataCatalogLineage": {
         "language": "php",
         "distribution_name": "google/cloud-datacatalog-lineage",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-datacatalog-lineage/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datalineage"
@@ -712,7 +712,7 @@
     "GkeBackup": {
         "language": "php",
         "distribution_name": "google/cloud-gke-backup",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gke-backup/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "gkebackup"
@@ -744,7 +744,7 @@
     "Grafeas": {
         "language": "php",
         "distribution_name": "google/grafeas",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/grafeas/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "containeranalysis"
@@ -1114,7 +1114,7 @@
     "ResourceManager": {
         "language": "php",
         "distribution_name": "google/cloud-resource-manager",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-resource-manager/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudresourcemanager"

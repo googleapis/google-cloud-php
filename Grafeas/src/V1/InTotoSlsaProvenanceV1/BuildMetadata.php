@@ -16,15 +16,15 @@ class BuildMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string invocation_id = 1;</code>
      */
-    private $invocation_id = '';
+    protected $invocation_id = '';
     /**
      * Generated from protobuf field <code>.google.protobuf.Timestamp started_on = 2;</code>
      */
-    private $started_on = null;
+    protected $started_on = null;
     /**
      * Generated from protobuf field <code>.google.protobuf.Timestamp finished_on = 3;</code>
      */
-    private $finished_on = null;
+    protected $finished_on = null;
 
     /**
      * Constructor.

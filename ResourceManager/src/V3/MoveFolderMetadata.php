@@ -20,19 +20,19 @@ class MoveFolderMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The resource name of the folder's parent.
      *
      * Generated from protobuf field <code>string source_parent = 2;</code>
      */
-    private $source_parent = '';
+    protected $source_parent = '';
     /**
      * The resource name of the folder or organization to move the folder to.
      *
      * Generated from protobuf field <code>string destination_parent = 3;</code>
      */
-    private $destination_parent = '';
+    protected $destination_parent = '';
 
     /**
      * Constructor.

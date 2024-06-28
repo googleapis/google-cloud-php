@@ -22,7 +22,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $volume_data_restore_policy = 0;
+    protected $volume_data_restore_policy = 0;
     /**
      * Optional. Defines the behavior for handling the situation where
      * cluster-scoped resources being restored already exist in the target
@@ -33,7 +33,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cluster_resource_conflict_policy = 0;
+    protected $cluster_resource_conflict_policy = 0;
     /**
      * Optional. Defines the behavior for handling the situation where sets of
      * namespaced resources being restored already exist in the target cluster.
@@ -42,14 +42,14 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $namespaced_resource_restore_mode = 0;
+    protected $namespaced_resource_restore_mode = 0;
     /**
      * Optional. Identifies the cluster-scoped resources to restore from the
      * Backup. Not specifying it means NO cluster resource will be restored.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cluster_resource_restore_scope = null;
+    protected $cluster_resource_restore_scope = null;
     /**
      * Optional. A list of transformation rules to be applied against Kubernetes
      * resources as they are selected for restoration from a Backup. Rules are
@@ -83,7 +83,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder restore_order = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $restore_order = null;
+    protected $restore_order = null;
     protected $namespaced_resource_restore_scope;
 
     /**
