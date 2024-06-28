@@ -50,7 +50,7 @@ class ResourcePool extends \Google\Protobuf\Internal\Message
      */
     protected $used_replica_count = 0;
     /**
-     * Optional. Optional spec to configure GKE autoscaling
+     * Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourcePool.AutoscalingSpec autoscaling_spec = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,7 +76,7 @@ class ResourcePool extends \Google\Protobuf\Internal\Message
      *           Output only. The number of machines currently in use by training jobs for
      *           this resource pool. Will replace idle_replica_count.
      *     @type \Google\Cloud\AIPlatform\V1\ResourcePool\AutoscalingSpec $autoscaling_spec
-     *           Optional. Optional spec to configure GKE autoscaling
+     *           Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling
      * }
      */
     public function __construct($data = NULL) {
@@ -251,7 +251,7 @@ class ResourcePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional spec to configure GKE autoscaling
+     * Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourcePool.AutoscalingSpec autoscaling_spec = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\ResourcePool\AutoscalingSpec|null
@@ -272,7 +272,7 @@ class ResourcePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional spec to configure GKE autoscaling
+     * Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ResourcePool.AutoscalingSpec autoscaling_spec = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\ResourcePool\AutoscalingSpec $var

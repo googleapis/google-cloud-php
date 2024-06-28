@@ -17,7 +17,13 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. min replicas in the node pool,
-     * must be ≤ replica_count and < max_replica_count or will throw error
+     * must be ≤ replica_count and < max_replica_count or will throw error.
+     * For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a
+     * resource_pool to be 0 to match the OSS Ray
+     * behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters).
+     * As for Persistent Resource, the min_replica_count must be > 0, we added
+     * a corresponding validation inside
+     * CreatePersistentResourceRequestValidator.java.
      *
      * Generated from protobuf field <code>optional int64 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,7 +44,13 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $min_replica_count
      *           Optional. min replicas in the node pool,
-     *           must be ≤ replica_count and < max_replica_count or will throw error
+     *           must be ≤ replica_count and < max_replica_count or will throw error.
+     *           For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a
+     *           resource_pool to be 0 to match the OSS Ray
+     *           behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters).
+     *           As for Persistent Resource, the min_replica_count must be > 0, we added
+     *           a corresponding validation inside
+     *           CreatePersistentResourceRequestValidator.java.
      *     @type int|string $max_replica_count
      *           Optional. max replicas in the node pool,
      *           must be ≥ replica_count and > min_replica_count or will throw error
@@ -51,7 +63,13 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. min replicas in the node pool,
-     * must be ≤ replica_count and < max_replica_count or will throw error
+     * must be ≤ replica_count and < max_replica_count or will throw error.
+     * For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a
+     * resource_pool to be 0 to match the OSS Ray
+     * behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters).
+     * As for Persistent Resource, the min_replica_count must be > 0, we added
+     * a corresponding validation inside
+     * CreatePersistentResourceRequestValidator.java.
      *
      * Generated from protobuf field <code>optional int64 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -73,7 +91,13 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. min replicas in the node pool,
-     * must be ≤ replica_count and < max_replica_count or will throw error
+     * must be ≤ replica_count and < max_replica_count or will throw error.
+     * For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a
+     * resource_pool to be 0 to match the OSS Ray
+     * behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters).
+     * As for Persistent Resource, the min_replica_count must be > 0, we added
+     * a corresponding validation inside
+     * CreatePersistentResourceRequestValidator.java.
      *
      * Generated from protobuf field <code>optional int64 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
