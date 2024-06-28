@@ -403,6 +403,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $runCount = 485221797;
         $etag = 'etag3123477';
         $isDefault = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -411,6 +413,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1460,6 +1464,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $runCount = 485221797;
         $etag = 'etag3123477';
         $isDefault = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1468,6 +1474,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tensorboardName('[PROJECT]', '[LOCATION]', '[TENSORBOARD]');
@@ -2411,6 +2419,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $runCount = 485221797;
         $etag = 'etag3123477';
         $isDefault = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Tensorboard();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2419,6 +2429,8 @@ class TensorboardServiceClientTest extends GeneratedTest
         $expectedResponse->setRunCount($runCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

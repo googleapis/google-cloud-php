@@ -61,6 +61,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateDeploymentResourcePool' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\DeploymentResourcePool',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\UpdateDeploymentResourcePoolOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'deployment_resource_pool.name',
+                        'fieldAccessors' => [
+                            'getDeploymentResourcePool',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeploymentResourcePool' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\DeploymentResourcePool',
