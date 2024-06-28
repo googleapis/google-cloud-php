@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\ApiCore\ValidationException;
+use Closure;
 
 /**
  * Represents a Cloud Spanner Instance Configuration.
@@ -104,21 +105,6 @@ class InstanceConfiguration
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
         $this->info = $info;
-        $instanceConfigFactoryFn = function ($instanceConfig) use (
-            $requestHandler,
-            $serializer,
-            $projectId,
-            $name
-        ) {
-            $name = InstanceAdminClient::parseName($instanceConfig['name'])['instance_config'];
-            return new self(
-                $requestHandler,
-                $serializer,
-                $projectId,
-                $name,
-                $instanceConfig
-            );
-        };
     }
 
     /**
@@ -282,7 +268,7 @@ class InstanceConfiguration
             $optionalArgs,
             CreateInstanceConfigRequest::class,
             $this->name
-        );
+        )->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**
@@ -334,7 +320,7 @@ class InstanceConfiguration
             $optionalArgs,
             UpdateInstanceConfigRequest::class,
             $this->name
-        );
+        )->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**
@@ -414,6 +400,20 @@ class InstanceConfiguration
             $mask[] = $this->serializer::toSnakeCase($key);
         }
         return ['paths' => $mask];
+    }
+
+    private function instanceConfigResultFunction(): Closure
+    {
+        return function (InstanceConfig $result) {
+            $name = InstanceAdminClient::parseName($result->getName());
+            return new self(
+                $this->requestHandler,
+                $this->serializer,
+                $this->projectId,
+                $name['instance_config'],
+                $this->serialize->encodeMessage($result)
+            );
+        };
     }
 
     /**

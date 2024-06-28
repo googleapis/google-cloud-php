@@ -41,17 +41,5 @@
         "psr-4": {
             "Google\\Cloud\\Spanner\\Tests\\": "tests"
         }
-    },
-    "repositories": {
-        "cloud-core": {
-            "type": "path",
-            "url": "../Core",
-            "options": {
-                "versions": {
-                    "google/cloud-core": "1.100"
-                }
-            },
-            "canonical": false
-        }
     }
 }
