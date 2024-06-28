@@ -20,25 +20,25 @@ class ErrorResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_path = 1;</code>
      */
-    private $source_path = '';
+    protected $source_path = '';
     /**
      * Metadata name of the resource that is causing an error
      *
      * Generated from protobuf field <code>string resource_name = 2;</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * Namespace of the resource that is causing an error
      *
      * Generated from protobuf field <code>string resource_namespace = 3;</code>
      */
-    private $resource_namespace = '';
+    protected $resource_namespace = '';
     /**
      * Group/version/kind of the resource that is causing an error
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.GroupVersionKind resource_gvk = 4;</code>
      */
-    private $resource_gvk = null;
+    protected $resource_gvk = null;
 
     /**
      * Constructor.

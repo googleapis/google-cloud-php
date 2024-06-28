@@ -20,7 +20,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * List of operation resources.
      *
@@ -33,7 +33,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

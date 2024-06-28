@@ -32,7 +32,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 2;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The preferred Compute Engine zone for the secondary/failover
      * (for example: us-central1-a, us-central1-b, etc.).
@@ -40,13 +40,13 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secondary_zone = 4;</code>
      */
-    private $secondary_zone = '';
+    protected $secondary_zone = '';
     /**
      * This is always `sql#locationPreference`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

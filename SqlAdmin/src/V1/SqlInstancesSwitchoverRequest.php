@@ -20,13 +20,13 @@ class SqlInstancesSwitchoverRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * ID of the project that contains the replica.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
      * sum of all database operations. Default value is 10 minutes and can be
@@ -34,7 +34,7 @@ class SqlInstancesSwitchoverRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration db_timeout = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $db_timeout = null;
+    protected $db_timeout = null;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,9 @@ class DataPolicyServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DataPolicyServiceClient */
@@ -92,9 +94,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataPolicy = new DataPolicy();
-        $request = (new CreateDataPolicyRequest())
-            ->setParent($formattedParent)
-            ->setDataPolicy($dataPolicy);
+        $request = (new CreateDataPolicyRequest())->setParent($formattedParent)->setDataPolicy($dataPolicy);
         $response = $gapicClient->createDataPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -120,19 +120,20 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataPolicy = new DataPolicy();
-        $request = (new CreateDataPolicyRequest())
-            ->setParent($formattedParent)
-            ->setDataPolicy($dataPolicy);
+        $request = (new CreateDataPolicyRequest())->setParent($formattedParent)->setDataPolicy($dataPolicy);
         try {
             $gapicClient->createDataPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -159,8 +160,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
-        $request = (new DeleteDataPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDataPolicyRequest())->setName($formattedName);
         $gapicClient->deleteDataPolicy($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -183,17 +183,19 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
-        $request = (new DeleteDataPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDataPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDataPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -226,8 +228,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
-        $request = (new GetDataPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetDataPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getDataPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -251,17 +252,19 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
-        $request = (new GetDataPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetDataPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getDataPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -292,8 +295,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -317,17 +319,19 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -352,17 +356,14 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataPoliciesElement = new DataPolicy();
-        $dataPolicies = [
-            $dataPoliciesElement,
-        ];
+        $dataPolicies = [$dataPoliciesElement];
         $expectedResponse = new ListDataPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataPolicies($dataPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDataPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDataPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -389,17 +390,19 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDataPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -433,9 +436,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $newDataPolicyId = 'newDataPolicyId-1742039694';
-        $request = (new RenameDataPolicyRequest())
-            ->setName($name)
-            ->setNewDataPolicyId($newDataPolicyId);
+        $request = (new RenameDataPolicyRequest())->setName($name)->setNewDataPolicyId($newDataPolicyId);
         $response = $gapicClient->renameDataPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -461,19 +462,20 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $newDataPolicyId = 'newDataPolicyId-1742039694';
-        $request = (new RenameDataPolicyRequest())
-            ->setName($name)
-            ->setNewDataPolicyId($newDataPolicyId);
+        $request = (new RenameDataPolicyRequest())->setName($name)->setNewDataPolicyId($newDataPolicyId);
         try {
             $gapicClient->renameDataPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -505,9 +507,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -533,19 +533,20 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -573,16 +574,17 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/TestIamPermissions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.datapolicies.v1.DataPolicyService/TestIamPermissions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
@@ -601,19 +603,20 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -646,8 +649,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataPolicy = new DataPolicy();
-        $request = (new UpdateDataPolicyRequest())
-            ->setDataPolicy($dataPolicy);
+        $request = (new UpdateDataPolicyRequest())->setDataPolicy($dataPolicy);
         $response = $gapicClient->updateDataPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -671,17 +673,19 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $dataPolicy = new DataPolicy();
-        $request = (new UpdateDataPolicyRequest())
-            ->setDataPolicy($dataPolicy);
+        $request = (new UpdateDataPolicyRequest())->setDataPolicy($dataPolicy);
         try {
             $gapicClient->updateDataPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -715,9 +719,7 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataPolicy = new DataPolicy();
-        $request = (new CreateDataPolicyRequest())
-            ->setParent($formattedParent)
-            ->setDataPolicy($dataPolicy);
+        $request = (new CreateDataPolicyRequest())->setParent($formattedParent)->setDataPolicy($dataPolicy);
         $response = $gapicClient->createDataPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

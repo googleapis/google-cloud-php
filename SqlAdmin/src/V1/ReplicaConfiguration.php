@@ -20,7 +20,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * MySQL specific configuration when replicating from a MySQL on-premises
      * primary instance. Replication configuration information such as the
@@ -31,7 +31,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.MySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      */
-    private $mysql_replica_configuration = null;
+    protected $mysql_replica_configuration = null;
     /**
      * Specifies if the replica is the failover target. If the field is set to
      * `true`, the replica will be designated as a failover replica. In case the
@@ -41,7 +41,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue failover_target = 3;</code>
      */
-    private $failover_target = null;
+    protected $failover_target = null;
     /**
      * Optional. Specifies if a SQL Server replica is a cascadable replica. A
      * cascadable replica is a SQL Server cross region replica that supports
@@ -49,7 +49,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cascadable_replica = null;
+    protected $cascadable_replica = null;
 
     /**
      * Constructor.
@@ -192,7 +192,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue failover_target = 3;</code>
      * @return bool|null
      */
-    public function getFailoverTargetValue()
+    public function getFailoverTargetUnwrapped()
     {
         return $this->readWrapperValue("failover_target");
     }
@@ -229,7 +229,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setFailoverTargetValue($var)
+    public function setFailoverTargetUnwrapped($var)
     {
         $this->writeWrapperValue("failover_target", $var);
         return $this;}
@@ -267,7 +267,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
      */
-    public function getCascadableReplicaValue()
+    public function getCascadableReplicaUnwrapped()
     {
         return $this->readWrapperValue("cascadable_replica");
     }
@@ -300,7 +300,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setCascadableReplicaValue($var)
+    public function setCascadableReplicaUnwrapped($var)
     {
         $this->writeWrapperValue("cascadable_replica", $var);
         return $this;}

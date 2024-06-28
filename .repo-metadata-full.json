@@ -34,7 +34,7 @@
     "AlloyDb": {
         "language": "php",
         "distribution_name": "google/cloud-alloydb",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-alloydb/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "alloydb"
@@ -266,7 +266,7 @@
     "BigQueryDataPolicies": {
         "language": "php",
         "distribution_name": "google/cloud-bigquery-datapolicies",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-bigquery-datapolicies/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/bigquery/docs/reference/bigquerydatapolicy/rest",
@@ -584,7 +584,7 @@
     "DiscoveryEngine": {
         "language": "php",
         "distribution_name": "google/cloud-discoveryengine",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-discoveryengine/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "discoveryengine"
@@ -616,7 +616,7 @@
     "Domains": {
         "language": "php",
         "distribution_name": "google/cloud-domains",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-domains/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "domains"
@@ -728,7 +728,7 @@
     "GkeHub": {
         "language": "php",
         "distribution_name": "google/cloud-gke-hub",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gke-hub/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "gkehub"
@@ -938,7 +938,7 @@
     "NetworkSecurity": {
         "language": "php",
         "distribution_name": "google/cloud-network-security",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-network-security/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "networksecurity"
@@ -1194,7 +1194,7 @@
     "SecurityPublicCA": {
         "language": "php",
         "distribution_name": "google/cloud-security-public-ca",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-security-public-ca/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/certificate-manager/docs/public-ca",
@@ -1361,7 +1361,7 @@
     "SqlAdmin": {
         "language": "php",
         "distribution_name": "google/cloud-sql-admin",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-sql-admin/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "sqladmin"
@@ -1547,7 +1547,7 @@
     "Workflows": {
         "language": "php",
         "distribution_name": "google/cloud-workflows",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-workflows/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "workflows"

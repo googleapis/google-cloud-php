@@ -20,46 +20,46 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The current serving state of the Cloud SQL instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance.SqlInstanceState state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The database engine type and version. The `databaseVersion` field cannot
      * be changed after instance creation.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 3;</code>
      */
-    private $database_version = 0;
+    protected $database_version = 0;
     /**
      * The user settings.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings settings = 4;</code>
      */
-    private $settings = null;
+    protected $settings = null;
     /**
      * This field is deprecated and will be removed from a future version of the
      * API. Use the `settings.settingsVersion` field instead.
      *
      * Generated from protobuf field <code>string etag = 5;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The name and status of the failover replica.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance.SqlFailoverReplica failover_replica = 6;</code>
      */
-    private $failover_replica = null;
+    protected $failover_replica = null;
     /**
      * The name of the instance which will act as primary in the replication
      * setup.
      *
      * Generated from protobuf field <code>string master_instance_name = 7;</code>
      */
-    private $master_instance_name = '';
+    protected $master_instance_name = '';
     /**
      * The replicas of the instance.
      *
@@ -96,20 +96,20 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SslCert server_ca_cert = 12;</code>
      */
-    private $server_ca_cert = null;
+    protected $server_ca_cert = null;
     /**
      * The instance type.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstanceType instance_type = 13;</code>
      */
-    private $instance_type = 0;
+    protected $instance_type = 0;
     /**
      * The project ID of the project containing the Cloud SQL instance. The Google
      * apps domain is prefixed if applicable.
      *
      * Generated from protobuf field <code>string project = 14;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The IPv6 address assigned to the instance.
      * (Deprecated) This property was applicable only
@@ -125,19 +125,19 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_email_address = 16;</code>
      */
-    private $service_account_email_address = '';
+    protected $service_account_email_address = '';
     /**
      * Configuration specific to on-premises instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.OnPremisesConfiguration on_premises_configuration = 17;</code>
      */
-    private $on_premises_configuration = null;
+    protected $on_premises_configuration = null;
     /**
      * Configuration specific to failover replicas and read replicas.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicaConfiguration replica_configuration = 18;</code>
      */
-    private $replica_configuration = null;
+    protected $replica_configuration = null;
     /**
      * The backend type.
      * `SECOND_GEN`: Cloud SQL database instance.
@@ -147,13 +147,13 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackendType backend_type = 19;</code>
      */
-    private $backend_type = 0;
+    protected $backend_type = 0;
     /**
      * The URI of this resource.
      *
      * Generated from protobuf field <code>string self_link = 20;</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * If the instance state is SUSPENDED, the reason for the suspension.
      *
@@ -165,13 +165,13 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connection_name = 22;</code>
      */
-    private $connection_name = '';
+    protected $connection_name = '';
     /**
      * Name of the Cloud SQL instance. This does not include the project ID.
      *
      * Generated from protobuf field <code>string name = 23;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The geographical region of the Cloud SQL instance.
      * It can be one of the
@@ -182,7 +182,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 24;</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * The Compute Engine zone that the instance is currently serving from. This
      * value could be different from the zone that was specified when the instance
@@ -191,7 +191,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gce_zone = 25;</code>
      */
-    private $gce_zone = '';
+    protected $gce_zone = '';
     /**
      * The Compute Engine zone that the failover instance is currently serving
      * from for a regional instance. This value could be different
@@ -200,46 +200,46 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secondary_gce_zone = 34;</code>
      */
-    private $secondary_gce_zone = '';
+    protected $secondary_gce_zone = '';
     /**
      * Disk encryption configuration specific to an instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DiskEncryptionConfiguration disk_encryption_configuration = 26;</code>
      */
-    private $disk_encryption_configuration = null;
+    protected $disk_encryption_configuration = null;
     /**
      * Disk encryption status specific to an instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DiskEncryptionStatus disk_encryption_status = 27;</code>
      */
-    private $disk_encryption_status = null;
+    protected $disk_encryption_status = null;
     /**
      * Initial root password. Use only on creation. You must set root passwords
      * before you can connect to PostgreSQL instances.
      *
      * Generated from protobuf field <code>string root_password = 29;</code>
      */
-    private $root_password = '';
+    protected $root_password = '';
     /**
      * The start time of any upcoming scheduled maintenance for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance.SqlScheduledMaintenance scheduled_maintenance = 30;</code>
      */
-    private $scheduled_maintenance = null;
+    protected $scheduled_maintenance = null;
     /**
      * This status indicates whether the instance satisfies PZS.
      * The status is reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * Output only. Stores the current database version running on the instance
      * including minor version such as `MYSQL_8_0_18`.
      *
      * Generated from protobuf field <code>string database_installed_version = 40 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $database_installed_version = '';
+    protected $database_installed_version = '';
     /**
      * This field represents the report generated by the proactive database
      * wellness job for OutOfDisk issues.
@@ -250,7 +250,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
      */
-    private $out_of_disk_report = null;
+    protected $out_of_disk_report = null;
     /**
      * Output only. The time when the instance was created in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -258,7 +258,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. List all maintenance versions applicable on the instance
      *
@@ -270,7 +270,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string maintenance_version = 42;</code>
      */
-    private $maintenance_version = '';
+    protected $maintenance_version = '';
     /**
      * Output only. All database versions that are available for upgrade.
      *
@@ -280,19 +280,19 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
      */
-    private $sql_network_architecture = null;
+    protected $sql_network_architecture = null;
     /**
      * Output only. The link to service attachment of PSC instance.
      *
      * Generated from protobuf field <code>optional string psc_service_attachment_link = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $psc_service_attachment_link = null;
+    protected $psc_service_attachment_link = null;
     /**
      * Output only. The dns name of the instance.
      *
      * Generated from protobuf field <code>optional string dns_name = 49 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dns_name = null;
+    protected $dns_name = null;
     /**
      * Output only. DEPRECATED: please use write_endpoint instead.
      *
@@ -305,7 +305,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $write_endpoint = null;
+    protected $write_endpoint = null;
     /**
      * Optional. A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
@@ -314,13 +314,13 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replication_cluster = null;
+    protected $replication_cluster = null;
     /**
      * Gemini instance configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
      */
-    private $gemini_config = null;
+    protected $gemini_config = null;
 
     /**
      * Constructor.
@@ -729,7 +729,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_disk_size = 9 [deprecated = true];</code>
      * @return int|string|null
      */
-    public function getMaxDiskSizeValue()
+    public function getMaxDiskSizeUnwrapped()
     {
         @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
         return $this->readWrapperValue("max_disk_size");
@@ -761,7 +761,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setMaxDiskSizeValue($var)
+    public function setMaxDiskSizeUnwrapped($var)
     {
         $this->writeWrapperValue("max_disk_size", $var);
         return $this;}
@@ -809,7 +809,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value current_disk_size = 10 [deprecated = true];</code>
      * @return int|string|null
      */
-    public function getCurrentDiskSizeValue()
+    public function getCurrentDiskSizeUnwrapped()
     {
         @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
         return $this->readWrapperValue("current_disk_size");
@@ -851,7 +851,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setCurrentDiskSizeValue($var)
+    public function setCurrentDiskSizeUnwrapped($var)
     {
         $this->writeWrapperValue("current_disk_size", $var);
         return $this;}
@@ -1511,7 +1511,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 35;</code>
      * @return bool|null
      */
-    public function getSatisfiesPzsValue()
+    public function getSatisfiesPzsUnwrapped()
     {
         return $this->readWrapperValue("satisfies_pzs");
     }
@@ -1542,7 +1542,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setSatisfiesPzsValue($var)
+    public function setSatisfiesPzsUnwrapped($var)
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}

@@ -21,13 +21,13 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The complete `Registration` resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.Registration registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $registration = null;
+    protected $registration = null;
     /**
      * The list of domain notices that you acknowledge. Call
      * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
@@ -50,7 +50,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money yearly_price = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $yearly_price = null;
+    protected $yearly_price = null;
     /**
      * When true, only validation is performed, without actually registering
      * the domain. Follows:
@@ -58,7 +58,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 6;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                $parent       Required. The parent resource of the `Registration`. Must be in the

@@ -23,7 +23,7 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string header_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $header_name = '';
+    protected $header_name = '';
     protected $type;
 
     /**

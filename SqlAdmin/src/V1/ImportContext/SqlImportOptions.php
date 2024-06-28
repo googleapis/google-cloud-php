@@ -18,13 +18,13 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $threads = null;
+    protected $threads = null;
     /**
      * Optional. Whether or not the import should be parallel.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parallel = null;
+    protected $parallel = null;
 
     /**
      * Constructor.
@@ -72,7 +72,7 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|null
      */
-    public function getThreadsValue()
+    public function getThreadsUnwrapped()
     {
         return $this->readWrapperValue("threads");
     }
@@ -101,7 +101,7 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setThreadsValue($var)
+    public function setThreadsUnwrapped($var)
     {
         $this->writeWrapperValue("threads", $var);
         return $this;}
@@ -135,7 +135,7 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
      */
-    public function getParallelValue()
+    public function getParallelUnwrapped()
     {
         return $this->readWrapperValue("parallel");
     }
@@ -164,7 +164,7 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setParallelValue($var)
+    public function setParallelUnwrapped($var)
     {
         $this->writeWrapperValue("parallel", $var);
         return $this;}

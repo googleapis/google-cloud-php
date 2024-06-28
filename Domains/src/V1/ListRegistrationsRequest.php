@@ -21,20 +21,20 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Maximum number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * When set to the `next_page_token` from a prior response, provides the next
      * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Filter expression to restrict the `Registration`s returned.
      * The expression must specify the field name, a comparison operator, and the
@@ -52,7 +52,7 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The project and location from which to list `Registration`s, specified in

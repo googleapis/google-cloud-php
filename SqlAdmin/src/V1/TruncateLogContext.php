@@ -20,14 +20,14 @@ class TruncateLogContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The type of log to truncate. Valid values are `MYSQL_GENERAL_TABLE` and
      * `MYSQL_SLOW_TABLE`.
      *
      * Generated from protobuf field <code>string log_type = 2;</code>
      */
-    private $log_type = '';
+    protected $log_type = '';
 
     /**
      * Constructor.

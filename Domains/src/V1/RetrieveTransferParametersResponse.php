@@ -20,7 +20,7 @@ class RetrieveTransferParametersResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.TransferParameters transfer_parameters = 1;</code>
      */
-    private $transfer_parameters = null;
+    protected $transfer_parameters = null;
 
     /**
      * Constructor.

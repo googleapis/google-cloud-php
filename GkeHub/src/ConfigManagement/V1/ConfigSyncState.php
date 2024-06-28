@@ -20,20 +20,20 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncVersion version = 1;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * Information about the deployment of ConfigSync, including the version
      * of the various Pods deployed
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncDeploymentState deployment_state = 2;</code>
      */
-    private $deployment_state = null;
+    protected $deployment_state = null;
     /**
      * The state of ConfigSync's process to sync configs to a cluster
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.SyncState sync_state = 3;</code>
      */
-    private $sync_state = null;
+    protected $sync_state = null;
     /**
      * Errors pertaining to the installation of Config Sync.
      *
@@ -45,20 +45,20 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState rootsync_crd = 5;</code>
      */
-    private $rootsync_crd = 0;
+    protected $rootsync_crd = 0;
     /**
      * The state of the Reposync CRD
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.CRDState reposync_crd = 6;</code>
      */
-    private $reposync_crd = 0;
+    protected $reposync_crd = 0;
     /**
      * The state of CS
      * This field summarizes the other fields in this message.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState.State state = 7;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

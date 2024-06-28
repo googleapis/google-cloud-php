@@ -20,7 +20,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * The time when this access control entry expires in
      * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -28,19 +28,19 @@ class AclEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 2;</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     /**
      * Optional. A label to identify this entry.
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * This is always `sql#aclEntry`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * SSL configuration.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SslCert server_ca_cert = 2;</code>
      */
-    private $server_ca_cert = null;
+    protected $server_ca_cert = null;
     /**
      * The assigned IP addresses for the instance.
      *
@@ -39,7 +39,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 4;</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * The database engine type and version. The `databaseVersion`
      * field cannot be changed after instance creation.
@@ -55,7 +55,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 31;</code>
      */
-    private $database_version = 0;
+    protected $database_version = 0;
     /**
      * `SECOND_GEN`: Cloud SQL database instance.
      * `EXTERNAL`: A database server that is not managed by Google.
@@ -64,19 +64,19 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlBackendType backend_type = 32;</code>
      */
-    private $backend_type = 0;
+    protected $backend_type = 0;
     /**
      * Whether PSC connectivity is enabled for this instance.
      *
      * Generated from protobuf field <code>bool psc_enabled = 33;</code>
      */
-    private $psc_enabled = false;
+    protected $psc_enabled = false;
     /**
      * The dns name of the instance.
      *
      * Generated from protobuf field <code>string dns_name = 34;</code>
      */
-    private $dns_name = '';
+    protected $dns_name = '';
 
     /**
      * Constructor.

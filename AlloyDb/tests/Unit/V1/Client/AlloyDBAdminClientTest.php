@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -102,7 +102,9 @@ class AlloyDBAdminClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AlloyDBAdminClient */
@@ -148,9 +150,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $requests = new CreateInstanceRequests();
         $requestsCreateInstanceRequests = [];
         $requests->setCreateInstanceRequests($requestsCreateInstanceRequests);
-        $request = (new BatchCreateInstancesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateInstancesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -208,21 +208,22 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
         $requests = new CreateInstanceRequests();
         $requestsCreateInstanceRequests = [];
         $requests->setCreateInstanceRequests($requestsCreateInstanceRequests);
-        $request = (new BatchCreateInstancesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateInstancesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -361,12 +362,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -510,12 +514,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -661,12 +668,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -810,12 +820,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -961,12 +974,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -1050,12 +1066,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -1109,8 +1128,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupRequest())->setName($formattedName);
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1166,17 +1184,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupRequest())->setName($formattedName);
         $response = $gapicClient->deleteBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1230,8 +1250,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1287,17 +1306,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new DeleteClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1351,8 +1372,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInstanceRequest())->setName($formattedName);
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1408,17 +1428,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new DeleteInstanceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteInstanceRequest())->setName($formattedName);
         $response = $gapicClient->deleteInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1454,8 +1476,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new DeleteUserRequest())
-            ->setName($formattedName);
+        $request = (new DeleteUserRequest())->setName($formattedName);
         $gapicClient->deleteUser($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1478,17 +1499,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new DeleteUserRequest())
-            ->setName($formattedName);
+        $request = (new DeleteUserRequest())->setName($formattedName);
         try {
             $gapicClient->deleteUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1547,8 +1570,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new FailoverInstanceRequest())
-            ->setName($formattedName);
+        $request = (new FailoverInstanceRequest())->setName($formattedName);
         $response = $gapicClient->failoverInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1604,17 +1626,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new FailoverInstanceRequest())
-            ->setName($formattedName);
+        $request = (new FailoverInstanceRequest())->setName($formattedName);
         $response = $gapicClient->failoverInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1652,8 +1676,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GenerateClientCertificateRequest())
-            ->setParent($formattedParent);
+        $request = (new GenerateClientCertificateRequest())->setParent($formattedParent);
         $response = $gapicClient->generateClientCertificate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1677,17 +1700,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GenerateClientCertificateRequest())
-            ->setParent($formattedParent);
+        $request = (new GenerateClientCertificateRequest())->setParent($formattedParent);
         try {
             $gapicClient->generateClientCertificate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1732,8 +1757,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupRequest())->setName($formattedName);
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1757,17 +1781,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupRequest())->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1806,8 +1832,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetClusterRequest())->setName($formattedName);
         $response = $gapicClient->getCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1831,17 +1856,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1874,8 +1901,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetConnectionInfoRequest())
-            ->setParent($formattedParent);
+        $request = (new GetConnectionInfoRequest())->setParent($formattedParent);
         $response = $gapicClient->getConnectionInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1899,17 +1925,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetConnectionInfoRequest())
-            ->setParent($formattedParent);
+        $request = (new GetConnectionInfoRequest())->setParent($formattedParent);
         try {
             $gapicClient->getConnectionInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1950,8 +1978,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new GetInstanceRequest())->setName($formattedName);
         $response = $gapicClient->getInstance($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1975,17 +2002,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new GetInstanceRequest())
-            ->setName($formattedName);
+        $request = (new GetInstanceRequest())->setName($formattedName);
         try {
             $gapicClient->getInstance($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2016,8 +2045,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new GetUserRequest())
-            ->setName($formattedName);
+        $request = (new GetUserRequest())->setName($formattedName);
         $response = $gapicClient->getUser($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2041,17 +2069,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->userName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[USER]');
-        $request = (new GetUserRequest())
-            ->setName($formattedName);
+        $request = (new GetUserRequest())->setName($formattedName);
         try {
             $gapicClient->getUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2111,9 +2141,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock request
         $faultType = FaultType::FAULT_TYPE_UNSPECIFIED;
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new InjectFaultRequest())
-            ->setFaultType($faultType)
-            ->setName($formattedName);
+        $request = (new InjectFaultRequest())->setFaultType($faultType)->setName($formattedName);
         $response = $gapicClient->injectFault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2171,19 +2199,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $faultType = FaultType::FAULT_TYPE_UNSPECIFIED;
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new InjectFaultRequest())
-            ->setFaultType($faultType)
-            ->setName($formattedName);
+        $request = (new InjectFaultRequest())->setFaultType($faultType)->setName($formattedName);
         $response = $gapicClient->injectFault($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2217,17 +2246,14 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $backupsElement = new Backup();
-        $backups = [
-            $backupsElement,
-        ];
+        $backups = [$backupsElement];
         $expectedResponse = new ListBackupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2254,17 +2280,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2289,17 +2317,14 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $clustersElement = new Cluster();
-        $clusters = [
-            $clustersElement,
-        ];
+        $clusters = [$clustersElement];
         $expectedResponse = new ListClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClusters($clusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListClustersRequest())->setParent($formattedParent);
         $response = $gapicClient->listClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2326,17 +2351,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListClustersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2361,17 +2388,14 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $instancesElement = new Instance();
-        $instances = [
-            $instancesElement,
-        ];
+        $instances = [$instancesElement];
         $expectedResponse = new ListInstancesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstancesRequest())->setParent($formattedParent);
         $response = $gapicClient->listInstances($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2398,17 +2422,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListInstancesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInstancesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInstances($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2433,17 +2459,14 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $supportedDatabaseFlagsElement = new SupportedDatabaseFlag();
-        $supportedDatabaseFlags = [
-            $supportedDatabaseFlagsElement,
-        ];
+        $supportedDatabaseFlags = [$supportedDatabaseFlagsElement];
         $expectedResponse = new ListSupportedDatabaseFlagsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSupportedDatabaseFlags($supportedDatabaseFlags);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSupportedDatabaseFlagsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSupportedDatabaseFlagsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSupportedDatabaseFlags($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2470,17 +2493,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSupportedDatabaseFlagsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSupportedDatabaseFlagsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSupportedDatabaseFlags($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2505,17 +2530,14 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $usersElement = new User();
-        $users = [
-            $usersElement,
-        ];
+        $users = [$usersElement];
         $expectedResponse = new ListUsersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setUsers($users);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListUsersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListUsersRequest())->setParent($formattedParent);
         $response = $gapicClient->listUsers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2542,17 +2564,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new ListUsersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListUsersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listUsers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2609,8 +2633,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new PromoteClusterRequest())
-            ->setName($formattedName);
+        $request = (new PromoteClusterRequest())->setName($formattedName);
         $response = $gapicClient->promoteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2666,17 +2689,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new PromoteClusterRequest())
-            ->setName($formattedName);
+        $request = (new PromoteClusterRequest())->setName($formattedName);
         $response = $gapicClient->promoteCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2744,8 +2769,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new RestartInstanceRequest())
-            ->setName($formattedName);
+        $request = (new RestartInstanceRequest())->setName($formattedName);
         $response = $gapicClient->restartInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2801,17 +2825,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
-        $request = (new RestartInstanceRequest())
-            ->setName($formattedName);
+        $request = (new RestartInstanceRequest())->setName($formattedName);
         $response = $gapicClient->restartInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2944,12 +2970,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -3034,8 +3063,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $backup = new Backup();
         $backupClusterName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
         $backup->setClusterName($backupClusterName);
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup);
+        $request = (new UpdateBackupRequest())->setBackup($backup);
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3091,19 +3119,21 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $backup = new Backup();
         $backupClusterName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
         $backup->setClusterName($backupClusterName);
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup);
+        $request = (new UpdateBackupRequest())->setBackup($backup);
         $response = $gapicClient->updateBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3171,8 +3201,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $cluster = new Cluster();
         $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $cluster->setNetwork($clusterNetwork);
-        $request = (new UpdateClusterRequest())
-            ->setCluster($cluster);
+        $request = (new UpdateClusterRequest())->setCluster($cluster);
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3228,19 +3257,21 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $cluster = new Cluster();
         $clusterNetwork = $gapicClient->networkName('[PROJECT]', '[NETWORK]');
         $cluster->setNetwork($clusterNetwork);
-        $request = (new UpdateClusterRequest())
-            ->setCluster($cluster);
+        $request = (new UpdateClusterRequest())->setCluster($cluster);
         $response = $gapicClient->updateCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3310,8 +3341,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $instance = new Instance();
         $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
         $instance->setInstanceType($instanceInstanceType);
-        $request = (new UpdateInstanceRequest())
-            ->setInstance($instance);
+        $request = (new UpdateInstanceRequest())->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3367,19 +3397,21 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instance = new Instance();
         $instanceInstanceType = InstanceType::INSTANCE_TYPE_UNSPECIFIED;
         $instance->setInstanceType($instanceInstanceType);
-        $request = (new UpdateInstanceRequest())
-            ->setInstance($instance);
+        $request = (new UpdateInstanceRequest())->setInstance($instance);
         $response = $gapicClient->updateInstance($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3419,8 +3451,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $user = new User();
-        $request = (new UpdateUserRequest())
-            ->setUser($user);
+        $request = (new UpdateUserRequest())->setUser($user);
         $response = $gapicClient->updateUser($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3444,17 +3475,19 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $user = new User();
-        $request = (new UpdateUserRequest())
-            ->setUser($user);
+        $request = (new UpdateUserRequest())->setUser($user);
         try {
             $gapicClient->updateUser($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3507,12 +3540,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -3539,9 +3575,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -3571,12 +3605,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -3626,9 +3663,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $requests = new CreateInstanceRequests();
         $requestsCreateInstanceRequests = [];
         $requests->setCreateInstanceRequests($requestsCreateInstanceRequests);
-        $request = (new BatchCreateInstancesRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BatchCreateInstancesRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->batchCreateInstancesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

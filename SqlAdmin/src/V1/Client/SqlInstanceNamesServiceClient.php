@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,7 +75,8 @@ final class SqlInstanceNamesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/sql_instance_names_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/sql_instance_names_service_rest_client_config.php',
                 ],
             ],
         ];

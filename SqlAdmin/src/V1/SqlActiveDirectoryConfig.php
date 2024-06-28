@@ -20,13 +20,13 @@ class SqlActiveDirectoryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The name of the domain (e.g., mydomain.com).
      *
      * Generated from protobuf field <code>string domain = 2;</code>
      */
-    private $domain = '';
+    protected $domain = '';
 
     /**
      * Constructor.

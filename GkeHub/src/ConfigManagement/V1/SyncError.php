@@ -20,13 +20,13 @@ class SyncError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 1;</code>
      */
-    private $code = '';
+    protected $code = '';
     /**
      * A description of the error
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
     /**
      * A list of config(s) associated with the error, if any
      *

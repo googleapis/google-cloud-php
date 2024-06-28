@@ -21,13 +21,13 @@ class TypeMeta extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * APIVersion of the resource (e.g. v1).
      *
      * Generated from protobuf field <code>string api_version = 2;</code>
      */
-    private $api_version = '';
+    protected $api_version = '';
 
     /**
      * Constructor.

@@ -20,14 +20,14 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.GitConfig git = 7;</code>
      */
-    private $git = null;
+    protected $git = null;
     /**
      * Specifies whether the Config Sync Repo is
      * in "hierarchical" or "unstructured" mode.
      *
      * Generated from protobuf field <code>string source_format = 8;</code>
      */
-    private $source_format = '';
+    protected $source_format = '';
     /**
      * Enables the installation of ConfigSync.
      * If set to true, ConfigSync resources will be created and the other
@@ -39,7 +39,7 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enabled = 10;</code>
      */
-    private $enabled = null;
+    protected $enabled = null;
     /**
      * Set to true to enable the Config Sync admission webhook to prevent drifts.
      * If set to `false`, disables the Config Sync admission webhook and does not
@@ -47,13 +47,13 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool prevent_drift = 11;</code>
      */
-    private $prevent_drift = false;
+    protected $prevent_drift = false;
     /**
      * OCI repo configuration for the cluster
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.OciConfig oci = 12;</code>
      */
-    private $oci = null;
+    protected $oci = null;
     /**
      * The Email of the Google Cloud Service Account (GSA) used for exporting
      * Config Sync metrics to Cloud Monitoring when Workload Identity is enabled.
@@ -64,7 +64,7 @@ class ConfigSync extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metrics_gcp_service_account_email = 15;</code>
      */
-    private $metrics_gcp_service_account_email = '';
+    protected $metrics_gcp_service_account_email = '';
 
     /**
      * Constructor.

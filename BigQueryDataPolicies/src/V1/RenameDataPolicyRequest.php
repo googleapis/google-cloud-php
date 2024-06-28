@@ -21,13 +21,13 @@ class RenameDataPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new data policy id.
      *
      * Generated from protobuf field <code>string new_data_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_data_policy_id = '';
+    protected $new_data_policy_id = '';
 
     /**
      * @param string $name            Required. Resource name of the data policy to rename. The format is

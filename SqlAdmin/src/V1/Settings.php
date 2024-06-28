@@ -23,7 +23,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value settings_version = 1;</code>
      */
-    private $settings_version = null;
+    protected $settings_version = null;
     /**
      * The App Engine app IDs that can access this instance.
      * (Deprecated) Applied to First Generation instances only.
@@ -38,13 +38,13 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tier = 3;</code>
      */
-    private $tier = '';
+    protected $tier = '';
     /**
      * This is always `sql#settings`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * User-provided labels, represented as a dictionary where each label is a
      * single key value pair.
@@ -63,14 +63,14 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlAvailabilityType availability_type = 6;</code>
      */
-    private $availability_type = 0;
+    protected $availability_type = 0;
     /**
      * The pricing plan for this instance. This can be either `PER_USE` or
      * `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlPricingPlan pricing_plan = 7;</code>
      */
-    private $pricing_plan = 0;
+    protected $pricing_plan = 0;
     /**
      * The type of replication this instance uses. This can be either
      * `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only
@@ -86,7 +86,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value storage_auto_resize_limit = 9;</code>
      */
-    private $storage_auto_resize_limit = null;
+    protected $storage_auto_resize_limit = null;
     /**
      * The activation policy specifies when the instance is activated; it is
      * applicable only when the instance state is RUNNABLE. Valid values:
@@ -97,7 +97,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.SqlActivationPolicy activation_policy = 10;</code>
      */
-    private $activation_policy = 0;
+    protected $activation_policy = 0;
     /**
      * The settings for IP Management. This allows to enable or disable the
      * instance IP and manage which external networks can connect to the instance.
@@ -105,14 +105,14 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.IpConfiguration ip_configuration = 11;</code>
      */
-    private $ip_configuration = null;
+    protected $ip_configuration = null;
     /**
      * Configuration to increase storage size automatically. The default value is
      * true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue storage_auto_resize = 12;</code>
      */
-    private $storage_auto_resize = null;
+    protected $storage_auto_resize = null;
     /**
      * The location preference settings. This allows the instance to be located as
      * near as possible to either an App Engine app or Compute Engine zone for
@@ -121,7 +121,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.LocationPreference location_preference = 13;</code>
      */
-    private $location_preference = null;
+    protected $location_preference = null;
     /**
      * The database flags passed to the instance at startup.
      *
@@ -134,20 +134,20 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDataDiskType data_disk_type = 15;</code>
      */
-    private $data_disk_type = 0;
+    protected $data_disk_type = 0;
     /**
      * The maintenance window for this instance. This specifies when the instance
      * can be restarted for maintenance purposes.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.MaintenanceWindow maintenance_window = 16;</code>
      */
-    private $maintenance_window = null;
+    protected $maintenance_window = null;
     /**
      * The daily backup configuration for the instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BackupConfiguration backup_configuration = 17;</code>
      */
-    private $backup_configuration = null;
+    protected $backup_configuration = null;
     /**
      * Configuration specific to read replica instances. Indicates whether
      * replication is enabled or not. WARNING: Changing this restarts the
@@ -155,7 +155,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      */
-    private $database_replication_enabled = null;
+    protected $database_replication_enabled = null;
     /**
      * Configuration specific to read replica instances. Indicates whether
      * database flags for crash-safe replication are enabled. This property was
@@ -170,19 +170,19 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_disk_size_gb = 20;</code>
      */
-    private $data_disk_size_gb = null;
+    protected $data_disk_size_gb = null;
     /**
      * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlActiveDirectoryConfig active_directory_config = 22;</code>
      */
-    private $active_directory_config = null;
+    protected $active_directory_config = null;
     /**
      * The name of server Instance collation.
      *
      * Generated from protobuf field <code>string collation = 23;</code>
      */
-    private $collation = '';
+    protected $collation = '';
     /**
      * Deny maintenance periods
      *
@@ -194,25 +194,25 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.InsightsConfig insights_config = 25;</code>
      */
-    private $insights_config = null;
+    protected $insights_config = null;
     /**
      * The local user password validation policy of the instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy password_validation_policy = 27;</code>
      */
-    private $password_validation_policy = null;
+    protected $password_validation_policy = null;
     /**
      * SQL Server specific audit configuration.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlServerAuditConfig sql_server_audit_config = 29;</code>
      */
-    private $sql_server_audit_config = null;
+    protected $sql_server_audit_config = null;
     /**
      * Optional. The edition of the instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $edition = 0;
+    protected $edition = 0;
     /**
      * Specifies if connections must use Cloud SQL connectors.
      * Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
@@ -226,32 +226,32 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.ConnectorEnforcement connector_enforcement = 32;</code>
      */
-    private $connector_enforcement = 0;
+    protected $connector_enforcement = 0;
     /**
      * Configuration to protect against accidental instance deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
      */
-    private $deletion_protection_enabled = null;
+    protected $deletion_protection_enabled = null;
     /**
      * Server timezone, relevant only for Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>string time_zone = 34;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Specifies advanced machine configuration for the instances relevant only
      * for SQL Server.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.AdvancedMachineFeatures advanced_machine_features = 35;</code>
      */
-    private $advanced_machine_features = null;
+    protected $advanced_machine_features = null;
     /**
      * Configuration for data cache.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DataCacheConfig data_cache_config = 37;</code>
      */
-    private $data_cache_config = null;
+    protected $data_cache_config = null;
     /**
      * Optional. When this parameter is set to true, Cloud SQL instances can
      * connect to Vertex AI to pass requests for real-time predictions and
@@ -260,7 +260,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_google_ml_integration = null;
+    protected $enable_google_ml_integration = null;
 
     /**
      * Constructor.
@@ -421,7 +421,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value settings_version = 1;</code>
      * @return int|string|null
      */
-    public function getSettingsVersionValue()
+    public function getSettingsVersionUnwrapped()
     {
         return $this->readWrapperValue("settings_version");
     }
@@ -456,7 +456,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setSettingsVersionValue($var)
+    public function setSettingsVersionUnwrapped($var)
     {
         $this->writeWrapperValue("settings_version", $var);
         return $this;}
@@ -706,7 +706,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value storage_auto_resize_limit = 9;</code>
      * @return int|string|null
      */
-    public function getStorageAutoResizeLimitValue()
+    public function getStorageAutoResizeLimitUnwrapped()
     {
         return $this->readWrapperValue("storage_auto_resize_limit");
     }
@@ -737,7 +737,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setStorageAutoResizeLimitValue($var)
+    public function setStorageAutoResizeLimitUnwrapped($var)
     {
         $this->writeWrapperValue("storage_auto_resize_limit", $var);
         return $this;}
@@ -849,7 +849,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue storage_auto_resize = 12;</code>
      * @return bool|null
      */
-    public function getStorageAutoResizeValue()
+    public function getStorageAutoResizeUnwrapped()
     {
         return $this->readWrapperValue("storage_auto_resize");
     }
@@ -880,7 +880,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setStorageAutoResizeValue($var)
+    public function setStorageAutoResizeUnwrapped($var)
     {
         $this->writeWrapperValue("storage_auto_resize", $var);
         return $this;}
@@ -1088,7 +1088,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue database_replication_enabled = 18;</code>
      * @return bool|null
      */
-    public function getDatabaseReplicationEnabledValue()
+    public function getDatabaseReplicationEnabledUnwrapped()
     {
         return $this->readWrapperValue("database_replication_enabled");
     }
@@ -1121,7 +1121,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setDatabaseReplicationEnabledValue($var)
+    public function setDatabaseReplicationEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("database_replication_enabled", $var);
         return $this;}
@@ -1163,7 +1163,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue crash_safe_replication_enabled = 19 [deprecated = true];</code>
      * @return bool|null
      */
-    public function getCrashSafeReplicationEnabledValue()
+    public function getCrashSafeReplicationEnabledUnwrapped()
     {
         @trigger_error('crash_safe_replication_enabled is deprecated.', E_USER_DEPRECATED);
         return $this->readWrapperValue("crash_safe_replication_enabled");
@@ -1199,7 +1199,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setCrashSafeReplicationEnabledValue($var)
+    public function setCrashSafeReplicationEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("crash_safe_replication_enabled", $var);
         return $this;}
@@ -1233,7 +1233,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_disk_size_gb = 20;</code>
      * @return int|string|null
      */
-    public function getDataDiskSizeGbValue()
+    public function getDataDiskSizeGbUnwrapped()
     {
         return $this->readWrapperValue("data_disk_size_gb");
     }
@@ -1262,7 +1262,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setDataDiskSizeGbValue($var)
+    public function setDataDiskSizeGbUnwrapped($var)
     {
         $this->writeWrapperValue("data_disk_size_gb", $var);
         return $this;}
@@ -1560,7 +1560,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue deletion_protection_enabled = 33;</code>
      * @return bool|null
      */
-    public function getDeletionProtectionEnabledValue()
+    public function getDeletionProtectionEnabledUnwrapped()
     {
         return $this->readWrapperValue("deletion_protection_enabled");
     }
@@ -1589,7 +1589,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setDeletionProtectionEnabledValue($var)
+    public function setDeletionProtectionEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("deletion_protection_enabled", $var);
         return $this;}
@@ -1729,7 +1729,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
      */
-    public function getEnableGoogleMlIntegrationValue()
+    public function getEnableGoogleMlIntegrationUnwrapped()
     {
         return $this->readWrapperValue("enable_google_ml_integration");
     }
@@ -1764,7 +1764,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnableGoogleMlIntegrationValue($var)
+    public function setEnableGoogleMlIntegrationUnwrapped($var)
     {
         $this->writeWrapperValue("enable_google_ml_integration", $var);
         return $this;}

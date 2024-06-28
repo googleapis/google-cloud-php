@@ -21,7 +21,7 @@ class ResourceManifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string manifest = 1;</code>
      */
-    private $manifest = '';
+    protected $manifest = '';
     /**
      * Whether the resource provided in the manifest is `cluster_scoped`.
      * If unset, the manifest is assumed to be namespace scoped.
@@ -30,7 +30,7 @@ class ResourceManifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cluster_scoped = 2;</code>
      */
-    private $cluster_scoped = false;
+    protected $cluster_scoped = false;
 
     /**
      * Constructor.

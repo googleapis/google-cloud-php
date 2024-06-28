@@ -27,7 +27,7 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string membership_cr_manifest = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $membership_cr_manifest = '';
+    protected $membership_cr_manifest = '';
     /**
      * Output only. Additional Kubernetes resources that need to be applied to the
      * cluster after Membership creation, and after every update.
@@ -56,7 +56,7 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.ResourceOptions resource_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_options = null;
+    protected $resource_options = null;
 
     /**
      * Constructor.

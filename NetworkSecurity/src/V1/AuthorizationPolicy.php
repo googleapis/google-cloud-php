@@ -24,25 +24,25 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Free-text description of the resource.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The timestamp when the resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when the resource was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Set of label tags associated with the AuthorizationPolicy resource.
      *
@@ -55,7 +55,7 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.AuthorizationPolicy.Action action = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * Optional. List of rules to match. Note that at least one of the rules must match in
      * order for the action specified in the 'action' field to be taken. A rule is

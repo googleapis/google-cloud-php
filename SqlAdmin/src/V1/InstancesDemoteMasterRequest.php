@@ -20,7 +20,7 @@ class InstancesDemoteMasterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DemoteMasterContext demote_master_context = 1;</code>
      */
-    private $demote_master_context = null;
+    protected $demote_master_context = null;
 
     /**
      * Constructor.

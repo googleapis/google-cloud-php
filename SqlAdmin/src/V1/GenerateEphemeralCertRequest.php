@@ -20,38 +20,38 @@ class GenerateEphemeralCertRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * PEM encoded public key to include in the signed certificate.
      *
      * Generated from protobuf field <code>string public_key = 3;</code>
      */
-    private $public_key = '';
+    protected $public_key = '';
     /**
      * Optional. Access token to include in the signed certificate.
      *
      * Generated from protobuf field <code>string access_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * Optional. Optional snapshot read timestamp to trade freshness for
      * performance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     /**
      * Optional. If set, it will contain the cert valid duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration valid_duration = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $valid_duration = null;
+    protected $valid_duration = null;
 
     /**
      * Constructor.

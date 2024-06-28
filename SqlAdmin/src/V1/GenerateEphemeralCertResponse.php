@@ -20,7 +20,7 @@ class GenerateEphemeralCertResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SslCert ephemeral_cert = 1;</code>
      */
-    private $ephemeral_cert = null;
+    protected $ephemeral_cert = null;
 
     /**
      * Constructor.

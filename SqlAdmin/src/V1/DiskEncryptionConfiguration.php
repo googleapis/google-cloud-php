@@ -20,13 +20,13 @@ class DiskEncryptionConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 1;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * This is always `sql#diskEncryptionConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

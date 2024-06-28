@@ -21,7 +21,7 @@ class TransferDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The complete `Registration` resource to be created.
      * You can leave `registration.dns_settings` unset to import the
@@ -32,7 +32,7 @@ class TransferDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.Registration registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $registration = null;
+    protected $registration = null;
     /**
      * The list of contact notices that you acknowledge. The notices
      * needed here depend on the values specified in
@@ -48,20 +48,20 @@ class TransferDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money yearly_price = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $yearly_price = null;
+    protected $yearly_price = null;
     /**
      * The domain's transfer authorization code. You can obtain this from the
      * domain's current registrar.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.AuthorizationCode authorization_code = 5;</code>
      */
-    private $authorization_code = null;
+    protected $authorization_code = null;
     /**
      * Validate the request without actually transferring the domain.
      *
      * Generated from protobuf field <code>bool validate_only = 6;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                     $parent            Required. The parent resource of the `Registration`. Must be in the

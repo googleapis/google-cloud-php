@@ -20,19 +20,19 @@ class SqlBackupRunsGetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 id = 1;</code>
      */
-    private $id = 0;
+    protected $id = 0;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      *
      * Generated from protobuf field <code>string instance = 2;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 3;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

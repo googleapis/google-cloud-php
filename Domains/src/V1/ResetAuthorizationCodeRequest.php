@@ -21,7 +21,7 @@ class ResetAuthorizationCodeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $registration = '';
+    protected $registration = '';
 
     /**
      * @param string $registration Required. The name of the `Registration` whose authorization code is being reset,

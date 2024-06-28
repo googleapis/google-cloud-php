@@ -20,19 +20,19 @@ class SyncState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_token = 1;</code>
      */
-    private $source_token = '';
+    protected $source_token = '';
     /**
      * Token indicating the state of the importer.
      *
      * Generated from protobuf field <code>string import_token = 2;</code>
      */
-    private $import_token = '';
+    protected $import_token = '';
     /**
      * Token indicating the state of the syncer.
      *
      * Generated from protobuf field <code>string sync_token = 3;</code>
      */
-    private $sync_token = '';
+    protected $sync_token = '';
     /**
      * Deprecated: use last_sync_time instead.
      * Timestamp of when ACM last successfully synced the repo
@@ -47,13 +47,13 @@ class SyncState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_sync_time = 7;</code>
      */
-    private $last_sync_time = null;
+    protected $last_sync_time = null;
     /**
      * Sync status code
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.SyncState.SyncCode code = 5;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * A list of errors resulting from problematic configs.
      * This list will be truncated after 100 errors, although it is

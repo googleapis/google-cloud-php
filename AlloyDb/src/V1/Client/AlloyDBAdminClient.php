@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -148,9 +148,7 @@ final class AlloyDBAdminClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -196,7 +194,9 @@ final class AlloyDBAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -271,8 +271,13 @@ final class AlloyDBAdminClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -490,8 +495,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateInstances(BatchCreateInstancesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchCreateInstances(
+        BatchCreateInstancesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchCreateInstances', $request, $callOptions)->wait();
     }
 
@@ -595,8 +602,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecondaryCluster(CreateSecondaryClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSecondaryCluster(
+        CreateSecondaryClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSecondaryCluster', $request, $callOptions)->wait();
     }
 
@@ -621,8 +630,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecondaryInstance(CreateSecondaryInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSecondaryInstance(
+        CreateSecondaryInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSecondaryInstance', $request, $callOptions)->wait();
     }
 
@@ -808,8 +819,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateClientCertificate(GenerateClientCertificateRequest $request, array $callOptions = []): GenerateClientCertificateResponse
-    {
+    public function generateClientCertificate(
+        GenerateClientCertificateRequest $request,
+        array $callOptions = []
+    ): GenerateClientCertificateResponse {
         return $this->startApiCall('GenerateClientCertificate', $request, $callOptions)->wait();
     }
 
@@ -1070,8 +1083,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSupportedDatabaseFlags(ListSupportedDatabaseFlagsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSupportedDatabaseFlags(
+        ListSupportedDatabaseFlagsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSupportedDatabaseFlags', $request, $callOptions);
     }
 

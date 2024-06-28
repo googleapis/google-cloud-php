@@ -23,13 +23,13 @@ class SqlInstancesReleaseSsrsLeaseRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Required. The project ID that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.
