@@ -1,5 +1,608 @@
 # Changelog
 
+## 0.250.0
+
+<details><summary>google/cloud-advisorynotifications 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429))
+
+### Chores
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429)) ([6ea88b1](https://github.com/googleapis/google-cloud-php/commit/6ea88b1cea7b960fbc5e505513d39acba399fabd))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-api-keys 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429))
+
+### Chores
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429)) ([6ea88b1](https://github.com/googleapis/google-cloud-php/commit/6ea88b1cea7b960fbc5e505513d39acba399fabd))
+
+</details>
+
+<details><summary>google/apps-chat 0.1.4</summary>
+
+
+
+### Documentation
+
+* Update doc for `CreateMembership` in service `ChatService` to support group members ([b0b072f](https://github.com/googleapis/google-cloud-php/commit/b0b072fa7d62e74ee9e2a1e540dcbc02df8fdfd7))
+* Update doc for `SetUpSpace` in service `ChatService` to support group members ([#7478](https://github.com/googleapis/google-cloud-php/issues/7478)) ([b0b072f](https://github.com/googleapis/google-cloud-php/commit/b0b072fa7d62e74ee9e2a1e540dcbc02df8fdfd7))
+* Update doc for field `group_member` in message `google.chat.v1.Membership` ([b0b072f](https://github.com/googleapis/google-cloud-php/commit/b0b072fa7d62e74ee9e2a1e540dcbc02df8fdfd7))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429))
+
+### Chores
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429)) ([6ea88b1](https://github.com/googleapis/google-cloud-php/commit/6ea88b1cea7b960fbc5e505513d39acba399fabd))
+
+</details>
+
+<details><summary>google/cloud-batch 0.17.0</summary>
+
+
+
+### Features
+
+* Add a install_ops_agent field to InstancePolicyOrTemplate for Ops Agent support ([#7476](https://github.com/googleapis/google-cloud-php/issues/7476)) ([5e87f44](https://github.com/googleapis/google-cloud-php/commit/5e87f44e4495956fa3b2eae04b87e40fd94d784c))
+
+
+### Documentation
+
+* Add instructions on how to configure cross-project pubsub publisher ([5e87f44](https://github.com/googleapis/google-cloud-php/commit/5e87f44e4495956fa3b2eae04b87e40fd94d784c))
+* Document default disk type: pd-standard for non boot disk, pd-balanced for boot disk ([5e87f44](https://github.com/googleapis/google-cloud-php/commit/5e87f44e4495956fa3b2eae04b87e40fd94d784c))
+* Update GCS description of volume.mount_options field ([5e87f44](https://github.com/googleapis/google-cloud-php/commit/5e87f44e4495956fa3b2eae04b87e40fd94d784c))
+* Update links in the description of volume.mount_options field ([5e87f44](https://github.com/googleapis/google-cloud-php/commit/5e87f44e4495956fa3b2eae04b87e40fd94d784c))
+* Update list of volume.mount_options field ([5e87f44](https://github.com/googleapis/google-cloud-php/commit/5e87f44e4495956fa3b2eae04b87e40fd94d784c))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436))
+
+### Chores
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436)) ([ef5a6f9](https://github.com/googleapis/google-cloud-php/commit/ef5a6f91ba128f52f0866ce8b96209654859bf03))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436))
+
+### Chores
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436)) ([ef5a6f9](https://github.com/googleapis/google-cloud-php/commit/ef5a6f91ba128f52f0866ce8b96209654859bf03))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436))
+
+### Chores
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436)) ([ef5a6f9](https://github.com/googleapis/google-cloud-php/commit/ef5a6f91ba128f52f0866ce8b96209654859bf03))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436))
+
+### Chores
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436)) ([ef5a6f9](https://github.com/googleapis/google-cloud-php/commit/ef5a6f91ba128f52f0866ce8b96209654859bf03))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.5.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436))
+
+### Chores
+
+* Promote BeyondCorp APIs to v1 ([#7436](https://github.com/googleapis/google-cloud-php/issues/7436)) ([ef5a6f9](https://github.com/googleapis/google-cloud-php/commit/ef5a6f91ba128f52f0866ce8b96209654859bf03))
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429))
+
+### Chores
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429)) ([6ea88b1](https://github.com/googleapis/google-cloud-php/commit/6ea88b1cea7b960fbc5e505513d39acba399fabd))
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429))
+
+### Chores
+
+* Promote AdvisoryNotifications, ApiKeys, BareMetalSolution, BigQueryAnalyticsHub, BigQueryMigration ([#7429](https://github.com/googleapis/google-cloud-php/issues/7429)) ([6ea88b1](https://github.com/googleapis/google-cloud-php/commit/6ea88b1cea7b960fbc5e505513d39acba399fabd))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.0.0</summary>
+
+
+
+### Features
+
+* Expose data scan execution create time to customers ([#7482](https://github.com/googleapis/google-cloud-php/issues/7482)) ([24f2c00](https://github.com/googleapis/google-cloud-php/commit/24f2c00ca44bc6003e5be11a92991a0e08549e57))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.14.0</summary>
+
+
+
+### Features
+
+* Add the cohort and auto tuning configuration to the batch's RuntimeConfig ([#7462](https://github.com/googleapis/google-cloud-php/issues/7462)) ([bdd5809](https://github.com/googleapis/google-cloud-php/commit/bdd580944885b1c498fa056e352e10c295ec3a75))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-domains 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.1.0</summary>
+
+
+
+### Features
+
+* A new field `bonding_type` is added to message `.google.cloud.edgenetwork.v1.Subnet` ([#7479](https://github.com/googleapis/google-cloud-php/issues/7479)) ([be90106](https://github.com/googleapis/google-cloud-php/commit/be90106a01df241679c533baab1dd6cf3c7f46c1))
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/grafeas 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.6.6</summary>
+
+
+
+### Documentation
+
+* Modify example accelerator type ([#7477](https://github.com/googleapis/google-cloud-php/issues/7477)) ([5a69139](https://github.com/googleapis/google-cloud-php/commit/5a69139e5ee807cb4df45deb701dcaa2c015372d))
+
+</details>
+
+<details><summary>google/cloud-logging 1.30.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-security 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.9.6</summary>
+
+
+
+### Documentation
+
+* A comment for field `parent` in message `.google.cloud.oslogin.v1beta.SignSshPublicKeyRequest` is changed ([#7472](https://github.com/googleapis/google-cloud-php/issues/7472)) ([0891de4](https://github.com/googleapis/google-cloud-php/commit/0891de4cb0956fc1ca570081a1b8182eba342786))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.13.0</summary>
+
+
+
+### Features
+
+* Added SMS Toll Fraud assessment ([#7475](https://github.com/googleapis/google-cloud-php/issues/7475)) ([c9d59a0](https://github.com/googleapis/google-cloud-php/commit/c9d59a0e07171fa0e3da1d6af1b567c1a9e4ee12))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464))
+
+### Chores
+
+* Promote CertificateManager, ContainerAnalysis, ConfidentialComputing, DataCatalogLineage, GkeBackup, Grafeas, ResourceManager to v1  ([#7464](https://github.com/googleapis/google-cloud-php/issues/7464)) ([c5cf0eb](https://github.com/googleapis/google-cloud-php/commit/c5cf0ebb0b0e9b4ebedbf1fde42fbaeba7680d84))
+
+</details>
+
+<details><summary>google/cloud-run 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.29.0</summary>
+
+
+
+### Features
+
+* Add toxic_combination and group_memberships fields to finding ([#7469](https://github.com/googleapis/google-cloud-php/issues/7469)) ([f52df62](https://github.com/googleapis/google-cloud-php/commit/f52df62f0545d55855953eeacfa9920a42ad5feb))
+* Added cloud provider field to list findings response ([#7481](https://github.com/googleapis/google-cloud-php/issues/7481)) ([cb601cf](https://github.com/googleapis/google-cloud-php/commit/cb601cf973d9ab6ed855f7ca4761828dc73f645a))
+* Added http configuration rule to ResourceValueConfig and ValuedResource API methods ([cb601cf](https://github.com/googleapis/google-cloud-php/commit/cb601cf973d9ab6ed855f7ca4761828dc73f645a))
+* Added toxic combination field to finding ([cb601cf](https://github.com/googleapis/google-cloud-php/commit/cb601cf973d9ab6ed855f7ca4761828dc73f645a))
+
+
+### Documentation
+
+* Updated comments for ResourceValueConfig ([cb601cf](https://github.com/googleapis/google-cloud-php/commit/cb601cf973d9ab6ed855f7ca4761828dc73f645a))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.81.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Batch Write Feature ([#7420](https://github.com/googleapis/google-cloud-php/issues/7420)) ([5f18eb2](https://github.com/googleapis/google-cloud-php/commit/5f18eb2845b85335f614c549850efc6d15bf5c8a))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Features
+
+* A new field `upgradable_database_versions` is added to message `.google.cloud.sql.v1beta4.DatabaseInstance` ([#7474](https://github.com/googleapis/google-cloud-php/issues/7474)) ([6c6e457](https://github.com/googleapis/google-cloud-php/commit/6c6e4578f84be778ec7be4fb20fe6babc4c2d3eb))
+* A new message `AvailableDatabaseVersion` is added ([6c6e457](https://github.com/googleapis/google-cloud-php/commit/6c6e4578f84be778ec7be4fb20fe6babc4c2d3eb))
+* A new value `EXTENSIONS_NOT_MIGRATED` is added to enum `SqlExternalSyncSettingErrorType` ([6c6e457](https://github.com/googleapis/google-cloud-php/commit/6c6e4578f84be778ec7be4fb20fe6babc4c2d3eb))
+* A new value `PG_CRON_FLAG_ENABLED_IN_REPLICA` is added to enum `SqlExternalSyncSettingErrorType` ([6c6e457](https://github.com/googleapis/google-cloud-php/commit/6c6e4578f84be778ec7be4fb20fe6babc4c2d3eb))
+* A new value `UNSUPPORTED_EXTENSIONS_NOT_MIGRATED` is added to enum `SqlExternalSyncSettingErrorType` ([6c6e457](https://github.com/googleapis/google-cloud-php/commit/6c6e4578f84be778ec7be4fb20fe6babc4c2d3eb))
+
+
+### Documentation
+
+* A comment for field `advanced_machine_features` in message `.google.cloud.sql.v1beta4.Settings` is changed ([6c6e457](https://github.com/googleapis/google-cloud-php/commit/6c6e4578f84be778ec7be4fb20fe6babc4c2d3eb))
+
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465))
+
+### Chores
+
+* Promote GkeMultiCloud, GSuiteAddOns, Run, StorageInsights, VideoLiveStream, VideoStitcher, VmwareEngine APIs to v1  ([#7465](https://github.com/googleapis/google-cloud-php/issues/7465)) ([a41ca10](https://github.com/googleapis/google-cloud-php/commit/a41ca10ed074c494f3c100d2b2f574663fd9a1d8))
+
+</details>
+
+<details><summary>google/cloud-workflows 1.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467))
+
+### Chores
+
+* Promote AlloyDb, BigQueryDataPolicies, DiscoveryEngine, Domains, GkeHub, NetworkSecurity, SecurityPublicCA, SqlAdmin, Workflows to stable ([#7467](https://github.com/googleapis/google-cloud-php/issues/7467)) ([225e0d5](https://github.com/googleapis/google-cloud-php/commit/225e0d5209f34246479acce32c6253c32398933d))
+
+</details>
+
 ## 0.249.0
 
 <details><summary>google/cloud-ai-platform 1.0.0-RC1</summary>
