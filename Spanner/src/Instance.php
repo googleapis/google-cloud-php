@@ -222,7 +222,7 @@ class Instance
      */
     public function exists(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         try {
             if ($this->info) {
                 $data += [
@@ -233,7 +233,7 @@ class Instance
                     InstanceAdminClient::class,
                     'getInstance',
                     $data,
-                    $optionalArgs,
+                    $callOptions,
                     GetInstanceRequest::class,
                     InstanceAdminClient::projectName(
                         $this->projectId
@@ -272,7 +272,7 @@ class Instance
      */
     public function reload(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
         ];
@@ -293,7 +293,7 @@ class Instance
             InstanceAdminClient::class,
             'getInstance',
             $data,
-            $optionalArgs,
+            $callOptions,
             GetInstanceRequest::class,
             InstanceAdminClient::projectName(
                 $this->projectId
@@ -328,7 +328,7 @@ class Instance
      */
     public function create(InstanceConfiguration $config, array $options = [])
     {
-        list($instance, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($instance, $callOptions) = $this->splitOptionalArgs($options);
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         if (isset($instance['nodeCount']) && isset($instance['processingUnits'])) {
             throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
@@ -349,7 +349,7 @@ class Instance
             InstanceAdminClient::class,
             'createInstance',
             $data,
-            $optionalArgs,
+            $callOptions,
             CreateInstanceRequest::class,
             $this->name
         )->withResultFunction($this->instanceResultFunction());
@@ -414,7 +414,7 @@ class Instance
      */
     public function update(array $options = [])
     {
-        list($instance, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($instance, $callOptions) = $this->splitOptionalArgs($options);
 
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
             throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
@@ -429,7 +429,7 @@ class Instance
             InstanceAdminClient::class,
             'updateInstance',
             $data,
-            $optionalArgs,
+            $callOptions,
             UpdateInstanceRequest::class,
             $this->name
         )->withResultFunction($this->instanceResultFunction());
@@ -452,13 +452,13 @@ class Instance
      */
     public function delete(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
         $this->createAndSendRequest(
             InstanceAdminClient::class,
             'deleteInstance',
             $data,
-            $optionalArgs,
+            $callOptions,
             DeleteInstanceRequest::class,
             $this->name
         );
@@ -584,7 +584,7 @@ class Instance
      */
     public function databases(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = $this->name;
 
         $resultLimit = $this->pluck('resultLimit', $data, false);
@@ -593,7 +593,7 @@ class Instance
                 function (array $database) {
                     return $this->database($database['name'], ['database' => $database]);
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -602,12 +602,12 @@ class Instance
                         DatabaseAdminClient::class,
                         'listDatabases',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListDatabasesRequest::class,
                         $this->name
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'databases',
                     'resultLimit' => $resultLimit
@@ -673,7 +673,7 @@ class Instance
      */
     public function backups(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = $this->name;
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
@@ -685,7 +685,7 @@ class Instance
                         $backup
                     );
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -694,12 +694,12 @@ class Instance
                         DatabaseAdminClient::class,
                         'listBackups',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListBackupsRequest::class,
                         $this->name
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'backups',
                     'resultLimit' => $resultLimit

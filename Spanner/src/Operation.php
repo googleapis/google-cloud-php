@@ -176,7 +176,7 @@ class Operation
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $mutations = $this->serializeMutations($mutations);
         $data += [
             'transactionId' => null,
@@ -189,7 +189,7 @@ class Operation
             GapicSpannerClient::class,
             'commit',
             $data,
-            $optionalArgs,
+            $callOptions,
             CommitRequest::class,
             $this->getDatabaseNameFromSession($session),
             $this->routeToLeader
@@ -216,7 +216,7 @@ class Operation
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data = [
             'session' => $session->name(),
             'transactionId' => $transactionId
@@ -226,7 +226,7 @@ class Operation
             GapicSpannerClient::class,
             'rollback',
             $data,
-            $optionalArgs,
+            $callOptions,
             RollbackRequest::class,
             $this->getDatabaseNameFromSession($session),
             $this->routeToLeader
@@ -393,7 +393,7 @@ class Operation
         array $statements,
         array $options = []
     ) {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['transaction'] = $this->createTransactionSelector($data, $transaction->id());
         $data += [
             'session' => $session->name(),
@@ -404,7 +404,7 @@ class Operation
             GapicSpannerClient::class,
             'executeBatchDml',
             $data,
-            $optionalArgs,
+            $callOptions,
             ExecuteBatchDmlRequest::class,
             $this->getDatabaseNameFromSession($session),
             $this->routeToLeader
@@ -674,7 +674,7 @@ class Operation
      */
     public function createSession($databaseName, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data = [
             'database' => $databaseName,
             'session' => [
@@ -686,7 +686,7 @@ class Operation
             GapicSpannerClient::class,
             'createSession',
             $data,
-            $optionalArgs,
+            $callOptions,
             CreateSessionRequest::class,
             $databaseName,
             $this->routeToLeader
@@ -761,7 +761,7 @@ class Operation
     {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
 
         $data = $this->formatPartitionQueryOptions($data);
         $data += [
@@ -775,7 +775,7 @@ class Operation
             GapicSpannerClient::class,
             'partitionQuery',
             $data,
-            $optionalArgs,
+            $callOptions,
             PartitionQueryRequest::class,
             $this->getDatabaseNameFromSession($session),
             $this->routeToLeader
@@ -827,7 +827,7 @@ class Operation
     ) {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'transaction' => $this->createTransactionSelector($data, $transactionId),
             'session' => $session->name(),
@@ -841,7 +841,7 @@ class Operation
             GapicSpannerClient::class,
             'partitionRead',
             $data,
-            $optionalArgs,
+            $callOptions,
             PartitionReadRequest::class,
             $this->getDatabaseNameFromSession($session),
             $this->routeToLeader
@@ -887,13 +887,13 @@ class Operation
      */
     private function beginTransaction(Session $session, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $transactionOptions = $this->formatTransactionOptions(
             $this->pluck('transactionOptions', $data, false) ?: []
         );
         if (isset($transactionOptions['readWrite'])
             || isset($transactionOptions['partitionedDml'])) {
-            $optionalArgs = $this->addLarHeader($optionalArgs, $this->routeToLeader);
+            $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
         }
         $data += [
             'session' => $session->name(),
@@ -904,7 +904,7 @@ class Operation
             GapicSpannerClient::class,
             'beginTransaction',
             $data,
-            $optionalArgs,
+            $callOptions,
             BeginTransactionRequest::class,
             $this->getDatabaseNameFromSession($session)
         );
@@ -1120,18 +1120,18 @@ class Operation
      */
     private function executeStreamingSql(array $args)
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($args);
+        list($data, $callOptions) = $this->splitOptionalArgs($args);
         $data = $this->formatSqlParams($data);
         $data['transaction'] = $this->createTransactionSelector($data);
         $data['queryOptions'] = $this->createQueryOptions($data);
-        $optionalArgs = $this->conditionallyUnsetLarHeader($optionalArgs, $this->routeToLeader);
+        $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
 
         return $this->createAndSendRequest(
             GapicSpannerClient::class,
             'executeStreamingSql',
             $data,
-            $optionalArgs,
+            $callOptions,
             ExecuteSqlRequest::class,
             $databaseName
         );
@@ -1143,17 +1143,17 @@ class Operation
      */
     private function streamingRead(array $args)
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($args);
+        list($data, $callOptions) = $this->splitOptionalArgs($args);
         $data['keySet']= $this->formatKeySet($this->pluck('keySet', $data));
         $data['transaction'] = $this->createTransactionSelector($data);
-        $optionalArgs = $this->conditionallyUnsetLarHeader($optionalArgs, $this->routeToLeader);
+        $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
 
         return $this->createAndSendRequest(
             GapicSpannerClient::class,
             'streamingRead',
             $data,
-            $optionalArgs,
+            $callOptions,
             ReadRequest::class,
             $databaseName
         );

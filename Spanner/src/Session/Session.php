@@ -149,7 +149,7 @@ class Session
      */
     public function exists(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name()
         ];
@@ -159,7 +159,7 @@ class Session
                 SpannerClient::class,
                 'getSession',
                 $data,
-                $optionalArgs,
+                $callOptions,
                 GetSessionRequest::class,
                 $this->databaseName,
                 $this->routeToLeader
@@ -178,7 +178,7 @@ class Session
      */
     public function delete(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data = [
             'name' => $this->name()
         ];
@@ -187,7 +187,7 @@ class Session
             SpannerClient::class,
             'deleteSession',
             $data,
-            $optionalArgs,
+            $callOptions,
             DeleteSessionRequest::class,
             $this->databaseName
         );

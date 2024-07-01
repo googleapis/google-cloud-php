@@ -407,14 +407,14 @@ class Database
      */
     public function reload(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->callOptions($options);
         $data['name'] = $this->name;
 
         return $this->info = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'getDatabase',
             $data,
-            $optionalArgs,
+            $callOptions,
             GetDatabaseRequest::class,
             $this->name
         );
@@ -469,7 +469,7 @@ class Database
      */
     public function create(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $dialect = $data['databaseDialect'] ?? null;
 
         $data += [
@@ -482,7 +482,7 @@ class Database
             DatabaseAdminClient::class,
             'createDatabase',
             $data,
-            $optionalArgs,
+            $callOptions,
             CreateDatabaseRequest::class,
             $this->instance->name()
         )->withResultFunction($this->databaseResultFunction());
@@ -531,7 +531,7 @@ class Database
      */
     public function updateDatabase(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $fieldMask = [];
 
         if (isset($data['enableDropProtection'])) {
@@ -549,7 +549,7 @@ class Database
             DatabaseAdminClient::class,
             'updateDatabase',
             $data,
-            $optionalArgs,
+            $callOptions,
             UpdateDatabaseRequest::class,
             $this->name
         )->withResultFunction($this->databaseResultFunction());
@@ -617,7 +617,7 @@ class Database
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'database' => $this->name,
             'statements' => $statements
@@ -627,7 +627,7 @@ class Database
             DatabaseAdminClient::class,
             'updateDatabaseDdl',
             $data,
-            $optionalArgs,
+            $callOptions,
             UpdateDatabaseDdlRequest::class,
             $this->name
         );
@@ -657,14 +657,14 @@ class Database
      */
     public function drop(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
         $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'dropDatabase',
             $data,
-            $optionalArgs,
+            $callOptions,
             DropDatabaseRequest::class,
             $this->name
         );
@@ -698,14 +698,14 @@ class Database
      */
     public function ddl(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
         $ddl = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'getDatabaseDdl',
             $data,
-            $optionalArgs,
+            $callOptions,
             GetDatabaseDdlRequest::class,
             $this->name
         );
@@ -1848,7 +1848,7 @@ class Database
         );
 
         try {
-            list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+            list($data, $callOptions) = $this->splitOptionalArgs($options);
             $data += [
                 'session' => $session->name(),
                 'mutationGroups' => $mutationGroups
@@ -1858,7 +1858,7 @@ class Database
                 GapicSpannerClient::class,
                 'batchWrite',
                 $data,
-                $optionalArgs,
+                $callOptions,
                 BatchWriteRequest::class,
                 $this->name,
                 $this->routeToLeader
@@ -2268,13 +2268,13 @@ class Database
      */
     public function batchCreateSessions(array $options)
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
         return $this->createAndSendRequest(
             GapicSpannerClient::class,
             'batchCreateSessions',
             $data,
-            $optionalArgs,
+            $callOptions,
             BatchCreateSessionsRequest::class,
             $this->name,
             $this->routeToLeader
@@ -2293,12 +2293,12 @@ class Database
      */
     public function deleteSessionAsync(array $options)
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         return $this->createAndSendRequest(
             GapicSpannerClient::class,
             'deleteSessionAsync',
             $data,
-            $optionalArgs,
+            $callOptions,
             DeleteSessionRequest::class,
             $this->name
         );
@@ -2327,7 +2327,7 @@ class Database
      */
     public function backupOperations(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = $this->instance->name();
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
@@ -2341,7 +2341,7 @@ class Database
                             ->getOperationsClient(),
                     );
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -2350,12 +2350,12 @@ class Database
                         DatabaseAdminClient::class,
                         'listBackupOperations',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListBackupOperationsRequest::class,
                         $this->name
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'operations',
                     'resultLimit' => $resultLimit
@@ -2377,7 +2377,7 @@ class Database
      */
     public function createDatabaseFromBackup($name, $backup, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $this->instance->name(),
             'databaseId' => $this->databaseIdOnly($name),
@@ -2388,7 +2388,7 @@ class Database
             DatabaseAdminClient::class,
             'restoreDatabase',
             $data,
-            $optionalArgs,
+            $callOptions,
             RestoreDatabaseRequest::class,
             $this->name
         )->withResultFunction($this->databaseResultFunction());
@@ -2417,7 +2417,7 @@ class Database
      */
     public function databaseOperations(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = $this->instance->name();
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
@@ -2431,7 +2431,7 @@ class Database
                             ->getOperationsClient(),
                     );
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -2440,17 +2440,38 @@ class Database
                         DatabaseAdminClient::class,
                         'listDatabaseOperations',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListDatabaseOperationsRequest::class,
                         $this->instance->name()
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'operations',
                     'resultLimit' => $resultLimit
                 ]
             )
+        );
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName)
+    {
+        return new OperationResponse(
+            $operationName,
+            $this->requestHandler
+                ->getClientObject(DatabaseAdminClient::class)
+                ->getOperationsClient()
         );
     }
 

@@ -192,14 +192,14 @@ class InstanceConfiguration
      */
     public function reload(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
 
         return $this->info = $this->createAndSendRequest(
             InstanceAdminClient::class,
             'getInstanceConfig',
             $data,
-            $optionalArgs,
+            $callOptions,
             GetInstanceConfigRequest::class,
             InstanceAdminClient::projectName($this->projectId)
         );
@@ -241,7 +241,7 @@ class InstanceConfiguration
      */
     public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
 
         $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
         $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
@@ -264,7 +264,7 @@ class InstanceConfiguration
             InstanceAdminClient::class,
             'createInstanceConfig',
             $requestArray,
-            $optionalArgs,
+            $callOptions,
             CreateInstanceConfigRequest::class,
             $this->name
         )->withResultFunction($this->instanceConfigResultFunction());
@@ -299,7 +299,7 @@ class InstanceConfiguration
      */
     public function update(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
         $fieldMask = $this->fieldMask($data);
         $data += [
@@ -316,7 +316,7 @@ class InstanceConfiguration
             InstanceAdminClient::class,
             'updateInstanceConfig',
             $requestArray,
-            $optionalArgs,
+            $callOptions,
             UpdateInstanceConfigRequest::class,
             $this->name
         )->withResultFunction($this->instanceConfigResultFunction());
@@ -340,14 +340,14 @@ class InstanceConfiguration
      */
     public function delete(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
 
         $this->createAndSendRequest(
             InstanceAdminClient::class,
             'deleteInstanceConfig',
             $data,
-            $optionalArgs,
+            $callOptions,
             DeleteInstanceConfigRequest::class,
             $this->name
         );

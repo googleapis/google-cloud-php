@@ -261,8 +261,8 @@ trait ApiHelperTrait
         $callOptionFields = array_keys((new CallOptions([]))->toArray());
         $keys = array_merge($callOptionFields, $extraAllowedKeys);
 
-        $optionalArgs = $this->pluckArray($keys, $input);
+        $callOptions = $this->pluckArray($keys, $input);
 
-        return [$input, $optionalArgs];
+        return [$input, $callOptions];
     }
 }

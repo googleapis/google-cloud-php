@@ -401,7 +401,7 @@ class SpannerClient
      */
     public function instanceConfigurations(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = InstanceAdminClient::projectName($this->projectId);
 
         $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
@@ -410,7 +410,7 @@ class SpannerClient
                 function (array $config) {
                     return $this->instanceConfiguration($config['name'], $config);
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -419,12 +419,12 @@ class SpannerClient
                         InstanceAdminClient::class,
                         'listInstanceConfigs',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListInstanceConfigsRequest::class,
                         InstanceAdminClient::projectName($this->projectId)
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'instanceConfigs',
                     'resultLimit' => $resultLimit
@@ -494,7 +494,7 @@ class SpannerClient
      */
     public function instanceConfigOperations(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $data['parent'] = InstanceAdminClient::projectName($this->projectId);
         return new ItemIterator(
@@ -502,7 +502,7 @@ class SpannerClient
                 function (OperationResponse $operation) {
                     return $operation;
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($callOptions, $data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -511,7 +511,7 @@ class SpannerClient
                         InstanceAdminClient::class,
                         'listInstanceConfigOperations',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListInstanceConfigOperationsRequest::class,
                         InstanceAdminClient::projectName($this->projectId)
                     );
@@ -611,7 +611,7 @@ class SpannerClient
      */
     public function instances(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += ['filter' => '', 'parent' => InstanceAdminClient::projectName($this->projectId)];
 
         $resultLimit = $this->pluck('resultLimit', $data, false);
@@ -621,7 +621,7 @@ class SpannerClient
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 },
-                function ($callOptions) use ($optionalArgs, $data) {
+                function ($callOptions) use ($callOptions, $data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -630,7 +630,7 @@ class SpannerClient
                         InstanceAdminClient::class,
                         'listInstances',
                         $data,
-                        $optionalArgs,
+                        $callOptions,
                         ListInstancesRequest::class,
                         InstanceAdminClient::projectName($this->projectId)
                     );

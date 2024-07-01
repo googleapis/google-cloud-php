@@ -137,7 +137,7 @@ class Backup
      */
     public function create($database, DateTimeInterface $expireTime, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data = $this->validateAndFormatVersionTime($data);
 
         $data += [
@@ -156,7 +156,7 @@ class Backup
             DatabaseAdminClient::class,
             'createBackup',
             $data,
-            $optionalArgs,
+            $callOptions,
             CreateBackupRequest::class,
             $this->instance->name()
         )->withResultFunction($this->backupResultFunction());
@@ -188,7 +188,7 @@ class Backup
      */
     public function createCopy(Backup $newBackup, DateTimeInterface $expireTime, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $newBackup->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
@@ -200,7 +200,7 @@ class Backup
             DatabaseAdminClient::class,
             'copyBackup',
             $data,
-            $optionalArgs,
+            $callOptions,
             CopyBackupRequest::class,
             $this->instance->name()
         )->withResultFunction($this->backupResultFunction());
@@ -219,7 +219,7 @@ class Backup
      */
     public function delete(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
         ];
@@ -228,7 +228,7 @@ class Backup
             DatabaseAdminClient::class,
             'deleteBackup',
             $data,
-            $optionalArgs,
+            $callOptions,
             DeleteBackupRequest::class,
             $this->name
         );
@@ -307,7 +307,7 @@ class Backup
      */
     public function reload(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
         ];
@@ -316,7 +316,7 @@ class Backup
             DatabaseAdminClient::class,
             'getBackup',
             $data,
-            $optionalArgs,
+            $callOptions,
             GetBackupRequest::class,
             $this->name
         );
@@ -367,7 +367,7 @@ class Backup
      */
     public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'backup' => [
                 'name' => $this->name(),
@@ -383,9 +383,30 @@ class Backup
             DatabaseAdminClient::class,
             'updateBackup',
             $data,
-            $optionalArgs,
+            $callOptions,
             UpdateBackupRequest::class,
             $this->name
+        );
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName)
+    {
+        return new OperationResponse(
+            $operationName,
+            $this->requestHandler
+                ->getClientObject(DatabaseAdminClient::class)
+                ->getOperationsClient()
         );
     }
 

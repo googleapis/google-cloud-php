@@ -51,19 +51,19 @@ trait RequestTrait
         string $clientClass,
         string $method,
         array $data,
-        array $optionalArgs,
+        array $callOptions,
         string $requestClass,
         string $resourcePrefixHeader = '',
         bool $routeToLeader = false
     ) {
         if ($resourcePrefixHeader) {
-            $optionalArgs = $this->addResourcePrefixHeader(
-                $optionalArgs,
+            $callOptions = $this->addResourcePrefixHeader(
+                $callOptions,
                 $resourcePrefixHeader
             );
         }
         if ($routeToLeader) {
-            $optionalArgs = $this->addLarHeader($optionalArgs, $routeToLeader);
+            $callOptions = $this->addLarHeader($callOptions, $routeToLeader);
         }
 
         $request = $this->serializer->decodeMessage(new $requestClass(), $data);
@@ -72,7 +72,7 @@ trait RequestTrait
             $clientClass,
             $method,
             $request,
-            $optionalArgs
+            $callOptions
         );
     }
 
