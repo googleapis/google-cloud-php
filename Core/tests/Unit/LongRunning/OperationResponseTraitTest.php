@@ -167,47 +167,6 @@ class OperationResponseTraitTest extends TestCase
         $expected = 'any|all|1';
         $this->assertEquals($expected, $got);
     }
-
-    public function testLongRunningOperationManager()
-    {
-        $this->checkAndSkipTest([
-            DatabaseAdminClient::class,
-        ]);
-        $result = new AuthorizationInfo([
-            'permission' => 'all',
-            'granted' => true,
-            'resource' => 'any',
-        ]);
-        $meta = new RequestMetadata([
-            'caller_ip' => '127.8.9.10',
-        ]);
-        $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
-        $operation = new OperationResponse(self::OPERATION_NAME, null, ['lastProtoResponse' => $response]);
-
-        $requestHandler = $this->prophesize(RequestHandler::class);
-        $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
-        $requestHandler->getClientObject(Argument::any())->willReturn($databaseAdminClient);
-        $databaseAdminClient->resumeOperation(Argument::cetera())->willReturn($operation);
-        $callables = [
-            [
-                'typeUrl' => self::METADATA_TYPE,
-                'callable' => function ($result) {
-                    return implode('|', [$result['resource'], $result['permission'], $result['granted']]);
-                }
-            ]
-        ];
-        $lro = new LongRunningOperationManager(
-            $requestHandler->reveal(),
-            $this->serializer,
-            $callables,
-            $this->lroResponseMappers,
-            DatabaseAdminClient::class,
-            self::OPERATION_NAME
-        );
-        $got = $lro->result();
-        $expected = 'any|all|1';
-        $this->assertEquals($expected, $got);
-    }
 }
 
 //@codingStandardsIgnoreStart
