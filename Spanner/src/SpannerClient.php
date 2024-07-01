@@ -17,30 +17,34 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Batch\BatchClient;
-use Google\Cloud\Spanner\Connection\Grpc;
-use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
-use Google\ApiCore\ValidationException;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -59,7 +63,7 @@ use Google\ApiCore\ValidationException;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * ```
  *
  * ```
@@ -70,14 +74,15 @@ use Google\ApiCore\ValidationException;
  * // `9010` is used as an example only.
  * putenv('SPANNER_EMULATOR_HOST=localhost:9010');
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * ```
  *
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
  *
- * $directedOptions = [
+ * $config = [
+ *     'projectId' => 'my-project',
  *     'directedReadOptions' => [
  *         'includeReplicas' => [
  *             'replicaSelections' => [
@@ -90,13 +95,13 @@ use Google\ApiCore\ValidationException;
  *         ]
  *     ]
  * ];
- * $spanner = new SpannerClient($directedOptions);
+ * $spanner = new SpannerClient($config);
  * ```
  *
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $config = ['routeToLeader' => false];
+ * $config = ['projectId' => 'my-project', 'routeToLeader' => false];
  * $spanner = new SpannerClient($config);
  * ```
  *
@@ -110,26 +115,42 @@ use Google\ApiCore\ValidationException;
  *
  *     @param string $operationName The Long Running Operation name.
  *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
+ *     @return LongRunningOperationManager
  * }
  */
 class SpannerClient
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
+    use ClientOptionsTrait;
     use ClientTrait;
-    use LROTrait;
+    use LongRunningOperationTrait;
     use ValidateTrait;
+    use RequestTrait;
 
     const VERSION = '1.81.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
+    private const GAPIC_KEYS = [
+        GapicSpannerClient::class,
+        InstanceAdminClient::class,
+        DatabaseAdminClient::class
+    ];
 
     /**
-     * @var Connection\ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    protected $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
+     * @var string
+     */
+    private $projectId;
 
     /**
      * @var bool
@@ -142,37 +163,43 @@ class SpannerClient
     private $directedReadOptions;
 
     /**
+     * @var bool
+     */
+    private $routeToLeader;
+
+    /**
+     * @var array
+     */
+    private $lroCallables;
+
+    /**
+     * @var array
+     */
+    private $defaultQueryOptions;
+
+    /**
      * Create a Spanner client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $projectId The Google Cloud project ID.
      *     @type string $apiEndpoint A hostname with optional port to use in
      *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *     @type CacheItemPoolInterface $credentialsConfig.authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     *     @type array $credentialsConfig.authCacheOptions Cache configuration options.
+     *     @type callable $credentialsConfig.authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type callable $transportConfig.rest.httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request. Used only
-     *           with default backoff strategy. **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls.
+     *     @type array $credentialsConfig.scopes Scopes to be used for the request.
+     *     @type string $credentialsConfig.quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
@@ -192,10 +219,6 @@ class SpannerClient
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
-     *     @type bool $useDiscreteBackoffs `false`: use default backoff strategy
-     *           (retry every failed request up to `retries` times).
-     *           `true`: use discrete backoff settings based on called method name.
-     *           **Defaults to** `false`.
      *     @type array $directedReadOptions Directed read options.
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
@@ -210,11 +233,8 @@ class SpannerClient
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
 
         $this->requireGrpc();
+        $scopes = [self::FULL_CONTROL_SCOPE, self::ADMIN_SCOPE];
         $config += [
-            'scopes' => [
-                self::FULL_CONTROL_SCOPE,
-                self::ADMIN_SCOPE
-            ],
             'returnInt64AsObject' => false,
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
@@ -222,64 +242,97 @@ class SpannerClient
             'queryOptions' => []
         ];
 
-        if (!empty($config['useDiscreteBackoffs'])) {
-            $config = array_merge_recursive($config, [
-                'retries' => 0,
-                'grpcOptions' => [
-                    'retrySettings' => [],
-                ],
-            ]);
-        }
-
-        $this->connection = new Grpc($this->configureAuthentication($config));
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
-
-        $this->setLroProperties(new LongRunningConnection($this->connection), [
+        $lroCallables = [
             [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
-            ], [
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
                 'callable' => function ($database) {
                     $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
                     $instanceName = $databaseNameComponents['instance'];
                     $databaseName = $databaseNameComponents['database'];
-
                     $instance = $this->instance($instanceName);
                     return $instance->database($databaseName);
                 }
-            ], [
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
                 'callable' => function ($database) {
                     $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
                     $instanceName = $databaseNameComponents['instance'];
                     $databaseName = $databaseNameComponents['database'];
-
                     $instance = $this->instance($instanceName);
                     return $instance->database($databaseName);
                 }
-            ],[
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
-            ], [
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
                 'callable' => function ($backup) {
                     $backupNameComponents = DatabaseAdminClient::parseName($backup['name']);
                     $instanceName = $backupNameComponents['instance'];
-
                     $instance = $this->instance($instanceName);
                     return $instance->backup($backup['name'], $backup);
                 }
             ]
-        ]);
-
+        ];
         $this->directedReadOptions = $config['directedReadOptions'] ?? [];
+        $this->routeToLeader = $config['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $config['queryOptions'];
+
+        // Configure GAPIC client options
+        $config = $this->buildClientOptions($config);
+        if (isset($config['credentialsConfig']['scopes'])) {
+            $config['credentialsConfig']['scopes'] = array_merge(
+                $config['credentialsConfig']['scopes'],
+                $scopes
+            );
+        } else {
+            $config['credentialsConfig']['scopes'] = $scopes;
+        }
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
+        $this->projectId = $this->detectProjectId($config);
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ]);
+        $this->requestHandler = new RequestHandler(
+            $this->serializer,
+            self::GAPIC_KEYS,
+            $config
+        );
+        $this->setLroProperties(
+            $this->requestHandler,
+            $this->serializer,
+            $lroCallables,
+            $this->getLROResponseMappers()
+        );
     }
 
     /**
@@ -311,8 +364,13 @@ class SpannerClient
     public function batch($instanceId, $databaseId, array $options = [])
     {
         $operation = new Operation(
-            $this->connection,
-            $this->returnInt64AsObject
+            $this->requestHandler,
+            $this->serializer,
+            $this->returnInt64AsObject,
+            [
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions
+            ]
         );
 
         return new BatchClient(
@@ -379,7 +437,7 @@ class SpannerClient
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<InstanceConfiguration>
+     * @return LongRunningOperationManager<InstanceConfiguration>
      * @throws ValidationException
      */
     public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
@@ -414,15 +472,30 @@ class SpannerClient
      */
     public function instanceConfigurations(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['parent'] = InstanceAdminClient::projectName($this->projectId);
 
+        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
         return new ItemIterator(
             new PageIterator(
                 function (array $config) {
                     return $this->instanceConfiguration($config['name'], $config);
                 },
-                [$this->connection, 'listInstanceConfigs'],
-                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                function ($callOptions) use ($optionalArgs, $data) {
+                    if (isset($callOptions['pageToken'])) {
+                        $data['pageToken'] = $callOptions['pageToken'];
+                    }
+
+                    return $this->createAndSendRequest(
+                        InstanceAdminClient::class,
+                        'listInstanceConfigs',
+                        $data,
+                        $optionalArgs,
+                        ListInstanceConfigsRequest::class,
+                        InstanceAdminClient::projectName($this->projectId)
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'instanceConfigs',
                     'resultLimit' => $resultLimit
@@ -456,11 +529,11 @@ class SpannerClient
     public function instanceConfiguration($name, array $options = [])
     {
         return new InstanceConfiguration(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->projectId,
             $name,
-            $options,
-            $this->lroConnection
+            $options
         );
     }
 
@@ -488,18 +561,35 @@ class SpannerClient
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperation>
+     * @return ItemIterator<LongRunningOperationManager>
      */
     public function instanceConfigOperations(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $data['parent'] = InstanceAdminClient::projectName($this->projectId);
         return new ItemIterator(
             new PageIterator(
                 function (array $operation) {
                     return $this->resumeOperation($operation['name'], $operation);
                 },
-                [$this->connection, 'listInstanceConfigOperations'],
-                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                function ($callOptions) use ($optionalArgs, $data) {
+                    if (isset($callOptions['pageToken'])) {
+                        $data['pageToken'] = $callOptions['pageToken'];
+                    }
+
+                    $result = $this->createAndSendRequest(
+                        InstanceAdminClient::class,
+                        'listInstanceConfigOperations',
+                        $data,
+                        $optionalArgs,
+                        ListInstanceConfigOperationsRequest::class,
+                        InstanceAdminClient::projectName($this->projectId)
+                    );
+                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    return $result;
+                },
+                $options,
                 [
                     'itemsKey' => 'operations',
                     'resultLimit' => $resultLimit
@@ -529,7 +619,7 @@ class SpannerClient
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
-     * @return LongRunningOperation<Instance>
+     * @return LongRunningOperationManager<Instance>
      * @codingStandardsIgnoreEnd
      */
     public function createInstance(InstanceConfiguration $config, $name, array $options = [])
@@ -552,14 +642,18 @@ class SpannerClient
     public function instance($name, array $instance = [])
     {
         return new Instance(
-            $this->connection,
-            $this->lroConnection,
+            $this->requestHandler,
+            $this->serializer,
             $this->lroCallables,
             $this->projectId,
             $name,
             $this->returnInt64AsObject,
             $instance,
-            ['directedReadOptions' => $this->directedReadOptions]
+            [
+                'directedReadOptions' => $this->directedReadOptions,
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions
+            ]
         );
     }
 
@@ -591,19 +685,31 @@ class SpannerClient
      */
     public function instances(array $options = [])
     {
-        $options += [
-            'filter' => null
-        ];
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += ['filter' => '', 'parent' => InstanceAdminClient::projectName($this->projectId)];
 
-        $resultLimit = $this->pluck('resultLimit', $options, false);
+        $resultLimit = $this->pluck('resultLimit', $data, false);
         return new ItemIterator(
             new PageIterator(
                 function (array $instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 },
-                [$this->connection, 'listInstances'],
-                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                function ($callOptions) use ($optionalArgs, $data) {
+                    if (isset($callOptions['pageToken'])) {
+                        $data['pageToken'] = $callOptions['pageToken'];
+                    }
+
+                    return $this->createAndSendRequest(
+                        InstanceAdminClient::class,
+                        'listInstances',
+                        $data,
+                        $optionalArgs,
+                        ListInstancesRequest::class,
+                        InstanceAdminClient::projectName($this->projectId)
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'instances',
                     'resultLimit' => $resultLimit
@@ -870,7 +976,7 @@ class SpannerClient
      */
     public function duration($seconds, $nanos = 0)
     {
-        return new Duration($seconds, $nanos);
+        return new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
     }
 
     /**

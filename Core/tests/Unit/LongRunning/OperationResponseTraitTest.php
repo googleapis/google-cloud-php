@@ -18,10 +18,14 @@
 namespace Google\Cloud\Core\Tests\Unit\LongRunning;
 
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
@@ -34,6 +38,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class OperationResponseTraitTest extends TestCase
 {
+    use CheckForClassTrait;
     use ProphecyTrait;
     use OperationResponseTrait;
 
@@ -158,6 +163,47 @@ class OperationResponseTraitTest extends TestCase
             ]
         ];
         $lro = new LongRunningOperation($connection->reveal(), self::OPERATION_NAME, $callables);
+        $got = $lro->result();
+        $expected = 'any|all|1';
+        $this->assertEquals($expected, $got);
+    }
+
+    public function testLongRunningOperationManager()
+    {
+        $this->checkAndSkipTest([
+            DatabaseAdminClient::class,
+        ]);
+        $result = new AuthorizationInfo([
+            'permission' => 'all',
+            'granted' => true,
+            'resource' => 'any',
+        ]);
+        $meta = new RequestMetadata([
+            'caller_ip' => '127.8.9.10',
+        ]);
+        $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
+        $operation = new OperationResponse(self::OPERATION_NAME, null, ['lastProtoResponse' => $response]);
+
+        $requestHandler = $this->prophesize(RequestHandler::class);
+        $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $requestHandler->getClientObject(Argument::any())->willReturn($databaseAdminClient);
+        $databaseAdminClient->resumeOperation(Argument::cetera())->willReturn($operation);
+        $callables = [
+            [
+                'typeUrl' => self::METADATA_TYPE,
+                'callable' => function ($result) {
+                    return implode('|', [$result['resource'], $result['permission'], $result['granted']]);
+                }
+            ]
+        ];
+        $lro = new LongRunningOperationManager(
+            $requestHandler->reveal(),
+            $this->serializer,
+            $callables,
+            $this->lroResponseMappers,
+            DatabaseAdminClient::class,
+            self::OPERATION_NAME
+        );
         $got = $lro->result();
         $expected = 'any|all|1';
         $this->assertEquals($expected, $got);

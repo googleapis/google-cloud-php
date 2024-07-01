@@ -29,7 +29,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The list of unreachable instances.
      * It includes the names of instances whose metadata could not be retrieved

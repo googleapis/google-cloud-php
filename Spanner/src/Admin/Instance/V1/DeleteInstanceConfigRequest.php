@@ -23,7 +23,7 @@ class DeleteInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Used for optimistic concurrency control as a way to help prevent
      * simultaneous deletes of an instance config from overwriting each
@@ -35,14 +35,14 @@ class DeleteInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * An option to validate, but not actually execute, a request,
      * and provide the same response.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string $name Required. The name of the instance configuration to be deleted.

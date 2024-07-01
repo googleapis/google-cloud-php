@@ -32,7 +32,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes proto_descriptors = 2;</code>
      */
-    private $proto_descriptors = '';
+    protected $proto_descriptors = '';
 
     /**
      * Constructor.

@@ -22,14 +22,14 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Number of instance partitions to be returned in the response. If 0 or less,
      * defaults to the server's maximum allowed page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.instance.v1.ListInstancePartitionsResponse.next_page_token]
@@ -38,7 +38,7 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Deadline used while retrieving metadata for instance partitions.
      * Instance partitions whose metadata cannot be retrieved within this deadline
@@ -49,7 +49,7 @@ class ListInstancePartitionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp instance_partition_deadline = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_partition_deadline = null;
+    protected $instance_partition_deadline = null;
 
     /**
      * @param string $parent Required. The instance whose instance partitions should be listed. Values

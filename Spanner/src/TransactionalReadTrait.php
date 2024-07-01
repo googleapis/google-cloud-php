@@ -26,7 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
+    use RequestTrait;
 
     /**
      * @var Operation
@@ -304,6 +304,8 @@ trait TransactionalReadTrait
         );
 
         $options = $this->addLarHeader($options, true, $this->context);
+        // Unsetting the internal flag
+        unset($options['singleUse']);
 
         $result = $this->operation->execute($this->session, $sql, $options);
         if (empty($this->id()) && $result->transaction()) {
@@ -365,7 +367,6 @@ trait TransactionalReadTrait
             $options['transactionId'] = $this->transactionId;
         }
         $options['transactionType'] = $this->context;
-        $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];

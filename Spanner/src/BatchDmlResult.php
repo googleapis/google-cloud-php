@@ -25,7 +25,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\Transaction;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $batchDmlResult = $database->runTransaction(function (Transaction $t) {

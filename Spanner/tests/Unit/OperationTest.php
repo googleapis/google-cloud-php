@@ -19,11 +19,9 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -31,12 +29,12 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Protobuf\Duration;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -46,7 +44,7 @@ class OperationTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
+    use RequestHandlingTestTrait;
 
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
@@ -54,20 +52,23 @@ class OperationTest extends TestCase
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
-    private $connection;
     private $operation;
     private $session;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
 
         $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             false
-        ]);
+        ], ['requestHandler', 'serializer']);
 
         $session = $this->prophesize(Session::class);
         $session->name()->willReturn(self::SESSION);
@@ -118,17 +119,24 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mutations', $mutations),
-            Argument::withEntry('transactionId', 'foo')
-        ))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => self::TIMESTAMP
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) use ($mutations) {
+                $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['mutations'], $mutations);
+                $this->assertEquals($message['transactionId'], self::TRANSACTION);
+                return true;
+            },
+            ['commitTimestamp' => self::TIMESTAMP]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->commit($this->session, $mutations, [
-            'transactionId' => 'foo'
+            'transactionId' => self::TRANSACTION
         ]);
 
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -142,16 +150,25 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mutations', $mutations),
-            Argument::withEntry('transactionId', 'foo'),
-            Argument::withEntry('returnCommitStats', true)
-        ))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => self::TIMESTAMP,
-            'commitStats' => ['mutationCount' => 1]
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) use ($mutations) {
+                $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['mutations'], $mutations);
+                $this->assertEquals($message['transactionId'], 'foo');
+                $this->assertEquals($message['returnCommitStats'], true);
+                return true;
+            },
+            [
+                'commitTimestamp' => self::TIMESTAMP,
+                'commitStats' => ['mutationCount' => 1]
+            ]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->commitWithResponse($this->session, $mutations, [
             'transactionId' => 'foo',
@@ -167,22 +184,38 @@ class OperationTest extends TestCase
 
     public function testCommitWithMaxCommitDelay()
     {
-        $duration = new Duration(0, 100000000);
+        $duration = new Duration(['seconds' => 0, 'nanos' => 100000000]);
         $mutations = [
             $this->operation->mutation(Operation::OP_INSERT, 'Posts', [
                 'foo' => 'bar'
             ])
         ];
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mutations', $mutations),
-            Argument::withEntry('transactionId', 'foo'),
-            Argument::withEntry('maxCommitDelay', $duration)
-        ))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => self::TIMESTAMP,
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) use ($mutations, $duration) {
+                $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['mutations'], $mutations);
+                $this->assertEquals($message['transactionId'], 'foo');
+                $this->assertEquals(
+                    $message['maxCommitDelay']['seconds'],
+                    $duration->getSeconds()
+                );
+                $this->assertEquals(
+                    $message['maxCommitDelay']['nanos'],
+                    $duration->getNanos()
+                );
+                return true;
+            },
+            [
+                'commitTimestamp' => self::TIMESTAMP,
+            ]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->commitWithResponse($this->session, $mutations, [
             'transactionId' => 'foo',
@@ -203,17 +236,23 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mutations', $mutations),
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::that(function ($arg) {
-                return !isset($arg['singleUseTransaction']);
-            })
-        ))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => self::TIMESTAMP
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) use ($mutations) {
+                $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['mutations'], $mutations);
+                $this->assertEquals($message['transactionId'], self::TRANSACTION);
+                return !isset($message['singleUseTransaction']);
+            },
+            [
+                'commitTimestamp' => self::TIMESTAMP
+            ]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->commit($this->session, $mutations, [
             'transactionId' => self::TRANSACTION
@@ -224,12 +263,20 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->connection->rollback(Argument::allOf(
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::withEntry('session', self::SESSION)
-        ))->shouldBeCalled();
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'rollback',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['transactionId'], self::TRANSACTION);
+                $this->assertEquals($message['session'], self::SESSION);
+                return true;
+            },
+            null
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $this->operation->rollback($this->session, self::TRANSACTION);
     }
@@ -239,16 +286,25 @@ class OperationTest extends TestCase
         $sql = 'SELECT * FROM Posts WHERE ID = @id';
         $params = ['id' => 10];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('params', ['id' => '10']),
-            Argument::that(function ($arg) {
-                return $arg['paramTypes']['id']['code'] === Database::TYPE_INT64;
-            })
-        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                $this->assertEquals($args->getSql(), $sql);
+                $this->assertEquals($args->getSession(), self::SESSION);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['params'], ['id' => '10']);
+                $this->assertEquals(
+                    $message['paramTypes'],
+                    ['id' => ['code' => Database::TYPE_INT64, 'typeAnnotation' => 0, 'protoTypeFqn' => '']]
+                );
+                return true;
+            },
+            $this->executeAndReadResponse()
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->execute($this->session, $sql, [
             'parameters' => $params
@@ -261,14 +317,22 @@ class OperationTest extends TestCase
 
     public function testRead()
     {
-        $this->connection->streamingRead(Argument::allOf(
-            Argument::withEntry('table', 'Posts'),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('keySet', ['all' => true]),
-            Argument::withEntry('columns', ['foo'])
-        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['table'], 'Posts');
+                $this->assertEquals($message['session'], self::SESSION);
+                $this->assertTrue($message['keySet']['all']);
+                $this->assertEquals($message['columns'], ['foo']);
+                return true;
+            },
+            $this->executeAndReadResponse()
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo']);
         $this->assertInstanceOf(Result::class, $res);
@@ -278,16 +342,22 @@ class OperationTest extends TestCase
 
     public function testReadWithTransaction()
     {
-        $this->connection->streamingRead(Argument::allOf(
-            Argument::withEntry('table', 'Posts'),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('keySet', ['all' => true]),
-            Argument::withEntry('columns', ['foo'])
-        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
-            'transaction' => ['id' => self::TRANSACTION]
-        ]));
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['table'], 'Posts');
+                $this->assertEquals($message['session'], self::SESSION);
+                $this->assertTrue($message['keySet']['all']);
+                $this->assertEquals($message['columns'], ['foo']);
+                return true;
+            },
+            $this->executeAndReadResponse(['transaction' => ['id' => self::TRANSACTION]])
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
             'transactionContext' => SessionPoolInterface::CONTEXT_READWRITE
@@ -300,16 +370,22 @@ class OperationTest extends TestCase
 
     public function testReadWithSnapshot()
     {
-        $this->connection->streamingRead(Argument::allOf(
-            Argument::withEntry('table', 'Posts'),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('keySet', ['all' => true]),
-            Argument::withEntry('columns', ['foo'])
-        ))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
-            'transaction' => ['id' => self::TRANSACTION]
-        ]));
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['table'], 'Posts');
+                $this->assertEquals($message['session'], self::SESSION);
+                $this->assertTrue($message['keySet']['all']);
+                $this->assertEquals($message['columns'], ['foo']);
+                return true;
+            },
+            $this->executeAndReadResponse(['transaction' => ['id' => self::TRANSACTION]])
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
             'transactionContext' => SessionPoolInterface::CONTEXT_READ
@@ -322,15 +398,19 @@ class OperationTest extends TestCase
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('requestOptions', ['transactionTag' => self::TRANSACTION_TAG])
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['session'], $this->session->name());
+                return $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $t = $this->operation->transaction($this->session, ['tag' => self::TRANSACTION_TAG]);
         $this->assertInstanceOf(Transaction::class, $t);
@@ -339,15 +419,23 @@ class OperationTest extends TestCase
 
     public function testTransactionNoTag()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry('requestOptions', [])
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['session'], $this->session->name());
+                return $message['requestOptions'] == [
+                    'priority' => 0,
+                    'requestTag' => '',
+                    'transactionTag' => '',
+                ];
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $t = $this->operation->transaction($this->session);
         $this->assertInstanceOf(Transaction::class, $t);
@@ -356,14 +444,18 @@ class OperationTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('session', $this->session->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $snap = $this->operation->snapshot($this->session);
         $this->assertInstanceOf(Snapshot::class, $snap);
@@ -373,10 +465,10 @@ class OperationTest extends TestCase
 
     public function testSnapshotSingleUse()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $snap = $this->operation->snapshot($this->session, ['singleUse' => true]);
         $this->assertInstanceOf(Snapshot::class, $snap);
@@ -386,14 +478,18 @@ class OperationTest extends TestCase
 
     public function testSnapshotWithTimestamp()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('session', $this->session->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION, 'readTimestamp' => self::TIMESTAMP]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION, 'readTimestamp' => self::TIMESTAMP]
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $snap = $this->operation->snapshot($this->session);
         $this->assertInstanceOf(Snapshot::class, $snap);
@@ -410,28 +506,30 @@ class OperationTest extends TestCase
         $partitionToken1 = 'token1';
         $partitionToken2 = 'token2';
 
-        $this->connection->partitionQuery(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('params', ['id' => '10']),
-            Argument::that(function ($arg) use ($transactionId) {
-                if ($arg['paramTypes']['id']['code'] !== Database::TYPE_INT64) {
-                    return false;
-                }
-
-                return $arg['transactionId'] === $transactionId;
-            })
-        ))->shouldBeCalled()->willReturn([
-            'partitions' => [
-                [
-                    'partitionToken' => $partitionToken1
-                ], [
-                    'partitionToken' => $partitionToken2
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'partitionQuery',
+            function ($args) use ($sql, $transactionId, $partitionToken1, $partitionToken2) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['sql'], $sql);
+                $this->assertEquals($message['session'], self::SESSION);
+                $this->assertEquals($message['params'], ['id' => '10']);
+                $this->assertEquals($message['paramTypes']['id']['code'], Database::TYPE_INT64);
+                $this->assertEquals($message['transaction']['id'], $transactionId);
+                return true;
+            },
+            [
+                'partitions' => [
+                    [
+                        'partitionToken' => $partitionToken1
+                    ], [
+                        'partitionToken' => $partitionToken2
+                    ]
                 ]
             ]
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->partitionQuery($this->session, $transactionId, $sql, [
             'parameters' => $params
@@ -445,39 +543,42 @@ class OperationTest extends TestCase
 
     public function testPartitionRead()
     {
-        $sql = 'SELECT * FROM Posts WHERE ID = @id';
         $params = ['id' => 10];
         $transactionId = 'foo';
 
         $partitionToken1 = 'token1';
         $partitionToken2 = 'token2';
 
-        $this->connection->partitionRead(Argument::allOf(
-            Argument::withEntry('table', 'Posts'),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('keySet', ['all' => true]),
-            Argument::withEntry('columns', ['foo'])
-        ))->shouldBeCalled()->willReturn([
-            'partitions' => [
-                [
-                    'partitionToken' => $partitionToken1
-                ], [
-                    'partitionToken' => $partitionToken2
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'partitionRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['table'], 'Posts');
+                $this->assertEquals($message['session'], self::SESSION);
+                $this->assertEquals($message['keySet']['all'], true);
+                $this->assertEquals($message['columns'], ['foo']);
+                return true;
+            },
+            [
+                'partitions' => [
+                    [
+                        'partitionToken' => $partitionToken1
+                    ], [
+                        'partitionToken' => $partitionToken2
+                    ]
                 ]
             ]
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->operation->___setProperty('serializer', $this->serializer);
 
         $res = $this->operation->partitionRead(
             $this->session,
             $transactionId,
             'Posts',
             new KeySet(['all' => true]),
-            ['foo'],
-            [
-                'parameters' => $params
-            ]
+            ['foo']
         );
 
         $this->assertContainsOnlyInstancesOf(ReadPartition::class, $res);

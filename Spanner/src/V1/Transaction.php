@@ -26,7 +26,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * For snapshot read-only transactions, the read timestamp chosen
      * for the transaction. Not returned by default: see
@@ -36,7 +36,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
-    private $read_timestamp = null;
+    protected $read_timestamp = null;
 
     /**
      * Constructor.

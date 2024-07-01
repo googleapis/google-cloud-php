@@ -20,7 +20,7 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $backup = '';
+    protected $backup = '';
     /**
      * The backup contains an externally consistent copy of `source_database` at
      * the timestamp specified by `version_time`. If the
@@ -30,7 +30,7 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 4;</code>
      */
-    private $version_time = null;
+    protected $version_time = null;
     /**
      * The time the
      * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
@@ -38,13 +38,13 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Name of the database the backup was created from.
      *
      * Generated from protobuf field <code>string source_database = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $source_database = '';
+    protected $source_database = '';
 
     /**
      * Constructor.

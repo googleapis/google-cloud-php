@@ -25,7 +25,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $date = $spanner->date(new \DateTimeImmutable('1995-02-04'));
  * ```
