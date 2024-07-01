@@ -208,6 +208,8 @@ class Database
     /**
      * Create an object representing a Database.
      *
+     * @internal Database is constructed by the {@see Instance} class.
+     *
      * @param RequestHandler The request handler that is responsible for sending a request
      *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.

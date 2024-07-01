@@ -119,6 +119,8 @@ class Instance
     /**
      * Create an object representing a Cloud Spanner instance.
      *
+     * @internal Instance is constructed by the {@see SpannerClient} class.
+     *
      * @param RequestHandler The request handler that is responsible for sending a request
      *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -866,6 +868,27 @@ class Instance
             'labels' => [],
             'config' => $config ? $config->name() : ''
         ];
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName)
+    {
+        return new OperationResponse(
+            $operationName,
+            $this->requestHandler
+                ->getClientObject(InstanceAdminClient::class)
+                ->getOperationsClient()
+        );
     }
 
     private function instanceResultFunction(): Closure

@@ -502,7 +502,7 @@ class SpannerClient
                 function (OperationResponse $operation) {
                     return $operation;
                 },
-                function ($callOptions) use ($callOptions, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -516,7 +516,7 @@ class SpannerClient
                         InstanceAdminClient::projectName($this->projectId)
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'operations',
                     'resultLimit' => $resultLimit
@@ -621,7 +621,7 @@ class SpannerClient
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 },
-                function ($callOptions) use ($callOptions, $data) {
+                function ($callOptions) use ($data) {
                     if (isset($callOptions['pageToken'])) {
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
@@ -635,7 +635,7 @@ class SpannerClient
                         InstanceAdminClient::projectName($this->projectId)
                     );
                 },
-                $options,
+                $callOptions,
                 [
                     'itemsKey' => 'instances',
                     'resultLimit' => $resultLimit
