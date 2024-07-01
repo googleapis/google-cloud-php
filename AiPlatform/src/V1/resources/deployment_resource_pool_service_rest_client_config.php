@@ -79,6 +79,22 @@ return [
                     ],
                 ],
             ],
+            'UpdateDeploymentResourcePool' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{deployment_resource_pool.name=projects/*/locations/*/deploymentResourcePools/*}',
+                'body' => 'deployment_resource_pool',
+                'placeholders' => [
+                    'deployment_resource_pool.name' => [
+                        'getters' => [
+                            'getDeploymentResourcePool',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

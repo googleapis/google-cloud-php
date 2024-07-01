@@ -40,6 +40,7 @@ use Google\Cloud\AIPlatform\V1\DeploymentResourcePool;
 use Google\Cloud\AIPlatform\V1\GetDeploymentResourcePoolRequest;
 use Google\Cloud\AIPlatform\V1\ListDeploymentResourcePoolsRequest;
 use Google\Cloud\AIPlatform\V1\QueryDeployedModelsRequest;
+use Google\Cloud\AIPlatform\V1\UpdateDeploymentResourcePoolRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -68,6 +69,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getDeploymentResourcePoolAsync(GetDeploymentResourcePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeploymentResourcePoolsAsync(ListDeploymentResourcePoolsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface queryDeployedModelsAsync(QueryDeployedModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateDeploymentResourcePoolAsync(UpdateDeploymentResourcePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -468,6 +470,36 @@ final class DeploymentResourcePoolServiceClient
     public function queryDeployedModels(QueryDeployedModelsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('QueryDeployedModels', $request, $callOptions);
+    }
+
+    /**
+     * Update a DeploymentResourcePool.
+     *
+     * The async variant is
+     * {@see DeploymentResourcePoolServiceClient::updateDeploymentResourcePoolAsync()}
+     * .
+     *
+     * @example samples/V1/DeploymentResourcePoolServiceClient/update_deployment_resource_pool.php
+     *
+     * @param UpdateDeploymentResourcePoolRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDeploymentResourcePool(
+        UpdateDeploymentResourcePoolRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateDeploymentResourcePool', $request, $callOptions)->wait();
     }
 
     /**

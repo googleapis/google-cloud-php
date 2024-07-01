@@ -164,6 +164,11 @@
                                 "queryDeployedModels"
                             ]
                         },
+                        "UpdateDeploymentResourcePool": {
+                            "methods": [
+                                "updateDeploymentResourcePool"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

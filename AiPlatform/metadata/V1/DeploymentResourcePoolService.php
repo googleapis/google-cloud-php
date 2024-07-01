@@ -24,10 +24,11 @@ class DeploymentResourcePoolService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-®
-Agoogle/cloud/aiplatform/v1/deployment_resource_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/deployed_model_ref.proto9google/cloud/aiplatform/v1/deployment_resource_pool.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"Â
+Ó
+Agoogle/cloud/aiplatform/v1/deployment_resource_pool_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/deployed_model_ref.proto9google/cloud/aiplatform/v1/deployment_resource_pool.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Â
 #CreateDeploymentResourcePoolRequest9
 parent (	B)‡A˙A#
 !locations.googleapis.com/LocationY
@@ -45,7 +46,10 @@ Agoogle/cloud/aiplatform/v1/deployment_resource_pool_service.protogoogle.cloud
 page_token (	"ï
 #ListDeploymentResourcePoolsResponseU
 deployment_resource_pools (22.google.cloud.aiplatform.v1.DeploymentResourcePool
-next_page_token (	"
+next_page_token (	"∂
+#UpdateDeploymentResourcePoolRequestY
+deployment_resource_pool (22.google.cloud.aiplatform.v1.DeploymentResourcePoolB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"
 -UpdateDeploymentResourcePoolOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"m
 #DeleteDeploymentResourcePoolRequestF
@@ -61,12 +65,14 @@ page_token (	"ã
 next_page_token (	I
 deployed_model_refs (2,.google.cloud.aiplatform.v1.DeployedModelRef"
 total_deployed_model_count (
-total_endpoint_count (2ù
+total_endpoint_count (2à
 DeploymentResourcePoolServiceœ
 CreateDeploymentResourcePool?.google.cloud.aiplatform.v1.CreateDeploymentResourcePoolRequest.google.longrunning.Operation"Œ AG
 DeploymentResourcePool-CreateDeploymentResourcePoolOperationMetadata⁄A;parent,deployment_resource_pool,deployment_resource_pool_idÇ”‰ì@";/v1/{parent=projects/*/locations/*}/deploymentResourcePools:*Ÿ
 GetDeploymentResourcePool<.google.cloud.aiplatform.v1.GetDeploymentResourcePoolRequest2.google.cloud.aiplatform.v1.DeploymentResourcePool"J⁄AnameÇ”‰ì=;/v1/{name=projects/*/locations/*/deploymentResourcePools/*}Ï
-ListDeploymentResourcePools>.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsRequest?.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsResponse"L⁄AparentÇ”‰ì=;/v1/{parent=projects/*/locations/*}/deploymentResourcePools˝
+ListDeploymentResourcePools>.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsRequest?.google.cloud.aiplatform.v1.ListDeploymentResourcePoolsResponse"L⁄AparentÇ”‰ì=;/v1/{parent=projects/*/locations/*}/deploymentResourcePoolsË
+UpdateDeploymentResourcePool?.google.cloud.aiplatform.v1.UpdateDeploymentResourcePoolRequest.google.longrunning.Operation"Á AG
+DeploymentResourcePool-UpdateDeploymentResourcePoolOperationMetadata⁄A$deployment_resource_pool,update_maskÇ”‰ìp2T/v1/{deployment_resource_pool.name=projects/*/locations/*/deploymentResourcePools/*}:deployment_resource_pool˝
 DeleteDeploymentResourcePool?.google.cloud.aiplatform.v1.DeleteDeploymentResourcePoolRequest.google.longrunning.Operation"} A0
 google.protobuf.EmptyDeleteOperationMetadata⁄AnameÇ”‰ì=*;/v1/{name=projects/*/locations/*/deploymentResourcePools/*}è
 QueryDeployedModels6.google.cloud.aiplatform.v1.QueryDeployedModelsRequest7.google.cloud.aiplatform.v1.QueryDeployedModelsResponse"Ü⁄Adeployment_resource_poolÇ”‰ìec/v1/{deployment_resource_pool=projects/*/locations/*/deploymentResourcePools/*}:queryDeployedModelsM Aaiplatform.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‡
