@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\LongRunning\Client\OperationsClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\OperationResponse;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -78,7 +78,6 @@ class BackupTest extends SnippetTestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->instance,
-            [],
             self::PROJECT,
             self::BACKUP,
         ], ['instance', 'requestHandler', 'serializer']);
@@ -288,9 +287,6 @@ class BackupTest extends SnippetTestCase
         $this->requestHandler
             ->getClientObject(Argument::any())
             ->willReturn(new DatabaseAdminClient());
-        $this->requestHandler
-            ->addClientObject(Argument::any(), Argument::any())
-            ->willReturn(null);
         $this->requestHandler
             ->sendRequest(
                 Argument::any(),

@@ -21,7 +21,7 @@ use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\OperationResponse;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
@@ -56,7 +56,6 @@ class InstanceConfiguration
 {
     use ApiHelperTrait;
     use ArrayTrait;
-    use OperationResponseTrait;
     use RequestTrait;
 
     /**
