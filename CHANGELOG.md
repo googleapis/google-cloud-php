@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.251.0
+
+<details><summary>google/cloud-ai-platform 1.1.0-RC1
+</summary>
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.250.0...v0.251.0) (2024-07-01)
+
+
+### Features
+
+* Add deploy_metadata to PublisherModel.Deploy v1 ([d6e9eb2](https://github.com/googleapis/google-cloud-php/commit/d6e9eb24758bcd6a9448eaeec0e60d8dcda34676))
+* Add private_service_connect_config and service_attachment fields to DedicatedServingEndpoint v1 ([d6e9eb2](https://github.com/googleapis/google-cloud-php/commit/d6e9eb24758bcd6a9448eaeec0e60d8dcda34676))
+* Add satisfies_pzs and satisfies_pzi fields to Model v1 ([d6e9eb2](https://github.com/googleapis/google-cloud-php/commit/d6e9eb24758bcd6a9448eaeec0e60d8dcda34676))
+* Add satisfies_pzs and satisfies_pzi fields to Tensorboard v1 ([d6e9eb2](https://github.com/googleapis/google-cloud-php/commit/d6e9eb24758bcd6a9448eaeec0e60d8dcda34676))
+* Add UpdateDeploymentResourcePool method to DeploymentResourcePoolService v1 ([#7489](https://github.com/googleapis/google-cloud-php/issues/7489)) ([d6e9eb2](https://github.com/googleapis/google-cloud-php/commit/d6e9eb24758bcd6a9448eaeec0e60d8dcda34676))
+
+
+### Documentation
+
+* Update comments of AutoscalingSpec v1 ([d6e9eb2](https://github.com/googleapis/google-cloud-php/commit/d6e9eb24758bcd6a9448eaeec0e60d8dcda34676))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.8.8</summary>
+
+
+
+</details>
+
 ## 0.250.0
 
 <details><summary>google/cloud-advisorynotifications 1.0.0-RC1</summary>
