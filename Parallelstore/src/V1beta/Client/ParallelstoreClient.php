@@ -271,6 +271,25 @@ final class ParallelstoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_account resource.
+     *
+     * @param string $project
+     * @param string $serviceAccount
+     *
+     * @return string The formatted service_account resource.
+     *
+     * @experimental
+     */
+    public static function serviceAccountName(string $project, string $serviceAccount): string
+    {
+        return self::getPathTemplate('serviceAccount')->render([
+            'project' => $project,
+            'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -278,6 +297,7 @@ final class ParallelstoreClient
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
