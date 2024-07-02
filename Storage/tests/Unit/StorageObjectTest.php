@@ -635,6 +635,31 @@ class StorageObjectTest extends TestCase
         ];
     }
 
+    public function testDownloadAsStreamShouldNotReadFromStream()
+    {
+        $stream = $this->prophesize(StreamInterface::class);
+        $stream->eof()->shouldNotBeCalled();
+        $stream->read(Argument::any())->shouldNotBeCalled();
+
+        $httpHandler = function ($request, $options) use ($stream) {
+            return new Response(200, [], $stream->reveal());
+        };
+
+        $rest = new Rest([
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            }
+        ]);
+
+        $object = new StorageObject($rest, 'object', 'bucket');
+        $stream = $object->downloadAsStream();
+
+        // assert the resulting stream looks like we'd expect
+        $this->assertInstanceOf(StreamInterface::class, $stream);
+    }
+
     public function testGetsInfo()
     {
         $objectInfo = [
