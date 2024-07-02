@@ -38,6 +38,16 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    /**
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * performing the transfer.
+     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * If unspecified, the Parallelstore service agent is used:
+     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     *
+     * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $service_account = '';
     protected $source;
     protected $destination;
 
@@ -65,6 +75,12 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type string $service_account
+     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           performing the transfer.
+     *           Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     *           If unspecified, the Parallelstore service agent is used:
+     *           service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
      * }
      */
     public function __construct($data = NULL) {
@@ -202,6 +218,40 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * performing the transfer.
+     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * If unspecified, the Parallelstore service agent is used:
+     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     *
+     * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * performing the transfer.
+     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * If unspecified, the Parallelstore service agent is used:
+     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     *
+     * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }
