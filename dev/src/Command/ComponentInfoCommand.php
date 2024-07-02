@@ -63,10 +63,10 @@ class ComponentInfoCommand extends Command
     {
         $this->setName('component-info')
             ->setDescription('list info of a component or the whole library')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'get info for a single component', '')
-            ->addOption('csv', '', InputOption::VALUE_REQUIRED, 'export findings to csv.')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
+            ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
-                "Comma-separated list of fields. The following fields are available: \n - %s\n" .
+                "Comma-separated list of fields, \"all\" for all fields. The following fields are available: \n - %s\n" .
                 "NOTE: \"available_api_versions\" are omited by default because they take a long time to load.\n" .
                 "Use --show-available-api-versions to include them.\n",
                 implode("\n - ", array_keys(self::$allFields))
@@ -91,22 +91,28 @@ class ComponentInfoCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $fields = $input->getOption('fields')
-            ? explode(',', $input->getOption('fields'))
-            : self::$defaultFields;
+        $fields = match($input->getOption('fields')) {
+            null => self::$defaultFields,
+            'all' => array_keys(array_diff_key(self::$allFields, ['available_api_versions' => ''])),
+            default => explode(',', $input->getOption('fields')),
+        };
+
         if ($input->getOption('show-available-api-versions')) {
             $fields[] = 'available_api_versions';
         }
         $this->token = $input->getOption('token');
 
+        // Parse filters
+        $filters = $this->parseFilters($input->getOption('filter') ?: '');
+
         // Filter out invalid fields
-        $requestedFields = array_intersect_key(array_flip($fields), self::$allFields);
+        $requestedFields = array_intersect_key(
+            array_flip($fields) + array_flip(array_column($filters, 0)),
+            self::$allFields
+        );
 
         // Compile all the component data into rows
-        $componentName = $input->getOption('component');
-        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
-
-        $filters = $this->parseFilters($input->getOption('filter') ?: '');
+        $components = Component::getComponents($input->getOption('component'));
 
         $rows = [];
         foreach ($components as $component) {
@@ -115,9 +121,10 @@ class ComponentInfoCommand extends Command
                 $requestedFields,
                 $input->getOption('expanded')
             );
-            foreach ($filters as $filter) {
-                list($field, $value, $operator) = $filter;
-                foreach ($componentRows as $row) {
+
+            foreach ($componentRows as $row) {
+                foreach ($filters as $filter) {
+                    list($field, $value, $operator) = $filter;
                     if (!match ($operator) {
                         '=' => ($row[$field] === $value),
                         '!=' => ($row[$field] !== $value),
@@ -150,14 +157,20 @@ class ComponentInfoCommand extends Command
             array_intersect_key(self::$allFields, $requestedFields)
         ));
 
-        if ($csv = $input->getOption('csv')) {
-            $fp = fopen($csv, 'wa+');
-            fputcsv($fp, $headers);
-            foreach ($rows as $row) {
-                fputcsv($fp, $row);
+        if (false !== $csv = $input->getOption('csv')) {
+            if (null === $csv) {
+                foreach ($rows as $row) {
+                    $output->writeln(implode(',', $row));
+                }
+            } else {
+                $fp = fopen($csv, 'wa+');
+                fputcsv($fp, $headers);
+                foreach ($rows as $row) {
+                    fputcsv($fp, $row);
+                }
+                fclose($fp);
+                $output->writeln('Output written to ' . $csv);
             }
-            fclose($fp);
-            $output->writeln('Output written to ' . $csv);
         } else {
             $table = new Table($output);
             $table
@@ -214,7 +227,7 @@ class ComponentInfoCommand extends Command
                 'github_repo' => $component->getRepoName(),
                 'proto_path' => implode("\n", $component->getProtoPackages()),
                 'service_address' => implode("\n", $component->getServiceAddresses()),
-                'api_shortname' => implode("\n", $component->getApiShortnames()),
+                'api_shortname' => implode("\n", array_filter($component->getApiShortnames())),
                 'description' => $component->getDescription(),
             ], $requestedFields));
 
