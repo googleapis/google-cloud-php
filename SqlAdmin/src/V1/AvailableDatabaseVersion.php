@@ -20,20 +20,20 @@ class AvailableDatabaseVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string major_version = 3;</code>
      */
-    private $major_version = null;
+    protected $major_version = null;
     /**
      * The database version name. For MySQL 8.0, this string provides the database
      * major and minor version.
      *
      * Generated from protobuf field <code>optional string name = 8;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The database version's display name.
      *
      * Generated from protobuf field <code>optional string display_name = 9;</code>
      */
-    private $display_name = null;
+    protected $display_name = null;
 
     /**
      * Constructor.

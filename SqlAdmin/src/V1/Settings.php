@@ -261,6 +261,14 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_google_ml_integration = null;
+    /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled
+     * for Dataplex. When this parameter is set to true, schema extraction for
+     * Dataplex on Cloud SQL instances is activated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_dataplex_integration = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_dataplex_integration = null;
 
     /**
      * Constructor.
@@ -379,6 +387,10 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           connect to Vertex AI to pass requests for real-time predictions and
      *           insights to the AI. The default value is false. This applies only to Cloud
      *           SQL for PostgreSQL instances.
+     *     @type \Google\Protobuf\BoolValue $enable_dataplex_integration
+     *           Optional. By default, Cloud SQL instances have schema extraction disabled
+     *           for Dataplex. When this parameter is set to true, schema extraction for
+     *           Dataplex on Cloud SQL instances is activated.
      * }
      */
     public function __construct($data = NULL) {
@@ -1767,6 +1779,77 @@ class Settings extends \Google\Protobuf\Internal\Message
     public function setEnableGoogleMlIntegrationUnwrapped($var)
     {
         $this->writeWrapperValue("enable_google_ml_integration", $var);
+        return $this;}
+
+    /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled
+     * for Dataplex. When this parameter is set to true, schema extraction for
+     * Dataplex on Cloud SQL instances is activated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_dataplex_integration = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnableDataplexIntegration()
+    {
+        return $this->enable_dataplex_integration;
+    }
+
+    public function hasEnableDataplexIntegration()
+    {
+        return isset($this->enable_dataplex_integration);
+    }
+
+    public function clearEnableDataplexIntegration()
+    {
+        unset($this->enable_dataplex_integration);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnableDataplexIntegration()</code>
+
+     * Optional. By default, Cloud SQL instances have schema extraction disabled
+     * for Dataplex. When this parameter is set to true, schema extraction for
+     * Dataplex on Cloud SQL instances is activated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_dataplex_integration = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getEnableDataplexIntegrationUnwrapped()
+    {
+        return $this->readWrapperValue("enable_dataplex_integration");
+    }
+
+    /**
+     * Optional. By default, Cloud SQL instances have schema extraction disabled
+     * for Dataplex. When this parameter is set to true, schema extraction for
+     * Dataplex on Cloud SQL instances is activated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_dataplex_integration = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnableDataplexIntegration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_dataplex_integration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. By default, Cloud SQL instances have schema extraction disabled
+     * for Dataplex. When this parameter is set to true, schema extraction for
+     * Dataplex on Cloud SQL instances is activated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_dataplex_integration = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnableDataplexIntegrationUnwrapped($var)
+    {
+        $this->writeWrapperValue("enable_dataplex_integration", $var);
         return $this;}
 
 }
