@@ -163,7 +163,3 @@ class Count extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Count::class, \Google\Cloud\Firestore\V1\StructuredAggregationQuery_Aggregation_Count::class);
-
