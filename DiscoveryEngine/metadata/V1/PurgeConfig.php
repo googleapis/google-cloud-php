@@ -20,7 +20,7 @@ class PurgeConfig
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë	
+¥
 2google/cloud/discoveryengine/v1/purge_config.protogoogle.cloud.discoveryengine.v1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"z
 PurgeDocumentsRequest=
 parent (	B-àAúA\'
@@ -44,6 +44,15 @@ class PurgeConfig
 purge_count ()
 error_samples (2.google.rpc.Status"Š
 &PurgeSuggestionDenyListEntriesMetadata/
+create_time (2.google.protobuf.Timestamp/
+update_time (2.google.protobuf.Timestamp"e
+!PurgeCompletionSuggestionsRequest@
+parent (	B0àAúA*
+(discoveryengine.googleapis.com/DataStore"h
+"PurgeCompletionSuggestionsResponse
+purge_succeeded ()
+error_samples (2.google.rpc.Status"†
+"PurgeCompletionSuggestionsMetadata/
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.TimestampBƒ
 #com.google.cloud.discoveryengine.v1BPurgeConfigProtoPZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINEªGoogle.Cloud.DiscoveryEngine.V1ÊGoogle\\Cloud\\DiscoveryEngine\\V1ê"Google::Cloud::DiscoveryEngine::V1bproto3'

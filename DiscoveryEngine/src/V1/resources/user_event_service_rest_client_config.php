@@ -31,6 +31,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:collect',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/userEvents:collect',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [

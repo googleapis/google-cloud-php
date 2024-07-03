@@ -45,6 +45,16 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult.ChunkInfo chunk_info = 5;</code>
      */
     private $chunk_info;
+    /**
+     * Data representation.
+     * The structured JSON data for the document.
+     * It's populated from the struct data from the Document (code
+     * pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
+     * (code pointer: http://shortn/_Ipo6KFFGBL).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 6;</code>
+     */
+    protected $struct_data = null;
 
     /**
      * Constructor.
@@ -64,6 +74,12 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo>|\Google\Protobuf\Internal\RepeatedField $chunk_info
      *           If citation_type is CHUNK_LEVEL_CITATION and chunk mode is on,
      *           populate chunk info.
+     *     @type \Google\Protobuf\Struct $struct_data
+     *           Data representation.
+     *           The structured JSON data for the document.
+     *           It's populated from the struct data from the Document (code
+     *           pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
+     *           (code pointer: http://shortn/_Ipo6KFFGBL).
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +217,50 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo::class);
         $this->chunk_info = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Data representation.
+     * The structured JSON data for the document.
+     * It's populated from the struct data from the Document (code
+     * pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
+     * (code pointer: http://shortn/_Ipo6KFFGBL).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 6;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getStructData()
+    {
+        return $this->struct_data;
+    }
+
+    public function hasStructData()
+    {
+        return isset($this->struct_data);
+    }
+
+    public function clearStructData()
+    {
+        unset($this->struct_data);
+    }
+
+    /**
+     * Data representation.
+     * The structured JSON data for the document.
+     * It's populated from the struct data from the Document (code
+     * pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
+     * (code pointer: http://shortn/_Ipo6KFFGBL).
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 6;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setStructData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->struct_data = $var;
 
         return $this;
     }
