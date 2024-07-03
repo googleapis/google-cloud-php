@@ -18,20 +18,24 @@ class LlmUtilityService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\Content::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\PredictionService::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–
-4google/cloud/aiplatform/v1/llm_utility_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/aiplatform/v1/prediction_service.protogoogle/protobuf/struct.proto"„
+£
+4google/cloud/aiplatform/v1/llm_utility_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/cloud/aiplatform/v1/content.proto3google/cloud/aiplatform/v1/prediction_service.protogoogle/protobuf/struct.proto"Ô
 ComputeTokensRequest<
 endpoint (	B*àAúA$
 "aiplatform.googleapis.com/Endpoint.
-	instances (2.google.protobuf.ValueBàA"/
+	instances (2.google.protobuf.ValueBàA
+model (	BàA:
+contents (2#.google.cloud.aiplatform.v1.ContentBàA"B
 
 TokensInfo
 tokens (
-	token_ids ("T
+	token_ids (
+role (	BàA"T
 ComputeTokensResponse;
 tokens_info (2&.google.cloud.aiplatform.v1.TokensInfo2¬
 LlmUtilityService

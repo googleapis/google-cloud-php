@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\AIPlatform\V1\Client\LlmUtilityServiceClient;
 use Google\Cloud\AIPlatform\V1\ComputeTokensRequest;
 use Google\Cloud\AIPlatform\V1\ComputeTokensResponse;
-use Google\Protobuf\Value;
 
 /**
  * Return a list of tokens based on the input text.
@@ -42,10 +41,8 @@ function compute_tokens_sample(string $formattedEndpoint): void
     $llmUtilityServiceClient = new LlmUtilityServiceClient();
 
     // Prepare the request message.
-    $instances = [new Value()];
     $request = (new ComputeTokensRequest())
-        ->setEndpoint($formattedEndpoint)
-        ->setInstances($instances);
+        ->setEndpoint($formattedEndpoint);
 
     // Call the API and handle any network failures.
     try {

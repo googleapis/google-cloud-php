@@ -86,8 +86,7 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
-        $request = (new ComputeTokensRequest())->setEndpoint($formattedEndpoint)->setInstances($instances);
+        $request = (new ComputeTokensRequest())->setEndpoint($formattedEndpoint);
         $response = $gapicClient->computeTokens($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -97,8 +96,6 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/ComputeTokens', $actualFuncCall);
         $actualValue = $actualRequestObject->getEndpoint();
         $this->assertProtobufEquals($formattedEndpoint, $actualValue);
-        $actualValue = $actualRequestObject->getInstances();
-        $this->assertProtobufEquals($instances, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,8 +122,7 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
-        $request = (new ComputeTokensRequest())->setEndpoint($formattedEndpoint)->setInstances($instances);
+        $request = (new ComputeTokensRequest())->setEndpoint($formattedEndpoint);
         try {
             $gapicClient->computeTokens($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -573,8 +569,7 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $instances = [];
-        $request = (new ComputeTokensRequest())->setEndpoint($formattedEndpoint)->setInstances($instances);
+        $request = (new ComputeTokensRequest())->setEndpoint($formattedEndpoint);
         $response = $gapicClient->computeTokensAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -584,8 +579,6 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/ComputeTokens', $actualFuncCall);
         $actualValue = $actualRequestObject->getEndpoint();
         $this->assertProtobufEquals($formattedEndpoint, $actualValue);
-        $actualValue = $actualRequestObject->getInstances();
-        $this->assertProtobufEquals($instances, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }
