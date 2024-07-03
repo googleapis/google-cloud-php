@@ -78,6 +78,14 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig sharing_environment_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $sharing_environment_config = null;
+    /**
+     * Optional. Type of discovery on the discovery page for all the listings
+     * under this exchange. Updating this field also updates (overwrites) the
+     * discovery_type field for all the listings under this exchange.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $discovery_type = null;
 
     /**
      * Constructor.
@@ -114,6 +122,10 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *           size of the data by 33-36%) when using JSON on the wire.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig $sharing_environment_config
      *           Optional. Configurable data sharing environment option for a data exchange.
+     *     @type int $discovery_type
+     *           Optional. Type of discovery on the discovery page for all the listings
+     *           under this exchange. Updating this field also updates (overwrites) the
+     *           discovery_type field for all the listings under this exchange.
      * }
      */
     public function __construct($data = NULL) {
@@ -361,6 +373,46 @@ class DataExchange extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig::class);
         $this->sharing_environment_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of discovery on the discovery page for all the listings
+     * under this exchange. Updating this field also updates (overwrites) the
+     * discovery_type field for all the listings under this exchange.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDiscoveryType()
+    {
+        return isset($this->discovery_type) ? $this->discovery_type : 0;
+    }
+
+    public function hasDiscoveryType()
+    {
+        return isset($this->discovery_type);
+    }
+
+    public function clearDiscoveryType()
+    {
+        unset($this->discovery_type);
+    }
+
+    /**
+     * Optional. Type of discovery on the discovery page for all the listings
+     * under this exchange. Updating this field also updates (overwrites) the
+     * discovery_type field for all the listings under this exchange.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiscoveryType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DiscoveryType::class);
+        $this->discovery_type = $var;
 
         return $this;
     }

@@ -257,6 +257,4 @@ class RestrictedExportPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RestrictedExportPolicy::class, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing_BigQueryDatasetSource_RestrictedExportPolicy::class);
 

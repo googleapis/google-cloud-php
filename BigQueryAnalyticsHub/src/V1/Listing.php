@@ -106,6 +106,12 @@ class Listing extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.RestrictedExportConfig restricted_export_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $restricted_export_config = null;
+    /**
+     * Optional. Type of discovery of the listing on the discovery page.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $discovery_type = null;
     protected $source;
 
     /**
@@ -156,6 +162,8 @@ class Listing extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig $restricted_export_config
      *           Optional. If set, restricted export configuration will be propagated and
      *           enforced on the linked dataset.
+     *     @type int $discovery_type
+     *           Optional. Type of discovery of the listing on the discovery page.
      * }
      */
     public function __construct($data = NULL) {
@@ -564,6 +572,42 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig::class);
         $this->restricted_export_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of discovery of the listing on the discovery page.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDiscoveryType()
+    {
+        return isset($this->discovery_type) ? $this->discovery_type : 0;
+    }
+
+    public function hasDiscoveryType()
+    {
+        return isset($this->discovery_type);
+    }
+
+    public function clearDiscoveryType()
+    {
+        unset($this->discovery_type);
+    }
+
+    /**
+     * Optional. Type of discovery of the listing on the discovery page.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiscoveryType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DiscoveryType::class);
+        $this->discovery_type = $var;
 
         return $this;
     }

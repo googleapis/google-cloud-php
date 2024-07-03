@@ -46,7 +46,7 @@ class SubscribeListingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $destination_dataset
-     *           BigQuery destination dataset to create for the subscriber.
+     *           Input only. BigQuery destination dataset to create for the subscriber.
      *     @type string $name
      *           Required. Resource name of the listing that you want to subscribe to.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
@@ -58,9 +58,9 @@ class SubscribeListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BigQuery destination dataset to create for the subscriber.
+     * Input only. BigQuery destination dataset to create for the subscriber.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset|null
      */
     public function getDestinationDataset()
@@ -74,9 +74,9 @@ class SubscribeListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BigQuery destination dataset to create for the subscriber.
+     * Input only. BigQuery destination dataset to create for the subscriber.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DestinationDataset destination_dataset = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset $var
      * @return $this
      */
