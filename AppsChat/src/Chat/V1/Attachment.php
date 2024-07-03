@@ -17,7 +17,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of the attachment, in the form
-     * `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -66,7 +66,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Resource name of the attachment, in the form
-     *           `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     *           `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *     @type string $content_name
      *           Output only. The original file name for the content, not the full path.
      *     @type string $content_type
@@ -96,7 +96,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource name of the attachment, in the form
-     * `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -108,7 +108,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource name of the attachment, in the form
-     * `spaces/&#42;&#47;messages/&#42;&#47;attachments/&#42;`.
+     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

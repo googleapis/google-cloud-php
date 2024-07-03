@@ -135,6 +135,11 @@ final class ChatServiceClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/chat.admin.delete',
+        'https://www.googleapis.com/auth/chat.admin.memberships',
+        'https://www.googleapis.com/auth/chat.admin.memberships.readonly',
+        'https://www.googleapis.com/auth/chat.admin.spaces',
+        'https://www.googleapis.com/auth/chat.admin.spaces.readonly',
         'https://www.googleapis.com/auth/chat.bot',
         'https://www.googleapis.com/auth/chat.delete',
         'https://www.googleapis.com/auth/chat.import',
@@ -1132,6 +1137,9 @@ final class ChatServiceClient
      * Lists spaces visible to the caller or authenticated user. Group chats
      * and DMs aren't listed until the first message is sent.
      *
+     * To list all named spaces by Google Workspace organization, use the
+     * [`spaces.search()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/search)
+     * method using Workspace administrator privileges instead.
      *
      * The async variant is {@see ChatServiceClient::listSpacesAsync()} .
      *

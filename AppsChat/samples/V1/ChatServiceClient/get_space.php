@@ -41,7 +41,7 @@ use Google\Apps\Chat\V1\Space;
  * and [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
- * @param string $formattedName Resource name of the space, in the form "spaces/*".
+ * @param string $formattedName Resource name of the space, in the form `spaces/{space}`.
  *
  *                              Format: `spaces/{space}`
  *                              Please see {@see ChatServiceClient::spaceName()} for help formatting this field.

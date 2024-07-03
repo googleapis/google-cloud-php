@@ -133,6 +133,20 @@ class Space extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool admin_installed = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $admin_installed = false;
+    /**
+     * Optional. Specifies the [access
+     * setting](https://support.google.com/chat/answer/11971020) of the space.
+     * Only populated when the `space_type` is `SPACE`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessSettings access_settings = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $access_settings = null;
+    /**
+     * Output only. The URI for a user to access the space.
+     *
+     * Generated from protobuf field <code>string space_uri = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $space_uri = '';
 
     /**
      * Constructor.
@@ -203,6 +217,12 @@ class Space extends \Google\Protobuf\Internal\Message
      *           install and set up a direct message with a Chat app on behalf of users in
      *           their organization.
      *           To support admin install, your Chat app must feature direct messaging.
+     *     @type \Google\Apps\Chat\V1\Space\AccessSettings $access_settings
+     *           Optional. Specifies the [access
+     *           setting](https://support.google.com/chat/answer/11971020) of the space.
+     *           Only populated when the `space_type` is `SPACE`.
+     *     @type string $space_uri
+     *           Output only. The URI for a user to access the space.
      * }
      */
     public function __construct($data = NULL) {
@@ -646,6 +666,72 @@ class Space extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->admin_installed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the [access
+     * setting](https://support.google.com/chat/answer/11971020) of the space.
+     * Only populated when the `space_type` is `SPACE`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessSettings access_settings = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Apps\Chat\V1\Space\AccessSettings|null
+     */
+    public function getAccessSettings()
+    {
+        return $this->access_settings;
+    }
+
+    public function hasAccessSettings()
+    {
+        return isset($this->access_settings);
+    }
+
+    public function clearAccessSettings()
+    {
+        unset($this->access_settings);
+    }
+
+    /**
+     * Optional. Specifies the [access
+     * setting](https://support.google.com/chat/answer/11971020) of the space.
+     * Only populated when the `space_type` is `SPACE`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessSettings access_settings = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Apps\Chat\V1\Space\AccessSettings $var
+     * @return $this
+     */
+    public function setAccessSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\AccessSettings::class);
+        $this->access_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The URI for a user to access the space.
+     *
+     * Generated from protobuf field <code>string space_uri = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSpaceUri()
+    {
+        return $this->space_uri;
+    }
+
+    /**
+     * Output only. The URI for a user to access the space.
+     *
+     * Generated from protobuf field <code>string space_uri = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSpaceUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->space_uri = $var;
 
         return $this;
     }
