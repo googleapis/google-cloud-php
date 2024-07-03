@@ -36,6 +36,13 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $selected_resources;
+    /**
+     * Optional. If set, restricted export policy will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $restricted_export_policy = null;
 
     /**
      * Constructor.
@@ -50,6 +57,9 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      *           Optional. Resources in this dataset that are selectively shared.
      *           If this field is empty, then the entire dataset (all resources) are
      *           shared. This field is only valid for data clean room exchanges.
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $restricted_export_policy
+     *           Optional. If set, restricted export policy will be propagated and
+     *           enforced on the linked dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +121,44 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource::class);
         $this->selected_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, restricted export policy will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy|null
+     */
+    public function getRestrictedExportPolicy()
+    {
+        return $this->restricted_export_policy;
+    }
+
+    public function hasRestrictedExportPolicy()
+    {
+        return isset($this->restricted_export_policy);
+    }
+
+    public function clearRestrictedExportPolicy()
+    {
+        unset($this->restricted_export_policy);
+    }
+
+    /**
+     * Optional. If set, restricted export policy will be propagated and
+     * enforced on the linked dataset.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.RestrictedExportPolicy restricted_export_policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $var
+     * @return $this
+     */
+    public function setRestrictedExportPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy::class);
+        $this->restricted_export_policy = $var;
 
         return $this;
     }
