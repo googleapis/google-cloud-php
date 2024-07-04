@@ -40,6 +40,25 @@ return [
                     ],
                 ],
             ],
+            'ImportCompletionSuggestions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/completionSuggestions:import',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataStores/*}/completionSuggestions:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ImportSuggestionDenyListEntries' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/suggestionDenyListEntries:import',
@@ -48,6 +67,25 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataStores/*}/suggestionDenyListEntries:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PurgeCompletionSuggestions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/completionSuggestions:purge',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataStores/*}/completionSuggestions:purge',
                         'body' => '*',
                     ],
                 ],

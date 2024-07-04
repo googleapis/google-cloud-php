@@ -22,8 +22,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * generated from all of the results.
      * At most 10 results for documents mode, or 50 for chunks mode, can be
      * used to generate a summary. The chunks mode is used when
-     * [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     * [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      */
@@ -121,8 +122,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           generated from all of the results.
      *           At most 10 results for documents mode, or 50 for chunks mode, can be
      *           used to generate a summary. The chunks mode is used when
-     *           [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     *           [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     *           [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     *           is set to
+     *           [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *     @type bool $include_citations
      *           Specifies whether to include citations in the summary. The default
      *           value is `false`.
@@ -188,8 +190,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * generated from all of the results.
      * At most 10 results for documents mode, or 50 for chunks mode, can be
      * used to generate a summary. The chunks mode is used when
-     * [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     * [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @return int
@@ -205,8 +208,9 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * generated from all of the results.
      * At most 10 results for documents mode, or 50 for chunks mode, can be
      * used to generate a summary. The chunks mode is used when
-     * [SearchRequest.ContentSearchSpec.search_result_mode][] is set to
-     * [CHUNKS][SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS].
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @param int $var

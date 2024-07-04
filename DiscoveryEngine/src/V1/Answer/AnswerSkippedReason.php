@@ -46,6 +46,14 @@ class AnswerSkippedReason
      * Generated from protobuf enum <code>POTENTIAL_POLICY_VIOLATION = 4;</code>
      */
     const POTENTIAL_POLICY_VIOLATION = 4;
+    /**
+     * The no relevant content case.
+     * Google skips the answer if there is no relevant content in the
+     * retrieved search results.
+     *
+     * Generated from protobuf enum <code>NO_RELEVANT_CONTENT = 5;</code>
+     */
+    const NO_RELEVANT_CONTENT = 5;
 
     private static $valueToName = [
         self::ANSWER_SKIPPED_REASON_UNSPECIFIED => 'ANSWER_SKIPPED_REASON_UNSPECIFIED',
@@ -53,6 +61,7 @@ class AnswerSkippedReason
         self::NON_ANSWER_SEEKING_QUERY_IGNORED => 'NON_ANSWER_SEEKING_QUERY_IGNORED',
         self::OUT_OF_DOMAIN_QUERY_IGNORED => 'OUT_OF_DOMAIN_QUERY_IGNORED',
         self::POTENTIAL_POLICY_VIOLATION => 'POTENTIAL_POLICY_VIOLATION',
+        self::NO_RELEVANT_CONTENT => 'NO_RELEVANT_CONTENT',
     ];
 
     public static function name($value)

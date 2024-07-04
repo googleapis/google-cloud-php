@@ -61,6 +61,20 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      */
     protected $order_by = '';
     /**
+     * Specifies the search result mode. If unspecified, the
+     * search result mode is based on
+     * [DataStore.DocumentProcessingConfig.chunking_config][]:
+     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is
+     * specified,
+     *   it defaults to `CHUNKS`.
+     * * Otherwise, it defaults to `DOCUMENTS`.
+     * See [parse and chunk
+     * documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 5;</code>
+     */
+    protected $search_result_mode = 0;
+    /**
      * Specs defining dataStores to filter on in a search call and
      * configurations for those dataStores. This is only considered for
      * engines with multiple dataStores use case. For single dataStore within
@@ -105,6 +119,16 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      *           is case-sensitive. For more information on ordering, see
      *           [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     *     @type int $search_result_mode
+     *           Specifies the search result mode. If unspecified, the
+     *           search result mode is based on
+     *           [DataStore.DocumentProcessingConfig.chunking_config][]:
+     *           * If [DataStore.DocumentProcessingConfig.chunking_config][] is
+     *           specified,
+     *             it defaults to `CHUNKS`.
+     *           * Otherwise, it defaults to `DOCUMENTS`.
+     *           See [parse and chunk
+     *           documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
      *           Specs defining dataStores to filter on in a search call and
      *           configurations for those dataStores. This is only considered for
@@ -269,6 +293,48 @@ class SearchParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the search result mode. If unspecified, the
+     * search result mode is based on
+     * [DataStore.DocumentProcessingConfig.chunking_config][]:
+     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is
+     * specified,
+     *   it defaults to `CHUNKS`.
+     * * Otherwise, it defaults to `DOCUMENTS`.
+     * See [parse and chunk
+     * documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 5;</code>
+     * @return int
+     */
+    public function getSearchResultMode()
+    {
+        return $this->search_result_mode;
+    }
+
+    /**
+     * Specifies the search result mode. If unspecified, the
+     * search result mode is based on
+     * [DataStore.DocumentProcessingConfig.chunking_config][]:
+     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is
+     * specified,
+     *   it defaults to `CHUNKS`.
+     * * Otherwise, it defaults to `DOCUMENTS`.
+     * See [parse and chunk
+     * documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSearchResultMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SearchResultMode::class);
+        $this->search_result_mode = $var;
 
         return $this;
     }
