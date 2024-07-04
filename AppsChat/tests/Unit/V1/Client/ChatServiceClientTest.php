@@ -399,6 +399,7 @@ class ChatServiceClientTest extends GeneratedTest
         $externalUserAllowed = true;
         $importMode = false;
         $adminInstalled = true;
+        $spaceUri = 'spaceUri-953552205';
         $expectedResponse = new Space();
         $expectedResponse->setName($name);
         $expectedResponse->setSingleUserBotDm($singleUserBotDm);
@@ -407,6 +408,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalUserAllowed($externalUserAllowed);
         $expectedResponse->setImportMode($importMode);
         $expectedResponse->setAdminInstalled($adminInstalled);
+        $expectedResponse->setSpaceUri($spaceUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();
@@ -727,6 +729,7 @@ class ChatServiceClientTest extends GeneratedTest
         $externalUserAllowed = true;
         $importMode = false;
         $adminInstalled = true;
+        $spaceUri = 'spaceUri-953552205';
         $expectedResponse = new Space();
         $expectedResponse->setName($name2);
         $expectedResponse->setSingleUserBotDm($singleUserBotDm);
@@ -735,6 +738,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalUserAllowed($externalUserAllowed);
         $expectedResponse->setImportMode($importMode);
         $expectedResponse->setAdminInstalled($adminInstalled);
+        $expectedResponse->setSpaceUri($spaceUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
@@ -1019,6 +1023,7 @@ class ChatServiceClientTest extends GeneratedTest
         $externalUserAllowed = true;
         $importMode = false;
         $adminInstalled = true;
+        $spaceUri = 'spaceUri-953552205';
         $expectedResponse = new Space();
         $expectedResponse->setName($name2);
         $expectedResponse->setSingleUserBotDm($singleUserBotDm);
@@ -1027,6 +1032,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalUserAllowed($externalUserAllowed);
         $expectedResponse->setImportMode($importMode);
         $expectedResponse->setAdminInstalled($adminInstalled);
+        $expectedResponse->setSpaceUri($spaceUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
@@ -1504,6 +1510,7 @@ class ChatServiceClientTest extends GeneratedTest
         $externalUserAllowed = true;
         $importMode = false;
         $adminInstalled = true;
+        $spaceUri = 'spaceUri-953552205';
         $expectedResponse = new Space();
         $expectedResponse->setName($name);
         $expectedResponse->setSingleUserBotDm($singleUserBotDm);
@@ -1512,6 +1519,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalUserAllowed($externalUserAllowed);
         $expectedResponse->setImportMode($importMode);
         $expectedResponse->setAdminInstalled($adminInstalled);
+        $expectedResponse->setSpaceUri($spaceUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();
@@ -1727,6 +1735,7 @@ class ChatServiceClientTest extends GeneratedTest
         $externalUserAllowed = true;
         $importMode = false;
         $adminInstalled = true;
+        $spaceUri = 'spaceUri-953552205';
         $expectedResponse = new Space();
         $expectedResponse->setName($name);
         $expectedResponse->setSingleUserBotDm($singleUserBotDm);
@@ -1735,6 +1744,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalUserAllowed($externalUserAllowed);
         $expectedResponse->setImportMode($importMode);
         $expectedResponse->setAdminInstalled($adminInstalled);
+        $expectedResponse->setSpaceUri($spaceUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();

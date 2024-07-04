@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSpaceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the space, in the form "spaces/&#42;".
+     * Required. Resource name of the space, in the form `spaces/{space}`.
      * Format: `spaces/{space}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -24,7 +24,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. Resource name of the space, in the form "spaces/*".
+     * @param string $name Required. Resource name of the space, in the form `spaces/{space}`.
      *
      *                     Format: `spaces/{space}`
      *                     Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
@@ -46,7 +46,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the space, in the form "spaces/&#42;".
+     *           Required. Resource name of the space, in the form `spaces/{space}`.
      *           Format: `spaces/{space}`
      * }
      */
@@ -56,7 +56,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the space, in the form "spaces/&#42;".
+     * Required. Resource name of the space, in the form `spaces/{space}`.
      * Format: `spaces/{space}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -68,7 +68,7 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the space, in the form "spaces/&#42;".
+     * Required. Resource name of the space, in the form `spaces/{space}`.
      * Format: `spaces/{space}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
