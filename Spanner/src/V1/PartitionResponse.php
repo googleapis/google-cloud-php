@@ -27,7 +27,7 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.Transaction transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the instance partition's configuration. Values are of
      * the form `projects/<project>/instanceConfigs/<configuration>`. See also
@@ -35,33 +35,33 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $config = '';
+    protected $config = '';
     /**
      * Required. The descriptive name for this instance partition as it appears in
      * UIs. Must be unique per project and between 4 and 30 characters in length.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The current instance partition state.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstancePartition.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time at which the instance partition was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which the instance partition was most recently
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The names of the databases that reference this
      * instance partition. Referencing databases should share the parent instance.
@@ -94,7 +94,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 12;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     protected $compute_capacity;
 
     /**

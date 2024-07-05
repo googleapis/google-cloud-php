@@ -20,7 +20,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The mutations to be executed when this transaction commits. All
      * mutations are applied atomically, in the order they appear in
@@ -36,7 +36,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      */
-    private $return_commit_stats = false;
+    protected $return_commit_stats = false;
     /**
      * Optional. The amount of latency this request is willing to incur in order
      * to improve throughput. If this field is not set, Spanner assumes requests
@@ -46,13 +46,13 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_commit_delay = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_commit_delay = null;
+    protected $max_commit_delay = null;
     /**
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
      */
-    private $request_options = null;
+    protected $request_options = null;
     protected $transaction;
 
     /**

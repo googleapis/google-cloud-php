@@ -23,7 +23,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * A streamed result set consists of a stream of values, which might
      * be split into many `PartialResultSet` messages to accommodate
@@ -95,7 +95,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      */
-    private $chunked_value = false;
+    protected $chunked_value = false;
     /**
      * Streaming calls might be interrupted for a variety of reasons, such
      * as TCP connection loss. If this occurs, the stream of results can
@@ -105,7 +105,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes resume_token = 4;</code>
      */
-    private $resume_token = '';
+    protected $resume_token = '';
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
@@ -116,7 +116,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      */
-    private $stats = null;
+    protected $stats = null;
 
     /**
      * Constructor.

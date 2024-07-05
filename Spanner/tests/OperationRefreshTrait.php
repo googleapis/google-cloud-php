@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests;
 
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Operation;
 
 /**
@@ -29,13 +30,21 @@ trait OperationRefreshTrait
      * Refresh the operation property of a given stubbed class.
      *
      * @param mixed $stub
-     * @param ConnectionInterface $connection
+     * @param RequestHandler $requestHandler
+     * @param Serializer $serializer
      * @param bool $returnInt64AsObject
      * @return mixed
      */
-    public function refreshOperation($stub, ConnectionInterface $connection, $returnInt64AsObject = false)
-    {
-        $stub->___setProperty('operation', new Operation($connection, $returnInt64AsObject));
+    public function refreshOperation(
+        $stub,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        bool $returnInt64AsObject = false
+    ) {
+        $stub->___setProperty(
+            'operation',
+            new Operation($requestHandler, $serializer, $returnInt64AsObject)
+        );
         return $stub;
     }
 }

@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -36,26 +36,28 @@ class InstanceConfigurationTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
+    use RequestHandlingTestTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
 
-    private $connection;
+    private $requestHandler;
+    private $serializer;
     private $configuration;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT_ID,
             self::NAME,
-            [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
-        ]);
+            []
+        ], ['requestHandler', 'serializer']);
     }
 
     public function testName()
@@ -68,17 +70,19 @@ class InstanceConfigurationTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getInstanceConfig(Argument::any())->shouldNotBeCalled();
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(InstanceAdminClient::class, 'getInstanceConfig', null, null, 0);
+
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $info = ['foo' => 'bar'];
         $config = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT_ID,
             self::NAME,
-            $info,
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
-        ]);
+            $info
+        ], ['requestHandler','serializer']);
 
         $this->assertEquals($info, $config->info());
     }
@@ -87,44 +91,66 @@ class InstanceConfigurationTest extends TestCase
     {
         $info = ['foo' => 'bar'];
 
-        $this->connection->getInstanceConfig([
-            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
-            'projectName' => InstanceAdminClient::projectName(self::PROJECT_ID)
-        ])->shouldBeCalled()->willReturn($info);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstanceConfig',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['name'],
+                    InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            },
+            $info
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals($info, $this->configuration->info());
     }
 
     public function testExists()
     {
-        $this->connection->getInstanceConfig(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->configuration->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn([]);
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstanceConfig',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['name'],
+                    InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            },
+            []
+        );
+
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->assertTrue($this->configuration->exists());
     }
 
     public function testExistsDoesntExist()
     {
-        $this->connection->getInstanceConfig(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->configuration->name())
-        ))
-            ->shouldBeCalled()
-            ->willThrow(new NotFoundException('', 404));
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstanceConfig',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['name'],
+                    InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            },
+            new NotFoundException('', 404)
+        );
+
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->assertFalse($this->configuration->exists());
     }
@@ -133,12 +159,22 @@ class InstanceConfigurationTest extends TestCase
     {
         $info = ['foo' => 'bar'];
 
-        $this->connection->getInstanceConfig([
-            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
-            'projectName' => InstanceAdminClient::projectName(self::PROJECT_ID)
-        ])->shouldBeCalledTimes(1)->willReturn($info);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstanceConfig',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['name'],
+                    InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            },
+            $info
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $info = $this->configuration->reload();
 
@@ -151,14 +187,20 @@ class InstanceConfigurationTest extends TestCase
     {
         $config = $this->getDefaultInstance();
 
-        $this->connection->updateInstanceConfig([
-            'name' => $config['name'],
-            'displayName' => 'bar',
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstanceConfig',
+            function ($args) use ($config) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instanceConfig']['name'], $config['name']);
+                $this->assertEquals($message['instanceConfig']['displayName'], 'bar');
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->configuration->update(['displayName' => 'bar']);
     }
@@ -168,14 +210,20 @@ class InstanceConfigurationTest extends TestCase
         $config = $this->getDefaultInstance();
         $config['labels'] = ['foo' => 'bar'];
 
-        $this->connection->updateInstanceConfig([
-            'labels' => $config['labels'],
-            'name' => $config['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstanceConfig',
+            function ($args) use ($config) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instanceConfig']['name'], $config['name']);
+                $this->assertEquals($message['instanceConfig']['labels'], $config['labels']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->configuration->update(['labels' => $config['labels']]);
     }
@@ -191,26 +239,43 @@ class InstanceConfigurationTest extends TestCase
             'displayName' => 'New Name',
         ];
 
-        $this->connection->updateInstanceConfig([
-            'name' => $config['name'],
-            'displayName' => $changes['displayName'],
-            'labels' => $changes['labels'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstanceConfig',
+            function ($args) use ($changes, $config) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instanceConfig']['name'], $config['name']);
+                $this->assertEquals($message['instanceConfig']['displayName'], $changes['displayName']);
+                $this->assertEquals($message['instanceConfig']['labels'], $changes['labels']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->configuration->update($changes);
     }
 
     public function testDelete()
     {
-        $this->connection->deleteInstanceConfig([
-            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
-        ])->shouldBeCalled();
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'deleteInstanceConfig',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['name'],
+                    InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            },
+            null
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->configuration->___setProperty('serializer', $this->serializer);
 
         $this->configuration->delete();
     }
@@ -218,5 +283,20 @@ class InstanceConfigurationTest extends TestCase
     private function getDefaultInstance()
     {
         return json_decode(file_get_contents(Fixtures::INSTANCE_CONFIG_FIXTURE()), true);
+    }
+
+    private function getOperationResponseMock()
+    {
+        $operation = $this->serializer->decodeMessage(
+            new \Google\LongRunning\Operation(),
+            ['metadata' => [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
+            ]]
+        );
+        $operationResponse = $this->prophesize(OperationResponse::class);
+        $operationResponse->getLastProtoResponse()->willReturn($operation);
+        $operationResponse->isDone()->willReturn(false);
+        $operationResponse->getError()->willReturn(null);
+        return $operationResponse;
     }
 }

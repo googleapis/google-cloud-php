@@ -23,7 +23,7 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
 
     /**
      * @param string $database Required. The database whose schema we wish to get.
