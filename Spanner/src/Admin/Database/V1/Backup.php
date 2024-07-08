@@ -143,6 +143,19 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp max_expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $max_expire_time = null;
+    /**
+     * Output only. List of backup schedule URIs that are associated with
+     * creating this backup. This is only applicable for scheduled backups, and
+     * is empty for on-demand backups.
+     * To optimize for storage, whenever possible, multiple schedules are
+     * collapsed together to create one backup. In such cases, this field captures
+     * the list of all backup schedule URIs that are associated with creating
+     * this backup. If collapsing is not done, then this field captures the
+     * single backup schedule URI associated with creating this backup.
+     *
+     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $backup_schedules;
 
     /**
      * Constructor.
@@ -226,6 +239,15 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or
      *           copying an existing backup, the expiration time specified must be
      *           less than `Backup.max_expire_time`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_schedules
+     *           Output only. List of backup schedule URIs that are associated with
+     *           creating this backup. This is only applicable for scheduled backups, and
+     *           is empty for on-demand backups.
+     *           To optimize for storage, whenever possible, multiple schedules are
+     *           collapsed together to create one backup. In such cases, this field captures
+     *           the list of all backup schedule URIs that are associated with creating
+     *           this backup. If collapsing is not done, then this field captures the
+     *           single backup schedule URI associated with creating this backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -717,6 +739,46 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->max_expire_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of backup schedule URIs that are associated with
+     * creating this backup. This is only applicable for scheduled backups, and
+     * is empty for on-demand backups.
+     * To optimize for storage, whenever possible, multiple schedules are
+     * collapsed together to create one backup. In such cases, this field captures
+     * the list of all backup schedule URIs that are associated with creating
+     * this backup. If collapsing is not done, then this field captures the
+     * single backup schedule URI associated with creating this backup.
+     *
+     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getBackupSchedules()
+    {
+        return $this->backup_schedules;
+    }
+
+    /**
+     * Output only. List of backup schedule URIs that are associated with
+     * creating this backup. This is only applicable for scheduled backups, and
+     * is empty for on-demand backups.
+     * To optimize for storage, whenever possible, multiple schedules are
+     * collapsed together to create one backup. In such cases, this field captures
+     * the list of all backup schedule URIs that are associated with creating
+     * this backup. If collapsing is not done, then this field captures the
+     * single backup schedule URI associated with creating this backup.
+     *
+     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setBackupSchedules($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->backup_schedules = $arr;
 
         return $this;
     }
