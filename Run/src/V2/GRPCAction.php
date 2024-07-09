@@ -16,19 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class GRPCAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Port number of the gRPC service. Number must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number of the gRPC service. Number must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * Generated from protobuf field <code>int32 port = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $port = 0;
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest
-     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
-     * this is not specified, the default behavior is defined by gRPC.
+     * Optional. Service is the name of the service to place in the gRPC
+     * HealthCheckRequest (see
+     * https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this
+     * is not specified, the default behavior is defined by gRPC.
      *
-     * Generated from protobuf field <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service = '';
 
@@ -39,13 +40,14 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $port
-     *           Port number of the gRPC service. Number must be in the range 1 to 65535.
-     *           If not specified, defaults to the exposed port of the container, which is
-     *           the value of container.ports[0].containerPort.
+     *           Optional. Port number of the gRPC service. Number must be in the range 1 to
+     *           65535. If not specified, defaults to the exposed port of the container,
+     *           which is the value of container.ports[0].containerPort.
      *     @type string $service
-     *           Service is the name of the service to place in the gRPC HealthCheckRequest
-     *           (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
-     *           this is not specified, the default behavior is defined by gRPC.
+     *           Optional. Service is the name of the service to place in the gRPC
+     *           HealthCheckRequest (see
+     *           https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this
+     *           is not specified, the default behavior is defined by gRPC.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,11 +56,11 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port number of the gRPC service. Number must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number of the gRPC service. Number must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * Generated from protobuf field <code>int32 port = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPort()
@@ -67,11 +69,11 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port number of the gRPC service. Number must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number of the gRPC service. Number must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * Generated from protobuf field <code>int32 port = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -84,11 +86,12 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest
-     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
-     * this is not specified, the default behavior is defined by gRPC.
+     * Optional. Service is the name of the service to place in the gRPC
+     * HealthCheckRequest (see
+     * https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this
+     * is not specified, the default behavior is defined by gRPC.
      *
-     * Generated from protobuf field <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getService()
@@ -97,11 +100,12 @@ class GRPCAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest
-     * (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If
-     * this is not specified, the default behavior is defined by gRPC.
+     * Optional. Service is the name of the service to place in the gRPC
+     * HealthCheckRequest (see
+     * https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this
+     * is not specified, the default behavior is defined by gRPC.
      *
-     * Generated from protobuf field <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

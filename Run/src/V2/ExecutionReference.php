@@ -34,6 +34,19 @@ class ExecutionReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 3;</code>
      */
     protected $completion_time = null;
+    /**
+     * The deletion time of the execution. It is only
+     * populated as a response to a Delete request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
+     */
+    protected $delete_time = null;
+    /**
+     * Status for the execution completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionReference.CompletionStatus completion_status = 4;</code>
+     */
+    protected $completion_status = 0;
 
     /**
      * Constructor.
@@ -47,6 +60,11 @@ class ExecutionReference extends \Google\Protobuf\Internal\Message
      *           Creation timestamp of the execution.
      *     @type \Google\Protobuf\Timestamp $completion_time
      *           Creation timestamp of the execution.
+     *     @type \Google\Protobuf\Timestamp $delete_time
+     *           The deletion time of the execution. It is only
+     *           populated as a response to a Delete request.
+     *     @type int $completion_status
+     *           Status for the execution completion.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,6 +166,70 @@ class ExecutionReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->completion_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The deletion time of the execution. It is only
+     * populated as a response to a Delete request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDeleteTime()
+    {
+        return $this->delete_time;
+    }
+
+    public function hasDeleteTime()
+    {
+        return isset($this->delete_time);
+    }
+
+    public function clearDeleteTime()
+    {
+        unset($this->delete_time);
+    }
+
+    /**
+     * The deletion time of the execution. It is only
+     * populated as a response to a Delete request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDeleteTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->delete_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Status for the execution completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionReference.CompletionStatus completion_status = 4;</code>
+     * @return int
+     */
+    public function getCompletionStatus()
+    {
+        return $this->completion_status;
+    }
+
+    /**
+     * Status for the execution completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionReference.CompletionStatus completion_status = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCompletionStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Run\V2\ExecutionReference\CompletionStatus::class);
+        $this->completion_status = $var;
 
         return $this;
     }

@@ -17,36 +17,35 @@ use Google\Protobuf\Internal\GPBUtil;
 class Probe extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Number of seconds after the container has started before the probe is
-     * initiated.
-     * Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
-     * is 3600. Maximum value for startup probe is 240.
+     * Optional. Number of seconds after the container has started before the
+     * probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum
+     * value for liveness probe is 3600. Maximum value for startup probe is 240.
      *
-     * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
+     * Generated from protobuf field <code>int32 initial_delay_seconds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $initial_delay_seconds = 0;
     /**
-     * Number of seconds after which the probe times out.
+     * Optional. Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      * Must be smaller than period_seconds.
      *
-     * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
+     * Generated from protobuf field <code>int32 timeout_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $timeout_seconds = 0;
     /**
-     * How often (in seconds) to perform the probe.
+     * Optional. How often (in seconds) to perform the probe.
      * Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe
      * is 3600. Maximum value for startup probe is 240.
      * Must be greater or equal than timeout_seconds.
      *
-     * Generated from protobuf field <code>int32 period_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 period_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $period_seconds = 0;
     /**
-     * Minimum consecutive failures for the probe to be considered failed after
-     * having succeeded. Defaults to 3. Minimum value is 1.
+     * Optional. Minimum consecutive failures for the probe to be considered
+     * failed after having succeeded. Defaults to 3. Minimum value is 1.
      *
-     * Generated from protobuf field <code>int32 failure_threshold = 4;</code>
+     * Generated from protobuf field <code>int32 failure_threshold = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $failure_threshold = 0;
     protected $probe_type;
@@ -58,30 +57,29 @@ class Probe extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $initial_delay_seconds
-     *           Number of seconds after the container has started before the probe is
-     *           initiated.
-     *           Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
-     *           is 3600. Maximum value for startup probe is 240.
+     *           Optional. Number of seconds after the container has started before the
+     *           probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum
+     *           value for liveness probe is 3600. Maximum value for startup probe is 240.
      *     @type int $timeout_seconds
-     *           Number of seconds after which the probe times out.
+     *           Optional. Number of seconds after which the probe times out.
      *           Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      *           Must be smaller than period_seconds.
      *     @type int $period_seconds
-     *           How often (in seconds) to perform the probe.
+     *           Optional. How often (in seconds) to perform the probe.
      *           Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe
      *           is 3600. Maximum value for startup probe is 240.
      *           Must be greater or equal than timeout_seconds.
      *     @type int $failure_threshold
-     *           Minimum consecutive failures for the probe to be considered failed after
-     *           having succeeded. Defaults to 3. Minimum value is 1.
+     *           Optional. Minimum consecutive failures for the probe to be considered
+     *           failed after having succeeded. Defaults to 3. Minimum value is 1.
      *     @type \Google\Cloud\Run\V2\HTTPGetAction $http_get
-     *           HTTPGet specifies the http request to perform.
+     *           Optional. HTTPGet specifies the http request to perform.
      *           Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *     @type \Google\Cloud\Run\V2\TCPSocketAction $tcp_socket
-     *           TCPSocket specifies an action involving a TCP port.
+     *           Optional. TCPSocket specifies an action involving a TCP port.
      *           Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *     @type \Google\Cloud\Run\V2\GRPCAction $grpc
-     *           GRPC specifies an action involving a gRPC port.
+     *           Optional. GRPC specifies an action involving a gRPC port.
      *           Exactly one of httpGet, tcpSocket, or grpc must be specified.
      * }
      */
@@ -91,12 +89,11 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of seconds after the container has started before the probe is
-     * initiated.
-     * Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
-     * is 3600. Maximum value for startup probe is 240.
+     * Optional. Number of seconds after the container has started before the
+     * probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum
+     * value for liveness probe is 3600. Maximum value for startup probe is 240.
      *
-     * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
+     * Generated from protobuf field <code>int32 initial_delay_seconds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getInitialDelaySeconds()
@@ -105,12 +102,11 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of seconds after the container has started before the probe is
-     * initiated.
-     * Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe
-     * is 3600. Maximum value for startup probe is 240.
+     * Optional. Number of seconds after the container has started before the
+     * probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum
+     * value for liveness probe is 3600. Maximum value for startup probe is 240.
      *
-     * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
+     * Generated from protobuf field <code>int32 initial_delay_seconds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -123,11 +119,11 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of seconds after which the probe times out.
+     * Optional. Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      * Must be smaller than period_seconds.
      *
-     * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
+     * Generated from protobuf field <code>int32 timeout_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTimeoutSeconds()
@@ -136,11 +132,11 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of seconds after which the probe times out.
+     * Optional. Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
      * Must be smaller than period_seconds.
      *
-     * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
+     * Generated from protobuf field <code>int32 timeout_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -153,12 +149,12 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How often (in seconds) to perform the probe.
+     * Optional. How often (in seconds) to perform the probe.
      * Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe
      * is 3600. Maximum value for startup probe is 240.
      * Must be greater or equal than timeout_seconds.
      *
-     * Generated from protobuf field <code>int32 period_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 period_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPeriodSeconds()
@@ -167,12 +163,12 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How often (in seconds) to perform the probe.
+     * Optional. How often (in seconds) to perform the probe.
      * Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe
      * is 3600. Maximum value for startup probe is 240.
      * Must be greater or equal than timeout_seconds.
      *
-     * Generated from protobuf field <code>int32 period_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 period_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -185,10 +181,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum consecutive failures for the probe to be considered failed after
-     * having succeeded. Defaults to 3. Minimum value is 1.
+     * Optional. Minimum consecutive failures for the probe to be considered
+     * failed after having succeeded. Defaults to 3. Minimum value is 1.
      *
-     * Generated from protobuf field <code>int32 failure_threshold = 4;</code>
+     * Generated from protobuf field <code>int32 failure_threshold = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getFailureThreshold()
@@ -197,10 +193,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum consecutive failures for the probe to be considered failed after
-     * having succeeded. Defaults to 3. Minimum value is 1.
+     * Optional. Minimum consecutive failures for the probe to be considered
+     * failed after having succeeded. Defaults to 3. Minimum value is 1.
      *
-     * Generated from protobuf field <code>int32 failure_threshold = 4;</code>
+     * Generated from protobuf field <code>int32 failure_threshold = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -213,10 +209,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * HTTPGet specifies the http request to perform.
+     * Optional. HTTPGet specifies the http request to perform.
      * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.HTTPGetAction http_get = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.HTTPGetAction http_get = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\HTTPGetAction|null
      */
     public function getHttpGet()
@@ -230,10 +226,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * HTTPGet specifies the http request to perform.
+     * Optional. HTTPGet specifies the http request to perform.
      * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.HTTPGetAction http_get = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.HTTPGetAction http_get = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\HTTPGetAction $var
      * @return $this
      */
@@ -246,10 +242,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * TCPSocket specifies an action involving a TCP port.
+     * Optional. TCPSocket specifies an action involving a TCP port.
      * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.TCPSocketAction tcp_socket = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.TCPSocketAction tcp_socket = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\TCPSocketAction|null
      */
     public function getTcpSocket()
@@ -263,10 +259,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * TCPSocket specifies an action involving a TCP port.
+     * Optional. TCPSocket specifies an action involving a TCP port.
      * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.TCPSocketAction tcp_socket = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.TCPSocketAction tcp_socket = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\TCPSocketAction $var
      * @return $this
      */
@@ -279,10 +275,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GRPC specifies an action involving a gRPC port.
+     * Optional. GRPC specifies an action involving a gRPC port.
      * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.GRPCAction grpc = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.GRPCAction grpc = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\GRPCAction|null
      */
     public function getGrpc()
@@ -296,10 +292,10 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GRPC specifies an action involving a gRPC port.
+     * Optional. GRPC specifies an action involving a gRPC port.
      * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.GRPCAction grpc = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.GRPCAction grpc = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\GRPCAction $var
      * @return $this
      */

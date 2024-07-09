@@ -27,17 +27,17 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      */
     protected $connector = '';
     /**
-     * Traffic VPC egress settings. If not provided, it defaults to
+     * Optional. Traffic VPC egress settings. If not provided, it defaults to
      * PRIVATE_RANGES_ONLY.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $egress = 0;
     /**
-     * Direct VPC egress settings. Currently only single network interface is
-     * supported.
+     * Optional. Direct VPC egress settings. Currently only single network
+     * interface is supported.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $network_interfaces;
 
@@ -54,11 +54,11 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      *           For more information on sending traffic to a VPC network via a connector,
      *           visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *     @type int $egress
-     *           Traffic VPC egress settings. If not provided, it defaults to
+     *           Optional. Traffic VPC egress settings. If not provided, it defaults to
      *           PRIVATE_RANGES_ONLY.
      *     @type array<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
-     *           Direct VPC egress settings. Currently only single network interface is
-     *           supported.
+     *           Optional. Direct VPC egress settings. Currently only single network
+     *           interface is supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,10 +101,10 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Traffic VPC egress settings. If not provided, it defaults to
+     * Optional. Traffic VPC egress settings. If not provided, it defaults to
      * PRIVATE_RANGES_ONLY.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getEgress()
@@ -113,10 +113,10 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Traffic VPC egress settings. If not provided, it defaults to
+     * Optional. Traffic VPC egress settings. If not provided, it defaults to
      * PRIVATE_RANGES_ONLY.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess.VpcEgress egress = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -129,10 +129,10 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Direct VPC egress settings. Currently only single network interface is
-     * supported.
+     * Optional. Direct VPC egress settings. Currently only single network
+     * interface is supported.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNetworkInterfaces()
@@ -141,10 +141,10 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Direct VPC egress settings. Currently only single network interface is
-     * supported.
+     * Optional. Direct VPC egress settings. Currently only single network
+     * interface is supported.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

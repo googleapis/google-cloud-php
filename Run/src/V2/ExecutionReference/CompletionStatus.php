@@ -80,6 +80,4 @@ class CompletionStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompletionStatus::class, \Google\Cloud\Run\V2\ExecutionReference_CompletionStatus::class);
 

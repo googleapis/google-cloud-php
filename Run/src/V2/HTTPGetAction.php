@@ -16,23 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class HTTPGetAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Path to access on the HTTP server. Defaults to '/'.
+     * Optional. Path to access on the HTTP server. Defaults to '/'.
      *
-     * Generated from protobuf field <code>string path = 1;</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $path = '';
     /**
-     * Custom headers to set in the request. HTTP allows repeated headers.
+     * Optional. Custom headers to set in the request. HTTP allows repeated
+     * headers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $http_headers;
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 5;</code>
+     * Generated from protobuf field <code>int32 port = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $port = 0;
 
@@ -43,13 +44,14 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           Path to access on the HTTP server. Defaults to '/'.
+     *           Optional. Path to access on the HTTP server. Defaults to '/'.
      *     @type array<\Google\Cloud\Run\V2\HTTPHeader>|\Google\Protobuf\Internal\RepeatedField $http_headers
-     *           Custom headers to set in the request. HTTP allows repeated headers.
+     *           Optional. Custom headers to set in the request. HTTP allows repeated
+     *           headers.
      *     @type int $port
-     *           Port number to access on the container. Must be in the range 1 to 65535.
-     *           If not specified, defaults to the exposed port of the container, which is
-     *           the value of container.ports[0].containerPort.
+     *           Optional. Port number to access on the container. Must be in the range 1 to
+     *           65535. If not specified, defaults to the exposed port of the container,
+     *           which is the value of container.ports[0].containerPort.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +60,9 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Path to access on the HTTP server. Defaults to '/'.
+     * Optional. Path to access on the HTTP server. Defaults to '/'.
      *
-     * Generated from protobuf field <code>string path = 1;</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPath()
@@ -69,9 +71,9 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Path to access on the HTTP server. Defaults to '/'.
+     * Optional. Path to access on the HTTP server. Defaults to '/'.
      *
-     * Generated from protobuf field <code>string path = 1;</code>
+     * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -84,9 +86,10 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom headers to set in the request. HTTP allows repeated headers.
+     * Optional. Custom headers to set in the request. HTTP allows repeated
+     * headers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHttpHeaders()
@@ -95,9 +98,10 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom headers to set in the request. HTTP allows repeated headers.
+     * Optional. Custom headers to set in the request. HTTP allows repeated
+     * headers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Run\V2\HTTPHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -110,11 +114,11 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 5;</code>
+     * Generated from protobuf field <code>int32 port = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPort()
@@ -123,11 +127,11 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 5;</code>
+     * Generated from protobuf field <code>int32 port = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

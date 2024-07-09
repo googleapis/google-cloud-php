@@ -24,33 +24,33 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      */
     private $containers;
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $volumes;
     /**
-     * Max allowed time duration the Task may be active before the system will
-     * actively try to mark it failed and kill associated containers. This applies
-     * per attempt of a task, meaning each retry can run for the full timeout.
-     * Defaults to 600 seconds.
+     * Optional. Max allowed time duration the Task may be active before the
+     * system will actively try to mark it failed and kill associated containers.
+     * This applies per attempt of a task, meaning each retry can run for the full
+     * timeout. Defaults to 600 seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $timeout = null;
     /**
-     * Email address of the IAM service account associated with the Task of a
-     * Job. The service account represents the identity of the
-     * running task, and determines what permissions the task has. If
-     * not provided, the task will use the project's default service account.
+     * Optional. Email address of the IAM service account associated with the Task
+     * of a Job. The service account represents the identity of the running task,
+     * and determines what permissions the task has. If not provided, the task
+     * will use the project's default service account.
      *
-     * Generated from protobuf field <code>string service_account = 5;</code>
+     * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_account = '';
     /**
-     * The execution environment being used to host this Task.
+     * Optional. The execution environment being used to host this Task.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $execution_environment = 0;
     /**
@@ -62,10 +62,11 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $encryption_key = '';
     /**
-     * VPC Access configuration to use for this Task. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Task. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $vpc_access = null;
     protected $retries;
@@ -80,29 +81,30 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      *           Holds the single container that defines the unit of execution for this
      *           task.
      *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
-     *           A list of Volumes to make available to containers.
+     *           Optional. A list of Volumes to make available to containers.
      *     @type int $max_retries
      *           Number of retries allowed per Task, before marking this Task failed.
      *           Defaults to 3.
      *     @type \Google\Protobuf\Duration $timeout
-     *           Max allowed time duration the Task may be active before the system will
-     *           actively try to mark it failed and kill associated containers. This applies
-     *           per attempt of a task, meaning each retry can run for the full timeout.
-     *           Defaults to 600 seconds.
+     *           Optional. Max allowed time duration the Task may be active before the
+     *           system will actively try to mark it failed and kill associated containers.
+     *           This applies per attempt of a task, meaning each retry can run for the full
+     *           timeout. Defaults to 600 seconds.
      *     @type string $service_account
-     *           Email address of the IAM service account associated with the Task of a
-     *           Job. The service account represents the identity of the
-     *           running task, and determines what permissions the task has. If
-     *           not provided, the task will use the project's default service account.
+     *           Optional. Email address of the IAM service account associated with the Task
+     *           of a Job. The service account represents the identity of the running task,
+     *           and determines what permissions the task has. If not provided, the task
+     *           will use the project's default service account.
      *     @type int $execution_environment
-     *           The execution environment being used to host this Task.
+     *           Optional. The execution environment being used to host this Task.
      *     @type string $encryption_key
      *           A reference to a customer managed encryption key (CMEK) to use to encrypt
      *           this container image. For more information, go to
      *           https://cloud.google.com/run/docs/securing/using-cmek
      *     @type \Google\Cloud\Run\V2\VpcAccess $vpc_access
-     *           VPC Access configuration to use for this Task. For more information,
-     *           visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     *           Optional. VPC Access configuration to use for this Task. For more
+     *           information, visit
+     *           https://cloud.google.com/run/docs/configuring/connecting-vpc.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,9 +141,9 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getVolumes()
@@ -150,9 +152,9 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -198,12 +200,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max allowed time duration the Task may be active before the system will
-     * actively try to mark it failed and kill associated containers. This applies
-     * per attempt of a task, meaning each retry can run for the full timeout.
-     * Defaults to 600 seconds.
+     * Optional. Max allowed time duration the Task may be active before the
+     * system will actively try to mark it failed and kill associated containers.
+     * This applies per attempt of a task, meaning each retry can run for the full
+     * timeout. Defaults to 600 seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getTimeout()
@@ -222,12 +224,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max allowed time duration the Task may be active before the system will
-     * actively try to mark it failed and kill associated containers. This applies
-     * per attempt of a task, meaning each retry can run for the full timeout.
-     * Defaults to 600 seconds.
+     * Optional. Max allowed time duration the Task may be active before the
+     * system will actively try to mark it failed and kill associated containers.
+     * This applies per attempt of a task, meaning each retry can run for the full
+     * timeout. Defaults to 600 seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -240,12 +242,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the IAM service account associated with the Task of a
-     * Job. The service account represents the identity of the
-     * running task, and determines what permissions the task has. If
-     * not provided, the task will use the project's default service account.
+     * Optional. Email address of the IAM service account associated with the Task
+     * of a Job. The service account represents the identity of the running task,
+     * and determines what permissions the task has. If not provided, the task
+     * will use the project's default service account.
      *
-     * Generated from protobuf field <code>string service_account = 5;</code>
+     * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceAccount()
@@ -254,12 +256,12 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the IAM service account associated with the Task of a
-     * Job. The service account represents the identity of the
-     * running task, and determines what permissions the task has. If
-     * not provided, the task will use the project's default service account.
+     * Optional. Email address of the IAM service account associated with the Task
+     * of a Job. The service account represents the identity of the running task,
+     * and determines what permissions the task has. If not provided, the task
+     * will use the project's default service account.
      *
-     * Generated from protobuf field <code>string service_account = 5;</code>
+     * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -272,9 +274,9 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The execution environment being used to host this Task.
+     * Optional. The execution environment being used to host this Task.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getExecutionEnvironment()
@@ -283,9 +285,9 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The execution environment being used to host this Task.
+     * Optional. The execution environment being used to host this Task.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -328,10 +330,11 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * VPC Access configuration to use for this Task. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Task. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\VpcAccess|null
      */
     public function getVpcAccess()
@@ -350,10 +353,11 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * VPC Access configuration to use for this Task. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Task. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\VpcAccess $var
      * @return $this
      */

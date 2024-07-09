@@ -27,21 +27,23 @@ class Service
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã$
-!google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Æ
+ì%
+!google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Æ
 CreateServiceRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service2
 service (2.google.cloud.run.v2.ServiceB‡A
 
 service_id (	B‡A
-validate_only ("x
-UpdateServiceRequest2
+validate_only ("≥
+UpdateServiceRequest4
+update_mask (2.google.protobuf.FieldMaskB‡A2
 service (2.google.cloud.run.v2.ServiceB‡A
-validate_only (
-allow_missing ("Ü
+validate_only (
+allow_missing (B‡A"Ü
 ListServicesRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service
 	page_size (
@@ -58,7 +60,7 @@ page_token (	
 name (	B"‡A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	"∂
+etag (	" 
 Service
 name (	
 description (	
@@ -75,12 +77,12 @@ generation (B‡A=
 creator (	B‡A
 last_modifier (	B‡A
 client (	
-client_version (	4
-ingress (2#.google.cloud.run.v2.IngressTraffic-
-launch_stage (2.google.api.LaunchStageF
-binary_authorization (2(.google.cloud.run.v2.BinaryAuthorization<
-template (2%.google.cloud.run.v2.RevisionTemplateB‡A3
-traffic (2".google.cloud.run.v2.TrafficTarget9
+client_version (	9
+ingress (2#.google.cloud.run.v2.IngressTrafficB‡A2
+launch_stage (2.google.api.LaunchStageB‡AK
+binary_authorization (2(.google.cloud.run.v2.BinaryAuthorizationB‡A<
+template (2%.google.cloud.run.v2.RevisionTemplateB‡A8
+traffic (2".google.cloud.run.v2.TrafficTargetB‡A9
 scaling (2#.google.cloud.run.v2.ServiceScalingB‡A!
 default_uri_disabled (B‡A 
 observed_generation (B‡A?
@@ -103,7 +105,7 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 AnnotationsEntry
 key (	
 value (	:8:^ÍA[
-run.googleapis.com/Service:projects/{project}/locations/{location}/services/{service}R2∑
+run.googleapis.com/Service:projects/{project}/locations/{location}/services/{service}R2Õ
 Services˝
 CreateService).google.cloud.run.v2.CreateServiceRequest.google.longrunning.Operation"° A
 ServiceService⁄Aparent,service,service_idÇ”‰ì7",/v2/{parent=projects/*/locations/*}/services:serviceä”‰ì-+
@@ -112,9 +114,9 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 GetService&.google.cloud.run.v2.GetServiceRequest.google.cloud.run.v2.Service"o⁄AnameÇ”‰ì.,/v2/{name=projects/*/locations/*/services/*}ä”‰ì.,
 name$projects/*/locations/{location=*}/**’
 ListServices(.google.cloud.run.v2.ListServicesRequest).google.cloud.run.v2.ListServicesResponse"p⁄AparentÇ”‰ì.,/v2/{parent=projects/*/locations/*}/servicesä”‰ì-+
-parent!projects/*/locations/{location=*}¸
-UpdateService).google.cloud.run.v2.UpdateServiceRequest.google.longrunning.Operation"† A
-ServiceService⁄AserviceÇ”‰ì?24/v2/{service.name=projects/*/locations/*/services/*}:serviceä”‰ì64
+parent!projects/*/locations/{location=*}í
+UpdateService).google.cloud.run.v2.UpdateServiceRequest.google.longrunning.Operation"∂ A
+ServiceService⁄Aservice⁄Aservice,update_maskÇ”‰ì?24/v2/{service.name=projects/*/locations/*/services/*}:serviceä”‰ì64
 service.name$projects/*/locations/{location=*}/**‡
 DeleteService).google.cloud.run.v2.DeleteServiceRequest.google.longrunning.Operation"Ñ A
 ServiceService⁄AnameÇ”‰ì.*,/v2/{name=projects/*/locations/*/services/*}ä”‰ì.,

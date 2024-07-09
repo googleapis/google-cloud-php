@@ -95,7 +95,8 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -132,15 +133,15 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $client_version = '';
     /**
-     * Provides the ingress settings for this Service. On output, returns the
-     * currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     * revision is active.
+     * Optional. Provides the ingress settings for this Service. On output,
+     * returns the currently observed ingress settings, or
+     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ingress = 0;
     /**
-     * The launch stage as defined by [Google Cloud Platform
+     * Optional. The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
@@ -151,13 +152,13 @@ class Service extends \Google\Protobuf\Internal\Message
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
-     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $launch_stage = 0;
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $binary_authorization = null;
     /**
@@ -167,11 +168,11 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $template = null;
     /**
-     * Specifies how to distribute traffic over a collection of Revisions
-     * belonging to the Service. If traffic is empty or not provided, defaults to
-     * 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of
+     * Revisions belonging to the Service. If traffic is empty or not provided,
+     * defaults to 100% traffic to the latest `Ready` Revision.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $traffic;
     /**
@@ -342,7 +343,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           Output only. The deletion time.
+     *           Output only. The deletion time. It is only populated as a response to a
+     *           Delete request.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. For a deleted resource, the time after which it will be
      *           permamently deleted.
@@ -355,11 +357,11 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type string $client_version
      *           Arbitrary version identifier for the API client.
      *     @type int $ingress
-     *           Provides the ingress settings for this Service. On output, returns the
-     *           currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     *           revision is active.
+     *           Optional. Provides the ingress settings for this Service. On output,
+     *           returns the currently observed ingress settings, or
+     *           INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *     @type int $launch_stage
-     *           The launch stage as defined by [Google Cloud Platform
+     *           Optional. The launch stage as defined by [Google Cloud Platform
      *           Launch Stages](https://cloud.google.com/terms/launch-stages).
      *           Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      *           is assumed.
@@ -370,13 +372,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *           For example, if ALPHA is provided as input, but only BETA and GA-level
      *           features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
-     *           Settings for the Binary Authorization feature.
+     *           Optional. Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\RevisionTemplate $template
      *           Required. The template used to create revisions for this Service.
      *     @type array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $traffic
-     *           Specifies how to distribute traffic over a collection of Revisions
-     *           belonging to the Service. If traffic is empty or not provided, defaults to
-     *           100% traffic to the latest `Ready` Revision.
+     *           Optional. Specifies how to distribute traffic over a collection of
+     *           Revisions belonging to the Service. If traffic is empty or not provided,
+     *           defaults to 100% traffic to the latest `Ready` Revision.
      *     @type \Google\Cloud\Run\V2\ServiceScaling $scaling
      *           Optional. Specifies service-level scaling settings
      *     @type bool $default_uri_disabled
@@ -732,7 +734,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -753,7 +756,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -910,11 +914,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides the ingress settings for this Service. On output, returns the
-     * currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     * revision is active.
+     * Optional. Provides the ingress settings for this Service. On output,
+     * returns the currently observed ingress settings, or
+     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getIngress()
@@ -923,11 +927,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides the ingress settings for this Service. On output, returns the
-     * currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     * revision is active.
+     * Optional. Provides the ingress settings for this Service. On output,
+     * returns the currently observed ingress settings, or
+     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -940,7 +944,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The launch stage as defined by [Google Cloud Platform
+     * Optional. The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
@@ -951,7 +955,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
-     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getLaunchStage()
@@ -960,7 +964,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The launch stage as defined by [Google Cloud Platform
+     * Optional. The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
@@ -971,7 +975,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
-     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -984,9 +988,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\BinaryAuthorization|null
      */
     public function getBinaryAuthorization()
@@ -1005,9 +1009,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\BinaryAuthorization $var
      * @return $this
      */
@@ -1056,11 +1060,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to distribute traffic over a collection of Revisions
-     * belonging to the Service. If traffic is empty or not provided, defaults to
-     * 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of
+     * Revisions belonging to the Service. If traffic is empty or not provided,
+     * defaults to 100% traffic to the latest `Ready` Revision.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTraffic()
@@ -1069,11 +1073,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to distribute traffic over a collection of Revisions
-     * belonging to the Service. If traffic is empty or not provided, defaults to
-     * 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of
+     * Revisions belonging to the Service. If traffic is empty or not provided,
+     * defaults to 100% traffic to the latest `Ready` Revision.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

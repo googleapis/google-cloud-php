@@ -373,7 +373,8 @@ final class ExecutionsClient
     }
 
     /**
-     * Lists Executions from a Job.
+     * Lists Executions from a Job. Results are sorted by creation time,
+     * descending.
      *
      * The async variant is {@see ExecutionsClient::listExecutionsAsync()} .
      *

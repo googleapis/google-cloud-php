@@ -511,7 +511,7 @@ final class JobsClient
     }
 
     /**
-     * Lists Jobs.
+     * Lists Jobs. Results are sorted by creation time, descending.
      *
      * The async variant is {@see JobsClient::listJobsAsync()} .
      *
