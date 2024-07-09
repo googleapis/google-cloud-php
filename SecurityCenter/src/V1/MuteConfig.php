@@ -18,9 +18,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * This field will be ignored if provided on config creation. Format
-     * "organizations/{organization}/muteConfigs/{mute_config}"
-     * "folders/{folder}/muteConfigs/{mute_config}"
-     * "projects/{project}/muteConfigs/{mute_config}"
+     * `organizations/{organization}/muteConfigs/{mute_config}`
+     * `folders/{folder}/muteConfigs/{mute_config}`
+     * `projects/{project}/muteConfigs/{mute_config}`
+     * `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     * `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     * `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -94,9 +97,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           This field will be ignored if provided on config creation. Format
-     *           "organizations/{organization}/muteConfigs/{mute_config}"
-     *           "folders/{folder}/muteConfigs/{mute_config}"
-     *           "projects/{project}/muteConfigs/{mute_config}"
+     *           `organizations/{organization}/muteConfigs/{mute_config}`
+     *           `folders/{folder}/muteConfigs/{mute_config}`
+     *           `projects/{project}/muteConfigs/{mute_config}`
+     *           `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     *           `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     *           `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *     @type string $display_name
      *           The human readable name to be displayed for the mute config.
      *     @type string $description
@@ -141,9 +147,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This field will be ignored if provided on config creation. Format
-     * "organizations/{organization}/muteConfigs/{mute_config}"
-     * "folders/{folder}/muteConfigs/{mute_config}"
-     * "projects/{project}/muteConfigs/{mute_config}"
+     * `organizations/{organization}/muteConfigs/{mute_config}`
+     * `folders/{folder}/muteConfigs/{mute_config}`
+     * `projects/{project}/muteConfigs/{mute_config}`
+     * `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     * `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     * `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -155,9 +164,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This field will be ignored if provided on config creation. Format
-     * "organizations/{organization}/muteConfigs/{mute_config}"
-     * "folders/{folder}/muteConfigs/{mute_config}"
-     * "projects/{project}/muteConfigs/{mute_config}"
+     * `organizations/{organization}/muteConfigs/{mute_config}`
+     * `folders/{folder}/muteConfigs/{mute_config}`
+     * `projects/{project}/muteConfigs/{mute_config}`
+     * `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     * `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     * `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

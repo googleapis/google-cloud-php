@@ -41,56 +41,82 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\SecurityCenter\V1\BatchCreateResourceValueConfigsRequest;
+use Google\Cloud\SecurityCenter\V1\BatchCreateResourceValueConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest;
+use Google\Cloud\SecurityCenter\V1\CreateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\CreateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
+use Google\Cloud\SecurityCenter\V1\CreateResourceValueConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
 use Google\Cloud\SecurityCenter\V1\CustomConfig;
 use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
+use Google\Cloud\SecurityCenter\V1\DeleteEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
+use Google\Cloud\SecurityCenter\V1\DeleteResourceValueConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\EffectiveEventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenter\V1\EffectiveSecurityHealthAnalyticsCustomModule;
+use Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
 use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\Finding\State;
 use Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest;
+use Google\Cloud\SecurityCenter\V1\GetEffectiveEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\GetEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetOrganizationSettingsRequest;
+use Google\Cloud\SecurityCenter\V1\GetResourceValueConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\GetSimulationRequest;
 use Google\Cloud\SecurityCenter\V1\GetSourceRequest;
+use Google\Cloud\SecurityCenter\V1\GetValuedResourceRequest;
 use Google\Cloud\SecurityCenter\V1\GroupAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\GroupAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\GroupFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\GroupFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
+use Google\Cloud\SecurityCenter\V1\ListAttackPathsRequest;
+use Google\Cloud\SecurityCenter\V1\ListAttackPathsResponse;
 use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest;
 use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse;
+use Google\Cloud\SecurityCenter\V1\ListDescendantEventThreatDetectionCustomModulesRequest;
+use Google\Cloud\SecurityCenter\V1\ListDescendantEventThreatDetectionCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest;
 use Google\Cloud\SecurityCenter\V1\ListDescendantSecurityHealthAnalyticsCustomModulesResponse;
+use Google\Cloud\SecurityCenter\V1\ListEffectiveEventThreatDetectionCustomModulesRequest;
+use Google\Cloud\SecurityCenter\V1\ListEffectiveEventThreatDetectionCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesRequest;
 use Google\Cloud\SecurityCenter\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesResponse;
+use Google\Cloud\SecurityCenter\V1\ListEventThreatDetectionCustomModulesRequest;
+use Google\Cloud\SecurityCenter\V1\ListEventThreatDetectionCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse;
+use Google\Cloud\SecurityCenter\V1\ListResourceValueConfigsRequest;
+use Google\Cloud\SecurityCenter\V1\ListResourceValueConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesRequest;
 use Google\Cloud\SecurityCenter\V1\ListSecurityHealthAnalyticsCustomModulesResponse;
 use Google\Cloud\SecurityCenter\V1\ListSourcesRequest;
 use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
+use Google\Cloud\SecurityCenter\V1\ListValuedResourcesRequest;
+use Google\Cloud\SecurityCenter\V1\ListValuedResourcesResponse;
 use Google\Cloud\SecurityCenter\V1\MuteConfig;
 use Google\Cloud\SecurityCenter\V1\NotificationConfig;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
+use Google\Cloud\SecurityCenter\V1\ResourceValueConfig;
 use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest;
 use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
@@ -99,16 +125,22 @@ use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
+use Google\Cloud\SecurityCenter\V1\Simulation;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest;
+use Google\Cloud\SecurityCenter\V1\UpdateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest;
+use Google\Cloud\SecurityCenter\V1\UpdateResourceValueConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityMarksRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSourceRequest;
+use Google\Cloud\SecurityCenter\V1\ValidateEventThreatDetectionCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\ValidateEventThreatDetectionCustomModuleResponse;
+use Google\Cloud\SecurityCenter\V1\ValuedResource;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
@@ -124,33 +156,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $securityCenterClient = new SecurityCenterClient();
  * try {
- *     $parent = 'parent';
- *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'bulkMuteFindings');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         $result = $newOperationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+ *     $requests = [];
+ *     $response = $securityCenterClient->batchCreateResourceValueConfigs($formattedParent, $requests);
  * } finally {
  *     $securityCenterClient->close();
  * }
@@ -195,7 +203,13 @@ class SecurityCenterGapicClient
 
     private static $dlpJobNameTemplate;
 
+    private static $effectiveEventThreatDetectionCustomModuleNameTemplate;
+
     private static $effectiveSecurityHealthAnalyticsCustomModuleNameTemplate;
+
+    private static $eventThreatDetectionCustomModuleNameTemplate;
+
+    private static $eventThreatDetectionSettingsNameTemplate;
 
     private static $externalSystemNameTemplate;
 
@@ -211,7 +225,15 @@ class SecurityCenterGapicClient
 
     private static $folderEffectiveCustomModuleNameTemplate;
 
+    private static $folderEventThreatDetectionSettingsNameTemplate;
+
     private static $folderExportNameTemplate;
+
+    private static $folderLocationNameTemplate;
+
+    private static $folderLocationMuteConfigNameTemplate;
+
+    private static $folderModuleNameTemplate;
 
     private static $folderMuteConfigNameTemplate;
 
@@ -227,6 +249,8 @@ class SecurityCenterGapicClient
 
     private static $folderSourceFindingSecurityMarksNameTemplate;
 
+    private static $locationNameTemplate;
+
     private static $muteConfigNameTemplate;
 
     private static $notificationConfigNameTemplate;
@@ -241,7 +265,15 @@ class SecurityCenterGapicClient
 
     private static $organizationEffectiveCustomModuleNameTemplate;
 
+    private static $organizationEventThreatDetectionSettingsNameTemplate;
+
     private static $organizationExportNameTemplate;
+
+    private static $organizationLocationNameTemplate;
+
+    private static $organizationLocationMuteConfigNameTemplate;
+
+    private static $organizationModuleNameTemplate;
 
     private static $organizationMuteConfigNameTemplate;
 
@@ -273,11 +305,17 @@ class SecurityCenterGapicClient
 
     private static $projectEffectiveCustomModuleNameTemplate;
 
+    private static $projectEventThreatDetectionSettingsNameTemplate;
+
     private static $projectExportNameTemplate;
 
     private static $projectLocationDlpJobNameTemplate;
 
+    private static $projectLocationMuteConfigNameTemplate;
+
     private static $projectLocationTableProfileNameTemplate;
+
+    private static $projectModuleNameTemplate;
 
     private static $projectMuteConfigNameTemplate;
 
@@ -295,17 +333,23 @@ class SecurityCenterGapicClient
 
     private static $projectTableProfileNameTemplate;
 
+    private static $resourceValueConfigNameTemplate;
+
     private static $securityHealthAnalyticsCustomModuleNameTemplate;
 
     private static $securityHealthAnalyticsSettingsNameTemplate;
 
     private static $securityMarksNameTemplate;
 
+    private static $simulationNameTemplate;
+
     private static $sourceNameTemplate;
 
     private static $tableDataProfileNameTemplate;
 
     private static $topicNameTemplate;
+
+    private static $valuedResourceNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -348,6 +392,15 @@ class SecurityCenterGapicClient
         return self::$dlpJobNameTemplate;
     }
 
+    private static function getEffectiveEventThreatDetectionCustomModuleNameTemplate()
+    {
+        if (self::$effectiveEventThreatDetectionCustomModuleNameTemplate == null) {
+            self::$effectiveEventThreatDetectionCustomModuleNameTemplate = new PathTemplate('organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}');
+        }
+
+        return self::$effectiveEventThreatDetectionCustomModuleNameTemplate;
+    }
+
     private static function getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate()
     {
         if (self::$effectiveSecurityHealthAnalyticsCustomModuleNameTemplate == null) {
@@ -355,6 +408,24 @@ class SecurityCenterGapicClient
         }
 
         return self::$effectiveSecurityHealthAnalyticsCustomModuleNameTemplate;
+    }
+
+    private static function getEventThreatDetectionCustomModuleNameTemplate()
+    {
+        if (self::$eventThreatDetectionCustomModuleNameTemplate == null) {
+            self::$eventThreatDetectionCustomModuleNameTemplate = new PathTemplate('organizations/{organization}/eventThreatDetectionSettings/customModules/{module}');
+        }
+
+        return self::$eventThreatDetectionCustomModuleNameTemplate;
+    }
+
+    private static function getEventThreatDetectionSettingsNameTemplate()
+    {
+        if (self::$eventThreatDetectionSettingsNameTemplate == null) {
+            self::$eventThreatDetectionSettingsNameTemplate = new PathTemplate('organizations/{organization}/eventThreatDetectionSettings');
+        }
+
+        return self::$eventThreatDetectionSettingsNameTemplate;
     }
 
     private static function getExternalSystemNameTemplate()
@@ -420,6 +491,15 @@ class SecurityCenterGapicClient
         return self::$folderEffectiveCustomModuleNameTemplate;
     }
 
+    private static function getFolderEventThreatDetectionSettingsNameTemplate()
+    {
+        if (self::$folderEventThreatDetectionSettingsNameTemplate == null) {
+            self::$folderEventThreatDetectionSettingsNameTemplate = new PathTemplate('folders/{folder}/eventThreatDetectionSettings');
+        }
+
+        return self::$folderEventThreatDetectionSettingsNameTemplate;
+    }
+
     private static function getFolderExportNameTemplate()
     {
         if (self::$folderExportNameTemplate == null) {
@@ -427,6 +507,33 @@ class SecurityCenterGapicClient
         }
 
         return self::$folderExportNameTemplate;
+    }
+
+    private static function getFolderLocationNameTemplate()
+    {
+        if (self::$folderLocationNameTemplate == null) {
+            self::$folderLocationNameTemplate = new PathTemplate('folders/{folder}/locations/{location}');
+        }
+
+        return self::$folderLocationNameTemplate;
+    }
+
+    private static function getFolderLocationMuteConfigNameTemplate()
+    {
+        if (self::$folderLocationMuteConfigNameTemplate == null) {
+            self::$folderLocationMuteConfigNameTemplate = new PathTemplate('folders/{folder}/locations/{location}/muteConfigs/{mute_config}');
+        }
+
+        return self::$folderLocationMuteConfigNameTemplate;
+    }
+
+    private static function getFolderModuleNameTemplate()
+    {
+        if (self::$folderModuleNameTemplate == null) {
+            self::$folderModuleNameTemplate = new PathTemplate('folders/{folder}/eventThreatDetectionSettings/customModules/{module}');
+        }
+
+        return self::$folderModuleNameTemplate;
     }
 
     private static function getFolderMuteConfigNameTemplate()
@@ -492,6 +599,15 @@ class SecurityCenterGapicClient
         return self::$folderSourceFindingSecurityMarksNameTemplate;
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getMuteConfigNameTemplate()
     {
         if (self::$muteConfigNameTemplate == null) {
@@ -555,6 +671,15 @@ class SecurityCenterGapicClient
         return self::$organizationEffectiveCustomModuleNameTemplate;
     }
 
+    private static function getOrganizationEventThreatDetectionSettingsNameTemplate()
+    {
+        if (self::$organizationEventThreatDetectionSettingsNameTemplate == null) {
+            self::$organizationEventThreatDetectionSettingsNameTemplate = new PathTemplate('organizations/{organization}/eventThreatDetectionSettings');
+        }
+
+        return self::$organizationEventThreatDetectionSettingsNameTemplate;
+    }
+
     private static function getOrganizationExportNameTemplate()
     {
         if (self::$organizationExportNameTemplate == null) {
@@ -562,6 +687,33 @@ class SecurityCenterGapicClient
         }
 
         return self::$organizationExportNameTemplate;
+    }
+
+    private static function getOrganizationLocationNameTemplate()
+    {
+        if (self::$organizationLocationNameTemplate == null) {
+            self::$organizationLocationNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}');
+        }
+
+        return self::$organizationLocationNameTemplate;
+    }
+
+    private static function getOrganizationLocationMuteConfigNameTemplate()
+    {
+        if (self::$organizationLocationMuteConfigNameTemplate == null) {
+            self::$organizationLocationMuteConfigNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/muteConfigs/{mute_config}');
+        }
+
+        return self::$organizationLocationMuteConfigNameTemplate;
+    }
+
+    private static function getOrganizationModuleNameTemplate()
+    {
+        if (self::$organizationModuleNameTemplate == null) {
+            self::$organizationModuleNameTemplate = new PathTemplate('organizations/{organization}/eventThreatDetectionSettings/customModules/{module}');
+        }
+
+        return self::$organizationModuleNameTemplate;
     }
 
     private static function getOrganizationMuteConfigNameTemplate()
@@ -699,6 +851,15 @@ class SecurityCenterGapicClient
         return self::$projectEffectiveCustomModuleNameTemplate;
     }
 
+    private static function getProjectEventThreatDetectionSettingsNameTemplate()
+    {
+        if (self::$projectEventThreatDetectionSettingsNameTemplate == null) {
+            self::$projectEventThreatDetectionSettingsNameTemplate = new PathTemplate('projects/{project}/eventThreatDetectionSettings');
+        }
+
+        return self::$projectEventThreatDetectionSettingsNameTemplate;
+    }
+
     private static function getProjectExportNameTemplate()
     {
         if (self::$projectExportNameTemplate == null) {
@@ -717,6 +878,15 @@ class SecurityCenterGapicClient
         return self::$projectLocationDlpJobNameTemplate;
     }
 
+    private static function getProjectLocationMuteConfigNameTemplate()
+    {
+        if (self::$projectLocationMuteConfigNameTemplate == null) {
+            self::$projectLocationMuteConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/muteConfigs/{mute_config}');
+        }
+
+        return self::$projectLocationMuteConfigNameTemplate;
+    }
+
     private static function getProjectLocationTableProfileNameTemplate()
     {
         if (self::$projectLocationTableProfileNameTemplate == null) {
@@ -724,6 +894,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectLocationTableProfileNameTemplate;
+    }
+
+    private static function getProjectModuleNameTemplate()
+    {
+        if (self::$projectModuleNameTemplate == null) {
+            self::$projectModuleNameTemplate = new PathTemplate('projects/{project}/eventThreatDetectionSettings/customModules/{module}');
+        }
+
+        return self::$projectModuleNameTemplate;
     }
 
     private static function getProjectMuteConfigNameTemplate()
@@ -798,6 +977,15 @@ class SecurityCenterGapicClient
         return self::$projectTableProfileNameTemplate;
     }
 
+    private static function getResourceValueConfigNameTemplate()
+    {
+        if (self::$resourceValueConfigNameTemplate == null) {
+            self::$resourceValueConfigNameTemplate = new PathTemplate('organizations/{organization}/resourceValueConfigs/{resource_value_config}');
+        }
+
+        return self::$resourceValueConfigNameTemplate;
+    }
+
     private static function getSecurityHealthAnalyticsCustomModuleNameTemplate()
     {
         if (self::$securityHealthAnalyticsCustomModuleNameTemplate == null) {
@@ -823,6 +1011,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$securityMarksNameTemplate;
+    }
+
+    private static function getSimulationNameTemplate()
+    {
+        if (self::$simulationNameTemplate == null) {
+            self::$simulationNameTemplate = new PathTemplate('organizations/{organization}/simulations/{simulation}');
+        }
+
+        return self::$simulationNameTemplate;
     }
 
     private static function getSourceNameTemplate()
@@ -852,13 +1049,25 @@ class SecurityCenterGapicClient
         return self::$topicNameTemplate;
     }
 
+    private static function getValuedResourceNameTemplate()
+    {
+        if (self::$valuedResourceNameTemplate == null) {
+            self::$valuedResourceNameTemplate = new PathTemplate('organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}');
+        }
+
+        return self::$valuedResourceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'bigQueryExport' => self::getBigQueryExportNameTemplate(),
                 'dlpJob' => self::getDlpJobNameTemplate(),
+                'effectiveEventThreatDetectionCustomModule' => self::getEffectiveEventThreatDetectionCustomModuleNameTemplate(),
                 'effectiveSecurityHealthAnalyticsCustomModule' => self::getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate(),
+                'eventThreatDetectionCustomModule' => self::getEventThreatDetectionCustomModuleNameTemplate(),
+                'eventThreatDetectionSettings' => self::getEventThreatDetectionSettingsNameTemplate(),
                 'externalSystem' => self::getExternalSystemNameTemplate(),
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
@@ -866,7 +1075,11 @@ class SecurityCenterGapicClient
                 'folderConstraintName' => self::getFolderConstraintNameNameTemplate(),
                 'folderCustomModule' => self::getFolderCustomModuleNameTemplate(),
                 'folderEffectiveCustomModule' => self::getFolderEffectiveCustomModuleNameTemplate(),
+                'folderEventThreatDetectionSettings' => self::getFolderEventThreatDetectionSettingsNameTemplate(),
                 'folderExport' => self::getFolderExportNameTemplate(),
+                'folderLocation' => self::getFolderLocationNameTemplate(),
+                'folderLocationMuteConfig' => self::getFolderLocationMuteConfigNameTemplate(),
+                'folderModule' => self::getFolderModuleNameTemplate(),
                 'folderMuteConfig' => self::getFolderMuteConfigNameTemplate(),
                 'folderNotificationConfig' => self::getFolderNotificationConfigNameTemplate(),
                 'folderSecurityHealthAnalyticsSettings' => self::getFolderSecurityHealthAnalyticsSettingsNameTemplate(),
@@ -874,6 +1087,7 @@ class SecurityCenterGapicClient
                 'folderSourceFinding' => self::getFolderSourceFindingNameTemplate(),
                 'folderSourceFindingExternalsystem' => self::getFolderSourceFindingExternalsystemNameTemplate(),
                 'folderSourceFindingSecurityMarks' => self::getFolderSourceFindingSecurityMarksNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'muteConfig' => self::getMuteConfigNameTemplate(),
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
@@ -881,7 +1095,11 @@ class SecurityCenterGapicClient
                 'organizationConstraintName' => self::getOrganizationConstraintNameNameTemplate(),
                 'organizationCustomModule' => self::getOrganizationCustomModuleNameTemplate(),
                 'organizationEffectiveCustomModule' => self::getOrganizationEffectiveCustomModuleNameTemplate(),
+                'organizationEventThreatDetectionSettings' => self::getOrganizationEventThreatDetectionSettingsNameTemplate(),
                 'organizationExport' => self::getOrganizationExportNameTemplate(),
+                'organizationLocation' => self::getOrganizationLocationNameTemplate(),
+                'organizationLocationMuteConfig' => self::getOrganizationLocationMuteConfigNameTemplate(),
+                'organizationModule' => self::getOrganizationModuleNameTemplate(),
                 'organizationMuteConfig' => self::getOrganizationMuteConfigNameTemplate(),
                 'organizationNotificationConfig' => self::getOrganizationNotificationConfigNameTemplate(),
                 'organizationSecurityHealthAnalyticsSettings' => self::getOrganizationSecurityHealthAnalyticsSettingsNameTemplate(),
@@ -897,9 +1115,12 @@ class SecurityCenterGapicClient
                 'projectCustomModule' => self::getProjectCustomModuleNameTemplate(),
                 'projectDlpJob' => self::getProjectDlpJobNameTemplate(),
                 'projectEffectiveCustomModule' => self::getProjectEffectiveCustomModuleNameTemplate(),
+                'projectEventThreatDetectionSettings' => self::getProjectEventThreatDetectionSettingsNameTemplate(),
                 'projectExport' => self::getProjectExportNameTemplate(),
                 'projectLocationDlpJob' => self::getProjectLocationDlpJobNameTemplate(),
+                'projectLocationMuteConfig' => self::getProjectLocationMuteConfigNameTemplate(),
                 'projectLocationTableProfile' => self::getProjectLocationTableProfileNameTemplate(),
+                'projectModule' => self::getProjectModuleNameTemplate(),
                 'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
                 'projectNotificationConfig' => self::getProjectNotificationConfigNameTemplate(),
                 'projectSecurityHealthAnalyticsSettings' => self::getProjectSecurityHealthAnalyticsSettingsNameTemplate(),
@@ -908,12 +1129,15 @@ class SecurityCenterGapicClient
                 'projectSourceFindingExternalsystem' => self::getProjectSourceFindingExternalsystemNameTemplate(),
                 'projectSourceFindingSecurityMarks' => self::getProjectSourceFindingSecurityMarksNameTemplate(),
                 'projectTableProfile' => self::getProjectTableProfileNameTemplate(),
+                'resourceValueConfig' => self::getResourceValueConfigNameTemplate(),
                 'securityHealthAnalyticsCustomModule' => self::getSecurityHealthAnalyticsCustomModuleNameTemplate(),
                 'securityHealthAnalyticsSettings' => self::getSecurityHealthAnalyticsSettingsNameTemplate(),
                 'securityMarks' => self::getSecurityMarksNameTemplate(),
+                'simulation' => self::getSimulationNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
                 'tableDataProfile' => self::getTableDataProfileNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
+                'valuedResource' => self::getValuedResourceNameTemplate(),
             ];
         }
 
@@ -956,6 +1180,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * effective_event_threat_detection_custom_module resource.
+     *
+     * @param string $organization
+     * @param string $module
+     *
+     * @return string The formatted effective_event_threat_detection_custom_module resource.
+     */
+    public static function effectiveEventThreatDetectionCustomModuleName($organization, $module)
+    {
+        return self::getEffectiveEventThreatDetectionCustomModuleNameTemplate()->render([
+            'organization' => $organization,
+            'module' => $module,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * effective_security_health_analytics_custom_module resource.
      *
      * @param string $organization
@@ -968,6 +1209,38 @@ class SecurityCenterGapicClient
         return self::getEffectiveSecurityHealthAnalyticsCustomModuleNameTemplate()->render([
             'organization' => $organization,
             'effective_custom_module' => $effectiveCustomModule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * event_threat_detection_custom_module resource.
+     *
+     * @param string $organization
+     * @param string $module
+     *
+     * @return string The formatted event_threat_detection_custom_module resource.
+     */
+    public static function eventThreatDetectionCustomModuleName($organization, $module)
+    {
+        return self::getEventThreatDetectionCustomModuleNameTemplate()->render([
+            'organization' => $organization,
+            'module' => $module,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * event_threat_detection_settings resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted event_threat_detection_settings resource.
+     */
+    public static function eventThreatDetectionSettingsName($organization)
+    {
+        return self::getEventThreatDetectionSettingsNameTemplate()->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -1096,6 +1369,21 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_eventThreatDetectionSettings resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder_eventThreatDetectionSettings resource.
+     */
+    public static function folderEventThreatDetectionSettingsName($folder)
+    {
+        return self::getFolderEventThreatDetectionSettingsNameTemplate()->render([
+            'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_export resource.
      *
      * @param string $folder
@@ -1108,6 +1396,59 @@ class SecurityCenterGapicClient
         return self::getFolderExportNameTemplate()->render([
             'folder' => $folder,
             'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_location resource.
+     *
+     * @param string $folder
+     * @param string $location
+     *
+     * @return string The formatted folder_location resource.
+     */
+    public static function folderLocationName($folder, $location)
+    {
+        return self::getFolderLocationNameTemplate()->render([
+            'folder' => $folder,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_location_mute_config resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $muteConfig
+     *
+     * @return string The formatted folder_location_mute_config resource.
+     */
+    public static function folderLocationMuteConfigName($folder, $location, $muteConfig)
+    {
+        return self::getFolderLocationMuteConfigNameTemplate()->render([
+            'folder' => $folder,
+            'location' => $location,
+            'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_module resource.
+     *
+     * @param string $folder
+     * @param string $module
+     *
+     * @return string The formatted folder_module resource.
+     */
+    public static function folderModuleName($folder, $module)
+    {
+        return self::getFolderModuleNameTemplate()->render([
+            'folder' => $folder,
+            'module' => $module,
         ]);
     }
 
@@ -1237,6 +1578,23 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a mute_config
      * resource.
      *
@@ -1355,6 +1713,21 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_eventThreatDetectionSettings resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization_eventThreatDetectionSettings resource.
+     */
+    public static function organizationEventThreatDetectionSettingsName($organization)
+    {
+        return self::getOrganizationEventThreatDetectionSettingsNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_export resource.
      *
      * @param string $organization
@@ -1367,6 +1740,59 @@ class SecurityCenterGapicClient
         return self::getOrganizationExportNameTemplate()->render([
             'organization' => $organization,
             'export' => $export,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location resource.
+     */
+    public static function organizationLocationName($organization, $location)
+    {
+        return self::getOrganizationLocationNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_mute_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $muteConfig
+     *
+     * @return string The formatted organization_location_mute_config resource.
+     */
+    public static function organizationLocationMuteConfigName($organization, $location, $muteConfig)
+    {
+        return self::getOrganizationLocationMuteConfigNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_module resource.
+     *
+     * @param string $organization
+     * @param string $module
+     *
+     * @return string The formatted organization_module resource.
+     */
+    public static function organizationModuleName($organization, $module)
+    {
+        return self::getOrganizationModuleNameTemplate()->render([
+            'organization' => $organization,
+            'module' => $module,
         ]);
     }
 
@@ -1629,6 +2055,21 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_eventThreatDetectionSettings resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_eventThreatDetectionSettings resource.
+     */
+    public static function projectEventThreatDetectionSettingsName($project)
+    {
+        return self::getProjectEventThreatDetectionSettingsNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_export resource.
      *
      * @param string $project
@@ -1665,6 +2106,25 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_mute_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $muteConfig
+     *
+     * @return string The formatted project_location_mute_config resource.
+     */
+    public static function projectLocationMuteConfigName($project, $location, $muteConfig)
+    {
+        return self::getProjectLocationMuteConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_table_profile resource.
      *
      * @param string $project
@@ -1679,6 +2139,23 @@ class SecurityCenterGapicClient
             'project' => $project,
             'location' => $location,
             'table_profile' => $tableProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_module resource.
+     *
+     * @param string $project
+     * @param string $module
+     *
+     * @return string The formatted project_module resource.
+     */
+    public static function projectModuleName($project, $module)
+    {
+        return self::getProjectModuleNameTemplate()->render([
+            'project' => $project,
+            'module' => $module,
         ]);
     }
 
@@ -1826,6 +2303,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted resource_value_config resource.
+     */
+    public static function resourceValueConfigName($organization, $resourceValueConfig)
+    {
+        return self::getResourceValueConfigNameTemplate()->render([
+            'organization' => $organization,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * security_health_analytics_custom_module resource.
      *
      * @param string $organization
@@ -1870,6 +2364,23 @@ class SecurityCenterGapicClient
         return self::getSecurityMarksNameTemplate()->render([
             'organization' => $organization,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a simulation
+     * resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     *
+     * @return string The formatted simulation resource.
+     */
+    public static function simulationName($organization, $simulation)
+    {
+        return self::getSimulationNameTemplate()->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
         ]);
     }
 
@@ -1925,12 +2436,34 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted valued_resource resource.
+     */
+    public static function valuedResourceName($organization, $simulation, $valuedResource)
+    {
+        return self::getValuedResourceNameTemplate()->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - bigQueryExport: organizations/{organization}/bigQueryExports/{export}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
+     * - effectiveEventThreatDetectionCustomModule: organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}
      * - effectiveSecurityHealthAnalyticsCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
+     * - eventThreatDetectionCustomModule: organizations/{organization}/eventThreatDetectionSettings/customModules/{module}
+     * - eventThreatDetectionSettings: organizations/{organization}/eventThreatDetectionSettings
      * - externalSystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
@@ -1938,7 +2471,11 @@ class SecurityCenterGapicClient
      * - folderConstraintName: folders/{folder}/policies/{constraint_name}
      * - folderCustomModule: folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - folderEffectiveCustomModule: folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
+     * - folderEventThreatDetectionSettings: folders/{folder}/eventThreatDetectionSettings
      * - folderExport: folders/{folder}/bigQueryExports/{export}
+     * - folderLocation: folders/{folder}/locations/{location}
+     * - folderLocationMuteConfig: folders/{folder}/locations/{location}/muteConfigs/{mute_config}
+     * - folderModule: folders/{folder}/eventThreatDetectionSettings/customModules/{module}
      * - folderMuteConfig: folders/{folder}/muteConfigs/{mute_config}
      * - folderNotificationConfig: folders/{folder}/notificationConfigs/{notification_config}
      * - folderSecurityHealthAnalyticsSettings: folders/{folder}/securityHealthAnalyticsSettings
@@ -1946,6 +2483,7 @@ class SecurityCenterGapicClient
      * - folderSourceFinding: folders/{folder}/sources/{source}/findings/{finding}
      * - folderSourceFindingExternalsystem: folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - folderSourceFindingSecurityMarks: folders/{folder}/sources/{source}/findings/{finding}/securityMarks
+     * - location: projects/{project}/locations/{location}
      * - muteConfig: organizations/{organization}/muteConfigs/{mute_config}
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
@@ -1953,7 +2491,11 @@ class SecurityCenterGapicClient
      * - organizationConstraintName: organizations/{organization}/policies/{constraint_name}
      * - organizationCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - organizationEffectiveCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
+     * - organizationEventThreatDetectionSettings: organizations/{organization}/eventThreatDetectionSettings
      * - organizationExport: organizations/{organization}/bigQueryExports/{export}
+     * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationMuteConfig: organizations/{organization}/locations/{location}/muteConfigs/{mute_config}
+     * - organizationModule: organizations/{organization}/eventThreatDetectionSettings/customModules/{module}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
      * - organizationNotificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organizationSecurityHealthAnalyticsSettings: organizations/{organization}/securityHealthAnalyticsSettings
@@ -1969,9 +2511,12 @@ class SecurityCenterGapicClient
      * - projectCustomModule: projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - projectDlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - projectEffectiveCustomModule: projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
+     * - projectEventThreatDetectionSettings: projects/{project}/eventThreatDetectionSettings
      * - projectExport: projects/{project}/bigQueryExports/{export}
      * - projectLocationDlpJob: projects/{project}/locations/{location}/dlpJobs/{dlp_job}
+     * - projectLocationMuteConfig: projects/{project}/locations/{location}/muteConfigs/{mute_config}
      * - projectLocationTableProfile: projects/{project}/locations/{location}/tableProfiles/{table_profile}
+     * - projectModule: projects/{project}/eventThreatDetectionSettings/customModules/{module}
      * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
      * - projectNotificationConfig: projects/{project}/notificationConfigs/{notification_config}
      * - projectSecurityHealthAnalyticsSettings: projects/{project}/securityHealthAnalyticsSettings
@@ -1980,12 +2525,15 @@ class SecurityCenterGapicClient
      * - projectSourceFindingExternalsystem: projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - projectSourceFindingSecurityMarks: projects/{project}/sources/{source}/findings/{finding}/securityMarks
      * - projectTableProfile: projects/{project}/tableProfiles/{table_profile}
+     * - resourceValueConfig: organizations/{organization}/resourceValueConfigs/{resource_value_config}
      * - securityHealthAnalyticsCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - securityHealthAnalyticsSettings: organizations/{organization}/securityHealthAnalyticsSettings
      * - securityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - simulation: organizations/{organization}/simulations/{simulation}
      * - source: organizations/{organization}/sources/{source}
      * - tableDataProfile: projects/{project}/tableProfiles/{table_profile}
      * - topic: projects/{project}/topics/{topic}
+     * - valuedResource: organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -2113,6 +2661,51 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Creates a ResourceValueConfig for an organization. Maps user's tags to
+     * difference resource values for use by the attack path simulation.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $requests = [];
+     *     $response = $securityCenterClient->batchCreateResourceValueConfigs($formattedParent, $requests);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string                             $parent       Required. Resource name of the new ResourceValueConfig's parent.
+     *                                                         The parent field in the CreateResourceValueConfigRequest
+     *                                                         messages must either be empty or match this field.
+     * @param CreateResourceValueConfigRequest[] $requests     Required. The resource value configs to be created.
+     * @param array                              $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\BatchCreateResourceValueConfigsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchCreateResourceValueConfigs($parent, $requests, array $optionalArgs = [])
+    {
+        $request = new BatchCreateResourceValueConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('BatchCreateResourceValueConfigs', BatchCreateResourceValueConfigsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Kicks off an LRO to bulk mute findings for a parent based on a filter. The
      * parent can be either an organization, folder or project. The findings
      * matched by the filter will be muted after the LRO is done.
@@ -2154,8 +2747,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]",
-     *                             "projects/[project_id]".
+     *                             is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *                             `projects/[project_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2229,8 +2822,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string         $parent           Required. The name of the parent resource of the new BigQuery export. Its
-     *                                         format is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                         "projects/[project_id]".
+     *                                         format is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                                         `projects/[project_id]`.
      * @param BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
      * @param string         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
      *                                         It must consist of only lowercase letters, numbers, and hyphens, must start
@@ -2263,6 +2856,59 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Creates a resident Event Threat Detection custom module at the scope of the
+     * given Resource Manager parent, and also creates inherited custom modules
+     * for all descendants of the given parent. These modules are enabled by
+     * default.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->eventThreatDetectionSettingsName('[ORGANIZATION]');
+     *     $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
+     *     $response = $securityCenterClient->createEventThreatDetectionCustomModule($formattedParent, $eventThreatDetectionCustomModule);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string                           $parent                           Required. The new custom module's parent.
+     *
+     *                                                                           Its format is:
+     *
+     *                                                                           * `organizations/{organization}/eventThreatDetectionSettings`.
+     *                                                                           * `folders/{folder}/eventThreatDetectionSettings`.
+     *                                                                           * `projects/{project}/eventThreatDetectionSettings`.
+     * @param EventThreatDetectionCustomModule $eventThreatDetectionCustomModule Required. The module to create. The
+     *                                                                           event_threat_detection_custom_module.name will be ignored and server
+     *                                                                           generated.
+     * @param array                            $optionalArgs                     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createEventThreatDetectionCustomModule($parent, $eventThreatDetectionCustomModule, array $optionalArgs = [])
+    {
+        $request = new CreateEventThreatDetectionCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateEventThreatDetectionCustomModule', EventThreatDetectionCustomModule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a finding. The corresponding source must exist for finding creation
      * to succeed.
      *
@@ -2280,7 +2926,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string  $parent       Required. Resource name of the new finding's parent. Its format should be
-     *                              "organizations/[organization_id]/sources/[source_id]".
+     *                              `organizations/[organization_id]/sources/[source_id]`.
      * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
      *                              It must be alphanumeric and less than or equal to 32 characters and
      *                              greater than 0 characters in length.
@@ -2319,7 +2965,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
+     *     $formattedParent = $securityCenterClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     $muteConfig = new MuteConfig();
      *     $muteConfigId = 'mute_config_id';
      *     $response = $securityCenterClient->createMuteConfig($formattedParent, $muteConfig, $muteConfigId);
@@ -2329,8 +2975,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string     $parent       Required. Resource name of the new mute configs's parent. Its format is
-     *                                 "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                 "projects/[project_id]".
+     *                                 `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                                 `projects/[project_id]`.
      * @param MuteConfig $muteConfig   Required. The mute config being created.
      * @param string     $muteConfigId Required. Unique identifier provided by the client within the parent scope.
      *                                 It must consist of only lowercase letters, numbers, and hyphens, must start
@@ -2379,8 +3025,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
-     *                                               is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                               "projects/[project_id]".
+     *                                               is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                                               `projects/[project_id]`.
      * @param string             $configId           Required.
      *                                               Unique identifier provided by the client within the parent scope.
      *                                               It must be between 1 and 128 characters and contain alphanumeric
@@ -2433,9 +3079,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string                              $parent                              Required. Resource name of the new custom module's parent. Its format is
-     *                                                                                 "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                                                                                 "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                                                                                 "projects/{project}/securityHealthAnalyticsSettings"
+     *                                                                                 `organizations/{organization}/securityHealthAnalyticsSettings`,
+     *                                                                                 `folders/{folder}/securityHealthAnalyticsSettings`, or
+     *                                                                                 `projects/{project}/securityHealthAnalyticsSettings`
      * @param SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. SecurityHealthAnalytics custom module to create. The provided
      *                                                                                 name is ignored and reset with provided parent information and
      *                                                                                 server-generated ID.
@@ -2480,7 +3126,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Resource name of the new source's parent. Its format should be
-     *                             "organizations/[organization_id]".
+     *                             `organizations/[organization_id]`.
      * @param Source $source       Required. The Source being created, only the display_name and description
      *                             will be used. All other fields will be ignored.
      * @param array  $optionalArgs {
@@ -2523,9 +3169,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. The name of the BigQuery export to delete. Its format is
-     *                             organizations/{organization}/bigQueryExports/{export_id},
-     *                             folders/{folder}/bigQueryExports/{export_id}, or
-     *                             projects/{project}/bigQueryExports/{export_id}
+     *                             `organizations/{organization}/bigQueryExports/{export_id}`,
+     *                             `folders/{folder}/bigQueryExports/{export_id}`, or
+     *                             `projects/{project}/bigQueryExports/{export_id}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2549,6 +3195,51 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Deletes the specified Event Threat Detection custom module and all of its
+     * descendants in the Resource Manager hierarchy. This method is only
+     * supported for resident custom modules.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->eventThreatDetectionCustomModuleName('[ORGANIZATION]', '[MODULE]');
+     *     $securityCenterClient->deleteEventThreatDetectionCustomModule($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the custom module to delete.
+     *
+     *                             Its format is:
+     *
+     *                             * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
+     *                             * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
+     *                             * "projects/{project}/eventThreatDetectionSettings/customModules/{module}".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteEventThreatDetectionCustomModule($name, array $optionalArgs = [])
+    {
+        $request = new DeleteEventThreatDetectionCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteEventThreatDetectionCustomModule', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes an existing mute config.
      *
      * Sample code:
@@ -2563,9 +3254,12 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the mute config to delete. Its format is
-     *                             organizations/{organization}/muteConfigs/{config_id},
-     *                             folders/{folder}/muteConfigs/{config_id}, or
-     *                             projects/{project}/muteConfigs/{config_id}
+     *                             `organizations/{organization}/muteConfigs/{config_id}`,
+     *                             `folders/{folder}/muteConfigs/{config_id}`,
+     *                             `projects/{project}/muteConfigs/{config_id}`,
+     *                             `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     *                             `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     *                             `projects/{project}/locations/global/muteConfigs/{config_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2603,9 +3297,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the notification config to delete. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]",
-     *                             "folders/[folder_id]/notificationConfigs/[config_id]",
-     *                             or "projects/[project_id]/notificationConfigs/[config_id]".
+     *                             `organizations/[organization_id]/notificationConfigs/[config_id]`,
+     *                             `folders/[folder_id]/notificationConfigs/[config_id]`,
+     *                             or `projects/[project_id]/notificationConfigs/[config_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2629,6 +3323,43 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Deletes a ResourceValueConfig.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->resourceValueConfigName('[ORGANIZATION]', '[RESOURCE_VALUE_CONFIG]');
+     *     $securityCenterClient->deleteResourceValueConfig($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the ResourceValueConfig to delete
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteResourceValueConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteResourceValueConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteResourceValueConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes the specified SecurityHealthAnalyticsCustomModule and all of its
      * descendants in the CRM hierarchy. This method is only supported for
      * resident custom modules.
@@ -2645,10 +3376,10 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the custom module to delete. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                             `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     *                             `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      *                             or
-     *                             "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     *                             `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2686,9 +3417,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the BigQuery export to retrieve. Its format is
-     *                             organizations/{organization}/bigQueryExports/{export_id},
-     *                             folders/{folder}/bigQueryExports/{export_id}, or
-     *                             projects/{project}/bigQueryExports/{export_id}
+     *                             `organizations/{organization}/bigQueryExports/{export_id}`,
+     *                             `folders/{folder}/bigQueryExports/{export_id}`, or
+     *                             `projects/{project}/bigQueryExports/{export_id}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2714,6 +3445,52 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Gets an effective Event Threat Detection custom module at the given level.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->effectiveEventThreatDetectionCustomModuleName('[ORGANIZATION]', '[MODULE]');
+     *     $response = $securityCenterClient->getEffectiveEventThreatDetectionCustomModule($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the effective Event Threat Detection custom
+     *                             module.
+     *
+     *                             Its format is:
+     *
+     *                             * `organizations/{organization}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+     *                             * `projects/{project}/eventThreatDetectionSettings/effectiveCustomModules/{module}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\EffectiveEventThreatDetectionCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEffectiveEventThreatDetectionCustomModule($name, array $optionalArgs = [])
+    {
+        $request = new GetEffectiveEventThreatDetectionCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEffectiveEventThreatDetectionCustomModule', EffectiveEventThreatDetectionCustomModule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.
      *
      * Sample code:
@@ -2728,10 +3505,10 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the effective custom module to get. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+     *                             `organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`,
+     *                             `folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`,
      *                             or
-     *                             "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
+     *                             `projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2754,6 +3531,51 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEffectiveSecurityHealthAnalyticsCustomModule', EffectiveSecurityHealthAnalyticsCustomModule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets an Event Threat Detection custom module.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->eventThreatDetectionCustomModuleName('[ORGANIZATION]', '[MODULE]');
+     *     $response = $securityCenterClient->getEventThreatDetectionCustomModule($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the custom module to get.
+     *
+     *                             Its format is:
+     *
+     *                             * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
+     *                             * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEventThreatDetectionCustomModule($name, array $optionalArgs = [])
+    {
+        $request = new GetEventThreatDetectionCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEventThreatDetectionCustomModule', EventThreatDetectionCustomModule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2818,9 +3640,12 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the mute config to retrieve. Its format is
-     *                             organizations/{organization}/muteConfigs/{config_id},
-     *                             folders/{folder}/muteConfigs/{config_id}, or
-     *                             projects/{project}/muteConfigs/{config_id}
+     *                             `organizations/{organization}/muteConfigs/{config_id}`,
+     *                             `folders/{folder}/muteConfigs/{config_id}`,
+     *                             `projects/{project}/muteConfigs/{config_id}`,
+     *                             `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     *                             `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     *                             `projects/{project}/locations/global/muteConfigs/{config_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2860,9 +3685,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the notification config to get. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]",
-     *                             "folders/[folder_id]/notificationConfigs/[config_id]",
-     *                             or "projects/[project_id]/notificationConfigs/[config_id]".
+     *                             `organizations/[organization_id]/notificationConfigs/[config_id]`,
+     *                             `folders/[folder_id]/notificationConfigs/[config_id]`,
+     *                             or `projects/[project_id]/notificationConfigs/[config_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2902,7 +3727,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the organization to get organization settings for. Its
-     *                             format is "organizations/[organization_id]/organizationSettings".
+     *                             format is `organizations/[organization_id]/organizationSettings`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2928,6 +3753,46 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Gets a ResourceValueConfig.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->resourceValueConfigName('[ORGANIZATION]', '[RESOURCE_VALUE_CONFIG]');
+     *     $response = $securityCenterClient->getResourceValueConfig($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the resource value config to retrieve. Its format is
+     *                             `organizations/{organization}/resourceValueConfigs/{config_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ResourceValueConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getResourceValueConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetResourceValueConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetResourceValueConfig', ResourceValueConfig::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Retrieves a SecurityHealthAnalyticsCustomModule.
      *
      * Sample code:
@@ -2942,10 +3807,10 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the custom module to get. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                             `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     *                             `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      *                             or
-     *                             "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     *                             `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2971,6 +3836,50 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Get the simulation by name or the latest simulation for the given
+     * organization.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->simulationName('[ORGANIZATION]', '[SIMULATION]');
+     *     $response = $securityCenterClient->getSimulation($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The organization name or simulation name of this simulation
+     *
+     *                             Valid format:
+     *                             `organizations/{organization}/simulations/latest`
+     *                             `organizations/{organization}/simulations/{simulation}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\Simulation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSimulation($name, array $optionalArgs = [])
+    {
+        $request = new GetSimulationRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSimulation', Simulation::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a source.
      *
      * Sample code:
@@ -2985,7 +3894,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Relative resource name of the source. Its format is
-     *                             "organizations/[organization_id]/source/[source_id]".
+     *                             `organizations/[organization_id]/source/[source_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3008,6 +3917,48 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSource', Source::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Get the valued resource by name
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->valuedResourceName('[ORGANIZATION]', '[SIMULATION]', '[VALUED_RESOURCE]');
+     *     $response = $securityCenterClient->getValuedResource($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of this valued resource
+     *
+     *                             Valid format:
+     *                             `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ValuedResource
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getValuedResource($name, array $optionalArgs = [])
+    {
+        $request = new GetValuedResourceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetValuedResource', ValuedResource::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3039,8 +3990,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. The name of the parent to group the assets by. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
+     *                             `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                             `projects/[project_id]`.
      * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping.
      *                             The string value should follow SQL syntax: comma separated list of fields.
      *                             For example:
@@ -3245,23 +4196,15 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Name of the source to groupBy. Its format is
-     *                             "organizations/[organization_id]/sources/[source_id]",
-     *                             folders/[folder_id]/sources/[source_id], or
-     *                             projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     *                             `organizations/[organization_id]/sources/[source_id]`,
+     *                             `folders/[folder_id]/sources/[source_id]`, or
+     *                             `projects/[project_id]/sources/[source_id]`. To groupBy across all sources
      *                             provide a source_id of `-`. For example:
-     *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     *                             or projects/{project_id}/sources/-
+     *                             `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`,
+     *                             or `projects/{project_id}/sources/-`
      * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping
      *                             (including `state_change`). The string value should follow SQL syntax:
      *                             comma separated list of fields. For example: "parent,resource_name".
-     *
-     *                             The following fields are supported:
-     *
-     *                             * resource_name
-     *                             * category
-     *                             * state
-     *                             * parent
-     *                             * severity
      *
      *                             The following fields are supported when compare_duration is set:
      *
@@ -3447,8 +4390,8 @@ class SecurityCenterGapicClient
      * @param string $parent       Required. The name of the parent resource that contains the assets. The
      *                             value that you can specify on parent depends on the method in which you
      *                             specify parent. You can specify one of the following values:
-     *                             "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
+     *                             `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                             `projects/[project_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3632,6 +4575,90 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Lists the attack paths for a set of simulation results or valued resources
+     * and filter.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->valuedResourceName('[ORGANIZATION]', '[SIMULATION]', '[VALUED_RESOURCE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listAttackPaths($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listAttackPaths($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of parent to list attack paths.
+     *
+     *                             Valid formats:
+     *                             `organizations/{organization}`,
+     *                             `organizations/{organization}/simulations/{simulation}`
+     *                             `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     *                             `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The filter expression that filters the attack path in the response.
+     *           Supported fields:
+     *
+     *           * `valued_resources` supports =
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAttackPaths($parent, array $optionalArgs = [])
+    {
+        $request = new ListAttackPathsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAttackPaths', $optionalArgs, ListAttackPathsResponse::class, $request);
+    }
+
+    /**
      * Lists BigQuery exports. Note that when requesting BigQuery exports at a
      * given level all exports under that level are also returned e.g. if
      * requesting BigQuery exports under a folder, then all BigQuery exports
@@ -3662,8 +4689,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its
-     *                             format is "organizations/[organization_id]", "folders/[folder_id]",
-     *                             "projects/[project_id]".
+     *                             format is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *                             `projects/[project_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3706,6 +4733,81 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Lists all resident Event Threat Detection custom modules under the
+     * given Resource Manager parent and its descendants.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->eventThreatDetectionSettingsName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listDescendantEventThreatDetectionCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listDescendantEventThreatDetectionCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the parent to list custom modules under.
+     *
+     *                             Its format is:
+     *
+     *                             * `organizations/{organization}/eventThreatDetectionSettings`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings`.
+     *                             * `projects/{project}/eventThreatDetectionSettings`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listDescendantEventThreatDetectionCustomModules($parent, array $optionalArgs = [])
+    {
+        $request = new ListDescendantEventThreatDetectionCustomModulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDescendantEventThreatDetectionCustomModules', $optionalArgs, ListDescendantEventThreatDetectionCustomModulesResponse::class, $request);
+    }
+
+    /**
      * Returns a list of all resident SecurityHealthAnalyticsCustomModules under
      * the given CRM parent and all of the parent’s CRM descendants.
      *
@@ -3733,9 +4835,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Name of parent to list descendant custom modules. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                             "projects/{project}/securityHealthAnalyticsSettings"
+     *                             `organizations/{organization}/securityHealthAnalyticsSettings`,
+     *                             `folders/{folder}/securityHealthAnalyticsSettings`, or
+     *                             `projects/{project}/securityHealthAnalyticsSettings`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3778,6 +4880,82 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Lists all effective Event Threat Detection custom modules for the
+     * given parent. This includes resident modules defined at the scope of the
+     * parent along with modules inherited from its ancestors.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->eventThreatDetectionSettingsName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listEffectiveEventThreatDetectionCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listEffectiveEventThreatDetectionCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the parent to list custom modules for.
+     *
+     *                             Its format is:
+     *
+     *                             * `organizations/{organization}/eventThreatDetectionSettings`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings`.
+     *                             * `projects/{project}/eventThreatDetectionSettings`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listEffectiveEventThreatDetectionCustomModules($parent, array $optionalArgs = [])
+    {
+        $request = new ListEffectiveEventThreatDetectionCustomModulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListEffectiveEventThreatDetectionCustomModules', $optionalArgs, ListEffectiveEventThreatDetectionCustomModulesResponse::class, $request);
+    }
+
+    /**
      * Returns a list of all EffectiveSecurityHealthAnalyticsCustomModules for the
      * given parent. This includes resident modules defined at the scope of the
      * parent, and inherited modules, inherited from CRM ancestors.
@@ -3806,9 +4984,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Name of parent to list effective custom modules. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                             "projects/{project}/securityHealthAnalyticsSettings"
+     *                             `organizations/{organization}/securityHealthAnalyticsSettings`,
+     *                             `folders/{folder}/securityHealthAnalyticsSettings`, or
+     *                             `projects/{project}/securityHealthAnalyticsSettings`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3851,6 +5029,82 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Lists all Event Threat Detection custom modules for the given
+     * Resource Manager parent. This includes resident modules defined at the
+     * scope of the parent along with modules inherited from ancestors.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->eventThreatDetectionSettingsName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listEventThreatDetectionCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listEventThreatDetectionCustomModules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the parent to list custom modules under.
+     *
+     *                             Its format is:
+     *
+     *                             * `organizations/{organization}/eventThreatDetectionSettings`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings`.
+     *                             * `projects/{project}/eventThreatDetectionSettings`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listEventThreatDetectionCustomModules($parent, array $optionalArgs = [])
+    {
+        $request = new ListEventThreatDetectionCustomModulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListEventThreatDetectionCustomModules', $optionalArgs, ListEventThreatDetectionCustomModulesResponse::class, $request);
+    }
+
+    /**
      * Lists an organization or source's findings.
      *
      * To list across all sources provide a `-` as the source id.
@@ -3880,12 +5134,12 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Name of the source the findings belong to. Its format is
-     *                             "organizations/[organization_id]/sources/[source_id],
-     *                             folders/[folder_id]/sources/[source_id], or
-     *                             projects/[project_id]/sources/[source_id]". To list across all sources
+     *                             `organizations/[organization_id]/sources/[source_id]`,
+     *                             `folders/[folder_id]/sources/[source_id]`, or
+     *                             `projects/[project_id]/sources/[source_id]`. To list across all sources
      *                             provide a source_id of `-`. For example:
-     *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
-     *                             projects/{projects_id}/sources/-
+     *                             `organizations/{organization_id}/sources/-`,
+     *                             `folders/{folder_id}/sources/-` or `projects/{projects_id}/sources/-`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4074,7 +5328,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
+     *     $formattedParent = $securityCenterClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $securityCenterClient->listMuteConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -4094,8 +5348,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]",
-     *                             "projects/[project_id]".
+     *                             is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *                             `projects/[project_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4208,6 +5462,76 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Lists all ResourceValueConfigs.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listResourceValueConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listResourceValueConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, which owns the collection of resource value configs.
+     *                             Its format is
+     *                             `organizations/[organization_id]`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listResourceValueConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListResourceValueConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListResourceValueConfigs', $optionalArgs, ListResourceValueConfigsResponse::class, $request);
+    }
+
+    /**
      * Returns a list of all SecurityHealthAnalyticsCustomModules for the given
      * parent. This includes resident modules defined at the scope of the parent,
      * and inherited modules, inherited from CRM ancestors.
@@ -4236,9 +5560,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Name of parent to list custom modules. Its format is
-     *                             "organizations/{organization}/securityHealthAnalyticsSettings",
-     *                             "folders/{folder}/securityHealthAnalyticsSettings", or
-     *                             "projects/{project}/securityHealthAnalyticsSettings"
+     *                             `organizations/{organization}/securityHealthAnalyticsSettings`,
+     *                             `folders/{folder}/securityHealthAnalyticsSettings`, or
+     *                             `projects/{project}/securityHealthAnalyticsSettings`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4307,8 +5631,8 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Resource name of the parent of sources to list. Its format should
-     *                             be "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
+     *                             be `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                             `projects/[project_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4348,6 +5672,114 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListSources', $optionalArgs, ListSourcesResponse::class, $request);
+    }
+
+    /**
+     * Lists the valued resources for a set of simulation results and filter.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->simulationName('[ORGANIZATION]', '[SIMULATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listValuedResources($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listValuedResources($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of parent to list valued resources.
+     *
+     *                             Valid formats:
+     *                             `organizations/{organization}`,
+     *                             `organizations/{organization}/simulations/{simulation}`
+     *                             `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The filter expression that filters the valued resources in the response.
+     *           Supported fields:
+     *
+     *           * `resource_value` supports =
+     *           * `resource_type` supports =
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           Optional. The fields by which to order the valued resources response.
+     *
+     *           Supported fields:
+     *
+     *           * `exposed_score`
+     *
+     *           * `resource_value`
+     *
+     *           * `resource_type`
+     *
+     *           * `resource`
+     *
+     *           * `display_name`
+     *
+     *           Values should be a comma separated list of fields. For example:
+     *           `exposed_score,resource_value`.
+     *
+     *           The default sorting order is descending. To specify ascending or descending
+     *           order for a field, append a ` ASC` or a ` DESC` suffix, respectively; for
+     *           example: `exposed_score DESC`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listValuedResources($parent, array $optionalArgs = [])
+    {
+        $request = new ListValuedResourcesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListValuedResources', $optionalArgs, ListValuedResourcesResponse::class, $request);
     }
 
     /**
@@ -4395,7 +5827,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $parent       Required. Name of the organization to run asset discovery for. Its format
-     *                             is "organizations/[organization_id]".
+     *                             is `organizations/[organization_id]`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -4441,9 +5873,9 @@ class SecurityCenterGapicClient
      * @param string    $name         Required. The [relative resource
      *                                name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      *                                of the finding. Example:
-     *                                "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *                                "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *                                "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     *                                `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     *                                `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     *                                `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      * @param int       $state        Required. The desired State of the finding.
      *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
      * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
@@ -4547,9 +5979,9 @@ class SecurityCenterGapicClient
      * @param string $name         Required. The [relative resource
      *                             name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
      *                             of the finding. Example:
-     *                             "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
-     *                             "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
-     *                             "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
+     *                             `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+     *                             `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+     *                             `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
      * @param int    $mute         Required. The desired state of the Mute.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
      * @param array  $optionalArgs {
@@ -4716,6 +6148,57 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateBigQueryExport', BigQueryExport::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates the Event Threat Detection custom module with the given name based
+     * on the given update mask. Updating the enablement state is supported for
+     * both resident and inherited modules (though resident modules cannot have an
+     * enablement state of "inherited"). Updating the display name or
+     * configuration of a module is supported for resident modules only. The type
+     * of a module cannot be changed.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $eventThreatDetectionCustomModule = new EventThreatDetectionCustomModule();
+     *     $response = $securityCenterClient->updateEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param EventThreatDetectionCustomModule $eventThreatDetectionCustomModule Required. The module being updated.
+     * @param array                            $optionalArgs                     {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *           If empty all mutable fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\EventThreatDetectionCustomModule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateEventThreatDetectionCustomModule($eventThreatDetectionCustomModule, array $optionalArgs = [])
+    {
+        $request = new UpdateEventThreatDetectionCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setEventThreatDetectionCustomModule($eventThreatDetectionCustomModule);
+        $requestParamHeaders['event_threat_detection_custom_module.name'] = $eventThreatDetectionCustomModule->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateEventThreatDetectionCustomModule', EventThreatDetectionCustomModule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -4965,6 +6448,52 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Updates an existing ResourceValueConfigs with new rules.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $resourceValueConfig = new ResourceValueConfig();
+     *     $response = $securityCenterClient->updateResourceValueConfig($resourceValueConfig);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param ResourceValueConfig $resourceValueConfig Required. The resource value config being updated.
+     * @param array               $optionalArgs        {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *           If empty all mutable fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ResourceValueConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateResourceValueConfig($resourceValueConfig, array $optionalArgs = [])
+    {
+        $request = new UpdateResourceValueConfigRequest();
+        $requestParamHeaders = [];
+        $request->setResourceValueConfig($resourceValueConfig);
+        $requestParamHeaders['resource_value_config.name'] = $resourceValueConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateResourceValueConfig', ResourceValueConfig::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates the SecurityHealthAnalyticsCustomModule under the given name based
      * on the given update mask. Updating the enablement state is supported on
      * both resident and inherited modules (though resident modules cannot have an
@@ -4987,7 +6516,9 @@ class SecurityCenterGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           The list of fields to update.
+     *           The list of fields to be updated. The only fields that can be updated are
+     *           `enablement_state` and `custom_config`. If empty or set to the wildcard
+     *           value `*`, both `enablement_state` and `custom_config` are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -5116,5 +6647,57 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateSource', Source::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Validates the given Event Threat Detection custom module.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->eventThreatDetectionSettingsName('[ORGANIZATION]');
+     *     $rawText = 'raw_text';
+     *     $type = 'type';
+     *     $response = $securityCenterClient->validateEventThreatDetectionCustomModule($formattedParent, $rawText, $type);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the parent to validate the Custom Module under.
+     *
+     *                             Its format is:
+     *
+     *                             * `organizations/{organization}/eventThreatDetectionSettings`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings`.
+     *                             * `projects/{project}/eventThreatDetectionSettings`.
+     * @param string $rawText      Required. The raw text of the module's contents. Used to generate error
+     *                             messages.
+     * @param string $type         Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ValidateEventThreatDetectionCustomModuleResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function validateEventThreatDetectionCustomModule($parent, $rawText, $type, array $optionalArgs = [])
+    {
+        $request = new ValidateEventThreatDetectionCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setRawText($rawText);
+        $request->setType($type);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ValidateEventThreatDetectionCustomModule', ValidateEventThreatDetectionCustomModuleResponse::class, $optionalArgs, $request)->wait();
     }
 }

@@ -32,9 +32,9 @@ use Google\Cloud\SecurityCenter\V1\MuteConfig;
  * Creates a mute config.
  *
  * @param string $formattedParent  Resource name of the new mute configs's parent. Its format is
- *                                 "organizations/[organization_id]", "folders/[folder_id]", or
- *                                 "projects/[project_id]". Please see
- *                                 {@see SecurityCenterClient::projectName()} for help formatting this field.
+ *                                 `organizations/[organization_id]`, `folders/[folder_id]`, or
+ *                                 `projects/[project_id]`. Please see
+ *                                 {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  * @param string $muteConfigFilter An expression that defines the filter to apply across
  *                                 create/update events of findings. While creating a filter string, be
  *                                 mindful of the scope in which the mute configuration is being created.
@@ -97,7 +97,7 @@ function create_mute_config_sample(
  */
 function callSample(): void
 {
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
+    $formattedParent = SecurityCenterClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
     $muteConfigFilter = '[FILTER]';
     $muteConfigId = '[MUTE_CONFIG_ID]';
 

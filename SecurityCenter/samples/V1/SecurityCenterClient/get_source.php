@@ -32,7 +32,7 @@ use Google\Cloud\SecurityCenter\V1\Source;
  * Gets a source.
  *
  * @param string $formattedName Relative resource name of the source. Its format is
- *                              "organizations/[organization_id]/source/[source_id]". Please see
+ *                              `organizations/[organization_id]/source/[source_id]`. Please see
  *                              {@see SecurityCenterClient::sourceName()} for help formatting this field.
  */
 function get_source_sample(string $formattedName): void

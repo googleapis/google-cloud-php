@@ -21,8 +21,8 @@ class Asset
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü
-*google/cloud/securitycenter/v1/asset.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.proto3google/cloud/securitycenter/v1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"©
+‹
+*google/cloud/securitycenter/v1/asset.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.proto3google/cloud/securitycenter/v1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"¸
 Asset
 name (	b
 security_center_properties (2>.google.cloud.securitycenter.v1.Asset.SecurityCenterPropertiesZ
@@ -49,8 +49,8 @@ iam_policy (2/.google.cloud.securitycenter.v1.Asset.IamPolicy
 policy_blob (	Q
 ResourcePropertiesEntry
 key (	%
-value (2.google.protobuf.Value:8:šêA–
-#securitycenter.googleapis.com/Asset+organizations/{organization}/assets/{asset}folders/{folder}/assets/{asset}!projects/{project}/assets/{asset}BØ
+value (2.google.protobuf.Value:8:©êA¥
+#securitycenter.googleapis.com/Asset+organizations/{organization}/assets/{asset}folders/{folder}/assets/{asset}!projects/{project}/assets/{asset}*assets2assetBØ
 "com.google.cloud.securitycenter.v1PZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

@@ -36,12 +36,12 @@ use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
  * Example: /v1/organizations/{organization_id}/sources/-/findings
  *
  * @param string $formattedParent Name of the source the findings belong to. Its format is
- *                                "organizations/[organization_id]/sources/[source_id],
- *                                folders/[folder_id]/sources/[source_id], or
- *                                projects/[project_id]/sources/[source_id]". To list across all sources
+ *                                `organizations/[organization_id]/sources/[source_id]`,
+ *                                `folders/[folder_id]/sources/[source_id]`, or
+ *                                `projects/[project_id]/sources/[source_id]`. To list across all sources
  *                                provide a source_id of `-`. For example:
- *                                organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
- *                                projects/{projects_id}/sources/-
+ *                                `organizations/{organization_id}/sources/-`,
+ *                                `folders/{folder_id}/sources/-` or `projects/{projects_id}/sources/-`
  *                                Please see {@see SecurityCenterClient::sourceName()} for help formatting this field.
  */
 function list_findings_sample(string $formattedParent): void

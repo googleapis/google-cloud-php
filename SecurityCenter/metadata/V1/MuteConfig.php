@@ -19,8 +19,8 @@ class MuteConfig
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≥
-0google/cloud/securitycenter/v1/mute_config.protogoogle.cloud.securitycenter.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Æ
+ù
+0google/cloud/securitycenter/v1/mute_config.protogoogle.cloud.securitycenter.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ò
 
 MuteConfig
 name (	
@@ -29,8 +29,9 @@ MuteConfig
 filter (	B‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A
-most_recent_editor (	B‡A:¿ÍAº
-(securitycenter.googleapis.com/MuteConfig6organizations/{organization}/muteConfigs/{mute_config}*folders/{folder}/muteConfigs/{mute_config},projects/{project}/muteConfigs/{mute_config}BÈ
+most_recent_editor (	B‡A:™ÍA¶
+(securitycenter.googleapis.com/MuteConfig6organizations/{organization}/muteConfigs/{mute_config}*folders/{folder}/muteConfigs/{mute_config},projects/{project}/muteConfigs/{mute_config}Korganizations/{organization}/locations/{location}/muteConfigs/{mute_config}?folders/{folder}/locations/{location}/muteConfigs/{mute_config}Aprojects/{project}/locations/{location}/muteConfigs/{mute_config}*muteConfigs2
+muteConfigBÈ
 "com.google.cloud.securitycenter.v1BMuteConfigProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V1 Google\\Cloud\\SecurityCenter\\V1Í!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

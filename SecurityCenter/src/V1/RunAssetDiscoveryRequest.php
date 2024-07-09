@@ -17,7 +17,7 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the organization to run asset discovery for. Its format
-     * is "organizations/[organization_id]".
+     * is `organizations/[organization_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Name of the organization to run asset discovery for. Its format
-     *                       is "organizations/[organization_id]". Please see
+     *                       is `organizations/[organization_id]`. Please see
      *                       {@see SecurityCenterClient::organizationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest
@@ -46,7 +46,7 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Name of the organization to run asset discovery for. Its format
-     *           is "organizations/[organization_id]".
+     *           is `organizations/[organization_id]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the organization to run asset discovery for. Its format
-     * is "organizations/[organization_id]".
+     * is `organizations/[organization_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class RunAssetDiscoveryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the organization to run asset discovery for. Its format
-     * is "organizations/[organization_id]".
+     * is `organizations/[organization_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

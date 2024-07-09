@@ -17,7 +17,7 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Relative resource name of the source. Its format is
-     * "organizations/[organization_id]/source/[source_id]".
+     * `organizations/[organization_id]/source/[source_id]`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Relative resource name of the source. Its format is
-     *                     "organizations/[organization_id]/source/[source_id]". Please see
+     *                     `organizations/[organization_id]/source/[source_id]`. Please see
      *                     {@see SecurityCenterClient::sourceName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\GetSourceRequest
@@ -46,7 +46,7 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Relative resource name of the source. Its format is
-     *           "organizations/[organization_id]/source/[source_id]".
+     *           `organizations/[organization_id]/source/[source_id]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Relative resource name of the source. Its format is
-     * "organizations/[organization_id]/source/[source_id]".
+     * `organizations/[organization_id]/source/[source_id]`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetSourceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Relative resource name of the source. Its format is
-     * "organizations/[organization_id]/source/[source_id]".
+     * `organizations/[organization_id]/source/[source_id]`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

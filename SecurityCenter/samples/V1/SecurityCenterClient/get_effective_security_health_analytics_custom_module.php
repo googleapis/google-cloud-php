@@ -32,10 +32,10 @@ use Google\Cloud\SecurityCenter\V1\GetEffectiveSecurityHealthAnalyticsCustomModu
  * Retrieves an EffectiveSecurityHealthAnalyticsCustomModule.
  *
  * @param string $formattedName Name of the effective custom module to get. Its format is
- *                              "organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
- *                              "folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}",
+ *                              `organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`,
+ *                              `folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`,
  *                              or
- *                              "projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}"
+ *                              `projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule}`
  *                              Please see {@see SecurityCenterClient::effectiveSecurityHealthAnalyticsCustomModuleName()} for help formatting this field.
  */
 function get_effective_security_health_analytics_custom_module_sample(string $formattedName): void

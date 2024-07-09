@@ -47,8 +47,8 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
     private $attack = null;
     /**
      * Distinguish between volumetric & protocol DDoS attack and
-     * application layer attacks. For example, “L3_4” for Layer 3 and Layer 4 DDoS
-     * attacks, or “L_7” for Layer 7 DDoS attacks.
+     * application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS
+     * attacks, or "L_7" for Layer 7 DDoS attacks.
      *
      * Generated from protobuf field <code>string threat_vector = 5;</code>
      */
@@ -83,8 +83,8 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
      *           Information about DDoS attack volume and classification.
      *     @type string $threat_vector
      *           Distinguish between volumetric & protocol DDoS attack and
-     *           application layer attacks. For example, “L3_4” for Layer 3 and Layer 4 DDoS
-     *           attacks, or “L_7” for Layer 7 DDoS attacks.
+     *           application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS
+     *           attacks, or "L_7" for Layer 7 DDoS attacks.
      *     @type \Google\Protobuf\Duration $duration
      *           Duration of attack from the start until the current moment (updated every 5
      *           minutes).
@@ -253,8 +253,8 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
 
     /**
      * Distinguish between volumetric & protocol DDoS attack and
-     * application layer attacks. For example, “L3_4” for Layer 3 and Layer 4 DDoS
-     * attacks, or “L_7” for Layer 7 DDoS attacks.
+     * application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS
+     * attacks, or "L_7" for Layer 7 DDoS attacks.
      *
      * Generated from protobuf field <code>string threat_vector = 5;</code>
      * @return string
@@ -266,8 +266,8 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
 
     /**
      * Distinguish between volumetric & protocol DDoS attack and
-     * application layer attacks. For example, “L3_4” for Layer 3 and Layer 4 DDoS
-     * attacks, or “L_7” for Layer 7 DDoS attacks.
+     * application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS
+     * attacks, or "L_7" for Layer 7 DDoS attacks.
      *
      * Generated from protobuf field <code>string threat_vector = 5;</code>
      * @param string $var

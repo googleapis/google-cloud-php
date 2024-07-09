@@ -34,9 +34,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
  * the given CRM parent and all of the parent’s CRM descendants.
  *
  * @param string $formattedParent Name of parent to list descendant custom modules. Its format is
- *                                "organizations/{organization}/securityHealthAnalyticsSettings",
- *                                "folders/{folder}/securityHealthAnalyticsSettings", or
- *                                "projects/{project}/securityHealthAnalyticsSettings"
+ *                                `organizations/{organization}/securityHealthAnalyticsSettings`,
+ *                                `folders/{folder}/securityHealthAnalyticsSettings`, or
+ *                                `projects/{project}/securityHealthAnalyticsSettings`
  *                                Please see {@see SecurityCenterClient::securityHealthAnalyticsSettingsName()} for help formatting this field.
  */
 function list_descendant_security_health_analytics_custom_modules_sample(

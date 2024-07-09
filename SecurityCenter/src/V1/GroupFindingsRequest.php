@@ -17,12 +17,12 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the source to groupBy. Its format is
-     * "organizations/[organization_id]/sources/[source_id]",
-     * folders/[folder_id]/sources/[source_id], or
-     * projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     * `organizations/[organization_id]/sources/[source_id]`,
+     * `folders/[folder_id]/sources/[source_id]`, or
+     * `projects/[project_id]/sources/[source_id]`. To groupBy across all sources
      * provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     * or projects/{project_id}/sources/-
+     * `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`,
+     * or `projects/{project_id}/sources/-`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -81,12 +81,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * Required. Expression that defines what assets fields to use for grouping
      * (including `state_change`). The string value should follow SQL syntax:
      * comma separated list of fields. For example: "parent,resource_name".
-     * The following fields are supported:
-     * * resource_name
-     * * category
-     * * state
-     * * parent
-     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
@@ -152,24 +146,16 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent  Required. Name of the source to groupBy. Its format is
-     *                        "organizations/[organization_id]/sources/[source_id]",
-     *                        folders/[folder_id]/sources/[source_id], or
-     *                        projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     *                        `organizations/[organization_id]/sources/[source_id]`,
+     *                        `folders/[folder_id]/sources/[source_id]`, or
+     *                        `projects/[project_id]/sources/[source_id]`. To groupBy across all sources
      *                        provide a source_id of `-`. For example:
-     *                        organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     *                        or projects/{project_id}/sources/-
+     *                        `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`,
+     *                        or `projects/{project_id}/sources/-`
      *                        Please see {@see SecurityCenterClient::sourceName()} for help formatting this field.
      * @param string $groupBy Required. Expression that defines what assets fields to use for grouping
      *                        (including `state_change`). The string value should follow SQL syntax:
      *                        comma separated list of fields. For example: "parent,resource_name".
-     *
-     *                        The following fields are supported:
-     *
-     *                        * resource_name
-     *                        * category
-     *                        * state
-     *                        * parent
-     *                        * severity
      *
      *                        The following fields are supported when compare_duration is set:
      *
@@ -194,12 +180,12 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Name of the source to groupBy. Its format is
-     *           "organizations/[organization_id]/sources/[source_id]",
-     *           folders/[folder_id]/sources/[source_id], or
-     *           projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     *           `organizations/[organization_id]/sources/[source_id]`,
+     *           `folders/[folder_id]/sources/[source_id]`, or
+     *           `projects/[project_id]/sources/[source_id]`. To groupBy across all sources
      *           provide a source_id of `-`. For example:
-     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     *           or projects/{project_id}/sources/-
+     *           `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`,
+     *           or `projects/{project_id}/sources/-`
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -250,12 +236,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Expression that defines what assets fields to use for grouping
      *           (including `state_change`). The string value should follow SQL syntax:
      *           comma separated list of fields. For example: "parent,resource_name".
-     *           The following fields are supported:
-     *           * resource_name
-     *           * category
-     *           * state
-     *           * parent
-     *           * severity
      *           The following fields are supported when compare_duration is set:
      *           * state_change
      *     @type \Google\Protobuf\Timestamp $read_time
@@ -307,12 +287,12 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the source to groupBy. Its format is
-     * "organizations/[organization_id]/sources/[source_id]",
-     * folders/[folder_id]/sources/[source_id], or
-     * projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     * `organizations/[organization_id]/sources/[source_id]`,
+     * `folders/[folder_id]/sources/[source_id]`, or
+     * `projects/[project_id]/sources/[source_id]`. To groupBy across all sources
      * provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     * or projects/{project_id}/sources/-
+     * `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`,
+     * or `projects/{project_id}/sources/-`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -324,12 +304,12 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the source to groupBy. Its format is
-     * "organizations/[organization_id]/sources/[source_id]",
-     * folders/[folder_id]/sources/[source_id], or
-     * projects/[project_id]/sources/[source_id]. To groupBy across all sources
+     * `organizations/[organization_id]/sources/[source_id]`,
+     * `folders/[folder_id]/sources/[source_id]`, or
+     * `projects/[project_id]/sources/[source_id]`. To groupBy across all sources
      * provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
-     * or projects/{project_id}/sources/-
+     * `organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-`,
+     * or `projects/{project_id}/sources/-`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -461,12 +441,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * Required. Expression that defines what assets fields to use for grouping
      * (including `state_change`). The string value should follow SQL syntax:
      * comma separated list of fields. For example: "parent,resource_name".
-     * The following fields are supported:
-     * * resource_name
-     * * category
-     * * state
-     * * parent
-     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
@@ -482,12 +456,6 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * Required. Expression that defines what assets fields to use for grouping
      * (including `state_change`). The string value should follow SQL syntax:
      * comma separated list of fields. For example: "parent,resource_name".
-     * The following fields are supported:
-     * * resource_name
-     * * category
-     * * state
-     * * parent
-     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
