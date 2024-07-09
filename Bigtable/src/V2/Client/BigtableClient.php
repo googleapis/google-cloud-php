@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\ExecuteQueryRequest;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
@@ -304,6 +305,28 @@ final class BigtableClient
     public function checkAndMutateRow(CheckAndMutateRowRequest $request, array $callOptions = []): CheckAndMutateRowResponse
     {
         return $this->startApiCall('CheckAndMutateRow', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Executes a BTQL query against a particular Cloud Bigtable instance.
+     *
+     * @example samples/V2/BigtableClient/execute_query.php
+     *
+     * @param ExecuteQueryRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeQuery(ExecuteQueryRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('ExecuteQuery', $request, $callOptions);
     }
 
     /**
