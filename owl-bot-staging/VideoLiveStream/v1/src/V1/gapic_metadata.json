@@ -1,0 +1,158 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.video.livestream.v1",
+    "libraryPackage": "Google\\Cloud\\Video\\LiveStream\\V1",
+    "services": {
+        "LivestreamService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LivestreamServiceGapicClient",
+                    "rpcs": {
+                        "CreateAsset": {
+                            "methods": [
+                                "createAsset"
+                            ]
+                        },
+                        "CreateChannel": {
+                            "methods": [
+                                "createChannel"
+                            ]
+                        },
+                        "CreateClip": {
+                            "methods": [
+                                "createClip"
+                            ]
+                        },
+                        "CreateEvent": {
+                            "methods": [
+                                "createEvent"
+                            ]
+                        },
+                        "CreateInput": {
+                            "methods": [
+                                "createInput"
+                            ]
+                        },
+                        "DeleteAsset": {
+                            "methods": [
+                                "deleteAsset"
+                            ]
+                        },
+                        "DeleteChannel": {
+                            "methods": [
+                                "deleteChannel"
+                            ]
+                        },
+                        "DeleteClip": {
+                            "methods": [
+                                "deleteClip"
+                            ]
+                        },
+                        "DeleteEvent": {
+                            "methods": [
+                                "deleteEvent"
+                            ]
+                        },
+                        "DeleteInput": {
+                            "methods": [
+                                "deleteInput"
+                            ]
+                        },
+                        "GetAsset": {
+                            "methods": [
+                                "getAsset"
+                            ]
+                        },
+                        "GetChannel": {
+                            "methods": [
+                                "getChannel"
+                            ]
+                        },
+                        "GetClip": {
+                            "methods": [
+                                "getClip"
+                            ]
+                        },
+                        "GetEvent": {
+                            "methods": [
+                                "getEvent"
+                            ]
+                        },
+                        "GetInput": {
+                            "methods": [
+                                "getInput"
+                            ]
+                        },
+                        "GetPool": {
+                            "methods": [
+                                "getPool"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListChannels": {
+                            "methods": [
+                                "listChannels"
+                            ]
+                        },
+                        "ListClips": {
+                            "methods": [
+                                "listClips"
+                            ]
+                        },
+                        "ListEvents": {
+                            "methods": [
+                                "listEvents"
+                            ]
+                        },
+                        "ListInputs": {
+                            "methods": [
+                                "listInputs"
+                            ]
+                        },
+                        "StartChannel": {
+                            "methods": [
+                                "startChannel"
+                            ]
+                        },
+                        "StopChannel": {
+                            "methods": [
+                                "stopChannel"
+                            ]
+                        },
+                        "UpdateChannel": {
+                            "methods": [
+                                "updateChannel"
+                            ]
+                        },
+                        "UpdateInput": {
+                            "methods": [
+                                "updateInput"
+                            ]
+                        },
+                        "UpdatePool": {
+                            "methods": [
+                                "updatePool"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
