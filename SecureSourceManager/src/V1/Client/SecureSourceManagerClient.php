@@ -202,6 +202,25 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a crypto_key
      * resource.
      *
@@ -278,13 +297,34 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $serviceAttachment
+     *
+     * @return string The formatted service_attachment resource.
+     */
+    public static function serviceAttachmentName(string $project, string $region, string $serviceAttachment): string
+    {
+        return self::getPathTemplate('serviceAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'service_attachment' => $serviceAttachment,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

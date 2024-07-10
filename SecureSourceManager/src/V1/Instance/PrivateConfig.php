@@ -179,6 +179,4 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrivateConfig::class, \Google\Cloud\SecureSourceManager\V1\Instance_PrivateConfig::class);
 
