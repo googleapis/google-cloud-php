@@ -27,6 +27,12 @@ class SensitivityScoreLevel
      */
     const SENSITIVITY_LOW = 10;
     /**
+     * Unable to determine sensitivity.
+     *
+     * Generated from protobuf enum <code>SENSITIVITY_UNKNOWN = 12;</code>
+     */
+    const SENSITIVITY_UNKNOWN = 12;
+    /**
      * Medium risk. Contains personally identifiable information (PII),
      * potentially sensitive data, or fields with free-text data that are at a
      * higher risk of having intermittent sensitive data. Consider limiting
@@ -48,6 +54,7 @@ class SensitivityScoreLevel
     private static $valueToName = [
         self::SENSITIVITY_SCORE_UNSPECIFIED => 'SENSITIVITY_SCORE_UNSPECIFIED',
         self::SENSITIVITY_LOW => 'SENSITIVITY_LOW',
+        self::SENSITIVITY_UNKNOWN => 'SENSITIVITY_UNKNOWN',
         self::SENSITIVITY_MODERATE => 'SENSITIVITY_MODERATE',
         self::SENSITIVITY_HIGH => 'SENSITIVITY_HIGH',
     ];

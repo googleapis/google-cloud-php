@@ -20,13 +20,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
+     * + Projects scope, location specified:
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
+     * + Projects scope, no location specified (defaults to global):
      *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
+     * + Organizations scope, location specified:
      *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
+     * + Organizations scope, no location specified (defaults to global):
      *   `organizations/`<var>ORG_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
@@ -65,13 +65,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *                                                          (project or organization) and whether you have [specified a processing
      *                                                          location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                                          + Projects scope, location specified:<br/>
+     *                                                          + Projects scope, location specified:
      *                                                          `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                                          + Projects scope, no location specified (defaults to global):<br/>
+     *                                                          + Projects scope, no location specified (defaults to global):
      *                                                          `projects/`<var>PROJECT_ID</var>
-     *                                                          + Organizations scope, location specified:<br/>
+     *                                                          + Organizations scope, location specified:
      *                                                          `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                                          + Organizations scope, no location specified (defaults to global):<br/>
+     *                                                          + Organizations scope, no location specified (defaults to global):
      *                                                          `organizations/`<var>ORG_ID</var>
      *
      *                                                          The following example `parent` string specifies a parent project with the
@@ -104,13 +104,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on the scope of the request
      *           (project or organization) and whether you have [specified a processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     *           + Projects scope, location specified:<br/>
+     *           + Projects scope, location specified:
      *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           + Projects scope, no location specified (defaults to global):
      *             `projects/`<var>PROJECT_ID</var>
-     *           + Organizations scope, location specified:<br/>
+     *           + Organizations scope, location specified:
      *             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Organizations scope, no location specified (defaults to global):<br/>
+     *           + Organizations scope, no location specified (defaults to global):
      *             `organizations/`<var>ORG_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
@@ -137,13 +137,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
+     * + Projects scope, location specified:
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
+     * + Projects scope, no location specified (defaults to global):
      *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
+     * + Organizations scope, location specified:
      *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
+     * + Organizations scope, no location specified (defaults to global):
      *   `organizations/`<var>ORG_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
@@ -163,13 +163,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
+     * + Projects scope, location specified:
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
+     * + Projects scope, no location specified (defaults to global):
      *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
+     * + Organizations scope, location specified:
      *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
+     * + Organizations scope, no location specified (defaults to global):
      *   `organizations/`<var>ORG_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location

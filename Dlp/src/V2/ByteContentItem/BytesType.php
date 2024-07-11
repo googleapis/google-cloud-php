@@ -99,6 +99,24 @@ class BytesType
      * Generated from protobuf enum <code>TSV = 13;</code>
      */
     const TSV = 13;
+    /**
+     * Audio file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>AUDIO = 15;</code>
+     */
+    const AUDIO = 15;
+    /**
+     * Video file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>VIDEO = 16;</code>
+     */
+    const VIDEO = 16;
+    /**
+     * Executable file types. Only used for profiling.
+     *
+     * Generated from protobuf enum <code>EXECUTABLE = 17;</code>
+     */
+    const EXECUTABLE = 17;
 
     private static $valueToName = [
         self::BYTES_TYPE_UNSPECIFIED => 'BYTES_TYPE_UNSPECIFIED',
@@ -115,6 +133,9 @@ class BytesType
         self::AVRO => 'AVRO',
         self::CSV => 'CSV',
         self::TSV => 'TSV',
+        self::AUDIO => 'AUDIO',
+        self::VIDEO => 'VIDEO',
+        self::EXECUTABLE => 'EXECUTABLE',
     ];
 
     public static function name($value)

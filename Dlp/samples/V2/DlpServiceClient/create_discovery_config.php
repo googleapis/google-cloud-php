@@ -34,8 +34,13 @@ use Google\Cloud\Dlp\V2\DiscoveryConfig\Status;
  *
  * @param string $formattedParent       Parent resource name.
  *
- *                                      The format of this value is as follows:
+ *                                      The format of this value varies depending on the scope of the request
+ *                                      (project or organization):
+ *
+ *                                      + Projects scope:
  *                                      `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+ *                                      + Organizations scope:
+ *                                      `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
  *
  *                                      The following example `parent` string specifies a parent project with the
  *                                      identifier `example-project`, and specifies the `europe-west3` location

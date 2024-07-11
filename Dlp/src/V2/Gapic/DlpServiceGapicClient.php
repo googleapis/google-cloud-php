@@ -54,6 +54,7 @@ use Google\Cloud\Dlp\V2\DeleteConnectionRequest;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
+use Google\Cloud\Dlp\V2\DeleteFileStoreDataProfileRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
@@ -61,12 +62,14 @@ use Google\Cloud\Dlp\V2\DeleteTableDataProfileRequest;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
+use Google\Cloud\Dlp\V2\FileStoreDataProfile;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetColumnDataProfileRequest;
 use Google\Cloud\Dlp\V2\GetConnectionRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
+use Google\Cloud\Dlp\V2\GetFileStoreDataProfileRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
 use Google\Cloud\Dlp\V2\GetProjectDataProfileRequest;
@@ -92,6 +95,8 @@ use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 use Google\Cloud\Dlp\V2\ListDiscoveryConfigsResponse;
 use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
 use Google\Cloud\Dlp\V2\ListDlpJobsResponse;
+use Google\Cloud\Dlp\V2\ListFileStoreDataProfilesRequest;
+use Google\Cloud\Dlp\V2\ListFileStoreDataProfilesResponse;
 use Google\Cloud\Dlp\V2\ListInfoTypesRequest;
 use Google\Cloud\Dlp\V2\ListInfoTypesResponse;
 use Google\Cloud\Dlp\V2\ListInspectTemplatesRequest;
@@ -194,6 +199,8 @@ class DlpServiceGapicClient
 
     private static $dlpJobNameTemplate;
 
+    private static $fileStoreDataProfileNameTemplate;
+
     private static $inspectTemplateNameTemplate;
 
     private static $jobTriggerNameTemplate;
@@ -211,6 +218,8 @@ class DlpServiceGapicClient
     private static $organizationLocationColumnDataProfileNameTemplate;
 
     private static $organizationLocationDeidentifyTemplateNameTemplate;
+
+    private static $organizationLocationFileStoreDataProfileNameTemplate;
 
     private static $organizationLocationInspectTemplateNameTemplate;
 
@@ -239,6 +248,8 @@ class DlpServiceGapicClient
     private static $projectLocationDeidentifyTemplateNameTemplate;
 
     private static $projectLocationDlpJobNameTemplate;
+
+    private static $projectLocationFileStoreDataProfileNameTemplate;
 
     private static $projectLocationInspectTemplateNameTemplate;
 
@@ -338,6 +349,17 @@ class DlpServiceGapicClient
         return self::$dlpJobNameTemplate;
     }
 
+    private static function getFileStoreDataProfileNameTemplate()
+    {
+        if (self::$fileStoreDataProfileNameTemplate == null) {
+            self::$fileStoreDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}'
+            );
+        }
+
+        return self::$fileStoreDataProfileNameTemplate;
+    }
+
     private static function getInspectTemplateNameTemplate()
     {
         if (self::$inspectTemplateNameTemplate == null) {
@@ -435,6 +457,19 @@ class DlpServiceGapicClient
         }
 
         return self::$organizationLocationDeidentifyTemplateNameTemplate;
+    }
+
+    private static function getOrganizationLocationFileStoreDataProfileNameTemplate()
+    {
+        if (
+            self::$organizationLocationFileStoreDataProfileNameTemplate == null
+        ) {
+            self::$organizationLocationFileStoreDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}'
+            );
+        }
+
+        return self::$organizationLocationFileStoreDataProfileNameTemplate;
     }
 
     private static function getOrganizationLocationInspectTemplateNameTemplate()
@@ -589,6 +624,17 @@ class DlpServiceGapicClient
         return self::$projectLocationDlpJobNameTemplate;
     }
 
+    private static function getProjectLocationFileStoreDataProfileNameTemplate()
+    {
+        if (self::$projectLocationFileStoreDataProfileNameTemplate == null) {
+            self::$projectLocationFileStoreDataProfileNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}'
+            );
+        }
+
+        return self::$projectLocationFileStoreDataProfileNameTemplate;
+    }
+
     private static function getProjectLocationInspectTemplateNameTemplate()
     {
         if (self::$projectLocationInspectTemplateNameTemplate == null) {
@@ -686,6 +732,7 @@ class DlpServiceGapicClient
                 'deidentifyTemplate' => self::getDeidentifyTemplateNameTemplate(),
                 'discoveryConfig' => self::getDiscoveryConfigNameTemplate(),
                 'dlpJob' => self::getDlpJobNameTemplate(),
+                'fileStoreDataProfile' => self::getFileStoreDataProfileNameTemplate(),
                 'inspectTemplate' => self::getInspectTemplateNameTemplate(),
                 'jobTrigger' => self::getJobTriggerNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
@@ -695,6 +742,7 @@ class DlpServiceGapicClient
                 'organizationLocation' => self::getOrganizationLocationNameTemplate(),
                 'organizationLocationColumnDataProfile' => self::getOrganizationLocationColumnDataProfileNameTemplate(),
                 'organizationLocationDeidentifyTemplate' => self::getOrganizationLocationDeidentifyTemplateNameTemplate(),
+                'organizationLocationFileStoreDataProfile' => self::getOrganizationLocationFileStoreDataProfileNameTemplate(),
                 'organizationLocationInspectTemplate' => self::getOrganizationLocationInspectTemplateNameTemplate(),
                 'organizationLocationProjectDataProfile' => self::getOrganizationLocationProjectDataProfileNameTemplate(),
                 'organizationLocationStoredInfoType' => self::getOrganizationLocationStoredInfoTypeNameTemplate(),
@@ -709,6 +757,7 @@ class DlpServiceGapicClient
                 'projectLocationColumnDataProfile' => self::getProjectLocationColumnDataProfileNameTemplate(),
                 'projectLocationDeidentifyTemplate' => self::getProjectLocationDeidentifyTemplateNameTemplate(),
                 'projectLocationDlpJob' => self::getProjectLocationDlpJobNameTemplate(),
+                'projectLocationFileStoreDataProfile' => self::getProjectLocationFileStoreDataProfileNameTemplate(),
                 'projectLocationInspectTemplate' => self::getProjectLocationInspectTemplateNameTemplate(),
                 'projectLocationJobTrigger' => self::getProjectLocationJobTriggerNameTemplate(),
                 'projectLocationProjectDataProfile' => self::getProjectLocationProjectDataProfileNameTemplate(),
@@ -819,6 +868,28 @@ class DlpServiceGapicClient
         return self::getDlpJobNameTemplate()->render([
             'project' => $project,
             'dlp_job' => $dlpJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * file_store_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $fileStoreDataProfile
+     *
+     * @return string The formatted file_store_data_profile resource.
+     */
+    public static function fileStoreDataProfileName(
+        $organization,
+        $location,
+        $fileStoreDataProfile
+    ) {
+        return self::getFileStoreDataProfileNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'file_store_data_profile' => $fileStoreDataProfile,
         ]);
     }
 
@@ -987,6 +1058,30 @@ class DlpServiceGapicClient
                 'organization' => $organization,
                 'location' => $location,
                 'deidentify_template' => $deidentifyTemplate,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_file_store_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $fileStoreDataProfile
+     *
+     * @return string The formatted organization_location_file_store_data_profile resource.
+     */
+    public static function organizationLocationFileStoreDataProfileName(
+        $organization,
+        $location,
+        $fileStoreDataProfile
+    ) {
+        return self::getOrganizationLocationFileStoreDataProfileNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'file_store_data_profile' => $fileStoreDataProfile,
             ]
         );
     }
@@ -1285,6 +1380,30 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_file_store_data_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $fileStoreDataProfile
+     *
+     * @return string The formatted project_location_file_store_data_profile resource.
+     */
+    public static function projectLocationFileStoreDataProfileName(
+        $project,
+        $location,
+        $fileStoreDataProfile
+    ) {
+        return self::getProjectLocationFileStoreDataProfileNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'file_store_data_profile' => $fileStoreDataProfile,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_inspect_template resource.
      *
      * @param string $project
@@ -1460,6 +1579,7 @@ class DlpServiceGapicClient
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
+     * - fileStoreDataProfile: organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
      * - inspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - jobTrigger: projects/{project}/jobTriggers/{job_trigger}
      * - location: projects/{project}/locations/{location}
@@ -1469,6 +1589,7 @@ class DlpServiceGapicClient
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationColumnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
      * - organizationLocationDeidentifyTemplate: organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}
+     * - organizationLocationFileStoreDataProfile: organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
      * - organizationLocationInspectTemplate: organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}
      * - organizationLocationProjectDataProfile: organizations/{organization}/locations/{location}/projectDataProfiles/{project_data_profile}
      * - organizationLocationStoredInfoType: organizations/{organization}/locations/{location}/storedInfoTypes/{stored_info_type}
@@ -1483,6 +1604,7 @@ class DlpServiceGapicClient
      * - projectLocationColumnDataProfile: projects/{project}/locations/{location}/columnDataProfiles/{column_data_profile}
      * - projectLocationDeidentifyTemplate: projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - projectLocationDlpJob: projects/{project}/locations/{location}/dlpJobs/{dlp_job}
+     * - projectLocationFileStoreDataProfile: projects/{project}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
      * - projectLocationInspectTemplate: projects/{project}/locations/{location}/inspectTemplates/{inspect_template}
      * - projectLocationJobTrigger: projects/{project}/locations/{location}/jobTriggers/{job_trigger}
      * - projectLocationProjectDataProfile: projects/{project}/locations/{location}/projectDataProfiles/{project_data_profile}
@@ -1774,13 +1896,13 @@ class DlpServiceGapicClient
      *                                               (project or organization) and whether you have [specified a processing
      *                                               location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                               + Projects scope, location specified:<br/>
+     *                                               + Projects scope, location specified:
      *                                               `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                               + Projects scope, no location specified (defaults to global):<br/>
+     *                                               + Projects scope, no location specified (defaults to global):
      *                                               `projects/`<var>PROJECT_ID</var>
-     *                                               + Organizations scope, location specified:<br/>
+     *                                               + Organizations scope, location specified:
      *                                               `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                               + Organizations scope, no location specified (defaults to global):<br/>
+     *                                               + Organizations scope, no location specified (defaults to global):
      *                                               `organizations/`<var>ORG_ID</var>
      *
      *                                               The following example `parent` string specifies a parent project with the
@@ -1858,8 +1980,13 @@ class DlpServiceGapicClient
      *
      * @param string          $parent          Required. Parent resource name.
      *
-     *                                         The format of this value is as follows:
+     *                                         The format of this value varies depending on the scope of the request
+     *                                         (project or organization):
+     *
+     *                                         + Projects scope:
      *                                         `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                                         + Organizations scope:
+     *                                         `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      *
      *                                         The following example `parent` string specifies a parent project with the
      *                                         identifier `example-project`, and specifies the `europe-west3` location
@@ -1942,9 +2069,9 @@ class DlpServiceGapicClient
      *                             processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
@@ -2040,13 +2167,13 @@ class DlpServiceGapicClient
      *                                         (project or organization) and whether you have [specified a processing
      *                                         location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                         + Projects scope, location specified:<br/>
+     *                                         + Projects scope, location specified:
      *                                         `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                         + Projects scope, no location specified (defaults to global):<br/>
+     *                                         + Projects scope, no location specified (defaults to global):
      *                                         `projects/`<var>PROJECT_ID</var>
-     *                                         + Organizations scope, location specified:<br/>
+     *                                         + Organizations scope, location specified:
      *                                         `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                         + Organizations scope, no location specified (defaults to global):<br/>
+     *                                         + Organizations scope, no location specified (defaults to global):
      *                                         `organizations/`<var>ORG_ID</var>
      *
      *                                         The following example `parent` string specifies a parent project with the
@@ -2132,9 +2259,9 @@ class DlpServiceGapicClient
      *                                 processing
      *                                 location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                 + Projects scope, location specified:<br/>
+     *                                 + Projects scope, location specified:
      *                                 `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                 + Projects scope, no location specified (defaults to global):<br/>
+     *                                 + Projects scope, no location specified (defaults to global):
      *                                 `projects/`<var>PROJECT_ID</var>
      *
      *                                 The following example `parent` string specifies a parent project with the
@@ -2219,13 +2346,13 @@ class DlpServiceGapicClient
      *                                           (project or organization) and whether you have [specified a processing
      *                                           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                                           + Projects scope, location specified:<br/>
+     *                                           + Projects scope, location specified:
      *                                           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                           + Projects scope, no location specified (defaults to global):<br/>
+     *                                           + Projects scope, no location specified (defaults to global):
      *                                           `projects/`<var>PROJECT_ID</var>
-     *                                           + Organizations scope, location specified:<br/>
+     *                                           + Organizations scope, location specified:
      *                                           `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                                           + Organizations scope, no location specified (defaults to global):<br/>
+     *                                           + Organizations scope, no location specified (defaults to global):
      *                                           `organizations/`<var>ORG_ID</var>
      *
      *                                           The following example `parent` string specifies a parent project with the
@@ -2317,9 +2444,9 @@ class DlpServiceGapicClient
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *           + Projects scope, location specified:<br/>
+     *           + Projects scope, location specified:
      *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           + Projects scope, no location specified (defaults to global):
      *           `projects/`<var>PROJECT_ID</var>
      *
      *           The following example `parent` string specifies a parent project with the
@@ -2612,6 +2739,53 @@ class DlpServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'DeleteDlpJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Delete a FileStoreDataProfile. Will not prevent the profile from being
+     * regenerated if the resource is still included in a discovery configuration.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->fileStoreDataProfileName('[ORGANIZATION]', '[LOCATION]', '[FILE_STORE_DATA_PROFILE]');
+     *     $dlpServiceClient->deleteFileStoreDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the file store data profile.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteFileStoreDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new DeleteFileStoreDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteFileStoreDataProfile',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -3118,6 +3292,55 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Gets a file store data profile.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->projectDataProfileName('[ORGANIZATION]', '[LOCATION]', '[PROJECT_DATA_PROFILE]');
+     *     $response = $dlpServiceClient->getFileStoreDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name, for example
+     *                             `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\FileStoreDataProfile
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getFileStoreDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new GetFileStoreDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetFileStoreDataProfile',
+            FileStoreDataProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets an InspectTemplate.
      * See
      * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
@@ -3520,9 +3743,9 @@ class DlpServiceGapicClient
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *           + Projects scope, location specified:<br/>
+     *           + Projects scope, location specified:
      *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           + Projects scope, no location specified (defaults to global):
      *           `projects/`<var>PROJECT_ID</var>
      *
      *           The following example `parent` string specifies a parent project with the
@@ -3636,12 +3859,13 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of fields to order by, followed by `asc` or `desc`
+     *           Comma-separated list of fields to order by, followed by `asc` or `desc`
      *           postfix. This list is case insensitive. The default sorting order is
      *           ascending. Redundant space characters are insignificant. Only one order
      *           field at a time is allowed.
      *
      *           Examples:
+     *
      *           * `project_id asc`
      *           * `table_id`
      *           * `sensitivity_level desc`
@@ -3851,13 +4075,13 @@ class DlpServiceGapicClient
      *                             (project or organization) and whether you have [specified a processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
-     *                             + Organizations scope, location specified:<br/>
+     *                             + Organizations scope, location specified:
      *                             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Organizations scope, no location specified (defaults to global):<br/>
+     *                             + Organizations scope, no location specified (defaults to global):
      *                             `organizations/`<var>ORG_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
@@ -3878,7 +4102,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of fields to order by,
+     *           Comma-separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -3988,7 +4212,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of config fields to order by,
+     *           Comma-separated list of config fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -4079,9 +4303,9 @@ class DlpServiceGapicClient
      *                             processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
@@ -4134,7 +4358,7 @@ class DlpServiceGapicClient
      *           The type of job. Defaults to `DlpJobType.INSPECT`
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dlp\V2\DlpJobType}
      *     @type string $orderBy
-     *           Comma separated list of fields to order by,
+     *           Comma-separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -4199,6 +4423,143 @@ class DlpServiceGapicClient
             'ListDlpJobs',
             $optionalArgs,
             ListDlpJobsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists file store data profiles for an organization.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listFileStoreDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listFileStoreDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the organization or project, for
+     *                             example `organizations/433245324/locations/europe` or
+     *                             `projects/project-id/locations/asia`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           Optional. Comma-separated list of fields to order by, followed by `asc` or
+     *           `desc` postfix. This list is case insensitive. The default sorting order is
+     *           ascending. Redundant space characters are insignificant. Only one order
+     *           field at a time is allowed.
+     *
+     *           Examples:
+     *
+     *           * `project_id asc`
+     *           * `name`
+     *           * `sensitivity_level desc`
+     *
+     *           Supported fields are:
+     *
+     *           - `project_id`: The Google Cloud project ID.
+     *           - `sensitivity_level`: How sensitive the data in a table is, at most.
+     *           - `data_risk_level`: How much risk is associated with this data.
+     *           - `profile_last_generated`: When the profile was last updated in epoch
+     *           seconds.
+     *           - `last_modified`: The last time the resource was modified.
+     *           - `resource_visibility`: Visibility restriction for this resource.
+     *           - `name`: The name of the profile.
+     *           - `create_time`: The time the file store was first created.
+     *     @type string $filter
+     *           Optional. Allows filtering.
+     *
+     *           Supported syntax:
+     *
+     *           * Filter expressions are made up of one or more restrictions.
+     *           * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *           sequence of restrictions implicitly uses `AND`.
+     *           * A restriction has the form of `{field} {operator} {value}`.
+     *           * Supported fields/values:
+     *           - `project_id` - The Google Cloud project ID.
+     *           - `file_store_path` - The path like "gs://bucket".
+     *           - `sensitivity_level` - HIGH|MODERATE|LOW
+     *           - `data_risk_level` - HIGH|MODERATE|LOW
+     *           - `resource_visibility`: PUBLIC|RESTRICTED
+     *           - `status_code` - an RPC status code as defined in
+     *           https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+     *           * The operator must be `=` or `!=`.
+     *
+     *           Examples:
+     *
+     *           * `project_id = 12345 AND status_code = 1`
+     *           * `project_id = 12345 AND sensitivity_level = HIGH`
+     *           * `project_id = 12345 AND resource_visibility = PUBLIC`
+     *           * `file_store_path = "gs://mybucket"`
+     *
+     *           The length of this field should be no more than 500 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listFileStoreDataProfiles($parent, array $optionalArgs = [])
+    {
+        $request = new ListFileStoreDataProfilesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListFileStoreDataProfiles',
+            $optionalArgs,
+            ListFileStoreDataProfilesResponse::class,
             $request
         );
     }
@@ -4317,13 +4678,13 @@ class DlpServiceGapicClient
      *                             (project or organization) and whether you have [specified a processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
-     *                             + Organizations scope, location specified:<br/>
+     *                             + Organizations scope, location specified:
      *                             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Organizations scope, no location specified (defaults to global):<br/>
+     *                             + Organizations scope, no location specified (defaults to global):
      *                             `organizations/`<var>ORG_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
@@ -4344,7 +4705,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of fields to order by,
+     *           Comma-separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -4440,9 +4801,9 @@ class DlpServiceGapicClient
      *                             processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
@@ -4463,7 +4824,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of triggeredJob fields to order by,
+     *           Comma-separated list of triggeredJob fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -4602,7 +4963,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of fields to order by, followed by `asc` or `desc`
+     *           Comma-separated list of fields to order by, followed by `asc` or `desc`
      *           postfix. This list is case insensitive. The default sorting order is
      *           ascending. Redundant space characters are insignificant. Only one order
      *           field at a time is allowed.
@@ -4721,9 +5082,9 @@ class DlpServiceGapicClient
      *                             (project or organization) and whether you have [specified a processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
@@ -4744,7 +5105,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of fields to order by,
+     *           Comma-separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -4848,7 +5209,7 @@ class DlpServiceGapicClient
      *           response. The API may return fewer values in a page, even if
      *           there are additional values to be retrieved.
      *     @type string $orderBy
-     *           Comma separated list of fields to order by, followed by `asc` or `desc`
+     *           Comma-separated list of fields to order by, followed by `asc` or `desc`
      *           postfix. This list is case insensitive. The default sorting order is
      *           ascending. Redundant space characters are insignificant. Only one order
      *           field at a time is allowed.
@@ -4974,9 +5335,9 @@ class DlpServiceGapicClient
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *           + Projects scope, location specified:<br/>
+     *           + Projects scope, location specified:
      *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           + Projects scope, no location specified (defaults to global):
      *           `projects/`<var>PROJECT_ID</var>
      *
      *           The following example `parent` string specifies a parent project with the
@@ -5073,9 +5434,9 @@ class DlpServiceGapicClient
      *                             processing
      *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                             + Projects scope, location specified:<br/>
+     *                             + Projects scope, location specified:
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Projects scope, no location specified (defaults to global):<br/>
+     *                             + Projects scope, no location specified (defaults to global):
      *                             `projects/`<var>PROJECT_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the

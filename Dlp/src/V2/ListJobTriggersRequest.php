@@ -20,9 +20,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
+     * + Projects scope, location specified:
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
+     * + Projects scope, no location specified (defaults to global):
      *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
@@ -47,7 +47,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Comma separated list of triggeredJob fields to order by,
+     * Comma-separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -107,9 +107,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *                       processing
      *                       location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                       + Projects scope, location specified:<br/>
+     *                       + Projects scope, location specified:
      *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                       + Projects scope, no location specified (defaults to global):<br/>
+     *                       + Projects scope, no location specified (defaults to global):
      *                       `projects/`<var>PROJECT_ID</var>
      *
      *                       The following example `parent` string specifies a parent project with the
@@ -140,9 +140,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on whether you have [specified a
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     *           + Projects scope, location specified:<br/>
+     *           + Projects scope, location specified:
      *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
+     *           + Projects scope, no location specified (defaults to global):
      *             `projects/`<var>PROJECT_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
@@ -155,7 +155,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Size of the page. This value can be limited by a server.
      *     @type string $order_by
-     *           Comma separated list of triggeredJob fields to order by,
+     *           Comma-separated list of triggeredJob fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -203,9 +203,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
+     * + Projects scope, location specified:
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
+     * + Projects scope, no location specified (defaults to global):
      *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
@@ -225,9 +225,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
+     * + Projects scope, location specified:
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
+     * + Projects scope, no location specified (defaults to global):
      *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
@@ -303,7 +303,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of triggeredJob fields to order by,
+     * Comma-separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -325,7 +325,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of triggeredJob fields to order by,
+     * Comma-separated list of triggeredJob fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.

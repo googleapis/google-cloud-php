@@ -41,13 +41,13 @@ use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
  *                                (project or organization) and whether you have [specified a processing
  *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
- *                                + Projects scope, location specified:<br/>
+ *                                + Projects scope, location specified:
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
- *                                + Projects scope, no location specified (defaults to global):<br/>
+ *                                + Projects scope, no location specified (defaults to global):
  *                                `projects/`<var>PROJECT_ID</var>
- *                                + Organizations scope, location specified:<br/>
+ *                                + Organizations scope, location specified:
  *                                `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
- *                                + Organizations scope, no location specified (defaults to global):<br/>
+ *                                + Organizations scope, no location specified (defaults to global):
  *                                `organizations/`<var>ORG_ID</var>
  *
  *                                The following example `parent` string specifies a parent project with the

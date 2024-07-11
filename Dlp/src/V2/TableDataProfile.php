@@ -28,7 +28,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $data_source_type = null;
     /**
-     * The resource name to the project data profile for this table.
+     * The resource name of the project data profile for this table.
      *
      * Generated from protobuf field <code>string project_data_profile = 2;</code>
      */
@@ -188,7 +188,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\DataSourceType $data_source_type
      *           The resource type that was profiled.
      *     @type string $project_data_profile
-     *           The resource name to the project data profile for this table.
+     *           The resource name of the project data profile for this table.
      *     @type string $dataset_project_id
      *           The Google Cloud project ID that owns the resource.
      *     @type string $dataset_location
@@ -310,7 +310,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name to the project data profile for this table.
+     * The resource name of the project data profile for this table.
      *
      * Generated from protobuf field <code>string project_data_profile = 2;</code>
      * @return string
@@ -321,7 +321,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name to the project data profile for this table.
+     * The resource name of the project data profile for this table.
      *
      * Generated from protobuf field <code>string project_data_profile = 2;</code>
      * @param string $var

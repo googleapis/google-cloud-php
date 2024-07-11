@@ -17,8 +17,12 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Parent resource name.
-     * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * The format of this value varies depending on the scope of the request
+     * (project or organization):
+     * + Projects scope:
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope:
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -46,8 +50,13 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                               $parent          Required. Parent resource name.
      *
-     *                                                              The format of this value is as follows:
+     *                                                              The format of this value varies depending on the scope of the request
+     *                                                              (project or organization):
+     *
+     *                                                              + Projects scope:
      *                                                              `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                                                              + Organizations scope:
+     *                                                              `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      *
      *                                                              The following example `parent` string specifies a parent project with the
      *                                                              identifier `example-project`, and specifies the `europe-west3` location
@@ -76,8 +85,12 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Parent resource name.
-     *           The format of this value is as follows:
-     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization):
+     *           + Projects scope:
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           + Organizations scope:
+     *             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -98,8 +111,12 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Parent resource name.
-     * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * The format of this value varies depending on the scope of the request
+     * (project or organization):
+     * + Projects scope:
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope:
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -115,8 +132,12 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Parent resource name.
-     * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * The format of this value varies depending on the scope of the request
+     * (project or organization):
+     * + Projects scope:
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * + Organizations scope:
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:

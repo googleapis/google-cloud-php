@@ -191,6 +191,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteFileStoreDataProfile' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInspectTemplate' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -302,6 +314,18 @@ return [
             'GetDlpJob' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dlp\V2\DlpJob',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFileStoreDataProfile' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dlp\V2\FileStoreDataProfile',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -498,6 +522,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Dlp\V2\ListDlpJobsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFileStoreDataProfiles' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFileStoreDataProfiles',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dlp\V2\ListFileStoreDataProfilesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -741,6 +785,7 @@ return [
                 'deidentifyTemplate' => 'organizations/{organization}/deidentifyTemplates/{deidentify_template}',
                 'discoveryConfig' => 'projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}',
                 'dlpJob' => 'projects/{project}/dlpJobs/{dlp_job}',
+                'fileStoreDataProfile' => 'organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}',
                 'inspectTemplate' => 'organizations/{organization}/inspectTemplates/{inspect_template}',
                 'jobTrigger' => 'projects/{project}/jobTriggers/{job_trigger}',
                 'location' => 'projects/{project}/locations/{location}',
@@ -750,6 +795,7 @@ return [
                 'organizationLocation' => 'organizations/{organization}/locations/{location}',
                 'organizationLocationColumnDataProfile' => 'organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}',
                 'organizationLocationDeidentifyTemplate' => 'organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}',
+                'organizationLocationFileStoreDataProfile' => 'organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}',
                 'organizationLocationInspectTemplate' => 'organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}',
                 'organizationLocationProjectDataProfile' => 'organizations/{organization}/locations/{location}/projectDataProfiles/{project_data_profile}',
                 'organizationLocationStoredInfoType' => 'organizations/{organization}/locations/{location}/storedInfoTypes/{stored_info_type}',
@@ -764,6 +810,7 @@ return [
                 'projectLocationColumnDataProfile' => 'projects/{project}/locations/{location}/columnDataProfiles/{column_data_profile}',
                 'projectLocationDeidentifyTemplate' => 'projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}',
                 'projectLocationDlpJob' => 'projects/{project}/locations/{location}/dlpJobs/{dlp_job}',
+                'projectLocationFileStoreDataProfile' => 'projects/{project}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}',
                 'projectLocationInspectTemplate' => 'projects/{project}/locations/{location}/inspectTemplates/{inspect_template}',
                 'projectLocationJobTrigger' => 'projects/{project}/locations/{location}/jobTriggers/{job_trigger}',
                 'projectLocationProjectDataProfile' => 'projects/{project}/locations/{location}/projectDataProfiles/{project_data_profile}',
