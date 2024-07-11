@@ -1039,6 +1039,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudprivatecatalog"
     },
+    "PrivilegedAccessManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-privilegedaccessmanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-privilegedaccessmanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "privilegedaccessmanager"
+    },
     "Profiler": {
         "language": "php",
         "distribution_name": "google/cloud-profiler",
