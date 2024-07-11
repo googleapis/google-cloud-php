@@ -57,6 +57,11 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * errors while accessing segments which are listed in the manifest that the
      * player has, but were already deleted from the output Google Cloud Storage
      * bucket. Default value is `60s`.
+     * If both segment_keep_duration and
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * are set,
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * is used and segment_keep_duration is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      */
@@ -71,6 +76,12 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool use_timecode_as_timeline = 6;</code>
      */
     protected $use_timecode_as_timeline = false;
+    /**
+     * Optional. A unique key for this manifest.
+     *
+     * Generated from protobuf field <code>string key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $key = '';
 
     /**
      * Constructor.
@@ -104,12 +115,19 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           errors while accessing segments which are listed in the manifest that the
      *           player has, but were already deleted from the output Google Cloud Storage
      *           bucket. Default value is `60s`.
+     *           If both segment_keep_duration and
+     *           [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     *           are set,
+     *           [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     *           is used and segment_keep_duration is ignored.
      *     @type bool $use_timecode_as_timeline
      *           Whether to use the timecode, as specified in timecode config, when setting:
      *           - `availabilityStartTime` attribute in DASH manifests.
      *           - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
      *           If false, ignore the input timecode and use the time from system clock
      *           when the manifest is first generated. This is the default behavior.
+     *     @type string $key
+     *           Optional. A unique key for this manifest.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,6 +268,11 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * errors while accessing segments which are listed in the manifest that the
      * player has, but were already deleted from the output Google Cloud Storage
      * bucket. Default value is `60s`.
+     * If both segment_keep_duration and
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * are set,
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * is used and segment_keep_duration is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      * @return \Google\Protobuf\Duration|null
@@ -276,6 +299,11 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * errors while accessing segments which are listed in the manifest that the
      * player has, but were already deleted from the output Google Cloud Storage
      * bucket. Default value is `60s`.
+     * If both segment_keep_duration and
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * are set,
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * is used and segment_keep_duration is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      * @param \Google\Protobuf\Duration $var
@@ -319,6 +347,32 @@ class Manifest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->use_timecode_as_timeline = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique key for this manifest.
+     *
+     * Generated from protobuf field <code>string key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * Optional. A unique key for this manifest.
+     *
+     * Generated from protobuf field <code>string key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->key = $var;
 
         return $this;
     }

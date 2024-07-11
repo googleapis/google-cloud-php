@@ -20,6 +20,11 @@
                                 "createChannel"
                             ]
                         },
+                        "CreateClip": {
+                            "methods": [
+                                "createClip"
+                            ]
+                        },
                         "CreateEvent": {
                             "methods": [
                                 "createEvent"
@@ -40,6 +45,11 @@
                                 "deleteChannel"
                             ]
                         },
+                        "DeleteClip": {
+                            "methods": [
+                                "deleteClip"
+                            ]
+                        },
                         "DeleteEvent": {
                             "methods": [
                                 "deleteEvent"
@@ -58,6 +68,11 @@
                         "GetChannel": {
                             "methods": [
                                 "getChannel"
+                            ]
+                        },
+                        "GetClip": {
+                            "methods": [
+                                "getClip"
                             ]
                         },
                         "GetEvent": {
@@ -83,6 +98,11 @@
                         "ListChannels": {
                             "methods": [
                                 "listChannels"
+                            ]
+                        },
+                        "ListClips": {
+                            "methods": [
+                                "listClips"
                             ]
                         },
                         "ListEvents": {

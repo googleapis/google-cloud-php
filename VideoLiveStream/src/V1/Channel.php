@@ -136,6 +136,19 @@ class Channel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputConfig input_config = 25;</code>
      */
     protected $input_config = null;
+    /**
+     * Optional. Configuration for retention of output files for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.RetentionConfig retention_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retention_config = null;
+    /**
+     * Optional. List of static overlay images. Those images display over the
+     * output content for the whole duration of the live stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.StaticOverlay static_overlays = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $static_overlays;
 
     /**
      * Constructor.
@@ -192,6 +205,11 @@ class Channel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Video\LiveStream\V1\InputConfig $input_config
      *           The configuration for input sources defined in
      *           [input_attachments][google.cloud.video.livestream.v1.Channel.input_attachments].
+     *     @type \Google\Cloud\Video\LiveStream\V1\RetentionConfig $retention_config
+     *           Optional. Configuration for retention of output files for this channel.
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\StaticOverlay>|\Google\Protobuf\Internal\RepeatedField $static_overlays
+     *           Optional. List of static overlay images. Those images display over the
+     *           output content for the whole duration of the live stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -737,6 +755,70 @@ class Channel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\InputConfig::class);
         $this->input_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for retention of output files for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.RetentionConfig retention_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\LiveStream\V1\RetentionConfig|null
+     */
+    public function getRetentionConfig()
+    {
+        return $this->retention_config;
+    }
+
+    public function hasRetentionConfig()
+    {
+        return isset($this->retention_config);
+    }
+
+    public function clearRetentionConfig()
+    {
+        unset($this->retention_config);
+    }
+
+    /**
+     * Optional. Configuration for retention of output files for this channel.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.livestream.v1.RetentionConfig retention_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\LiveStream\V1\RetentionConfig $var
+     * @return $this
+     */
+    public function setRetentionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\LiveStream\V1\RetentionConfig::class);
+        $this->retention_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of static overlay images. Those images display over the
+     * output content for the whole duration of the live stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.StaticOverlay static_overlays = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStaticOverlays()
+    {
+        return $this->static_overlays;
+    }
+
+    /**
+     * Optional. List of static overlay images. Those images display over the
+     * output content for the whole duration of the live stream.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.StaticOverlay static_overlays = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Video\LiveStream\V1\StaticOverlay>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStaticOverlays($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Video\LiveStream\V1\StaticOverlay::class);
+        $this->static_overlays = $arr;
 
         return $this;
     }

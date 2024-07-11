@@ -73,6 +73,4 @@ class Slice extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Slice::class, \Google\Cloud\Video\LiveStream\V1\Clip_Slice::class);
 

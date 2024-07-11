@@ -127,6 +127,4 @@ class ClipManifest extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClipManifest::class, \Google\Cloud\Video\LiveStream\V1\Clip_ClipManifest::class);
 

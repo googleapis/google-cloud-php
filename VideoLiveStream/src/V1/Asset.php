@@ -46,10 +46,12 @@ class Asset extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/storage/docs/json_api/v1/objects).
      * If crc32c is omitted or left empty when the asset is created, this field is
      * filled by the crc32c checksum of the Cloud Storage object indicated by
-     * [VideoAsset.uri] or [ImageAsset.uri].
-     * If crc32c is set, the asset can't be created if the crc32c value does not
+     * [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     * [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri]. If
+     * crc32c is set, the asset can't be created if the crc32c value does not
      * match with the crc32c checksum of the Cloud Storage object indicated by
-     * [VideoAsset.uri] or [ImageAsset.uri].
+     * [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     * [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri].
      *
      * Generated from protobuf field <code>string crc32c = 7;</code>
      */
@@ -94,10 +96,12 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           resource](https://cloud.google.com/storage/docs/json_api/v1/objects).
      *           If crc32c is omitted or left empty when the asset is created, this field is
      *           filled by the crc32c checksum of the Cloud Storage object indicated by
-     *           [VideoAsset.uri] or [ImageAsset.uri].
-     *           If crc32c is set, the asset can't be created if the crc32c value does not
+     *           [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     *           [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri]. If
+     *           crc32c is set, the asset can't be created if the crc32c value does not
      *           match with the crc32c checksum of the Cloud Storage object indicated by
-     *           [VideoAsset.uri] or [ImageAsset.uri].
+     *           [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     *           [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri].
      *     @type int $state
      *           Output only. The state of the asset resource.
      *     @type \Google\Rpc\Status $error
@@ -304,10 +308,12 @@ class Asset extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/storage/docs/json_api/v1/objects).
      * If crc32c is omitted or left empty when the asset is created, this field is
      * filled by the crc32c checksum of the Cloud Storage object indicated by
-     * [VideoAsset.uri] or [ImageAsset.uri].
-     * If crc32c is set, the asset can't be created if the crc32c value does not
+     * [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     * [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri]. If
+     * crc32c is set, the asset can't be created if the crc32c value does not
      * match with the crc32c checksum of the Cloud Storage object indicated by
-     * [VideoAsset.uri] or [ImageAsset.uri].
+     * [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     * [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri].
      *
      * Generated from protobuf field <code>string crc32c = 7;</code>
      * @return string
@@ -323,10 +329,12 @@ class Asset extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/storage/docs/json_api/v1/objects).
      * If crc32c is omitted or left empty when the asset is created, this field is
      * filled by the crc32c checksum of the Cloud Storage object indicated by
-     * [VideoAsset.uri] or [ImageAsset.uri].
-     * If crc32c is set, the asset can't be created if the crc32c value does not
+     * [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     * [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri]. If
+     * crc32c is set, the asset can't be created if the crc32c value does not
      * match with the crc32c checksum of the Cloud Storage object indicated by
-     * [VideoAsset.uri] or [ImageAsset.uri].
+     * [VideoAsset.uri][google.cloud.video.livestream.v1.Asset.VideoAsset.uri] or
+     * [ImageAsset.uri][google.cloud.video.livestream.v1.Asset.ImageAsset.uri].
      *
      * Generated from protobuf field <code>string crc32c = 7;</code>
      * @param string $var

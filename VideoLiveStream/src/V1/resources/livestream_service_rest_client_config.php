@@ -77,6 +77,21 @@ return [
                     'channel_id',
                 ],
             ],
+            'CreateClip' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/clips',
+                'body' => 'clip',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'clip_id',
+                ],
+            ],
             'CreateEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/events',
@@ -129,6 +144,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteClip' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/clips/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteEvent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/events/*}',
@@ -165,6 +191,17 @@ return [
             'GetChannel' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetClip' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*/clips/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -220,6 +257,17 @@ return [
             'ListChannels' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channels',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListClips' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/channels/*}/clips',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
