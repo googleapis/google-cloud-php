@@ -306,6 +306,15 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>PG_CRON_FLAG_ENABLED_IN_REPLICA = 47;</code>
      */
     const PG_CRON_FLAG_ENABLED_IN_REPLICA = 47;
+    /**
+     * This error message indicates that the specified extensions are not
+     * enabled on destination instance. For example, before you can migrate
+     * data to the destination instance, you must enable the PGAudit extension
+     * on the instance.
+     *
+     * Generated from protobuf enum <code>EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;</code>
+     */
+    const EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -356,6 +365,7 @@ class SqlExternalSyncSettingErrorType
         self::UNSUPPORTED_EXTENSIONS_NOT_MIGRATED => 'UNSUPPORTED_EXTENSIONS_NOT_MIGRATED',
         self::EXTENSIONS_NOT_MIGRATED => 'EXTENSIONS_NOT_MIGRATED',
         self::PG_CRON_FLAG_ENABLED_IN_REPLICA => 'PG_CRON_FLAG_ENABLED_IN_REPLICA',
+        self::EXTENSIONS_NOT_ENABLED_IN_REPLICA => 'EXTENSIONS_NOT_ENABLED_IN_REPLICA',
     ];
 
     public static function name($value)
