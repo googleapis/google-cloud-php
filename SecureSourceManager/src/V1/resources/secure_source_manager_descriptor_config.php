@@ -273,10 +273,12 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
+                'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
             ],
         ],
     ],
