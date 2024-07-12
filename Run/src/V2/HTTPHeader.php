@@ -22,9 +22,9 @@ class HTTPHeader extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * The header field value
+     * Optional. The header field value
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $value = '';
 
@@ -37,7 +37,7 @@ class HTTPHeader extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The header field name
      *     @type string $value
-     *           The header field value
+     *           Optional. The header field value
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +72,9 @@ class HTTPHeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header field value
+     * Optional. The header field value
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getValue()
@@ -83,9 +83,9 @@ class HTTPHeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header field value
+     * Optional. The header field value
      *
-     * Generated from protobuf field <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a GCS Bucket mounted as a volume.
+ * Represents a volume backed by a Cloud Storage bucket using Cloud Storage
+ * FUSE.
  *
  * Generated from protobuf message <code>google.cloud.run.v2.GCSVolumeSource</code>
  */
 class GCSVolumeSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      */
     protected $bucket = '';
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      */
@@ -35,9 +36,9 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $bucket
-     *           GCS Bucket name
+     *           Cloud Storage Bucket name.
      *     @type bool $read_only
-     *           If true, mount the GCS bucket as read-only
+     *           If true, the volume will be mounted as read only for all mounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +47,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      * @return string
@@ -57,7 +58,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCS Bucket name
+     * Cloud Storage Bucket name.
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      * @param string $var
@@ -72,7 +73,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      * @return bool
@@ -83,7 +84,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, mount the GCS bucket as read-only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 2;</code>
      * @param bool $var

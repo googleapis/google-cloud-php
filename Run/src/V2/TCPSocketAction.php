@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class TCPSocketAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * Generated from protobuf field <code>int32 port = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $port = 0;
 
@@ -31,9 +31,9 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $port
-     *           Port number to access on the container. Must be in the range 1 to 65535.
-     *           If not specified, defaults to the exposed port of the container, which is
-     *           the value of container.ports[0].containerPort.
+     *           Optional. Port number to access on the container. Must be in the range 1 to
+     *           65535. If not specified, defaults to the exposed port of the container,
+     *           which is the value of container.ports[0].containerPort.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,11 +42,11 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * Generated from protobuf field <code>int32 port = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPort()
@@ -55,11 +55,11 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port number to access on the container. Must be in the range 1 to 65535.
-     * If not specified, defaults to the exposed port of the container, which is
-     * the value of container.ports[0].containerPort.
+     * Optional. Port number to access on the container. Must be in the range 1 to
+     * 65535. If not specified, defaults to the exposed port of the container,
+     * which is the value of container.ports[0].containerPort.
      *
-     * Generated from protobuf field <code>int32 port = 1;</code>
+     * Generated from protobuf field <code>int32 port = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

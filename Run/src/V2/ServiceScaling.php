@@ -17,11 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceScaling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * total min instances for the service. This number of instances is
+     * Optional. total min instances for the service. This number of instances is
      * divided among all revisions with specified traffic based on the percent
      * of traffic they are receiving. (BETA)
      *
-     * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
+     * Generated from protobuf field <code>int32 min_instance_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $min_instance_count = 0;
 
@@ -32,7 +32,7 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_instance_count
-     *           total min instances for the service. This number of instances is
+     *           Optional. total min instances for the service. This number of instances is
      *           divided among all revisions with specified traffic based on the percent
      *           of traffic they are receiving. (BETA)
      * }
@@ -43,11 +43,11 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * total min instances for the service. This number of instances is
+     * Optional. total min instances for the service. This number of instances is
      * divided among all revisions with specified traffic based on the percent
      * of traffic they are receiving. (BETA)
      *
-     * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
+     * Generated from protobuf field <code>int32 min_instance_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMinInstanceCount()
@@ -56,11 +56,11 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * total min instances for the service. This number of instances is
+     * Optional. total min instances for the service. This number of instances is
      * divided among all revisions with specified traffic based on the percent
      * of traffic they are receiving. (BETA)
      *
-     * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
+     * Generated from protobuf field <code>int32 min_instance_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

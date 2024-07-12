@@ -345,7 +345,8 @@ final class RevisionsClient
     }
 
     /**
-     * Lists Revisions from a given Service, or from a given location.
+     * Lists Revisions from a given Service, or from a given location.  Results
+     * are sorted by creation time, descending.
      *
      * The async variant is {@see RevisionsClient::listRevisionsAsync()} .
      *

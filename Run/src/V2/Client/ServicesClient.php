@@ -510,7 +510,7 @@ final class ServicesClient
     }
 
     /**
-     * Lists Services.
+     * Lists Services. Results are sorted by creation time, descending.
      *
      * The async variant is {@see ServicesClient::listServicesAsync()} .
      *

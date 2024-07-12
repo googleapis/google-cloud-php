@@ -83,7 +83,8 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -217,6 +218,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $etag = '';
+    protected $create_execution;
 
     /**
      * Constructor.
@@ -263,7 +265,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           Output only. The deletion time.
+     *           Output only. The deletion time. It is only populated as a response to a
+     *           Delete request.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. For a deleted resource, the time after which it will be
      *           permamently deleted.
@@ -326,6 +329,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *           failure can be found in `terminal_condition` and `conditions`.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type string $start_execution_token
+     *           A unique string used as a suffix creating a new execution. The Job will
+     *           become ready when the execution is successfully started.
+     *           The sum of job name and token length must be fewer than 63 characters.
+     *     @type string $run_execution_token
+     *           A unique string used as a suffix for creating a new execution. The Job
+     *           will become ready when the execution is successfully completed.
+     *           The sum of job name and token length must be fewer than 63 characters.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -587,7 +598,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -608,7 +620,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -1127,6 +1140,76 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A unique string used as a suffix creating a new execution. The Job will
+     * become ready when the execution is successfully started.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string start_execution_token = 26;</code>
+     * @return string
+     */
+    public function getStartExecutionToken()
+    {
+        return $this->readOneof(26);
+    }
+
+    public function hasStartExecutionToken()
+    {
+        return $this->hasOneof(26);
+    }
+
+    /**
+     * A unique string used as a suffix creating a new execution. The Job will
+     * become ready when the execution is successfully started.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string start_execution_token = 26;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStartExecutionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * A unique string used as a suffix for creating a new execution. The Job
+     * will become ready when the execution is successfully completed.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string run_execution_token = 27;</code>
+     * @return string
+     */
+    public function getRunExecutionToken()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasRunExecutionToken()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * A unique string used as a suffix for creating a new execution. The Job
+     * will become ready when the execution is successfully completed.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string run_execution_token = 27;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRunExecutionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -1152,6 +1235,14 @@ class Job extends \Google\Protobuf\Internal\Message
         $this->etag = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreateExecution()
+    {
+        return $this->whichOneof("create_execution");
     }
 
 }

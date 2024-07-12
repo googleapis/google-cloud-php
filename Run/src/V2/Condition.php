@@ -72,11 +72,11 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type int $severity
      *           How to interpret failures of this condition, one of Error, Warning, Info
      *     @type int $reason
-     *           A common (service-level) reason for this condition.
+     *           Output only. A common (service-level) reason for this condition.
      *     @type int $revision_reason
-     *           A reason for the revision condition.
+     *           Output only. A reason for the revision condition.
      *     @type int $execution_reason
-     *           A reason for the execution condition.
+     *           Output only. A reason for the execution condition.
      * }
      */
     public function __construct($data = NULL) {
@@ -233,9 +233,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A common (service-level) reason for this condition.
+     * Output only. A common (service-level) reason for this condition.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.CommonReason reason = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.CommonReason reason = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getReason()
@@ -249,9 +249,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A common (service-level) reason for this condition.
+     * Output only. A common (service-level) reason for this condition.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.CommonReason reason = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.CommonReason reason = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -264,9 +264,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reason for the revision condition.
+     * Output only. A reason for the revision condition.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.RevisionReason revision_reason = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.RevisionReason revision_reason = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getRevisionReason()
@@ -280,9 +280,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reason for the revision condition.
+     * Output only. A reason for the revision condition.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.RevisionReason revision_reason = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.RevisionReason revision_reason = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -295,9 +295,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reason for the execution condition.
+     * Output only. A reason for the execution condition.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.ExecutionReason execution_reason = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.ExecutionReason execution_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getExecutionReason()
@@ -311,9 +311,9 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reason for the execution condition.
+     * Output only. A reason for the execution condition.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.ExecutionReason execution_reason = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.Condition.ExecutionReason execution_reason = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

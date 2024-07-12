@@ -28,7 +28,7 @@ class NFSVolumeSource extends \Google\Protobuf\Internal\Message
      */
     protected $path = '';
     /**
-     * If true, mount the NFS volume as read only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 3;</code>
      */
@@ -45,7 +45,7 @@ class NFSVolumeSource extends \Google\Protobuf\Internal\Message
      *     @type string $path
      *           Path that is exported by the NFS server.
      *     @type bool $read_only
-     *           If true, mount the NFS volume as read only
+     *           If true, the volume will be mounted as read only for all mounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,7 +106,7 @@ class NFSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, mount the NFS volume as read only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 3;</code>
      * @return bool
@@ -117,7 +117,7 @@ class NFSVolumeSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, mount the NFS volume as read only
+     * If true, the volume will be mounted as read only for all mounts.
      *
      * Generated from protobuf field <code>bool read_only = 3;</code>
      * @param bool $var

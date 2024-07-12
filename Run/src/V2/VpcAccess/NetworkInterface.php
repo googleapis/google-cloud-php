@@ -16,29 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkInterface extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The VPC network that the Cloud Run resource will be able to send traffic
-     * to. At least one of network or subnetwork must be specified. If both
-     * network and subnetwork are specified, the given VPC subnetwork must
-     * belong to the given VPC network. If network is not specified, it will be
-     * looked up from the subnetwork.
+     * Optional. The VPC network that the Cloud Run resource will be able to
+     * send traffic to. At least one of network or subnetwork must be specified.
+     * If both network and subnetwork are specified, the given VPC subnetwork
+     * must belong to the given VPC network. If network is not specified, it
+     * will be looked up from the subnetwork.
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $network = '';
     /**
-     * The VPC subnetwork that the Cloud Run resource will get IPs from. At
-     * least one of network or subnetwork must be specified. If both
+     * Optional. The VPC subnetwork that the Cloud Run resource will get IPs
+     * from. At least one of network or subnetwork must be specified. If both
      * network and subnetwork are specified, the given VPC subnetwork must
      * belong to the given VPC network. If subnetwork is not specified, the
      * subnetwork with the same name with the network will be used.
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $subnetwork = '';
     /**
-     * Network tags applied to this Cloud Run resource.
+     * Optional. Network tags applied to this Cloud Run resource.
      *
-     * Generated from protobuf field <code>repeated string tags = 3;</code>
+     * Generated from protobuf field <code>repeated string tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tags;
 
@@ -49,19 +49,19 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network
-     *           The VPC network that the Cloud Run resource will be able to send traffic
-     *           to. At least one of network or subnetwork must be specified. If both
-     *           network and subnetwork are specified, the given VPC subnetwork must
-     *           belong to the given VPC network. If network is not specified, it will be
-     *           looked up from the subnetwork.
+     *           Optional. The VPC network that the Cloud Run resource will be able to
+     *           send traffic to. At least one of network or subnetwork must be specified.
+     *           If both network and subnetwork are specified, the given VPC subnetwork
+     *           must belong to the given VPC network. If network is not specified, it
+     *           will be looked up from the subnetwork.
      *     @type string $subnetwork
-     *           The VPC subnetwork that the Cloud Run resource will get IPs from. At
-     *           least one of network or subnetwork must be specified. If both
+     *           Optional. The VPC subnetwork that the Cloud Run resource will get IPs
+     *           from. At least one of network or subnetwork must be specified. If both
      *           network and subnetwork are specified, the given VPC subnetwork must
      *           belong to the given VPC network. If subnetwork is not specified, the
      *           subnetwork with the same name with the network will be used.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
-     *           Network tags applied to this Cloud Run resource.
+     *           Optional. Network tags applied to this Cloud Run resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,13 +70,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPC network that the Cloud Run resource will be able to send traffic
-     * to. At least one of network or subnetwork must be specified. If both
-     * network and subnetwork are specified, the given VPC subnetwork must
-     * belong to the given VPC network. If network is not specified, it will be
-     * looked up from the subnetwork.
+     * Optional. The VPC network that the Cloud Run resource will be able to
+     * send traffic to. At least one of network or subnetwork must be specified.
+     * If both network and subnetwork are specified, the given VPC subnetwork
+     * must belong to the given VPC network. If network is not specified, it
+     * will be looked up from the subnetwork.
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNetwork()
@@ -85,13 +85,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPC network that the Cloud Run resource will be able to send traffic
-     * to. At least one of network or subnetwork must be specified. If both
-     * network and subnetwork are specified, the given VPC subnetwork must
-     * belong to the given VPC network. If network is not specified, it will be
-     * looked up from the subnetwork.
+     * Optional. The VPC network that the Cloud Run resource will be able to
+     * send traffic to. At least one of network or subnetwork must be specified.
+     * If both network and subnetwork are specified, the given VPC subnetwork
+     * must belong to the given VPC network. If network is not specified, it
+     * will be looked up from the subnetwork.
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -104,13 +104,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPC subnetwork that the Cloud Run resource will get IPs from. At
-     * least one of network or subnetwork must be specified. If both
+     * Optional. The VPC subnetwork that the Cloud Run resource will get IPs
+     * from. At least one of network or subnetwork must be specified. If both
      * network and subnetwork are specified, the given VPC subnetwork must
      * belong to the given VPC network. If subnetwork is not specified, the
      * subnetwork with the same name with the network will be used.
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSubnetwork()
@@ -119,13 +119,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPC subnetwork that the Cloud Run resource will get IPs from. At
-     * least one of network or subnetwork must be specified. If both
+     * Optional. The VPC subnetwork that the Cloud Run resource will get IPs
+     * from. At least one of network or subnetwork must be specified. If both
      * network and subnetwork are specified, the given VPC subnetwork must
      * belong to the given VPC network. If subnetwork is not specified, the
      * subnetwork with the same name with the network will be used.
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -138,9 +138,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network tags applied to this Cloud Run resource.
+     * Optional. Network tags applied to this Cloud Run resource.
      *
-     * Generated from protobuf field <code>repeated string tags = 3;</code>
+     * Generated from protobuf field <code>repeated string tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTags()
@@ -149,9 +149,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network tags applied to this Cloud Run resource.
+     * Optional. Network tags applied to this Cloud Run resource.
      *
-     * Generated from protobuf field <code>repeated string tags = 3;</code>
+     * Generated from protobuf field <code>repeated string tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

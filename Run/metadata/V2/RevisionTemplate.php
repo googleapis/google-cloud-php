@@ -21,26 +21,26 @@ class RevisionTemplate
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˜
-+google/cloud/run/v2/revision_template.protogoogle.cloud.run.v2google/api/resource.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.proto"¬
-RevisionTemplate2
-revision (	B ˙A
-run.googleapis.com/RevisionA
-labels (21.google.cloud.run.v2.RevisionTemplate.LabelsEntryK
-annotations (26.google.cloud.run.v2.RevisionTemplate.AnnotationsEntry5
-scaling (2$.google.cloud.run.v2.RevisionScaling2
+ß	
++google/cloud/run/v2/revision_template.protogoogle.cloud.run.v2google/api/resource.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.proto"Ú
+RevisionTemplate5
+revision (	B#‡A˙A
+run.googleapis.com/RevisionF
+labels (21.google.cloud.run.v2.RevisionTemplate.LabelsEntryB‡AP
+annotations (26.google.cloud.run.v2.RevisionTemplate.AnnotationsEntryB‡A:
+scaling (2$.google.cloud.run.v2.RevisionScalingB‡A7
 
-vpc_access (2.google.cloud.run.v2.VpcAccess*
-timeout (2.google.protobuf.Duration
-service_account	 (	2
+vpc_access (2.google.cloud.run.v2.VpcAccessB‡A/
+timeout (2.google.protobuf.DurationB‡A
+service_account	 (	B‡A2
 
 containers
- (2.google.cloud.run.v2.Container,
-volumes (2.google.cloud.run.v2.VolumeH
-execution_environment (2).google.cloud.run.v2.ExecutionEnvironment>
+ (2.google.cloud.run.v2.Container1
+volumes (2.google.cloud.run.v2.VolumeB‡AM
+execution_environment (2).google.cloud.run.v2.ExecutionEnvironmentB‡A>
 encryption_key (	B&˙A#
-!cloudkms.googleapis.com/CryptoKey(
- max_instance_request_concurrency (
+!cloudkms.googleapis.com/CryptoKey-
+ max_instance_request_concurrency (B‡A
 session_affinity (B‡A"
 health_check_disabled (B‡A-
 LabelsEntry

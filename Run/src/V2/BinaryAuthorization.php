@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class BinaryAuthorization extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If present, indicates to use Breakglass using this justification.
+     * Optional. If present, indicates to use Breakglass using this justification.
      * If use_default is False, then it must be empty.
      * For more information on breakglass, see
      * https://cloud.google.com/binary-authorization/docs/using-breakglass
      *
-     * Generated from protobuf field <code>string breakglass_justification = 2;</code>
+     * Generated from protobuf field <code>string breakglass_justification = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $breakglass_justification = '';
     protected $binauthz_method;
@@ -33,10 +33,13 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $use_default
-     *           If True, indicates to use the default project's binary authorization
-     *           policy. If False, binary authorization will be disabled.
+     *           Optional. If True, indicates to use the default project's binary
+     *           authorization policy. If False, binary authorization will be disabled.
+     *     @type string $policy
+     *           Optional. The path to a binary authorization policy.
+     *           Format: projects/{project}/platforms/cloudRun/{policy-name}
      *     @type string $breakglass_justification
-     *           If present, indicates to use Breakglass using this justification.
+     *           Optional. If present, indicates to use Breakglass using this justification.
      *           If use_default is False, then it must be empty.
      *           For more information on breakglass, see
      *           https://cloud.google.com/binary-authorization/docs/using-breakglass
@@ -48,10 +51,10 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If True, indicates to use the default project's binary authorization
-     * policy. If False, binary authorization will be disabled.
+     * Optional. If True, indicates to use the default project's binary
+     * authorization policy. If False, binary authorization will be disabled.
      *
-     * Generated from protobuf field <code>bool use_default = 1;</code>
+     * Generated from protobuf field <code>bool use_default = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseDefault()
@@ -65,10 +68,10 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If True, indicates to use the default project's binary authorization
-     * policy. If False, binary authorization will be disabled.
+     * Optional. If True, indicates to use the default project's binary
+     * authorization policy. If False, binary authorization will be disabled.
      *
-     * Generated from protobuf field <code>bool use_default = 1;</code>
+     * Generated from protobuf field <code>bool use_default = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -81,12 +84,45 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, indicates to use Breakglass using this justification.
+     * Optional. The path to a binary authorization policy.
+     * Format: projects/{project}/platforms/cloudRun/{policy-name}
+     *
+     * Generated from protobuf field <code>string policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPolicy()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasPolicy()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Optional. The path to a binary authorization policy.
+     * Format: projects/{project}/platforms/cloudRun/{policy-name}
+     *
+     * Generated from protobuf field <code>string policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. If present, indicates to use Breakglass using this justification.
      * If use_default is False, then it must be empty.
      * For more information on breakglass, see
      * https://cloud.google.com/binary-authorization/docs/using-breakglass
      *
-     * Generated from protobuf field <code>string breakglass_justification = 2;</code>
+     * Generated from protobuf field <code>string breakglass_justification = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getBreakglassJustification()
@@ -95,12 +131,12 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If present, indicates to use Breakglass using this justification.
+     * Optional. If present, indicates to use Breakglass using this justification.
      * If use_default is False, then it must be empty.
      * For more information on breakglass, see
      * https://cloud.google.com/binary-authorization/docs/using-breakglass
      *
-     * Generated from protobuf field <code>string breakglass_justification = 2;</code>
+     * Generated from protobuf field <code>string breakglass_justification = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
