@@ -15,6 +15,11 @@
                                 "checkAndMutateRow"
                             ]
                         },
+                        "ExecuteQuery": {
+                            "methods": [
+                                "executeQuery"
+                            ]
+                        },
                         "GenerateInitialChangeStreamPartitions": {
                             "methods": [
                                 "generateInitialChangeStreamPartitions"
