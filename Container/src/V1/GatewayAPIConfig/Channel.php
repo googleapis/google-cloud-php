@@ -27,9 +27,10 @@ class Channel
      */
     const CHANNEL_DISABLED = 1;
     /**
+     * Deprecated: use CHANNEL_STANDARD instead.
      * Gateway API support is enabled, experimental CRDs are installed
      *
-     * Generated from protobuf enum <code>CHANNEL_EXPERIMENTAL = 3;</code>
+     * Generated from protobuf enum <code>CHANNEL_EXPERIMENTAL = 3 [deprecated = true];</code>
      */
     const CHANNEL_EXPERIMENTAL = 3;
     /**
