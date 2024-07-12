@@ -17,9 +17,9 @@ class GetBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the BigQuery export to retrieve. Its format is
-     * organizations/{organization}/bigQueryExports/{export_id},
-     * folders/{folder}/bigQueryExports/{export_id}, or
-     * projects/{project}/bigQueryExports/{export_id}
+     * `organizations/{organization}/bigQueryExports/{export_id}`,
+     * `folders/{folder}/bigQueryExports/{export_id}`, or
+     * `projects/{project}/bigQueryExports/{export_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,9 +27,9 @@ class GetBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the BigQuery export to retrieve. Its format is
-     *                     organizations/{organization}/bigQueryExports/{export_id},
-     *                     folders/{folder}/bigQueryExports/{export_id}, or
-     *                     projects/{project}/bigQueryExports/{export_id}
+     *                     `organizations/{organization}/bigQueryExports/{export_id}`,
+     *                     `folders/{folder}/bigQueryExports/{export_id}`, or
+     *                     `projects/{project}/bigQueryExports/{export_id}`
      *                     Please see {@see SecurityCenterClient::bigQueryExportName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest
@@ -50,9 +50,9 @@ class GetBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the BigQuery export to retrieve. Its format is
-     *           organizations/{organization}/bigQueryExports/{export_id},
-     *           folders/{folder}/bigQueryExports/{export_id}, or
-     *           projects/{project}/bigQueryExports/{export_id}
+     *           `organizations/{organization}/bigQueryExports/{export_id}`,
+     *           `folders/{folder}/bigQueryExports/{export_id}`, or
+     *           `projects/{project}/bigQueryExports/{export_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -62,9 +62,9 @@ class GetBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the BigQuery export to retrieve. Its format is
-     * organizations/{organization}/bigQueryExports/{export_id},
-     * folders/{folder}/bigQueryExports/{export_id}, or
-     * projects/{project}/bigQueryExports/{export_id}
+     * `organizations/{organization}/bigQueryExports/{export_id}`,
+     * `folders/{folder}/bigQueryExports/{export_id}`, or
+     * `projects/{project}/bigQueryExports/{export_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -76,9 +76,9 @@ class GetBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the BigQuery export to retrieve. Its format is
-     * organizations/{organization}/bigQueryExports/{export_id},
-     * folders/{folder}/bigQueryExports/{export_id}, or
-     * projects/{project}/bigQueryExports/{export_id}
+     * `organizations/{organization}/bigQueryExports/{export_id}`,
+     * `folders/{folder}/bigQueryExports/{export_id}`, or
+     * `projects/{project}/bigQueryExports/{export_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

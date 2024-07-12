@@ -21,8 +21,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]".
+     * is `organizations/[organization_id]`, `folders/[folder_id]`,
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -58,8 +58,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, at which bulk action needs to be applied. Its format
-     *                       is "organizations/[organization_id]", "folders/[folder_id]",
-     *                       "projects/[project_id]".
+     *                       is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *                       `projects/[project_id]`.
      *
      * @return \Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest
      *
@@ -79,8 +79,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, at which bulk action needs to be applied. Its format
-     *           is "organizations/[organization_id]", "folders/[folder_id]",
-     *           "projects/[project_id]".
+     *           is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *           `projects/[project_id]`.
      *     @type string $filter
      *           Expression that identifies findings that should be updated.
      *           The expression is a list of zero or more restrictions combined
@@ -109,8 +109,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]".
+     * is `organizations/[organization_id]`, `folders/[folder_id]`,
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,8 +122,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]".
+     * is `organizations/[organization_id]`, `folders/[folder_id]`,
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -293,6 +293,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $database = null;
     /**
+     * The results of an attack path simulation relevant to this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.AttackExposure attack_exposure = 45;</code>
+     */
+    private $attack_exposure = null;
+    /**
      * File associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
@@ -526,6 +532,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Kubernetes resources associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Database $database
      *           Database associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\AttackExposure $attack_exposure
+     *           The results of an attack path simulation relevant to this finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $files
      *           File associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\CloudDlpInspection $cloud_dlp_inspection
@@ -1694,6 +1702,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Database::class);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * The results of an attack path simulation relevant to this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.AttackExposure attack_exposure = 45;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\AttackExposure|null
+     */
+    public function getAttackExposure()
+    {
+        return $this->attack_exposure;
+    }
+
+    public function hasAttackExposure()
+    {
+        return isset($this->attack_exposure);
+    }
+
+    public function clearAttackExposure()
+    {
+        unset($this->attack_exposure);
+    }
+
+    /**
+     * The results of an attack path simulation relevant to this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.AttackExposure attack_exposure = 45;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\AttackExposure $var
+     * @return $this
+     */
+    public function setAttackExposure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\AttackExposure::class);
+        $this->attack_exposure = $var;
 
         return $this;
     }

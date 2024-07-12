@@ -25,9 +25,9 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The type of Google Cloud Armor security policy for example, ‘backend
-     * security policy’, ‘edge security policy’, ‘network edge security policy’,
-     * or ‘always-on DDoS protection’.
+     * The type of Google Cloud Armor security policy for example, 'backend
+     * security policy', 'edge security policy', 'network edge security policy',
+     * or 'always-on DDoS protection'.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -49,9 +49,9 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           The name of the Google Cloud Armor security policy, for example,
      *           "my-security-policy".
      *     @type string $type
-     *           The type of Google Cloud Armor security policy for example, ‘backend
-     *           security policy’, ‘edge security policy’, ‘network edge security policy’,
-     *           or ‘always-on DDoS protection’.
+     *           The type of Google Cloud Armor security policy for example, 'backend
+     *           security policy', 'edge security policy', 'network edge security policy',
+     *           or 'always-on DDoS protection'.
      *     @type bool $preview
      *           Whether or not the associated rule or policy is in preview mode.
      * }
@@ -90,9 +90,9 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of Google Cloud Armor security policy for example, ‘backend
-     * security policy’, ‘edge security policy’, ‘network edge security policy’,
-     * or ‘always-on DDoS protection’.
+     * The type of Google Cloud Armor security policy for example, 'backend
+     * security policy', 'edge security policy', 'network edge security policy',
+     * or 'always-on DDoS protection'.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -103,9 +103,9 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of Google Cloud Armor security policy for example, ‘backend
-     * security policy’, ‘edge security policy’, ‘network edge security policy’,
-     * or ‘always-on DDoS protection’.
+     * The type of Google Cloud Armor security policy for example, 'backend
+     * security policy', 'edge security policy', 'network edge security policy',
+     * or 'always-on DDoS protection'.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var

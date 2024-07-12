@@ -33,9 +33,9 @@ use Google\Cloud\SecurityCenter\V1\MuteConfig;
  * Lists mute configs.
  *
  * @param string $formattedParent The parent, which owns the collection of mute configs. Its format
- *                                is "organizations/[organization_id]", "folders/[folder_id]",
- *                                "projects/[project_id]". Please see
- *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
+ *                                is `organizations/[organization_id]`, `folders/[folder_id]`,
+ *                                `projects/[project_id]`. Please see
+ *                                {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  */
 function list_mute_configs_sample(string $formattedParent): void
 {
@@ -71,7 +71,7 @@ function list_mute_configs_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = SecurityCenterClient::projectName('[PROJECT]');
+    $formattedParent = SecurityCenterClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
 
     list_mute_configs_sample($formattedParent);
 }

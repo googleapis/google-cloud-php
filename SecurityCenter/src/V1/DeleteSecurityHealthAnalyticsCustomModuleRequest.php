@@ -17,10 +17,10 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 {
     /**
      * Required. Name of the custom module to delete. Its format is
-     * "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     * "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     * `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     * `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      * or
-     * "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     * `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,10 +28,10 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * @param string $name Required. Name of the custom module to delete. Its format is
-     *                     "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *                     "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *                     `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     *                     `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      *                     or
-     *                     "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     *                     `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      *                     Please see {@see SecurityCenterClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest
@@ -52,10 +52,10 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      *     @type string $name
      *           Required. Name of the custom module to delete. Its format is
-     *           "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     *           "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     *           `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     *           `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      *           or
-     *           "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     *           `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      * }
      */
     public function __construct($data = NULL) {
@@ -65,10 +65,10 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * Required. Name of the custom module to delete. Its format is
-     * "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     * "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     * `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     * `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      * or
-     * "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     * `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -80,10 +80,10 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * Required. Name of the custom module to delete. Its format is
-     * "organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}",
-     * "folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}",
+     * `organizations/{organization}/securityHealthAnalyticsSettings/customModules/{customModule}`,
+     * `folders/{folder}/securityHealthAnalyticsSettings/customModules/{customModule}`,
      * or
-     * "projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}"
+     * `projects/{project}/securityHealthAnalyticsSettings/customModules/{customModule}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

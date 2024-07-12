@@ -17,9 +17,12 @@ class GetMuteConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the mute config to retrieve. Its format is
-     * organizations/{organization}/muteConfigs/{config_id},
-     * folders/{folder}/muteConfigs/{config_id}, or
-     * projects/{project}/muteConfigs/{config_id}
+     * `organizations/{organization}/muteConfigs/{config_id}`,
+     * `folders/{folder}/muteConfigs/{config_id}`,
+     * `projects/{project}/muteConfigs/{config_id}`,
+     * `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     * `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     * `projects/{project}/locations/global/muteConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,10 +30,13 @@ class GetMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the mute config to retrieve. Its format is
-     *                     organizations/{organization}/muteConfigs/{config_id},
-     *                     folders/{folder}/muteConfigs/{config_id}, or
-     *                     projects/{project}/muteConfigs/{config_id}
-     *                     Please see {@see SecurityCenterClient::muteConfigName()} for help formatting this field.
+     *                     `organizations/{organization}/muteConfigs/{config_id}`,
+     *                     `folders/{folder}/muteConfigs/{config_id}`,
+     *                     `projects/{project}/muteConfigs/{config_id}`,
+     *                     `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     *                     `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     *                     `projects/{project}/locations/global/muteConfigs/{config_id}`. Please see
+     *                     {@see SecurityCenterClient::muteConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest
      *
@@ -50,9 +56,12 @@ class GetMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the mute config to retrieve. Its format is
-     *           organizations/{organization}/muteConfigs/{config_id},
-     *           folders/{folder}/muteConfigs/{config_id}, or
-     *           projects/{project}/muteConfigs/{config_id}
+     *           `organizations/{organization}/muteConfigs/{config_id}`,
+     *           `folders/{folder}/muteConfigs/{config_id}`,
+     *           `projects/{project}/muteConfigs/{config_id}`,
+     *           `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     *           `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     *           `projects/{project}/locations/global/muteConfigs/{config_id}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,9 +71,12 @@ class GetMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the mute config to retrieve. Its format is
-     * organizations/{organization}/muteConfigs/{config_id},
-     * folders/{folder}/muteConfigs/{config_id}, or
-     * projects/{project}/muteConfigs/{config_id}
+     * `organizations/{organization}/muteConfigs/{config_id}`,
+     * `folders/{folder}/muteConfigs/{config_id}`,
+     * `projects/{project}/muteConfigs/{config_id}`,
+     * `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     * `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     * `projects/{project}/locations/global/muteConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -76,9 +88,12 @@ class GetMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the mute config to retrieve. Its format is
-     * organizations/{organization}/muteConfigs/{config_id},
-     * folders/{folder}/muteConfigs/{config_id}, or
-     * projects/{project}/muteConfigs/{config_id}
+     * `organizations/{organization}/muteConfigs/{config_id}`,
+     * `folders/{folder}/muteConfigs/{config_id}`,
+     * `projects/{project}/muteConfigs/{config_id}`,
+     * `organizations/{organization}/locations/global/muteConfigs/{config_id}`,
+     * `folders/{folder}/locations/global/muteConfigs/{config_id}`, or
+     * `projects/{project}/locations/global/muteConfigs/{config_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

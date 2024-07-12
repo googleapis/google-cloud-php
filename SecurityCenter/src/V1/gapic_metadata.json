@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "SecurityCenterGapicClient",
                     "rpcs": {
+                        "BatchCreateResourceValueConfigs": {
+                            "methods": [
+                                "batchCreateResourceValueConfigs"
+                            ]
+                        },
                         "BulkMuteFindings": {
                             "methods": [
                                 "bulkMuteFindings"
@@ -18,6 +23,11 @@
                         "CreateBigQueryExport": {
                             "methods": [
                                 "createBigQueryExport"
+                            ]
+                        },
+                        "CreateEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "createEventThreatDetectionCustomModule"
                             ]
                         },
                         "CreateFinding": {
@@ -50,6 +60,11 @@
                                 "deleteBigQueryExport"
                             ]
                         },
+                        "DeleteEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "deleteEventThreatDetectionCustomModule"
+                            ]
+                        },
                         "DeleteMuteConfig": {
                             "methods": [
                                 "deleteMuteConfig"
@@ -58,6 +73,11 @@
                         "DeleteNotificationConfig": {
                             "methods": [
                                 "deleteNotificationConfig"
+                            ]
+                        },
+                        "DeleteResourceValueConfig": {
+                            "methods": [
+                                "deleteResourceValueConfig"
                             ]
                         },
                         "DeleteSecurityHealthAnalyticsCustomModule": {
@@ -70,9 +90,19 @@
                                 "getBigQueryExport"
                             ]
                         },
+                        "GetEffectiveEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "getEffectiveEventThreatDetectionCustomModule"
+                            ]
+                        },
                         "GetEffectiveSecurityHealthAnalyticsCustomModule": {
                             "methods": [
                                 "getEffectiveSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "GetEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "getEventThreatDetectionCustomModule"
                             ]
                         },
                         "GetIamPolicy": {
@@ -95,14 +125,29 @@
                                 "getOrganizationSettings"
                             ]
                         },
+                        "GetResourceValueConfig": {
+                            "methods": [
+                                "getResourceValueConfig"
+                            ]
+                        },
                         "GetSecurityHealthAnalyticsCustomModule": {
                             "methods": [
                                 "getSecurityHealthAnalyticsCustomModule"
                             ]
                         },
+                        "GetSimulation": {
+                            "methods": [
+                                "getSimulation"
+                            ]
+                        },
                         "GetSource": {
                             "methods": [
                                 "getSource"
+                            ]
+                        },
+                        "GetValuedResource": {
+                            "methods": [
+                                "getValuedResource"
                             ]
                         },
                         "GroupAssets": {
@@ -120,9 +165,19 @@
                                 "listAssets"
                             ]
                         },
+                        "ListAttackPaths": {
+                            "methods": [
+                                "listAttackPaths"
+                            ]
+                        },
                         "ListBigQueryExports": {
                             "methods": [
                                 "listBigQueryExports"
+                            ]
+                        },
+                        "ListDescendantEventThreatDetectionCustomModules": {
+                            "methods": [
+                                "listDescendantEventThreatDetectionCustomModules"
                             ]
                         },
                         "ListDescendantSecurityHealthAnalyticsCustomModules": {
@@ -130,9 +185,19 @@
                                 "listDescendantSecurityHealthAnalyticsCustomModules"
                             ]
                         },
+                        "ListEffectiveEventThreatDetectionCustomModules": {
+                            "methods": [
+                                "listEffectiveEventThreatDetectionCustomModules"
+                            ]
+                        },
                         "ListEffectiveSecurityHealthAnalyticsCustomModules": {
                             "methods": [
                                 "listEffectiveSecurityHealthAnalyticsCustomModules"
+                            ]
+                        },
+                        "ListEventThreatDetectionCustomModules": {
+                            "methods": [
+                                "listEventThreatDetectionCustomModules"
                             ]
                         },
                         "ListFindings": {
@@ -150,6 +215,11 @@
                                 "listNotificationConfigs"
                             ]
                         },
+                        "ListResourceValueConfigs": {
+                            "methods": [
+                                "listResourceValueConfigs"
+                            ]
+                        },
                         "ListSecurityHealthAnalyticsCustomModules": {
                             "methods": [
                                 "listSecurityHealthAnalyticsCustomModules"
@@ -158,6 +228,11 @@
                         "ListSources": {
                             "methods": [
                                 "listSources"
+                            ]
+                        },
+                        "ListValuedResources": {
+                            "methods": [
+                                "listValuedResources"
                             ]
                         },
                         "RunAssetDiscovery": {
@@ -195,6 +270,11 @@
                                 "updateBigQueryExport"
                             ]
                         },
+                        "UpdateEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "updateEventThreatDetectionCustomModule"
+                            ]
+                        },
                         "UpdateExternalSystem": {
                             "methods": [
                                 "updateExternalSystem"
@@ -220,6 +300,11 @@
                                 "updateOrganizationSettings"
                             ]
                         },
+                        "UpdateResourceValueConfig": {
+                            "methods": [
+                                "updateResourceValueConfig"
+                            ]
+                        },
                         "UpdateSecurityHealthAnalyticsCustomModule": {
                             "methods": [
                                 "updateSecurityHealthAnalyticsCustomModule"
@@ -233,6 +318,11 @@
                         "UpdateSource": {
                             "methods": [
                                 "updateSource"
+                            ]
+                        },
+                        "ValidateEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "validateEventThreatDetectionCustomModule"
                             ]
                         }
                     }
