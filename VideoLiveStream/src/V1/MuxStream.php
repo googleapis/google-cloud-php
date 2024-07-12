@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class MuxStream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A unique key for this multiplexed stream.
+     * A unique key for this multiplexed stream. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
@@ -62,7 +64,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           A unique key for this multiplexed stream.
+     *           A unique key for this multiplexed stream. The key must be 1-63
+     *           characters in length. The key must begin and end with a letter (regardless
+     *           of case) or a number, but can contain dashes or underscores in between.
      *     @type string $container
      *           The container format. The default is `fmp4`.
      *           Supported container formats:
@@ -88,7 +92,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this multiplexed stream.
+     * A unique key for this multiplexed stream. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
@@ -99,7 +105,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this multiplexed stream.
+     * A unique key for this multiplexed stream. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var

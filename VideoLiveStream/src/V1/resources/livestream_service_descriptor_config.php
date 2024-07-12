@@ -61,6 +61,25 @@ return [
                     ],
                 ],
             ],
+            'CreateClip' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Clip',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateInput' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\LiveStream\V1\Input',
@@ -100,6 +119,25 @@ return [
                 ],
             ],
             'DeleteChannel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteClip' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Video\LiveStream\V1\OperationMetadata',
@@ -283,6 +321,18 @@ return [
                     ],
                 ],
             ],
+            'GetClip' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\Clip',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEvent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Video\LiveStream\V1\Event',
@@ -350,6 +400,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Video\LiveStream\V1\ListChannelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListClips' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getClips',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Video\LiveStream\V1\ListClipsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -436,6 +506,7 @@ return [
             'templateMap' => [
                 'asset' => 'projects/{project}/locations/{location}/assets/{asset}',
                 'channel' => 'projects/{project}/locations/{location}/channels/{channel}',
+                'clip' => 'projects/{project}/locations/{location}/channels/{channel}/clips/{clip}',
                 'event' => 'projects/{project}/locations/{location}/channels/{channel}/events/{event}',
                 'input' => 'projects/{project}/locations/{location}/inputs/{input}',
                 'location' => 'projects/{project}/locations/{location}',

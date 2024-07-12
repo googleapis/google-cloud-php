@@ -24,7 +24,7 @@ class SlateTask extends \Google\Protobuf\Internal\Message
     protected $duration = null;
     /**
      * Slate asset to use for the duration. If its duration is less than the
-     * duration of the SlateTask, then it will be looped. The slate must be
+     * duration of the SlateTask, then the slate loops. The slate must be
      * represented in the form of:
      * `projects/{project}/locations/{location}/assets/{assetId}`.
      *
@@ -43,7 +43,7 @@ class SlateTask extends \Google\Protobuf\Internal\Message
      *           Omit this field for a long running slate.
      *     @type string $asset
      *           Slate asset to use for the duration. If its duration is less than the
-     *           duration of the SlateTask, then it will be looped. The slate must be
+     *           duration of the SlateTask, then the slate loops. The slate must be
      *           represented in the form of:
      *           `projects/{project}/locations/{location}/assets/{assetId}`.
      * }
@@ -93,7 +93,7 @@ class SlateTask extends \Google\Protobuf\Internal\Message
 
     /**
      * Slate asset to use for the duration. If its duration is less than the
-     * duration of the SlateTask, then it will be looped. The slate must be
+     * duration of the SlateTask, then the slate loops. The slate must be
      * represented in the form of:
      * `projects/{project}/locations/{location}/assets/{assetId}`.
      *
@@ -107,7 +107,7 @@ class SlateTask extends \Google\Protobuf\Internal\Message
 
     /**
      * Slate asset to use for the duration. If its duration is less than the
-     * duration of the SlateTask, then it will be looped. The slate must be
+     * duration of the SlateTask, then the slate loops. The slate must be
      * represented in the form of:
      * `projects/{project}/locations/{location}/assets/{assetId}`.
      *

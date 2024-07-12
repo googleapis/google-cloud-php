@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InputAttachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A unique key for this input attachment.
+     * A unique key for this input attachment. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
@@ -42,7 +44,9 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           A unique key for this input attachment.
+     *           A unique key for this input attachment. The key must be 1-63
+     *           characters in length. The key must begin and end with a letter (regardless
+     *           of case) or a number, but can contain dashes or underscores in between.
      *     @type string $input
      *           The resource name of an existing input, in the form of:
      *           `projects/{project}/locations/{location}/inputs/{inputId}`.
@@ -56,7 +60,9 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this input attachment.
+     * A unique key for this input attachment. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
@@ -67,7 +73,9 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this input attachment.
+     * A unique key for this input attachment. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var

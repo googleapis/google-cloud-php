@@ -39,23 +39,28 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\Video\LiveStream\V1\Asset;
 use Google\Cloud\Video\LiveStream\V1\Channel;
+use Google\Cloud\Video\LiveStream\V1\Clip;
 use Google\Cloud\Video\LiveStream\V1\CreateAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\CreateClipRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateEventRequest;
 use Google\Cloud\Video\LiveStream\V1\CreateInputRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\DeleteClipRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteEventRequest;
 use Google\Cloud\Video\LiveStream\V1\DeleteInputRequest;
 use Google\Cloud\Video\LiveStream\V1\Event;
 use Google\Cloud\Video\LiveStream\V1\GetAssetRequest;
 use Google\Cloud\Video\LiveStream\V1\GetChannelRequest;
+use Google\Cloud\Video\LiveStream\V1\GetClipRequest;
 use Google\Cloud\Video\LiveStream\V1\GetEventRequest;
 use Google\Cloud\Video\LiveStream\V1\GetInputRequest;
 use Google\Cloud\Video\LiveStream\V1\GetPoolRequest;
 use Google\Cloud\Video\LiveStream\V1\Input;
 use Google\Cloud\Video\LiveStream\V1\ListAssetsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListChannelsRequest;
+use Google\Cloud\Video\LiveStream\V1\ListClipsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListEventsRequest;
 use Google\Cloud\Video\LiveStream\V1\ListInputsRequest;
 use Google\Cloud\Video\LiveStream\V1\Pool;
@@ -85,19 +90,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createClipAsync(CreateClipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEventAsync(CreateEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInputAsync(CreateInputRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteChannelAsync(DeleteChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteClipAsync(DeleteClipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteEventAsync(DeleteEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInputAsync(DeleteInputRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getChannelAsync(GetChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getClipAsync(GetClipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEventAsync(GetEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInputAsync(GetInputRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPoolAsync(GetPoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listChannelsAsync(ListChannelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listClipsAsync(ListClipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInputsAsync(ListInputsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startChannelAsync(StartChannelRequest $request, array $optionalArgs = [])
@@ -245,6 +254,27 @@ final class LivestreamServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a clip
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channel
+     * @param string $clip
+     *
+     * @return string The formatted clip resource.
+     */
+    public static function clipName(string $project, string $location, string $channel, string $clip): string
+    {
+        return self::getPathTemplate('clip')->render([
+            'project' => $project,
+            'location' => $location,
+            'channel' => $channel,
+            'clip' => $clip,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a event
      * resource.
      *
@@ -362,6 +392,7 @@ final class LivestreamServiceClient
      * Template: Pattern
      * - asset: projects/{project}/locations/{location}/assets/{asset}
      * - channel: projects/{project}/locations/{location}/channels/{channel}
+     * - clip: projects/{project}/locations/{location}/channels/{channel}/clips/{clip}
      * - event: projects/{project}/locations/{location}/channels/{channel}/events/{event}
      * - input: projects/{project}/locations/{location}/inputs/{input}
      * - location: projects/{project}/locations/{location}
@@ -514,6 +545,32 @@ final class LivestreamServiceClient
     }
 
     /**
+     * Creates a clip with the provided clip ID in the specified channel.
+     *
+     * The async variant is {@see LivestreamServiceClient::createClipAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/create_clip.php
+     *
+     * @param CreateClipRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createClip(CreateClipRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateClip', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates an event with the provided unique ID in the specified channel.
      *
      * The async variant is {@see LivestreamServiceClient::createEventAsync()} .
@@ -618,6 +675,33 @@ final class LivestreamServiceClient
     }
 
     /**
+     * Deletes the specified clip job resource. This method only deletes the clip
+     * job and does not delete the VOD clip stored in the GCS.
+     *
+     * The async variant is {@see LivestreamServiceClient::deleteClipAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/delete_clip.php
+     *
+     * @param DeleteClipRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteClip(DeleteClipRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteClip', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes the specified event.
      *
      * The async variant is {@see LivestreamServiceClient::deleteEventAsync()} .
@@ -717,6 +801,32 @@ final class LivestreamServiceClient
     public function getChannel(GetChannelRequest $request, array $callOptions = []): Channel
     {
         return $this->startApiCall('GetChannel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the specified clip.
+     *
+     * The async variant is {@see LivestreamServiceClient::getClipAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/get_clip.php
+     *
+     * @param GetClipRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Clip
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getClip(GetClipRequest $request, array $callOptions = []): Clip
+    {
+        return $this->startApiCall('GetClip', $request, $callOptions)->wait();
     }
 
     /**
@@ -847,6 +957,32 @@ final class LivestreamServiceClient
     public function listChannels(ListChannelsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListChannels', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of all clips in the specified channel.
+     *
+     * The async variant is {@see LivestreamServiceClient::listClipsAsync()} .
+     *
+     * @example samples/V1/LivestreamServiceClient/list_clips.php
+     *
+     * @param ListClipsRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listClips(ListClipsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListClips', $request, $callOptions);
     }
 
     /**
