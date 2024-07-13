@@ -40,6 +40,15 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_source = 8;</code>
      */
     protected $request_source = '';
+    /**
+     * The types of output to generate, e.g. sql, metadata etc. If not specified,
+     * a default set of targets will be generated. Some additional target types
+     * may be slower to generate. See the documentation for the set of available
+     * target types.
+     *
+     * Generated from protobuf field <code>repeated string target_types = 9;</code>
+     */
+    private $target_types;
     protected $source_location;
     protected $target_location;
     protected $output_name_mapping;
@@ -64,6 +73,11 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      *           The default source environment values for the translation.
      *     @type string $request_source
      *           The indicator to show translation request initiator.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_types
+     *           The types of output to generate, e.g. sql, metadata etc. If not specified,
+     *           a default set of targets will be generated. Some additional target types
+     *           may be slower to generate. See the documentation for the set of available
+     *           target types.
      * }
      */
     public function __construct($data = NULL) {
@@ -294,6 +308,38 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * The types of output to generate, e.g. sql, metadata etc. If not specified,
+     * a default set of targets will be generated. Some additional target types
+     * may be slower to generate. See the documentation for the set of available
+     * target types.
+     *
+     * Generated from protobuf field <code>repeated string target_types = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTargetTypes()
+    {
+        return $this->target_types;
+    }
+
+    /**
+     * The types of output to generate, e.g. sql, metadata etc. If not specified,
+     * a default set of targets will be generated. Some additional target types
+     * may be slower to generate. See the documentation for the set of available
+     * target types.
+     *
+     * Generated from protobuf field <code>repeated string target_types = 9;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTargetTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->target_types = $arr;
 
         return $this;
     }

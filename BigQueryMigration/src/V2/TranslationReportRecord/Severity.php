@@ -67,6 +67,4 @@ class Severity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Severity::class, \Google\Cloud\BigQuery\Migration\V2\TranslationReportRecord_Severity::class);
 
