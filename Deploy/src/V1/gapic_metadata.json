@@ -50,6 +50,11 @@
                                 "createDeliveryPipeline"
                             ]
                         },
+                        "CreateDeployPolicy": {
+                            "methods": [
+                                "createDeployPolicy"
+                            ]
+                        },
                         "CreateRelease": {
                             "methods": [
                                 "createRelease"
@@ -80,6 +85,11 @@
                                 "deleteDeliveryPipeline"
                             ]
                         },
+                        "DeleteDeployPolicy": {
+                            "methods": [
+                                "deleteDeployPolicy"
+                            ]
+                        },
                         "DeleteTarget": {
                             "methods": [
                                 "deleteTarget"
@@ -108,6 +118,11 @@
                         "GetDeliveryPipeline": {
                             "methods": [
                                 "getDeliveryPipeline"
+                            ]
+                        },
+                        "GetDeployPolicy": {
+                            "methods": [
+                                "getDeployPolicy"
                             ]
                         },
                         "GetJobRun": {
@@ -153,6 +168,11 @@
                         "ListDeliveryPipelines": {
                             "methods": [
                                 "listDeliveryPipelines"
+                            ]
+                        },
+                        "ListDeployPolicies": {
+                            "methods": [
+                                "listDeployPolicies"
                             ]
                         },
                         "ListJobRuns": {
@@ -203,6 +223,11 @@
                         "UpdateDeliveryPipeline": {
                             "methods": [
                                 "updateDeliveryPipeline"
+                            ]
+                        },
+                        "UpdateDeployPolicy": {
+                            "methods": [
+                                "updateDeployPolicy"
                             ]
                         },
                         "UpdateTarget": {

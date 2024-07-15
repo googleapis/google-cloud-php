@@ -17,21 +17,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The ID of the AutomationRun initiated by a promote release
+     * Output only. The name of the AutomationRun initiated by a promote release
      * rule.
      *
      * Generated from protobuf field <code>string promote_automation_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $promote_automation_run = '';
     /**
-     * Output only. The IDs of the AutomationRuns initiated by an advance rollout
-     * rule.
+     * Output only. The names of the AutomationRuns initiated by an advance
+     * rollout rule.
      *
      * Generated from protobuf field <code>repeated string advance_automation_runs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $advance_automation_runs;
     /**
-     * Output only. The IDs of the AutomationRuns initiated by a repair rollout
+     * Output only. The names of the AutomationRuns initiated by a repair rollout
      * rule.
      *
      * Generated from protobuf field <code>repeated string repair_automation_runs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -45,13 +45,13 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $promote_automation_run
-     *           Output only. The ID of the AutomationRun initiated by a promote release
+     *           Output only. The name of the AutomationRun initiated by a promote release
      *           rule.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advance_automation_runs
-     *           Output only. The IDs of the AutomationRuns initiated by an advance rollout
-     *           rule.
+     *           Output only. The names of the AutomationRuns initiated by an advance
+     *           rollout rule.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $repair_automation_runs
-     *           Output only. The IDs of the AutomationRuns initiated by a repair rollout
+     *           Output only. The names of the AutomationRuns initiated by a repair rollout
      *           rule.
      * }
      */
@@ -61,7 +61,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the AutomationRun initiated by a promote release
+     * Output only. The name of the AutomationRun initiated by a promote release
      * rule.
      *
      * Generated from protobuf field <code>string promote_automation_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -73,7 +73,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the AutomationRun initiated by a promote release
+     * Output only. The name of the AutomationRun initiated by a promote release
      * rule.
      *
      * Generated from protobuf field <code>string promote_automation_run = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -89,8 +89,8 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IDs of the AutomationRuns initiated by an advance rollout
-     * rule.
+     * Output only. The names of the AutomationRuns initiated by an advance
+     * rollout rule.
      *
      * Generated from protobuf field <code>repeated string advance_automation_runs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -101,8 +101,8 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IDs of the AutomationRuns initiated by an advance rollout
-     * rule.
+     * Output only. The names of the AutomationRuns initiated by an advance
+     * rollout rule.
      *
      * Generated from protobuf field <code>repeated string advance_automation_runs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -117,7 +117,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IDs of the AutomationRuns initiated by a repair rollout
+     * Output only. The names of the AutomationRuns initiated by a repair rollout
      * rule.
      *
      * Generated from protobuf field <code>repeated string repair_automation_runs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -129,7 +129,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The IDs of the AutomationRuns initiated by a repair rollout
+     * Output only. The names of the AutomationRuns initiated by a repair rollout
      * rule.
      *
      * Generated from protobuf field <code>repeated string repair_automation_runs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

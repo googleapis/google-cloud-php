@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * RepairPhase tracks the repair attempts that have been made for
- * each `RepairMode` specified in the `Automation` resource.
+ * each `RepairPhaseConfig` specified in the `Automation` resource.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.RepairPhase</code>
  */
