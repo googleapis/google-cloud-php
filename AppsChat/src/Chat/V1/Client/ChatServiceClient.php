@@ -47,18 +47,21 @@ use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
+use Google\Apps\Chat\V1\GetSpaceEventRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListReactionsRequest;
+use Google\Apps\Chat\V1\ListSpaceEventsRequest;
 use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
+use Google\Apps\Chat\V1\SpaceEvent;
 use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
@@ -96,11 +99,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSpaceEventAsync(GetSpaceEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
@@ -288,6 +293,23 @@ final class ChatServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a space_event
+     * resource.
+     *
+     * @param string $space
+     * @param string $spaceEvent
+     *
+     * @return string The formatted space_event resource.
+     */
+    public static function spaceEventName(string $space, string $spaceEvent): string
+    {
+        return self::getPathTemplate('spaceEvent')->render([
+            'space' => $space,
+            'space_event' => $spaceEvent,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * space_read_state resource.
      *
@@ -350,6 +372,7 @@ final class ChatServiceClient
      * - quotedMessageMetadata: spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
      * - space: spaces/{space}
+     * - spaceEvent: spaces/{space}/spaceEvents/{space_event}
      * - spaceReadState: users/{user}/spaces/{space}/spaceReadState
      * - thread: spaces/{space}/threads/{thread}
      * - threadReadState: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -953,6 +976,45 @@ final class ChatServiceClient
     }
 
     /**
+     * Returns an event from a Google Chat space. The [event
+     * payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload)
+     * contains the most recent version of the resource that changed. For example,
+     * if you request an event about a new message but the message was later
+     * updated, the server returns the updated `Message` resource in the event
+     * payload.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * To get an event, the authenticated user must be a member of the space.
+     *
+     * For an example, see [Get details about an
+     * event from a Google Chat
+     * space](https://developers.google.com/workspace/chat/get-space-event).
+     *
+     * The async variant is {@see ChatServiceClient::getSpaceEventAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_space_event.php
+     *
+     * @param GetSpaceEventRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSpaceEvent(GetSpaceEventRequest $request, array $callOptions = []): SpaceEvent
+    {
+        return $this->startApiCall('GetSpaceEvent', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns details about a user's read state within a space, used to identify
      * read and unread messages. For an example, see [Get details about a user's
      * space read
@@ -1118,6 +1180,45 @@ final class ChatServiceClient
     public function listReactions(ListReactionsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListReactions', $request, $callOptions);
+    }
+
+    /**
+     * Lists events from a Google Chat space. For each event, the
+     * [payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload)
+     * contains the most recent version of the Chat resource. For example, if you
+     * list events about new space members, the server returns `Membership`
+     * resources that contain the latest membership details. If new members were
+     * removed during the requested period, the event payload contains an empty
+     * `Membership` resource.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * To list events, the authenticated user must be a member of the space.
+     *
+     * For an example, see [List events from a Google Chat
+     * space](https://developers.google.com/workspace/chat/list-space-events).
+     *
+     * The async variant is {@see ChatServiceClient::listSpaceEventsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/list_space_events.php
+     *
+     * @param ListSpaceEventsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSpaceEvents(ListSpaceEventsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSpaceEvents', $request, $callOptions);
     }
 
     /**

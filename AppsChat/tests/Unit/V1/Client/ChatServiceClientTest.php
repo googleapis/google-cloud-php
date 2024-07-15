@@ -42,6 +42,7 @@ use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
+use Google\Apps\Chat\V1\GetSpaceEventRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
@@ -51,6 +52,8 @@ use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListMessagesResponse;
 use Google\Apps\Chat\V1\ListReactionsRequest;
 use Google\Apps\Chat\V1\ListReactionsResponse;
+use Google\Apps\Chat\V1\ListSpaceEventsRequest;
+use Google\Apps\Chat\V1\ListSpaceEventsResponse;
 use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\ListSpacesResponse;
 use Google\Apps\Chat\V1\Membership;
@@ -58,6 +61,7 @@ use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
+use Google\Apps\Chat\V1\SpaceEvent;
 use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
@@ -1087,6 +1091,73 @@ class ChatServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getSpaceEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $eventType = 'eventType984376767';
+        $expectedResponse = new SpaceEvent();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEventType($eventType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->spaceEventName('[SPACE]', '[SPACE_EVENT]');
+        $request = (new GetSpaceEventRequest())->setName($formattedName);
+        $response = $gapicClient->getSpaceEvent($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/GetSpaceEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSpaceEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->spaceEventName('[SPACE]', '[SPACE_EVENT]');
+        $request = (new GetSpaceEventRequest())->setName($formattedName);
+        try {
+            $gapicClient->getSpaceEvent($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getSpaceReadStateTest()
     {
         $transport = $this->createTransport();
@@ -1418,6 +1489,81 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new ListReactionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReactions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSpaceEventsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $spaceEventsElement = new SpaceEvent();
+        $spaceEvents = [$spaceEventsElement];
+        $expectedResponse = new ListSpaceEventsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSpaceEvents($spaceEvents);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $filter = 'filter-1274492040';
+        $request = (new ListSpaceEventsRequest())->setParent($formattedParent)->setFilter($filter);
+        $response = $gapicClient->listSpaceEvents($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSpaceEvents()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/ListSpaceEvents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFilter();
+        $this->assertProtobufEquals($filter, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSpaceEventsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $filter = 'filter-1274492040';
+        $request = (new ListSpaceEventsRequest())->setParent($formattedParent)->setFilter($filter);
+        try {
+            $gapicClient->listSpaceEvents($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

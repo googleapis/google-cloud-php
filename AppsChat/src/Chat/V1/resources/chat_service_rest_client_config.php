@@ -168,6 +168,17 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=spaces/*/spaceEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSpaceReadState' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=users/*/spaces/*/spaceReadState}',
@@ -221,6 +232,20 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'ListSpaceEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*}/spaceEvents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'filter',
                 ],
             ],
             'ListSpaces' => [
