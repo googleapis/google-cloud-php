@@ -17,11 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class MigrationWorkflow extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Immutable. The unique identifier for the migration workflow.
-     * The ID is server-generated.
+     * Output only. Immutable. Identifier. The unique identifier for the migration
+     * workflow. The ID is server-generated.
      * Example: `projects/123/locations/us/workflows/345`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -65,8 +65,8 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Immutable. The unique identifier for the migration workflow.
-     *           The ID is server-generated.
+     *           Output only. Immutable. Identifier. The unique identifier for the migration
+     *           workflow. The ID is server-generated.
      *           Example: `projects/123/locations/us/workflows/345`
      *     @type string $display_name
      *           The display name of the workflow. This can be set to give a workflow
@@ -89,11 +89,11 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The unique identifier for the migration workflow.
-     * The ID is server-generated.
+     * Output only. Immutable. Identifier. The unique identifier for the migration
+     * workflow. The ID is server-generated.
      * Example: `projects/123/locations/us/workflows/345`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -102,11 +102,11 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The unique identifier for the migration workflow.
-     * The ID is server-generated.
+     * Output only. Immutable. Identifier. The unique identifier for the migration
+     * workflow. The ID is server-generated.
      * Example: `projects/123/locations/us/workflows/345`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
