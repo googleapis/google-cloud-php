@@ -34,6 +34,12 @@ class LocationCategory
      */
     const ARGENTINA = 2;
     /**
+     * The infoType is typically used in Armenia.
+     *
+     * Generated from protobuf enum <code>ARMENIA = 51;</code>
+     */
+    const ARMENIA = 51;
+    /**
      * The infoType is typically used in Australia.
      *
      * Generated from protobuf enum <code>AUSTRALIA = 3;</code>
@@ -45,6 +51,12 @@ class LocationCategory
      * Generated from protobuf enum <code>AZERBAIJAN = 48;</code>
      */
     const AZERBAIJAN = 48;
+    /**
+     * The infoType is typically used in Belarus.
+     *
+     * Generated from protobuf enum <code>BELARUS = 50;</code>
+     */
+    const BELARUS = 50;
     /**
      * The infoType is typically used in Belgium.
      *
@@ -314,8 +326,10 @@ class LocationCategory
         self::LOCATION_UNSPECIFIED => 'LOCATION_UNSPECIFIED',
         self::PBGLOBAL => 'GLOBAL',
         self::ARGENTINA => 'ARGENTINA',
+        self::ARMENIA => 'ARMENIA',
         self::AUSTRALIA => 'AUSTRALIA',
         self::AZERBAIJAN => 'AZERBAIJAN',
+        self::BELARUS => 'BELARUS',
         self::BELGIUM => 'BELGIUM',
         self::BRAZIL => 'BRAZIL',
         self::CANADA => 'CANADA',

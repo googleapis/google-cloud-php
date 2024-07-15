@@ -42,7 +42,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Comma separated list of config fields to order by,
+     * Comma-separated list of config fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -100,7 +100,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Size of the page. This value can be limited by a server.
      *     @type string $order_by
-     *           Comma separated list of config fields to order by,
+     *           Comma-separated list of config fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -211,7 +211,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of config fields to order by,
+     * Comma-separated list of config fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -230,7 +230,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of config fields to order by,
+     * Comma-separated list of config fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.

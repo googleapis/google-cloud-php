@@ -28,6 +28,12 @@ class DataRiskLevelScore
      */
     const RISK_LOW = 10;
     /**
+     * Unable to determine risk.
+     *
+     * Generated from protobuf enum <code>RISK_UNKNOWN = 12;</code>
+     */
+    const RISK_UNKNOWN = 12;
+    /**
      * Medium risk - Sensitive data may be present but additional access or fine
      * grain access restrictions appear to be present.  Consider limiting
      * access even further or transform data to mask.
@@ -47,6 +53,7 @@ class DataRiskLevelScore
     private static $valueToName = [
         self::RISK_SCORE_UNSPECIFIED => 'RISK_SCORE_UNSPECIFIED',
         self::RISK_LOW => 'RISK_LOW',
+        self::RISK_UNKNOWN => 'RISK_UNKNOWN',
         self::RISK_MODERATE => 'RISK_MODERATE',
         self::RISK_HIGH => 'RISK_HIGH',
     ];

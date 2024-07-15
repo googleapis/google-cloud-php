@@ -311,6 +311,23 @@ return [
                     ],
                 ],
             ],
+            'DeleteFileStoreDataProfile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/locations/*/fileStoreDataProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/fileStoreDataProfiles/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInspectTemplate' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
@@ -488,6 +505,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFileStoreDataProfile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/locations/*/fileStoreDataProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/fileStoreDataProfiles/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -727,6 +761,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/dlpJobs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFileStoreDataProfiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/fileStoreDataProfiles',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/fileStoreDataProfiles',
                     ],
                 ],
                 'placeholders' => [

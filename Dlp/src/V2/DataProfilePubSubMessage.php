@@ -26,6 +26,14 @@ class DataProfilePubSubMessage extends \Google\Protobuf\Internal\Message
      */
     private $profile = null;
     /**
+     * If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated.
+     * Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and
+     * `file_store_path` will be populated.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile file_store_profile = 3;</code>
+     */
+    private $file_store_profile = null;
+    /**
      * The event that caused the Pub/Sub message to be sent.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.EventType event = 2;</code>
@@ -42,6 +50,10 @@ class DataProfilePubSubMessage extends \Google\Protobuf\Internal\Message
      *           If `DetailLevel` is `TABLE_PROFILE` this will be fully populated.
      *           Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and
      *           `full_resource` will be populated.
+     *     @type \Google\Cloud\Dlp\V2\FileStoreDataProfile $file_store_profile
+     *           If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated.
+     *           Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and
+     *           `file_store_path` will be populated.
      *     @type int $event
      *           The event that caused the Pub/Sub message to be sent.
      * }
@@ -87,6 +99,46 @@ class DataProfilePubSubMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\TableDataProfile::class);
         $this->profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated.
+     * Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and
+     * `file_store_path` will be populated.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile file_store_profile = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\FileStoreDataProfile|null
+     */
+    public function getFileStoreProfile()
+    {
+        return $this->file_store_profile;
+    }
+
+    public function hasFileStoreProfile()
+    {
+        return isset($this->file_store_profile);
+    }
+
+    public function clearFileStoreProfile()
+    {
+        unset($this->file_store_profile);
+    }
+
+    /**
+     * If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated.
+     * Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and
+     * `file_store_path` will be populated.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile file_store_profile = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\FileStoreDataProfile $var
+     * @return $this
+     */
+    public function setFileStoreProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\FileStoreDataProfile::class);
+        $this->file_store_profile = $var;
 
         return $this;
     }

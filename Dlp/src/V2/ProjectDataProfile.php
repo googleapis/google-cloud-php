@@ -52,6 +52,18 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProfileStatus profile_status = 7;</code>
      */
     private $profile_status = null;
+    /**
+     * The number of table data profiles generated for this project.
+     *
+     * Generated from protobuf field <code>int64 table_data_profile_count = 9;</code>
+     */
+    private $table_data_profile_count = 0;
+    /**
+     * The number of file store data profiles generated for this project.
+     *
+     * Generated from protobuf field <code>int64 file_store_data_profile_count = 10;</code>
+     */
+    private $file_store_data_profile_count = 0;
 
     /**
      * Constructor.
@@ -71,6 +83,10 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
      *           The data risk level of this project.
      *     @type \Google\Cloud\Dlp\V2\ProfileStatus $profile_status
      *           Success or error status of the last attempt to profile the project.
+     *     @type int|string $table_data_profile_count
+     *           The number of table data profiles generated for this project.
+     *     @type int|string $file_store_data_profile_count
+     *           The number of file store data profiles generated for this project.
      * }
      */
     public function __construct($data = NULL) {
@@ -270,6 +286,58 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ProfileStatus::class);
         $this->profile_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of table data profiles generated for this project.
+     *
+     * Generated from protobuf field <code>int64 table_data_profile_count = 9;</code>
+     * @return int|string
+     */
+    public function getTableDataProfileCount()
+    {
+        return $this->table_data_profile_count;
+    }
+
+    /**
+     * The number of table data profiles generated for this project.
+     *
+     * Generated from protobuf field <code>int64 table_data_profile_count = 9;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTableDataProfileCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->table_data_profile_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of file store data profiles generated for this project.
+     *
+     * Generated from protobuf field <code>int64 file_store_data_profile_count = 10;</code>
+     * @return int|string
+     */
+    public function getFileStoreDataProfileCount()
+    {
+        return $this->file_store_data_profile_count;
+    }
+
+    /**
+     * The number of file store data profiles generated for this project.
+     *
+     * Generated from protobuf field <code>int64 file_store_data_profile_count = 10;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setFileStoreDataProfileCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->file_store_data_profile_count = $var;
 
         return $this;
     }

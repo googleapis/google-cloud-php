@@ -29,6 +29,12 @@ class Error extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
      */
     private $timestamps;
+    /**
+     * Additional information about the error.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Error.ErrorExtraInfo extra_info = 4;</code>
+     */
+    private $extra_info = 0;
 
     /**
      * Constructor.
@@ -41,6 +47,8 @@ class Error extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $timestamps
      *           The times the error occurred. List includes the oldest timestamp and the
      *           last 9 timestamps.
+     *     @type int $extra_info
+     *           Additional information about the error.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,6 +116,32 @@ class Error extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Timestamp::class);
         $this->timestamps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Additional information about the error.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Error.ErrorExtraInfo extra_info = 4;</code>
+     * @return int
+     */
+    public function getExtraInfo()
+    {
+        return $this->extra_info;
+    }
+
+    /**
+     * Additional information about the error.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Error.ErrorExtraInfo extra_info = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExtraInfo($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\Error\ErrorExtraInfo::class);
+        $this->extra_info = $var;
 
         return $this;
     }
