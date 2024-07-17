@@ -34,8 +34,10 @@ use Google\ApiCore\PagedListResponse;
  * specified set of filters.
  *
  * @param string $formattedAccount The account resource for which to return change history
- *                                 resources. Please see
- *                                 {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
+ *                                 resources. Format: accounts/{account}
+ *
+ *                                 Example: `accounts/100`
+ *                                 Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
  */
 function search_change_history_events_sample(string $formattedAccount): void
 {

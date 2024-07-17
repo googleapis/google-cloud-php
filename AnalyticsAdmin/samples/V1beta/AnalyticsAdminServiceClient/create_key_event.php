@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,41 +22,39 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1beta_generated_AnalyticsAdminService_ListConversionEvents_sync]
+// [START analyticsadmin_v1beta_generated_AnalyticsAdminService_CreateKeyEvent_sync]
 use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1beta\ConversionEvent;
-use Google\Analytics\Admin\V1beta\ListConversionEventsRequest;
+use Google\Analytics\Admin\V1beta\CreateKeyEventRequest;
+use Google\Analytics\Admin\V1beta\KeyEvent;
+use Google\Analytics\Admin\V1beta\KeyEvent\CountingMethod;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 
 /**
- * Deprecated: Use `ListKeyEvents` instead.
- * Returns a list of conversion events in the specified parent property.
+ * Creates a Key Event.
  *
- * Returns an empty list if no conversion events are found.
- *
- * @param string $formattedParent The resource name of the parent property.
- *                                Example: 'properties/123'
- *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+ * @param int    $keyEventCountingMethod The method by which Key Events will be counted across multiple
+ *                                       events within a session.
+ * @param string $formattedParent        The resource name of the parent property where this Key Event
+ *                                       will be created. Format: properties/123
+ *                                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
-function list_conversion_events_sample(string $formattedParent): void
+function create_key_event_sample(int $keyEventCountingMethod, string $formattedParent): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ListConversionEventsRequest())
+    $keyEvent = (new KeyEvent())
+        ->setCountingMethod($keyEventCountingMethod);
+    $request = (new CreateKeyEventRequest())
+        ->setKeyEvent($keyEvent)
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listConversionEvents($request);
-
-        /** @var ConversionEvent $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var KeyEvent $response */
+        $response = $analyticsAdminServiceClient->createKeyEvent($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -73,8 +71,9 @@ function list_conversion_events_sample(string $formattedParent): void
  */
 function callSample(): void
 {
+    $keyEventCountingMethod = CountingMethod::COUNTING_METHOD_UNSPECIFIED;
     $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
 
-    list_conversion_events_sample($formattedParent);
+    create_key_event_sample($keyEventCountingMethod, $formattedParent);
 }
-// [END analyticsadmin_v1beta_generated_AnalyticsAdminService_ListConversionEvents_sync]
+// [END analyticsadmin_v1beta_generated_AnalyticsAdminService_CreateKeyEvent_sync]

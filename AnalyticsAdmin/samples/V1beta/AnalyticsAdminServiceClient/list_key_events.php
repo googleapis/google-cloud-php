@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,36 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1beta_generated_AnalyticsAdminService_ListConversionEvents_sync]
+// [START analyticsadmin_v1beta_generated_AnalyticsAdminService_ListKeyEvents_sync]
 use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1beta\ConversionEvent;
-use Google\Analytics\Admin\V1beta\ListConversionEventsRequest;
+use Google\Analytics\Admin\V1beta\KeyEvent;
+use Google\Analytics\Admin\V1beta\ListKeyEventsRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * Deprecated: Use `ListKeyEvents` instead.
- * Returns a list of conversion events in the specified parent property.
- *
- * Returns an empty list if no conversion events are found.
+ * Returns a list of Key Events in the specified parent property.
+ * Returns an empty list if no Key Events are found.
  *
  * @param string $formattedParent The resource name of the parent property.
  *                                Example: 'properties/123'
  *                                Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
  */
-function list_conversion_events_sample(string $formattedParent): void
+function list_key_events_sample(string $formattedParent): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new ListConversionEventsRequest())
+    $request = (new ListKeyEventsRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listConversionEvents($request);
+        $response = $analyticsAdminServiceClient->listKeyEvents($request);
 
-        /** @var ConversionEvent $element */
+        /** @var KeyEvent $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -75,6 +73,6 @@ function callSample(): void
 {
     $formattedParent = AnalyticsAdminServiceClient::propertyName('[PROPERTY]');
 
-    list_conversion_events_sample($formattedParent);
+    list_key_events_sample($formattedParent);
 }
-// [END analyticsadmin_v1beta_generated_AnalyticsAdminService_ListConversionEvents_sync]
+// [END analyticsadmin_v1beta_generated_AnalyticsAdminService_ListKeyEvents_sync]

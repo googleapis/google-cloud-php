@@ -9,27 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for DeleteFirebaseLink RPC
+ * Request message for DeleteKeyEvent RPC
  *
- * Generated from protobuf message <code>google.analytics.admin.v1beta.DeleteFirebaseLinkRequest</code>
+ * Generated from protobuf message <code>google.analytics.admin.v1beta.DeleteKeyEventRequest</code>
  */
-class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
+class DeleteKeyEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: `properties/1234/firebaseLinks/5678`
+     * Required. The resource name of the Key Event to delete.
+     * Format: properties/{property}/keyEvents/{key_event}
+     * Example: "properties/123/keyEvents/456"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
+     * @param string $name Required. The resource name of the Key Event to delete.
+     *                     Format: properties/{property}/keyEvents/{key_event}
+     *                     Example: "properties/123/keyEvents/456"
+     *                     Please see {@see AnalyticsAdminServiceClient::keyEventName()} for help formatting this field.
      *
-     *                     Example: `properties/1234/firebaseLinks/5678`
-     *                     Please see {@see AnalyticsAdminServiceClient::firebaseLinkName()} for help formatting this field.
-     *
-     * @return \Google\Analytics\Admin\V1beta\DeleteFirebaseLinkRequest
+     * @return \Google\Analytics\Admin\V1beta\DeleteKeyEventRequest
      *
      * @experimental
      */
@@ -46,8 +47,9 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     *           Example: `properties/1234/firebaseLinks/5678`
+     *           Required. The resource name of the Key Event to delete.
+     *           Format: properties/{property}/keyEvents/{key_event}
+     *           Example: "properties/123/keyEvents/456"
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +58,9 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: `properties/1234/firebaseLinks/5678`
+     * Required. The resource name of the Key Event to delete.
+     * Format: properties/{property}/keyEvents/{key_event}
+     * Example: "properties/123/keyEvents/456"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +71,9 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: `properties/1234/firebaseLinks/5678`
+     * Required. The resource name of the Key Event to delete.
+     * Format: properties/{property}/keyEvents/{key_event}
+     * Example: "properties/123/keyEvents/456"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
