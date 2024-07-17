@@ -100,6 +100,4 @@ class Thresholds extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Thresholds::class, \Google\Cloud\VmwareEngine\V1\AutoscalingSettings_Thresholds::class);
 

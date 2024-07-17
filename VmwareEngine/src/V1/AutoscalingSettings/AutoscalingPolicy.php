@@ -300,6 +300,4 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoscalingPolicy::class, \Google\Cloud\VmwareEngine\V1\AutoscalingSettings_AutoscalingPolicy::class);
 

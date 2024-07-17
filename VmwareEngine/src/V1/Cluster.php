@@ -52,6 +52,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $management = false;
     /**
+     * Optional. Configuration of the autoscaling applied to this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.AutoscalingSettings autoscaling_settings = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $autoscaling_settings = null;
+    /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -94,6 +100,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Output only. True if the cluster is a management cluster; false otherwise.
      *           There can only be one management cluster in a private cloud
      *           and it has to be the first one.
+     *     @type \Google\Cloud\VmwareEngine\V1\AutoscalingSettings $autoscaling_settings
+     *           Optional. Configuration of the autoscaling applied to this cluster.
      *     @type string $uid
      *           Output only. System-generated unique identifier for the resource.
      *     @type array|\Google\Protobuf\Internal\MapField $node_type_configs
@@ -267,6 +275,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->management = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration of the autoscaling applied to this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.AutoscalingSettings autoscaling_settings = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\VmwareEngine\V1\AutoscalingSettings|null
+     */
+    public function getAutoscalingSettings()
+    {
+        return $this->autoscaling_settings;
+    }
+
+    public function hasAutoscalingSettings()
+    {
+        return isset($this->autoscaling_settings);
+    }
+
+    public function clearAutoscalingSettings()
+    {
+        unset($this->autoscaling_settings);
+    }
+
+    /**
+     * Optional. Configuration of the autoscaling applied to this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.AutoscalingSettings autoscaling_settings = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\VmwareEngine\V1\AutoscalingSettings $var
+     * @return $this
+     */
+    public function setAutoscalingSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VmwareEngine\V1\AutoscalingSettings::class);
+        $this->autoscaling_settings = $var;
 
         return $this;
     }
