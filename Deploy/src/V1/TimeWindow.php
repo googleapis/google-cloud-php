@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Time Window within which actions are restricted.
+ * Time window within which actions are restricted.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.TimeWindow</code>
  */

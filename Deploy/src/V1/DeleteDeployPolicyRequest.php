@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteDeployPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the `DeployPolicy` to delete. Format should be
+     * Required. The name of the `DeployPolicy` to delete. The format is
      * `projects/{project_id}/locations/{location_name}/deployPolicies/{deploy_policy_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -62,7 +62,7 @@ class DeleteDeployPolicyRequest extends \Google\Protobuf\Internal\Message
     protected $etag = '';
 
     /**
-     * @param string $name Required. The name of the `DeployPolicy` to delete. Format should be
+     * @param string $name Required. The name of the `DeployPolicy` to delete. The format is
      *                     `projects/{project_id}/locations/{location_name}/deployPolicies/{deploy_policy_name}`. Please see
      *                     {@see CloudDeployClient::deployPolicyName()} for help formatting this field.
      *
@@ -83,7 +83,7 @@ class DeleteDeployPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the `DeployPolicy` to delete. Format should be
+     *           Required. The name of the `DeployPolicy` to delete. The format is
      *           `projects/{project_id}/locations/{location_name}/deployPolicies/{deploy_policy_name}`.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
@@ -115,7 +115,7 @@ class DeleteDeployPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the `DeployPolicy` to delete. Format should be
+     * Required. The name of the `DeployPolicy` to delete. The format is
      * `projects/{project_id}/locations/{location_name}/deployPolicies/{deploy_policy_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -127,7 +127,7 @@ class DeleteDeployPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the `DeployPolicy` to delete. Format should be
+     * Required. The name of the `DeployPolicy` to delete. The format is
      * `projects/{project_id}/locations/{location_name}/deployPolicies/{deploy_policy_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

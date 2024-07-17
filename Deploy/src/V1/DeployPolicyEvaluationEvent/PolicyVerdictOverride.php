@@ -60,6 +60,4 @@ class PolicyVerdictOverride
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PolicyVerdictOverride::class, \Google\Cloud\Deploy\V1\DeployPolicyEvaluationEvent_PolicyVerdictOverride::class);
 

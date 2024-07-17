@@ -37,7 +37,7 @@ class RestrictRollout extends \Google\Protobuf\Internal\Message
      */
     private $actions;
     /**
-     * Required. Time Window within which actions are restricted.
+     * Required. Time window within which actions are restricted.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TimeWindow time_window = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -59,7 +59,7 @@ class RestrictRollout extends \Google\Protobuf\Internal\Message
      *           Rollout actions to be restricted as part of the policy. If left empty, all
      *           actions will be restricted.
      *     @type \Google\Cloud\Deploy\V1\TimeWindow $time_window
-     *           Required. Time Window within which actions are restricted.
+     *           Required. Time window within which actions are restricted.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,7 +152,7 @@ class RestrictRollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Time Window within which actions are restricted.
+     * Required. Time window within which actions are restricted.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TimeWindow time_window = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Deploy\V1\TimeWindow|null
@@ -173,7 +173,7 @@ class RestrictRollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Time Window within which actions are restricted.
+     * Required. Time window within which actions are restricted.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TimeWindow time_window = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Deploy\V1\TimeWindow $var

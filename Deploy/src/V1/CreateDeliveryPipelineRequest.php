@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be
-     * created. Format should be
-     * `projects/{project_id}/locations/{location_name}`.
+     * Required. The parent collection in which the `DeliveryPipeline` must be
+     * created. The format is `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,9 +59,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param string                                   $parent             Required. The parent collection in which the `DeliveryPipeline` should be
-     *                                                                     created. Format should be
-     *                                                                     `projects/{project_id}/locations/{location_name}`. Please see
+     * @param string                                   $parent             Required. The parent collection in which the `DeliveryPipeline` must be
+     *                                                                     created. The format is `projects/{project_id}/locations/{location_name}`. Please see
      *                                                                     {@see CloudDeployClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
      * @param string                                   $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
@@ -86,9 +84,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which the `DeliveryPipeline` should be
-     *           created. Format should be
-     *           `projects/{project_id}/locations/{location_name}`.
+     *           Required. The parent collection in which the `DeliveryPipeline` must be
+     *           created. The format is `projects/{project_id}/locations/{location_name}`.
      *     @type string $delivery_pipeline_id
      *           Required. ID of the `DeliveryPipeline`.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline
@@ -116,9 +113,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be
-     * created. Format should be
-     * `projects/{project_id}/locations/{location_name}`.
+     * Required. The parent collection in which the `DeliveryPipeline` must be
+     * created. The format is `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -129,9 +125,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be
-     * created. Format should be
-     * `projects/{project_id}/locations/{location_name}`.
+     * Required. The parent collection in which the `DeliveryPipeline` must be
+     * created. The format is `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

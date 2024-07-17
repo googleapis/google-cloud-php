@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDeployPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which the `DeployPolicy` should be
-     * created. Format should be
-     * `projects/{project_id}/locations/{location_name}`.
+     * Required. The parent collection in which the `DeployPolicy` must be
+     * created. The format is `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,9 +59,8 @@ class CreateDeployPolicyRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param string                               $parent         Required. The parent collection in which the `DeployPolicy` should be
-     *                                                             created. Format should be
-     *                                                             `projects/{project_id}/locations/{location_name}`. Please see
+     * @param string                               $parent         Required. The parent collection in which the `DeployPolicy` must be
+     *                                                             created. The format is `projects/{project_id}/locations/{location_name}`. Please see
      *                                                             {@see CloudDeployClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\DeployPolicy $deployPolicy   Required. The `DeployPolicy` to create.
      * @param string                               $deployPolicyId Required. ID of the `DeployPolicy`.
@@ -86,9 +84,8 @@ class CreateDeployPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which the `DeployPolicy` should be
-     *           created. Format should be
-     *           `projects/{project_id}/locations/{location_name}`.
+     *           Required. The parent collection in which the `DeployPolicy` must be
+     *           created. The format is `projects/{project_id}/locations/{location_name}`.
      *     @type string $deploy_policy_id
      *           Required. ID of the `DeployPolicy`.
      *     @type \Google\Cloud\Deploy\V1\DeployPolicy $deploy_policy
@@ -116,9 +113,8 @@ class CreateDeployPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `DeployPolicy` should be
-     * created. Format should be
-     * `projects/{project_id}/locations/{location_name}`.
+     * Required. The parent collection in which the `DeployPolicy` must be
+     * created. The format is `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -129,9 +125,8 @@ class CreateDeployPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `DeployPolicy` should be
-     * created. Format should be
-     * `projects/{project_id}/locations/{location_name}`.
+     * Required. The parent collection in which the `DeployPolicy` must be
+     * created. The format is `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
