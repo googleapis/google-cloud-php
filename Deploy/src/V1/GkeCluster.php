@@ -34,6 +34,14 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $internal_ip = false;
+    /**
+     * Optional. If set, used to configure a
+     * [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     * to the Kubernetes server.
+     *
+     * Generated from protobuf field <code>string proxy_url = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $proxy_url = '';
 
     /**
      * Constructor.
@@ -52,6 +60,10 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *           address otherwise.
      *           Only specify this option when `cluster` is a [private GKE
      *           cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     *     @type string $proxy_url
+     *           Optional. If set, used to configure a
+     *           [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     *           to the Kubernetes server.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +133,36 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->internal_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, used to configure a
+     * [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     * to the Kubernetes server.
+     *
+     * Generated from protobuf field <code>string proxy_url = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getProxyUrl()
+    {
+        return $this->proxy_url;
+    }
+
+    /**
+     * Optional. If set, used to configure a
+     * [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     * to the Kubernetes server.
+     *
+     * Generated from protobuf field <code>string proxy_url = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProxyUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->proxy_url = $var;
 
         return $this;
     }

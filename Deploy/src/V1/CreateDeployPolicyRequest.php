@@ -9,32 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * CreateRolloutRequest is the request object used by `CreateRollout`.
+ * The request object for `CreateDeployPolicy`.
  *
- * Generated from protobuf message <code>google.cloud.deploy.v1.CreateRolloutRequest</code>
+ * Generated from protobuf message <code>google.cloud.deploy.v1.CreateDeployPolicyRequest</code>
  */
-class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
+class CreateDeployPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which the `Rollout` should be created.
-     * Format should be
-     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
+     * Required. The parent collection in which the `DeployPolicy` should be
+     * created. Format should be
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. ID of the `Rollout`.
+     * Required. ID of the `DeployPolicy`.
      *
-     * Generated from protobuf field <code>string rollout_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string deploy_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $rollout_id = '';
+    protected $deploy_policy_id = '';
     /**
-     * Required. The `Rollout` to create.
+     * Required. The `DeployPolicy` to create.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout rollout = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployPolicy deploy_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $rollout = null;
+    protected $deploy_policy = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server knows to ignore the
@@ -58,39 +58,25 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $validate_only = false;
-    /**
-     * Optional. Deploy policies to override. Format is
-     * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *
-     * Generated from protobuf field <code>repeated string override_deploy_policy = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     */
-    private $override_deploy_policy;
-    /**
-     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
-     * will start at the first phase.
-     *
-     * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $starting_phase_id = '';
 
     /**
-     * @param string                          $parent    Required. The parent collection in which the `Rollout` should be created.
-     *                                                   Format should be
-     *                                                   `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`. Please see
-     *                                                   {@see CloudDeployClient::releaseName()} for help formatting this field.
-     * @param \Google\Cloud\Deploy\V1\Rollout $rollout   Required. The `Rollout` to create.
-     * @param string                          $rolloutId Required. ID of the `Rollout`.
+     * @param string                               $parent         Required. The parent collection in which the `DeployPolicy` should be
+     *                                                             created. Format should be
+     *                                                             `projects/{project_id}/locations/{location_name}`. Please see
+     *                                                             {@see CloudDeployClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\Deploy\V1\DeployPolicy $deployPolicy   Required. The `DeployPolicy` to create.
+     * @param string                               $deployPolicyId Required. ID of the `DeployPolicy`.
      *
-     * @return \Google\Cloud\Deploy\V1\CreateRolloutRequest
+     * @return \Google\Cloud\Deploy\V1\CreateDeployPolicyRequest
      *
      * @experimental
      */
-    public static function build(string $parent, \Google\Cloud\Deploy\V1\Rollout $rollout, string $rolloutId): self
+    public static function build(string $parent, \Google\Cloud\Deploy\V1\DeployPolicy $deployPolicy, string $deployPolicyId): self
     {
         return (new self())
             ->setParent($parent)
-            ->setRollout($rollout)
-            ->setRolloutId($rolloutId);
+            ->setDeployPolicy($deployPolicy)
+            ->setDeployPolicyId($deployPolicyId);
     }
 
     /**
@@ -100,13 +86,13 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which the `Rollout` should be created.
-     *           Format should be
-     *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
-     *     @type string $rollout_id
-     *           Required. ID of the `Rollout`.
-     *     @type \Google\Cloud\Deploy\V1\Rollout $rollout
-     *           Required. The `Rollout` to create.
+     *           Required. The parent collection in which the `DeployPolicy` should be
+     *           created. Format should be
+     *           `projects/{project_id}/locations/{location_name}`.
+     *     @type string $deploy_policy_id
+     *           Required. ID of the `DeployPolicy`.
+     *     @type \Google\Cloud\Deploy\V1\DeployPolicy $deploy_policy
+     *           Required. The `DeployPolicy` to create.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
      *           so that if you must retry your request, the server knows to ignore the
@@ -122,12 +108,6 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $validate_only
      *           Optional. If set to true, the request is validated and the user is provided
      *           with an expected result, but no actual change is made.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $override_deploy_policy
-     *           Optional. Deploy policies to override. Format is
-     *           `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *     @type string $starting_phase_id
-     *           Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
-     *           will start at the first phase.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,9 +116,9 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `Rollout` should be created.
-     * Format should be
-     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
+     * Required. The parent collection in which the `DeployPolicy` should be
+     * created. Format should be
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -149,9 +129,9 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `Rollout` should be created.
-     * Format should be
-     * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.
+     * Required. The parent collection in which the `DeployPolicy` should be
+     * created. Format should be
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -166,63 +146,63 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the `Rollout`.
+     * Required. ID of the `DeployPolicy`.
      *
-     * Generated from protobuf field <code>string rollout_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string deploy_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getRolloutId()
+    public function getDeployPolicyId()
     {
-        return $this->rollout_id;
+        return $this->deploy_policy_id;
     }
 
     /**
-     * Required. ID of the `Rollout`.
+     * Required. ID of the `DeployPolicy`.
      *
-     * Generated from protobuf field <code>string rollout_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string deploy_policy_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setRolloutId($var)
+    public function setDeployPolicyId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->rollout_id = $var;
+        $this->deploy_policy_id = $var;
 
         return $this;
     }
 
     /**
-     * Required. The `Rollout` to create.
+     * Required. The `DeployPolicy` to create.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout rollout = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Deploy\V1\Rollout|null
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployPolicy deploy_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Deploy\V1\DeployPolicy|null
      */
-    public function getRollout()
+    public function getDeployPolicy()
     {
-        return $this->rollout;
+        return $this->deploy_policy;
     }
 
-    public function hasRollout()
+    public function hasDeployPolicy()
     {
-        return isset($this->rollout);
+        return isset($this->deploy_policy);
     }
 
-    public function clearRollout()
+    public function clearDeployPolicy()
     {
-        unset($this->rollout);
+        unset($this->deploy_policy);
     }
 
     /**
-     * Required. The `Rollout` to create.
+     * Required. The `DeployPolicy` to create.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.Rollout rollout = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Deploy\V1\Rollout $var
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.DeployPolicy deploy_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Deploy\V1\DeployPolicy $var
      * @return $this
      */
-    public function setRollout($var)
+    public function setDeployPolicy($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Rollout::class);
-        $this->rollout = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\DeployPolicy::class);
+        $this->deploy_policy = $var;
 
         return $this;
     }
@@ -297,62 +277,6 @@ class CreateRolloutRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->validate_only = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Deploy policies to override. Format is
-     * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *
-     * Generated from protobuf field <code>repeated string override_deploy_policy = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getOverrideDeployPolicy()
-    {
-        return $this->override_deploy_policy;
-    }
-
-    /**
-     * Optional. Deploy policies to override. Format is
-     * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *
-     * Generated from protobuf field <code>repeated string override_deploy_policy = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setOverrideDeployPolicy($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->override_deploy_policy = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
-     * will start at the first phase.
-     *
-     * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getStartingPhaseId()
-    {
-        return $this->starting_phase_id;
-    }
-
-    /**
-     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout`
-     * will start at the first phase.
-     *
-     * Generated from protobuf field <code>string starting_phase_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setStartingPhaseId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->starting_phase_id = $var;
 
         return $this;
     }

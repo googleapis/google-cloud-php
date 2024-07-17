@@ -19,6 +19,8 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * Required. The percentage based deployments that will occur as a part of a
      * `Rollout`. List is expected in ascending order and each integer n is
      * 0 <= n < 100.
+     * If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,6 +56,8 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      *           Required. The percentage based deployments that will occur as a part of a
      *           `Rollout`. List is expected in ascending order and each integer n is
      *           0 <= n < 100.
+     *           If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     *           n is 0 <= n <= 100.
      *     @type bool $verify
      *           Whether to run verify tests after each percentage deployment.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
@@ -73,6 +77,8 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * Required. The percentage based deployments that will occur as a part of a
      * `Rollout`. List is expected in ascending order and each integer n is
      * 0 <= n < 100.
+     * If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -86,6 +92,8 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * Required. The percentage based deployments that will occur as a part of a
      * `Rollout`. List is expected in ascending order and each integer n is
      * 0 <= n < 100.
+     * If the GatewayServiceMesh is configured for Kubernetes, then the range for
+     * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
