@@ -17,20 +17,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the subnetwork where the additional pod network belongs
+     * Name of the subnetwork where the additional pod network belongs.
      *
      * Generated from protobuf field <code>string subnetwork = 1;</code>
      */
     private $subnetwork = '';
     /**
      * The name of the secondary range on the subnet which provides IP address for
-     * this pod range
+     * this pod range.
      *
      * Generated from protobuf field <code>string secondary_pod_range = 2;</code>
      */
     private $secondary_pod_range = '';
     /**
-     * The maximum number of pods per node which use this pod network
+     * The maximum number of pods per node which use this pod network.
      *
      * Generated from protobuf field <code>optional .google.container.v1.MaxPodsConstraint max_pods_per_node = 3;</code>
      */
@@ -43,12 +43,12 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subnetwork
-     *           Name of the subnetwork where the additional pod network belongs
+     *           Name of the subnetwork where the additional pod network belongs.
      *     @type string $secondary_pod_range
      *           The name of the secondary range on the subnet which provides IP address for
-     *           this pod range
+     *           this pod range.
      *     @type \Google\Cloud\Container\V1\MaxPodsConstraint $max_pods_per_node
-     *           The maximum number of pods per node which use this pod network
+     *           The maximum number of pods per node which use this pod network.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +57,7 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the subnetwork where the additional pod network belongs
+     * Name of the subnetwork where the additional pod network belongs.
      *
      * Generated from protobuf field <code>string subnetwork = 1;</code>
      * @return string
@@ -68,7 +68,7 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the subnetwork where the additional pod network belongs
+     * Name of the subnetwork where the additional pod network belongs.
      *
      * Generated from protobuf field <code>string subnetwork = 1;</code>
      * @param string $var
@@ -84,7 +84,7 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the secondary range on the subnet which provides IP address for
-     * this pod range
+     * this pod range.
      *
      * Generated from protobuf field <code>string secondary_pod_range = 2;</code>
      * @return string
@@ -96,7 +96,7 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the secondary range on the subnet which provides IP address for
-     * this pod range
+     * this pod range.
      *
      * Generated from protobuf field <code>string secondary_pod_range = 2;</code>
      * @param string $var
@@ -111,7 +111,7 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of pods per node which use this pod network
+     * The maximum number of pods per node which use this pod network.
      *
      * Generated from protobuf field <code>optional .google.container.v1.MaxPodsConstraint max_pods_per_node = 3;</code>
      * @return \Google\Cloud\Container\V1\MaxPodsConstraint|null
@@ -132,7 +132,7 @@ class AdditionalPodNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of pods per node which use this pod network
+     * The maximum number of pods per node which use this pod network.
      *
      * Generated from protobuf field <code>optional .google.container.v1.MaxPodsConstraint max_pods_per_node = 3;</code>
      * @param \Google\Cloud\Container\V1\MaxPodsConstraint $var

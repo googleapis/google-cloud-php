@@ -100,6 +100,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.StatefulHAConfig stateful_ha_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $stateful_ha_config = null;
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ray_operator_config = null;
 
     /**
      * Constructor.
@@ -142,6 +148,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Cloud Storage Fuse CSI driver.
      *     @type \Google\Cloud\Container\V1\StatefulHAConfig $stateful_ha_config
      *           Optional. Configuration for the StatefulHA add-on.
+     *     @type \Google\Cloud\Container\V1\RayOperatorConfig $ray_operator_config
+     *           Optional. Configuration for Ray Operator addon.
      * }
      */
     public function __construct($data = NULL) {
@@ -605,6 +613,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\StatefulHAConfig::class);
         $this->stateful_ha_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\RayOperatorConfig|null
+     */
+    public function getRayOperatorConfig()
+    {
+        return $this->ray_operator_config;
+    }
+
+    public function hasRayOperatorConfig()
+    {
+        return isset($this->ray_operator_config);
+    }
+
+    public function clearRayOperatorConfig()
+    {
+        unset($this->ray_operator_config);
+    }
+
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\RayOperatorConfig $var
+     * @return $this
+     */
+    public function setRayOperatorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RayOperatorConfig::class);
+        $this->ray_operator_config = $var;
 
         return $this;
     }
