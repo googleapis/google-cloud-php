@@ -17,7 +17,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The account resource for which to return change history
-     * resources.
+     * resources. Format: accounts/{account}
+     * Example: `accounts/100`
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,6 +26,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
+     * Format: properties/{propertyId}
+     * Example: `properties/100`
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -90,10 +93,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $account
      *           Required. The account resource for which to return change history
-     *           resources.
+     *           resources. Format: accounts/{account}
+     *           Example: `accounts/100`
      *     @type string $property
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
+     *           Format: properties/{propertyId}
+     *           Example: `properties/100`
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $resource_type
      *           Optional. If set, only return changes if they are for a resource that
      *           matches at least one of these types.
@@ -127,7 +133,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account resource for which to return change history
-     * resources.
+     * resources. Format: accounts/{account}
+     * Example: `accounts/100`
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -139,7 +146,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The account resource for which to return change history
-     * resources.
+     * resources. Format: accounts/{account}
+     * Example: `accounts/100`
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -156,6 +164,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
+     * Format: properties/{propertyId}
+     * Example: `properties/100`
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -168,6 +178,8 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
+     * Format: properties/{propertyId}
+     * Example: `properties/100`
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
