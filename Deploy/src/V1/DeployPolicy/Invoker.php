@@ -21,8 +21,8 @@ class Invoker
      */
     const INVOKER_UNSPECIFIED = 0;
     /**
-     * The action is user-driven (e.g. creating a rollout manually via a gcloud
-     * create command).
+     * The action is user-driven. For example, creating a rollout manually via a
+     * gcloud create command.
      *
      * Generated from protobuf enum <code>USER = 1;</code>
      */

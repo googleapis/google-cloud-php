@@ -11,9 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Contains information on the resources to select for a deploy policy.
  * Attributes provided must all match the resource in order for policy
- * restrictions to apply. E.g. if delivery pipelines attributes given are an id
- * "prod" and labels "foo: bar", a delivery pipeline resource must match both
- * that id and have that label in order to be subject to the policy.
+ * restrictions to apply. For example, if delivery pipelines attributes given
+ * are an id "prod" and labels "foo: bar", a delivery pipeline resource must
+ * match both that id and have that label in order to be subject to the policy.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.DeployPolicyResourceSelector</code>
  */

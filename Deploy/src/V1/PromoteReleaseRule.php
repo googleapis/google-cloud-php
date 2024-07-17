@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * `PromoteRelease` rule will automatically promote a release from the current
- * target to a specified target.
+ * The `PromoteRelease` rule will automatically promote a release from the
+ * current target to a specified target.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.PromoteReleaseRule</code>
  */

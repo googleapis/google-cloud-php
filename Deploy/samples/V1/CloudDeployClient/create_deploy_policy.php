@@ -35,9 +35,8 @@ use Google\Rpc\Status;
 /**
  * Creates a new DeployPolicy in a given project and location.
  *
- * @param string $formattedParent The parent collection in which the `DeployPolicy` should be
- *                                created. Format should be
- *                                `projects/{project_id}/locations/{location_name}`. Please see
+ * @param string $formattedParent The parent collection in which the `DeployPolicy` must be
+ *                                created. The format is `projects/{project_id}/locations/{location_name}`. Please see
  *                                {@see CloudDeployClient::locationName()} for help formatting this field.
  * @param string $deployPolicyId  ID of the `DeployPolicy`.
  */

@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 /**
  * Deletes a single DeployPolicy.
  *
- * @param string $formattedName The name of the `DeployPolicy` to delete. Format should be
+ * @param string $formattedName The name of the `DeployPolicy` to delete. The format is
  *                              `projects/{project_id}/locations/{location_name}/deployPolicies/{deploy_policy_name}`. Please see
  *                              {@see CloudDeployClient::deployPolicyName()} for help formatting this field.
  */

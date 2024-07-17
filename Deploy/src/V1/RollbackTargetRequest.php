@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     * created. Format should be
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     * created. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -72,8 +72,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     private $override_deploy_policy;
 
     /**
-     * @param string $name      Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     *                          created. Format should be
+     * @param string $name      Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     *                          created. The format is
      *                          `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
      *                          {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      * @param string $targetId  Required. ID of the `Target` that is being rolled back.
@@ -98,8 +98,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     *           created. Format should be
+     *           Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     *           created. The format is
      *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type string $target_id
      *           Required. ID of the `Target` that is being rolled back.
@@ -128,8 +128,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     * created. Format should be
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     * created. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -141,8 +141,8 @@ class RollbackTargetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be
-     * created. Format should be
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be
+     * created. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

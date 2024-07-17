@@ -31,8 +31,8 @@ use Google\Cloud\Deploy\V1\RollbackTargetResponse;
 /**
  * Creates a `Rollout` to roll back the specified target.
  *
- * @param string $formattedName The `DeliveryPipeline` for which the rollback `Rollout` should be
- *                              created. Format should be
+ * @param string $formattedName The `DeliveryPipeline` for which the rollback `Rollout` must be
+ *                              created. The format is
  *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
  *                              {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  * @param string $targetId      ID of the `Target` that is being rolled back.

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which the `Release` should be created.
-     * Format should be
+     * Required. The parent collection in which the `Release` is created.
+     * The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -67,8 +67,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
     private $override_deploy_policy;
 
     /**
-     * @param string                          $parent    Required. The parent collection in which the `Release` should be created.
-     *                                                   Format should be
+     * @param string                          $parent    Required. The parent collection in which the `Release` is created.
+     *                                                   The format is
      *                                                   `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
      *                                                   {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\Release $release   Required. The `Release` to create.
@@ -93,8 +93,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which the `Release` should be created.
-     *           Format should be
+     *           Required. The parent collection in which the `Release` is created.
+     *           The format is
      *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *     @type string $release_id
      *           Required. ID of the `Release`.
@@ -126,8 +126,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `Release` should be created.
-     * Format should be
+     * Required. The parent collection in which the `Release` is created.
+     * The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -139,8 +139,8 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which the `Release` should be created.
-     * Format should be
+     * Required. The parent collection in which the `Release` is created.
+     * The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
