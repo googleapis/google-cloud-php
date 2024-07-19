@@ -23,6 +23,8 @@ class Encoding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Bigtable\V2\Type\PBString\Encoding\Utf8Raw $utf8_raw
+     *           Deprecated: if set, converts to an empty `utf8_bytes`.
      *     @type \Google\Cloud\Bigtable\V2\Type\PBString\Encoding\Utf8Bytes $utf8_bytes
      *           Use `Utf8Bytes` encoding.
      * }
@@ -30,6 +32,42 @@ class Encoding extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\V2\Types::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Deprecated: if set, converts to an empty `utf8_bytes`.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.String.Encoding.Utf8Raw utf8_raw = 1 [deprecated = true];</code>
+     * @return \Google\Cloud\Bigtable\V2\Type\PBString\Encoding\Utf8Raw|null
+     * @deprecated
+     */
+    public function getUtf8Raw()
+    {
+        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        return $this->readOneof(1);
+    }
+
+    public function hasUtf8Raw()
+    {
+        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        return $this->hasOneof(1);
+    }
+
+    /**
+     * Deprecated: if set, converts to an empty `utf8_bytes`.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Type.String.Encoding.Utf8Raw utf8_raw = 1 [deprecated = true];</code>
+     * @param \Google\Cloud\Bigtable\V2\Type\PBString\Encoding\Utf8Raw $var
+     * @return $this
+     * @deprecated
+     */
+    public function setUtf8Raw($var)
+    {
+        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Type\PBString\Encoding\Utf8Raw::class);
+        $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**
