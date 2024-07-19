@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Leaves the value "as-is"
- * * Natural sort? Yes
+ * * Order-preserving? Yes
  * * Self-delimiting? No
  * * Compatibility? N/A
  *

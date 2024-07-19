@@ -14,26 +14,20 @@ use Google\Protobuf\Internal\GPBUtil;
  * familiarity and consistency across products and features.
  * For compatibility with Bigtable's existing untyped APIs, each `Type` includes
  * an `Encoding` which describes how to convert to/from the underlying data.
- * This might involve composing a series of steps into an "encoding chain," for
- * example to convert from INT64 -> STRING -> raw bytes. In most cases, a "link"
- * in the encoding chain will be based an on existing GoogleSQL conversion
- * function like `CAST`.
- * Each link in the encoding chain also defines the following properties:
- *  * Natural sort: Does the encoded value sort consistently with the original
- *    typed value? Note that Bigtable will always sort data based on the raw
- *    encoded value, *not* the decoded type.
+ * Each encoding also defines the following properties:
+ *  * Order-preserving: Does the encoded value sort consistently with the
+ *    original typed value? Note that Bigtable will always sort data based on
+ *    the raw encoded value, *not* the decoded type.
  *     - Example: BYTES values sort in the same order as their raw encodings.
- *     - Counterexample: Encoding INT64 to a fixed-width STRING does *not*
- *       preserve sort order when dealing with negative numbers.
- *       INT64(1) > INT64(-1), but STRING("-00001") > STRING("00001).
- *     - The overall encoding chain has this property if *every* link does.
+ *     - Counterexample: Encoding INT64 as a fixed-width decimal string does
+ *       *not* preserve sort order when dealing with negative numbers.
+ *       `INT64(1) > INT64(-1)`, but `STRING("-00001") > STRING("00001)`.
  *  * Self-delimiting: If we concatenate two encoded values, can we always tell
  *    where the first one ends and the second one begins?
  *     - Example: If we encode INT64s to fixed-width STRINGs, the first value
  *       will always contain exactly N digits, possibly preceded by a sign.
  *     - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
  *       no way to tell where the first one ends.
- *     - The overall encoding chain has this property if *any* link does.
  *  * Compatibility: Which other systems have matching encoding schemes? For
  *    example, does this encoding have a GoogleSQL equivalent? HBase? Java?
  *
@@ -55,8 +49,24 @@ class Type extends \Google\Protobuf\Internal\Message
      *           String
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Int64 $int64_type
      *           Int64
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Float32 $float32_type
+     *           Float32
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Float64 $float64_type
+     *           Float64
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\PBBool $bool_type
+     *           Bool
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Timestamp $timestamp_type
+     *           Timestamp
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Date $date_type
+     *           Date
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate $aggregate_type
      *           Aggregate
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Struct $struct_type
+     *           Struct
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\PBArray $array_type
+     *           Array
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Map $map_type
+     *           Map
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +168,161 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Float32
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Float32 float32_type = 12;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Float32|null
+     */
+    public function getFloat32Type()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasFloat32Type()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Float32
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Float32 float32_type = 12;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Float32 $var
+     * @return $this
+     */
+    public function setFloat32Type($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Float32::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Float64
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Float64 float64_type = 9;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Float64|null
+     */
+    public function getFloat64Type()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasFloat64Type()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Float64
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Float64 float64_type = 9;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Float64 $var
+     * @return $this
+     */
+    public function setFloat64Type($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Float64::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Bool
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bool bool_type = 8;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\PBBool|null
+     */
+    public function getBoolType()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasBoolType()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Bool
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bool bool_type = 8;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\PBBool $var
+     * @return $this
+     */
+    public function setBoolType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\PBBool::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Timestamp
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Timestamp timestamp_type = 10;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Timestamp|null
+     */
+    public function getTimestampType()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasTimestampType()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Timestamp
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Timestamp timestamp_type = 10;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Timestamp $var
+     * @return $this
+     */
+    public function setTimestampType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Timestamp::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Date
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Date date_type = 11;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Date|null
+     */
+    public function getDateType()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasDateType()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Date
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Date date_type = 11;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Date $var
+     * @return $this
+     */
+    public function setDateType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Date::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
      * Aggregate
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate aggregate_type = 6;</code>
@@ -184,6 +349,99 @@ class Type extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Struct
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Struct struct_type = 7;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Struct|null
+     */
+    public function getStructType()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasStructType()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Struct
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Struct struct_type = 7;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Struct $var
+     * @return $this
+     */
+    public function setStructType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Struct::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Array
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Array array_type = 3;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\PBArray|null
+     */
+    public function getArrayType()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasArrayType()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Array
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Array array_type = 3;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\PBArray $var
+     * @return $this
+     */
+    public function setArrayType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\PBArray::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Map
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Map map_type = 4;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Map|null
+     */
+    public function getMapType()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasMapType()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Map
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Map map_type = 4;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Map $var
+     * @return $this
+     */
+    public function setMapType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Map::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

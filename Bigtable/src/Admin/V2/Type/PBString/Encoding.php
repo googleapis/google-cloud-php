@@ -24,7 +24,9 @@ class Encoding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Raw $utf8_raw
-     *           Use `Utf8Raw` encoding.
+     *           Deprecated: if set, converts to an empty `utf8_bytes`.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Bytes $utf8_bytes
+     *           Use `Utf8Bytes` encoding.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,32 +35,68 @@ class Encoding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Use `Utf8Raw` encoding.
+     * Deprecated: if set, converts to an empty `utf8_bytes`.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding.Utf8Raw utf8_raw = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding.Utf8Raw utf8_raw = 1 [deprecated = true];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Raw|null
+     * @deprecated
      */
     public function getUtf8Raw()
     {
+        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(1);
     }
 
     public function hasUtf8Raw()
     {
+        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(1);
     }
 
     /**
-     * Use `Utf8Raw` encoding.
+     * Deprecated: if set, converts to an empty `utf8_bytes`.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding.Utf8Raw utf8_raw = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding.Utf8Raw utf8_raw = 1 [deprecated = true];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Raw $var
      * @return $this
+     * @deprecated
      */
     public function setUtf8Raw($var)
     {
+        @trigger_error('utf8_raw is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Raw::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use `Utf8Bytes` encoding.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding.Utf8Bytes utf8_bytes = 2;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Bytes|null
+     */
+    public function getUtf8Bytes()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasUtf8Bytes()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Use `Utf8Bytes` encoding.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding.Utf8Bytes utf8_bytes = 2;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Bytes $var
+     * @return $this
+     */
+    public function setUtf8Bytes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding\Utf8Bytes::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }
