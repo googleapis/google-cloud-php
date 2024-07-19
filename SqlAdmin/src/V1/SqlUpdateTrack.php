@@ -18,26 +18,27 @@ class SqlUpdateTrack
      */
     const SQL_UPDATE_TRACK_UNSPECIFIED = 0;
     /**
-     * For instance update that requires a restart, this update track indicates
-     * your instance prefer to restart for new version early in maintenance
-     * window.
+     * For an instance with a scheduled maintenance window, this maintenance
+     * timing indicates that the maintenance update is scheduled 7 to 14 days
+     * after the notification is sent out. Also referred to as `Week 1` (Console)
+     * and `preview` (gcloud CLI).
      *
      * Generated from protobuf enum <code>canary = 1;</code>
      */
     const canary = 1;
     /**
-     * For instance update that requires a restart, this update track indicates
-     * your instance prefer to let Cloud SQL choose the timing of restart (within
-     * its Maintenance window, if applicable).
+     * For an instance with a scheduled maintenance window, this maintenance
+     * timing indicates that the maintenance update is scheduled 15 to 21 days
+     * after the notification is sent out. Also referred to as `Week 2` (Console)
+     * and `production` (gcloud CLI).
      *
      * Generated from protobuf enum <code>stable = 2;</code>
      */
     const stable = 2;
     /**
-     * For instance update that requires a restart, this update track indicates
-     * your instance prefer to let Cloud SQL choose the timing of restart (within
-     * its Maintenance window, if applicable) to be at least 5 weeks after the
-     * notification.
+     * For instance with a scheduled maintenance window, this maintenance
+     * timing indicates that the maintenance update is scheduled 35 to 42 days
+     * after the notification is sent out.
      *
      * Generated from protobuf enum <code>week5 = 3;</code>
      */
