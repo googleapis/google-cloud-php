@@ -55,7 +55,6 @@ class ComponentInfoCommand extends Command
         'api_version',
         'release_level',
         'migration_mode',
-        'created_at',
         'api_shortname',
     ];
 
@@ -87,6 +86,12 @@ class ComponentInfoCommand extends Command
                 InputOption::VALUE_NONE,
                 'Show available API versions for each component. Requires an API call'
             )
+            ->addOption(
+                'show-created-at',
+                '',
+                InputOption::VALUE_NONE,
+                'Show when the components were created. Requires shelling out to git.'
+            )
             ->addOption('expanded', '', InputOption::VALUE_NONE, 'Break down each component by packages')
         ;
     }
@@ -101,6 +106,10 @@ class ComponentInfoCommand extends Command
 
         if ($input->getOption('show-available-api-versions')) {
             $fields[] = 'available_api_versions';
+        }
+
+        if ($input->getOption('show-created-at')) {
+            $fields[] = 'created_at';
         }
         $this->token = $input->getOption('token');
 
@@ -197,13 +206,9 @@ class ComponentInfoCommand extends Command
         $rows = [];
         if ($expanded) {
             foreach ($component->getComponentPackages() as $pkg) {
-                $availableApiVersions = '';
-                if (array_key_exists('available_api_versions', $requestedFields)) {
-                    $availableApiVersions = $this->getAvailableApiVersions($component);
-                }
                 // use "array_intersect_key" to filter out fields that were not requested.
                 // use "array_replace" to sort the fields in the order they were requested.
-                $rows[] = array_replace($requestedFields, array_intersect_key([
+                $details = array_replace($requestedFields, array_intersect_key([
                     'component_name' => $component->getName() . "\\" . $pkg->getName(),
                     'package_name' => $component->getPackageName(),
                     'package_version' => $component->getPackageVersion(),
@@ -215,10 +220,15 @@ class ComponentInfoCommand extends Command
                     'proto_path' => $pkg->getProtoPackage(),
                     'service_address' => $pkg->getServiceAddress(),
                     'api_shortname' => $pkg->getApiShortname(),
-                    'created_at' => $component->getCreatedAt(),
                     'description' => $component->getDescription(),
-                    'available_api_versions' => $availableApiVersions,
                 ], $requestedFields));
+                if (array_key_exists('available_api_versions', $requestedFields)) {
+                    $availableApiVersions = $this->getAvailableApiVersions($component);
+                }
+                if (array_key_exists('created_at', $requestedFields)) {
+                    $details['created_at'] = $component->getCreatedAt()->format('Y-m-d');
+                }
+                $rows[] = $details;
             }
         } else {
             // use "array_intersect_key" to filter out fields that were not requested.
@@ -235,14 +245,14 @@ class ComponentInfoCommand extends Command
                 'proto_path' => implode("\n", $component->getProtoPackages()),
                 'service_address' => implode("\n", $component->getServiceAddresses()),
                 'api_shortname' => implode("\n", array_filter($component->getApiShortnames())),
-                'created_at' => $component->getCreatedAt()->format('Y-m-d'),
                 'description' => $component->getDescription(),
             ], $requestedFields));
-
             if (array_key_exists('available_api_versions', $requestedFields)) {
                 $details['available_api_versions'] = $this->getAvailableApiVersions($component);
             }
-
+            if (array_key_exists('created_at', $requestedFields)) {
+                $details['created_at'] = $component->getCreatedAt()->format('Y-m-d');
+            }
             $rows[] = $details;
         }
 

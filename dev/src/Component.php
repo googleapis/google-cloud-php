@@ -265,7 +265,11 @@ class Component
 
     public function getCreatedAt(): DateTime
     {
-        exec('git log --reverse --pretty=format:"%cd" ApigeeRegistry/ | head -1', $output);
+        exec(sprintf(
+            'git log --reverse --pretty=format:"%%cd" %s/ | head -1',
+            $this->name,
+        ), $output);
+
         return new DateTime($output[0]);
     }
 
