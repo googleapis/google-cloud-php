@@ -26,13 +26,13 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * How many accelerators of this type to attach.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

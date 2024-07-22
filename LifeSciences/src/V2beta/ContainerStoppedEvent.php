@@ -20,13 +20,13 @@ class ContainerStoppedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 action_id = 1;</code>
      */
-    private $action_id = 0;
+    protected $action_id = 0;
     /**
      * The exit status of the container.
      *
      * Generated from protobuf field <code>int32 exit_status = 2;</code>
      */
-    private $exit_status = 0;
+    protected $exit_status = 0;
     /**
      * The tail end of any content written to standard error by the container.
      * If the content emits large amounts of debugging noise or contains
@@ -38,7 +38,7 @@ class ContainerStoppedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stderr = 3;</code>
      */
-    private $stderr = '';
+    protected $stderr = '';
 
     /**
      * Constructor.

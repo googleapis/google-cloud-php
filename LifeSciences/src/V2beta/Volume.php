@@ -25,7 +25,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string volume = 1;</code>
      */
-    private $volume = '';
+    protected $volume = '';
     protected $storage;
 
     /**

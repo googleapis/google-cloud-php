@@ -28,7 +28,7 @@ class ExistingDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk = 1;</code>
      */
-    private $disk = '';
+    protected $disk = '';
 
     /**
      * Constructor.

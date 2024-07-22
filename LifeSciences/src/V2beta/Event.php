@@ -20,7 +20,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 1;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
     /**
      * A human-readable description of the event. Note that these strings can
      * change at any time without notice. Any application logic must use the
@@ -28,7 +28,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $details;
 
     /**

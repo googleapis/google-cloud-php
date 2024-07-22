@@ -26,7 +26,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The size, in GB, of the disk to attach. If the size is not
      * specified, a default is chosen to ensure reasonable I/O performance.
@@ -37,19 +37,19 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 size_gb = 2;</code>
      */
-    private $size_gb = 0;
+    protected $size_gb = 0;
     /**
      * The Compute Engine disk type. If unspecified, `pd-standard` is used.
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * An optional image to put on the disk before attaching it to the VM.
      *
      * Generated from protobuf field <code>string source_image = 4;</code>
      */
-    private $source_image = '';
+    protected $source_image = '';
 
     /**
      * Constructor.
