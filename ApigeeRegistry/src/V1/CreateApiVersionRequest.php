@@ -21,13 +21,13 @@ class CreateApiVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The version to create.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiVersion api_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_version = null;
+    protected $api_version = null;
     /**
      * Required. The ID to use for the version, which will become the final component of
      * the version's resource name.
@@ -37,7 +37,7 @@ class CreateApiVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_version_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_version_id = '';
+    protected $api_version_id = '';
 
     /**
      * @param string                                     $parent       Required. The parent, which owns this collection of versions.
