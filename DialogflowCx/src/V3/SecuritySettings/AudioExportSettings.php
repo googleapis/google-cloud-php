@@ -33,6 +33,8 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
     protected $audio_export_pattern = '';
     /**
      * Enable audio redaction if it is true.
+     * Note that this only redacts end-user audio data;
+     * Synthesised audio from the virtual agent is not redacted.
      *
      * Generated from protobuf field <code>bool enable_audio_redaction = 3;</code>
      */
@@ -44,6 +46,13 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SecuritySettings.AudioExportSettings.AudioFormat audio_format = 4;</code>
      */
     protected $audio_format = 0;
+    /**
+     * Whether to store TTS audio. By default, TTS audio from the virtual agent
+     * is not exported.
+     *
+     * Generated from protobuf field <code>bool store_tts_audio = 6;</code>
+     */
+    protected $store_tts_audio = false;
 
     /**
      * Constructor.
@@ -61,9 +70,14 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
      *           Filename pattern for exported audio.
      *     @type bool $enable_audio_redaction
      *           Enable audio redaction if it is true.
+     *           Note that this only redacts end-user audio data;
+     *           Synthesised audio from the virtual agent is not redacted.
      *     @type int $audio_format
      *           File format for exported audio file. Currently only in telephony
      *           recordings.
+     *     @type bool $store_tts_audio
+     *           Whether to store TTS audio. By default, TTS audio from the virtual agent
+     *           is not exported.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,6 +147,8 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable audio redaction if it is true.
+     * Note that this only redacts end-user audio data;
+     * Synthesised audio from the virtual agent is not redacted.
      *
      * Generated from protobuf field <code>bool enable_audio_redaction = 3;</code>
      * @return bool
@@ -144,6 +160,8 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable audio redaction if it is true.
+     * Note that this only redacts end-user audio data;
+     * Synthesised audio from the virtual agent is not redacted.
      *
      * Generated from protobuf field <code>bool enable_audio_redaction = 3;</code>
      * @param bool $var
@@ -181,6 +199,34 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings\AudioExportSettings\AudioFormat::class);
         $this->audio_format = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to store TTS audio. By default, TTS audio from the virtual agent
+     * is not exported.
+     *
+     * Generated from protobuf field <code>bool store_tts_audio = 6;</code>
+     * @return bool
+     */
+    public function getStoreTtsAudio()
+    {
+        return $this->store_tts_audio;
+    }
+
+    /**
+     * Whether to store TTS audio. By default, TTS audio from the virtual agent
+     * is not exported.
+     *
+     * Generated from protobuf field <code>bool store_tts_audio = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStoreTtsAudio($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->store_tts_audio = $var;
 
         return $this;
     }

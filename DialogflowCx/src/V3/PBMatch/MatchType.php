@@ -55,6 +55,18 @@ class MatchType
      * Generated from protobuf enum <code>EVENT = 6;</code>
      */
     const EVENT = 6;
+    /**
+     * The query was matched to a Knowledge Connector answer.
+     *
+     * Generated from protobuf enum <code>KNOWLEDGE_CONNECTOR = 8;</code>
+     */
+    const KNOWLEDGE_CONNECTOR = 8;
+    /**
+     * The query was handled by a [`Playbook`][Playbook].
+     *
+     * Generated from protobuf enum <code>PLAYBOOK = 9;</code>
+     */
+    const PLAYBOOK = 9;
 
     private static $valueToName = [
         self::MATCH_TYPE_UNSPECIFIED => 'MATCH_TYPE_UNSPECIFIED',
@@ -64,6 +76,8 @@ class MatchType
         self::NO_MATCH => 'NO_MATCH',
         self::NO_INPUT => 'NO_INPUT',
         self::EVENT => 'EVENT',
+        self::KNOWLEDGE_CONNECTOR => 'KNOWLEDGE_CONNECTOR',
+        self::PLAYBOOK => 'PLAYBOOK',
     ];
 
     public static function name($value)
