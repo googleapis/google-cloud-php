@@ -36,7 +36,7 @@ class ComponentInfoCommand extends Command
         'component_name' => 'Component Name',
         'package_name' => 'Package Name',
         'package_version' => 'Package Version',
-        'api_versions' => 'API Version',
+        'api_version' => 'API Version',
         'release_level' => 'Release Level',
         'migration_mode' => 'Migration Mode',
         'php_namespaces' => 'Php Namespace',
@@ -45,15 +45,17 @@ class ComponentInfoCommand extends Command
         'service_address' => 'Service Address',
         'api_shortname' => 'API Shortname',
         'description' => 'Description',
+        'created_at' => 'Created At',
         'available_api_versions' => 'Availble API Versions',
     ];
     private static $defaultFields = [
         'component_name',
         'package_name',
         'package_version',
-        'api_versions',
+        'api_version',
         'release_level',
         'migration_mode',
+        'created_at',
         'api_shortname',
     ];
 
@@ -130,6 +132,10 @@ class ComponentInfoCommand extends Command
                         '!=' => ($row[$field] !== $value),
                         '~=' => strpos($row[$field], $value) !== false,
                         '!~=' => strpos($row[$field], $value) === false,
+                        '>' => version_compare($row[$field], $value, '>'),
+                        '<' => version_compare($row[$field], $value, '<'),
+                        '>=' => version_compare($row[$field], $value, '>='),
+                        '<=' => version_compare($row[$field], $value, '<='),
                     }) {
                         continue 3;
                     }
@@ -201,7 +207,7 @@ class ComponentInfoCommand extends Command
                     'component_name' => $component->getName() . "\\" . $pkg->getName(),
                     'package_name' => $component->getPackageName(),
                     'package_version' => $component->getPackageVersion(),
-                    'api_versions' => $pkg->getName(),
+                    'api_version' => $pkg->getName(),
                     'release_level' => $component->getReleaseLevel(),
                     'migration_mode' => $pkg->getMigrationStatus(),
                     'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
@@ -209,6 +215,7 @@ class ComponentInfoCommand extends Command
                     'proto_path' => $pkg->getProtoPackage(),
                     'service_address' => $pkg->getServiceAddress(),
                     'api_shortname' => $pkg->getApiShortname(),
+                    'created_at' => $component->getCreatedAt(),
                     'description' => $component->getDescription(),
                     'available_api_versions' => $availableApiVersions,
                 ], $requestedFields));
@@ -220,7 +227,7 @@ class ComponentInfoCommand extends Command
                 'component_name' => $component->getName(),
                 'package_name' => $component->getPackageName(),
                 'package_version' => $component->getPackageVersion(),
-                'api_versions' => implode("\n", $component->getApiVersions()),
+                'api_version' => implode("\n", $component->getApiVersions()),
                 'release_level' => $component->getReleaseLevel(),
                 'migration_mode' => implode("\n", $component->getMigrationStatuses()),
                 'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
@@ -228,6 +235,7 @@ class ComponentInfoCommand extends Command
                 'proto_path' => implode("\n", $component->getProtoPackages()),
                 'service_address' => implode("\n", $component->getServiceAddresses()),
                 'api_shortname' => implode("\n", array_filter($component->getApiShortnames())),
+                'created_at' => $component->getCreatedAt()->format('Y-m-d'),
                 'description' => $component->getDescription(),
             ], $requestedFields));
 
@@ -271,7 +279,7 @@ class ComponentInfoCommand extends Command
     {
         $filters = [];
         foreach (array_filter(explode(',', $filterString)) as $filter) {
-            if (!preg_match('/^(\w+?)(!~=|~=|!=|=)(.+)$/', $filter, $matches)) {
+            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>)(.+)$/', $filter, $matches)) {
                 throw new \InvalidArgumentException(sprintf('Invalid filter: %s', $filter));
             }
             $filters[] = [$matches[1], $matches[3], $matches[2]];
