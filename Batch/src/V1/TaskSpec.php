@@ -34,7 +34,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.ComputeResource compute_resource = 3;</code>
      */
-    private $compute_resource = null;
+    protected $compute_resource = null;
     /**
      * Maximum duration the task should run before being automatically retried
      * (if enabled) or automatically failed. Format the value of this field
@@ -48,7 +48,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      */
-    private $max_run_duration = null;
+    protected $max_run_duration = null;
     /**
      * Maximum number of retries on failures.
      * The default, 0, which means never retry.
@@ -56,7 +56,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_retry_count = 5;</code>
      */
-    private $max_retry_count = 0;
+    protected $max_retry_count = 0;
     /**
      * Lifecycle management schema when any task in a task group is failed.
      * Currently we only support one lifecycle policy.
@@ -88,7 +88,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.Environment environment = 10;</code>
      */
-    private $environment = null;
+    protected $environment = null;
 
     /**
      * Constructor.

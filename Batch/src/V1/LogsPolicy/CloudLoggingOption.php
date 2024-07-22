@@ -28,7 +28,7 @@ class CloudLoggingOption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_generic_task_monitored_resource = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $use_generic_task_monitored_resource = false;
+    protected $use_generic_task_monitored_resource = false;
 
     /**
      * Constructor.
