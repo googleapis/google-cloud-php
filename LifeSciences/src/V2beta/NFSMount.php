@@ -20,7 +20,7 @@ class NFSMount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 1;</code>
      */
-    protected $target = '';
+    private $target = '';
 
     /**
      * Constructor.

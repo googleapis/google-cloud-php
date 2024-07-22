@@ -26,13 +26,13 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $machine_type = '';
+    private $machine_type = '';
     /**
      * If true, allocate a preemptible VM.
      *
      * Generated from protobuf field <code>bool preemptible = 2;</code>
      */
-    protected $preemptible = false;
+    private $preemptible = false;
     /**
      * Optional set of labels to apply to the VM and any attached disk resources.
      * These labels must adhere to the [name and value
@@ -57,7 +57,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Network network = 5;</code>
      */
-    protected $network = null;
+    private $network = null;
     /**
      * The list of accelerators to attach to the VM.
      *
@@ -70,7 +70,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.ServiceAccount service_account = 7;</code>
      */
-    protected $service_account = null;
+    private $service_account = null;
     /**
      * The size of the boot disk, in GB. The boot disk must be large
      * enough to accommodate all of the Docker images from each action in the
@@ -79,7 +79,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 boot_disk_size_gb = 8;</code>
      */
-    protected $boot_disk_size_gb = 0;
+    private $boot_disk_size_gb = 0;
     /**
      * The CPU platform to request. An instance based on a newer platform can be
      * allocated, but never one with fewer capabilities. The value of this
@@ -91,7 +91,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpu_platform = 9;</code>
      */
-    protected $cpu_platform = '';
+    private $cpu_platform = '';
     /**
      * The host operating system image to use.
      * Currently, only Container-Optimized OS images can be used.
@@ -105,7 +105,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string boot_image = 10;</code>
      */
-    protected $boot_image = '';
+    private $boot_image = '';
     /**
      * The NVIDIA driver version to use when attaching an NVIDIA GPU accelerator.
      * The version specified here must be compatible with the GPU libraries
@@ -121,7 +121,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_stackdriver_monitoring = 12;</code>
      */
-    protected $enable_stackdriver_monitoring = false;
+    private $enable_stackdriver_monitoring = false;
     /**
      * The Compute Engine Disk Images to use as a Docker cache. The disks will be
      * mounted into the Docker folder in a way that the images present in the
@@ -149,7 +149,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reservation = 15;</code>
      */
-    protected $reservation = '';
+    private $reservation = '';
 
     /**
      * Constructor.

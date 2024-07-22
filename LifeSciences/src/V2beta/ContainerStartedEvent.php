@@ -20,7 +20,7 @@ class ContainerStartedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 action_id = 1;</code>
      */
-    protected $action_id = 0;
+    private $action_id = 0;
     /**
      * The container-to-host port mappings installed for this container. This
      * set will contain any ports exposed using the `PUBLISH_EXPOSED_PORTS` flag
@@ -37,7 +37,7 @@ class ContainerStartedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 3;</code>
      */
-    protected $ip_address = '';
+    private $ip_address = '';
 
     /**
      * Constructor.

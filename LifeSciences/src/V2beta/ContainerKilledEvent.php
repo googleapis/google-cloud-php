@@ -22,7 +22,7 @@ class ContainerKilledEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 action_id = 1;</code>
      */
-    protected $action_id = 0;
+    private $action_id = 0;
 
     /**
      * Constructor.

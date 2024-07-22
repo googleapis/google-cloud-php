@@ -23,13 +23,13 @@ class UnexpectedExitStatusEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 action_id = 1;</code>
      */
-    protected $action_id = 0;
+    private $action_id = 0;
     /**
      * The exit status of the container.
      *
      * Generated from protobuf field <code>int32 exit_status = 2;</code>
      */
-    protected $exit_status = 0;
+    private $exit_status = 0;
 
     /**
      * Constructor.

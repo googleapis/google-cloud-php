@@ -20,7 +20,7 @@ class PullStartedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1;</code>
      */
-    protected $image_uri = '';
+    private $image_uri = '';
 
     /**
      * Constructor.

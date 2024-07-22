@@ -27,19 +27,19 @@ class PersistentDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 size_gb = 1;</code>
      */
-    protected $size_gb = 0;
+    private $size_gb = 0;
     /**
      * The Compute Engine disk type. If unspecified, `pd-standard` is used.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    protected $type = '';
+    private $type = '';
     /**
      * An image to put on the disk before attaching it to the VM.
      *
      * Generated from protobuf field <code>string source_image = 3;</code>
      */
-    protected $source_image = '';
+    private $source_image = '';
 
     /**
      * Constructor.

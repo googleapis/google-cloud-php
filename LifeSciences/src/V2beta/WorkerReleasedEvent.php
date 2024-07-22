@@ -21,13 +21,13 @@ class WorkerReleasedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 1;</code>
      */
-    protected $zone = '';
+    private $zone = '';
     /**
      * The worker's instance name.
      *
      * Generated from protobuf field <code>string instance = 2;</code>
      */
-    protected $instance = '';
+    private $instance = '';
 
     /**
      * Constructor.

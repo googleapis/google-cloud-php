@@ -35,7 +35,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.VirtualMachine virtual_machine = 4;</code>
      */
-    protected $virtual_machine = null;
+    private $virtual_machine = null;
 
     /**
      * Constructor.

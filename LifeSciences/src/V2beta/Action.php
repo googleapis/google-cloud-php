@@ -23,7 +23,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      */
-    protected $container_name = '';
+    private $container_name = '';
     /**
      * Required. The URI to pull the container image from. Note that all images
      * referenced by actions in the pipeline are pulled before the first action
@@ -41,7 +41,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $image_uri = '';
+    private $image_uri = '';
     /**
      * If specified, overrides the `CMD` specified in the container. If the
      * container also has an `ENTRYPOINT` the values are used as entrypoint
@@ -56,7 +56,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entrypoint = 4;</code>
      */
-    protected $entrypoint = '';
+    private $entrypoint = '';
     /**
      * The environment to pass into the container. This environment is merged
      * with values specified in the
@@ -88,7 +88,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 21;</code>
      */
-    protected $encrypted_environment = null;
+    private $encrypted_environment = null;
     /**
      * An optional identifier for a PID namespace to run the action inside.
      * Multiple actions should use the same string to share a namespace.  If
@@ -96,7 +96,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pid_namespace = 6;</code>
      */
-    protected $pid_namespace = '';
+    private $pid_namespace = '';
     /**
      * A map of containers to host port mappings for this container. If the
      * container already specifies exposed ports, use the
@@ -146,7 +146,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret credentials = 11;</code>
      */
-    protected $credentials = null;
+    private $credentials = null;
     /**
      * The maximum amount of time to give the action to complete. If the action
      * fails to complete before the timeout, it will be terminated and the exit
@@ -155,14 +155,14 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 12;</code>
      */
-    protected $timeout = null;
+    private $timeout = null;
     /**
      * Normally, a non-zero exit status causes the pipeline to fail. This flag
      * allows execution of other actions to continue instead.
      *
      * Generated from protobuf field <code>bool ignore_exit_status = 13;</code>
      */
-    protected $ignore_exit_status = false;
+    private $ignore_exit_status = false;
     /**
      * This flag allows an action to continue running in the background while
      * executing subsequent actions. This is useful to provide services to
@@ -170,7 +170,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool run_in_background = 14;</code>
      */
-    protected $run_in_background = false;
+    private $run_in_background = false;
     /**
      * By default, after an action fails, no further actions are run. This flag
      * indicates that this action must be run even if the pipeline has already
@@ -180,7 +180,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool always_run = 15;</code>
      */
-    protected $always_run = false;
+    private $always_run = false;
     /**
      * Enable access to the FUSE device for this action. Filesystems can then
      * be mounted into disks shared with other actions. The other actions do
@@ -191,7 +191,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_fuse = 16;</code>
      */
-    protected $enable_fuse = false;
+    private $enable_fuse = false;
     /**
      * Exposes all ports specified by `EXPOSE` statements in the container. To
      * discover the host side port numbers, consult the `ACTION_STARTED` event
@@ -199,7 +199,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool publish_exposed_ports = 17;</code>
      */
-    protected $publish_exposed_ports = false;
+    private $publish_exposed_ports = false;
     /**
      * All container images are typically downloaded before any actions are
      * executed. This helps prevent typos in URIs or issues like lack of disk
@@ -209,7 +209,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_image_prefetch = 18;</code>
      */
-    protected $disable_image_prefetch = false;
+    private $disable_image_prefetch = false;
     /**
      * A small portion of the container's standard error stream is typically
      * captured and returned inside the `ContainerStoppedEvent`. Setting this
@@ -217,13 +217,13 @@ class Action extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_standard_error_capture = 19;</code>
      */
-    protected $disable_standard_error_capture = false;
+    private $disable_standard_error_capture = false;
     /**
      * Prevents the container from accessing the external network.
      *
      * Generated from protobuf field <code>bool block_external_network = 20;</code>
      */
-    protected $block_external_network = false;
+    private $block_external_network = false;
 
     /**
      * Constructor.

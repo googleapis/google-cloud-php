@@ -22,13 +22,13 @@ class RunPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. The description of the pipeline to run.
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Pipeline pipeline = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $pipeline = null;
+    private $pipeline = null;
     /**
      * User-defined labels to associate with the returned operation. These
      * labels are not propagated to any Google Cloud Platform resources used by
@@ -47,7 +47,7 @@ class RunPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pub_sub_topic = 3;</code>
      */
-    protected $pub_sub_topic = '';
+    private $pub_sub_topic = '';
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,19 +20,16 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\LifeSciences\Tests\Unit\V2beta\Client;
+namespace Google\Cloud\LifeSciences\Tests\Unit\V2beta;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
 use Google\Cloud\LifeSciences\V2beta\Pipeline;
-use Google\Cloud\LifeSciences\V2beta\RunPipelineRequest;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
-use Google\Cloud\Location\GetLocationRequest;
-use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\LifeSciences\V2beta\WorkflowsServiceV2BetaClient;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
@@ -100,9 +97,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
-        $response = $gapicClient->runPipeline($request);
+        $response = $gapicClient->runPipeline($pipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -166,9 +161,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
-        $response = $gapicClient->runPipeline($request);
+        $response = $gapicClient->runPipeline($pipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -207,8 +200,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $request = new GetLocationRequest();
-        $response = $gapicClient->getLocation($request);
+        $response = $gapicClient->getLocation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -236,9 +228,8 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetLocationRequest();
         try {
-            $gapicClient->getLocation($request);
+            $gapicClient->getLocation();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -268,8 +259,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $request = new ListLocationsRequest();
-        $response = $gapicClient->listLocations($request);
+        $response = $gapicClient->listLocations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -300,9 +290,8 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListLocationsRequest();
         try {
-            $gapicClient->listLocations($request);
+            $gapicClient->listLocations();
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -312,69 +301,5 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function runPipelineAsyncTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/runPipelineTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $expectedResponse = new RunPipelineResponse();
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/runPipelineTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
-        $response = $gapicClient->runPipelineAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta/RunPipeline', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPipeline();
-        $this->assertProtobufEquals($pipeline, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/runPipelineTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }
