@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,62 +24,97 @@
  * @experimental
  */
 
-namespace Google\Cloud\LifeSciences\V2beta\Client;
+namespace Google\Cloud\LifeSciences\V2beta\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\LifeSciences\V2beta\Metadata;
+use Google\Cloud\LifeSciences\V2beta\Pipeline;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineRequest;
 use Google\Cloud\LifeSciences\V2beta\RunPipelineResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
-use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Service Description: A service for running workflows, such as pipelines consisting of Docker
  * containers.
  *
  * This class provides the ability to make remote calls to the backing service through method
- * calls that map to API methods.
+ * calls that map to API methods. Sample code to get started:
+ *
+ * ```
+ * $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
+ * try {
+ *     $pipeline = new Pipeline();
+ *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $workflowsServiceV2BetaClient->resumeOperation($operationName, 'runPipeline');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
+ * } finally {
+ *     $workflowsServiceV2BetaClient->close();
+ * }
+ * ```
  *
  * @experimental
  *
- * @method PromiseInterface runPipelineAsync(RunPipelineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @deprecated Please use the new service client {@see \Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient}.
  */
-final class WorkflowsServiceV2BetaClient
+class WorkflowsServiceV2BetaGapicClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta';
+    const SERVICE_NAME = 'google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta';
 
     /**
      * The default address of the service.
      *
      * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
      */
-    private const SERVICE_ADDRESS = 'lifesciences.googleapis.com';
+    const SERVICE_ADDRESS = 'lifesciences.googleapis.com';
 
     /** The address template of the service. */
     private const SERVICE_ADDRESS_TEMPLATE = 'lifesciences.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
-    private const DEFAULT_SERVICE_PORT = 443;
+    const DEFAULT_SERVICE_PORT = 443;
 
     /** The name of the code generator, to be included in the agent header. */
-    private const CODEGEN_NAME = 'gapic';
+    const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
@@ -203,17 +238,6 @@ final class WorkflowsServiceV2BetaClient
         $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
-    /** Handles execution of the async variants for each documented method. */
-    public function __call($method, $args)
-    {
-        if (substr($method, -5) !== 'Async') {
-            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
-        }
-
-        array_unshift($args, substr($method, 0, -5));
-        return call_user_func_array([$this, 'startAsyncCall'], $args);
-    }
-
     /**
      * Runs a pipeline.  The returned Operation's [metadata]
      * [google.longrunning.Operation.metadata] field will contain a
@@ -233,84 +257,215 @@ final class WorkflowsServiceV2BetaClient
      *
      * * `lifesciences.workflows.run`
      *
-     * The async variant is {@see WorkflowsServiceV2BetaClient::runPipelineAsync()} .
+     * Sample code:
+     * ```
+     * $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
+     * try {
+     *     $pipeline = new Pipeline();
+     *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $workflowsServiceV2BetaClient->runPipeline($pipeline);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $workflowsServiceV2BetaClient->resumeOperation($operationName, 'runPipeline');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $workflowsServiceV2BetaClient->close();
+     * }
+     * ```
      *
-     * @example samples/V2beta/WorkflowsServiceV2BetaClient/run_pipeline.php
-     *
-     * @param RunPipelineRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
+     * @param Pipeline $pipeline     Required. The description of the pipeline to run.
+     * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           The project and location that this request should be executed against.
+     *     @type array $labels
+     *           User-defined labels to associate with the returned operation. These
+     *           labels are not propagated to any Google Cloud Platform resources used by
+     *           the operation, and can be modified at any time.
+     *
+     *           To associate labels with resources created while executing the operation,
+     *           see the appropriate resource message (for example, `VirtualMachine`).
+     *     @type string $pubSubTopic
+     *           The name of an existing Pub/Sub topic.  The server will publish
+     *           messages to this topic whenever the status of the operation changes.
+     *           The Life Sciences Service Agent account must have publisher permissions to
+     *           the specified topic or notifications will not be sent.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return \Google\ApiCore\OperationResponse
      *
-     * @throws ApiException Thrown if the API call fails.
+     * @throws ApiException if the remote call fails
      *
      * @experimental
      */
-    public function runPipeline(RunPipelineRequest $request, array $callOptions = []): OperationResponse
+    public function runPipeline($pipeline, array $optionalArgs = [])
     {
-        return $this->startApiCall('RunPipeline', $request, $callOptions)->wait();
+        $request = new RunPipelineRequest();
+        $requestParamHeaders = [];
+        $request->setPipeline($pipeline);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
+
+        if (isset($optionalArgs['pubSubTopic'])) {
+            $request->setPubSubTopic($optionalArgs['pubSubTopic']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RunPipeline', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
      * Gets information about a location.
      *
-     * The async variant is {@see WorkflowsServiceV2BetaClient::getLocationAsync()} .
+     * Sample code:
+     * ```
+     * $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
+     * try {
+     *     $response = $workflowsServiceV2BetaClient->getLocation();
+     * } finally {
+     *     $workflowsServiceV2BetaClient->close();
+     * }
+     * ```
      *
-     * @example samples/V2beta/WorkflowsServiceV2BetaClient/get_location.php
-     *
-     * @param GetLocationRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           Resource name for the location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return Location
+     * @return \Google\Cloud\Location\Location
      *
-     * @throws ApiException Thrown if the API call fails.
+     * @throws ApiException if the remote call fails
      *
      * @experimental
      */
-    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    public function getLocation(array $optionalArgs = [])
     {
-        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
     }
 
     /**
      * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see WorkflowsServiceV2BetaClient::listLocationsAsync()} .
+     * Sample code:
+     * ```
+     * $workflowsServiceV2BetaClient = new WorkflowsServiceV2BetaClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $workflowsServiceV2BetaClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $workflowsServiceV2BetaClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $workflowsServiceV2BetaClient->close();
+     * }
+     * ```
      *
-     * @example samples/V2beta/WorkflowsServiceV2BetaClient/list_locations.php
-     *
-     * @param ListLocationsRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return PagedListResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
-     * @throws ApiException Thrown if the API call fails.
+     * @throws ApiException if the remote call fails
      *
      * @experimental
      */
-    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    public function listLocations(array $optionalArgs = [])
     {
-        return $this->startApiCall('ListLocations', $request, $callOptions);
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }

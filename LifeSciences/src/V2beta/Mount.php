@@ -20,19 +20,19 @@ class Mount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk = 1;</code>
      */
-    protected $disk = '';
+    private $disk = '';
     /**
      * The path to mount the disk inside the container.
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
-    protected $path = '';
+    private $path = '';
     /**
      * If true, the disk is mounted read-only inside the container.
      *
      * Generated from protobuf field <code>bool read_only = 3;</code>
      */
-    protected $read_only = false;
+    private $read_only = false;
 
     /**
      * Constructor.

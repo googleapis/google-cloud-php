@@ -21,13 +21,13 @@ class FailedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Code code = 1;</code>
      */
-    protected $code = 0;
+    private $code = 0;
     /**
      * The human-readable description of the cause of the failure.
      *
      * Generated from protobuf field <code>string cause = 2;</code>
      */
-    protected $cause = '';
+    private $cause = '';
 
     /**
      * Constructor.

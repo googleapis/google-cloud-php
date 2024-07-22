@@ -23,14 +23,14 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_name = 1;</code>
      */
-    protected $key_name = '';
+    private $key_name = '';
     /**
      * The value of the cipherText response from the `encrypt` method. This field
      * is intentionally unaudited.
      *
      * Generated from protobuf field <code>string cipher_text = 2;</code>
      */
-    protected $cipher_text = '';
+    private $cipher_text = '';
 
     /**
      * Constructor.

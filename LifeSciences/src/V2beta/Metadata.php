@@ -21,7 +21,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Pipeline pipeline = 1;</code>
      */
-    protected $pipeline = null;
+    private $pipeline = null;
     /**
      * The user-defined labels associated with this operation.
      *
@@ -40,26 +40,26 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    protected $create_time = null;
+    private $create_time = null;
     /**
      * The first time at which resources were allocated to execute the pipeline.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
      * The time at which execution was completed and resources were cleaned up.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
-    protected $end_time = null;
+    private $end_time = null;
     /**
      * The name of the Cloud Pub/Sub topic where notifications of operation status
      * changes are sent.
      *
      * Generated from protobuf field <code>string pub_sub_topic = 7;</code>
      */
-    protected $pub_sub_topic = '';
+    private $pub_sub_topic = '';
 
     /**
      * Constructor.
