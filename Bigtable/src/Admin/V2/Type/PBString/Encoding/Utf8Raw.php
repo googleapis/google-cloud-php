@@ -9,14 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * UTF-8 encoding
- * * Natural sort? No (ASCII characters only)
- * * Self-delimiting? No
- * * Compatibility?
- *    - BigQuery Federation `TEXT` encoding
- *    - HBase `Bytes.toBytes`
- *    - Java `String#getBytes(StandardCharsets.UTF_8)`
+ * Deprecated: prefer the equivalent `Utf8Bytes`.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.bigtable.admin.v2.Type.String.Encoding.Utf8Raw</code>
  */
 class Utf8Raw extends \Google\Protobuf\Internal\Message
