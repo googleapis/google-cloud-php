@@ -656,7 +656,7 @@
     "EventarcPublishing": {
         "language": "php",
         "distribution_name": "google/cloud-eventarc-publishing",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-eventarc-publishing/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "eventarcpublishing"
