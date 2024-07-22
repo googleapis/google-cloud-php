@@ -183,6 +183,15 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SearchConfig search_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $search_config = null;
+    /**
+     * Optional. If set to true and data stores are involved in serving the
+     * request then
+     * DetectIntentResponse.query_result.data_store_connection_signals
+     * will be filled with data that can help evaluations.
+     *
+     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $populate_data_store_connection_signals = false;
 
     /**
      * Constructor.
@@ -302,6 +311,11 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           ```
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SearchConfig $search_config
      *           Optional. Search configuration for UCS search queries.
+     *     @type bool $populate_data_store_connection_signals
+     *           Optional. If set to true and data stores are involved in serving the
+     *           request then
+     *           DetectIntentResponse.query_result.data_store_connection_signals
+     *           will be filled with data that can help evaluations.
      * }
      */
     public function __construct($data = NULL) {
@@ -897,6 +911,38 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\SearchConfig::class);
         $this->search_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true and data stores are involved in serving the
+     * request then
+     * DetectIntentResponse.query_result.data_store_connection_signals
+     * will be filled with data that can help evaluations.
+     *
+     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPopulateDataStoreConnectionSignals()
+    {
+        return $this->populate_data_store_connection_signals;
+    }
+
+    /**
+     * Optional. If set to true and data stores are involved in serving the
+     * request then
+     * DetectIntentResponse.query_result.data_store_connection_signals
+     * will be filled with data that can help evaluations.
+     *
+     * Generated from protobuf field <code>bool populate_data_store_connection_signals = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPopulateDataStoreConnectionSignals($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->populate_data_store_connection_signals = $var;
 
         return $this;
     }

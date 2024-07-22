@@ -184,6 +184,15 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool allow_answer_feedback = 32;</code>
      */
     protected $allow_answer_feedback = false;
+    /**
+     * Optional. Data store connection feature output signals.
+     * Filled only when data stores are involved in serving the query and
+     * DetectIntentRequest.populate data_store_connection_quality_signals is set
+     * to true in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_store_connection_signals = null;
     protected $query;
 
     /**
@@ -306,6 +315,11 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type bool $allow_answer_feedback
      *           Indicates whether the Thumbs up/Thumbs down rating controls are need to be
      *           shown for the response in the Dialogflow Messenger widget.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $data_store_connection_signals
+     *           Optional. Data store connection feature output signals.
+     *           Filled only when data stores are involved in serving the query and
+     *           DetectIntentRequest.populate data_store_connection_quality_signals is set
+     *           to true in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -1158,6 +1172,48 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_answer_feedback = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Data store connection feature output signals.
+     * Filled only when data stores are involved in serving the query and
+     * DetectIntentRequest.populate data_store_connection_quality_signals is set
+     * to true in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals|null
+     */
+    public function getDataStoreConnectionSignals()
+    {
+        return $this->data_store_connection_signals;
+    }
+
+    public function hasDataStoreConnectionSignals()
+    {
+        return isset($this->data_store_connection_signals);
+    }
+
+    public function clearDataStoreConnectionSignals()
+    {
+        unset($this->data_store_connection_signals);
+    }
+
+    /**
+     * Optional. Data store connection feature output signals.
+     * Filled only when data stores are involved in serving the query and
+     * DetectIntentRequest.populate data_store_connection_quality_signals is set
+     * to true in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $var
+     * @return $this
+     */
+    public function setDataStoreConnectionSignals($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals::class);
+        $this->data_store_connection_signals = $var;
 
         return $this;
     }

@@ -97,8 +97,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
      * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
-     * flow with id "00000000-0000-0000-0000-000000000000" is allowed.
+     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -129,6 +128,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_spell_correction = 20;</code>
      */
     protected $enable_spell_correction = false;
+    /**
+     * Optional. Enable training multi-lingual models for this agent. These models
+     * will be trained on all the languages supported by the agent.
+     *
+     * Generated from protobuf field <code>bool enable_multi_language_training = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_multi_language_training = false;
     /**
      * Indicates whether the agent is locked for changes. If the agent is locked,
      * modifications to the agent will be rejected except for [RestoreAgent][].
@@ -168,6 +174,12 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.AnswerFeedbackSettings answer_feedback_settings = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $answer_feedback_settings = null;
+    /**
+     * Optional. Settings for end user personalization.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.PersonalizationSettings personalization_settings = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $personalization_settings = null;
 
     /**
      * Constructor.
@@ -214,8 +226,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Immutable. Name of the start flow in this agent. A start flow will be
      *           automatically created when the agent is created, and can only be deleted by
      *           deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
-     *           flow with id "00000000-0000-0000-0000-000000000000" is allowed.
+     *           ID>/agents/<Agent ID>/flows/<Flow ID>`.
      *     @type string $security_settings
      *           Name of the
      *           [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
@@ -229,6 +240,9 @@ class Agent extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_spell_correction
      *           Indicates if automatic spell correction is enabled in detect intent
      *           requests.
+     *     @type bool $enable_multi_language_training
+     *           Optional. Enable training multi-lingual models for this agent. These models
+     *           will be trained on all the languages supported by the agent.
      *     @type bool $locked
      *           Indicates whether the agent is locked for changes. If the agent is locked,
      *           modifications to the agent will be rejected except for [RestoreAgent][].
@@ -244,6 +258,8 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Gen App Builder-related agent-level settings.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\AnswerFeedbackSettings $answer_feedback_settings
      *           Optional. Answer feedback collection settings.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Agent\PersonalizationSettings $personalization_settings
+     *           Optional. Settings for end user personalization.
      * }
      */
     public function __construct($data = NULL) {
@@ -511,8 +527,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
      * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
-     * flow with id "00000000-0000-0000-0000-000000000000" is allowed.
+     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -526,8 +541,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
      * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
-     * flow with id "00000000-0000-0000-0000-000000000000" is allowed.
+     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -633,6 +647,34 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_spell_correction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enable training multi-lingual models for this agent. These models
+     * will be trained on all the languages supported by the agent.
+     *
+     * Generated from protobuf field <code>bool enable_multi_language_training = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableMultiLanguageTraining()
+    {
+        return $this->enable_multi_language_training;
+    }
+
+    /**
+     * Optional. Enable training multi-lingual models for this agent. These models
+     * will be trained on all the languages supported by the agent.
+     *
+     * Generated from protobuf field <code>bool enable_multi_language_training = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableMultiLanguageTraining($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_multi_language_training = $var;
 
         return $this;
     }
@@ -845,6 +887,42 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\AnswerFeedbackSettings::class);
         $this->answer_feedback_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for end user personalization.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.PersonalizationSettings personalization_settings = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Agent\PersonalizationSettings|null
+     */
+    public function getPersonalizationSettings()
+    {
+        return $this->personalization_settings;
+    }
+
+    public function hasPersonalizationSettings()
+    {
+        return isset($this->personalization_settings);
+    }
+
+    public function clearPersonalizationSettings()
+    {
+        unset($this->personalization_settings);
+    }
+
+    /**
+     * Optional. Settings for end user personalization.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Agent.PersonalizationSettings personalization_settings = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Agent\PersonalizationSettings $var
+     * @return $this
+     */
+    public function setPersonalizationSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Agent\PersonalizationSettings::class);
+        $this->personalization_settings = $var;
 
         return $this;
     }
