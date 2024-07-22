@@ -22,7 +22,7 @@ class CreateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The [Service Perimeter]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] to create.
@@ -32,7 +32,7 @@ class CreateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_perimeter = null;
+    protected $service_perimeter = null;
 
     /**
      * @param string                                                    $parent           Required. Resource name for the access policy which owns this [Service

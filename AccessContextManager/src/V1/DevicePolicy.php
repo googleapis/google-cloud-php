@@ -29,7 +29,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool require_screenlock = 1;</code>
      */
-    private $require_screenlock = false;
+    protected $require_screenlock = false;
     /**
      * Allowed encryptions statuses, an empty list allows all statuses.
      *
@@ -54,13 +54,13 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool require_admin_approval = 7;</code>
      */
-    private $require_admin_approval = false;
+    protected $require_admin_approval = false;
     /**
      * Whether the device needs to be corp owned.
      *
      * Generated from protobuf field <code>bool require_corp_owned = 8;</code>
      */
-    private $require_corp_owned = false;
+    protected $require_corp_owned = false;
 
     /**
      * Constructor.
