@@ -24,7 +24,6 @@ namespace Google\Cloud\Datastore\Admin\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Datastore\Admin\V1\Client\DatastoreAdminClient;
@@ -37,6 +36,7 @@ use Google\Cloud\Datastore\Admin\V1\ImportEntitiesRequest;
 use Google\Cloud\Datastore\Admin\V1\Index;
 use Google\Cloud\Datastore\Admin\V1\ListIndexesRequest;
 use Google\Cloud\Datastore\Admin\V1\ListIndexesResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

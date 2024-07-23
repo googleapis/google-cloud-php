@@ -24,7 +24,6 @@ namespace Google\Identity\AccessContextManager\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -66,6 +65,7 @@ use Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest;
 use Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest;
 use Google\Identity\AccessContextManager\V1\UpdateGcpUserAccessBindingRequest;
 use Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

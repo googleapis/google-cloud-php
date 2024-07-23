@@ -24,7 +24,6 @@ namespace Google\Cloud\Iam\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V2\Client\PoliciesClient;
@@ -35,6 +34,7 @@ use Google\Cloud\Iam\V2\ListPoliciesRequest;
 use Google\Cloud\Iam\V2\ListPoliciesResponse;
 use Google\Cloud\Iam\V2\Policy;
 use Google\Cloud\Iam\V2\UpdatePolicyRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
