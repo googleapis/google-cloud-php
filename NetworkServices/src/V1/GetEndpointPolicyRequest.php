@@ -24,6 +24,21 @@ class GetEndpointPolicyRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the EndpointPolicy to get. Must be in the format
+     *                     `projects/&#42;/locations/global/endpointPolicies/*`. Please see
+     *                     {@see NetworkServicesClient::endpointPolicyName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\GetEndpointPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

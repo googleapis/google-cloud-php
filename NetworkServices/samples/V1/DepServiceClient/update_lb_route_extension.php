@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_UpdateLbRouteExtension_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
 use Google\Cloud\NetworkServices\V1\ExtensionChain;
 use Google\Cloud\NetworkServices\V1\ExtensionChain\Extension;
 use Google\Cloud\NetworkServices\V1\ExtensionChain\MatchCondition;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
 use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
+use Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -89,7 +90,7 @@ function update_lb_route_extension_sample(
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $lbRouteExtensionForwardingRules = [$lbRouteExtensionForwardingRulesElement,];
     $lbRouteExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbRouteExtensionExtensionChainsMatchConditionCelExpression);
@@ -107,11 +108,13 @@ function update_lb_route_extension_sample(
         ->setForwardingRules($lbRouteExtensionForwardingRules)
         ->setExtensionChains($lbRouteExtensionExtensionChains)
         ->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
+    $request = (new UpdateLbRouteExtensionRequest())
+        ->setLbRouteExtension($lbRouteExtension);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $depServiceClient->updateLbRouteExtension($lbRouteExtension);
+        $response = $depServiceClient->updateLbRouteExtension($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -20,23 +20,38 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\NetworkServices\Tests\Unit\V1;
+namespace Google\Cloud\NetworkServices\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\CreateLbRouteExtensionRequest;
+use Google\Cloud\NetworkServices\V1\CreateLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest;
+use Google\Cloud\NetworkServices\V1\DeleteLbTrafficExtensionRequest;
+use Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest;
+use Google\Cloud\NetworkServices\V1\GetLbTrafficExtensionRequest;
 use Google\Cloud\NetworkServices\V1\LbRouteExtension;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
+use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsResponse;
+use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsRequest;
 use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsResponse;
 use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
+use Google\Cloud\NetworkServices\V1\UpdateLbRouteExtensionRequest;
+use Google\Cloud\NetworkServices\V1\UpdateLbTrafficExtensionRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -60,7 +75,9 @@ class DepServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DepServiceClient */
@@ -117,7 +134,11 @@ class DepServiceClientTest extends GeneratedTest
         $lbRouteExtension->setExtensionChains($lbRouteExtensionExtensionChains);
         $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbRouteExtension->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
-        $response = $gapicClient->createLbRouteExtension($formattedParent, $lbRouteExtensionId, $lbRouteExtension);
+        $request = (new CreateLbRouteExtensionRequest())
+            ->setParent($formattedParent)
+            ->setLbRouteExtensionId($lbRouteExtensionId)
+            ->setLbRouteExtension($lbRouteExtension);
+        $response = $gapicClient->createLbRouteExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -176,12 +197,15 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -195,7 +219,11 @@ class DepServiceClientTest extends GeneratedTest
         $lbRouteExtension->setExtensionChains($lbRouteExtensionExtensionChains);
         $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbRouteExtension->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
-        $response = $gapicClient->createLbRouteExtension($formattedParent, $lbRouteExtensionId, $lbRouteExtension);
+        $request = (new CreateLbRouteExtensionRequest())
+            ->setParent($formattedParent)
+            ->setLbRouteExtensionId($lbRouteExtensionId)
+            ->setLbRouteExtension($lbRouteExtension);
+        $response = $gapicClient->createLbRouteExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -262,7 +290,11 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbTrafficExtension->setLoadBalancingScheme($lbTrafficExtensionLoadBalancingScheme);
-        $response = $gapicClient->createLbTrafficExtension($formattedParent, $lbTrafficExtensionId, $lbTrafficExtension);
+        $request = (new CreateLbTrafficExtensionRequest())
+            ->setParent($formattedParent)
+            ->setLbTrafficExtensionId($lbTrafficExtensionId)
+            ->setLbTrafficExtension($lbTrafficExtension);
+        $response = $gapicClient->createLbTrafficExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -321,12 +353,15 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -340,7 +375,11 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbTrafficExtension->setLoadBalancingScheme($lbTrafficExtensionLoadBalancingScheme);
-        $response = $gapicClient->createLbTrafficExtension($formattedParent, $lbTrafficExtensionId, $lbTrafficExtension);
+        $request = (new CreateLbTrafficExtensionRequest())
+            ->setParent($formattedParent)
+            ->setLbTrafficExtensionId($lbTrafficExtensionId)
+            ->setLbTrafficExtension($lbTrafficExtension);
+        $response = $gapicClient->createLbTrafficExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -393,7 +432,8 @@ class DepServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->lbRouteExtensionName('[PROJECT]', '[LOCATION]', '[LB_ROUTE_EXTENSION]');
-        $response = $gapicClient->deleteLbRouteExtension($formattedName);
+        $request = (new DeleteLbRouteExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteLbRouteExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -448,16 +488,20 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lbRouteExtensionName('[PROJECT]', '[LOCATION]', '[LB_ROUTE_EXTENSION]');
-        $response = $gapicClient->deleteLbRouteExtension($formattedName);
+        $request = (new DeleteLbRouteExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteLbRouteExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -510,7 +554,8 @@ class DepServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->lbTrafficExtensionName('[PROJECT]', '[LOCATION]', '[LB_TRAFFIC_EXTENSION]');
-        $response = $gapicClient->deleteLbTrafficExtension($formattedName);
+        $request = (new DeleteLbTrafficExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteLbTrafficExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -565,16 +610,20 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lbTrafficExtensionName('[PROJECT]', '[LOCATION]', '[LB_TRAFFIC_EXTENSION]');
-        $response = $gapicClient->deleteLbTrafficExtension($formattedName);
+        $request = (new DeleteLbTrafficExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteLbTrafficExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -613,7 +662,8 @@ class DepServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->lbRouteExtensionName('[PROJECT]', '[LOCATION]', '[LB_ROUTE_EXTENSION]');
-        $response = $gapicClient->getLbRouteExtension($formattedName);
+        $request = (new GetLbRouteExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->getLbRouteExtension($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -636,17 +686,21 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lbRouteExtensionName('[PROJECT]', '[LOCATION]', '[LB_ROUTE_EXTENSION]');
+        $request = (new GetLbRouteExtensionRequest())->setName($formattedName);
         try {
-            $gapicClient->getLbRouteExtension($formattedName);
+            $gapicClient->getLbRouteExtension($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -675,7 +729,8 @@ class DepServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->lbTrafficExtensionName('[PROJECT]', '[LOCATION]', '[LB_TRAFFIC_EXTENSION]');
-        $response = $gapicClient->getLbTrafficExtension($formattedName);
+        $request = (new GetLbTrafficExtensionRequest())->setName($formattedName);
+        $response = $gapicClient->getLbTrafficExtension($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -698,17 +753,21 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->lbTrafficExtensionName('[PROJECT]', '[LOCATION]', '[LB_TRAFFIC_EXTENSION]');
+        $request = (new GetLbTrafficExtensionRequest())->setName($formattedName);
         try {
-            $gapicClient->getLbTrafficExtension($formattedName);
+            $gapicClient->getLbTrafficExtension($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -731,16 +790,15 @@ class DepServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $lbRouteExtensionsElement = new LbRouteExtension();
-        $lbRouteExtensions = [
-            $lbRouteExtensionsElement,
-        ];
+        $lbRouteExtensions = [$lbRouteExtensionsElement];
         $expectedResponse = new ListLbRouteExtensionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLbRouteExtensions($lbRouteExtensions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listLbRouteExtensions($formattedParent);
+        $request = (new ListLbRouteExtensionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listLbRouteExtensions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -766,17 +824,21 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListLbRouteExtensionsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listLbRouteExtensions($formattedParent);
+            $gapicClient->listLbRouteExtensions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -799,16 +861,15 @@ class DepServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $lbTrafficExtensionsElement = new LbTrafficExtension();
-        $lbTrafficExtensions = [
-            $lbTrafficExtensionsElement,
-        ];
+        $lbTrafficExtensions = [$lbTrafficExtensionsElement];
         $expectedResponse = new ListLbTrafficExtensionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLbTrafficExtensions($lbTrafficExtensions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listLbTrafficExtensions($formattedParent);
+        $request = (new ListLbTrafficExtensionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listLbTrafficExtensions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -834,17 +895,21 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListLbTrafficExtensionsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listLbTrafficExtensions($formattedParent);
+            $gapicClient->listLbTrafficExtensions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -899,7 +964,8 @@ class DepServiceClientTest extends GeneratedTest
         $lbRouteExtension->setExtensionChains($lbRouteExtensionExtensionChains);
         $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbRouteExtension->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
-        $response = $gapicClient->updateLbRouteExtension($lbRouteExtension);
+        $request = (new UpdateLbRouteExtensionRequest())->setLbRouteExtension($lbRouteExtension);
+        $response = $gapicClient->updateLbRouteExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -954,12 +1020,15 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $lbRouteExtension = new LbRouteExtension();
@@ -971,7 +1040,8 @@ class DepServiceClientTest extends GeneratedTest
         $lbRouteExtension->setExtensionChains($lbRouteExtensionExtensionChains);
         $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbRouteExtension->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
-        $response = $gapicClient->updateLbRouteExtension($lbRouteExtension);
+        $request = (new UpdateLbRouteExtensionRequest())->setLbRouteExtension($lbRouteExtension);
+        $response = $gapicClient->updateLbRouteExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1036,7 +1106,8 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbTrafficExtension->setLoadBalancingScheme($lbTrafficExtensionLoadBalancingScheme);
-        $response = $gapicClient->updateLbTrafficExtension($lbTrafficExtension);
+        $request = (new UpdateLbTrafficExtensionRequest())->setLbTrafficExtension($lbTrafficExtension);
+        $response = $gapicClient->updateLbTrafficExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1091,12 +1162,15 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $lbTrafficExtension = new LbTrafficExtension();
@@ -1108,7 +1182,8 @@ class DepServiceClientTest extends GeneratedTest
         $lbTrafficExtension->setExtensionChains($lbTrafficExtensionExtensionChains);
         $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
         $lbTrafficExtension->setLoadBalancingScheme($lbTrafficExtensionLoadBalancingScheme);
-        $response = $gapicClient->updateLbTrafficExtension($lbTrafficExtension);
+        $request = (new UpdateLbTrafficExtensionRequest())->setLbTrafficExtension($lbTrafficExtension);
+        $response = $gapicClient->updateLbTrafficExtension($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1147,7 +1222,8 @@ class DepServiceClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getLocation();
+        $request = new GetLocationRequest();
+        $response = $gapicClient->getLocation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1168,15 +1244,19 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new GetLocationRequest();
         try {
-            $gapicClient->getLocation();
+            $gapicClient->getLocation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1199,14 +1279,13 @@ class DepServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listLocations();
+        $request = new ListLocationsRequest();
+        $response = $gapicClient->listLocations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1230,15 +1309,19 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ListLocationsRequest();
         try {
-            $gapicClient->listLocations();
+            $gapicClient->listLocations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1267,7 +1350,8 @@ class DepServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1290,17 +1374,21 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1330,7 +1418,8 @@ class DepServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1355,18 +1444,22 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1392,7 +1485,8 @@ class DepServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
+        $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1417,18 +1511,22 @@ class DepServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1438,5 +1536,89 @@ class DepServiceClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createLbRouteExtensionAsyncTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createLbRouteExtensionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new LbRouteExtension();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createLbRouteExtensionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $lbRouteExtensionId = 'lbRouteExtensionId1673910458';
+        $lbRouteExtension = new LbRouteExtension();
+        $lbRouteExtensionName = 'lbRouteExtensionName-498882633';
+        $lbRouteExtension->setName($lbRouteExtensionName);
+        $lbRouteExtensionForwardingRules = [];
+        $lbRouteExtension->setForwardingRules($lbRouteExtensionForwardingRules);
+        $lbRouteExtensionExtensionChains = [];
+        $lbRouteExtension->setExtensionChains($lbRouteExtensionExtensionChains);
+        $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
+        $lbRouteExtension->setLoadBalancingScheme($lbRouteExtensionLoadBalancingScheme);
+        $request = (new CreateLbRouteExtensionRequest())
+            ->setParent($formattedParent)
+            ->setLbRouteExtensionId($lbRouteExtensionId)
+            ->setLbRouteExtension($lbRouteExtension);
+        $response = $gapicClient->createLbRouteExtensionAsync($request)->wait();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.DepService/CreateLbRouteExtension', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getLbRouteExtensionId();
+        $this->assertProtobufEquals($lbRouteExtensionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getLbRouteExtension();
+        $this->assertProtobufEquals($lbRouteExtension, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createLbRouteExtensionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

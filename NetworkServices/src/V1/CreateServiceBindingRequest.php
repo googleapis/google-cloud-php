@@ -36,6 +36,25 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
     protected $service_binding = null;
 
     /**
+     * @param string                                          $parent           Required. The parent resource of the ServiceBinding. Must be in the
+     *                                                                          format `projects/&#42;/locations/global`. Please see
+     *                                                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\ServiceBinding $serviceBinding   Required. ServiceBinding resource to be created.
+     * @param string                                          $serviceBindingId Required. Short name of the ServiceBinding resource to be created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateServiceBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\ServiceBinding $serviceBinding, string $serviceBindingId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setServiceBinding($serviceBinding)
+            ->setServiceBindingId($serviceBindingId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

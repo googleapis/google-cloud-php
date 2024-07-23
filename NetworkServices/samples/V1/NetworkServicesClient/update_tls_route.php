@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateTlsRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
 use Google\Cloud\NetworkServices\V1\TlsRoute\RouteAction;
 use Google\Cloud\NetworkServices\V1\TlsRoute\RouteDestination;
 use Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch;
 use Google\Cloud\NetworkServices\V1\TlsRoute\RouteRule;
+use Google\Cloud\NetworkServices\V1\UpdateTlsRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,7 +49,7 @@ function update_tls_route_sample(
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tlsRouteRulesMatches = [new RouteMatch()];
     $routeDestination = (new RouteDestination())
         ->setServiceName($formattedTlsRouteRulesActionDestinationsServiceName);
@@ -62,11 +63,13 @@ function update_tls_route_sample(
     $tlsRoute = (new TlsRoute())
         ->setName($tlsRouteName)
         ->setRules($tlsRouteRules);
+    $request = (new UpdateTlsRouteRequest())
+        ->setTlsRoute($tlsRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateTlsRoute($tlsRoute);
+        $response = $networkServicesClient->updateTlsRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

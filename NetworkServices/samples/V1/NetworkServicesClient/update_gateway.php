@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateGateway_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\Gateway;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\UpdateGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -54,17 +55,19 @@ function update_gateway_sample(
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $gatewayPorts = [$gatewayPortsElement,];
     $gateway = (new Gateway())
         ->setName($gatewayName)
         ->setPorts($gatewayPorts)
         ->setScope($gatewayScope);
+    $request = (new UpdateGatewayRequest())
+        ->setGateway($gateway);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateGateway($gateway);
+        $response = $networkServicesClient->updateGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

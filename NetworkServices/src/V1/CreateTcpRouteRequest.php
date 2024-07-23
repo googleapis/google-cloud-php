@@ -36,6 +36,25 @@ class CreateTcpRouteRequest extends \Google\Protobuf\Internal\Message
     protected $tcp_route = null;
 
     /**
+     * @param string                                    $parent     Required. The parent resource of the TcpRoute. Must be in the
+     *                                                              format `projects/&#42;/locations/global`. Please see
+     *                                                              {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\TcpRoute $tcpRoute   Required. TcpRoute resource to be created.
+     * @param string                                    $tcpRouteId Required. Short name of the TcpRoute resource to be created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\TcpRoute $tcpRoute, string $tcpRouteId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setTcpRoute($tcpRoute)
+            ->setTcpRouteId($tcpRouteId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

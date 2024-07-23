@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkservices_v1_generated_NetworkServices_GetServiceBinding_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\GetServiceBindingRequest;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
 
 /**
@@ -39,10 +40,14 @@ function get_service_binding_sample(string $formattedName): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new GetServiceBindingRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServiceBinding $response */
-        $response = $networkServicesClient->getServiceBinding($formattedName);
+        $response = $networkServicesClient->getServiceBinding($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
