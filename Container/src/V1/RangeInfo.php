@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class RangeInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output only] Name of a range.
+     * Output only. Name of a range.
      *
      * Generated from protobuf field <code>string range_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $range_name = '';
     /**
-     * Output only. [Output only] The utilization of the range.
+     * Output only. The utilization of the range.
      *
      * Generated from protobuf field <code>double utilization = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -35,9 +35,9 @@ class RangeInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $range_name
-     *           Output only. [Output only] Name of a range.
+     *           Output only. Name of a range.
      *     @type float $utilization
-     *           Output only. [Output only] The utilization of the range.
+     *           Output only. The utilization of the range.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class RangeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Name of a range.
+     * Output only. Name of a range.
      *
      * Generated from protobuf field <code>string range_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -57,7 +57,7 @@ class RangeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Name of a range.
+     * Output only. Name of a range.
      *
      * Generated from protobuf field <code>string range_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -72,7 +72,7 @@ class RangeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The utilization of the range.
+     * Output only. The utilization of the range.
      *
      * Generated from protobuf field <code>double utilization = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -83,7 +83,7 @@ class RangeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The utilization of the range.
+     * Output only. The utilization of the range.
      *
      * Generated from protobuf field <code>double utilization = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var

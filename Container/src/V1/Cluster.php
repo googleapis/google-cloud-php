@@ -323,28 +323,28 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $identity_service_config = null;
     /**
-     * [Output only] Server-defined URL for the resource.
+     * Output only. Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 100;</code>
+     * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $self_link = '';
     /**
-     * [Output only] The name of the Google Compute Engine
+     * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
      * cluster resides. This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 101 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     protected $zone = '';
     /**
-     * [Output only] The IP address of this cluster's master endpoint.
+     * Output only. The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
      * `https://username:password&#64;endpoint/`.
      * See the `masterAuth` property of this resource for username and
      * password information.
      *
-     * Generated from protobuf field <code>string endpoint = 102;</code>
+     * Generated from protobuf field <code>string endpoint = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $endpoint = '';
     /**
@@ -364,93 +364,93 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $initial_cluster_version = '';
     /**
-     * [Output only] The current software version of the master endpoint.
+     * Output only. The current software version of the master endpoint.
      *
-     * Generated from protobuf field <code>string current_master_version = 104;</code>
+     * Generated from protobuf field <code>string current_master_version = 104 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $current_master_version = '';
     /**
-     * [Output only] Deprecated, use
+     * Output only. Deprecated, use
      * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
      *
-     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
+     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     protected $current_node_version = '';
     /**
-     * [Output only] The time the cluster was created, in
+     * Output only. The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string create_time = 106;</code>
+     * Generated from protobuf field <code>string create_time = 106 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = '';
     /**
-     * [Output only] The current status of this cluster.
+     * Output only. The current status of this cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107;</code>
+     * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status = 0;
     /**
-     * [Output only] Deprecated. Use conditions instead.
+     * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
      * cluster, if available.
      *
-     * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
+     * Generated from protobuf field <code>string status_message = 108 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     protected $status_message = '';
     /**
-     * [Output only] The size of the address space on each node for hosting
+     * Output only. The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
      * range. This field will only be set when cluster is in route-based network
      * mode.
      *
-     * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109;</code>
+     * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $node_ipv4_cidr_size = 0;
     /**
-     * [Output only] The IP address range of the Kubernetes services in
+     * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`). Service addresses are
      * typically put in the last `/16` from the container CIDR.
      *
-     * Generated from protobuf field <code>string services_ipv4_cidr = 110;</code>
+     * Generated from protobuf field <code>string services_ipv4_cidr = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $services_ipv4_cidr = '';
     /**
-     * Deprecated. Use node_pools.instance_group_urls.
+     * Output only. Deprecated. Use node_pools.instance_group_urls.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     private $instance_group_urls;
     /**
-     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Output only. The number of nodes currently in the cluster. Deprecated.
      * Call Kubernetes API directly to retrieve node information.
      *
-     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
+     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     protected $current_node_count = 0;
     /**
-     * [Output only] The time the cluster will be automatically
+     * Output only. The time the cluster will be automatically
      * deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string expire_time = 113;</code>
+     * Generated from protobuf field <code>string expire_time = 113 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $expire_time = '';
     /**
-     * [Output only] The name of the Google Compute Engine
+     * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      * or
      * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      * in which the cluster resides.
      *
-     * Generated from protobuf field <code>string location = 114;</code>
+     * Generated from protobuf field <code>string location = 114 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $location = '';
     /**
@@ -460,11 +460,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $enable_tpu = false;
     /**
-     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $tpu_ipv4_cidr_block = '';
     /**
@@ -716,13 +716,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\IdentityServiceConfig $identity_service_config
      *           Configuration for Identity Service component.
      *     @type string $self_link
-     *           [Output only] Server-defined URL for the resource.
+     *           Output only. Server-defined URL for the resource.
      *     @type string $zone
-     *           [Output only] The name of the Google Compute Engine
+     *           Output only. The name of the Google Compute Engine
      *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
      *           cluster resides. This field is deprecated, use location instead.
      *     @type string $endpoint
-     *           [Output only] The IP address of this cluster's master endpoint.
+     *           Output only. The IP address of this cluster's master endpoint.
      *           The endpoint can be accessed from the internet at
      *           `https://username:password&#64;endpoint/`.
      *           See the `masterAuth` property of this resource for username and
@@ -740,43 +740,43 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
      *           - "","-": picks the default Kubernetes version
      *     @type string $current_master_version
-     *           [Output only] The current software version of the master endpoint.
+     *           Output only. The current software version of the master endpoint.
      *     @type string $current_node_version
-     *           [Output only] Deprecated, use
+     *           Output only. Deprecated, use
      *           [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      *           instead. The current version of the node software components. If they are
      *           currently at multiple versions because they're in the process of being
      *           upgraded, this reflects the minimum version of all nodes.
      *     @type string $create_time
-     *           [Output only] The time the cluster was created, in
+     *           Output only. The time the cluster was created, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type int $status
-     *           [Output only] The current status of this cluster.
+     *           Output only. The current status of this cluster.
      *     @type string $status_message
-     *           [Output only] Deprecated. Use conditions instead.
+     *           Output only. Deprecated. Use conditions instead.
      *           Additional information about the current status of this
      *           cluster, if available.
      *     @type int $node_ipv4_cidr_size
-     *           [Output only] The size of the address space on each node for hosting
+     *           Output only. The size of the address space on each node for hosting
      *           containers. This is provisioned from within the `container_ipv4_cidr`
      *           range. This field will only be set when cluster is in route-based network
      *           mode.
      *     @type string $services_ipv4_cidr
-     *           [Output only] The IP address range of the Kubernetes services in
+     *           Output only. The IP address range of the Kubernetes services in
      *           this cluster, in
      *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `1.2.3.4/29`). Service addresses are
      *           typically put in the last `/16` from the container CIDR.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
-     *           Deprecated. Use node_pools.instance_group_urls.
+     *           Output only. Deprecated. Use node_pools.instance_group_urls.
      *     @type int $current_node_count
-     *           [Output only]  The number of nodes currently in the cluster. Deprecated.
+     *           Output only. The number of nodes currently in the cluster. Deprecated.
      *           Call Kubernetes API directly to retrieve node information.
      *     @type string $expire_time
-     *           [Output only] The time the cluster will be automatically
+     *           Output only. The time the cluster will be automatically
      *           deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type string $location
-     *           [Output only] The name of the Google Compute Engine
+     *           Output only. The name of the Google Compute Engine
      *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      *           or
      *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
@@ -784,7 +784,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_tpu
      *           Enable the ability to use Cloud TPUs in this cluster.
      *     @type string $tpu_ipv4_cidr_block
-     *           [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     *           Output only. The IP address range of the Cloud TPUs in this cluster, in
      *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `1.2.3.4/29`).
      *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
@@ -2229,9 +2229,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Server-defined URL for the resource.
+     * Output only. Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 100;</code>
+     * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSelfLink()
@@ -2240,9 +2240,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Server-defined URL for the resource.
+     * Output only. Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 100;</code>
+     * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2255,11 +2255,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The name of the Google Compute Engine
+     * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
      * cluster resides. This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 101 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      * @deprecated
      */
@@ -2270,11 +2270,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The name of the Google Compute Engine
+     * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
      * cluster resides. This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 101 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      * @deprecated
@@ -2289,13 +2289,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The IP address of this cluster's master endpoint.
+     * Output only. The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
      * `https://username:password&#64;endpoint/`.
      * See the `masterAuth` property of this resource for username and
      * password information.
      *
-     * Generated from protobuf field <code>string endpoint = 102;</code>
+     * Generated from protobuf field <code>string endpoint = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getEndpoint()
@@ -2304,13 +2304,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The IP address of this cluster's master endpoint.
+     * Output only. The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
      * `https://username:password&#64;endpoint/`.
      * See the `masterAuth` property of this resource for username and
      * password information.
      *
-     * Generated from protobuf field <code>string endpoint = 102;</code>
+     * Generated from protobuf field <code>string endpoint = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2369,9 +2369,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The current software version of the master endpoint.
+     * Output only. The current software version of the master endpoint.
      *
-     * Generated from protobuf field <code>string current_master_version = 104;</code>
+     * Generated from protobuf field <code>string current_master_version = 104 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCurrentMasterVersion()
@@ -2380,9 +2380,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The current software version of the master endpoint.
+     * Output only. The current software version of the master endpoint.
      *
-     * Generated from protobuf field <code>string current_master_version = 104;</code>
+     * Generated from protobuf field <code>string current_master_version = 104 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2395,13 +2395,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Deprecated, use
+     * Output only. Deprecated, use
      * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
      *
-     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
+     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      * @deprecated
      */
@@ -2412,13 +2412,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Deprecated, use
+     * Output only. Deprecated, use
      * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
      *
-     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
+     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      * @deprecated
@@ -2433,10 +2433,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The time the cluster was created, in
+     * Output only. The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string create_time = 106;</code>
+     * Generated from protobuf field <code>string create_time = 106 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCreateTime()
@@ -2445,10 +2445,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The time the cluster was created, in
+     * Output only. The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string create_time = 106;</code>
+     * Generated from protobuf field <code>string create_time = 106 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2461,9 +2461,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The current status of this cluster.
+     * Output only. The current status of this cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107;</code>
+     * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
@@ -2472,9 +2472,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The current status of this cluster.
+     * Output only. The current status of this cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107;</code>
+     * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -2487,11 +2487,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Deprecated. Use conditions instead.
+     * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
      * cluster, if available.
      *
-     * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
+     * Generated from protobuf field <code>string status_message = 108 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      * @deprecated
      */
@@ -2502,11 +2502,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Deprecated. Use conditions instead.
+     * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
      * cluster, if available.
      *
-     * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
+     * Generated from protobuf field <code>string status_message = 108 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      * @deprecated
@@ -2521,12 +2521,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The size of the address space on each node for hosting
+     * Output only. The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
      * range. This field will only be set when cluster is in route-based network
      * mode.
      *
-     * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109;</code>
+     * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getNodeIpv4CidrSize()
@@ -2535,12 +2535,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The size of the address space on each node for hosting
+     * Output only. The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
      * range. This field will only be set when cluster is in route-based network
      * mode.
      *
-     * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109;</code>
+     * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -2553,13 +2553,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The IP address range of the Kubernetes services in
+     * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`). Service addresses are
      * typically put in the last `/16` from the container CIDR.
      *
-     * Generated from protobuf field <code>string services_ipv4_cidr = 110;</code>
+     * Generated from protobuf field <code>string services_ipv4_cidr = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getServicesIpv4Cidr()
@@ -2568,13 +2568,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The IP address range of the Kubernetes services in
+     * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`). Service addresses are
      * typically put in the last `/16` from the container CIDR.
      *
-     * Generated from protobuf field <code>string services_ipv4_cidr = 110;</code>
+     * Generated from protobuf field <code>string services_ipv4_cidr = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2587,9 +2587,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. Use node_pools.instance_group_urls.
+     * Output only. Deprecated. Use node_pools.instance_group_urls.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      * @deprecated
      */
@@ -2600,9 +2600,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. Use node_pools.instance_group_urls.
+     * Output only. Deprecated. Use node_pools.instance_group_urls.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
@@ -2617,10 +2617,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Output only. The number of nodes currently in the cluster. Deprecated.
      * Call Kubernetes API directly to retrieve node information.
      *
-     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
+     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      * @deprecated
      */
@@ -2631,10 +2631,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Output only. The number of nodes currently in the cluster. Deprecated.
      * Call Kubernetes API directly to retrieve node information.
      *
-     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
+     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      * @deprecated
@@ -2649,10 +2649,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The time the cluster will be automatically
+     * Output only. The time the cluster will be automatically
      * deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string expire_time = 113;</code>
+     * Generated from protobuf field <code>string expire_time = 113 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getExpireTime()
@@ -2661,10 +2661,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The time the cluster will be automatically
+     * Output only. The time the cluster will be automatically
      * deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string expire_time = 113;</code>
+     * Generated from protobuf field <code>string expire_time = 113 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2677,13 +2677,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The name of the Google Compute Engine
+     * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      * or
      * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      * in which the cluster resides.
      *
-     * Generated from protobuf field <code>string location = 114;</code>
+     * Generated from protobuf field <code>string location = 114 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getLocation()
@@ -2692,13 +2692,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The name of the Google Compute Engine
+     * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      * or
      * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
      * in which the cluster resides.
      *
-     * Generated from protobuf field <code>string location = 114;</code>
+     * Generated from protobuf field <code>string location = 114 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -2737,11 +2737,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getTpuIpv4CidrBlock()
@@ -2750,11 +2750,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
      *
-     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116;</code>
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

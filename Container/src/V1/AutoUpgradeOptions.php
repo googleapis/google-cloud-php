@@ -17,18 +17,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] This field is set when upgrades are about to commence
+     * Output only. This field is set when upgrades are about to commence
      * with the approximate start time for the upgrades, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string auto_upgrade_start_time = 1;</code>
+     * Generated from protobuf field <code>string auto_upgrade_start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $auto_upgrade_start_time = '';
     /**
-     * [Output only] This field is set when upgrades are about to commence
+     * Output only. This field is set when upgrades are about to commence
      * with the description of the upgrade.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $description = '';
 
@@ -39,11 +39,11 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $auto_upgrade_start_time
-     *           [Output only] This field is set when upgrades are about to commence
+     *           Output only. This field is set when upgrades are about to commence
      *           with the approximate start time for the upgrades, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type string $description
-     *           [Output only] This field is set when upgrades are about to commence
+     *           Output only. This field is set when upgrades are about to commence
      *           with the description of the upgrade.
      * }
      */
@@ -53,11 +53,11 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] This field is set when upgrades are about to commence
+     * Output only. This field is set when upgrades are about to commence
      * with the approximate start time for the upgrades, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string auto_upgrade_start_time = 1;</code>
+     * Generated from protobuf field <code>string auto_upgrade_start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getAutoUpgradeStartTime()
@@ -66,11 +66,11 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] This field is set when upgrades are about to commence
+     * Output only. This field is set when upgrades are about to commence
      * with the approximate start time for the upgrades, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
-     * Generated from protobuf field <code>string auto_upgrade_start_time = 1;</code>
+     * Generated from protobuf field <code>string auto_upgrade_start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -83,10 +83,10 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] This field is set when upgrades are about to commence
+     * Output only. This field is set when upgrades are about to commence
      * with the description of the upgrade.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDescription()
@@ -95,10 +95,10 @@ class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] This field is set when upgrades are about to commence
+     * Output only. This field is set when upgrades are about to commence
      * with the description of the upgrade.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
