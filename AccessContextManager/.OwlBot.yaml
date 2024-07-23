@@ -1,4 +1,6 @@
 deep-copy-regex:
     - source: /google/identity/accesscontextmanager/(v1)/.*-php/(.*)
       dest: /owl-bot-staging/AccessContextManager/$1/$2
+    - source: /google/identity/accesscontextmanager/type/.*-php/(.*)
+      dest: /owl-bot-staging/AccessContextManager/type-protos/$1
 api-name: AccessContextManager

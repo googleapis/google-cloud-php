@@ -27,9 +27,14 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/AccessContextManager").resolve()
 dest = Path().resolve()
 
-# Added so that we can pass copy_excludes in the owlbot_main() call
-_tracked_paths.add(src)
+# copy "type" protos
+php.owlbot_copy_version(
+    src=src / "type-protos",
+    dest=dest,
+    version_string="type",
+)
 
+# copy V1 protos and GAPIC files
 php.owlbot_main(src=src, dest=dest)
 
 # remove class_alias code
