@@ -37,6 +37,26 @@ class CreateEndpointPolicyRequest extends \Google\Protobuf\Internal\Message
     protected $endpoint_policy = null;
 
     /**
+     * @param string                                          $parent           Required. The parent resource of the EndpointPolicy. Must be in the
+     *                                                                          format `projects/&#42;/locations/global`. Please see
+     *                                                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\EndpointPolicy $endpointPolicy   Required. EndpointPolicy resource to be created.
+     * @param string                                          $endpointPolicyId Required. Short name of the EndpointPolicy resource to be created.
+     *                                                                          E.g. "CustomECS".
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateEndpointPolicyRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\EndpointPolicy $endpointPolicy, string $endpointPolicyId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setEndpointPolicy($endpointPolicy)
+            ->setEndpointPolicyId($endpointPolicyId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

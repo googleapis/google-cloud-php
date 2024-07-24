@@ -53,6 +53,26 @@ class CreateLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                                            $parent             Required. The parent resource of the `LbRouteExtension` resource. Must be
+     *                                                                              in the format `projects/{project}/locations/{location}`. Please see
+     *                                                                              {@see DepServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\LbRouteExtension $lbRouteExtension   Required. `LbRouteExtension` resource to be created.
+     * @param string                                            $lbRouteExtensionId Required. User-provided ID of the `LbRouteExtension` resource to be
+     *                                                                              created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateLbRouteExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\LbRouteExtension $lbRouteExtension, string $lbRouteExtensionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setLbRouteExtension($lbRouteExtension)
+            ->setLbRouteExtensionId($lbRouteExtensionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

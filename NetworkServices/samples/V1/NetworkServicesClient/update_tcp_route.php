@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateTcpRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\TcpRoute;
 use Google\Cloud\NetworkServices\V1\TcpRoute\RouteAction;
 use Google\Cloud\NetworkServices\V1\TcpRoute\RouteRule;
+use Google\Cloud\NetworkServices\V1\UpdateTcpRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,7 +43,7 @@ function update_tcp_route_sample(string $tcpRouteName): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tcpRouteRulesAction = new RouteAction();
     $routeRule = (new RouteRule())
         ->setAction($tcpRouteRulesAction);
@@ -50,11 +51,13 @@ function update_tcp_route_sample(string $tcpRouteName): void
     $tcpRoute = (new TcpRoute())
         ->setName($tcpRouteName)
         ->setRules($tcpRouteRules);
+    $request = (new UpdateTcpRouteRequest())
+        ->setTcpRoute($tcpRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateTcpRoute($tcpRoute);
+        $response = $networkServicesClient->updateTcpRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

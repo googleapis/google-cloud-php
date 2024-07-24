@@ -50,6 +50,22 @@ class ListLbRouteExtensionsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
+     * @param string $parent Required. The project and location from which the `LbRouteExtension`
+     *                       resources are listed, specified in the following format:
+     *                       `projects/{project}/locations/{location}`. Please see
+     *                       {@see DepServiceClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\ListLbRouteExtensionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
