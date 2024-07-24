@@ -51,7 +51,7 @@ class Value extends \Google\Protobuf\Internal\Message
      *           A geo point value representing a point on the surface of Earth.
      *     @type \Google\Cloud\Firestore\V1\ArrayValue $array_value
      *           An array value.
-     *           Cannot directly contain another array value, though can contain an
+     *           Cannot directly contain another array value, though can contain a
      *           map which contains another array.
      *     @type \Google\Cloud\Firestore\V1\MapValue $map_value
      *           A map value.
@@ -359,7 +359,7 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * An array value.
-     * Cannot directly contain another array value, though can contain an
+     * Cannot directly contain another array value, though can contain a
      * map which contains another array.
      *
      * Generated from protobuf field <code>.google.firestore.v1.ArrayValue array_value = 9;</code>
@@ -377,7 +377,7 @@ class Value extends \Google\Protobuf\Internal\Message
 
     /**
      * An array value.
-     * Cannot directly contain another array value, though can contain an
+     * Cannot directly contain another array value, though can contain a
      * map which contains another array.
      *
      * Generated from protobuf field <code>.google.firestore.v1.ArrayValue array_value = 9;</code>
