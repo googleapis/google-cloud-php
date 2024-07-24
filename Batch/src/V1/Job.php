@@ -21,13 +21,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. A system generated unique ID for the Job.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Priority of the Job.
      * The valid value range is [0, 100). Default value is 0.
@@ -37,7 +37,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 priority = 3;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * Required. TaskGroups in the Job. Only one TaskGroup is supported now.
      *
@@ -49,7 +49,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy allocation_policy = 7;</code>
      */
-    private $allocation_policy = null;
+    protected $allocation_policy = null;
     /**
      * Labels for the Job. Labels could be user provided or system generated.
      * For example,
@@ -70,25 +70,25 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.JobStatus status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. When the Job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last time the Job was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Log preservation policy for the Job.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy logs_policy = 13;</code>
      */
-    private $logs_policy = null;
+    protected $logs_policy = null;
     /**
      * Notification configurations.
      *

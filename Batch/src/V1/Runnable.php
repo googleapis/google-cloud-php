@@ -24,14 +24,14 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Normally, a non-zero exit status causes the Task to fail. This flag allows
      * execution of other Runnables to continue instead.
      *
      * Generated from protobuf field <code>bool ignore_exit_status = 3;</code>
      */
-    private $ignore_exit_status = false;
+    protected $ignore_exit_status = false;
     /**
      * This flag allows a Runnable to continue running in the background while the
      * Task executes subsequent Runnables. This is useful to provide services to
@@ -39,7 +39,7 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool background = 4;</code>
      */
-    private $background = false;
+    protected $background = false;
     /**
      * By default, after a Runnable fails, no further Runnable are executed. This
      * flag indicates that this Runnable must be run even if the Task has already
@@ -51,20 +51,20 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool always_run = 5;</code>
      */
-    private $always_run = false;
+    protected $always_run = false;
     /**
      * Environment variables for this Runnable (overrides variables set for the
      * whole Task or TaskGroup).
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.Environment environment = 7;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * Timeout for this Runnable.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Labels for this Runnable.
      *

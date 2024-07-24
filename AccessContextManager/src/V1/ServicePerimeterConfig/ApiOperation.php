@@ -27,7 +27,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * API methods or permissions to allow. Method or permission must belong to
      * the service specified by `service_name` field. A single [MethodSelector]
@@ -143,6 +143,4 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApiOperation::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_ApiOperation::class);
 

@@ -25,7 +25,7 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The parent of this `AccessPolicy` in the Cloud Resource
      * Hierarchy. Currently immutable once created. Format:
@@ -33,13 +33,13 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Human readable title. Does not affect behavior.
      *
      * Generated from protobuf field <code>string title = 3;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The scopes of a policy define which resources an ACM policy can restrict,
      * and where ACM resources can be referenced.
@@ -64,13 +64,13 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time the `AccessPolicy` was updated in UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. An opaque identifier for the current version of the
      * `AccessPolicy`. This will always be a strongly validated etag, meaning that
@@ -79,7 +79,7 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 6;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

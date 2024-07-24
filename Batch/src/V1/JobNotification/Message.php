@@ -26,19 +26,19 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.JobNotification.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The new job state.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.JobStatus.State new_job_state = 2;</code>
      */
-    private $new_job_state = 0;
+    protected $new_job_state = 0;
     /**
      * The new task state.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State new_task_state = 3;</code>
      */
-    private $new_task_state = 0;
+    protected $new_task_state = 0;
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class CreateAccessLevelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The [Access Level]
      * [google.identity.accesscontextmanager.v1.AccessLevel] to create.
@@ -32,7 +32,7 @@ class CreateAccessLevelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $access_level = null;
+    protected $access_level = null;
 
     /**
      * @param string                                               $parent      Required. Resource name for the access policy which owns this [Access

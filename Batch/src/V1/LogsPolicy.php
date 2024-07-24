@@ -21,7 +21,7 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.Destination destination = 1;</code>
      */
-    private $destination = 0;
+    protected $destination = 0;
     /**
      * The path to which logs are saved when the destination = PATH. This can be a
      * local file path on the VM, or under the mount point of a Persistent Disk or
@@ -29,14 +29,14 @@ class LogsPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string logs_path = 2;</code>
      */
-    private $logs_path = '';
+    protected $logs_path = '';
     /**
      * Optional. Additional settings for Cloud Logging. It will only take effect
      * when the destination of `LogsPolicy` is set to `CLOUD_LOGGING`.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LogsPolicy.CloudLoggingOption cloud_logging_option = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cloud_logging_option = null;
+    protected $cloud_logging_option = null;
 
     /**
      * Constructor.
