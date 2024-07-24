@@ -27,8 +27,6 @@ class GcpConfig extends \Google\Protobuf\Internal\Message
      * must be located in the same region as the cluster and cannot be changed.
      * Structured like:
      * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}.
-     * Note that the project component only accepts a project ID, and not a
-     * project number.
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -47,8 +45,6 @@ class GcpConfig extends \Google\Protobuf\Internal\Message
      *           must be located in the same region as the cluster and cannot be changed.
      *           Structured like:
      *           projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}.
-     *           Note that the project component only accepts a project ID, and not a
-     *           project number.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,8 +93,6 @@ class GcpConfig extends \Google\Protobuf\Internal\Message
      * must be located in the same region as the cluster and cannot be changed.
      * Structured like:
      * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}.
-     * Note that the project component only accepts a project ID, and not a
-     * project number.
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,8 +107,6 @@ class GcpConfig extends \Google\Protobuf\Internal\Message
      * must be located in the same region as the cluster and cannot be changed.
      * Structured like:
      * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}.
-     * Note that the project component only accepts a project ID, and not a
-     * project number.
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
