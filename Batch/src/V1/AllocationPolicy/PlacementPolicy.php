@@ -24,7 +24,7 @@ class PlacementPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string collocation = 1;</code>
      */
-    private $collocation = '';
+    protected $collocation = '';
     /**
      * When specified, causes the job to fail if more than max_distance logical
      * switches are required between VMs. Batch uses the most compact possible
@@ -34,7 +34,7 @@ class PlacementPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_distance = 2;</code>
      */
-    private $max_distance = 0;
+    protected $max_distance = 0;
 
     /**
      * Constructor.

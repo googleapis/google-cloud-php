@@ -20,31 +20,31 @@ class StatusEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Description of the event.
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The time this event occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 2;</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * Task Execution
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskExecution task_execution = 4;</code>
      */
-    private $task_execution = null;
+    protected $task_execution = null;
     /**
      * Task State
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State task_state = 5;</code>
      */
-    private $task_state = 0;
+    protected $task_state = 0;
 
     /**
      * Constructor.

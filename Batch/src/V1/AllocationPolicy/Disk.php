@@ -28,7 +28,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Disk size in GB.
      * **Non-Boot Disk**:
@@ -50,7 +50,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 size_gb = 2;</code>
      */
-    private $size_gb = 0;
+    protected $size_gb = 0;
     /**
      * Local SSDs are available through both "SCSI" and "NVMe" interfaces.
      * If not indicated, "NVMe" will be the default one for local ssds.
@@ -60,7 +60,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_interface = 6;</code>
      */
-    private $disk_interface = '';
+    protected $disk_interface = '';
     protected $data_source;
 
     /**

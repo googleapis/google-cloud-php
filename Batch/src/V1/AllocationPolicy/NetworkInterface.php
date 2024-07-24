@@ -25,7 +25,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The URL of an existing subnetwork resource in the network.
      * You can specify the subnetwork as a full or partial URL.
@@ -36,7 +36,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Default is false (with an external IP address). Required if
      * no external public IP address is attached to the VM. If no external
@@ -48,7 +48,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_external_ip_address = 3;</code>
      */
-    private $no_external_ip_address = false;
+    protected $no_external_ip_address = false;
 
     /**
      * Constructor.

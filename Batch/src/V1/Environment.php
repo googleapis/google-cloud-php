@@ -36,7 +36,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.Environment.KMSEnvMap encrypted_variables = 3;</code>
      */
-    private $encrypted_variables = null;
+    protected $encrypted_variables = null;
 
     /**
      * Constructor.

@@ -30,14 +30,14 @@ class JobNotification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pubsub_topic = 1;</code>
      */
-    private $pubsub_topic = '';
+    protected $pubsub_topic = '';
     /**
      * The attribute requirements of messages to be sent to this Pub/Sub topic.
      * Without this field, no message will be sent.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.JobNotification.Message message = 2;</code>
      */
-    private $message = null;
+    protected $message = null;
 
     /**
      * Constructor.

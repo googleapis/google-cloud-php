@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Identity\AccessContextManager\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -69,6 +68,7 @@ use Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest;
 use Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest;
 use Google\Identity\AccessContextManager\V1\UpdateGcpUserAccessBindingRequest;
 use Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -145,9 +145,7 @@ final class AccessContextManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -193,10 +191,31 @@ final class AccessContextManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -416,8 +435,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function commitServicePerimeters(CommitServicePerimetersRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function commitServicePerimeters(
+        CommitServicePerimetersRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CommitServicePerimeters', $request, $callOptions)->wait();
     }
 
@@ -516,8 +537,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createGcpUserAccessBinding(CreateGcpUserAccessBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createGcpUserAccessBinding(
+        CreateGcpUserAccessBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateGcpUserAccessBinding', $request, $callOptions)->wait();
     }
 
@@ -550,8 +573,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServicePerimeter(CreateServicePerimeterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createServicePerimeter(
+        CreateServicePerimeterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateServicePerimeter', $request, $callOptions)->wait();
     }
 
@@ -644,8 +669,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteGcpUserAccessBinding(DeleteGcpUserAccessBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteGcpUserAccessBinding(
+        DeleteGcpUserAccessBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteGcpUserAccessBinding', $request, $callOptions)->wait();
     }
 
@@ -676,8 +703,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServicePerimeter(DeleteServicePerimeterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteServicePerimeter(
+        DeleteServicePerimeterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteServicePerimeter', $request, $callOptions)->wait();
     }
 
@@ -760,8 +789,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGcpUserAccessBinding(GetGcpUserAccessBindingRequest $request, array $callOptions = []): GcpUserAccessBinding
-    {
+    public function getGcpUserAccessBinding(
+        GetGcpUserAccessBindingRequest $request,
+        array $callOptions = []
+    ): GcpUserAccessBinding {
         return $this->startApiCall('GetGcpUserAccessBinding', $request, $callOptions)->wait();
     }
 
@@ -903,8 +934,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGcpUserAccessBindings(ListGcpUserAccessBindingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listGcpUserAccessBindings(
+        ListGcpUserAccessBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListGcpUserAccessBindings', $request, $callOptions);
     }
 
@@ -932,8 +965,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServicePerimeters(ListServicePerimetersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listServicePerimeters(
+        ListServicePerimetersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListServicePerimeters', $request, $callOptions);
     }
 
@@ -1014,8 +1049,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function replaceServicePerimeters(ReplaceServicePerimetersRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function replaceServicePerimeters(
+        ReplaceServicePerimetersRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ReplaceServicePerimeters', $request, $callOptions)->wait();
     }
 
@@ -1077,8 +1114,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1174,8 +1213,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGcpUserAccessBinding(UpdateGcpUserAccessBindingRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateGcpUserAccessBinding(
+        UpdateGcpUserAccessBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateGcpUserAccessBinding', $request, $callOptions)->wait();
     }
 
@@ -1208,8 +1249,10 @@ final class AccessContextManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateServicePerimeter(UpdateServicePerimeterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateServicePerimeter(
+        UpdateServicePerimeterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateServicePerimeter', $request, $callOptions)->wait();
     }
 }

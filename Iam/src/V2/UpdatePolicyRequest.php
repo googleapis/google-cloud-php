@@ -23,7 +23,7 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.iam.v2.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy = null;
+    protected $policy = null;
 
     /**
      * Constructor.

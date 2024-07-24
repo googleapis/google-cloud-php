@@ -27,7 +27,7 @@ class CommitServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The etag for the version of the [Access Policy]
      * [google.identity.accesscontextmanager.v1.AccessPolicy] that this
@@ -39,7 +39,7 @@ class CommitServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

@@ -25,13 +25,13 @@ class LifecyclePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LifecyclePolicy.Action action = 1;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * Conditions that decide why a task failure is dealt with a specific action.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.LifecyclePolicy.ActionCondition action_condition = 2;</code>
      */
-    private $action_condition = null;
+    protected $action_condition = null;
 
     /**
      * Constructor.

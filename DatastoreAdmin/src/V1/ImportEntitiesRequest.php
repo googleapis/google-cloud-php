@@ -21,7 +21,7 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Client-assigned labels.
      *
@@ -45,7 +45,7 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_url = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_url = '';
+    protected $input_url = '';
     /**
      * Optionally specify which kinds/namespaces are to be imported. If provided,
      * the list must be a subset of the EntityFilter used in creating the export,
@@ -54,7 +54,7 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.EntityFilter entity_filter = 4;</code>
      */
-    private $entity_filter = null;
+    protected $entity_filter = null;
 
     /**
      * @param string                                        $projectId    Required. Project ID against which to make the request.

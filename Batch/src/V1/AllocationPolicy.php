@@ -21,7 +21,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.LocationPolicy location = 1;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Describe instances that can be created by this AllocationPolicy.
      * Only instances[0] is supported now.
@@ -43,7 +43,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
      */
-    private $service_account = null;
+    protected $service_account = null;
     /**
      * Labels applied to all VM instances and other resources
      * created by AllocationPolicy.
@@ -64,13 +64,13 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * The placement policy.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.PlacementPolicy placement = 10;</code>
      */
-    private $placement = null;
+    protected $placement = null;
     /**
      * Optional. Tags applied to the VM instances.
      * The tags identify valid sources or targets for network firewalls.

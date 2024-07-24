@@ -22,7 +22,7 @@ class UpdateApiRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Api api = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api = null;
+    protected $api = null;
     /**
      * The list of fields to be updated. If omitted, all fields are updated that
      * are set in the request message (fields set to default values are ignored).
@@ -31,14 +31,14 @@ class UpdateApiRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set to true, and the API is not found, a new API will be created.
      * In this situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\ApigeeRegistry\V1\Api $api        Required. The API to update.

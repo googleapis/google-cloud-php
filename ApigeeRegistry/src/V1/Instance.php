@@ -22,37 +22,37 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The current state of the Instance.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Instance.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Extra information of Instance.State if the state is `FAILED`.
      *
      * Generated from protobuf field <code>string state_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Required. Config of the Instance.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Instance.Config config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
 
     /**
      * Constructor.
