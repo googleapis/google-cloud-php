@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateEndpointPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\EndpointMatcher;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy\EndpointPolicyType;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -53,21 +54,21 @@ function create_endpoint_policy_sample(
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $endpointPolicyEndpointMatcher = new EndpointMatcher();
     $endpointPolicy = (new EndpointPolicy())
         ->setName($endpointPolicyName)
         ->setType($endpointPolicyType)
         ->setEndpointMatcher($endpointPolicyEndpointMatcher);
+    $request = (new CreateEndpointPolicyRequest())
+        ->setParent($formattedParent)
+        ->setEndpointPolicyId($endpointPolicyId)
+        ->setEndpointPolicy($endpointPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createEndpointPolicy(
-            $formattedParent,
-            $endpointPolicyId,
-            $endpointPolicy
-        );
+        $response = $networkServicesClient->createEndpointPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

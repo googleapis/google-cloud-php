@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateHttpRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateHttpRouteRequest;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 use Google\Rpc\Status;
 
 /**
@@ -73,18 +74,22 @@ function create_http_route_sample(
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $httpRouteHostnames = [$httpRouteHostnamesElement,];
     $httpRouteRules = [new RouteRule()];
     $httpRoute = (new HttpRoute())
         ->setName($httpRouteName)
         ->setHostnames($httpRouteHostnames)
         ->setRules($httpRouteRules);
+    $request = (new CreateHttpRouteRequest())
+        ->setParent($formattedParent)
+        ->setHttpRouteId($httpRouteId)
+        ->setHttpRoute($httpRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createHttpRoute($formattedParent, $httpRouteId, $httpRoute);
+        $response = $networkServicesClient->createHttpRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

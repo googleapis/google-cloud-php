@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_DeleteTlsRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\DeleteTlsRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_tls_route_sample(string $formattedName): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTlsRouteRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->deleteTlsRoute($formattedName);
+        $response = $networkServicesClient->deleteTlsRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

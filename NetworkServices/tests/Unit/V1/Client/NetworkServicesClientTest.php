@@ -20,36 +20,80 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\NetworkServices\Tests\Unit\V1;
+namespace Google\Cloud\NetworkServices\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateEndpointPolicyRequest;
+use Google\Cloud\NetworkServices\V1\CreateGatewayRequest;
+use Google\Cloud\NetworkServices\V1\CreateGrpcRouteRequest;
+use Google\Cloud\NetworkServices\V1\CreateHttpRouteRequest;
+use Google\Cloud\NetworkServices\V1\CreateMeshRequest;
+use Google\Cloud\NetworkServices\V1\CreateServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest;
+use Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest;
+use Google\Cloud\NetworkServices\V1\DeleteEndpointPolicyRequest;
+use Google\Cloud\NetworkServices\V1\DeleteGatewayRequest;
+use Google\Cloud\NetworkServices\V1\DeleteGrpcRouteRequest;
+use Google\Cloud\NetworkServices\V1\DeleteHttpRouteRequest;
+use Google\Cloud\NetworkServices\V1\DeleteMeshRequest;
+use Google\Cloud\NetworkServices\V1\DeleteServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\DeleteTcpRouteRequest;
+use Google\Cloud\NetworkServices\V1\DeleteTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\EndpointMatcher;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy\EndpointPolicyType;
 use Google\Cloud\NetworkServices\V1\Gateway;
+use Google\Cloud\NetworkServices\V1\GetEndpointPolicyRequest;
+use Google\Cloud\NetworkServices\V1\GetGatewayRequest;
+use Google\Cloud\NetworkServices\V1\GetGrpcRouteRequest;
+use Google\Cloud\NetworkServices\V1\GetHttpRouteRequest;
+use Google\Cloud\NetworkServices\V1\GetMeshRequest;
+use Google\Cloud\NetworkServices\V1\GetServiceBindingRequest;
+use Google\Cloud\NetworkServices\V1\GetTcpRouteRequest;
+use Google\Cloud\NetworkServices\V1\GetTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\GrpcRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
+use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesRequest;
 use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesResponse;
+use Google\Cloud\NetworkServices\V1\ListGatewaysRequest;
 use Google\Cloud\NetworkServices\V1\ListGatewaysResponse;
+use Google\Cloud\NetworkServices\V1\ListGrpcRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListGrpcRoutesResponse;
+use Google\Cloud\NetworkServices\V1\ListHttpRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListHttpRoutesResponse;
+use Google\Cloud\NetworkServices\V1\ListMeshesRequest;
 use Google\Cloud\NetworkServices\V1\ListMeshesResponse;
+use Google\Cloud\NetworkServices\V1\ListServiceBindingsRequest;
 use Google\Cloud\NetworkServices\V1\ListServiceBindingsResponse;
+use Google\Cloud\NetworkServices\V1\ListTcpRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListTcpRoutesResponse;
+use Google\Cloud\NetworkServices\V1\ListTlsRoutesRequest;
 use Google\Cloud\NetworkServices\V1\ListTlsRoutesResponse;
 use Google\Cloud\NetworkServices\V1\Mesh;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
 use Google\Cloud\NetworkServices\V1\TcpRoute;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
+use Google\Cloud\NetworkServices\V1\UpdateEndpointPolicyRequest;
+use Google\Cloud\NetworkServices\V1\UpdateGatewayRequest;
+use Google\Cloud\NetworkServices\V1\UpdateGrpcRouteRequest;
+use Google\Cloud\NetworkServices\V1\UpdateHttpRouteRequest;
+use Google\Cloud\NetworkServices\V1\UpdateMeshRequest;
+use Google\Cloud\NetworkServices\V1\UpdateTcpRouteRequest;
+use Google\Cloud\NetworkServices\V1\UpdateTlsRouteRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -73,7 +117,9 @@ class NetworkServicesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NetworkServicesClient */
@@ -134,7 +180,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
         $endpointPolicy->setEndpointMatcher($endpointPolicyEndpointMatcher);
-        $response = $gapicClient->createEndpointPolicy($formattedParent, $endpointPolicyId, $endpointPolicy);
+        $request = (new CreateEndpointPolicyRequest())
+            ->setParent($formattedParent)
+            ->setEndpointPolicyId($endpointPolicyId)
+            ->setEndpointPolicy($endpointPolicy);
+        $response = $gapicClient->createEndpointPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -193,12 +243,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -210,7 +263,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
         $endpointPolicy->setEndpointMatcher($endpointPolicyEndpointMatcher);
-        $response = $gapicClient->createEndpointPolicy($formattedParent, $endpointPolicyId, $endpointPolicy);
+        $request = (new CreateEndpointPolicyRequest())
+            ->setParent($formattedParent)
+            ->setEndpointPolicyId($endpointPolicyId)
+            ->setEndpointPolicy($endpointPolicy);
+        $response = $gapicClient->createEndpointPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -281,7 +338,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $gateway->setPorts($gatewayPorts);
         $gatewayScope = 'gatewayScope-611626384';
         $gateway->setScope($gatewayScope);
-        $response = $gapicClient->createGateway($formattedParent, $gatewayId, $gateway);
+        $request = (new CreateGatewayRequest())
+            ->setParent($formattedParent)
+            ->setGatewayId($gatewayId)
+            ->setGateway($gateway);
+        $response = $gapicClient->createGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -340,12 +401,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -357,7 +421,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $gateway->setPorts($gatewayPorts);
         $gatewayScope = 'gatewayScope-611626384';
         $gateway->setScope($gatewayScope);
-        $response = $gapicClient->createGateway($formattedParent, $gatewayId, $gateway);
+        $request = (new CreateGatewayRequest())
+            ->setParent($formattedParent)
+            ->setGatewayId($gatewayId)
+            ->setGateway($gateway);
+        $response = $gapicClient->createGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -424,7 +492,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
         $grpcRoute->setRules($grpcRouteRules);
-        $response = $gapicClient->createGrpcRoute($formattedParent, $grpcRouteId, $grpcRoute);
+        $request = (new CreateGrpcRouteRequest())
+            ->setParent($formattedParent)
+            ->setGrpcRouteId($grpcRouteId)
+            ->setGrpcRoute($grpcRoute);
+        $response = $gapicClient->createGrpcRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -483,12 +555,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -500,7 +575,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
         $grpcRoute->setRules($grpcRouteRules);
-        $response = $gapicClient->createGrpcRoute($formattedParent, $grpcRouteId, $grpcRoute);
+        $request = (new CreateGrpcRouteRequest())
+            ->setParent($formattedParent)
+            ->setGrpcRouteId($grpcRouteId)
+            ->setGrpcRoute($grpcRoute);
+        $response = $gapicClient->createGrpcRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -567,7 +646,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
         $httpRoute->setRules($httpRouteRules);
-        $response = $gapicClient->createHttpRoute($formattedParent, $httpRouteId, $httpRoute);
+        $request = (new CreateHttpRouteRequest())
+            ->setParent($formattedParent)
+            ->setHttpRouteId($httpRouteId)
+            ->setHttpRoute($httpRoute);
+        $response = $gapicClient->createHttpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -626,12 +709,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -643,7 +729,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
         $httpRoute->setRules($httpRouteRules);
-        $response = $gapicClient->createHttpRoute($formattedParent, $httpRouteId, $httpRoute);
+        $request = (new CreateHttpRouteRequest())
+            ->setParent($formattedParent)
+            ->setHttpRouteId($httpRouteId)
+            ->setHttpRoute($httpRoute);
+        $response = $gapicClient->createHttpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -708,7 +798,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $mesh = new Mesh();
         $meshName = 'meshName-472824296';
         $mesh->setName($meshName);
-        $response = $gapicClient->createMesh($formattedParent, $meshId, $mesh);
+        $request = (new CreateMeshRequest())
+            ->setParent($formattedParent)
+            ->setMeshId($meshId)
+            ->setMesh($mesh);
+        $response = $gapicClient->createMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -767,12 +861,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -780,7 +877,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $mesh = new Mesh();
         $meshName = 'meshName-472824296';
         $mesh->setName($meshName);
-        $response = $gapicClient->createMesh($formattedParent, $meshId, $mesh);
+        $request = (new CreateMeshRequest())
+            ->setParent($formattedParent)
+            ->setMeshId($meshId)
+            ->setMesh($mesh);
+        $response = $gapicClient->createMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -845,7 +946,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $serviceBinding->setName($serviceBindingName);
         $serviceBindingService = 'serviceBindingService344355461';
         $serviceBinding->setService($serviceBindingService);
-        $response = $gapicClient->createServiceBinding($formattedParent, $serviceBindingId, $serviceBinding);
+        $request = (new CreateServiceBindingRequest())
+            ->setParent($formattedParent)
+            ->setServiceBindingId($serviceBindingId)
+            ->setServiceBinding($serviceBinding);
+        $response = $gapicClient->createServiceBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -904,12 +1009,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -919,7 +1027,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $serviceBinding->setName($serviceBindingName);
         $serviceBindingService = 'serviceBindingService344355461';
         $serviceBinding->setService($serviceBindingService);
-        $response = $gapicClient->createServiceBinding($formattedParent, $serviceBindingId, $serviceBinding);
+        $request = (new CreateServiceBindingRequest())
+            ->setParent($formattedParent)
+            ->setServiceBindingId($serviceBindingId)
+            ->setServiceBinding($serviceBinding);
+        $response = $gapicClient->createServiceBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -984,7 +1096,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
-        $response = $gapicClient->createTcpRoute($formattedParent, $tcpRouteId, $tcpRoute);
+        $request = (new CreateTcpRouteRequest())
+            ->setParent($formattedParent)
+            ->setTcpRouteId($tcpRouteId)
+            ->setTcpRoute($tcpRoute);
+        $response = $gapicClient->createTcpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1043,12 +1159,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1058,7 +1177,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
-        $response = $gapicClient->createTcpRoute($formattedParent, $tcpRouteId, $tcpRoute);
+        $request = (new CreateTcpRouteRequest())
+            ->setParent($formattedParent)
+            ->setTcpRouteId($tcpRouteId)
+            ->setTcpRoute($tcpRoute);
+        $response = $gapicClient->createTcpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1123,7 +1246,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
-        $response = $gapicClient->createTlsRoute($formattedParent, $tlsRouteId, $tlsRoute);
+        $request = (new CreateTlsRouteRequest())
+            ->setParent($formattedParent)
+            ->setTlsRouteId($tlsRouteId)
+            ->setTlsRoute($tlsRoute);
+        $response = $gapicClient->createTlsRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1182,12 +1309,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1197,7 +1327,11 @@ class NetworkServicesClientTest extends GeneratedTest
         $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
-        $response = $gapicClient->createTlsRoute($formattedParent, $tlsRouteId, $tlsRoute);
+        $request = (new CreateTlsRouteRequest())
+            ->setParent($formattedParent)
+            ->setTlsRouteId($tlsRouteId)
+            ->setTlsRoute($tlsRoute);
+        $response = $gapicClient->createTlsRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1250,7 +1384,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->endpointPolicyName('[PROJECT]', '[LOCATION]', '[ENDPOINT_POLICY]');
-        $response = $gapicClient->deleteEndpointPolicy($formattedName);
+        $request = (new DeleteEndpointPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteEndpointPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1305,16 +1440,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->endpointPolicyName('[PROJECT]', '[LOCATION]', '[ENDPOINT_POLICY]');
-        $response = $gapicClient->deleteEndpointPolicy($formattedName);
+        $request = (new DeleteEndpointPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteEndpointPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1367,7 +1506,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $gapicClient->deleteGateway($formattedName);
+        $request = (new DeleteGatewayRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1422,16 +1562,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $gapicClient->deleteGateway($formattedName);
+        $request = (new DeleteGatewayRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1484,7 +1628,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->grpcRouteName('[PROJECT]', '[LOCATION]', '[GRPC_ROUTE]');
-        $response = $gapicClient->deleteGrpcRoute($formattedName);
+        $request = (new DeleteGrpcRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGrpcRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1539,16 +1684,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->grpcRouteName('[PROJECT]', '[LOCATION]', '[GRPC_ROUTE]');
-        $response = $gapicClient->deleteGrpcRoute($formattedName);
+        $request = (new DeleteGrpcRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteGrpcRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1601,7 +1750,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->httpRouteName('[PROJECT]', '[LOCATION]', '[HTTP_ROUTE]');
-        $response = $gapicClient->deleteHttpRoute($formattedName);
+        $request = (new DeleteHttpRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteHttpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1656,16 +1806,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->httpRouteName('[PROJECT]', '[LOCATION]', '[HTTP_ROUTE]');
-        $response = $gapicClient->deleteHttpRoute($formattedName);
+        $request = (new DeleteHttpRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteHttpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1718,7 +1872,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->meshName('[PROJECT]', '[LOCATION]', '[MESH]');
-        $response = $gapicClient->deleteMesh($formattedName);
+        $request = (new DeleteMeshRequest())->setName($formattedName);
+        $response = $gapicClient->deleteMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1773,16 +1928,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->meshName('[PROJECT]', '[LOCATION]', '[MESH]');
-        $response = $gapicClient->deleteMesh($formattedName);
+        $request = (new DeleteMeshRequest())->setName($formattedName);
+        $response = $gapicClient->deleteMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1835,7 +1994,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->serviceBindingName('[PROJECT]', '[LOCATION]', '[SERVICE_BINDING]');
-        $response = $gapicClient->deleteServiceBinding($formattedName);
+        $request = (new DeleteServiceBindingRequest())->setName($formattedName);
+        $response = $gapicClient->deleteServiceBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1890,16 +2050,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceBindingName('[PROJECT]', '[LOCATION]', '[SERVICE_BINDING]');
-        $response = $gapicClient->deleteServiceBinding($formattedName);
+        $request = (new DeleteServiceBindingRequest())->setName($formattedName);
+        $response = $gapicClient->deleteServiceBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1952,7 +2116,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->tcpRouteName('[PROJECT]', '[LOCATION]', '[TCP_ROUTE]');
-        $response = $gapicClient->deleteTcpRoute($formattedName);
+        $request = (new DeleteTcpRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTcpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2007,16 +2172,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tcpRouteName('[PROJECT]', '[LOCATION]', '[TCP_ROUTE]');
-        $response = $gapicClient->deleteTcpRoute($formattedName);
+        $request = (new DeleteTcpRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTcpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2069,7 +2238,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->tlsRouteName('[PROJECT]', '[LOCATION]', '[TLS_ROUTE]');
-        $response = $gapicClient->deleteTlsRoute($formattedName);
+        $request = (new DeleteTlsRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTlsRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2124,16 +2294,20 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tlsRouteName('[PROJECT]', '[LOCATION]', '[TLS_ROUTE]');
-        $response = $gapicClient->deleteTlsRoute($formattedName);
+        $request = (new DeleteTlsRouteRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTlsRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2178,7 +2352,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->endpointPolicyName('[PROJECT]', '[LOCATION]', '[ENDPOINT_POLICY]');
-        $response = $gapicClient->getEndpointPolicy($formattedName);
+        $request = (new GetEndpointPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->getEndpointPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2201,17 +2376,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->endpointPolicyName('[PROJECT]', '[LOCATION]', '[ENDPOINT_POLICY]');
+        $request = (new GetEndpointPolicyRequest())->setName($formattedName);
         try {
-            $gapicClient->getEndpointPolicy($formattedName);
+            $gapicClient->getEndpointPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2246,7 +2425,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $gapicClient->getGateway($formattedName);
+        $request = (new GetGatewayRequest())->setName($formattedName);
+        $response = $gapicClient->getGateway($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2269,17 +2449,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $request = (new GetGatewayRequest())->setName($formattedName);
         try {
-            $gapicClient->getGateway($formattedName);
+            $gapicClient->getGateway($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2310,7 +2494,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->grpcRouteName('[PROJECT]', '[LOCATION]', '[GRPC_ROUTE]');
-        $response = $gapicClient->getGrpcRoute($formattedName);
+        $request = (new GetGrpcRouteRequest())->setName($formattedName);
+        $response = $gapicClient->getGrpcRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2333,17 +2518,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->grpcRouteName('[PROJECT]', '[LOCATION]', '[GRPC_ROUTE]');
+        $request = (new GetGrpcRouteRequest())->setName($formattedName);
         try {
-            $gapicClient->getGrpcRoute($formattedName);
+            $gapicClient->getGrpcRoute($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2374,7 +2563,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->httpRouteName('[PROJECT]', '[LOCATION]', '[HTTP_ROUTE]');
-        $response = $gapicClient->getHttpRoute($formattedName);
+        $request = (new GetHttpRouteRequest())->setName($formattedName);
+        $response = $gapicClient->getHttpRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2397,17 +2587,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->httpRouteName('[PROJECT]', '[LOCATION]', '[HTTP_ROUTE]');
+        $request = (new GetHttpRouteRequest())->setName($formattedName);
         try {
-            $gapicClient->getHttpRoute($formattedName);
+            $gapicClient->getHttpRoute($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2440,7 +2634,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->meshName('[PROJECT]', '[LOCATION]', '[MESH]');
-        $response = $gapicClient->getMesh($formattedName);
+        $request = (new GetMeshRequest())->setName($formattedName);
+        $response = $gapicClient->getMesh($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2463,17 +2658,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->meshName('[PROJECT]', '[LOCATION]', '[MESH]');
+        $request = (new GetMeshRequest())->setName($formattedName);
         try {
-            $gapicClient->getMesh($formattedName);
+            $gapicClient->getMesh($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2504,7 +2703,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serviceBindingName('[PROJECT]', '[LOCATION]', '[SERVICE_BINDING]');
-        $response = $gapicClient->getServiceBinding($formattedName);
+        $request = (new GetServiceBindingRequest())->setName($formattedName);
+        $response = $gapicClient->getServiceBinding($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2527,17 +2727,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceBindingName('[PROJECT]', '[LOCATION]', '[SERVICE_BINDING]');
+        $request = (new GetServiceBindingRequest())->setName($formattedName);
         try {
-            $gapicClient->getServiceBinding($formattedName);
+            $gapicClient->getServiceBinding($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2568,7 +2772,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tcpRouteName('[PROJECT]', '[LOCATION]', '[TCP_ROUTE]');
-        $response = $gapicClient->getTcpRoute($formattedName);
+        $request = (new GetTcpRouteRequest())->setName($formattedName);
+        $response = $gapicClient->getTcpRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2591,17 +2796,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tcpRouteName('[PROJECT]', '[LOCATION]', '[TCP_ROUTE]');
+        $request = (new GetTcpRouteRequest())->setName($formattedName);
         try {
-            $gapicClient->getTcpRoute($formattedName);
+            $gapicClient->getTcpRoute($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2632,7 +2841,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tlsRouteName('[PROJECT]', '[LOCATION]', '[TLS_ROUTE]');
-        $response = $gapicClient->getTlsRoute($formattedName);
+        $request = (new GetTlsRouteRequest())->setName($formattedName);
+        $response = $gapicClient->getTlsRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2655,17 +2865,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tlsRouteName('[PROJECT]', '[LOCATION]', '[TLS_ROUTE]');
+        $request = (new GetTlsRouteRequest())->setName($formattedName);
         try {
-            $gapicClient->getTlsRoute($formattedName);
+            $gapicClient->getTlsRoute($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2688,16 +2902,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $endpointPoliciesElement = new EndpointPolicy();
-        $endpointPolicies = [
-            $endpointPoliciesElement,
-        ];
+        $endpointPolicies = [$endpointPoliciesElement];
         $expectedResponse = new ListEndpointPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEndpointPolicies($endpointPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listEndpointPolicies($formattedParent);
+        $request = (new ListEndpointPoliciesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listEndpointPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2723,17 +2936,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListEndpointPoliciesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listEndpointPolicies($formattedParent);
+            $gapicClient->listEndpointPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2756,16 +2973,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $gatewaysElement = new Gateway();
-        $gateways = [
-            $gatewaysElement,
-        ];
+        $gateways = [$gatewaysElement];
         $expectedResponse = new ListGatewaysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGateways($gateways);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listGateways($formattedParent);
+        $request = (new ListGatewaysRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGateways($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2791,17 +3007,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGatewaysRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listGateways($formattedParent);
+            $gapicClient->listGateways($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2824,16 +3044,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $grpcRoutesElement = new GrpcRoute();
-        $grpcRoutes = [
-            $grpcRoutesElement,
-        ];
+        $grpcRoutes = [$grpcRoutesElement];
         $expectedResponse = new ListGrpcRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGrpcRoutes($grpcRoutes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listGrpcRoutes($formattedParent);
+        $request = (new ListGrpcRoutesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listGrpcRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2859,17 +3078,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListGrpcRoutesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listGrpcRoutes($formattedParent);
+            $gapicClient->listGrpcRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2892,16 +3115,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $httpRoutesElement = new HttpRoute();
-        $httpRoutes = [
-            $httpRoutesElement,
-        ];
+        $httpRoutes = [$httpRoutesElement];
         $expectedResponse = new ListHttpRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHttpRoutes($httpRoutes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listHttpRoutes($formattedParent);
+        $request = (new ListHttpRoutesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listHttpRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2927,17 +3149,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListHttpRoutesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listHttpRoutes($formattedParent);
+            $gapicClient->listHttpRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2960,16 +3186,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $meshesElement = new Mesh();
-        $meshes = [
-            $meshesElement,
-        ];
+        $meshes = [$meshesElement];
         $expectedResponse = new ListMeshesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMeshes($meshes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listMeshes($formattedParent);
+        $request = (new ListMeshesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listMeshes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2995,17 +3220,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListMeshesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listMeshes($formattedParent);
+            $gapicClient->listMeshes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3028,16 +3257,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $serviceBindingsElement = new ServiceBinding();
-        $serviceBindings = [
-            $serviceBindingsElement,
-        ];
+        $serviceBindings = [$serviceBindingsElement];
         $expectedResponse = new ListServiceBindingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServiceBindings($serviceBindings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listServiceBindings($formattedParent);
+        $request = (new ListServiceBindingsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listServiceBindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3063,17 +3291,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListServiceBindingsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listServiceBindings($formattedParent);
+            $gapicClient->listServiceBindings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3096,16 +3328,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tcpRoutesElement = new TcpRoute();
-        $tcpRoutes = [
-            $tcpRoutesElement,
-        ];
+        $tcpRoutes = [$tcpRoutesElement];
         $expectedResponse = new ListTcpRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTcpRoutes($tcpRoutes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listTcpRoutes($formattedParent);
+        $request = (new ListTcpRoutesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listTcpRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3131,17 +3362,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTcpRoutesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listTcpRoutes($formattedParent);
+            $gapicClient->listTcpRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3164,16 +3399,15 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tlsRoutesElement = new TlsRoute();
-        $tlsRoutes = [
-            $tlsRoutesElement,
-        ];
+        $tlsRoutes = [$tlsRoutesElement];
         $expectedResponse = new ListTlsRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTlsRoutes($tlsRoutes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listTlsRoutes($formattedParent);
+        $request = (new ListTlsRoutesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listTlsRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3199,17 +3433,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTlsRoutesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listTlsRoutes($formattedParent);
+            $gapicClient->listTlsRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3268,7 +3506,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
         $endpointPolicy->setEndpointMatcher($endpointPolicyEndpointMatcher);
-        $response = $gapicClient->updateEndpointPolicy($endpointPolicy);
+        $request = (new UpdateEndpointPolicyRequest())->setEndpointPolicy($endpointPolicy);
+        $response = $gapicClient->updateEndpointPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3323,12 +3562,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $endpointPolicy = new EndpointPolicy();
@@ -3338,7 +3580,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $endpointPolicy->setType($endpointPolicyType);
         $endpointPolicyEndpointMatcher = new EndpointMatcher();
         $endpointPolicy->setEndpointMatcher($endpointPolicyEndpointMatcher);
-        $response = $gapicClient->updateEndpointPolicy($endpointPolicy);
+        $request = (new UpdateEndpointPolicyRequest())->setEndpointPolicy($endpointPolicy);
+        $response = $gapicClient->updateEndpointPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3407,7 +3650,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $gateway->setPorts($gatewayPorts);
         $gatewayScope = 'gatewayScope-611626384';
         $gateway->setScope($gatewayScope);
-        $response = $gapicClient->updateGateway($gateway);
+        $request = (new UpdateGatewayRequest())->setGateway($gateway);
+        $response = $gapicClient->updateGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3462,12 +3706,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $gateway = new Gateway();
@@ -3477,7 +3724,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $gateway->setPorts($gatewayPorts);
         $gatewayScope = 'gatewayScope-611626384';
         $gateway->setScope($gatewayScope);
-        $response = $gapicClient->updateGateway($gateway);
+        $request = (new UpdateGatewayRequest())->setGateway($gateway);
+        $response = $gapicClient->updateGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3542,7 +3790,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
         $grpcRoute->setRules($grpcRouteRules);
-        $response = $gapicClient->updateGrpcRoute($grpcRoute);
+        $request = (new UpdateGrpcRouteRequest())->setGrpcRoute($grpcRoute);
+        $response = $gapicClient->updateGrpcRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3597,12 +3846,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $grpcRoute = new GrpcRoute();
@@ -3612,7 +3864,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $grpcRoute->setHostnames($grpcRouteHostnames);
         $grpcRouteRules = [];
         $grpcRoute->setRules($grpcRouteRules);
-        $response = $gapicClient->updateGrpcRoute($grpcRoute);
+        $request = (new UpdateGrpcRouteRequest())->setGrpcRoute($grpcRoute);
+        $response = $gapicClient->updateGrpcRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3677,7 +3930,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
         $httpRoute->setRules($httpRouteRules);
-        $response = $gapicClient->updateHttpRoute($httpRoute);
+        $request = (new UpdateHttpRouteRequest())->setHttpRoute($httpRoute);
+        $response = $gapicClient->updateHttpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3732,12 +3986,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $httpRoute = new HttpRoute();
@@ -3747,7 +4004,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $httpRoute->setHostnames($httpRouteHostnames);
         $httpRouteRules = [];
         $httpRoute->setRules($httpRouteRules);
-        $response = $gapicClient->updateHttpRoute($httpRoute);
+        $request = (new UpdateHttpRouteRequest())->setHttpRoute($httpRoute);
+        $response = $gapicClient->updateHttpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3810,7 +4068,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $mesh = new Mesh();
         $meshName = 'meshName-472824296';
         $mesh->setName($meshName);
-        $response = $gapicClient->updateMesh($mesh);
+        $request = (new UpdateMeshRequest())->setMesh($mesh);
+        $response = $gapicClient->updateMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3865,18 +4124,22 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $mesh = new Mesh();
         $meshName = 'meshName-472824296';
         $mesh->setName($meshName);
-        $response = $gapicClient->updateMesh($mesh);
+        $request = (new UpdateMeshRequest())->setMesh($mesh);
+        $response = $gapicClient->updateMesh($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3939,7 +4202,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
-        $response = $gapicClient->updateTcpRoute($tcpRoute);
+        $request = (new UpdateTcpRouteRequest())->setTcpRoute($tcpRoute);
+        $response = $gapicClient->updateTcpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3994,12 +4258,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tcpRoute = new TcpRoute();
@@ -4007,7 +4274,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $tcpRoute->setName($tcpRouteName);
         $tcpRouteRules = [];
         $tcpRoute->setRules($tcpRouteRules);
-        $response = $gapicClient->updateTcpRoute($tcpRoute);
+        $request = (new UpdateTcpRouteRequest())->setTcpRoute($tcpRoute);
+        $response = $gapicClient->updateTcpRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4070,7 +4338,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
-        $response = $gapicClient->updateTlsRoute($tlsRoute);
+        $request = (new UpdateTlsRouteRequest())->setTlsRoute($tlsRoute);
+        $response = $gapicClient->updateTlsRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4125,12 +4394,15 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tlsRoute = new TlsRoute();
@@ -4138,7 +4410,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $tlsRoute->setName($tlsRouteName);
         $tlsRouteRules = [];
         $tlsRoute->setRules($tlsRouteRules);
-        $response = $gapicClient->updateTlsRoute($tlsRoute);
+        $request = (new UpdateTlsRouteRequest())->setTlsRoute($tlsRoute);
+        $response = $gapicClient->updateTlsRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4177,7 +4450,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getLocation();
+        $request = new GetLocationRequest();
+        $response = $gapicClient->getLocation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4198,15 +4472,19 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new GetLocationRequest();
         try {
-            $gapicClient->getLocation();
+            $gapicClient->getLocation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4229,14 +4507,13 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listLocations();
+        $request = new ListLocationsRequest();
+        $response = $gapicClient->listLocations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -4260,15 +4537,19 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ListLocationsRequest();
         try {
-            $gapicClient->listLocations();
+            $gapicClient->listLocations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4297,7 +4578,8 @@ class NetworkServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $gapicClient->getIamPolicy($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4320,17 +4602,21 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
-            $gapicClient->getIamPolicy($resource);
+            $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4360,7 +4646,8 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4385,18 +4672,22 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
-            $gapicClient->setIamPolicy($resource, $policy);
+            $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4422,7 +4713,8 @@ class NetworkServicesClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
+        $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4447,18 +4739,22 @@ class NetworkServicesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
-            $gapicClient->testIamPermissions($resource, $permissions);
+            $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4468,5 +4764,93 @@ class NetworkServicesClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createEndpointPolicyAsyncTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createEndpointPolicyTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $authorizationPolicy = 'authorizationPolicy-1576667208';
+        $description = 'description-1724546052';
+        $serverTlsPolicy = 'serverTlsPolicy1906438002';
+        $clientTlsPolicy = 'clientTlsPolicy-611416598';
+        $expectedResponse = new EndpointPolicy();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAuthorizationPolicy($authorizationPolicy);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setServerTlsPolicy($serverTlsPolicy);
+        $expectedResponse->setClientTlsPolicy($clientTlsPolicy);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createEndpointPolicyTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $endpointPolicyId = 'endpointPolicyId-969914082';
+        $endpointPolicy = new EndpointPolicy();
+        $endpointPolicyName = 'endpointPolicyName36531794';
+        $endpointPolicy->setName($endpointPolicyName);
+        $endpointPolicyType = EndpointPolicyType::ENDPOINT_POLICY_TYPE_UNSPECIFIED;
+        $endpointPolicy->setType($endpointPolicyType);
+        $endpointPolicyEndpointMatcher = new EndpointMatcher();
+        $endpointPolicy->setEndpointMatcher($endpointPolicyEndpointMatcher);
+        $request = (new CreateEndpointPolicyRequest())
+            ->setParent($formattedParent)
+            ->setEndpointPolicyId($endpointPolicyId)
+            ->setEndpointPolicy($endpointPolicy);
+        $response = $gapicClient->createEndpointPolicyAsync($request)->wait();
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkservices.v1.NetworkServices/CreateEndpointPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getEndpointPolicyId();
+        $this->assertProtobufEquals($endpointPolicyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getEndpointPolicy();
+        $this->assertProtobufEquals($endpointPolicy, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createEndpointPolicyTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkservices_v1_generated_DepService_GetLbTrafficExtension_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\GetLbTrafficExtensionRequest;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
 
 /**
@@ -40,10 +41,14 @@ function get_lb_traffic_extension_sample(string $formattedName): void
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetLbTrafficExtensionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var LbTrafficExtension $response */
-        $response = $depServiceClient->getLbTrafficExtension($formattedName);
+        $response = $depServiceClient->getLbTrafficExtension($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

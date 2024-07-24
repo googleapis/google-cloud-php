@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_ListLbTrafficExtensions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
+use Google\Cloud\NetworkServices\V1\ListLbTrafficExtensionsRequest;
 
 /**
  * Lists `LbTrafficExtension` resources in a given project and location.
@@ -41,10 +42,14 @@ function list_lb_traffic_extensions_sample(string $formattedParent): void
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListLbTrafficExtensionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $depServiceClient->listLbTrafficExtensions($formattedParent);
+        $response = $depServiceClient->listLbTrafficExtensions($request);
 
         /** @var LbTrafficExtension $element */
         foreach ($response as $element) {

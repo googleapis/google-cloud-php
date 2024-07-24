@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkservices_v1_generated_NetworkServices_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 
 /**
  * Returns permissions that a caller has on the specified resource. If the
@@ -48,13 +49,16 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $networkServicesClient->testIamPermissions($resource, $permissions);
+        $response = $networkServicesClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
