@@ -26,14 +26,14 @@ class DatastoreFirestoreMigrationMetadata extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.MigrationState migration_state = 1;</code>
      */
-    private $migration_state = 0;
+    protected $migration_state = 0;
     /**
      * The current step of migration from Cloud Datastore to Cloud Firestore in
      * Datastore mode.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.MigrationStep migration_step = 2;</code>
      */
-    private $migration_step = 0;
+    protected $migration_step = 0;
 
     /**
      * Constructor.

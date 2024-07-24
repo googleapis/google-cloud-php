@@ -21,31 +21,31 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Human-meaningful name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A detailed description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Creation timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * A user-definable description of the lifecycle phase of this API version.
      * Format: free-form, but we expect single words that describe API maturity,
@@ -54,7 +54,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string state = 6;</code>
      */
-    private $state = '';
+    protected $state = '';
     /**
      * Labels attach identifying metadata to resources. Identifying metadata can
      * be used to filter list operations.

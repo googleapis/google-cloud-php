@@ -50,7 +50,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig.VpcAccessibleServices vpc_accessible_services = 10;</code>
      */
-    private $vpc_accessible_services = null;
+    protected $vpc_accessible_services = null;
     /**
      * List of [IngressPolicies]
      * [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy]
