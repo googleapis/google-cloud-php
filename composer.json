@@ -51,7 +51,6 @@
         "psr/http-message": "^1.0|^2.0",
         "ramsey/uuid": "^4.0",
         "google/gax": "^1.34.0",
-        "google/common-protos": "^4.4",
         "google/auth": "^1.34"
     },
     "require-dev": {
@@ -246,6 +245,7 @@
         "google/cloud-web-risk": "1.5.5",
         "google/cloud-web-security-scanner": "1.0.0",
         "google/cloud-workflows": "1.0.0-RC1",
+        "google/common-protos": "4.7.0",
         "google/geo-common-protos": "0.1.0",
         "google/grafeas": "1.0.0",
         "google/longrunning": "0.4.3",
@@ -278,6 +278,7 @@
             "GPBMetadata\\Google\\Api\\Servicecontrol\\": "ServiceControl/metadata",
             "GPBMetadata\\Google\\Api\\Servicemanagement\\": "ServiceManagement/metadata",
             "GPBMetadata\\Google\\Api\\Serviceusage\\": "ServiceUsage/metadata",
+            "GPBMetadata\\Google\\Api\\": "ApiCommonProtos/metadata/Api",
             "GPBMetadata\\Google\\Appengine\\": "AppEngineAdmin/metadata",
             "GPBMetadata\\Google\\Apps\\Card\\": "AppsChat/metadata/Card",
             "GPBMetadata\\Google\\Apps\\Events\\Subscriptions\\": "AppsEventsSubscriptions/metadata",
@@ -428,6 +429,7 @@
             "GPBMetadata\\Google\\Cloud\\Webrisk\\": "WebRisk/metadata",
             "GPBMetadata\\Google\\Cloud\\Websecurityscanner\\": "WebSecurityScanner/metadata",
             "GPBMetadata\\Google\\Cloud\\Workflows\\": "Workflows/metadata",
+            "GPBMetadata\\Google\\Cloud\\": "ApiCommonProtos/metadata/Cloud",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
             "GPBMetadata\\Google\\Dataflow\\": "Dataflow/metadata",
             "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
@@ -443,10 +445,16 @@
             "GPBMetadata\\Google\\Devtools\\Containeranalysis\\": "ContainerAnalysis/metadata",
             "GPBMetadata\\Google\\Firestore\\": "Firestore/metadata",
             "GPBMetadata\\Google\\Geo\\": "GeoCommonProtos/metadata",
-            "GPBMetadata\\Google\\Iam\\": "Iam/metadata",
+            "GPBMetadata\\Google\\Iam\\": [
+                "Iam/metadata",
+                "ApiCommonProtos/metadata/Iam"
+            ],
             "GPBMetadata\\Google\\Iam\\Credentials\\": "IamCredentials/metadata",
             "GPBMetadata\\Google\\Identity\\Accesscontextmanager\\": "AccessContextManager/metadata",
-            "GPBMetadata\\Google\\Logging\\": "Logging/metadata",
+            "GPBMetadata\\Google\\Logging\\": [
+                "Logging/metadata",
+                "ApiCommonProtos/metadata/Logging"
+            ],
             "GPBMetadata\\Google\\Longrunning\\": "LongRunning/metadata/Longrunning",
             "GPBMetadata\\Google\\Maps\\Fleetengine\\": "MapsFleetEngine/metadata",
             "GPBMetadata\\Google\\Maps\\Fleetengine\\Delivery\\": "MapsFleetEngineDelivery/metadata",
@@ -454,7 +462,10 @@
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
-            "GPBMetadata\\Google\\Rpc\\": "CommonProtos/metadata/Rpc",
+            "GPBMetadata\\Google\\Rpc\\": [
+                "CommonProtos/metadata/Rpc",
+                "ApiCommonProtos/metadata/Rpc"
+            ],
             "GPBMetadata\\Google\\Shopping\\Css\\": "ShoppingCss/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Accounts\\": "ShoppingMerchantAccounts/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Conversions\\": "ShoppingMerchantConversions/metadata",
@@ -470,17 +481,20 @@
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storage\\Control\\": "StorageControl/metadata",
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
+            "GPBMetadata\\Google\\Type\\": "ApiCommonProtos/metadata/Type",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
+            "Google\\Api\\": "ApiCommonProtos/src/Api",
             "Google\\Apps\\Card\\": "AppsChat/src/Card",
             "Google\\Apps\\Chat\\": "AppsChat/src/Chat",
             "Google\\Apps\\Events\\Subscriptions\\": "AppsEventsSubscriptions/src",
             "Google\\Apps\\Meet\\": "AppsMeet/src",
             "Google\\Apps\\Script\\Type\\": "GSuiteAddOns/external/protos",
             "Google\\Cloud\\": [
-                "CommonProtos/src"
+                "CommonProtos/src",
+                "ApiCommonProtos/src/Cloud"
             ],
             "Google\\Cloud\\AIPlatform\\": "AiPlatform/src",
             "Google\\Cloud\\AccessApproval\\": "AccessApproval/src",
@@ -654,11 +668,13 @@
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "Google\\Cloud\\Workflows\\": "Workflows/src",
             "Google\\Geo\\": "GeoCommonProtos/src",
+            "Google\\Iam\\": "ApiCommonProtos/src/Iam",
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
             "Google\\LongRunning\\": "LongRunning/src/LongRunning",
             "Google\\Maps\\FleetEngine\\": "MapsFleetEngine/src",
             "Google\\Maps\\FleetEngine\\Delivery\\": "MapsFleetEngineDelivery/src",
             "Google\\Maps\\RouteOptimization\\": "MapsRouteOptimization/src",
+            "Google\\Rpc\\": "ApiCommonProtos/src/Rpc",
             "Google\\Shopping\\Css\\": "ShoppingCss/src",
             "Google\\Shopping\\Merchant\\Accounts\\": "ShoppingMerchantAccounts/src",
             "Google\\Shopping\\Merchant\\Conversions\\": "ShoppingMerchantConversions/src",
@@ -671,6 +687,7 @@
             "Google\\Shopping\\Merchant\\Quota\\": "ShoppingMerchantQuota/src",
             "Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/src",
             "Google\\Shopping\\Type\\": "ShoppingCommonProtos/src/Type",
+            "Google\\Type\\": "ApiCommonProtos/src/Type",
             "Grafeas\\": "Grafeas/src"
         },
         "files": [
