@@ -21,6 +21,12 @@ class ModerateTextRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.language.v2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
+    /**
+     * Optional. The model version to use for ModerateText.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v2.ModerateTextRequest.ModelVersion model_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model_version = 0;
 
     /**
      * @param \Google\Cloud\Language\V2\Document $document Required. Input document.
@@ -43,6 +49,8 @@ class ModerateTextRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Language\V2\Document $document
      *           Required. Input document.
+     *     @type int $model_version
+     *           Optional. The model version to use for ModerateText.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,6 +90,32 @@ class ModerateTextRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Language\V2\Document::class);
         $this->document = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The model version to use for ModerateText.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v2.ModerateTextRequest.ModelVersion model_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getModelVersion()
+    {
+        return $this->model_version;
+    }
+
+    /**
+     * Optional. The model version to use for ModerateText.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v2.ModerateTextRequest.ModelVersion model_version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModelVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Language\V2\ModerateTextRequest\ModelVersion::class);
+        $this->model_version = $var;
 
         return $this;
     }
