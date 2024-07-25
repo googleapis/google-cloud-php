@@ -25,17 +25,6 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      */
     protected $id = '';
     /**
-     * Optional. Phases within which jobs are subject to automatic repair actions
-     * on failure. Proceeds only after phase name matched any one in the list, or
-     * for all phases if unspecified. This value must consist of lower-case
-     * letters, numbers, and hyphens, start with a letter and end with a letter or
-     * a number, and have a max length of 63 characters. In other words, it must
-     * match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
-     *
-     * Generated from protobuf field <code>repeated string source_phases = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $source_phases;
-    /**
      * Optional. Jobs to repair. Proceeds only after job name matched any one in
      * the list, or for all jobs if unspecified or empty. The phase that includes
      * the job must match the phase ID specified in `source_phase`. This value
@@ -47,12 +36,6 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string jobs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jobs;
-    /**
-     * Required. Defines the types of automatic repair actions for failed jobs.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RepairMode repair_modes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    private $repair_modes;
     /**
      * Output only. Information around the state of the 'Automation' rule.
      *
@@ -70,13 +53,6 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      *           Required. ID of the rule. This id must be unique in the `Automation`
      *           resource to which this rule belongs. The format is
      *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_phases
-     *           Optional. Phases within which jobs are subject to automatic repair actions
-     *           on failure. Proceeds only after phase name matched any one in the list, or
-     *           for all phases if unspecified. This value must consist of lower-case
-     *           letters, numbers, and hyphens, start with a letter and end with a letter or
-     *           a number, and have a max length of 63 characters. In other words, it must
-     *           match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Optional. Jobs to repair. Proceeds only after job name matched any one in
      *           the list, or for all jobs if unspecified or empty. The phase that includes
@@ -85,8 +61,6 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      *           letter and end with a letter or a number, and have a max length of 63
      *           characters. In other words, it must match the following regex:
      *           `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
-     *     @type array<\Google\Cloud\Deploy\V1\RepairMode>|\Google\Protobuf\Internal\RepeatedField $repair_modes
-     *           Required. Defines the types of automatic repair actions for failed jobs.
      *     @type \Google\Cloud\Deploy\V1\AutomationRuleCondition $condition
      *           Output only. Information around the state of the 'Automation' rule.
      * }
@@ -127,42 +101,6 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Phases within which jobs are subject to automatic repair actions
-     * on failure. Proceeds only after phase name matched any one in the list, or
-     * for all phases if unspecified. This value must consist of lower-case
-     * letters, numbers, and hyphens, start with a letter and end with a letter or
-     * a number, and have a max length of 63 characters. In other words, it must
-     * match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
-     *
-     * Generated from protobuf field <code>repeated string source_phases = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getSourcePhases()
-    {
-        return $this->source_phases;
-    }
-
-    /**
-     * Optional. Phases within which jobs are subject to automatic repair actions
-     * on failure. Proceeds only after phase name matched any one in the list, or
-     * for all phases if unspecified. This value must consist of lower-case
-     * letters, numbers, and hyphens, start with a letter and end with a letter or
-     * a number, and have a max length of 63 characters. In other words, it must
-     * match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
-     *
-     * Generated from protobuf field <code>repeated string source_phases = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setSourcePhases($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->source_phases = $arr;
-
-        return $this;
-    }
-
-    /**
      * Optional. Jobs to repair. Proceeds only after job name matched any one in
      * the list, or for all jobs if unspecified or empty. The phase that includes
      * the job must match the phase ID specified in `source_phase`. This value
@@ -196,32 +134,6 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->jobs = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Required. Defines the types of automatic repair actions for failed jobs.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RepairMode repair_modes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getRepairModes()
-    {
-        return $this->repair_modes;
-    }
-
-    /**
-     * Required. Defines the types of automatic repair actions for failed jobs.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RepairMode repair_modes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Deploy\V1\RepairMode>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setRepairModes($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\RepairMode::class);
-        $this->repair_modes = $arr;
 
         return $this;
     }
