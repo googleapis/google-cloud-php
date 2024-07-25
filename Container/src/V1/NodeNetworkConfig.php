@@ -98,7 +98,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      */
     private $additional_pod_network_configs;
     /**
-     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * Output only. The utilization of the IPv4 range for the pod.
      * The ratio is Usage/[Total number of IPs in the secondary range],
      * Usage=numNodes*numZones*podIPsPerNode.
      *
@@ -163,7 +163,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           We specify the additional pod networks for this node pool using this list.
      *           Each pod network corresponds to an additional alias IP range for the node
      *     @type float $pod_ipv4_range_utilization
-     *           Output only. [Output only] The utilization of the IPv4 range for the pod.
+     *           Output only. The utilization of the IPv4 range for the pod.
      *           The ratio is Usage/[Total number of IPs in the secondary range],
      *           Usage=numNodes*numZones*podIPsPerNode.
      * }
@@ -480,7 +480,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * Output only. The utilization of the IPv4 range for the pod.
      * The ratio is Usage/[Total number of IPs in the secondary range],
      * Usage=numNodes*numZones*podIPsPerNode.
      *
@@ -493,7 +493,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The utilization of the IPv4 range for the pod.
+     * Output only. The utilization of the IPv4 range for the pod.
      * The ratio is Usage/[Total number of IPs in the secondary range],
      * Usage=numNodes*numZones*podIPsPerNode.
      *
