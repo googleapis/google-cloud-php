@@ -22,7 +22,7 @@ class AcceleratorType
     /**
      * Nvidia Tesla K80 GPU.
      *
-     * Generated from protobuf enum <code>NVIDIA_TESLA_K80 = 1;</code>
+     * Generated from protobuf enum <code>NVIDIA_TESLA_K80 = 1 [deprecated = true];</code>
      */
     const NVIDIA_TESLA_K80 = 1;
     /**

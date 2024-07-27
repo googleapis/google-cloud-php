@@ -39,7 +39,8 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `description`
      *   * `labels`
-     *   * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     *   * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
+     *   * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -63,7 +64,8 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                        * `description`
      *                                                        * `labels`
-     *                                                        * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     *                                                        * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
+     *                                                        * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureRequest
      *
@@ -99,7 +101,8 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *           Updatable fields:
      *             * `description`
      *             * `labels`
-     *             * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     *             * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
+     *             * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      * }
      */
     public function __construct($data = NULL) {
@@ -162,7 +165,8 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `description`
      *   * `labels`
-     *   * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     *   * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
+     *   * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -193,7 +197,8 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `description`
      *   * `labels`
-     *   * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     *   * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
+     *   * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

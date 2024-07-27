@@ -153,14 +153,7 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $model = 'model104069929';
-        $instances = [];
-        $contents = [];
-        $request = (new CountTokensRequest())
-            ->setEndpoint($formattedEndpoint)
-            ->setModel($model)
-            ->setInstances($instances)
-            ->setContents($contents);
+        $request = (new CountTokensRequest())->setEndpoint($formattedEndpoint);
         $response = $gapicClient->countTokens($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -170,12 +163,6 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.LlmUtilityService/CountTokens', $actualFuncCall);
         $actualValue = $actualRequestObject->getEndpoint();
         $this->assertProtobufEquals($formattedEndpoint, $actualValue);
-        $actualValue = $actualRequestObject->getModel();
-        $this->assertProtobufEquals($model, $actualValue);
-        $actualValue = $actualRequestObject->getInstances();
-        $this->assertProtobufEquals($instances, $actualValue);
-        $actualValue = $actualRequestObject->getContents();
-        $this->assertProtobufEquals($contents, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -202,14 +189,7 @@ class LlmUtilityServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $model = 'model104069929';
-        $instances = [];
-        $contents = [];
-        $request = (new CountTokensRequest())
-            ->setEndpoint($formattedEndpoint)
-            ->setModel($model)
-            ->setInstances($instances)
-            ->setContents($contents);
+        $request = (new CountTokensRequest())->setEndpoint($formattedEndpoint);
         try {
             $gapicClient->countTokens($request);
             // If the $gapicClient method call did not throw, fail the test

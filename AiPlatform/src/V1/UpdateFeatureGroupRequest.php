@@ -34,6 +34,9 @@ class UpdateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
+     *   * `description`
+     *   * `big_query`
+     *   * `big_query.entity_id_columns`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -54,6 +57,9 @@ class UpdateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      *                                                               Updatable fields:
      *
      *                                                               * `labels`
+     *                                                               * `description`
+     *                                                               * `big_query`
+     *                                                               * `big_query.entity_id_columns`
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureGroupRequest
      *
@@ -86,6 +92,9 @@ class UpdateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      *           fields.
      *           Updatable fields:
      *             * `labels`
+     *             * `description`
+     *             * `big_query`
+     *             * `big_query.entity_id_columns`
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +152,9 @@ class UpdateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
+     *   * `description`
+     *   * `big_query`
+     *   * `big_query.entity_id_columns`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -172,6 +184,9 @@ class UpdateFeatureGroupRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
+     *   * `description`
+     *   * `big_query`
+     *   * `big_query.entity_id_columns`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

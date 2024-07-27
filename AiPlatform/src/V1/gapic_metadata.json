@@ -1691,9 +1691,19 @@
                                 "assignNotebookRuntime"
                             ]
                         },
+                        "CreateNotebookExecutionJob": {
+                            "methods": [
+                                "createNotebookExecutionJob"
+                            ]
+                        },
                         "CreateNotebookRuntimeTemplate": {
                             "methods": [
                                 "createNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "DeleteNotebookExecutionJob": {
+                            "methods": [
+                                "deleteNotebookExecutionJob"
                             ]
                         },
                         "DeleteNotebookRuntime": {
@@ -1706,6 +1716,11 @@
                                 "deleteNotebookRuntimeTemplate"
                             ]
                         },
+                        "GetNotebookExecutionJob": {
+                            "methods": [
+                                "getNotebookExecutionJob"
+                            ]
+                        },
                         "GetNotebookRuntime": {
                             "methods": [
                                 "getNotebookRuntime"
@@ -1714,6 +1729,11 @@
                         "GetNotebookRuntimeTemplate": {
                             "methods": [
                                 "getNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "ListNotebookExecutionJobs": {
+                            "methods": [
+                                "listNotebookExecutionJobs"
                             ]
                         },
                         "ListNotebookRuntimeTemplates": {
