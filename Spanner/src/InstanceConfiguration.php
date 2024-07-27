@@ -262,14 +262,20 @@ class InstanceConfiguration
             'validateOnly' => $validateOnly
         ];
 
-        return $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'createInstanceConfig',
-            $requestArray,
+        $request = $this->serializer->decodeMessage(new CreateInstanceConfigRequest(), $requestArray);
+
+        $callOptions = $this->addResourcePrefixHeader(
             $callOptions,
-            CreateInstanceConfigRequest::class,
             $this->name
-        )->withResultFunction($this->instanceConfigResultFunction());
+        );
+
+        $operationResponse = $this->instanceAdminClient->createInstanceConfig(
+            $request,
+            $callOptions
+        );
+
+        return $operationResponse
+            ->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**
@@ -303,25 +309,22 @@ class InstanceConfiguration
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
-        $fieldMask = $this->fieldMask($data);
-        $data += [
-            'name' => $this->name,
-        ];
+        $data += ['name' => $this->name];
 
-        $requestArray = [
+        $request = $this->serializer->decodeMessage(new UpdateInstanceConfigRequest(), [
             'instanceConfig' => $data,
-            'updateMask' => $fieldMask,
+            'updateMask' => $this->fieldMask($data),
             'validateOnly' => $validateOnly
-        ];
+        ]);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        return $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'updateInstanceConfig',
-            $requestArray,
-            $callOptions,
-            UpdateInstanceConfigRequest::class,
-            $this->name
-        )->withResultFunction($this->instanceConfigResultFunction());
+        $operationResponse = $this->instanceAdminClient->createInstanceConfig(
+            $request,
+            $callOptions
+        );
+
+        return $operationResponse
+            ->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**

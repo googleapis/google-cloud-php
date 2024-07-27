@@ -118,10 +118,9 @@ class SpannerClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
 
-    /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
+    private GapicSpannerClient $spannerClient;
+    private InstanceAdminClient $instanceAdminClient;
+    private DatabaseAdminClient $databaseAdminClient;
 
     /**
      * @var Serializer
@@ -253,15 +252,16 @@ class SpannerClient
                 return $this->formatTimestampFromApi($v);
             }
         ]);
-        $this->requestHandler = new RequestHandler(
-            $this->serializer,
-            [
-                GapicSpannerClient::class,
-                InstanceAdminClient::class,
-                DatabaseAdminClient::class
-            ],
-            $config
-        );
+
+        // Adds some defaults
+        // gccl needs to be present for handwritten clients
+        $clientConfig = $config += [
+            'libName' => 'gccl',
+            'serializer' => $this->serializer,
+        ];
+        $this->spannerClient = new GapicSpannerClient($clientConfig);
+        $this->instanceAdminClient = new InstanceAdminClient($clientConfig);
+        $this->databaseAdminClient = new DatabaseAdminClient($clientConfig);
     }
 
     /**
