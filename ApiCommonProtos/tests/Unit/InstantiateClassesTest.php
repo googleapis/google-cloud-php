@@ -54,8 +54,9 @@ class InstantiateClassesTest extends TestCase
         $reg = new RegexIterator($it, '#.+\.php$#', RecursiveRegexIterator::GET_MATCH);
         foreach ($reg as $files) {
             $file = $files[0];
-            $parts = explode('/', $file);
-            $namespace = '\\Google\\' . substr(implode('\\', array_slice($parts, array_search('src', $parts) + 1)), 0, -4);
+            $fileParts = explode(DIRECTORY_SEPARATOR, $file);
+            $parts = array_slice($fileParts, array_search('src', $fileParts) + 1);
+            $namespace = '\\Google\\' . substr(implode('\\', $parts), 0, -4);
             $class = explode('.', $namespace)[0];
             yield [$class];
         }
