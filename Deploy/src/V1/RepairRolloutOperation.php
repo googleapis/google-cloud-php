@@ -22,18 +22,25 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      */
     protected $rollout = '';
     /**
-     * Output only. The index of the current repair action in the repair sequence.
-     *
-     * Generated from protobuf field <code>int64 current_repair_mode_index = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $current_repair_mode_index = 0;
-    /**
      * Output only. Records of the repair attempts. Each repair phase may have
      * multiple retry attempts or single rollback attempt.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RepairPhase repair_phases = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $repair_phases;
+    /**
+     * Output only. The phase ID of the phase that includes the job being
+     * repaired.
+     *
+     * Generated from protobuf field <code>string phase_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $phase_id = '';
+    /**
+     * Output only. The job ID for the Job to repair.
+     *
+     * Generated from protobuf field <code>string job_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $job_id = '';
 
     /**
      * Constructor.
@@ -43,11 +50,14 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $rollout
      *           Output only. The name of the rollout that initiates the `AutomationRun`.
-     *     @type int|string $current_repair_mode_index
-     *           Output only. The index of the current repair action in the repair sequence.
      *     @type array<\Google\Cloud\Deploy\V1\RepairPhase>|\Google\Protobuf\Internal\RepeatedField $repair_phases
      *           Output only. Records of the repair attempts. Each repair phase may have
      *           multiple retry attempts or single rollback attempt.
+     *     @type string $phase_id
+     *           Output only. The phase ID of the phase that includes the job being
+     *           repaired.
+     *     @type string $job_id
+     *           Output only. The job ID for the Job to repair.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,32 +92,6 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The index of the current repair action in the repair sequence.
-     *
-     * Generated from protobuf field <code>int64 current_repair_mode_index = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return int|string
-     */
-    public function getCurrentRepairModeIndex()
-    {
-        return $this->current_repair_mode_index;
-    }
-
-    /**
-     * Output only. The index of the current repair action in the repair sequence.
-     *
-     * Generated from protobuf field <code>int64 current_repair_mode_index = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int|string $var
-     * @return $this
-     */
-    public function setCurrentRepairModeIndex($var)
-    {
-        GPBUtil::checkInt64($var);
-        $this->current_repair_mode_index = $var;
-
-        return $this;
-    }
-
-    /**
      * Output only. Records of the repair attempts. Each repair phase may have
      * multiple retry attempts or single rollback attempt.
      *
@@ -131,6 +115,60 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\RepairPhase::class);
         $this->repair_phases = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The phase ID of the phase that includes the job being
+     * repaired.
+     *
+     * Generated from protobuf field <code>string phase_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPhaseId()
+    {
+        return $this->phase_id;
+    }
+
+    /**
+     * Output only. The phase ID of the phase that includes the job being
+     * repaired.
+     *
+     * Generated from protobuf field <code>string phase_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPhaseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->phase_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The job ID for the Job to repair.
+     *
+     * Generated from protobuf field <code>string job_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getJobId()
+    {
+        return $this->job_id;
+    }
+
+    /**
+     * Output only. The job ID for the Job to repair.
+     *
+     * Generated from protobuf field <code>string job_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJobId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->job_id = $var;
 
         return $this;
     }
