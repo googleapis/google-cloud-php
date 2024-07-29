@@ -30,7 +30,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+namespace Google\ApiCommonProtos\Tests\Unit;
+
 use PHPUnit\Framework\TestCase;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RegexIterator;
+use RecursiveRegexIterator;
 
 class InstantiateClassesTest extends TestCase
 {
@@ -49,16 +55,22 @@ class InstantiateClassesTest extends TestCase
 
     public function classesProvider()
     {
-        $dir = new RecursiveDirectoryIterator(__DIR__ . '/../../src');
+        $directoryPrefix = __DIR__ . '/../../src';
+        $directoryPrefixLength = strlen($directoryPrefix);
+        $phpFileSuffix = '.php';
+        $phpFileSuffixLength = strlen($phpFileSuffix);
+        $phpFileSuffixRegex = '#.+\.php$#';
+
+        $dir = new RecursiveDirectoryIterator($directoryPrefix);
         $it = new RecursiveIteratorIterator($dir);
-        $reg = new RegexIterator($it, '#.+\.php$#', RecursiveRegexIterator::GET_MATCH);
+        $reg = new RegexIterator($it, $phpFileSuffixRegex, RecursiveRegexIterator::GET_MATCH);
         foreach ($reg as $files) {
             $file = $files[0];
-            $fileParts = explode(DIRECTORY_SEPARATOR, $file);
-            $parts = array_slice($fileParts, array_search('src', $fileParts) + 1);
-            $namespace = '\\Google\\' . substr(implode('\\', $parts), 0, -4);
-            $class = explode('.', $namespace)[0];
-            yield [$class];
+            // Remove prefix and suffix
+            $trimmedFile = substr($file, $directoryPrefixLength, -$phpFileSuffixLength);
+            // Prepend standard '\Google\Cloud' portion of namespace, then replace '/' with '\'
+            $fullyQualifiedName = "\\Google" . str_replace("/", "\\", $trimmedFile);
+            yield [$fullyQualifiedName];
         }
     }
 }
