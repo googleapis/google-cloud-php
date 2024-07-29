@@ -17,14 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
-use Google\Cloud\Core\LongRunning\OperationResponseTrait;
-use Google\Cloud\Core\RequestHandler;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
@@ -34,7 +32,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
-use Google\ApiCore\ValidationException;
+use Google\Rpc\Code;
 use Closure;
 
 /**
@@ -63,17 +61,7 @@ class InstanceConfiguration
     /**
      * @var string
      */
-    private $projectId;
-
-    /**
-     * @var string
-     */
     private $name;
-
-    /**
-     * @var array
-     */
-    private $info;
 
     /**
      * Create an instance configuration object.
@@ -90,11 +78,10 @@ class InstanceConfiguration
     public function __construct(
         private InstanceAdminClient $instanceAdminClient,
         private Serializer $serializer,
-        $projectId,
+        private string $projectId,
         $name,
-        array $info = []
+        private array $info = []
     ) {
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
         $this->info = $info;
     }
@@ -161,8 +148,11 @@ class InstanceConfiguration
     {
         try {
             $this->reload($options = []);
-        } catch (NotFoundException $e) {
-            return false;
+        } catch (ApiException $e) {
+            if ($e->getCode() === Code::NOT_FOUND) {
+                return false;
+            }
+            throw $e;
         }
 
         return true;
@@ -248,19 +238,16 @@ class InstanceConfiguration
         $instanceConfig = $this->instanceConfigArray($data);
         $requestArray = [
             'parent' => InstanceAdminClient::projectName($this->projectId),
-            'instanceConfigId' => InstanceAdminClient::parseName(
-                $this->name
-            )['instance_config'],
+            'instanceConfigId' => InstanceAdminClient::parseName($this->name)['instance_config'],
             'instanceConfig' => $instanceConfig,
             'validateOnly' => $validateOnly
         ];
 
-        $request = $this->serializer->decodeMessage(new CreateInstanceConfigRequest(), $requestArray);
-
-        $callOptions = $this->addResourcePrefixHeader(
-            $callOptions,
-            $this->name
+        $request = $this->serializer->decodeMessage(
+            new CreateInstanceConfigRequest(),
+            $requestArray
         );
+        $callOptions = $this->addResourcePrefixHeader($callOptions,$this->name);
 
         $operationResponse = $this->instanceAdminClient->createInstanceConfig(
             $request,
@@ -311,7 +298,7 @@ class InstanceConfiguration
         ]);
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $operationResponse = $this->instanceAdminClient->createInstanceConfig(
+        $operationResponse = $this->instanceAdminClient->updateInstanceConfig(
             $request,
             $callOptions
         );
@@ -341,7 +328,7 @@ class InstanceConfiguration
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
 
-        return $this->instanceAdminClient->deleteInstanceConfig(
+        $this->instanceAdminClient->deleteInstanceConfig(
             $this->serializer->decodeMessage(new DeleteInstanceConfigRequest(), $data),
             $this->addResourcePrefixHeader($callOptions, $this->name)
         );
@@ -400,11 +387,11 @@ class InstanceConfiguration
         return function (InstanceConfig $result) {
             $name = InstanceAdminClient::parseName($result->getName());
             return new self(
-                $this->requestHandler,
+                $this->instanceAdminClient,
                 $this->serializer,
                 $this->projectId,
                 $name['instance_config'],
-                $this->serialize->encodeMessage($result)
+                $this->serializer->encodeMessage($result)
             );
         };
     }
@@ -418,7 +405,7 @@ class InstanceConfiguration
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'instanceAdminClient' => get_class($this->instanceAdminClient),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info,
