@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ValidationException;
@@ -54,8 +53,7 @@ use Closure;
 class InstanceConfiguration
 {
     use ApiHelperTrait;
-    use ArrayTrait;
-    use RequestTrait;
+    // use RequestTrait;
     use RequestProcessorTrait;
 
     /**
@@ -229,7 +227,8 @@ class InstanceConfiguration
         list($data, $callOptions) = $this->splitOptionalArgs($options);
 
         $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
-        $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
+        $validateOnly = $data['validateOnly'] ?? false;
+        unset($data['validateOnly']);
         $data += [
             'replicas' => $replicas,
             'baseConfig' => $baseConfig->name(),
@@ -247,7 +246,7 @@ class InstanceConfiguration
             new CreateInstanceConfigRequest(),
             $requestArray
         );
-        $callOptions = $this->addResourcePrefixHeader($callOptions,$this->name);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         $operationResponse = $this->instanceAdminClient->createInstanceConfig(
             $request,
@@ -288,7 +287,8 @@ class InstanceConfiguration
     public function update(array $options = [])
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
+        $validateOnly = $data['validateOnly'] ?? false;
+        unset($data['validateOnly']);
         $data += ['name' => $this->name];
 
         $request = $this->serializer->decodeMessage(new UpdateInstanceConfigRequest(), [
