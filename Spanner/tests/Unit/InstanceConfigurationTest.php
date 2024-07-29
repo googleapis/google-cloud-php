@@ -22,6 +22,8 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use PHPUnit\Framework\TestCase;
@@ -41,7 +43,7 @@ class InstanceConfigurationTest extends TestCase
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
 
-    private $requestHandler;
+    private $instanceAdminClient;
     private $serializer;
     private $configuration;
 
@@ -49,15 +51,8 @@ class InstanceConfigurationTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->serializer = $this->getSerializer();
-        $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->requestHandler->reveal(),
-            $this->serializer,
-            self::PROJECT_ID,
-            self::NAME,
-            []
-        ], ['requestHandler', 'serializer']);
     }
 
     public function testName()
@@ -70,45 +65,46 @@ class InstanceConfigurationTest extends TestCase
 
     public function testInfo()
     {
-        $this->mockSendRequest(InstanceAdminClient::class, 'getInstanceConfig', null, null, 0);
-
-        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->configuration->___setProperty('serializer', $this->serializer);
+        $this->instanceAdminClient->getInstanceConfig(Argument::cetera())->shouldNotBeCalled();
 
         $info = ['foo' => 'bar'];
-        $config = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->requestHandler->reveal(),
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
             $this->serializer,
             self::PROJECT_ID,
             self::NAME,
             $info
-        ], ['requestHandler','serializer']);
+        );
 
-        $this->assertEquals($info, $config->info());
+        $this->assertEquals($info, $instanceConfig->info());
     }
 
     public function testInfoWithReload()
     {
-        $info = ['foo' => 'bar'];
-
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'getInstanceConfig',
-            function ($args) {
-                $message = $this->serializer->encodeMessage($args);
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::that(function ($message) {
+                $this->assertInstanceOf(GetInstanceConfigRequest::class, $message);
                 $this->assertEquals(
-                    $message['name'],
+                    $message->getName(),
                     InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
                 );
                 return true;
-            },
-            $info
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig(['display_name' => 'foo']));
+
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
         );
+        $info = $instanceConfig->info();
 
-        $this->configuration->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->configuration->___setProperty('serializer', $this->serializer);
-
-        $this->assertEquals($info, $this->configuration->info());
+        $this->assertArrayHasKey('displayName', $info);
+        $this->assertEquals('foo', $info['displayName']);
     }
 
     public function testExists()
