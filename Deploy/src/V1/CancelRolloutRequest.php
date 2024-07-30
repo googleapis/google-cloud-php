@@ -22,13 +22,6 @@ class CancelRolloutRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
-    /**
-     * Optional. Deploy policies to override. Format is
-     * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *
-     * Generated from protobuf field <code>repeated string override_deploy_policy = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     */
-    private $override_deploy_policy;
 
     /**
      * @param string $name Required. Name of the Rollout. Format is
@@ -54,9 +47,6 @@ class CancelRolloutRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the Rollout. Format is
      *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $override_deploy_policy
-     *           Optional. Deploy policies to override. Format is
-     *           `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,34 +78,6 @@ class CancelRolloutRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Deploy policies to override. Format is
-     * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *
-     * Generated from protobuf field <code>repeated string override_deploy_policy = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getOverrideDeployPolicy()
-    {
-        return $this->override_deploy_policy;
-    }
-
-    /**
-     * Optional. Deploy policies to override. Format is
-     * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
-     *
-     * Generated from protobuf field <code>repeated string override_deploy_policy = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setOverrideDeployPolicy($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->override_deploy_policy = $arr;
 
         return $this;
     }
