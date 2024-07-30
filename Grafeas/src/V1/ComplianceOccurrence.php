@@ -24,6 +24,12 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string non_compliance_reason = 3;</code>
      */
     protected $non_compliance_reason = '';
+    /**
+     * The OS and config version the benchmark was run on.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceVersion version = 4;</code>
+     */
+    protected $version = null;
 
     /**
      * Constructor.
@@ -33,6 +39,8 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Grafeas\V1\NonCompliantFile>|\Google\Protobuf\Internal\RepeatedField $non_compliant_files
      *     @type string $non_compliance_reason
+     *     @type \Grafeas\V1\ComplianceVersion $version
+     *           The OS and config version the benchmark was run on.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,6 +88,42 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->non_compliance_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * The OS and config version the benchmark was run on.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceVersion version = 4;</code>
+     * @return \Grafeas\V1\ComplianceVersion|null
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
+    }
+
+    /**
+     * The OS and config version the benchmark was run on.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceVersion version = 4;</code>
+     * @param \Grafeas\V1\ComplianceVersion $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\ComplianceVersion::class);
+        $this->version = $var;
 
         return $this;
     }
