@@ -25,11 +25,9 @@ class CreateBackupVaultRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backupVault.
      * The ID must be unique within the specified location.
-     * The max supported length is 63 characters.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     * Values that do not match this pattern will trigger an INVALID_ARGUMENT
-     * error.
+     * Must contain only letters, numbers, underscore and hyphen, with the first
+     * character a letter or underscore, the last a letter or underscore or a
+     * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_vault_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,11 +46,9 @@ class CreateBackupVaultRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\NetApp\V1\BackupVault $backupVault   Required. A backupVault resource
      * @param string                              $backupVaultId Required. The ID to use for the backupVault.
      *                                                           The ID must be unique within the specified location.
-     *                                                           The max supported length is 63 characters.
-     *                                                           This value must start with a lowercase letter followed by up to 62
-     *                                                           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     *                                                           Values that do not match this pattern will trigger an INVALID_ARGUMENT
-     *                                                           error.
+     *                                                           Must contain only letters, numbers, underscore and hyphen, with the first
+     *                                                           character a letter or underscore, the last a letter or underscore or a
+     *                                                           number, and a 63 character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateBackupVaultRequest
      *
@@ -78,11 +74,9 @@ class CreateBackupVaultRequest extends \Google\Protobuf\Internal\Message
      *     @type string $backup_vault_id
      *           Required. The ID to use for the backupVault.
      *           The ID must be unique within the specified location.
-     *           The max supported length is 63 characters.
-     *           This value must start with a lowercase letter followed by up to 62
-     *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     *           Values that do not match this pattern will trigger an INVALID_ARGUMENT
-     *           error.
+     *           Must contain only letters, numbers, underscore and hyphen, with the first
+     *           character a letter or underscore, the last a letter or underscore or a
+     *           number, and a 63 character maximum.
      *     @type \Google\Cloud\NetApp\V1\BackupVault $backup_vault
      *           Required. A backupVault resource
      * }
@@ -123,11 +117,9 @@ class CreateBackupVaultRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backupVault.
      * The ID must be unique within the specified location.
-     * The max supported length is 63 characters.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     * Values that do not match this pattern will trigger an INVALID_ARGUMENT
-     * error.
+     * Must contain only letters, numbers, underscore and hyphen, with the first
+     * character a letter or underscore, the last a letter or underscore or a
+     * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_vault_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -140,11 +132,9 @@ class CreateBackupVaultRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backupVault.
      * The ID must be unique within the specified location.
-     * The max supported length is 63 characters.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     * Values that do not match this pattern will trigger an INVALID_ARGUMENT
-     * error.
+     * Must contain only letters, numbers, underscore and hyphen, with the first
+     * character a letter or underscore, the last a letter or underscore or a
+     * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_vault_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

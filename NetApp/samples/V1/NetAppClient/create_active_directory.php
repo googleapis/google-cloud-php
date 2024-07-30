@@ -42,7 +42,10 @@ use Google\Rpc\Status;
  * @param string $activeDirectoryNetBiosPrefix NetBIOSPrefix is used as a prefix for SMB server name.
  * @param string $activeDirectoryUsername      Username of the Active Directory domain administrator.
  * @param string $activeDirectoryPassword      Password of the Active Directory domain administrator.
- * @param string $activeDirectoryId            ID of the active directory to create.
+ * @param string $activeDirectoryId            ID of the active directory to create. Must be unique within the
+ *                                             parent resource. Must contain only letters, numbers, underscore and hyphen,
+ *                                             with the first character a letter or underscore, the last a letter or
+ *                                             underscore or a number, and a 63 character maximum.
  */
 function create_active_directory_sample(
     string $formattedParent,
