@@ -30,9 +30,16 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
-     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $total_billable_character_count = 0;
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     *
+     * Generated from protobuf field <code>int64 total_billable_token_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_billable_token_count = 0;
     /**
      * Output only. Number of tuning steps for this Tuning Job.
      *
@@ -76,6 +83,8 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      *           Output only. Number of tuning characters in the tuning dataset.
      *     @type int|string $total_billable_character_count
      *           Output only. Number of billable characters in the tuning dataset.
+     *     @type int|string $total_billable_token_count
+     *           Output only. Number of billable tokens in the tuning dataset.
      *     @type int|string $tuning_step_count
      *           Output only. Number of tuning steps for this Tuning Job.
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution $user_input_token_distribution
@@ -148,25 +157,55 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
-     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getTotalBillableCharacterCount()
     {
+        @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
         return $this->total_billable_character_count;
     }
 
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
-     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setTotalBillableCharacterCount($var)
     {
+        @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->total_billable_character_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     *
+     * Generated from protobuf field <code>int64 total_billable_token_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalBillableTokenCount()
+    {
+        return $this->total_billable_token_count;
+    }
+
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     *
+     * Generated from protobuf field <code>int64 total_billable_token_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalBillableTokenCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_billable_token_count = $var;
 
         return $this;
     }

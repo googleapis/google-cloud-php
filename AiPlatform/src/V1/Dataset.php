@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Dataset extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -137,7 +137,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the Dataset.
+     *           Output only. Identifier. The resource name of the Dataset.
      *     @type string $display_name
      *           Required. The user-defined name of the Dataset.
      *           The name can be up to 128 characters long and can consist of any UTF-8
@@ -202,9 +202,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -213,9 +213,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

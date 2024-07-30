@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DatasetVersion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -75,7 +75,7 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the DatasetVersion.
+     *           Output only. Identifier. The resource name of the DatasetVersion.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this DatasetVersion was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -102,9 +102,9 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -113,9 +113,9 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

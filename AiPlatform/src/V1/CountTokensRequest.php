@@ -24,33 +24,51 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      */
     protected $endpoint = '';
     /**
-     * Required. The name of the publisher model requested to serve the
+     * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
      *
-     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $model = '';
     /**
-     * Required. The instances that are the input to token counting call.
+     * Optional. The instances that are the input to token counting call.
      * Schema is identical to the prediction schema of the underlying model.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $instances;
     /**
-     * Required. Input content.
+     * Optional. Input content.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $contents;
+    /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $system_instruction = null;
+    /**
+     * Optional. A list of `Tools` the model may use to generate the next
+     * response.
+     * A `Tool` is a piece of code that enables the system to interact with
+     * external systems to perform an action, or set of actions, outside of
+     * knowledge and scope of the model.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tools;
 
     /**
      * @param string                   $endpoint  Required. The name of the Endpoint requested to perform token counting.
      *                                            Format:
      *                                            `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *                                            Please see {@see LlmUtilityServiceClient::endpointName()} for help formatting this field.
-     * @param \Google\Protobuf\Value[] $instances Required. The instances that are the input to token counting call.
+     * @param \Google\Protobuf\Value[] $instances Optional. The instances that are the input to token counting call.
      *                                            Schema is identical to the prediction schema of the underlying model.
      *
      * @return \Google\Cloud\AIPlatform\V1\CountTokensRequest
@@ -75,14 +93,24 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type string $model
-     *           Required. The name of the publisher model requested to serve the
+     *           Optional. The name of the publisher model requested to serve the
      *           prediction. Format:
      *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
      *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $instances
-     *           Required. The instances that are the input to token counting call.
+     *           Optional. The instances that are the input to token counting call.
      *           Schema is identical to the prediction schema of the underlying model.
      *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
-     *           Required. Input content.
+     *           Optional. Input content.
+     *     @type \Google\Cloud\AIPlatform\V1\Content $system_instruction
+     *           Optional. The user provided system instructions for the model.
+     *           Note: only text should be used in parts and content in each part will be in
+     *           a separate paragraph.
+     *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *           Optional. A list of `Tools` the model may use to generate the next
+     *           response.
+     *           A `Tool` is a piece of code that enables the system to interact with
+     *           external systems to perform an action, or set of actions, outside of
+     *           knowledge and scope of the model.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,11 +149,11 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publisher model requested to serve the
+     * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
      *
-     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getModel()
@@ -134,11 +162,11 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publisher model requested to serve the
+     * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
      *
-     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -151,10 +179,10 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The instances that are the input to token counting call.
+     * Optional. The instances that are the input to token counting call.
      * Schema is identical to the prediction schema of the underlying model.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInstances()
@@ -163,10 +191,10 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The instances that are the input to token counting call.
+     * Optional. The instances that are the input to token counting call.
      * Schema is identical to the prediction schema of the underlying model.
      *
-     * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -179,9 +207,9 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input content.
+     * Optional. Input content.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getContents()
@@ -190,9 +218,9 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input content.
+     * Optional. Input content.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -200,6 +228,80 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Content::class);
         $this->contents = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Content|null
+     */
+    public function getSystemInstruction()
+    {
+        return $this->system_instruction;
+    }
+
+    public function hasSystemInstruction()
+    {
+        return isset($this->system_instruction);
+    }
+
+    public function clearSystemInstruction()
+    {
+        unset($this->system_instruction);
+    }
+
+    /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Content $var
+     * @return $this
+     */
+    public function setSystemInstruction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Content::class);
+        $this->system_instruction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of `Tools` the model may use to generate the next
+     * response.
+     * A `Tool` is a piece of code that enables the system to interact with
+     * external systems to perform an action, or set of actions, outside of
+     * knowledge and scope of the model.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTools()
+    {
+        return $this->tools;
+    }
+
+    /**
+     * Optional. A list of `Tools` the model may use to generate the next
+     * response.
+     * A `Tool` is a piece of code that enables the system to interact with
+     * external systems to perform an action, or set of actions, outside of
+     * knowledge and scope of the model.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Tool::class);
+        $this->tools = $arr;
 
         return $this;
     }

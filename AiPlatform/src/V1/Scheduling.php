@@ -30,6 +30,12 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $restart_job_on_worker_restart = false;
     /**
+     * Optional. This determines which type of scheduling strategy to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling.Strategy strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $strategy = 0;
+    /**
      * Optional. Indicates if the job should retry for internal errors after the
      * job starts running. If true, overrides
      * `Scheduling.restart_job_on_worker_restart` to false.
@@ -50,6 +56,8 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Restarts the entire CustomJob if a worker gets restarted.
      *           This feature can be used by distributed training jobs that are not
      *           resilient to workers leaving and joining a job.
+     *     @type int $strategy
+     *           Optional. This determines which type of scheduling strategy to use.
      *     @type bool $disable_retries
      *           Optional. Indicates if the job should retry for internal errors after the
      *           job starts running. If true, overrides
@@ -123,6 +131,32 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->restart_job_on_worker_restart = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This determines which type of scheduling strategy to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling.Strategy strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
+    }
+
+    /**
+     * Optional. This determines which type of scheduling strategy to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling.Strategy strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Scheduling\Strategy::class);
+        $this->strategy = $var;
 
         return $this;
     }

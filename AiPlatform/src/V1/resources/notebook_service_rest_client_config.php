@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CreateNotebookExecutionJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookExecutionJobs',
+                'body' => 'notebook_execution_job',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateNotebookRuntimeTemplate' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookRuntimeTemplates',
@@ -43,6 +55,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNotebookExecutionJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookExecutionJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -69,6 +92,17 @@ return [
                     ],
                 ],
             ],
+            'GetNotebookExecutionJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookExecutionJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetNotebookRuntime' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimes/*}',
@@ -87,6 +121,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNotebookExecutionJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookExecutionJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

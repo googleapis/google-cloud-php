@@ -34,7 +34,14 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
-     *   * `serviceAgentType`
+     *   * `service_agent_type`
+     *   * `big_query_source`
+     *   * `big_query_source.uri`
+     *   * `big_query_source.entity_id_columns`
+     *   * `feature_registry_source`
+     *   * `feature_registry_source.feature_groups`
+     *   * `sync_config`
+     *   * `sync_config.cron`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -55,7 +62,14 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *                                                             Updatable fields:
      *
      *                                                             * `labels`
-     *                                                             * `serviceAgentType`
+     *                                                             * `service_agent_type`
+     *                                                             * `big_query_source`
+     *                                                             * `big_query_source.uri`
+     *                                                             * `big_query_source.entity_id_columns`
+     *                                                             * `feature_registry_source`
+     *                                                             * `feature_registry_source.feature_groups`
+     *                                                             * `sync_config`
+     *                                                             * `sync_config.cron`
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureViewRequest
      *
@@ -88,7 +102,14 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *           fields.
      *           Updatable fields:
      *             * `labels`
-     *             * `serviceAgentType`
+     *             * `service_agent_type`
+     *             * `big_query_source`
+     *             * `big_query_source.uri`
+     *             * `big_query_source.entity_id_columns`
+     *             * `feature_registry_source`
+     *             * `feature_registry_source.feature_groups`
+     *             * `sync_config`
+     *             * `sync_config.cron`
      * }
      */
     public function __construct($data = NULL) {
@@ -146,7 +167,14 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
-     *   * `serviceAgentType`
+     *   * `service_agent_type`
+     *   * `big_query_source`
+     *   * `big_query_source.uri`
+     *   * `big_query_source.entity_id_columns`
+     *   * `feature_registry_source`
+     *   * `feature_registry_source.feature_groups`
+     *   * `sync_config`
+     *   * `sync_config.cron`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -176,7 +204,14 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
-     *   * `serviceAgentType`
+     *   * `service_agent_type`
+     *   * `big_query_source`
+     *   * `big_query_source.uri`
+     *   * `big_query_source.entity_id_columns`
+     *   * `feature_registry_source`
+     *   * `feature_registry_source.feature_groups`
+     *   * `sync_config`
+     *   * `sync_config.cron`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var
