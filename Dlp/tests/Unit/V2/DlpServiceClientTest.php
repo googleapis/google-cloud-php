@@ -224,7 +224,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $connection = new Connection();
         $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
         $connection->setState($connectionState);
@@ -261,7 +261,7 @@ class DlpServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $connection = new Connection();
         $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
         $connection->setState($connectionState);
@@ -746,7 +746,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $formattedName = $gapicClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
         $gapicClient->deleteConnection($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -777,7 +777,7 @@ class DlpServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $formattedName = $gapicClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
         try {
             $gapicClient->deleteConnection($formattedName);
             // If the $gapicClient method call did not throw, fail the test
@@ -1394,7 +1394,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $formattedName = $gapicClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
         $response = $gapicClient->getConnection($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1426,7 +1426,7 @@ class DlpServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $formattedName = $gapicClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
         try {
             $gapicClient->getConnection($formattedName);
             // If the $gapicClient method call did not throw, fail the test
@@ -2291,7 +2291,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $response = $gapicClient->listConnections($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2326,7 +2326,7 @@ class DlpServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         try {
             $gapicClient->listConnections($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
@@ -3137,7 +3137,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         $response = $gapicClient->searchConnections($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3172,7 +3172,7 @@ class DlpServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
         try {
             $gapicClient->searchConnections($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
@@ -3200,7 +3200,7 @@ class DlpServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $formattedName = $gapicClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
         $connection = new Connection();
         $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
         $connection->setState($connectionState);
@@ -3237,7 +3237,7 @@ class DlpServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $formattedName = $gapicClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
         $connection = new Connection();
         $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
         $connection->setState($connectionState);

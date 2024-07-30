@@ -70,7 +70,7 @@ function update_connection_sample(string $formattedName, int $connectionState): 
  */
 function callSample(): void
 {
-    $formattedName = DlpServiceClient::connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+    $formattedName = DlpServiceClient::connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
     $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
 
     update_connection_sample($formattedName, $connectionState);

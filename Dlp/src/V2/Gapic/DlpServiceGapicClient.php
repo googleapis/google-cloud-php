@@ -217,6 +217,8 @@ class DlpServiceGapicClient
 
     private static $organizationLocationColumnDataProfileNameTemplate;
 
+    private static $organizationLocationConnectionNameTemplate;
+
     private static $organizationLocationDeidentifyTemplateNameTemplate;
 
     private static $organizationLocationFileStoreDataProfileNameTemplate;
@@ -244,6 +246,8 @@ class DlpServiceGapicClient
     private static $projectJobTriggerNameTemplate;
 
     private static $projectLocationColumnDataProfileNameTemplate;
+
+    private static $projectLocationConnectionNameTemplate;
 
     private static $projectLocationDeidentifyTemplateNameTemplate;
 
@@ -309,7 +313,7 @@ class DlpServiceGapicClient
     {
         if (self::$connectionNameTemplate == null) {
             self::$connectionNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/connections/{connection}'
+                'organizations/{organization}/locations/{location}/connections/{connection}'
             );
         }
 
@@ -446,6 +450,17 @@ class DlpServiceGapicClient
         }
 
         return self::$organizationLocationColumnDataProfileNameTemplate;
+    }
+
+    private static function getOrganizationLocationConnectionNameTemplate()
+    {
+        if (self::$organizationLocationConnectionNameTemplate == null) {
+            self::$organizationLocationConnectionNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/connections/{connection}'
+            );
+        }
+
+        return self::$organizationLocationConnectionNameTemplate;
     }
 
     private static function getOrganizationLocationDeidentifyTemplateNameTemplate()
@@ -602,6 +617,17 @@ class DlpServiceGapicClient
         return self::$projectLocationColumnDataProfileNameTemplate;
     }
 
+    private static function getProjectLocationConnectionNameTemplate()
+    {
+        if (self::$projectLocationConnectionNameTemplate == null) {
+            self::$projectLocationConnectionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connections/{connection}'
+            );
+        }
+
+        return self::$projectLocationConnectionNameTemplate;
+    }
+
     private static function getProjectLocationDeidentifyTemplateNameTemplate()
     {
         if (self::$projectLocationDeidentifyTemplateNameTemplate == null) {
@@ -741,6 +767,7 @@ class DlpServiceGapicClient
                 'organizationInspectTemplate' => self::getOrganizationInspectTemplateNameTemplate(),
                 'organizationLocation' => self::getOrganizationLocationNameTemplate(),
                 'organizationLocationColumnDataProfile' => self::getOrganizationLocationColumnDataProfileNameTemplate(),
+                'organizationLocationConnection' => self::getOrganizationLocationConnectionNameTemplate(),
                 'organizationLocationDeidentifyTemplate' => self::getOrganizationLocationDeidentifyTemplateNameTemplate(),
                 'organizationLocationFileStoreDataProfile' => self::getOrganizationLocationFileStoreDataProfileNameTemplate(),
                 'organizationLocationInspectTemplate' => self::getOrganizationLocationInspectTemplateNameTemplate(),
@@ -755,6 +782,7 @@ class DlpServiceGapicClient
                 'projectInspectTemplate' => self::getProjectInspectTemplateNameTemplate(),
                 'projectJobTrigger' => self::getProjectJobTriggerNameTemplate(),
                 'projectLocationColumnDataProfile' => self::getProjectLocationColumnDataProfileNameTemplate(),
+                'projectLocationConnection' => self::getProjectLocationConnectionNameTemplate(),
                 'projectLocationDeidentifyTemplate' => self::getProjectLocationDeidentifyTemplateNameTemplate(),
                 'projectLocationDlpJob' => self::getProjectLocationDlpJobNameTemplate(),
                 'projectLocationFileStoreDataProfile' => self::getProjectLocationFileStoreDataProfileNameTemplate(),
@@ -798,16 +826,16 @@ class DlpServiceGapicClient
      * Formats a string containing the fully-qualified path to represent a connection
      * resource.
      *
-     * @param string $project
+     * @param string $organization
      * @param string $location
      * @param string $connection
      *
      * @return string The formatted connection resource.
      */
-    public static function connectionName($project, $location, $connection)
+    public static function connectionName($organization, $location, $connection)
     {
         return self::getConnectionNameTemplate()->render([
-            'project' => $project,
+            'organization' => $organization,
             'location' => $location,
             'connection' => $connection,
         ]);
@@ -1036,6 +1064,28 @@ class DlpServiceGapicClient
                 'column_data_profile' => $columnDataProfile,
             ]
         );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_connection resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted organization_location_connection resource.
+     */
+    public static function organizationLocationConnectionName(
+        $organization,
+        $location,
+        $connection
+    ) {
+        return self::getOrganizationLocationConnectionNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'connection' => $connection,
+        ]);
     }
 
     /**
@@ -1334,6 +1384,28 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted project_location_connection resource.
+     */
+    public static function projectLocationConnectionName(
+        $project,
+        $location,
+        $connection
+    ) {
+        return self::getProjectLocationConnectionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_deidentify_template resource.
      *
      * @param string $project
@@ -1575,7 +1647,7 @@ class DlpServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
-     * - connection: projects/{project}/locations/{location}/connections/{connection}
+     * - connection: organizations/{organization}/locations/{location}/connections/{connection}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
@@ -1588,6 +1660,7 @@ class DlpServiceGapicClient
      * - organizationInspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationColumnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - organizationLocationConnection: organizations/{organization}/locations/{location}/connections/{connection}
      * - organizationLocationDeidentifyTemplate: organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - organizationLocationFileStoreDataProfile: organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
      * - organizationLocationInspectTemplate: organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}
@@ -1602,6 +1675,7 @@ class DlpServiceGapicClient
      * - projectInspectTemplate: projects/{project}/inspectTemplates/{inspect_template}
      * - projectJobTrigger: projects/{project}/jobTriggers/{job_trigger}
      * - projectLocationColumnDataProfile: projects/{project}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - projectLocationConnection: projects/{project}/locations/{location}/connections/{connection}
      * - projectLocationDeidentifyTemplate: projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - projectLocationDlpJob: projects/{project}/locations/{location}/dlpJobs/{dlp_job}
      * - projectLocationFileStoreDataProfile: projects/{project}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
@@ -1823,7 +1897,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     $connection = new Connection();
      *     $response = $dlpServiceClient->createConnection($formattedParent, $connection);
      * } finally {
@@ -1831,8 +1905,15 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. Parent resource name in the format:
-     *                                 `projects/{project}/locations/{location}`.
+     * @param string     $parent       Required. Parent resource name.
+     *
+     *                                 The format of this value varies depending on the scope of the request
+     *                                 (project or organization):
+     *
+     *                                 + Projects scope:
+     *                                 `projects/PROJECT_ID/locations/LOCATION_ID`
+     *                                 + Organizations scope:
+     *                                 `organizations/ORG_ID/locations/LOCATION_ID`
      * @param Connection $connection   Required. The connection resource.
      * @param array      $optionalArgs {
      *     Optional.
@@ -2553,7 +2634,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $formattedName = $dlpServiceClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
      *     $dlpServiceClient->deleteConnection($formattedName);
      * } finally {
      *     $dlpServiceClient->close();
@@ -3094,7 +3175,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $formattedName = $dlpServiceClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
      *     $response = $dlpServiceClient->getConnection($formattedName);
      * } finally {
      *     $dlpServiceClient->close();
@@ -3957,13 +4038,14 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Lists Connections in a parent.
+     * Lists Connections in a parent. Use SearchConnections to see all connections
+     * within an organization.
      *
      * Sample code:
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $dlpServiceClient->listConnections($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -3982,8 +4064,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent name, for example:
-     *                             `projects/project-id/locations/global`.
+     * @param string $parent       Required. Resource name of the organization or project, for
+     *                             example, `organizations/433245324/locations/europe` or
+     *                             `projects/project-id/locations/asia`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -5543,7 +5626,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $dlpServiceClient->searchConnections($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -5562,8 +5645,9 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Parent name, typically an organization, without location.
-     *                             For example: `organizations/12345678`.
+     * @param string $parent       Required. Resource name of the organization or project with a wildcard
+     *                             location, for example, `organizations/433245324/locations/-` or
+     *                             `projects/project-id/locations/-`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -5627,7 +5711,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $formattedName = $dlpServiceClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
      *     $connection = new Connection();
      *     $response = $dlpServiceClient->updateConnection($formattedName, $connection);
      * } finally {
