@@ -102,10 +102,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name = 'name3373707';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -237,10 +243,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name = 'name3373707';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -726,10 +738,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name2 = 'name2-1052831874';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name2);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
@@ -1707,10 +1725,16 @@ class DatabaseAdminClientTest extends GeneratedTest
         $database = 'database1789464955';
         $name = 'name3373707';
         $sizeBytes = 1796325715;
+        $freeableSizeBytes = 1302251206;
+        $exclusiveSizeBytes = 1085921554;
+        $incrementalBackupChainId = 'incrementalBackupChainId-792099119';
         $expectedResponse = new Backup();
         $expectedResponse->setDatabase($database);
         $expectedResponse->setName($name);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setFreeableSizeBytes($freeableSizeBytes);
+        $expectedResponse->setExclusiveSizeBytes($exclusiveSizeBytes);
+        $expectedResponse->setIncrementalBackupChainId($incrementalBackupChainId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $backup = new Backup();

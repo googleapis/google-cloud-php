@@ -93,6 +93,8 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *           encryption configuration as the database.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\FullBackupSpec $full_backup_spec
      *           The schedule creates only full backups.
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\IncrementalBackupSpec $incremental_backup_spec
+     *           The schedule creates incremental backup chains.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp at which the schedule was last updated.
      *           If the schedule has never been updated, this field contains the timestamp
@@ -291,6 +293,37 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\FullBackupSpec::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The schedule creates incremental backup chains.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.IncrementalBackupSpec incremental_backup_spec = 8;</code>
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\IncrementalBackupSpec|null
+     */
+    public function getIncrementalBackupSpec()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasIncrementalBackupSpec()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The schedule creates incremental backup chains.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.IncrementalBackupSpec incremental_backup_spec = 8;</code>
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\IncrementalBackupSpec $var
+     * @return $this
+     */
+    public function setIncrementalBackupSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\IncrementalBackupSpec::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
