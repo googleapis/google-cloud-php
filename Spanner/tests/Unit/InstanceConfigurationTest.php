@@ -49,7 +49,7 @@ class InstanceConfigurationTest extends TestCase
     const NAME = 'test-config';
 
     private $instanceAdminClient;
-    private $serializer;
+    private Serializer $serializer;
 
     public function setUp(): void
     {

@@ -18,10 +18,10 @@
 namespace Google\Cloud\Spanner;
 
 use Closure;
-use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
@@ -48,7 +48,7 @@ use DateTimeInterface;
 class Backup
 {
     use ApiHelperTrait;
-    use ArrayTrait;
+    use RequestProcessorTrait;
     use RequestTrait;
 
     const STATE_READY = State::READY;
@@ -72,7 +72,7 @@ class Backup
      * @param array $info [optional] An array representing the backup resource.
      */
     public function __construct(
-        DatabaseAdminClient $databaseAdminClient,
+        private DatabaseAdminClient $databaseAdminClient,
         private Serializer $serializer,
         private Instance $instance,
         private $projectId,
@@ -119,7 +119,8 @@ class Backup
             ],
         ];
         if (isset($data['versionTime'])) {
-            $data['backup']['versionTime'] = $this->pluck('versionTime', $data);
+            $data['backup']['versionTime'] = $data['versionTime'];
+            unset($data['versionTime']);
         }
 
         $request = $this->serializer->decodeMessage(new CreateBackupRequest(), $data);
