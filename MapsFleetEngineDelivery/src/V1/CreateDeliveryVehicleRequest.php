@@ -44,6 +44,7 @@ class CreateDeliveryVehicleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The `DeliveryVehicle` entity to create. When creating a new
      * delivery vehicle, you may set the following optional fields:
+     * * type
      * * last_location
      * * attributes
      * Note: The DeliveryVehicle's `name` field is ignored. All other
@@ -59,6 +60,7 @@ class CreateDeliveryVehicleRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle $deliveryVehicle   Required. The `DeliveryVehicle` entity to create. When creating a new
      *                                                                                delivery vehicle, you may set the following optional fields:
      *
+     *                                                                                * type
      *                                                                                * last_location
      *                                                                                * attributes
      *
@@ -109,6 +111,7 @@ class CreateDeliveryVehicleRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle $delivery_vehicle
      *           Required. The `DeliveryVehicle` entity to create. When creating a new
      *           delivery vehicle, you may set the following optional fields:
+     *           * type
      *           * last_location
      *           * attributes
      *           Note: The DeliveryVehicle's `name` field is ignored. All other
@@ -227,6 +230,7 @@ class CreateDeliveryVehicleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The `DeliveryVehicle` entity to create. When creating a new
      * delivery vehicle, you may set the following optional fields:
+     * * type
      * * last_location
      * * attributes
      * Note: The DeliveryVehicle's `name` field is ignored. All other
@@ -253,6 +257,7 @@ class CreateDeliveryVehicleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The `DeliveryVehicle` entity to create. When creating a new
      * delivery vehicle, you may set the following optional fields:
+     * * type
      * * last_location
      * * attributes
      * Note: The DeliveryVehicle's `name` field is ignored. All other
