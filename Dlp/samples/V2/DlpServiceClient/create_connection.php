@@ -38,9 +38,9 @@ use Google\Cloud\Dlp\V2\CreateConnectionRequest;
  *                                (project or organization):
  *
  *                                + Projects scope:
- *                                `projects/PROJECT_ID/locations/LOCATION_ID`
+ *                                `projects/{project_id}/locations/{location_id}`
  *                                + Organizations scope:
- *                                `organizations/ORG_ID/locations/LOCATION_ID`
+ *                                `organizations/{org_id}/locations/{location_id}`
  *                                Please see {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
  * @param int    $connectionState The connection's state in its lifecycle.
  */

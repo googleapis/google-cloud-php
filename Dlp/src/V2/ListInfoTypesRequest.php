@@ -18,7 +18,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name.
      * The format of this value is as follows:
-     *     locations/<var>LOCATION_ID</var>
+     *     `locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      */
@@ -50,7 +50,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *
      *                       The format of this value is as follows:
      *
-     *                       locations/<var>LOCATION_ID</var>
+     *                       `locations/{location_id}`
      *
      * @return \Google\Cloud\Dlp\V2\ListInfoTypesRequest
      *
@@ -71,7 +71,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           The parent resource name.
      *           The format of this value is as follows:
-     *               locations/<var>LOCATION_ID</var>
+     *               `locations/{location_id}`
      *     @type string $language_code
      *           BCP-47 language code for localized infoType friendly
      *           names. If omitted, or if localized strings are not available,
@@ -91,7 +91,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name.
      * The format of this value is as follows:
-     *     locations/<var>LOCATION_ID</var>
+     *     `locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      * @return string
@@ -104,7 +104,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name.
      * The format of this value is as follows:
-     *     locations/<var>LOCATION_ID</var>
+     *     `locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      * @param string $var
