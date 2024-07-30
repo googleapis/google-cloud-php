@@ -313,7 +313,7 @@ class DlpServiceGapicClient
     {
         if (self::$connectionNameTemplate == null) {
             self::$connectionNameTemplate = new PathTemplate(
-                'organizations/{organization}/locations/{location}/connections/{connection}'
+                'projects/{project}/locations/{location}/connections/{connection}'
             );
         }
 
@@ -826,16 +826,16 @@ class DlpServiceGapicClient
      * Formats a string containing the fully-qualified path to represent a connection
      * resource.
      *
-     * @param string $organization
+     * @param string $project
      * @param string $location
      * @param string $connection
      *
      * @return string The formatted connection resource.
      */
-    public static function connectionName($organization, $location, $connection)
+    public static function connectionName($project, $location, $connection)
     {
         return self::getConnectionNameTemplate()->render([
-            'organization' => $organization,
+            'project' => $project,
             'location' => $location,
             'connection' => $connection,
         ]);
@@ -1647,7 +1647,7 @@ class DlpServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
-     * - connection: organizations/{organization}/locations/{location}/connections/{connection}
+     * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
@@ -2634,7 +2634,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
      *     $dlpServiceClient->deleteConnection($formattedName);
      * } finally {
      *     $dlpServiceClient->close();
@@ -3175,7 +3175,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
      *     $response = $dlpServiceClient->getConnection($formattedName);
      * } finally {
      *     $dlpServiceClient->close();
@@ -5711,7 +5711,7 @@ class DlpServiceGapicClient
      * ```
      * $dlpServiceClient = new DlpServiceClient();
      * try {
-     *     $formattedName = $dlpServiceClient->connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
      *     $connection = new Connection();
      *     $response = $dlpServiceClient->updateConnection($formattedName, $connection);
      * } finally {

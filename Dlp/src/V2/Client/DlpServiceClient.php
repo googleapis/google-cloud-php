@@ -253,16 +253,16 @@ class DlpServiceClient
      * Formats a string containing the fully-qualified path to represent a connection
      * resource.
      *
-     * @param string $organization
+     * @param string $project
      * @param string $location
      * @param string $connection
      *
      * @return string The formatted connection resource.
      */
-    public static function connectionName(string $organization, string $location, string $connection): string
+    public static function connectionName(string $project, string $location, string $connection): string
     {
         return self::getPathTemplate('connection')->render([
-            'organization' => $organization,
+            'project' => $project,
             'location' => $location,
             'connection' => $connection,
         ]);
@@ -976,7 +976,7 @@ class DlpServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
-     * - connection: organizations/{organization}/locations/{location}/connections/{connection}
+     * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}

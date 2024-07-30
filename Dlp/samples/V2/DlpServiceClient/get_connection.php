@@ -65,7 +65,7 @@ function get_connection_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = DlpServiceClient::connectionName('[ORGANIZATION]', '[LOCATION]', '[CONNECTION]');
+    $formattedName = DlpServiceClient::connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
 
     get_connection_sample($formattedName);
 }

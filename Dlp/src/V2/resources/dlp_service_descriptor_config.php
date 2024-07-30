@@ -781,7 +781,7 @@ return [
             ],
             'templateMap' => [
                 'columnDataProfile' => 'organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}',
-                'connection' => 'organizations/{organization}/locations/{location}/connections/{connection}',
+                'connection' => 'projects/{project}/locations/{location}/connections/{connection}',
                 'deidentifyTemplate' => 'organizations/{organization}/deidentifyTemplates/{deidentify_template}',
                 'discoveryConfig' => 'projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}',
                 'dlpJob' => 'projects/{project}/dlpJobs/{dlp_job}',
