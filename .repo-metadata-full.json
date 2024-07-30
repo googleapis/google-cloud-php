@@ -55,13 +55,6 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "analyticsdata"
     },
-    "ApiCommonProtos": {
-        "language": "php",
-        "distribution_name": "google/common-protos",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
-        "library_type": "GAPIC_AUTO"
-    },
     "ApiGateway": {
         "language": "php",
         "distribution_name": "google/cloud-api-gateway",
@@ -370,6 +363,13 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudchannel"
     },
+    "CloudCommonProtos": {
+        "language": "php",
+        "distribution_name": "google/cloud-common-protos",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
+        "library_type": "CORE"
+    },
     "CommerceConsumerProcurement": {
         "language": "php",
         "distribution_name": "google/cloud-commerce-consumer-procurement",
@@ -380,10 +380,10 @@
     },
     "CommonProtos": {
         "language": "php",
-        "distribution_name": "google/cloud-common-protos",
-        "release_level": "preview",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
-        "library_type": "CORE"
+        "distribution_name": "google/common-protos",
+        "release_level": "stable",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
+        "library_type": "GAPIC_AUTO"
     },
     "Compute": {
         "language": "php",
