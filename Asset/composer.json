@@ -27,7 +27,7 @@
     "require": {
         "php": "^8.0",
         "google/gax": "^1.34.0",
-        "google/access-context-manager": "^0.5",
+        "google/access-context-manager": "^1.0",
         "google/cloud-osconfig": "^1.0"
     },
     "require-dev": {
