@@ -211,11 +211,38 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     private $restricted_actions;
     /**
+     * Optional. Flag indicating if the volume will be a large capacity volume or
+     * a regular volume.
+     *
+     * Generated from protobuf field <code>bool large_capacity = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $large_capacity = false;
+    /**
+     * Optional. Flag indicating if the volume will have an IP address per node
+     * for volumes supporting multiple IP endpoints. Only the volume with
+     * large_capacity will be allowed to have multiple endpoints.
+     *
+     * Generated from protobuf field <code>bool multiple_endpoints = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multiple_endpoints = false;
+    /**
      * Tiering policy for the volume.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
      */
     protected $tiering_policy = null;
+    /**
+     * Output only. Specifies the replica zone for regional volume.
+     *
+     * Generated from protobuf field <code>string replica_zone = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $replica_zone = '';
+    /**
+     * Output only. Specifies the active zone for regional volume.
+     *
+     * Generated from protobuf field <code>string zone = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $zone = '';
 
     /**
      * Constructor.
@@ -294,8 +321,19 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           BackupConfig of the volume.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_actions
      *           Optional. List of actions that are restricted on this volume.
+     *     @type bool $large_capacity
+     *           Optional. Flag indicating if the volume will be a large capacity volume or
+     *           a regular volume.
+     *     @type bool $multiple_endpoints
+     *           Optional. Flag indicating if the volume will have an IP address per node
+     *           for volumes supporting multiple IP endpoints. Only the volume with
+     *           large_capacity will be allowed to have multiple endpoints.
      *     @type \Google\Cloud\NetApp\V1\TieringPolicy $tiering_policy
      *           Tiering policy for the volume.
+     *     @type string $replica_zone
+     *           Output only. Specifies the replica zone for regional volume.
+     *     @type string $zone
+     *           Output only. Specifies the active zone for regional volume.
      * }
      */
     public function __construct($data = NULL) {
@@ -1178,6 +1216,64 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Flag indicating if the volume will be a large capacity volume or
+     * a regular volume.
+     *
+     * Generated from protobuf field <code>bool large_capacity = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLargeCapacity()
+    {
+        return $this->large_capacity;
+    }
+
+    /**
+     * Optional. Flag indicating if the volume will be a large capacity volume or
+     * a regular volume.
+     *
+     * Generated from protobuf field <code>bool large_capacity = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLargeCapacity($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->large_capacity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Flag indicating if the volume will have an IP address per node
+     * for volumes supporting multiple IP endpoints. Only the volume with
+     * large_capacity will be allowed to have multiple endpoints.
+     *
+     * Generated from protobuf field <code>bool multiple_endpoints = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getMultipleEndpoints()
+    {
+        return $this->multiple_endpoints;
+    }
+
+    /**
+     * Optional. Flag indicating if the volume will have an IP address per node
+     * for volumes supporting multiple IP endpoints. Only the volume with
+     * large_capacity will be allowed to have multiple endpoints.
+     *
+     * Generated from protobuf field <code>bool multiple_endpoints = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMultipleEndpoints($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->multiple_endpoints = $var;
+
+        return $this;
+    }
+
+    /**
      * Tiering policy for the volume.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
@@ -1209,6 +1305,58 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\TieringPolicy::class);
         $this->tiering_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specifies the replica zone for regional volume.
+     *
+     * Generated from protobuf field <code>string replica_zone = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getReplicaZone()
+    {
+        return $this->replica_zone;
+    }
+
+    /**
+     * Output only. Specifies the replica zone for regional volume.
+     *
+     * Generated from protobuf field <code>string replica_zone = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReplicaZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->replica_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specifies the active zone for regional volume.
+     *
+     * Generated from protobuf field <code>string zone = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Output only. Specifies the active zone for regional volume.
+     *
+     * Generated from protobuf field <code>string zone = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->zone = $var;
 
         return $this;
     }

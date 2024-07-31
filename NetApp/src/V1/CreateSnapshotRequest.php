@@ -29,9 +29,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     protected $snapshot = null;
     /**
-     * Required. ID of the snapshot to create.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Required. ID of the snapshot to create. Must be unique within the parent
+     * resource. Must contain only letters, numbers, underscore and hyphen, with
+     * the first character a letter or underscore, the last a letter or underscore
+     * or a number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,9 +43,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *                                                     `projects/{project_id}/locations/{location}/volumes/{volume_id}`
      *                                                     Please see {@see NetAppClient::volumeName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\Snapshot $snapshot   Required. A snapshot resource
-     * @param string                           $snapshotId Required. ID of the snapshot to create.
-     *                                                     This value must start with a lowercase letter followed by up to 62
-     *                                                     lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * @param string                           $snapshotId Required. ID of the snapshot to create. Must be unique within the parent
+     *                                                     resource. Must contain only letters, numbers, underscore and hyphen, with
+     *                                                     the first character a letter or underscore, the last a letter or underscore
+     *                                                     or a number, and a 63 character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateSnapshotRequest
      *
@@ -70,9 +72,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetApp\V1\Snapshot $snapshot
      *           Required. A snapshot resource
      *     @type string $snapshot_id
-     *           Required. ID of the snapshot to create.
-     *           This value must start with a lowercase letter followed by up to 62
-     *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *           Required. ID of the snapshot to create. Must be unique within the parent
+     *           resource. Must contain only letters, numbers, underscore and hyphen, with
+     *           the first character a letter or underscore, the last a letter or underscore
+     *           or a number, and a 63 character maximum.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,9 +148,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the snapshot to create.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Required. ID of the snapshot to create. Must be unique within the parent
+     * resource. Must contain only letters, numbers, underscore and hyphen, with
+     * the first character a letter or underscore, the last a letter or underscore
+     * or a number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -158,9 +162,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the snapshot to create.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Required. ID of the snapshot to create. Must be unique within the parent
+     * resource. Must contain only letters, numbers, underscore and hyphen, with
+     * the first character a letter or underscore, the last a letter or underscore
+     * or a number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

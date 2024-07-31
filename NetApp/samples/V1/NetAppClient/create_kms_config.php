@@ -35,9 +35,10 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent        Value for parent. Please see
  *                                       {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $kmsConfigId            Id of the requesting KmsConfig
- *                                       If auto-generating Id server-side, remove this field and
- *                                       id from the method_signature of Create RPC
+ * @param string $kmsConfigId            Id of the requesting KmsConfig. Must be unique within the parent
+ *                                       resource. Must contain only letters, numbers, underscore and hyphen, with
+ *                                       the first character a letter or underscore, the last a letter or underscore
+ *                                       or a number, and a 63 character maximum.
  * @param string $kmsConfigCryptoKeyName Customer managed crypto key resource full name. Format:
  *                                       projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
  */
