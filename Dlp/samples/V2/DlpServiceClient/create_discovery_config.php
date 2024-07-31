@@ -38,9 +38,9 @@ use Google\Cloud\Dlp\V2\DiscoveryConfig\Status;
  *                                      (project or organization):
  *
  *                                      + Projects scope:
- *                                      `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+ *                                      `projects/{project_id}/locations/{location_id}`
  *                                      + Organizations scope:
- *                                      `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
+ *                                      `organizations/{org_id}/locations/{location_id}`
  *
  *                                      The following example `parent` string specifies a parent project with the
  *                                      identifier `example-project`, and specifies the `europe-west3` location

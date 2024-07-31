@@ -65,6 +65,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/connections',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/connections',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -142,7 +149,7 @@ return [
             ],
             'CreateInspectTemplate' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=organizations/*}/inspectTemplates',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/inspectTemplates',
                 'body' => '*',
                 'additionalBindings' => [
                     [
@@ -157,7 +164,7 @@ return [
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/inspectTemplates',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/inspectTemplates',
                         'body' => '*',
                     ],
                 ],
@@ -244,6 +251,12 @@ return [
             'DeleteConnection' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/connections/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/connections/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -330,7 +343,7 @@ return [
             ],
             'DeleteInspectTemplate' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
@@ -342,7 +355,7 @@ return [
                     ],
                     [
                         'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
+                        'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -448,6 +461,12 @@ return [
             'GetConnection' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/connections/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/connections/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -534,7 +553,7 @@ return [
             ],
             'GetInspectTemplate' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
@@ -546,7 +565,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
+                        'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -700,6 +719,12 @@ return [
             'ListConnections' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/connections',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/connections',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -807,7 +832,7 @@ return [
             ],
             'ListInspectTemplates' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{parent=organizations/*}/inspectTemplates',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/inspectTemplates',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
@@ -819,7 +844,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/inspectTemplates',
+                        'uriTemplate' => '/v2/{parent=organizations/*}/inspectTemplates',
                     ],
                 ],
                 'placeholders' => [
@@ -969,6 +994,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/connections/*}',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/connections/*}',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -1027,7 +1059,7 @@ return [
             ],
             'UpdateInspectTemplate' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                 'body' => '*',
                 'additionalBindings' => [
                     [
@@ -1042,7 +1074,7 @@ return [
                     ],
                     [
                         'method' => 'patch',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
+                        'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
                         'body' => '*',
                     ],
                 ],

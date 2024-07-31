@@ -16,8 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Parent resource name in the format:
-     * `projects/{project}/locations/{location}`.
+     * Required. Parent resource name.
+     * The format of this value varies depending on the scope of the request
+     * (project or organization):
+     * + Projects scope:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Organizations scope:
+     *   `organizations/{org_id}/locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,9 +35,16 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
     private $connection = null;
 
     /**
-     * @param string                          $parent     Required. Parent resource name in the format:
-     *                                                    `projects/{project}/locations/{location}`. Please see
-     *                                                    {@see DlpServiceClient::locationName()} for help formatting this field.
+     * @param string                          $parent     Required. Parent resource name.
+     *
+     *                                                    The format of this value varies depending on the scope of the request
+     *                                                    (project or organization):
+     *
+     *                                                    + Projects scope:
+     *                                                    `projects/{project_id}/locations/{location_id}`
+     *                                                    + Organizations scope:
+     *                                                    `organizations/{org_id}/locations/{location_id}`
+     *                                                    Please see {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\Dlp\V2\Connection $connection Required. The connection resource.
      *
      * @return \Google\Cloud\Dlp\V2\CreateConnectionRequest
@@ -53,8 +65,13 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Parent resource name in the format:
-     *           `projects/{project}/locations/{location}`.
+     *           Required. Parent resource name.
+     *           The format of this value varies depending on the scope of the request
+     *           (project or organization):
+     *           + Projects scope:
+     *             `projects/{project_id}/locations/{location_id}`
+     *           + Organizations scope:
+     *             `organizations/{org_id}/locations/{location_id}`
      *     @type \Google\Cloud\Dlp\V2\Connection $connection
      *           Required. The connection resource.
      * }
@@ -65,8 +82,13 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent resource name in the format:
-     * `projects/{project}/locations/{location}`.
+     * Required. Parent resource name.
+     * The format of this value varies depending on the scope of the request
+     * (project or organization):
+     * + Projects scope:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Organizations scope:
+     *   `organizations/{org_id}/locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,8 +99,13 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent resource name in the format:
-     * `projects/{project}/locations/{location}`.
+     * Required. Parent resource name.
+     * The format of this value varies depending on the scope of the request
+     * (project or organization):
+     * + Projects scope:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Organizations scope:
+     *   `organizations/{org_id}/locations/{location_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

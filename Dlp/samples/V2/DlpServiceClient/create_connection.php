@@ -32,9 +32,16 @@ use Google\Cloud\Dlp\V2\CreateConnectionRequest;
 /**
  * Create a Connection to an external data source.
  *
- * @param string $formattedParent Parent resource name in the format:
- *                                `projects/{project}/locations/{location}`. Please see
- *                                {@see DlpServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent Parent resource name.
+ *
+ *                                The format of this value varies depending on the scope of the request
+ *                                (project or organization):
+ *
+ *                                + Projects scope:
+ *                                `projects/{project_id}/locations/{location_id}`
+ *                                + Organizations scope:
+ *                                `organizations/{org_id}/locations/{location_id}`
+ *                                Please see {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
  * @param int    $connectionState The connection's state in its lifecycle.
  */
 function create_connection_sample(string $formattedParent, int $connectionState): void
@@ -70,7 +77,7 @@ function create_connection_sample(string $formattedParent, int $connectionState)
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
     $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
 
     create_connection_sample($formattedParent, $connectionState);
