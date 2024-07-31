@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -26,11 +27,14 @@ use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as ProtoBackup;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -45,6 +49,7 @@ class BackupTest extends TestCase
     use GrpcTestTrait;
     use ProphecyTrait;
     use RequestHandlingTestTrait;
+    use ArraySubsetAsserts;
 
     const PROJECT_ID = 'test-project';
     const INSTANCE = 'instance-name';
@@ -193,9 +198,9 @@ class BackupTest extends TestCase
     {
         $response = new ProtoBackup([
             'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::INSTANCE, self::BACKUP),
-            'expire_time' => new \Google\Protobuf\Timestamp(['seconds' => $this->expireTime->format('U')]),
-            'create_time' => new \Google\Protobuf\Timestamp(['seconds' => $this->expireTime->format('U')]),
-            'version_time' => new \Google\Protobuf\Timestamp(['seconds' => $this->versionTime->format('U')]),
+            'expire_time' => new Timestamp(['seconds' => $this->expireTime->format('U')]),
+            'create_time' => new Timestamp(['seconds' => $this->expireTime->format('U')]),
+            'version_time' => new Timestamp(['seconds' => $this->versionTime->format('U')]),
         ]);
 
         $this->databaseAdminClient->getBackup(
@@ -215,11 +220,11 @@ class BackupTest extends TestCase
 
         $info = $backup->info();
 
-        $this->assertEquals([
+        $this->assertArraySubset([
             'name' => $response->getName(),
-            'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-            'createTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-            'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z'),
+            'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.000000\Z'),
+            'createTime' => $this->expireTime->format('Y-m-d\TH:i:s.000000\Z'),
+            'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.000000\Z'),
         ], $info);
 
         // Make sure the request only is sent once.
@@ -228,100 +233,111 @@ class BackupTest extends TestCase
 
     public function testReload()
     {
-        $res = [
-            'name' => $this->backup->name(),
-            'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-            'createTime' => $this->createTime->format('Y-m-d\TH:i:s.u\Z'),
-            'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
-        ];
+        $response = new ProtoBackup([
+            'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::INSTANCE, self::BACKUP),
+        ]);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getBackup',
-            function ($args) {
-                $this->assertEquals($args->getName(), $this->backup->name());
-                return true;
-            },
-            $res
+        $this->databaseAdminClient->getBackup(
+            Argument::type(GetBackupRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($response);
+
+        $backup = new Backup(
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance->reveal(),
+            self::PROJECT_ID,
+            self::BACKUP,
+            ['name' => 'different-name']
         );
 
-        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->backup->___setProperty('serializer', $this->serializer);
+        $info = $backup->reload();
 
-        $info = $this->backup->reload();
-
-        $this->assertEquals($res, $info);
+        $this->assertArraySubset([
+            'name' => $response->getName(),
+        ], $info);
     }
 
     public function testState()
     {
-        $res = [
-            'state' => Backup::STATE_READY
-        ];
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getBackup',
-            function ($args) {
-                $this->assertEquals($args->getName(), $this->backup->name());
-                return true;
-            },
-            $res
+        $response = new ProtoBackup([
+            'state' => Backup::STATE_READY,
+        ]);
+
+        $this->databaseAdminClient->getBackup(
+            Argument::type(GetBackupRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($response);
+
+        $backup = new Backup(
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance->reveal(),
+            self::PROJECT_ID,
+            self::BACKUP
         );
 
-        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->backup->___setProperty('serializer', $this->serializer);
-
-        $this->assertEquals(Backup::STATE_READY, $this->backup->state());
+        $this->assertEquals(Backup::STATE_READY, $backup->state());
 
         // Make sure the request only is sent once.
-        $this->backup->state();
+        $backup->state();
     }
 
     public function testExists()
     {
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getBackup',
-            function ($args) {
-                $this->assertEquals($args->getName(), $this->backup->name());
-                return true;
-            },
-            []
+        $this->databaseAdminClient->getBackup(
+            Argument::type(GetBackupRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ProtoBackup());
+
+        $backup = new Backup(
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance->reveal(),
+            self::PROJECT_ID,
+            self::BACKUP
         );
 
-        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->backup->___setProperty('serializer', $this->serializer);
-
-        $this->assertTrue($this->backup->exists());
+        $this->assertTrue($backup->exists());
     }
 
     public function testUpdateExpireTime()
     {
-        $res = ['name' => 'foo', 'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z')];
+        $newExpireTime = new DateTime("+1 day");
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'updateBackup',
-            function ($args) use ($res) {
-                $message = $this->serializer->encodeMessage($args);
-                $this->assertEquals(
-                    $message['backup']['name'],
-                    $this->backup->name()
-                );
-                $this->assertEquals(
-                    $message['backup']['expireTime'],
-                    $this->expireTime->format('Y-m-d\TH:i:s.u\Z')
-                );
-                $this->assertEquals($message['updateMask'], ['paths' => ['expire_time']]);
-                return $res;
-            },
-            $res
+        $response = new ProtoBackup([
+            'name' => 'foo',
+            'expire_time' => new Timestamp(['seconds' => $newExpireTime->format('U')]),
+        ]);
+
+        $this->databaseAdminClient->updateBackup(
+            Argument::that(function (UpdateBackupRequest $request) use ($newExpireTime) {
+                $this->assertEquals(new FieldMask(['paths' => ['expire_time']]), $request->getUpdateMask());
+                $this->assertEquals($newExpireTime->format('U'), $request->getBackup()->getExpireTime()->getSeconds());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($response);
+
+        $backup = new Backup(
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance->reveal(),
+            self::PROJECT_ID,
+            self::BACKUP
         );
 
-        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->backup->___setProperty('serializer', $this->serializer);
-
-        $info = $this->backup->updateExpireTime($this->expireTime);
-        $this->assertEquals($res, $info);
+        $info = $backup->updateExpireTime($newExpireTime);
+        $this->assertArraySubset([
+            'expireTime' => $newExpireTime->format('Y-m-d\TH:i:s.000000\Z'),
+        ], $info);
     }
 }

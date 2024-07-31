@@ -65,7 +65,8 @@
         "phpspec/prophecy-phpunit": "^2.1",
         "kreait/firebase-php": "^6.9",
         "psr/log": "^2.0||^3.0",
-        "dg/bypass-finals": "^1.7"
+        "dg/bypass-finals": "^1.7",
+        "dms/phpunit-arraysubset-asserts": "^0.5.0"
     },
     "conflict": {
         "psr/log": ">=3"
