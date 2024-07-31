@@ -45,7 +45,7 @@ FAILED_FILE=$(mktemp -d)/failed
 for DIR in ${DIRS}; do {
     cp ${DIR}/composer.json ${DIR}/composer-local.json
     # Update composer to use local packages
-    for i in ApiCommonProtos,common-protos,4.0 BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos GeoCommonProtos,geo-common-protos,0.1; do
+    for i in CommonProtos,common-protos,4.0 BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos GeoCommonProtos,geo-common-protos,0.1; do
         IFS=","; set -- $i;
         if grep -q "\"google/$2\":" ${DIR}/composer.json; then
             # determine local package version
