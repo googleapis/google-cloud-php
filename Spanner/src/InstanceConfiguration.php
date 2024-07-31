@@ -17,14 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
-use Google\Cloud\Core\LongRunning\OperationResponseTrait;
-use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
@@ -33,7 +31,8 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
-use Google\ApiCore\ValidationException;
+use Google\Rpc\Code;
+use Closure;
 
 /**
  * Represents a Cloud Spanner Instance Configuration.
@@ -54,25 +53,8 @@ use Google\ApiCore\ValidationException;
 class InstanceConfiguration
 {
     use ApiHelperTrait;
-    use ArrayTrait;
-    use LongRunningOperationTrait;
-    use OperationResponseTrait;
-    use RequestTrait;
-
-    /**
-     * @var RequestHiuandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
-     * @var string
-     */
-    private $projectId;
+    // use RequestTrait;
+    use RequestProcessorTrait;
 
     /**
      * @var string
@@ -80,15 +62,11 @@ class InstanceConfiguration
     private $name;
 
     /**
-     * @var array
-     */
-    private $info;
-
-    /**
      * Create an instance configuration object.
      *
-     * @param RequestHandler The request handler that is responsible for sending a request
-     *        and serializing responses into relevant classes.
+     * @internal InstanceConfiguration is constructed by the {@see SpannerClient} class.
+     *
+     * @param InstanceAdminClient The client library to use for the request
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The current project ID.
      * @param string $name The configuration name or ID.
@@ -96,48 +74,14 @@ class InstanceConfiguration
      *        configuration.
      */
     public function __construct(
-        RequestHandler $requestHandler,
-        Serializer $serializer,
-        $projectId,
+        private InstanceAdminClient $instanceAdminClient,
+        private Serializer $serializer,
+        private string $projectId,
         $name,
-        array $info = []
+        private array $info = []
     ) {
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
         $this->info = $info;
-        $instanceConfigFactoryFn = function ($instanceConfig) use (
-            $requestHandler,
-            $serializer,
-            $projectId,
-            $name
-        ) {
-            $name = InstanceAdminClient::parseName($instanceConfig['name'])['instance_config'];
-            return new self(
-                $requestHandler,
-                $serializer,
-                $projectId,
-                $name,
-                $instanceConfig
-            );
-        };
-        $lroCallables = [
-            [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
-                'callable' => $instanceConfigFactoryFn
-            ],
-            [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
-                'callable' => $instanceConfigFactoryFn
-            ]
-        ];
-        $this->setLroProperties(
-            $requestHandler,
-            $serializer,
-            $lroCallables,
-            $this->getLROResponseMappers(),
-            $this->name,
-            InstanceAdminClient::class
-        );
     }
 
     /**
@@ -202,8 +146,11 @@ class InstanceConfiguration
     {
         try {
             $this->reload($options = []);
-        } catch (NotFoundException $e) {
-            return false;
+        } catch (ApiException $e) {
+            if ($e->getCode() === Code::NOT_FOUND) {
+                return false;
+            }
+            throw $e;
         }
 
         return true;
@@ -226,17 +173,19 @@ class InstanceConfiguration
      */
     public function reload(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
-
-        return $this->info = $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'getInstanceConfig',
-            $data,
-            $optionalArgs,
-            GetInstanceConfigRequest::class,
+        $callOptions = $this->addResourcePrefixHeader(
+            $callOptions,
             InstanceAdminClient::projectName($this->projectId)
         );
+
+        $response = $this->instanceAdminClient->getInstanceConfig(
+            $this->serializer->decodeMessage(new GetInstanceConfigRequest(), $data),
+            $callOptions
+        );
+
+        return $this->info = $this->handleResponse($response);
     }
 
     /**
@@ -269,16 +218,17 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperationManager<InstanceConfiguration>
+     * @return OperationResponse
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
     public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
 
         $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
-        $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
+        $validateOnly = $data['validateOnly'] ?? false;
+        unset($data['validateOnly']);
         $data += [
             'replicas' => $replicas,
             'baseConfig' => $baseConfig->name(),
@@ -287,24 +237,24 @@ class InstanceConfiguration
         $instanceConfig = $this->instanceConfigArray($data);
         $requestArray = [
             'parent' => InstanceAdminClient::projectName($this->projectId),
-            'instanceConfigId' => InstanceAdminClient::parseName(
-                $this->name
-            )['instance_config'],
+            'instanceConfigId' => InstanceAdminClient::parseName($this->name)['instance_config'],
             'instanceConfig' => $instanceConfig,
             'validateOnly' => $validateOnly
         ];
 
-        $res = $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'createInstanceConfig',
-            $requestArray,
-            $optionalArgs,
-            CreateInstanceConfigRequest::class,
-            $this->name
+        $request = $this->serializer->decodeMessage(
+            new CreateInstanceConfigRequest(),
+            $requestArray
         );
-        $operation = $this->operationToArray($res, $this->serializer, $this->getLROResponseMappers());
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        return $this->resumeOperation($operation['name'], $operation);
+        $operationResponse = $this->instanceAdminClient->createInstanceConfig(
+            $request,
+            $callOptions
+        );
+
+        return $operationResponse
+            ->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**
@@ -331,35 +281,30 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperationManager<InstanceConfiguration>
+     * @return OperationResponse
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
-        $fieldMask = $this->fieldMask($data);
-        $data += [
-            'name' => $this->name,
-        ];
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        $validateOnly = $data['validateOnly'] ?? false;
+        unset($data['validateOnly']);
+        $data += ['name' => $this->name];
 
-        $requestArray = [
+        $request = $this->serializer->decodeMessage(new UpdateInstanceConfigRequest(), [
             'instanceConfig' => $data,
-            'updateMask' => $fieldMask,
+            'updateMask' => $this->fieldMask($data),
             'validateOnly' => $validateOnly
-        ];
+        ]);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $res = $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'updateInstanceConfig',
-            $requestArray,
-            $optionalArgs,
-            UpdateInstanceConfigRequest::class,
-            $this->name
+        $operationResponse = $this->instanceAdminClient->updateInstanceConfig(
+            $request,
+            $callOptions
         );
-        $operation = $this->operationToArray($res, $this->serializer, $this->getLROResponseMappers());
 
-        return $this->resumeOperation($operation['name'], $operation);
+        return $operationResponse
+            ->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**
@@ -380,16 +325,12 @@ class InstanceConfiguration
      */
     public function delete(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
 
-        $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'deleteInstanceConfig',
-            $data,
-            $optionalArgs,
-            DeleteInstanceConfigRequest::class,
-            $this->name
+        $this->instanceAdminClient->deleteInstanceConfig(
+            $this->serializer->decodeMessage(new DeleteInstanceConfigRequest(), $data),
+            $this->addResourcePrefixHeader($callOptions, $this->name)
         );
     }
 
@@ -441,6 +382,20 @@ class InstanceConfiguration
         return ['paths' => $mask];
     }
 
+    private function instanceConfigResultFunction(): Closure
+    {
+        return function (InstanceConfig $result) {
+            $name = InstanceAdminClient::parseName($result->getName());
+            return new self(
+                $this->instanceAdminClient,
+                $this->serializer,
+                $this->projectId,
+                $name['instance_config'],
+                $this->serializer->encodeMessage($result)
+            );
+        };
+    }
+
     /**
      * A more readable representation of the object.
      *
@@ -450,7 +405,7 @@ class InstanceConfiguration
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'instanceAdminClient' => get_class($this->instanceAdminClient),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info,

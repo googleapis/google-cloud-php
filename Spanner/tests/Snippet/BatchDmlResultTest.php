@@ -120,7 +120,6 @@ class BatchDmlResultTest extends SnippetTestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             $instance->reveal(),
-            [],
             'test-project',
             'projects/test-project/instances/my-instance/databases/my-database',
             $sessionPool->reveal()

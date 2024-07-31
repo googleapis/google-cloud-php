@@ -23,7 +23,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -90,8 +89,6 @@ class DatabaseTest extends TestCase
     private $serializer;
     private $instance;
     private $sessionPool;
-    private $lro;
-    private $lroCallables;
     private $database;
     private $session;
     private $databaseWithDatabaseRole;
@@ -106,7 +103,6 @@ class DatabaseTest extends TestCase
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $this->lroCallables = [];
         $this->session = TestHelpers::stub(Session::class, [
             $this->requestHandler->reveal(),
             $this->serializer,
@@ -138,7 +134,6 @@ class DatabaseTest extends TestCase
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->requestHandler->reveal(),
             $this->serializer,
-            $this->lroCallables,
             self::PROJECT,
             self::INSTANCE,
             false,
@@ -161,7 +156,6 @@ class DatabaseTest extends TestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->instance,
-            $this->lroCallables,
             self::PROJECT,
             self::DATABASE,
             $this->sessionPool->reveal(),
@@ -175,7 +169,7 @@ class DatabaseTest extends TestCase
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
-        $args[6] = null;
+        $args[5] = null;
         $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
 
@@ -259,7 +253,7 @@ class DatabaseTest extends TestCase
 
         $op = $this->database->createBackup(self::BACKUP, $expireTime);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testBackups()
@@ -449,7 +443,7 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     /**
@@ -469,14 +463,14 @@ class DatabaseTest extends TestCase
                 $this->assertEquals($message['updateMask'], ['paths' => ['enable_drop_protection']]);
                 return $message['database']['enableDropProtection'];
             },
-            ['enableDropProtection' => true]
+            $this->getOperationResponseMock()
         );
 
         $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->database->___setProperty('serializer', $this->serializer);
 
-        $res = $this->database->updateDatabase(['enableDropProtection' => true]);
-        $this->assertTrue($res['enableDropProtection']);
+        $op = $this->database->updateDatabase(['enableDropProtection' => true]);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     /**
@@ -505,7 +499,7 @@ class DatabaseTest extends TestCase
             'databaseDialect'=> DatabaseDialect::POSTGRESQL
         ]);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     /**
@@ -535,7 +529,7 @@ class DatabaseTest extends TestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->restore($backupName);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     /**
@@ -565,7 +559,7 @@ class DatabaseTest extends TestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->restore($backupObj);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     /**
@@ -594,7 +588,7 @@ class DatabaseTest extends TestCase
 
         $res = $this->database->updateDdl($statement);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res);
+        $this->assertInstanceOf(OperationResponse::class, $res);
     }
     /**
      * @group spanner-admin
@@ -650,7 +644,7 @@ class DatabaseTest extends TestCase
         $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $this->database->updateDdl($statement);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $res);
+        $this->assertInstanceOf(OperationResponse::class, $res);
     }
 
     /**
@@ -730,7 +724,6 @@ class DatabaseTest extends TestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->instance,
-            $this->lroCallables,
             self::PROJECT,
             self::DATABASE
         ]);

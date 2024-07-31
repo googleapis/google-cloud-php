@@ -21,9 +21,9 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\LongRunning\Client\OperationsClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
@@ -80,7 +80,6 @@ class InstanceTest extends TestCase
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->requestHandler->reveal(),
             $this->serializer,
-            [],
             self::PROJECT_ID,
             self::NAME,
             false,
@@ -455,7 +454,7 @@ class InstanceTest extends TestCase
             'statements' => $extra
         ]);
 
-        $this->assertInstanceOf(LongRunningOperationManager::class, $database);
+        $this->assertInstanceOf(OperationResponse::class, $database);
     }
 
     public function testCreateDatabaseFromBackupName()
@@ -477,7 +476,7 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupName);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testCreateDatabaseFromBackupObject()
@@ -499,7 +498,7 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupObject);
-        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testDatabase()
@@ -656,6 +655,13 @@ class InstanceTest extends TestCase
             ['operations' => $operations]
         );
 
+        $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledTimes(2)
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
+        $this->requestHandler->getClientObject(DatabaseAdminClient::class)
+            ->shouldBeCalledTimes(2)
+            ->willReturn($databaseAdminClient->reveal());
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->instance->___setProperty('serializer', $this->serializer);
 
@@ -665,8 +671,8 @@ class InstanceTest extends TestCase
 
         $bkpOps = iterator_to_array($bkpOps);
         $this->assertCount(2, $bkpOps);
-        $this->assertEquals('operation1', $bkpOps[0]->name());
-        $this->assertEquals('operation2', $bkpOps[1]->name());
+        $this->assertEquals('operation1', $bkpOps[0]->getName());
+        $this->assertEquals('operation2', $bkpOps[1]->getName());
     }
 
     public function testListDatabaseOperations()
@@ -685,6 +691,13 @@ class InstanceTest extends TestCase
             },
             ['operations' => $operations]
         );
+        $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledTimes(2)
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
+        $this->requestHandler->getClientObject(DatabaseAdminClient::class)
+            ->shouldBeCalledTimes(2)
+            ->willReturn($databaseAdminClient->reveal());
 
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->instance->___setProperty('serializer', $this->serializer);
@@ -695,8 +708,8 @@ class InstanceTest extends TestCase
 
         $dbOps = iterator_to_array($dbOps);
         $this->assertCount(2, $dbOps);
-        $this->assertEquals('operation1', $dbOps[0]->name());
-        $this->assertEquals('operation2', $dbOps[1]->name());
+        $this->assertEquals('operation1', $dbOps[0]->getName());
+        $this->assertEquals('operation2', $dbOps[1]->getName());
     }
 
     public function testInstanceDatabaseRole()
@@ -791,20 +804,5 @@ class InstanceTest extends TestCase
     private function getDefaultInstance()
     {
         return json_decode(file_get_contents(Fixtures::INSTANCE_FIXTURE()), true);
-    }
-
-    private function getOperationResponseMock()
-    {
-        $operation = $this->serializer->decodeMessage(
-            new \Google\LongRunning\Operation(),
-            ['metadata' => [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
-            ]]
-        );
-        $operationResponse = $this->prophesize(OperationResponse::class);
-        $operationResponse->getLastProtoResponse()->willReturn($operation);
-        $operationResponse->isDone()->willReturn(false);
-        $operationResponse->getError()->willReturn(null);
-        return $operationResponse;
     }
 }

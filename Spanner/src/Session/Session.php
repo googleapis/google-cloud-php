@@ -22,6 +22,7 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\RequestTrait;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
@@ -82,6 +83,8 @@ class Session
     private $routeToLeader;
 
     /**
+     * @internal Session is constructed by the {@see Database} class.
+     *
      * @param RequestHandler The request handler that is responsible for sending a request
      *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -149,7 +152,7 @@ class Session
      */
     public function exists(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name()
         ];
@@ -159,7 +162,7 @@ class Session
                 SpannerClient::class,
                 'getSession',
                 $data,
-                $optionalArgs,
+                $callOptions,
                 GetSessionRequest::class,
                 $this->databaseName,
                 $this->routeToLeader
@@ -178,7 +181,7 @@ class Session
      */
     public function delete(array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data = [
             'name' => $this->name()
         ];
@@ -187,7 +190,7 @@ class Session
             SpannerClient::class,
             'deleteSession',
             $data,
-            $optionalArgs,
+            $callOptions,
             DeleteSessionRequest::class,
             $this->databaseName
         );
