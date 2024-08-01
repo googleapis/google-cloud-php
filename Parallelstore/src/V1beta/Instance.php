@@ -116,6 +116,22 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $effective_reserved_ip_range = '';
+    /**
+     * Optional. Stripe level for files.
+     * MIN better suited for small size files.
+     * MAX higher throughput performance for larger files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $file_stripe_level = 0;
+    /**
+     * Optional. Stripe level for directories.
+     * MIN when directory has a small number of files.
+     * MAX when directory has a large number of files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $directory_stripe_level = 0;
 
     /**
      * Constructor.
@@ -176,6 +192,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           "test-default" associated with IP range 10.0.0.0/29. This field is
      *           populated by the service and and contains the value currently used by the
      *           service.
+     *     @type int $file_stripe_level
+     *           Optional. Stripe level for files.
+     *           MIN better suited for small size files.
+     *           MAX higher throughput performance for larger files.
+     *     @type int $directory_stripe_level
+     *           Optional. Stripe level for directories.
+     *           MIN when directory has a small number of files.
+     *           MAX when directory has a large number of files.
      * }
      */
     public function __construct($data = NULL) {
@@ -569,6 +593,66 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->effective_reserved_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Stripe level for files.
+     * MIN better suited for small size files.
+     * MAX higher throughput performance for larger files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFileStripeLevel()
+    {
+        return $this->file_stripe_level;
+    }
+
+    /**
+     * Optional. Stripe level for files.
+     * MIN better suited for small size files.
+     * MAX higher throughput performance for larger files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFileStripeLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\FileStripeLevel::class);
+        $this->file_stripe_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Stripe level for directories.
+     * MIN when directory has a small number of files.
+     * MAX when directory has a large number of files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDirectoryStripeLevel()
+    {
+        return $this->directory_stripe_level;
+    }
+
+    /**
+     * Optional. Stripe level for directories.
+     * MIN when directory has a small number of files.
+     * MAX when directory has a large number of files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDirectoryStripeLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\DirectoryStripeLevel::class);
+        $this->directory_stripe_level = $var;
 
         return $this;
     }
