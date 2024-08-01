@@ -9,22 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for ListFirebaseLinks RPC
+ * Request message for ListKeyEvents RPC
  *
- * Generated from protobuf message <code>google.analytics.admin.v1alpha.ListFirebaseLinksRequest</code>
+ * Generated from protobuf message <code>google.analytics.admin.v1alpha.ListKeyEventsRequest</code>
  */
-class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
+class ListKeyEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format: properties/{property_id}
-     * Example: `properties/1234`
+     * Required. The resource name of the parent property.
+     * Example: 'properties/123'
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The maximum number of resources to return. The service may return
-     * fewer than this value, even if there are additional pages.
+     * The maximum number of resources to return.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
@@ -32,22 +31,21 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * A page token, received from a previous `ListFirebaseLinks` call.
+     * A page token, received from a previous `ListKeyEvents` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListFirebaseLinks` must
-     * match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListKeyEvents`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
 
     /**
-     * @param string $parent Required. Format: properties/{property_id}
-     *
-     *                       Example: `properties/1234`
+     * @param string $parent Required. The resource name of the parent property.
+     *                       Example: 'properties/123'
      *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
-     * @return \Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest
+     * @return \Google\Analytics\Admin\V1alpha\ListKeyEventsRequest
      *
      * @experimental
      */
@@ -64,18 +62,17 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Format: properties/{property_id}
-     *           Example: `properties/1234`
+     *           Required. The resource name of the parent property.
+     *           Example: 'properties/123'
      *     @type int $page_size
-     *           The maximum number of resources to return. The service may return
-     *           fewer than this value, even if there are additional pages.
+     *           The maximum number of resources to return.
      *           If unspecified, at most 50 resources will be returned.
      *           The maximum value is 200; (higher values will be coerced to the maximum)
      *     @type string $page_token
-     *           A page token, received from a previous `ListFirebaseLinks` call.
+     *           A page token, received from a previous `ListKeyEvents` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListFirebaseLinks` must
-     *           match the call that provided the page token.
+     *           When paginating, all other parameters provided to `ListKeyEvents`
+     *           must match the call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +81,8 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: properties/{property_id}
-     * Example: `properties/1234`
+     * Required. The resource name of the parent property.
+     * Example: 'properties/123'
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,8 +93,8 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: properties/{property_id}
-     * Example: `properties/1234`
+     * Required. The resource name of the parent property.
+     * Example: 'properties/123'
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -112,8 +109,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of resources to return. The service may return
-     * fewer than this value, even if there are additional pages.
+     * The maximum number of resources to return.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
@@ -126,8 +122,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of resources to return. The service may return
-     * fewer than this value, even if there are additional pages.
+     * The maximum number of resources to return.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
@@ -144,10 +139,10 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListFirebaseLinks` call.
+     * A page token, received from a previous `ListKeyEvents` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListFirebaseLinks` must
-     * match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListKeyEvents`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -158,10 +153,10 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListFirebaseLinks` call.
+     * A page token, received from a previous `ListKeyEvents` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListFirebaseLinks` must
-     * match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListKeyEvents`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

@@ -9,27 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for DeleteFirebaseLink RPC
+ * Request message for GetEventEditRule RPC.
  *
- * Generated from protobuf message <code>google.analytics.admin.v1alpha.DeleteFirebaseLinkRequest</code>
+ * Generated from protobuf message <code>google.analytics.admin.v1alpha.GetEventEditRuleRequest</code>
  */
-class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
+class GetEventEditRuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: `properties/1234/firebaseLinks/5678`
+     * Required. The name of the EventEditRule to get.
+     * Example format: properties/123/dataStreams/456/eventEditRules/789
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
+     * @param string $name Required. The name of the EventEditRule to get.
+     *                     Example format: properties/123/dataStreams/456/eventEditRules/789
+     *                     Please see {@see AnalyticsAdminServiceClient::eventEditRuleName()} for help formatting this field.
      *
-     *                     Example: `properties/1234/firebaseLinks/5678`
-     *                     Please see {@see AnalyticsAdminServiceClient::firebaseLinkName()} for help formatting this field.
-     *
-     * @return \Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest
+     * @return \Google\Analytics\Admin\V1alpha\GetEventEditRuleRequest
      *
      * @experimental
      */
@@ -46,8 +45,8 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     *           Example: `properties/1234/firebaseLinks/5678`
+     *           Required. The name of the EventEditRule to get.
+     *           Example format: properties/123/dataStreams/456/eventEditRules/789
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +55,8 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: `properties/1234/firebaseLinks/5678`
+     * Required. The name of the EventEditRule to get.
+     * Example format: properties/123/dataStreams/456/eventEditRules/789
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,8 +67,8 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: `properties/1234/firebaseLinks/5678`
+     * Required. The name of the EventEditRule to get.
+     * Example format: properties/123/dataStreams/456/eventEditRules/789
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

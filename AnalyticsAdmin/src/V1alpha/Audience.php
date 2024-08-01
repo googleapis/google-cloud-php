@@ -70,6 +70,12 @@ class Audience extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
      */
     private $filter_clauses;
+    /**
+     * Output only. Time when the Audience was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
 
     /**
      * Constructor.
@@ -100,6 +106,8 @@ class Audience extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>|\Google\Protobuf\Internal\RepeatedField $filter_clauses
      *           Required. Immutable. Unordered list. Filter clauses that define the
      *           Audience. All clauses will be AND’ed together.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. Time when the Audience was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -335,6 +343,42 @@ class Audience extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Admin\V1alpha\AudienceFilterClause::class);
         $this->filter_clauses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Time when the Audience was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. Time when the Audience was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

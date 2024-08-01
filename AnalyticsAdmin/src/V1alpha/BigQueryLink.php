@@ -80,6 +80,14 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string excluded_events = 8;</code>
      */
     private $excluded_events;
+    /**
+     * Required. Immutable. The geographic location where the created BigQuery
+     * dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $dataset_location = '';
 
     /**
      * Constructor.
@@ -116,6 +124,10 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *           Example: ['properties/1000/dataStreams/2000']
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_events
      *           The list of event names that will be excluded from exports.
+     *     @type string $dataset_location
+     *           Required. Immutable. The geographic location where the created BigQuery
+     *           dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     *           for supported locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -385,6 +397,36 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->excluded_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Required. Immutable. The geographic location where the created BigQuery
+     * dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getDatasetLocation()
+    {
+        return $this->dataset_location;
+    }
+
+    /**
+     * Required. Immutable. The geographic location where the created BigQuery
+     * dataset should reside. See https://cloud.google.com/bigquery/docs/locations
+     * for supported locations.
+     *
+     * Generated from protobuf field <code>string dataset_location = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatasetLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dataset_location = $var;
 
         return $this;
     }
