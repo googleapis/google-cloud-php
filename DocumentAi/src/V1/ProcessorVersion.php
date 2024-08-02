@@ -98,6 +98,13 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzi = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $satisfies_pzi = false;
+    /**
+     * Output only. Information about Generative AI model-based processor
+     * versions.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo gen_ai_model_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $gen_ai_model_info = null;
 
     /**
      * Constructor.
@@ -133,6 +140,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo $gen_ai_model_info
+     *           Output only. Information about Generative AI model-based processor
+     *           versions.
      * }
      */
     public function __construct($data = NULL) {
@@ -518,6 +528,44 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about Generative AI model-based processor
+     * versions.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo gen_ai_model_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo|null
+     */
+    public function getGenAiModelInfo()
+    {
+        return $this->gen_ai_model_info;
+    }
+
+    public function hasGenAiModelInfo()
+    {
+        return isset($this->gen_ai_model_info);
+    }
+
+    public function clearGenAiModelInfo()
+    {
+        unset($this->gen_ai_model_info);
+    }
+
+    /**
+     * Output only. Information about Generative AI model-based processor
+     * versions.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo gen_ai_model_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo $var
+     * @return $this
+     */
+    public function setGenAiModelInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo::class);
+        $this->gen_ai_model_info = $var;
 
         return $this;
     }

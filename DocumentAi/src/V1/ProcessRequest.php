@@ -64,6 +64,12 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. Option to remove images from the document.
+     *
+     * Generated from protobuf field <code>bool imageless_mode = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $imageless_mode = false;
     protected $source;
 
     /**
@@ -127,6 +133,8 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints) and can only contain lowercase letters, numeric
      *           characters, underscores, and dashes. International characters are allowed.
      *           Label values are optional. Label keys must start with a letter.
+     *     @type bool $imageless_mode
+     *           Optional. Option to remove images from the document.
      * }
      */
     public function __construct($data = NULL) {
@@ -407,6 +415,32 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Option to remove images from the document.
+     *
+     * Generated from protobuf field <code>bool imageless_mode = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getImagelessMode()
+    {
+        return $this->imageless_mode;
+    }
+
+    /**
+     * Optional. Option to remove images from the document.
+     *
+     * Generated from protobuf field <code>bool imageless_mode = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setImagelessMode($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->imageless_mode = $var;
 
         return $this;
     }
