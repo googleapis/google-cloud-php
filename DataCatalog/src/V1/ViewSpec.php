@@ -20,7 +20,7 @@ class ViewSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string view_query = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $view_query = '';
+    protected $view_query = '';
 
     /**
      * Constructor.

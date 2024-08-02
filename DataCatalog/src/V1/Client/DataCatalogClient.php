@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\DataCatalog\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -84,6 +83,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -159,9 +159,7 @@ final class DataCatalogClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -207,10 +205,31 @@ final class DataCatalogClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -282,8 +301,13 @@ final class DataCatalogClient
      *
      * @return string The formatted tag resource.
      */
-    public static function tagName(string $project, string $location, string $entryGroup, string $entry, string $tag): string
-    {
+    public static function tagName(
+        string $project,
+        string $location,
+        string $entryGroup,
+        string $entry,
+        string $tag
+    ): string {
         return self::getPathTemplate('tag')->render([
             'project' => $project,
             'location' => $location,
@@ -323,8 +347,12 @@ final class DataCatalogClient
      *
      * @return string The formatted tag_template_field resource.
      */
-    public static function tagTemplateFieldName(string $project, string $location, string $tagTemplate, string $field): string
-    {
+    public static function tagTemplateFieldName(
+        string $project,
+        string $location,
+        string $tagTemplate,
+        string $field
+    ): string {
         return self::getPathTemplate('tagTemplateField')->render([
             'project' => $project,
             'location' => $location,
@@ -345,8 +373,13 @@ final class DataCatalogClient
      *
      * @return string The formatted tag_template_field_enum_value resource.
      */
-    public static function tagTemplateFieldEnumValueName(string $project, string $location, string $tagTemplate, string $tagTemplateFieldId, string $enumValueDisplayName): string
-    {
+    public static function tagTemplateFieldEnumValueName(
+        string $project,
+        string $location,
+        string $tagTemplate,
+        string $tagTemplateFieldId,
+        string $enumValueDisplayName
+    ): string {
         return self::getPathTemplate('tagTemplateFieldEnumValue')->render([
             'project' => $project,
             'location' => $location,
@@ -498,7 +531,7 @@ final class DataCatalogClient
      * Creates an entry group.
      *
      * An entry group contains logically related entries together with [Cloud
-     * Identity and Access Management](https://cloud.google.com/data-catalog/docs/concepts/iam) policies.
+     * Identity and Access Management](/data-catalog/docs/concepts/iam) policies.
      * These policies specify users who can create, edit, and view entries
      * within entry groups.
      *
@@ -639,8 +672,10 @@ final class DataCatalogClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTagTemplateField(CreateTagTemplateFieldRequest $request, array $callOptions = []): TagTemplateField
-    {
+    public function createTagTemplateField(
+        CreateTagTemplateFieldRequest $request,
+        array $callOptions = []
+    ): TagTemplateField {
         return $this->startApiCall('CreateTagTemplateField', $request, $callOptions)->wait();
     }
 
@@ -1189,8 +1224,10 @@ final class DataCatalogClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function renameTagTemplateField(RenameTagTemplateFieldRequest $request, array $callOptions = []): TagTemplateField
-    {
+    public function renameTagTemplateField(
+        RenameTagTemplateFieldRequest $request,
+        array $callOptions = []
+    ): TagTemplateField {
         return $this->startApiCall('RenameTagTemplateField', $request, $callOptions)->wait();
     }
 
@@ -1218,8 +1255,10 @@ final class DataCatalogClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function renameTagTemplateFieldEnumValue(RenameTagTemplateFieldEnumValueRequest $request, array $callOptions = []): TagTemplateField
-    {
+    public function renameTagTemplateFieldEnumValue(
+        RenameTagTemplateFieldEnumValueRequest $request,
+        array $callOptions = []
+    ): TagTemplateField {
         return $this->startApiCall('RenameTagTemplateFieldEnumValue', $request, $callOptions)->wait();
     }
 
@@ -1366,8 +1405,10 @@ final class DataCatalogClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1548,8 +1589,10 @@ final class DataCatalogClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateTagTemplateField(UpdateTagTemplateFieldRequest $request, array $callOptions = []): TagTemplateField
-    {
+    public function updateTagTemplateField(
+        UpdateTagTemplateFieldRequest $request,
+        array $callOptions = []
+    ): TagTemplateField {
         return $this->startApiCall('UpdateTagTemplateField', $request, $callOptions)->wait();
     }
 }

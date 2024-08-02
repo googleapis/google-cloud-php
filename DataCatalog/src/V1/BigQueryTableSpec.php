@@ -20,7 +20,7 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TableSourceType table_source_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $table_source_type = 0;
+    protected $table_source_type = 0;
     protected $type_spec;
 
     /**

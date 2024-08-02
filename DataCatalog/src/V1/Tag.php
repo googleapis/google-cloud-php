@@ -27,7 +27,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The resource name of the tag template this tag uses. Example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE_ID}`
@@ -35,13 +35,13 @@ class Tag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = '';
+    protected $template = '';
     /**
      * Output only. The display name of the tag template.
      *
      * Generated from protobuf field <code>string template_display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $template_display_name = '';
+    protected $template_display_name = '';
     /**
      * Required. Maps the ID of a tag field to its value and additional
      * information about that field.

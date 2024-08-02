@@ -20,19 +20,19 @@ class CloudSqlBigQueryConnectionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 1;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Database name.
      *
      * Generated from protobuf field <code>string database = 2;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Type of the Cloud SQL database.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.CloudSqlBigQueryConnectionSpec.DatabaseType type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
