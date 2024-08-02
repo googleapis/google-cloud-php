@@ -34,7 +34,7 @@ use Google\Cloud\SecurityCenter\V2\ValuedResource;
  * @param string $formattedName The name of this valued resource
  *
  *                              Valid format:
- *                              "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+ *                              `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
  *                              Please see {@see SecurityCenterClient::valuedResourceName()} for help formatting this field.
  */
 function get_valued_resource_sample(string $formattedName): void

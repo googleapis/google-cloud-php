@@ -35,8 +35,8 @@ use Google\Cloud\SecurityCenter\V2\Simulation;
  * @param string $formattedName The organization name or simulation name of this simulation
  *
  *                              Valid format:
- *                              "organizations/{organization}/simulations/latest"
- *                              "organizations/{organization}/simulations/{simulation}"
+ *                              `organizations/{organization}/simulations/latest`
+ *                              `organizations/{organization}/simulations/{simulation}`
  *                              Please see {@see SecurityCenterClient::simulationName()} for help formatting this field.
  */
 function get_simulation_sample(string $formattedName): void

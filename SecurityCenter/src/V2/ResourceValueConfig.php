@@ -17,30 +17,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name for the resource value configuration
+     * Identifier. Name for the resource value configuration
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
      * Resource value level this expression represents
-     * Only required when there is no SDP mapping in the request
+     * Only required when there is no Sensitive Data Protection mapping in the
+     * request
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourceValue resource_value = 2;</code>
      */
     private $resource_value = 0;
     /**
-     * Required. Tag values combined with <code>AND</code> to check against.
+     * Tag values combined with `AND` to check against.
      * Values in the form "tagValues/123"
-     * Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
+     * Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
-     * Generated from protobuf field <code>repeated string tag_values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string tag_values = 3;</code>
      */
     private $tag_values;
     /**
      * Apply resource_value only to resources that match resource_type.
-     * resource_type will be checked with <code>AND</code> of other resources.
+     * resource_type will be checked with `AND` of other resources.
      * For example, "storage.googleapis.com/Bucket" with resource_value "HIGH"
      * will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      *
@@ -50,16 +51,15 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     /**
      * Project or folder to scope this configuration to.
      * For example, "project/456" would apply this configuration only to resources
-     * in "project/456" scope will be checked with <code>AND</code> of other
-     * resources.
+     * in "project/456" scope and will be checked with `AND` of other resources.
      *
      * Generated from protobuf field <code>string scope = 5;</code>
      */
     private $scope = '';
     /**
-     * List of resource labels to search for, evaluated with <code>AND</code>.
+     * List of resource labels to search for, evaluated with `AND`.
      * For example, "resource_labels_selector": {"key": "value", "env": "prod"}
-     * will match resources with labels "key": "value" <code>AND</code> "env":
+     * will match resources with labels "key": "value" `AND` "env":
      * "prod"
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels
      *
@@ -107,29 +107,29 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name for the resource value configuration
+     *           Identifier. Name for the resource value configuration
      *     @type int $resource_value
      *           Resource value level this expression represents
-     *           Only required when there is no SDP mapping in the request
+     *           Only required when there is no Sensitive Data Protection mapping in the
+     *           request
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_values
-     *           Required. Tag values combined with <code>AND</code> to check against.
+     *           Tag values combined with `AND` to check against.
      *           Values in the form "tagValues/123"
-     *           Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
+     *           Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
      *           https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *     @type string $resource_type
      *           Apply resource_value only to resources that match resource_type.
-     *           resource_type will be checked with <code>AND</code> of other resources.
+     *           resource_type will be checked with `AND` of other resources.
      *           For example, "storage.googleapis.com/Bucket" with resource_value "HIGH"
      *           will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      *     @type string $scope
      *           Project or folder to scope this configuration to.
      *           For example, "project/456" would apply this configuration only to resources
-     *           in "project/456" scope will be checked with <code>AND</code> of other
-     *           resources.
+     *           in "project/456" scope and will be checked with `AND` of other resources.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_labels_selector
-     *           List of resource labels to search for, evaluated with <code>AND</code>.
+     *           List of resource labels to search for, evaluated with `AND`.
      *           For example, "resource_labels_selector": {"key": "value", "env": "prod"}
-     *           will match resources with labels "key": "value" <code>AND</code> "env":
+     *           will match resources with labels "key": "value" `AND` "env":
      *           "prod"
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels
      *     @type string $description
@@ -153,9 +153,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for the resource value configuration
+     * Identifier. Name for the resource value configuration
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -164,9 +164,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name for the resource value configuration
+     * Identifier. Name for the resource value configuration
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -180,7 +180,8 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource value level this expression represents
-     * Only required when there is no SDP mapping in the request
+     * Only required when there is no Sensitive Data Protection mapping in the
+     * request
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourceValue resource_value = 2;</code>
      * @return int
@@ -192,7 +193,8 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource value level this expression represents
-     * Only required when there is no SDP mapping in the request
+     * Only required when there is no Sensitive Data Protection mapping in the
+     * request
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourceValue resource_value = 2;</code>
      * @param int $var
@@ -207,12 +209,12 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Tag values combined with <code>AND</code> to check against.
+     * Tag values combined with `AND` to check against.
      * Values in the form "tagValues/123"
-     * Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
+     * Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
-     * Generated from protobuf field <code>repeated string tag_values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string tag_values = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTagValues()
@@ -221,12 +223,12 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Tag values combined with <code>AND</code> to check against.
+     * Tag values combined with `AND` to check against.
      * Values in the form "tagValues/123"
-     * Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
+     * Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]`
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
-     * Generated from protobuf field <code>repeated string tag_values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string tag_values = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -240,7 +242,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Apply resource_value only to resources that match resource_type.
-     * resource_type will be checked with <code>AND</code> of other resources.
+     * resource_type will be checked with `AND` of other resources.
      * For example, "storage.googleapis.com/Bucket" with resource_value "HIGH"
      * will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      *
@@ -254,7 +256,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Apply resource_value only to resources that match resource_type.
-     * resource_type will be checked with <code>AND</code> of other resources.
+     * resource_type will be checked with `AND` of other resources.
      * For example, "storage.googleapis.com/Bucket" with resource_value "HIGH"
      * will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      *
@@ -273,8 +275,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     /**
      * Project or folder to scope this configuration to.
      * For example, "project/456" would apply this configuration only to resources
-     * in "project/456" scope will be checked with <code>AND</code> of other
-     * resources.
+     * in "project/456" scope and will be checked with `AND` of other resources.
      *
      * Generated from protobuf field <code>string scope = 5;</code>
      * @return string
@@ -287,8 +288,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     /**
      * Project or folder to scope this configuration to.
      * For example, "project/456" would apply this configuration only to resources
-     * in "project/456" scope will be checked with <code>AND</code> of other
-     * resources.
+     * in "project/456" scope and will be checked with `AND` of other resources.
      *
      * Generated from protobuf field <code>string scope = 5;</code>
      * @param string $var
@@ -303,9 +303,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of resource labels to search for, evaluated with <code>AND</code>.
+     * List of resource labels to search for, evaluated with `AND`.
      * For example, "resource_labels_selector": {"key": "value", "env": "prod"}
-     * will match resources with labels "key": "value" <code>AND</code> "env":
+     * will match resources with labels "key": "value" `AND` "env":
      * "prod"
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels
      *
@@ -318,9 +318,9 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of resource labels to search for, evaluated with <code>AND</code>.
+     * List of resource labels to search for, evaluated with `AND`.
      * For example, "resource_labels_selector": {"key": "value", "env": "prod"}
-     * will match resources with labels "key": "value" <code>AND</code> "env":
+     * will match resources with labels "key": "value" `AND` "env":
      * "prod"
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels
      *

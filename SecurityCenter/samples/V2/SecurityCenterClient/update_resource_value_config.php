@@ -31,20 +31,19 @@ use Google\Cloud\SecurityCenter\V2\UpdateResourceValueConfigRequest;
 /**
  * Updates an existing ResourceValueConfigs with new rules.
  *
- * @param string $resourceValueConfigTagValuesElement Tag values combined with <code>AND</code> to check against.
- *                                                    Values in the form "tagValues/123"
- *                                                    Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ]
- *                                                    https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function update_resource_value_config_sample(string $resourceValueConfigTagValuesElement): void
+function update_resource_value_config_sample(): void
 {
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
     // Prepare the request message.
-    $resourceValueConfigTagValues = [$resourceValueConfigTagValuesElement,];
-    $resourceValueConfig = (new ResourceValueConfig())
-        ->setTagValues($resourceValueConfigTagValues);
+    $resourceValueConfig = new ResourceValueConfig();
     $request = (new UpdateResourceValueConfigRequest())
         ->setResourceValueConfig($resourceValueConfig);
 
@@ -56,21 +55,5 @@ function update_resource_value_config_sample(string $resourceValueConfigTagValue
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $resourceValueConfigTagValuesElement = '[TAG_VALUES]';
-
-    update_resource_value_config_sample($resourceValueConfigTagValuesElement);
 }
 // [END securitycenter_v2_generated_SecurityCenter_UpdateResourceValueConfig_sync]
