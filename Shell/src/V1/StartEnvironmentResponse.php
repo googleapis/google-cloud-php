@@ -22,7 +22,7 @@ class StartEnvironmentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.shell.v1.Environment environment = 1;</code>
      */
-    private $environment = null;
+    protected $environment = null;
 
     /**
      * Constructor.
