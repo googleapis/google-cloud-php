@@ -44,7 +44,6 @@ use Google\Cloud\Deploy\V1\Config;
 use Google\Cloud\Deploy\V1\CreateAutomationRequest;
 use Google\Cloud\Deploy\V1\CreateCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
-use Google\Cloud\Deploy\V1\CreateDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\CreateReleaseRequest;
 use Google\Cloud\Deploy\V1\CreateRolloutRequest;
 use Google\Cloud\Deploy\V1\CreateTargetRequest;
@@ -52,16 +51,13 @@ use Google\Cloud\Deploy\V1\CustomTargetType;
 use Google\Cloud\Deploy\V1\DeleteAutomationRequest;
 use Google\Cloud\Deploy\V1\DeleteCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest;
-use Google\Cloud\Deploy\V1\DeleteDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\DeleteTargetRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
-use Google\Cloud\Deploy\V1\DeployPolicy;
 use Google\Cloud\Deploy\V1\GetAutomationRequest;
 use Google\Cloud\Deploy\V1\GetAutomationRunRequest;
 use Google\Cloud\Deploy\V1\GetConfigRequest;
 use Google\Cloud\Deploy\V1\GetCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
-use Google\Cloud\Deploy\V1\GetDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\GetJobRunRequest;
 use Google\Cloud\Deploy\V1\GetReleaseRequest;
 use Google\Cloud\Deploy\V1\GetRolloutRequest;
@@ -77,8 +73,6 @@ use Google\Cloud\Deploy\V1\ListCustomTargetTypesRequest;
 use Google\Cloud\Deploy\V1\ListCustomTargetTypesResponse;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesResponse;
-use Google\Cloud\Deploy\V1\ListDeployPoliciesRequest;
-use Google\Cloud\Deploy\V1\ListDeployPoliciesResponse;
 use Google\Cloud\Deploy\V1\ListJobRunsRequest;
 use Google\Cloud\Deploy\V1\ListJobRunsResponse;
 use Google\Cloud\Deploy\V1\ListReleasesRequest;
@@ -99,7 +93,6 @@ use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
 use Google\Cloud\Deploy\V1\UpdateAutomationRequest;
 use Google\Cloud\Deploy\V1\UpdateCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
-use Google\Cloud\Deploy\V1\UpdateDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -971,160 +964,6 @@ class CloudDeployClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createDeployPolicyTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createDeployPolicyTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $uid = 'uid115792';
-        $description = 'description-1724546052';
-        $suspended = false;
-        $etag = 'etag3123477';
-        $expectedResponse = new DeployPolicy();
-        $expectedResponse->setName($name);
-        $expectedResponse->setUid($uid);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSuspended($suspended);
-        $expectedResponse->setEtag($etag);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createDeployPolicyTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $deployPolicyId = 'deployPolicyId1355226608';
-        $deployPolicy = new DeployPolicy();
-        $deployPolicySelectors = [];
-        $deployPolicy->setSelectors($deployPolicySelectors);
-        $deployPolicyRules = [];
-        $deployPolicy->setRules($deployPolicyRules);
-        $request = (new CreateDeployPolicyRequest())
-            ->setParent($formattedParent)
-            ->setDeployPolicyId($deployPolicyId)
-            ->setDeployPolicy($deployPolicy);
-        $response = $gapicClient->createDeployPolicy($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/CreateDeployPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getDeployPolicyId();
-        $this->assertProtobufEquals($deployPolicyId, $actualValue);
-        $actualValue = $actualApiRequestObject->getDeployPolicy();
-        $this->assertProtobufEquals($deployPolicy, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createDeployPolicyTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function createDeployPolicyExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createDeployPolicyTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $deployPolicyId = 'deployPolicyId1355226608';
-        $deployPolicy = new DeployPolicy();
-        $deployPolicySelectors = [];
-        $deployPolicy->setSelectors($deployPolicySelectors);
-        $deployPolicyRules = [];
-        $deployPolicy->setRules($deployPolicyRules);
-        $request = (new CreateDeployPolicyRequest())
-            ->setParent($formattedParent)
-            ->setDeployPolicyId($deployPolicyId)
-            ->setDeployPolicy($deployPolicy);
-        $response = $gapicClient->createDeployPolicy($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createDeployPolicyTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
     public function createReleaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1949,128 +1788,6 @@ class CloudDeployClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteDeployPolicyTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteDeployPolicyTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $expectedResponse = new GPBEmpty();
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteDeployPolicyTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->deployPolicyName('[PROJECT]', '[LOCATION]', '[DEPLOY_POLICY]');
-        $request = (new DeleteDeployPolicyRequest())->setName($formattedName);
-        $response = $gapicClient->deleteDeployPolicy($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/DeleteDeployPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteDeployPolicyTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function deleteDeployPolicyExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteDeployPolicyTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deployPolicyName('[PROJECT]', '[LOCATION]', '[DEPLOY_POLICY]');
-        $request = (new DeleteDeployPolicyRequest())->setName($formattedName);
-        $response = $gapicClient->deleteDeployPolicy($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteDeployPolicyTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
     public function deleteTargetTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2556,79 +2273,6 @@ class CloudDeployClientTest extends GeneratedTest
         $request = (new GetDeliveryPipelineRequest())->setName($formattedName);
         try {
             $gapicClient->getDeliveryPipeline($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getDeployPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $uid = 'uid115792';
-        $description = 'description-1724546052';
-        $suspended = false;
-        $etag = 'etag3123477';
-        $expectedResponse = new DeployPolicy();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setUid($uid);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSuspended($suspended);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->deployPolicyName('[PROJECT]', '[LOCATION]', '[DEPLOY_POLICY]');
-        $request = (new GetDeployPolicyRequest())->setName($formattedName);
-        $response = $gapicClient->getDeployPolicy($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/GetDeployPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getDeployPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->deployPolicyName('[PROJECT]', '[LOCATION]', '[DEPLOY_POLICY]');
-        $request = (new GetDeployPolicyRequest())->setName($formattedName);
-        try {
-            $gapicClient->getDeployPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3336,77 +2980,6 @@ class CloudDeployClientTest extends GeneratedTest
         $request = (new ListDeliveryPipelinesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDeliveryPipelines($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listDeployPoliciesTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $deployPoliciesElement = new DeployPolicy();
-        $deployPolicies = [$deployPoliciesElement];
-        $expectedResponse = new ListDeployPoliciesResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setDeployPolicies($deployPolicies);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeployPoliciesRequest())->setParent($formattedParent);
-        $response = $gapicClient->listDeployPolicies($request);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getDeployPolicies()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/ListDeployPolicies', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listDeployPoliciesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeployPoliciesRequest())->setParent($formattedParent);
-        try {
-            $gapicClient->listDeployPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4370,150 +3943,6 @@ class CloudDeployClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateDeliveryPipelineTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function updateDeployPolicyTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateDeployPolicyTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $uid = 'uid115792';
-        $description = 'description-1724546052';
-        $suspended = false;
-        $etag = 'etag3123477';
-        $expectedResponse = new DeployPolicy();
-        $expectedResponse->setName($name);
-        $expectedResponse->setUid($uid);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSuspended($suspended);
-        $expectedResponse->setEtag($etag);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateDeployPolicyTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $deployPolicy = new DeployPolicy();
-        $deployPolicySelectors = [];
-        $deployPolicy->setSelectors($deployPolicySelectors);
-        $deployPolicyRules = [];
-        $deployPolicy->setRules($deployPolicyRules);
-        $request = (new UpdateDeployPolicyRequest())->setUpdateMask($updateMask)->setDeployPolicy($deployPolicy);
-        $response = $gapicClient->updateDeployPolicy($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.deploy.v1.CloudDeploy/UpdateDeployPolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getDeployPolicy();
-        $this->assertProtobufEquals($deployPolicy, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateDeployPolicyTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function updateDeployPolicyExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateDeployPolicyTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $deployPolicy = new DeployPolicy();
-        $deployPolicySelectors = [];
-        $deployPolicy->setSelectors($deployPolicySelectors);
-        $deployPolicyRules = [];
-        $deployPolicy->setRules($deployPolicyRules);
-        $request = (new UpdateDeployPolicyRequest())->setUpdateMask($updateMask)->setDeployPolicy($deployPolicy);
-        $response = $gapicClient->updateDeployPolicy($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateDeployPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

@@ -81,13 +81,6 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      */
     protected $state_description = '';
     /**
-     * Output only. Contains information about what policies prevented the
-     * `AutomationRun` to proceed.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.PolicyViolation policy_violation = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $policy_violation = null;
-    /**
      * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
      * after 14 days from its creation date.
      *
@@ -148,9 +141,6 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *     @type string $state_description
      *           Output only. Explains the current state of the `AutomationRun`. Present
      *           only when an explanation is needed.
-     *     @type \Google\Cloud\Deploy\V1\PolicyViolation $policy_violation
-     *           Output only. Contains information about what policies prevented the
-     *           `AutomationRun` to proceed.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
      *           after 14 days from its creation date.
@@ -452,44 +442,6 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state_description = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. Contains information about what policies prevented the
-     * `AutomationRun` to proceed.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.PolicyViolation policy_violation = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Deploy\V1\PolicyViolation|null
-     */
-    public function getPolicyViolation()
-    {
-        return $this->policy_violation;
-    }
-
-    public function hasPolicyViolation()
-    {
-        return isset($this->policy_violation);
-    }
-
-    public function clearPolicyViolation()
-    {
-        unset($this->policy_violation);
-    }
-
-    /**
-     * Output only. Contains information about what policies prevented the
-     * `AutomationRun` to proceed.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.PolicyViolation policy_violation = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Deploy\V1\PolicyViolation $var
-     * @return $this
-     */
-    public function setPolicyViolation($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PolicyViolation::class);
-        $this->policy_violation = $var;
 
         return $this;
     }

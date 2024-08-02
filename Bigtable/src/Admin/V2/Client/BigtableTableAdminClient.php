@@ -1098,7 +1098,7 @@ final class BigtableTableAdminClient
      * returned table [long-running operation][google.longrunning.Operation] can
      * be used to track the progress of the operation, and to cancel it.  The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [RestoreTableMetadata][google.bigtable.admin.RestoreTableMetadata].  The
+     * [RestoreTableMetadata][google.bigtable.admin.v2.RestoreTableMetadata].  The
      * [response][google.longrunning.Operation.response] type is
      * [Table][google.bigtable.admin.v2.Table], if successful.
      *

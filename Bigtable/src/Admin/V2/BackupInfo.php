@@ -44,7 +44,8 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
-     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     * are of the form:
+     * projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -69,7 +70,8 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      *     @type string $source_backup
      *           Output only. Name of the backup from which this backup was copied. If a
      *           backup is not created by copying a backup, this field will be empty. Values
-     *           are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *           are of the form:
+     *           projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      * }
      */
     public function __construct($data = NULL) {
@@ -208,7 +210,8 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
-     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     * are of the form:
+     * projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -221,7 +224,8 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
-     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     * are of the form:
+     * projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

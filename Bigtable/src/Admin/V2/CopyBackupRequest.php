@@ -18,7 +18,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the destination cluster that will contain the backup
-     * copy. The cluster must already exists. Values are of the form:
+     * copy. The cluster must already exist. Values are of the form:
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -60,7 +60,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                     $parent       Required. The name of the destination cluster that will contain the backup
-     *                                                 copy. The cluster must already exists. Values are of the form:
+     *                                                 copy. The cluster must already exist. Values are of the form:
      *                                                 `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
      *                                                 {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
      * @param string                     $backupId     Required. The id of the new backup. The `backup_id` along with `parent`
@@ -104,7 +104,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the destination cluster that will contain the backup
-     *           copy. The cluster must already exists. Values are of the form:
+     *           copy. The cluster must already exist. Values are of the form:
      *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type string $backup_id
      *           Required. The id of the new backup. The `backup_id` along with `parent`
@@ -136,7 +136,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the destination cluster that will contain the backup
-     * copy. The cluster must already exists. Values are of the form:
+     * copy. The cluster must already exist. Values are of the form:
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -149,7 +149,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the destination cluster that will contain the backup
-     * copy. The cluster must already exists. Values are of the form:
+     * copy. The cluster must already exist. Values are of the form:
      * `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

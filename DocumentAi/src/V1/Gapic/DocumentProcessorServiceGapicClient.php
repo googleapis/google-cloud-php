@@ -1819,6 +1819,8 @@ class DocumentProcessorServiceGapicClient
      *           (Unicode codepoints) and can only contain lowercase letters, numeric
      *           characters, underscores, and dashes. International characters are allowed.
      *           Label values are optional. Label keys must start with a letter.
+     *     @type bool $imagelessMode
+     *           Optional. Option to remove images from the document.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1861,6 +1863,10 @@ class DocumentProcessorServiceGapicClient
 
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
+        }
+
+        if (isset($optionalArgs['imagelessMode'])) {
+            $request->setImagelessMode($optionalArgs['imagelessMode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
