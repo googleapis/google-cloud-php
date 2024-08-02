@@ -1,5 +1,528 @@
 # Changelog
 
+## 0.253.0
+
+<details><summary>google/cloud-access-approval 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.2.0</summary>
+
+
+
+### Features
+
+* A new enum `NotebookExecutionJobView` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new enum `Strategy` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `billable_sum` is added to message `.google.cloud.aiplatform.v1.SupervisedTuningDatasetDistribution` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `dedicated_endpoint_dns` is added to message `.google.cloud.aiplatform.v1.Endpoint` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `dedicated_endpoint_enabled` is added to message `.google.cloud.aiplatform.v1.Endpoint` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `grounding_chunks` is added to message `.google.cloud.aiplatform.v1.GroundingMetadata` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `grounding_supports` is added to message `.google.cloud.aiplatform.v1.GroundingMetadata` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `is_hugging_face_model` is added to message `.google.cloud.aiplatform.v1.GetPublisherModelRequest` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `numeric_filters` is added to message `.google.cloud.aiplatform.v1.NearestNeighborQuery` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `ray_logs_spec` is added to message `.google.cloud.aiplatform.v1.RaySpec` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.Endpoint` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.Endpoint` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `score` is added to message `.google.cloud.aiplatform.v1.Candidate` ([#7557](https://github.com/googleapis/google-cloud-php/issues/7557)) ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `strategy` is added to message `.google.cloud.aiplatform.v1.Scheduling` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `system_instruction` is added to message `.google.cloud.aiplatform.v1.CountTokensRequest` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `tools` is added to message `.google.cloud.aiplatform.v1.CountTokensRequest` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new field `total_billable_token_count` is added to message `.google.cloud.aiplatform.v1.SupervisedTuningDataStats` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `CreateNotebookExecutionJobOperationMetadata` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `CreateNotebookExecutionJobRequest` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `DeleteNotebookExecutionJobRequest` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `GetNotebookExecutionJobRequest` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `GroundingChunk` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `GroundingSupport` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `ListNotebookExecutionJobsRequest` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `ListNotebookExecutionJobsResponse` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `NotebookExecutionJob` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `NumericFilter` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `RayLogsSpec` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new message `Segment` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new method `CreateNotebookExecutionJob` is added to service `NotebookService` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new method `DeleteNotebookExecutionJob` is added to service `NotebookService` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new method `GetNotebookExecutionJob` is added to service `NotebookService` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new method `ListNotebookExecutionJobs` is added to service `NotebookService` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new resource_definition `aiplatform.googleapis.com/NotebookExecutionJob` is added ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A new value `ADAPTER_SIZE_THIRTY_TWO` is added to enum `AdapterSize` ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+
+
+### Documentation
+
+* A comment for field `contents` in message `.google.cloud.aiplatform.v1.CountTokensRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `disable_attribution` in message `.google.cloud.aiplatform.v1.Retrieval` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `instances` in message `.google.cloud.aiplatform.v1.CountTokensRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `language_code` in message `.google.cloud.aiplatform.v1.GetPublisherModelRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `model` in message `.google.cloud.aiplatform.v1.CountTokensRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `name` in message `.google.cloud.aiplatform.v1.Dataset` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `name` in message `.google.cloud.aiplatform.v1.DatasetVersion` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `update_mask` in message `.google.cloud.aiplatform.v1.UpdateFeatureGroupRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `update_mask` in message `.google.cloud.aiplatform.v1.UpdateFeatureOnlineStoreRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `update_mask` in message `.google.cloud.aiplatform.v1.UpdateFeatureRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for field `update_mask` in message `.google.cloud.aiplatform.v1.UpdateFeatureViewRequest` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+* A comment for message `TrialContext` is changed ([c31f326](https://github.com/googleapis/google-cloud-php/commit/c31f326b9558faab2e69b0d72ff23382d6600896))
+
+</details>
+
+<details><summary>google/analytics-admin 0.24.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Rename custom method `CreateSubpropertyRequest` to `ProvisionSubpropertyRequest`
+
+### Features
+
+* Add `CreateBigQueryLink`, `UpdateBigQueryLink`, and `DeleteBigQueryLink` methods ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add `GetEventEditRule`, `CreateEventEditRule`, `ListEventEditRules`, `UpdateEventEditRule`, `DeleteEventEditRule`, and `ReorderEventEditRules` methods to the Admin API v1 alpha ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add `GetKeyEvent`, `CreateKeyEvent`, `ListKeyEvents`, `UpdateKeyEvent`, and `DeleteKeyEvent` methods ([#7571](https://github.com/googleapis/google-cloud-php/issues/7571)) ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add the `BIGQUERY_LINK` option to the `ChangeHistoryResourceType` enum ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add the `create_time` field to the `Audience` resource ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add the `dataset_location` field to the `BigQueryLink` resource ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add the `gmp_organization` field to the `Account` resource ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Add the `primary` field to the `ChannelGroup` resource ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Mark `GetConversionEvent`, `CreateConversionEvent`, `ListConversionEvents`, `UpdateConversionEvent`, and `DeleteConversionEvent` methods as deprecated ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+
+
+### Bug Fixes
+
+* Rename custom method `CreateSubpropertyRequest` to `ProvisionSubpropertyRequest` ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+
+
+### Documentation
+
+* Add deprecation comment to `GetConversionEvent`, `CreateConversionEvent`, `ListConversionEvents`, `UpdateConversionEvent`, and `DeleteConversionEvent` methods ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Improve comment formatting of `account` and `property` fields in `SearchChangeHistoryEventsRequest` ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Improve comment formatting of the `name` field in `DeleteFirebaseLinkRequest`, `GetGlobalSiteTagRequest`, and `GetDataSharingSettingsRequest` ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+* Improve comment formatting of the `parent` field in `CreateFirebaseLinkRequest` and `ListFirebaseLinksRequest` ([53f9f98](https://github.com/googleapis/google-cloud-php/commit/53f9f9855bf62e7527eca1187bd1555381ddc565))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-asset 1.16.4</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/access-context-manager to v1 ([#7558](https://github.com/googleapis/google-cloud-php/issues/7558)) ([8825b41](https://github.com/googleapis/google-cloud-php/commit/8825b41c5757ac2caed404de2eed8f0ae69627ec))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.2.0</summary>
+
+
+
+### Features
+
+* Add fields and the BackupType proto for Hot Backups ([#7576](https://github.com/googleapis/google-cloud-php/issues/7576)) ([7d6d011](https://github.com/googleapis/google-cloud-php/commit/7d6d0115447ab83d531586fc7882f796f6c25592))
+
+
+### Documentation
+
+* Clarify comments and fix typos ([7d6d011](https://github.com/googleapis/google-cloud-php/commit/7d6d0115447ab83d531586fc7882f796f6c25592))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.6.0</summary>
+
+
+
+### Features
+
+* Move common-protos to google-cloud-php ([#7554](https://github.com/googleapis/google-cloud-php/issues/7554)) ([3339a27](https://github.com/googleapis/google-cloud-php/commit/3339a2720d3b7b83096ff8fda69ab4d4abb65cee))
+
+</details>
+
+<details><summary>google/common-protos 4.8.0</summary>
+
+
+
+### Features
+
+* Move common-protos to google-cloud-php ([#7554](https://github.com/googleapis/google-cloud-php/issues/7554)) ([3339a27](https://github.com/googleapis/google-cloud-php/commit/3339a2720d3b7b83096ff8fda69ab4d4abb65cee))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.1.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove an API that was mistakenly made public ([#7563](https://github.com/googleapis/google-cloud-php/issues/7563))
+
+### Bug Fixes
+
+* Remove an API that was mistakenly made public ([#7563](https://github.com/googleapis/google-cloud-php/issues/7563)) ([f295a46](https://github.com/googleapis/google-cloud-php/commit/f295a462a498b7f8e388c07750caca353d489d40))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.17.0</summary>
+
+
+
+### Features
+
+* Add refresh frequency for data profiling ([f292de9](https://github.com/googleapis/google-cloud-php/commit/f292de9c246d153da2dded7004a3d15d7445ce93))
+* gRPC config for get, list, and delete FileStoreDataProfiles ([f292de9](https://github.com/googleapis/google-cloud-php/commit/f292de9c246d153da2dded7004a3d15d7445ce93))
+* Org-level connection bindings ([f292de9](https://github.com/googleapis/google-cloud-php/commit/f292de9c246d153da2dded7004a3d15d7445ce93))
+
+
+### Documentation
+
+* Replace HTML tags with CommonMark notation ([f292de9](https://github.com/googleapis/google-cloud-php/commit/f292de9c246d153da2dded7004a3d15d7445ce93))
+* Small improvements ([f292de9](https://github.com/googleapis/google-cloud-php/commit/f292de9c246d153da2dded7004a3d15d7445ce93))
+
+</details>
+
+<details><summary>google/cloud-dms 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.14.0</summary>
+
+
+
+### Features
+
+* A new field `gen_ai_model_info` is added to message `.google.cloud.documentai.v1.ProcessorVersion` ([c5b4542](https://github.com/googleapis/google-cloud-php/commit/c5b4542c303b756e57ba847d9627513fa237e4e6))
+* A new field `imageless_mode` is added to message `.google.cloud.documentai.v1.ProcessRequest` ([#7573](https://github.com/googleapis/google-cloud-php/issues/7573)) ([c5b4542](https://github.com/googleapis/google-cloud-php/commit/c5b4542c303b756e57ba847d9627513fa237e4e6))
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-filestore 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/grafeas 1.1.0</summary>
+
+
+
+### Features
+
+* A new field `version` is added to message `.grafeas.v1.ComplianceOccurrence` ([#7565](https://github.com/googleapis/google-cloud-php/issues/7565)) ([41443d5](https://github.com/googleapis/google-cloud-php/commit/41443d552ba4fd609565123b43f11af5b97be42a))
+* A new field `vulnerability_attestation` is added to message `.grafeas.v1.DiscoveryOccurrence` ([41443d5](https://github.com/googleapis/google-cloud-php/commit/41443d552ba4fd609565123b43f11af5b97be42a))
+* A new message `VulnerabilityAttestation` is added ([41443d5](https://github.com/googleapis/google-cloud-php/commit/41443d552ba4fd609565123b43f11af5b97be42a))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.1.3</summary>
+
+
+
+### Documentation
+
+* Document that delivery_vehicle.type can be set on CreateDeliveryVehicle ([#7564](https://github.com/googleapis/google-cloud-php/issues/7564)) ([c34fa05](https://github.com/googleapis/google-cloud-php/commit/c34fa05e34e905a936c9474ccbdab48fa0f80498))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.0.1</summary>
+
+
+
+### Documentation
+
+* [NetApp] A comment for field `active_directory_id` in message `.google.cloud.netapp.v1.CreateActiveDirectoryRequest` is changed ([#7569](https://github.com/googleapis/google-cloud-php/issues/7569)) ([2ab5721](https://github.com/googleapis/google-cloud-php/commit/2ab5721fea3bb59e4f460f0e5a535b8f4beea669))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-oslogin 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.5.0</summary>
+
+
+
+### Features
+
+* Add file_stripe_level and directory_stripe_level fields to Instance ([#7570](https://github.com/googleapis/google-cloud-php/issues/7570)) ([ded654e](https://github.com/googleapis/google-cloud-php/commit/ded654ea6d1f749960fc413d5ae9f2a52dcd1071))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.2.6</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-iam to v1 ([#7559](https://github.com/googleapis/google-cloud-php/issues/7559)) ([f9c9bb2](https://github.com/googleapis/google-cloud-php/commit/f9c9bb2865f81d1319f3bf8dcf01f412fae2dded))
+
+</details>
+
+<details><summary>google/cloud-recommender 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.31.0</summary>
+
+
+
+### Features
+
+* Enable Dynamic Mute ([#7574](https://github.com/googleapis/google-cloud-php/issues/7574)) ([d177015](https://github.com/googleapis/google-cloud-php/commit/d1770158a0fe6bb70c99a3105a2b973256c12f34))
+
+</details>
+
+<details><summary>google/cloud-shell 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.83.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add support for Cloud Spanner Incremental Backups ([#7568](https://github.com/googleapis/google-cloud-php/issues/7568)) ([cc2ab23](https://github.com/googleapis/google-cloud-php/commit/cc2ab234dc1db419f4b5a9587d3e84a8db048c55))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7577](https://github.com/googleapis/google-cloud-php/issues/7577)) ([aca00f6](https://github.com/googleapis/google-cloud-php/commit/aca00f6a77763ac3d8ce96806ab7ec0286b985de))
+
+</details>
+
 ## 0.252.0
 
 <details><summary>google/access-context-manager 1.0.0</summary>

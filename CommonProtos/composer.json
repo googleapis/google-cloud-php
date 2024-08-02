@@ -2,7 +2,9 @@
   "name": "google/common-protos",
   "type": "library",
   "description": "Google API Common Protos for PHP",
-  "keywords": ["google"],
+  "keywords": [
+    "google"
+  ],
   "homepage": "https://github.com/googleapis/common-protos-php",
   "license": "Apache-2.0",
   "require": {
