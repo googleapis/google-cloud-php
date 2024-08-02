@@ -87,6 +87,4 @@ class Category
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Category::class, \Google\Cloud\Recommender\V1\Impact_Category::class);
 
