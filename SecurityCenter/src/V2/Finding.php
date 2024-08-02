@@ -157,6 +157,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute = 0;
     /**
+     * Output only. The mute information regarding this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $mute_info = null;
+    /**
      * The class of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.FindingClass finding_class = 16;</code>
@@ -502,6 +508,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Indicates the mute state of a finding (either muted, unmuted
      *           or undefined). Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
+     *     @type \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo $mute_info
+     *           Output only. The mute information regarding this finding.
      *     @type int $finding_class
      *           The class of the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\Indicator $indicator
@@ -1100,6 +1108,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\Finding\Mute::class);
         $this->mute = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The mute information regarding this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo|null
+     */
+    public function getMuteInfo()
+    {
+        return $this->mute_info;
+    }
+
+    public function hasMuteInfo()
+    {
+        return isset($this->mute_info);
+    }
+
+    public function clearMuteInfo()
+    {
+        unset($this->mute_info);
+    }
+
+    /**
+     * Output only. The mute information regarding this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo $var
+     * @return $this
+     */
+    public function setMuteInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo::class);
+        $this->mute_info = $var;
 
         return $this;
     }

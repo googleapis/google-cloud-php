@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * MITRE ATT&CK techniques that can be referenced by SCC findings.
  * See: https://attack.mitre.org/techniques/enterprise/
- * Next ID: 63
+ * Next ID: 65
  *
  * Protobuf type <code>google.cloud.securitycenter.v2.MitreAttack.Technique</code>
  */
@@ -76,6 +76,12 @@ class Technique
      */
     const PYTHON = 59;
     /**
+     * T1068
+     *
+     * Generated from protobuf enum <code>EXPLOITATION_FOR_PRIVILEGE_ESCALATION = 63;</code>
+     */
+    const EXPLOITATION_FOR_PRIVILEGE_ESCALATION = 63;
+    /**
      * T1069
      *
      * Generated from protobuf enum <code>PERMISSION_GROUPS_DISCOVERY = 18;</code>
@@ -87,6 +93,12 @@ class Technique
      * Generated from protobuf enum <code>CLOUD_GROUPS = 19;</code>
      */
     const CLOUD_GROUPS = 19;
+    /**
+     * T1070.004
+     *
+     * Generated from protobuf enum <code>INDICATOR_REMOVAL_FILE_DELETION = 64;</code>
+     */
+    const INDICATOR_REMOVAL_FILE_DELETION = 64;
     /**
      * T1071
      *
@@ -370,7 +382,7 @@ class Technique
      */
     const SCANNING_IP_BLOCKS = 2;
     /**
-     * T1613
+     * T1609
      *
      * Generated from protobuf enum <code>CONTAINER_ADMINISTRATION_COMMAND = 60;</code>
      */
@@ -405,8 +417,10 @@ class Technique
         self::COMMAND_AND_SCRIPTING_INTERPRETER => 'COMMAND_AND_SCRIPTING_INTERPRETER',
         self::UNIX_SHELL => 'UNIX_SHELL',
         self::PYTHON => 'PYTHON',
+        self::EXPLOITATION_FOR_PRIVILEGE_ESCALATION => 'EXPLOITATION_FOR_PRIVILEGE_ESCALATION',
         self::PERMISSION_GROUPS_DISCOVERY => 'PERMISSION_GROUPS_DISCOVERY',
         self::CLOUD_GROUPS => 'CLOUD_GROUPS',
+        self::INDICATOR_REMOVAL_FILE_DELETION => 'INDICATOR_REMOVAL_FILE_DELETION',
         self::APPLICATION_LAYER_PROTOCOL => 'APPLICATION_LAYER_PROTOCOL',
         self::DNS => 'DNS',
         self::SOFTWARE_DEPLOYMENT_TOOLS => 'SOFTWARE_DEPLOYMENT_TOOLS',
