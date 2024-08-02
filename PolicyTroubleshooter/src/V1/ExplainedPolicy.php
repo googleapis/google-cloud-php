@@ -27,7 +27,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessState access = 1;</code>
      */
-    private $access = 0;
+    protected $access = 0;
     /**
      * The full resource name that identifies the resource. For example,
      * `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`.
@@ -38,7 +38,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 2;</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
     /**
      * The IAM policy attached to the resource.
      * If the sender of the request does not have access to the policy, this field
@@ -46,7 +46,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 3;</code>
      */
-    private $policy = null;
+    protected $policy = null;
     /**
      * Details about how each binding in the policy affects the principal's
      * ability, or inability, to use the permission for the resource.
@@ -64,7 +64,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance relevance = 5;</code>
      */
-    private $relevance = 0;
+    protected $relevance = 0;
 
     /**
      * Constructor.
