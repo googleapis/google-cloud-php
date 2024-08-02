@@ -20,14 +20,14 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Backup backup = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup = null;
+    protected $backup = null;
     /**
      * Required. Mask of fields to update.  At least one path must be supplied in
      * this field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Filestore\V1\Backup $backup     Required. A [backup resource][google.cloud.filestore.v1.Backup]

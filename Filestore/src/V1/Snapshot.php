@@ -21,26 +21,26 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A description of the snapshot with 2048 characters or less.
      * Requests with longer descriptions will be rejected.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The snapshot state.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Snapshot.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time when the snapshot was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Resource labels to represent user provided metadata.
      *
@@ -53,7 +53,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 filesystem_used_bytes = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $filesystem_used_bytes = 0;
+    protected $filesystem_used_bytes = 0;
 
     /**
      * Constructor.

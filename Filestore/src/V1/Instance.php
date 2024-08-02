@@ -21,37 +21,37 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The description of the instance (2048 characters or less).
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The instance state.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the instance state, if available.
      *
      * Generated from protobuf field <code>string status_message = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status_message = '';
+    protected $status_message = '';
     /**
      * Output only. The time when the instance was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The service tier of the instance.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier tier = 8;</code>
      */
-    private $tier = 0;
+    protected $tier = 0;
     /**
      * Resource labels to represent user provided metadata.
      *
@@ -78,25 +78,25 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 12;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = false;
+    protected $satisfies_pzi = false;
     /**
      * KMS key name used for data encryption.
      *
      * Generated from protobuf field <code>string kms_key_name = 14;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Output only. Field indicates all the reasons the instance is in "SUSPENDED"
      * state.
@@ -458,7 +458,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool|null
      */
-    public function getSatisfiesPzsValue()
+    public function getSatisfiesPzsUnwrapped()
     {
         return $this->readWrapperValue("satisfies_pzs");
     }
@@ -487,7 +487,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setSatisfiesPzsValue($var)
+    public function setSatisfiesPzsUnwrapped($var)
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}
