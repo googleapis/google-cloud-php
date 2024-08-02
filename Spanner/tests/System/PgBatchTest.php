@@ -83,7 +83,7 @@ class PgBatchTest extends SpannerPgTestCase
      */
     public function testBatchWithDbRole($dbRole, $expected)
     {
-        // Emulator does not support FGAC
+        // Emulator does not support FGAC for the PG dialect.
         $this->skipEmulatorTests();
 
         $error = null;

@@ -30,6 +30,11 @@ class PgPartitionedDmlTest extends SpannerPgTestCase
 
     public function testPdml()
     {
+        // Skipping temporarily while we figure out the issue with
+        // `executePartitionedUpdate` not accepting parameters in
+        // PG format.
+        self::skipEmulatorTests();
+
         $db = self::$database;
 
         $db->updateDdl('CREATE TABLE ' . self::PDML_TABLE . '(
