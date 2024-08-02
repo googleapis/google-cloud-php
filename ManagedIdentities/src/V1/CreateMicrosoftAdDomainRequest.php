@@ -22,7 +22,7 @@ class CreateMicrosoftAdDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The fully qualified domain name.
      * e.g. mydomain.myorganization.com, with the following restrictions:
@@ -38,13 +38,13 @@ class CreateMicrosoftAdDomainRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $domain_name = '';
+    protected $domain_name = '';
     /**
      * Required. A Managed Identity domain resource.
      *
      * Generated from protobuf field <code>.google.cloud.managedidentities.v1.Domain domain = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $domain = null;
+    protected $domain = null;
 
     /**
      * @param string                                    $parent     Required. The resource project name and location using the form:

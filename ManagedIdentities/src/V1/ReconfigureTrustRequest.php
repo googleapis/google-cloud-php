@@ -22,14 +22,14 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The fully-qualified target domain name which will be in trust with current
      * domain.
      *
      * Generated from protobuf field <code>string target_domain_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_domain_name = '';
+    protected $target_domain_name = '';
     /**
      * Required. The target DNS server IP addresses to resolve the remote domain involved
      * in the trust.

@@ -21,7 +21,7 @@ class ResetAdminPasswordResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string password = 1;</code>
      */
-    private $password = '';
+    protected $password = '';
 
     /**
      * Constructor.
