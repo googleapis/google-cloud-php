@@ -34,12 +34,12 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version.
      * In all cases, the resolved image version is stored in the same field.
      * See also [version
-     * list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
-     * overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
+     * list](/composer/docs/concepts/versioning/composer-versions) and [versioning
+     * overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      */
-    private $image_version = '';
+    protected $image_version = '';
     /**
      * Optional. Apache Airflow configuration properties to override.
      * Property keys contain the section and property names, separated by a
@@ -52,7 +52,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can
      * contain any character, and can be written in any lower/upper case format.
      * Certain Apache Airflow configuration property values are
-     * [blocked](https://cloud.google.com/composer/docs/concepts/airflow-configurations),
+     * [blocked](/composer/docs/concepts/airflow-configurations),
      * and cannot be overridden.
      *
      * Generated from protobuf field <code>map<string, string> airflow_config_overrides = 2;</code>
@@ -106,7 +106,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string python_version = 6;</code>
      */
-    private $python_version = '';
+    protected $python_version = '';
     /**
      * Optional. The number of schedulers for Airflow.
      * This field is supported for Cloud Composer environments in versions
@@ -114,13 +114,13 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 scheduler_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scheduler_count = 0;
+    protected $scheduler_count = 0;
     /**
      * Optional. The configuration for Cloud Data Lineage integration.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.CloudDataLineageIntegration cloud_data_lineage_integration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cloud_data_lineage_integration = null;
+    protected $cloud_data_lineage_integration = null;
     /**
      * Optional. Whether or not the web server uses custom plugins.
      * If unspecified, the field defaults to `PLUGINS_ENABLED`.
@@ -129,7 +129,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $web_server_plugins_mode = 0;
+    protected $web_server_plugins_mode = 0;
 
     /**
      * Constructor.
@@ -156,8 +156,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           version.
      *           In all cases, the resolved image version is stored in the same field.
      *           See also [version
-     *           list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
-     *           overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
+     *           list](/composer/docs/concepts/versioning/composer-versions) and [versioning
+     *           overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *     @type array|\Google\Protobuf\Internal\MapField $airflow_config_overrides
      *           Optional. Apache Airflow configuration properties to override.
      *           Property keys contain the section and property names, separated by a
@@ -170,7 +170,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can
      *           contain any character, and can be written in any lower/upper case format.
      *           Certain Apache Airflow configuration property values are
-     *           [blocked](https://cloud.google.com/composer/docs/concepts/airflow-configurations),
+     *           [blocked](/composer/docs/concepts/airflow-configurations),
      *           and cannot be overridden.
      *     @type array|\Google\Protobuf\Internal\MapField $pypi_packages
      *           Optional. Custom Python Package Index (PyPI) packages to be installed in
@@ -246,8 +246,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version.
      * In all cases, the resolved image version is stored in the same field.
      * See also [version
-     * list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
-     * overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
+     * list](/composer/docs/concepts/versioning/composer-versions) and [versioning
+     * overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @return string
@@ -276,8 +276,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version.
      * In all cases, the resolved image version is stored in the same field.
      * See also [version
-     * list](https://cloud.google.com/composer/docs/concepts/versioning/composer-versions) and [versioning
-     * overview](https://cloud.google.com/composer/docs/concepts/versioning/composer-versioning-overview).
+     * list](/composer/docs/concepts/versioning/composer-versions) and [versioning
+     * overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @param string $var
@@ -303,7 +303,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can
      * contain any character, and can be written in any lower/upper case format.
      * Certain Apache Airflow configuration property values are
-     * [blocked](https://cloud.google.com/composer/docs/concepts/airflow-configurations),
+     * [blocked](/composer/docs/concepts/airflow-configurations),
      * and cannot be overridden.
      *
      * Generated from protobuf field <code>map<string, string> airflow_config_overrides = 2;</code>
@@ -326,7 +326,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can
      * contain any character, and can be written in any lower/upper case format.
      * Certain Apache Airflow configuration property values are
-     * [blocked](https://cloud.google.com/composer/docs/concepts/airflow-configurations),
+     * [blocked](/composer/docs/concepts/airflow-configurations),
      * and cannot be overridden.
      *
      * Generated from protobuf field <code>map<string, string> airflow_config_overrides = 2;</code>

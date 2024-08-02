@@ -21,26 +21,26 @@ class CheckUpgradeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string build_log_uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $build_log_uri = '';
+    protected $build_log_uri = '';
     /**
      * Output only. Whether build has succeeded or failed on modules conflicts.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.CheckUpgradeResponse.ConflictResult contains_pypi_modules_conflict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $contains_pypi_modules_conflict = 0;
+    protected $contains_pypi_modules_conflict = 0;
     /**
      * Output only. Extract from a docker image build log containing information
      * about pypi modules conflicts.
      *
      * Generated from protobuf field <code>string pypi_conflict_build_log_extract = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pypi_conflict_build_log_extract = '';
+    protected $pypi_conflict_build_log_extract = '';
     /**
      * Composer image for which the build was happening.
      *
      * Generated from protobuf field <code>string image_version = 5;</code>
      */
-    private $image_version = '';
+    protected $image_version = '';
     /**
      * Pypi dependencies specified in the environment configuration, at the time
      * when the build was triggered.

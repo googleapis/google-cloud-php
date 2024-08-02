@@ -23,38 +23,38 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Configuration parameters for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Output only. The UUID (Universally Unique IDentifier) associated with this
      * environment. This value is generated when the environment is created.
      *
      * Generated from protobuf field <code>string uuid = 3;</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     /**
      * The current state of the environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.Environment.State state = 4;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time at which this environment was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this environment was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User-defined labels for this environment.
      * The labels map can contain no more than 64 entries. Entries of the labels
@@ -72,13 +72,13 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Optional. Storage configuration for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.StorageConfig storage_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $storage_config = null;
+    protected $storage_config = null;
 
     /**
      * Constructor.

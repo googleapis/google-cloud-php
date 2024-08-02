@@ -20,7 +20,7 @@ class StopAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_done = 1;</code>
      */
-    private $is_done = false;
+    protected $is_done = false;
     /**
      * Output message from stopping execution request.
      *

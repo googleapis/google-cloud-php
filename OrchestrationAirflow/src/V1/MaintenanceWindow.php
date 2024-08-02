@@ -30,7 +30,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Required. Maintenance window end time. It is used only to calculate the
      * duration of the maintenance window. The value for end-time must be in the
@@ -38,7 +38,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Required. Maintenance window recurrence. Format is a subset of
      * [RFC-5545](https://tools.ietf.org/html/rfc5545) `RRULE`. The only allowed
@@ -47,7 +47,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recurrence = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $recurrence = '';
+    protected $recurrence = '';
 
     /**
      * Constructor.

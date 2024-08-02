@@ -20,25 +20,25 @@ class ExecuteAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string execution_id = 1;</code>
      */
-    private $execution_id = '';
+    protected $execution_id = '';
     /**
      * The name of the pod where the command is executed.
      *
      * Generated from protobuf field <code>string pod = 2;</code>
      */
-    private $pod = '';
+    protected $pod = '';
     /**
      * The namespace of the pod where the command is executed.
      *
      * Generated from protobuf field <code>string pod_namespace = 3;</code>
      */
-    private $pod_namespace = '';
+    protected $pod_namespace = '';
     /**
      * Error message. Empty if there was no error.
      *
      * Generated from protobuf field <code>string error = 4;</code>
      */
-    private $error = '';
+    protected $error = '';
 
     /**
      * Constructor.
