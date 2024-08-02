@@ -20,13 +20,13 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket_uri = '';
+    protected $bucket_uri = '';
     /**
      * Optional. Specifies the type of the objects in `bucket_uri`.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource.BucketObjectType bucket_object_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bucket_object_type = 0;
+    protected $bucket_object_type = 0;
 
     /**
      * Constructor.

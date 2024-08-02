@@ -21,7 +21,7 @@ class CalculateIssueModelStatsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelLabelStats current_stats = 4;</code>
      */
-    private $current_stats = null;
+    protected $current_stats = null;
 
     /**
      * Constructor.

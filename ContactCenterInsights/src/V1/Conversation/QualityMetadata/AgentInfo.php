@@ -20,26 +20,26 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_id = 1;</code>
      */
-    private $agent_id = '';
+    protected $agent_id = '';
     /**
      * The agent's name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * A user-specified string representing the agent's team.
      *
      * Generated from protobuf field <code>string team = 3;</code>
      */
-    private $team = '';
+    protected $team = '';
     /**
      * A user-provided string indicating the outcome of the agent's segment of
      * the call.
      *
      * Generated from protobuf field <code>string disposition_code = 4;</code>
      */
-    private $disposition_code = '';
+    protected $disposition_code = '';
 
     /**
      * Constructor.

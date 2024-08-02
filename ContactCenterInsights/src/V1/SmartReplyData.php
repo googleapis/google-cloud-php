@@ -20,7 +20,7 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reply = 1;</code>
      */
-    private $reply = '';
+    protected $reply = '';
     /**
      * The system's confidence score that this reply is a good match for this
      * conversation, ranging from 0.0 (completely uncertain) to 1.0 (completely
@@ -28,7 +28,7 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double confidence_score = 2;</code>
      */
-    private $confidence_score = 0.0;
+    protected $confidence_score = 0.0;
     /**
      * Map that contains metadata about the Smart Reply and the document from
      * which it originates.
@@ -43,7 +43,7 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      */
-    private $query_record = '';
+    protected $query_record = '';
 
     /**
      * Constructor.

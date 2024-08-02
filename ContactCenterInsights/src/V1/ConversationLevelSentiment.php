@@ -20,13 +20,13 @@ class ConversationLevelSentiment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 channel_tag = 1;</code>
      */
-    private $channel_tag = 0;
+    protected $channel_tag = 0;
     /**
      * Data specifying sentiment.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SentimentData sentiment_data = 2;</code>
      */
-    private $sentiment_data = null;
+    protected $sentiment_data = null;
 
     /**
      * Constructor.

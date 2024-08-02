@@ -20,7 +20,7 @@ class IssueMatchData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueAssignment issue_assignment = 1;</code>
      */
-    private $issue_assignment = null;
+    protected $issue_assignment = null;
 
     /**
      * Constructor.

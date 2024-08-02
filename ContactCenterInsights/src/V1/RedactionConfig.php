@@ -22,7 +22,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deidentify_template = 1;</code>
      */
-    private $deidentify_template = '';
+    protected $deidentify_template = '';
     /**
      * The fully-qualified DLP inspect template resource name.
      * Format:
@@ -30,7 +30,7 @@ class RedactionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string inspect_template = 2;</code>
      */
-    private $inspect_template = '';
+    protected $inspect_template = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class PhraseMatchData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string phrase_matcher = 1;</code>
      */
-    private $phrase_matcher = '';
+    protected $phrase_matcher = '';
     /**
      * The human-readable name of the phrase matcher.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

@@ -20,27 +20,27 @@ class BulkAnalyzeConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Filter used to select the subset of conversations to analyze.
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Required. Percentage of selected conversation to analyze, between
      * [0, 100].
      *
      * Generated from protobuf field <code>float analysis_percentage = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $analysis_percentage = 0.0;
+    protected $analysis_percentage = 0.0;
     /**
      * To select the annotators to run and the phrase matchers to use
      * (if any). If not specified, all annotators will be run.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 8;</code>
      */
-    private $annotator_selector = null;
+    protected $annotator_selector = null;
 
     /**
      * @param string $parent             Required. The parent resource to create analyses in. Please see
