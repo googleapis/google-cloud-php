@@ -420,6 +420,7 @@ class PgReadTest extends SpannerPgTestCase
     {
         $this->expectException(DeadlineExceededException::class);
 
+        // Also skipped for GSQL.
         $this->skipEmulatorTests();
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
