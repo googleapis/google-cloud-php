@@ -18,6 +18,8 @@
 namespace Google\Cloud\Dev\Command;
 
 use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\ComponentPackage;
+use Google\Cloud\Dev\Packagist;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -47,6 +49,7 @@ class ComponentInfoCommand extends Command
         'description' => 'Description',
         'created_at' => 'Created At',
         'available_api_versions' => 'Availble API Versions',
+        'downloads' => 'Downloads',
     ];
     private static $defaultFields = [
         'component_name',
@@ -59,6 +62,7 @@ class ComponentInfoCommand extends Command
     ];
 
     private string $token;
+    private Packagist $packagist;
 
     protected function configure()
     {
@@ -68,8 +72,8 @@ class ComponentInfoCommand extends Command
             ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
             ->addOption('fields', 'f', InputOption::VALUE_REQUIRED, sprintf(
                 "Comma-separated list of fields, \"all\" for all fields. The following fields are available: \n - %s\n" .
-                "NOTE: \"available_api_versions\" are omited by default because they take a long time to load.\n" .
-                "Use --show-available-api-versions to include them.\n",
+                "NOTE: \"available_api_versions\", \"created_at\", and \"downloads\" are omited by default because they ".
+                "take a long time to load.\n",
                 implode("\n - ", array_keys(self::$allFields))
             ))
             ->addOption('filter', '', InputOption::VALUE_REQUIRED,
@@ -80,18 +84,6 @@ class ComponentInfoCommand extends Command
                 'field to sort by (with optional ASC/DESC suffix. e.g. "component_name DESC"'
             )
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
-            ->addOption(
-                'show-available-api-versions',
-                '',
-                InputOption::VALUE_NONE,
-                'Show available API versions for each component. Requires an API call'
-            )
-            ->addOption(
-                'show-created-at',
-                '',
-                InputOption::VALUE_NONE,
-                'Show when the components were created. Requires shelling out to git.'
-            )
             ->addOption('expanded', '', InputOption::VALUE_NONE, 'Break down each component by packages')
         ;
     }
@@ -100,18 +92,15 @@ class ComponentInfoCommand extends Command
     {
         $fields = match($input->getOption('fields')) {
             null => self::$defaultFields,
-            'all' => array_keys(array_diff_key(self::$allFields, ['available_api_versions' => ''])),
+            'all' => array_keys(array_diff_key(
+                self::$allFields,
+                ['available_api_versions' => '', 'created_at' => '', 'downloads' => '']
+            )),
             default => explode(',', $input->getOption('fields')),
         };
 
-        if ($input->getOption('show-available-api-versions')) {
-            $fields[] = 'available_api_versions';
-        }
-
-        if ($input->getOption('show-created-at')) {
-            $fields[] = 'created_at';
-        }
         $this->token = $input->getOption('token');
+        $this->packagist = new Packagist(new Client(), '', '');
 
         // Parse filters
         $filters = $this->parseFilters($input->getOption('filter') ?: '');
@@ -130,26 +119,10 @@ class ComponentInfoCommand extends Command
             $componentRows = $this->getComponentDetails(
                 $component,
                 $requestedFields,
+                $filters,
                 $input->getOption('expanded')
             );
 
-            foreach ($componentRows as $row) {
-                foreach ($filters as $filter) {
-                    list($field, $value, $operator) = $filter;
-                    if (!match ($operator) {
-                        '=' => ($row[$field] === $value),
-                        '!=' => ($row[$field] !== $value),
-                        '~=' => strpos($row[$field], $value) !== false,
-                        '!~=' => strpos($row[$field], $value) === false,
-                        '>' => version_compare($row[$field], $value, '>'),
-                        '<' => version_compare($row[$field], $value, '<'),
-                        '>=' => version_compare($row[$field], $value, '>='),
-                        '<=' => version_compare($row[$field], $value, '<='),
-                    }) {
-                        continue 3;
-                    }
-                }
-            }
             $rows = array_merge($rows, $componentRows);
         }
 
@@ -158,6 +131,7 @@ class ComponentInfoCommand extends Command
             usort($rows, function ($a, $b) use ($field) {
                 return match ($field) {
                     'package_version' => version_compare($a[$field], $b[$field]),
+                    'downloads' => str_replace(',', '', $a[$field]) <=> str_replace(',', '', $b[$field]),
                     default => strcmp($a[$field], $b[$field]),
                 };
             });
@@ -201,62 +175,69 @@ class ComponentInfoCommand extends Command
         return 0;
     }
 
-    private function getComponentDetails(Component $component, array $requestedFields, bool $expanded): array
+    private function getComponentDetails(Component $component, array $requestedFields, array $filters, bool $expanded): array
     {
         $rows = [];
         if ($expanded) {
             foreach ($component->getComponentPackages() as $pkg) {
-                // use "array_intersect_key" to filter out fields that were not requested.
-                // use "array_replace" to sort the fields in the order they were requested.
-                $details = array_replace($requestedFields, array_intersect_key([
-                    'component_name' => $component->getName() . "\\" . $pkg->getName(),
-                    'package_name' => $component->getPackageName(),
-                    'package_version' => $component->getPackageVersion(),
-                    'api_version' => $pkg->getName(),
-                    'release_level' => $component->getReleaseLevel(),
-                    'migration_mode' => $pkg->getMigrationStatus(),
-                    'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
-                    'github_repo' => $component->getRepoName(),
-                    'proto_path' => $pkg->getProtoPackage(),
-                    'service_address' => $pkg->getServiceAddress(),
-                    'api_shortname' => $pkg->getApiShortname(),
-                    'description' => $component->getDescription(),
-                ], $requestedFields));
-                if (array_key_exists('available_api_versions', $requestedFields)) {
-                    $availableApiVersions = $this->getAvailableApiVersions($component);
+                if ($row = $this->getComponentDetailRow($component, $pkg, $requestedFields, $filters)) {
+                    $rows[] = $row;
                 }
-                if (array_key_exists('created_at', $requestedFields)) {
-                    $details['created_at'] = $component->getCreatedAt()->format('Y-m-d');
-                }
-                $rows[] = $details;
             }
         } else {
-            // use "array_intersect_key" to filter out fields that were not requested.
-            // use "array_replace" to sort the fields in the order they were requested.
-            $details = array_replace($requestedFields, array_intersect_key([
-                'component_name' => $component->getName(),
-                'package_name' => $component->getPackageName(),
-                'package_version' => $component->getPackageVersion(),
-                'api_version' => implode("\n", $component->getApiVersions()),
-                'release_level' => $component->getReleaseLevel(),
-                'migration_mode' => implode("\n", $component->getMigrationStatuses()),
-                'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
-                'github_repo' => $component->getRepoName(),
-                'proto_path' => implode("\n", $component->getProtoPackages()),
-                'service_address' => implode("\n", $component->getServiceAddresses()),
-                'api_shortname' => implode("\n", array_filter($component->getApiShortnames())),
-                'description' => $component->getDescription(),
-            ], $requestedFields));
-            if (array_key_exists('available_api_versions', $requestedFields)) {
-                $details['available_api_versions'] = $this->getAvailableApiVersions($component);
+            if ($row = $this->getComponentDetailRow($component, null, $requestedFields, $filters)) {
+                $rows[] = $row;
             }
-            if (array_key_exists('created_at', $requestedFields)) {
-                $details['created_at'] = $component->getCreatedAt()->format('Y-m-d');
-            }
-            $rows[] = $details;
         }
 
         return $rows;
+    }
+
+    private function getComponentDetailRow(
+        Component $component,
+        ?ComponentPackage $package,
+        array $requestedFields,
+        array $filters,
+    ): ?array {
+        // use "array_intersect_key" to filter out fields that were not requested.
+        // use "array_replace" to sort the fields in the order they were requested.
+        $row = array_replace($requestedFields, array_intersect_key([
+            'component_name' => $component->getName() . ($package ? "/" . $package->getName() : ''),
+            'package_name' => $component->getPackageName(),
+            'package_version' => $component->getPackageVersion(),
+            'api_version' => $package ? $package->getName() : implode("\n", $component->getApiVersions()),
+            'release_level' => $component->getReleaseLevel(),
+            'migration_mode' => $package ? $package->getMigrationStatus() : implode("\n", $component->getMigrationStatuses()),
+            'php_namespaces' => implode("\n", array_keys($component->getNamespaces())),
+            'github_repo' => $component->getRepoName(),
+            'proto_path' => $package ? $package->getProtoPackage() : implode("\n", $component->getProtoPackages()),
+            'service_address' => $package ? $package->getServiceAddress() : implode("\n", $component->getServiceAddresses()),
+            'api_shortname' => $package ? $package->getApiShortname() : implode("\n", array_filter($component->getApiShortnames())),
+            'description' => $component->getDescription(),
+            'available_api_versions' => null,
+            'created_at' => null,
+            'downloads' => null,
+        ], $requestedFields));
+
+        // pre-filter so we don't perform excessive slow operations
+        if ($this->filterRow($row, $filters)) {
+            return null;
+        }
+        // Only add these if they've been requested (because they're slow)
+        if (array_key_exists('available_api_versions', $requestedFields)) {
+            $row['available_api_versions'] = $this->getAvailableApiVersions($component);
+        }
+        if (array_key_exists('created_at', $requestedFields)) {
+            $row['created_at'] = $component->getCreatedAt()->format('Y-m-d');
+        }
+        if (array_key_exists('downloads', $requestedFields)) {
+            $row['downloads'] = number_format($this->packagist->getDownloads($component->getPackageName()));
+        }
+        // call again in case the filters were on the slow fields
+        if ($this->filterRow($row, $filters)) {
+            return null;
+        }
+        return $row;
     }
 
     private function getAvailableApiVersions(Component $component): string
@@ -301,5 +282,26 @@ class ComponentInfoCommand extends Command
             }
         }
         return $filters;
+    }
+
+    private function filterRow(array $row, array $filters): bool
+    {
+        foreach ($filters as $filter) {
+            list($field, $value, $operator) = $filter;
+            if ($row[$field] === null) {
+                // bypass filter for now - these will be added later
+                continue;
+            }
+            if (!match ($operator) {
+                '=' => ($row[$field] === $value),
+                '!=' => ($row[$field] !== $value),
+                '~=' => strpos($row[$field], $value) !== false,
+                '!~=' => strpos($row[$field], $value) === false,
+                '>','<','>=','<=' => version_compare($row[$field], $value, $operator),
+            }) {
+                return true; // filter out the row
+            }
+        }
+        return false;
     }
 }
