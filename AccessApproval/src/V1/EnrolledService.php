@@ -75,13 +75,13 @@ class EnrolledService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_product = 1;</code>
      */
-    private $cloud_product = '';
+    protected $cloud_product = '';
     /**
      * The enrollment level of the service.
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.EnrollmentLevel enrollment_level = 2;</code>
      */
-    private $enrollment_level = 0;
+    protected $enrollment_level = 0;
 
     /**
      * Constructor.
