@@ -20,20 +20,20 @@ class PackageEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package_sql_code = 1;</code>
      */
-    private $package_sql_code = '';
+    protected $package_sql_code = '';
     /**
      * The SQL code which creates the package body. If the package specification
      * has cursors or subprograms, then the package body is mandatory.
      *
      * Generated from protobuf field <code>string package_body = 2;</code>
      */
-    private $package_body = '';
+    protected $package_body = '';
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 3;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

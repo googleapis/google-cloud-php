@@ -20,13 +20,13 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.v1.LoginProfile login_profile = 1;</code>
      */
-    private $login_profile = null;
+    protected $login_profile = null;
     /**
      * Detailed information about import results.
      *
      * Generated from protobuf field <code>string details = 2;</code>
      */
-    private $details = '';
+    protected $details = '';
 
     /**
      * Constructor.

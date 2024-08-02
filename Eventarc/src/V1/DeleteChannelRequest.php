@@ -20,14 +20,14 @@ class DeleteChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string $name Required. The name of the channel to be deleted. Please see

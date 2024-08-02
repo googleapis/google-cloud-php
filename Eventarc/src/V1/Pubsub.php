@@ -25,7 +25,7 @@ class Pubsub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * Output only. The name of the Pub/Sub subscription created and managed by Eventarc
      * as a transport for the event delivery. Format:
@@ -33,7 +33,7 @@ class Pubsub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
 
     /**
      * Constructor.

@@ -22,7 +22,7 @@ class SpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string speech_recognizer = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $speech_recognizer = '';
+    protected $speech_recognizer = '';
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class UndeployIssueModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The original request for undeployment.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.UndeployIssueModelRequest request = 3;</code>
      */
-    private $request = null;
+    protected $request = null;
 
     /**
      * Constructor.

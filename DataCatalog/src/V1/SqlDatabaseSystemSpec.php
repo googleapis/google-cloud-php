@@ -29,13 +29,13 @@ class SqlDatabaseSystemSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_engine = 1;</code>
      */
-    private $sql_engine = '';
+    protected $sql_engine = '';
     /**
      * Version of the database engine.
      *
      * Generated from protobuf field <code>string database_version = 2;</code>
      */
-    private $database_version = '';
+    protected $database_version = '';
     /**
      * Host of the SQL database
      * enum InstanceHost {
@@ -49,7 +49,7 @@ class SqlDatabaseSystemSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_host = 3;</code>
      */
-    private $instance_host = '';
+    protected $instance_host = '';
 
     /**
      * Constructor.

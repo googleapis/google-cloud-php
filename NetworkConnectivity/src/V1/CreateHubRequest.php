@@ -22,19 +22,19 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A unique identifier for the hub.
      *
      * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hub_id = '';
+    protected $hub_id = '';
     /**
      * Required. The initial values for a new hub.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.Hub hub = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hub = null;
+    protected $hub = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID so
      * that if you must retry your request, the server knows to ignore the request
@@ -51,7 +51,7 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                   $parent Required. The parent resource. Please see

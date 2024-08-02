@@ -20,26 +20,26 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The trigger to create.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trigger = null;
+    protected $trigger = null;
     /**
      * Required. The user-provided ID to be assigned to the trigger.
      *
      * Generated from protobuf field <code>string trigger_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trigger_id = '';
+    protected $trigger_id = '';
     /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                            $parent    Required. The parent collection in which to add this trigger. Please see

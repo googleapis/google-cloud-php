@@ -23,7 +23,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Up to 50 external networks that could access Kubernetes master through
      * HTTPS.

@@ -16,8 +16,8 @@ use UnexpectedValueException;
  * the [`Entry`](#resource:-entry) field `user_specified_type`. For more
  * information, see
  * [Surface files from Cloud Storage with fileset
- * entries](https://cloud.google.com/data-catalog/docs/how-to/filesets) or [Create custom entries for
- * your data sources](https://cloud.google.com/data-catalog/docs/how-to/custom-entries).
+ * entries](/data-catalog/docs/how-to/filesets) or [Create custom entries for
+ * your data sources](/data-catalog/docs/how-to/custom-entries).
  *
  * Protobuf type <code>google.cloud.datacatalog.v1.EntryType</code>
  */
@@ -39,7 +39,7 @@ class EntryType
     /**
      * The type of models.
      * For more information, see [Supported models in BigQuery
-     * ML](https://cloud.google.com/bigquery/docs/bqml-introduction#supported_models).
+     * ML](/bigquery/docs/bqml-introduction#supported_models).
      *
      * Generated from protobuf enum <code>MODEL = 5;</code>
      */

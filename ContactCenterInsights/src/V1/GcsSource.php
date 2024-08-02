@@ -21,14 +21,14 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audio_uri = 1;</code>
      */
-    private $audio_uri = '';
+    protected $audio_uri = '';
     /**
      * Immutable. Cloud Storage URI that points to a file that contains the
      * conversation transcript.
      *
      * Generated from protobuf field <code>string transcript_uri = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $transcript_uri = '';
+    protected $transcript_uri = '';
 
     /**
      * Constructor.

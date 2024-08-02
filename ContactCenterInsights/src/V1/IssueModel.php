@@ -22,62 +22,62 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The representative name for the issue model.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The time at which this issue model was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The most recent time at which the issue model was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Number of issues in this issue model.
      *
      * Generated from protobuf field <code>int64 issue_count = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $issue_count = 0;
+    protected $issue_count = 0;
     /**
      * Output only. State of the model.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Configs for the input data that used to create the issue model.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.InputDataConfig input_data_config = 6;</code>
      */
-    private $input_data_config = null;
+    protected $input_data_config = null;
     /**
      * Output only. Immutable. The issue model's label statistics on its training
      * data.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelLabelStats training_stats = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $training_stats = null;
+    protected $training_stats = null;
     /**
      * Type of the model.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModel.ModelType model_type = 9;</code>
      */
-    private $model_type = 0;
+    protected $model_type = 0;
     /**
      * Language of the model.
      *
      * Generated from protobuf field <code>string language_code = 10;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

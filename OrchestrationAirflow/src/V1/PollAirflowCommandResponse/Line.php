@@ -20,13 +20,13 @@ class Line extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 line_number = 1;</code>
      */
-    private $line_number = 0;
+    protected $line_number = 0;
     /**
      * Text content of the log line.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      */
-    private $content = '';
+    protected $content = '';
 
     /**
      * Constructor.

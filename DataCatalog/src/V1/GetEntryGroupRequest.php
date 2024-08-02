@@ -21,13 +21,13 @@ class GetEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The fields to return. If empty or omitted, all fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2;</code>
      */
-    private $read_mask = null;
+    protected $read_mask = null;
 
     /**
      * @param string $name Required. The name of the entry group to get. Please see

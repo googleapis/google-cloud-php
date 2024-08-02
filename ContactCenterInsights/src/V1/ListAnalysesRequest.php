@@ -20,7 +20,7 @@ class ListAnalysesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of analyses to return in the response. If this
      * value is zero, the service will select a default size. A call might return
@@ -29,7 +29,7 @@ class ListAnalysesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListAnalysesResponse`; indicates
      * that this is a continuation of a prior `ListAnalyses` call and
@@ -37,14 +37,14 @@ class ListAnalysesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A filter to reduce results to a specific subset. Useful for querying
      * conversations with specific properties.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent resource of the analyses. Please see

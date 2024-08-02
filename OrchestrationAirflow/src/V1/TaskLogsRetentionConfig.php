@@ -21,7 +21,7 @@ class TaskLogsRetentionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig.TaskLogsStorageMode storage_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $storage_mode = 0;
+    protected $storage_mode = 0;
 
     /**
      * Constructor.

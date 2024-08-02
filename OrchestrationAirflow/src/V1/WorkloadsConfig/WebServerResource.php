@@ -20,19 +20,19 @@ class WebServerResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float cpu = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cpu = 0.0;
+    protected $cpu = 0.0;
     /**
      * Optional. Memory (GB) request and limit for Airflow web server.
      *
      * Generated from protobuf field <code>float memory_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $memory_gb = 0.0;
+    protected $memory_gb = 0.0;
     /**
      * Optional. Storage (GB) request and limit for Airflow web server.
      *
      * Generated from protobuf field <code>float storage_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $storage_gb = 0.0;
+    protected $storage_gb = 0.0;
 
     /**
      * Constructor.

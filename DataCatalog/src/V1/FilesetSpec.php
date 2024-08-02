@@ -22,7 +22,7 @@ class FilesetSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexFilesetSpec dataplex_fileset = 1;</code>
      */
-    private $dataplex_fileset = null;
+    protected $dataplex_fileset = null;
 
     /**
      * Constructor.

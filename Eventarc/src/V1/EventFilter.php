@@ -22,13 +22,13 @@ class EventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribute = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attribute = '';
+    protected $attribute = '';
     /**
      * Required. The value for the attribute.
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Optional. The operator used for matching the events with the value of the
      * filter. If not specified, only events that have an exact key-value pair
@@ -37,7 +37,7 @@ class EventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $operator = '';
+    protected $operator = '';
 
     /**
      * Constructor.

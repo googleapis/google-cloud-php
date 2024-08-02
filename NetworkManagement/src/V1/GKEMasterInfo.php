@@ -21,25 +21,25 @@ class GKEMasterInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_uri = 2;</code>
      */
-    private $cluster_uri = '';
+    protected $cluster_uri = '';
     /**
      * URI of a GKE cluster network.
      *
      * Generated from protobuf field <code>string cluster_network_uri = 4;</code>
      */
-    private $cluster_network_uri = '';
+    protected $cluster_network_uri = '';
     /**
      * Internal IP address of a GKE cluster master.
      *
      * Generated from protobuf field <code>string internal_ip = 5;</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
      * External IP address of a GKE cluster master.
      *
      * Generated from protobuf field <code>string external_ip = 6;</code>
      */
-    private $external_ip = '';
+    protected $external_ip = '';
 
     /**
      * Constructor.

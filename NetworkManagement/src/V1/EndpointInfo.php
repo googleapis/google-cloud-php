@@ -22,49 +22,49 @@ class EndpointInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_ip = 1;</code>
      */
-    private $source_ip = '';
+    protected $source_ip = '';
     /**
      * Destination IP address.
      *
      * Generated from protobuf field <code>string destination_ip = 2;</code>
      */
-    private $destination_ip = '';
+    protected $destination_ip = '';
     /**
      * IP protocol in string format, for example: "TCP", "UDP", "ICMP".
      *
      * Generated from protobuf field <code>string protocol = 3;</code>
      */
-    private $protocol = '';
+    protected $protocol = '';
     /**
      * Source port. Only valid when protocol is TCP or UDP.
      *
      * Generated from protobuf field <code>int32 source_port = 4;</code>
      */
-    private $source_port = 0;
+    protected $source_port = 0;
     /**
      * Destination port. Only valid when protocol is TCP or UDP.
      *
      * Generated from protobuf field <code>int32 destination_port = 5;</code>
      */
-    private $destination_port = 0;
+    protected $destination_port = 0;
     /**
      * URI of the network where this packet originates from.
      *
      * Generated from protobuf field <code>string source_network_uri = 6;</code>
      */
-    private $source_network_uri = '';
+    protected $source_network_uri = '';
     /**
      * URI of the network where this packet is sent to.
      *
      * Generated from protobuf field <code>string destination_network_uri = 7;</code>
      */
-    private $destination_network_uri = '';
+    protected $destination_network_uri = '';
     /**
      * URI of the source telemetry agent this packet originates from.
      *
      * Generated from protobuf field <code>string source_agent_uri = 8;</code>
      */
-    private $source_agent_uri = '';
+    protected $source_agent_uri = '';
 
     /**
      * Constructor.

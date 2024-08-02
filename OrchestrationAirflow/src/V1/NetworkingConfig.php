@@ -23,7 +23,7 @@ class NetworkingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig.ConnectionType connection_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $connection_type = 0;
+    protected $connection_type = 0;
 
     /**
      * Constructor.

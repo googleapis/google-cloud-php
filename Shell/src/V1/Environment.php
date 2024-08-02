@@ -27,55 +27,55 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The environment's identifier, unique among the user's
      * environments.
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. Immutable. Full path to the Docker image used to run this environment, e.g.
      * "gcr.io/dev-con/cloud-devshell:latest".
      *
      * Generated from protobuf field <code>string docker_image = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $docker_image = '';
+    protected $docker_image = '';
     /**
      * Output only. Current execution state of this environment.
      *
      * Generated from protobuf field <code>.google.cloud.shell.v1.Environment.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Host to which clients can connect to initiate HTTPS or WSS
      * connections with the environment.
      *
      * Generated from protobuf field <code>string web_host = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $web_host = '';
+    protected $web_host = '';
     /**
      * Output only. Username that clients should use when initiating SSH sessions
      * with the environment.
      *
      * Generated from protobuf field <code>string ssh_username = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ssh_username = '';
+    protected $ssh_username = '';
     /**
      * Output only. Host to which clients can connect to initiate SSH sessions
      * with the environment.
      *
      * Generated from protobuf field <code>string ssh_host = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ssh_host = '';
+    protected $ssh_host = '';
     /**
      * Output only. Port to which clients can connect to initiate SSH sessions
      * with the environment.
      *
      * Generated from protobuf field <code>int32 ssh_port = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ssh_port = 0;
+    protected $ssh_port = 0;
     /**
      * Output only. Public keys associated with the environment. Clients can
      * connect to this environment via SSH only if they possess a private key

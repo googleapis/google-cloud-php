@@ -21,7 +21,7 @@ class CloudShellErrorDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.shell.v1.CloudShellErrorDetails.CloudShellErrorCode code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
 
     /**
      * Constructor.

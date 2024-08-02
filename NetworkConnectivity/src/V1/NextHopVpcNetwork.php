@@ -18,7 +18,7 @@ class NextHopVpcNetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.

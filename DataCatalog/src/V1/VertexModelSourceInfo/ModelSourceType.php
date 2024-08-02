@@ -73,6 +73,4 @@ class ModelSourceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ModelSourceType::class, \Google\Cloud\DataCatalog\V1\VertexModelSourceInfo_ModelSourceType::class);
 

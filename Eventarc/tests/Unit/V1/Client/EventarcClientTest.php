@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Eventarc\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Eventarc\V1\Channel;
@@ -65,6 +64,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -87,7 +87,9 @@ class EventarcClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return EventarcClient */
@@ -213,12 +215,15 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -362,12 +367,15 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -519,12 +527,15 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -608,9 +619,7 @@ class EventarcClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         $validateOnly = false;
-        $request = (new DeleteChannelRequest())
-            ->setName($formattedName)
-            ->setValidateOnly($validateOnly);
+        $request = (new DeleteChannelRequest())->setName($formattedName)->setValidateOnly($validateOnly);
         $response = $gapicClient->deleteChannel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -668,19 +677,20 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         $validateOnly = false;
-        $request = (new DeleteChannelRequest())
-            ->setName($formattedName)
-            ->setValidateOnly($validateOnly);
+        $request = (new DeleteChannelRequest())->setName($formattedName)->setValidateOnly($validateOnly);
         $response = $gapicClient->deleteChannel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -742,8 +752,7 @@ class EventarcClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $request = (new DeleteChannelConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteChannelConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deleteChannelConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -799,17 +808,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $request = (new DeleteChannelConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteChannelConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deleteChannelConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -874,9 +885,7 @@ class EventarcClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
         $validateOnly = false;
-        $request = (new DeleteTriggerRequest())
-            ->setName($formattedName)
-            ->setValidateOnly($validateOnly);
+        $request = (new DeleteTriggerRequest())->setName($formattedName)->setValidateOnly($validateOnly);
         $response = $gapicClient->deleteTrigger($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -934,19 +943,20 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
         $validateOnly = false;
-        $request = (new DeleteTriggerRequest())
-            ->setName($formattedName)
-            ->setValidateOnly($validateOnly);
+        $request = (new DeleteTriggerRequest())->setName($formattedName)->setValidateOnly($validateOnly);
         $response = $gapicClient->deleteTrigger($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -994,8 +1004,7 @@ class EventarcClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $request = (new GetChannelRequest())
-            ->setName($formattedName);
+        $request = (new GetChannelRequest())->setName($formattedName);
         $response = $gapicClient->getChannel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1019,17 +1028,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $request = (new GetChannelRequest())
-            ->setName($formattedName);
+        $request = (new GetChannelRequest())->setName($formattedName);
         try {
             $gapicClient->getChannel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1064,8 +1075,7 @@ class EventarcClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $request = (new GetChannelConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetChannelConnectionRequest())->setName($formattedName);
         $response = $gapicClient->getChannelConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1089,17 +1099,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
-        $request = (new GetChannelConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetChannelConnectionRequest())->setName($formattedName);
         try {
             $gapicClient->getChannelConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1130,8 +1142,7 @@ class EventarcClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->googleChannelConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetGoogleChannelConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetGoogleChannelConfigRequest())->setName($formattedName);
         $response = $gapicClient->getGoogleChannelConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1155,17 +1166,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->googleChannelConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetGoogleChannelConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetGoogleChannelConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getGoogleChannelConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1196,8 +1209,7 @@ class EventarcClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
-        $request = (new GetProviderRequest())
-            ->setName($formattedName);
+        $request = (new GetProviderRequest())->setName($formattedName);
         $response = $gapicClient->getProvider($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1221,17 +1233,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
-        $request = (new GetProviderRequest())
-            ->setName($formattedName);
+        $request = (new GetProviderRequest())->setName($formattedName);
         try {
             $gapicClient->getProvider($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1268,8 +1282,7 @@ class EventarcClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-        $request = (new GetTriggerRequest())
-            ->setName($formattedName);
+        $request = (new GetTriggerRequest())->setName($formattedName);
         $response = $gapicClient->getTrigger($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1293,17 +1306,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->triggerName('[PROJECT]', '[LOCATION]', '[TRIGGER]');
-        $request = (new GetTriggerRequest())
-            ->setName($formattedName);
+        $request = (new GetTriggerRequest())->setName($formattedName);
         try {
             $gapicClient->getTrigger($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1328,17 +1343,14 @@ class EventarcClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $channelConnectionsElement = new ChannelConnection();
-        $channelConnections = [
-            $channelConnectionsElement,
-        ];
+        $channelConnections = [$channelConnectionsElement];
         $expectedResponse = new ListChannelConnectionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelConnections($channelConnections);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListChannelConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListChannelConnectionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listChannelConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1365,17 +1377,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListChannelConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListChannelConnectionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listChannelConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1400,17 +1414,14 @@ class EventarcClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $channelsElement = new Channel();
-        $channels = [
-            $channelsElement,
-        ];
+        $channels = [$channelsElement];
         $expectedResponse = new ListChannelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannels($channels);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListChannelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListChannelsRequest())->setParent($formattedParent);
         $response = $gapicClient->listChannels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1437,17 +1448,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListChannelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListChannelsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listChannels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1472,17 +1485,14 @@ class EventarcClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $providersElement = new Provider();
-        $providers = [
-            $providersElement,
-        ];
+        $providers = [$providersElement];
         $expectedResponse = new ListProvidersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProviders($providers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProvidersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProvidersRequest())->setParent($formattedParent);
         $response = $gapicClient->listProviders($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1509,17 +1519,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListProvidersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProvidersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listProviders($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1544,17 +1556,14 @@ class EventarcClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $triggersElement = new Trigger();
-        $triggers = [
-            $triggersElement,
-        ];
+        $triggers = [$triggersElement];
         $expectedResponse = new ListTriggersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTriggers($triggers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTriggersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTriggersRequest())->setParent($formattedParent);
         $response = $gapicClient->listTriggers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1581,17 +1590,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListTriggersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTriggersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTriggers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1648,8 +1659,7 @@ class EventarcClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $validateOnly = false;
-        $request = (new UpdateChannelRequest())
-            ->setValidateOnly($validateOnly);
+        $request = (new UpdateChannelRequest())->setValidateOnly($validateOnly);
         $response = $gapicClient->updateChannel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1705,17 +1715,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $validateOnly = false;
-        $request = (new UpdateChannelRequest())
-            ->setValidateOnly($validateOnly);
+        $request = (new UpdateChannelRequest())->setValidateOnly($validateOnly);
         $response = $gapicClient->updateChannel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1757,8 +1769,7 @@ class EventarcClientTest extends GeneratedTest
         $googleChannelConfig = new GoogleChannelConfig();
         $googleChannelConfigName = 'googleChannelConfigName-13357801';
         $googleChannelConfig->setName($googleChannelConfigName);
-        $request = (new UpdateGoogleChannelConfigRequest())
-            ->setGoogleChannelConfig($googleChannelConfig);
+        $request = (new UpdateGoogleChannelConfigRequest())->setGoogleChannelConfig($googleChannelConfig);
         $response = $gapicClient->updateGoogleChannelConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1782,19 +1793,21 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $googleChannelConfig = new GoogleChannelConfig();
         $googleChannelConfigName = 'googleChannelConfigName-13357801';
         $googleChannelConfig->setName($googleChannelConfigName);
-        $request = (new UpdateGoogleChannelConfigRequest())
-            ->setGoogleChannelConfig($googleChannelConfig);
+        $request = (new UpdateGoogleChannelConfigRequest())->setGoogleChannelConfig($googleChannelConfig);
         try {
             $gapicClient->updateGoogleChannelConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1849,8 +1862,7 @@ class EventarcClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $validateOnly = false;
-        $request = (new UpdateTriggerRequest())
-            ->setValidateOnly($validateOnly);
+        $request = (new UpdateTriggerRequest())->setValidateOnly($validateOnly);
         $response = $gapicClient->updateTrigger($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1906,17 +1918,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $validateOnly = false;
-        $request = (new UpdateTriggerRequest())
-            ->setValidateOnly($validateOnly);
+        $request = (new UpdateTriggerRequest())->setValidateOnly($validateOnly);
         $response = $gapicClient->updateTrigger($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1978,12 +1992,15 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2010,9 +2027,7 @@ class EventarcClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2042,12 +2057,15 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2080,8 +2098,7 @@ class EventarcClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2105,17 +2122,19 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2147,9 +2166,7 @@ class EventarcClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2175,19 +2192,20 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2215,9 +2233,7 @@ class EventarcClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2243,19 +2259,20 @@ class EventarcClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test

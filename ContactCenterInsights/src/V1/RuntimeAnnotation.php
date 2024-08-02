@@ -22,31 +22,31 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_id = 1;</code>
      */
-    private $annotation_id = '';
+    protected $annotation_id = '';
     /**
      * The time at which this annotation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The boundary in the conversation where the annotation starts, inclusive.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotationBoundary start_boundary = 3;</code>
      */
-    private $start_boundary = null;
+    protected $start_boundary = null;
     /**
      * The boundary in the conversation where the annotation ends, inclusive.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotationBoundary end_boundary = 4;</code>
      */
-    private $end_boundary = null;
+    protected $end_boundary = null;
     /**
      * The feedback that the customer has about the answer in `data`.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnswerFeedback answer_feedback = 5;</code>
      */
-    private $answer_feedback = null;
+    protected $answer_feedback = null;
     protected $data;
 
     /**

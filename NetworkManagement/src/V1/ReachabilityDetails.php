@@ -20,19 +20,19 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails.Result result = 1;</code>
      */
-    private $result = 0;
+    protected $result = 0;
     /**
      * The time of the configuration analysis.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp verify_time = 2;</code>
      */
-    private $verify_time = null;
+    protected $verify_time = null;
     /**
      * The details of a failure or a cancellation of reachability analysis.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Result may contain a list of traces if a test has multiple possible
      * paths in the network, such as when destination endpoint is a load balancer

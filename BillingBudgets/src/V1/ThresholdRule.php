@@ -39,14 +39,14 @@ class ThresholdRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double threshold_percent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $threshold_percent = 0.0;
+    protected $threshold_percent = 0.0;
     /**
      * Optional. The type of basis used to determine if spend has passed the
      * threshold. Behavior defaults to CURRENT_SPEND if not set.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.ThresholdRule.Basis spend_basis = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $spend_basis = 0;
+    protected $spend_basis = 0;
 
     /**
      * Constructor.

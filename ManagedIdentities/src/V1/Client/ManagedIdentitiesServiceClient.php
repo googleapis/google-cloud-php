@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\ManagedIdentities\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -47,6 +46,7 @@ use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordRequest;
 use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordResponse;
 use Google\Cloud\ManagedIdentities\V1\UpdateDomainRequest;
 use Google\Cloud\ManagedIdentities\V1\ValidateTrustRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -128,9 +128,7 @@ final class ManagedIdentitiesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -147,7 +145,8 @@ final class ManagedIdentitiesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/managed_identities_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/managed_identities_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -176,10 +175,31 @@ final class ManagedIdentitiesServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -363,8 +383,10 @@ final class ManagedIdentitiesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMicrosoftAdDomain(CreateMicrosoftAdDomainRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createMicrosoftAdDomain(
+        CreateMicrosoftAdDomainRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateMicrosoftAdDomain', $request, $callOptions)->wait();
     }
 
@@ -522,8 +544,10 @@ final class ManagedIdentitiesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetAdminPassword(ResetAdminPasswordRequest $request, array $callOptions = []): ResetAdminPasswordResponse
-    {
+    public function resetAdminPassword(
+        ResetAdminPasswordRequest $request,
+        array $callOptions = []
+    ): ResetAdminPasswordResponse {
         return $this->startApiCall('ResetAdminPassword', $request, $callOptions)->wait();
     }
 

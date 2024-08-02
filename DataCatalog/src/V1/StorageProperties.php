@@ -43,7 +43,7 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_type = 2;</code>
      */
-    private $file_type = '';
+    protected $file_type = '';
 
     /**
      * Constructor.

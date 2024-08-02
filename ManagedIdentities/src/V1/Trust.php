@@ -22,20 +22,20 @@ class Trust extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_domain_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_domain_name = '';
+    protected $target_domain_name = '';
     /**
      * Required. The type of trust represented by the trust resource.
      *
      * Generated from protobuf field <code>.google.cloud.managedidentities.v1.Trust.TrustType trust_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust_type = 0;
+    protected $trust_type = 0;
     /**
      * Required. The trust direction, which decides if the current domain is trusted,
      * trusting, or both.
      *
      * Generated from protobuf field <code>.google.cloud.managedidentities.v1.Trust.TrustDirection trust_direction = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust_direction = 0;
+    protected $trust_direction = 0;
     /**
      * Optional. The trust authentication type, which decides whether the trusted side has
      * forest/domain wide access or selective access to an approved set of
@@ -43,7 +43,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool selective_authentication = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $selective_authentication = false;
+    protected $selective_authentication = false;
     /**
      * Required. The target DNS server IP addresses which can resolve the remote domain
      * involved in the trust.
@@ -57,37 +57,37 @@ class Trust extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trust_handshake_secret = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust_handshake_secret = '';
+    protected $trust_handshake_secret = '';
     /**
      * Output only. The time the instance was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The current state of the trust.
      *
      * Generated from protobuf field <code>.google.cloud.managedidentities.v1.Trust.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the current state of the trust, if available.
      *
      * Generated from protobuf field <code>string state_description = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_description = '';
+    protected $state_description = '';
     /**
      * Output only. The last heartbeat time when the trust was known to be connected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_trust_heartbeat_time = null;
+    protected $last_trust_heartbeat_time = null;
 
     /**
      * Constructor.

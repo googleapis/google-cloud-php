@@ -67,6 +67,4 @@ class RiskType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RiskType::class, \Google\Cloud\Recommender\V1\ReliabilityProjection_RiskType::class);
 

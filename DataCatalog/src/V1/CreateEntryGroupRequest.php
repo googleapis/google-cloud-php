@@ -24,7 +24,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the entry group to create.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -33,13 +33,13 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entry_group_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_group_id = '';
+    protected $entry_group_id = '';
     /**
      * The entry group to create. Defaults to empty.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 2;</code>
      */
-    private $entry_group = null;
+    protected $entry_group = null;
 
     /**
      * @param string                                  $parent       Required. The names of the project and location that the new entry group

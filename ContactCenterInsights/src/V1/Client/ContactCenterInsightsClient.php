@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\ContactCenterInsights\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -85,6 +84,7 @@ use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\View;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -164,9 +164,7 @@ final class ContactCenterInsightsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -212,10 +210,31 @@ final class ContactCenterInsightsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -229,8 +248,12 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted analysis resource.
      */
-    public static function analysisName(string $project, string $location, string $conversation, string $analysis): string
-    {
+    public static function analysisName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $analysis
+    ): string {
         return self::getPathTemplate('analysis')->render([
             'project' => $project,
             'location' => $location,
@@ -268,8 +291,11 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted conversation_profile resource.
      */
-    public static function conversationProfileName(string $project, string $location, string $conversationProfile): string
-    {
+    public static function conversationProfileName(
+        string $project,
+        string $location,
+        string $conversationProfile
+    ): string {
         return self::getPathTemplate('conversationProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -382,8 +408,11 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted project_conversation_participant resource.
      */
-    public static function projectConversationParticipantName(string $project, string $conversation, string $participant): string
-    {
+    public static function projectConversationParticipantName(
+        string $project,
+        string $conversation,
+        string $participant
+    ): string {
         return self::getPathTemplate('projectConversationParticipant')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -402,8 +431,12 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted project_location_conversation_participant resource.
      */
-    public static function projectLocationConversationParticipantName(string $project, string $location, string $conversation, string $participant): string
-    {
+    public static function projectLocationConversationParticipantName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $participant
+    ): string {
         return self::getPathTemplate('projectLocationConversationParticipant')->render([
             'project' => $project,
             'location' => $location,
@@ -597,8 +630,10 @@ final class ContactCenterInsightsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkAnalyzeConversations(BulkAnalyzeConversationsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function bulkAnalyzeConversations(
+        BulkAnalyzeConversationsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BulkAnalyzeConversations', $request, $callOptions)->wait();
     }
 
@@ -624,8 +659,10 @@ final class ContactCenterInsightsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkDeleteConversations(BulkDeleteConversationsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function bulkDeleteConversations(
+        BulkDeleteConversationsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BulkDeleteConversations', $request, $callOptions)->wait();
     }
 
@@ -651,8 +688,10 @@ final class ContactCenterInsightsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function calculateIssueModelStats(CalculateIssueModelStatsRequest $request, array $callOptions = []): CalculateIssueModelStatsResponse
-    {
+    public function calculateIssueModelStats(
+        CalculateIssueModelStatsRequest $request,
+        array $callOptions = []
+    ): CalculateIssueModelStatsResponse {
         return $this->startApiCall('CalculateIssueModelStats', $request, $callOptions)->wait();
     }
 

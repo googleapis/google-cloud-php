@@ -23,37 +23,37 @@ class LookerSystemSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_instance_id = 1;</code>
      */
-    private $parent_instance_id = '';
+    protected $parent_instance_id = '';
     /**
      * Name of the parent Looker Instance. Empty if it does not exist.
      *
      * Generated from protobuf field <code>string parent_instance_display_name = 2;</code>
      */
-    private $parent_instance_display_name = '';
+    protected $parent_instance_display_name = '';
     /**
      * ID of the parent Model. Empty if it does not exist.
      *
      * Generated from protobuf field <code>string parent_model_id = 3;</code>
      */
-    private $parent_model_id = '';
+    protected $parent_model_id = '';
     /**
      * Name of the parent Model. Empty if it does not exist.
      *
      * Generated from protobuf field <code>string parent_model_display_name = 4;</code>
      */
-    private $parent_model_display_name = '';
+    protected $parent_model_display_name = '';
     /**
      * ID of the parent View. Empty if it does not exist.
      *
      * Generated from protobuf field <code>string parent_view_id = 5;</code>
      */
-    private $parent_view_id = '';
+    protected $parent_view_id = '';
     /**
      * Name of the parent View. Empty if it does not exist.
      *
      * Generated from protobuf field <code>string parent_view_display_name = 6;</code>
      */
-    private $parent_view_display_name = '';
+    protected $parent_view_display_name = '';
 
     /**
      * Constructor.

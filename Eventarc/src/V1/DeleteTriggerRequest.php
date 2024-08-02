@@ -20,28 +20,28 @@ class DeleteTriggerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If provided, the trigger will only be deleted if the etag matches the
      * current etag on the resource.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * If set to true, and the trigger is not found, the request will succeed
      * but no action will be taken on the server.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string $name         Required. The name of the trigger to be deleted. Please see

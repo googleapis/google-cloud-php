@@ -25,7 +25,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $use_ip_aliases = false;
+    protected $use_ip_aliases = false;
     protected $cluster_ip_allocation;
     protected $services_ip_allocation;
 

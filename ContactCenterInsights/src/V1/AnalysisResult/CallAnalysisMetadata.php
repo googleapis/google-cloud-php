@@ -50,7 +50,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelResult issue_model_result = 8;</code>
      */
-    private $issue_model_result = null;
+    protected $issue_model_result = null;
 
     /**
      * Constructor.

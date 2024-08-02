@@ -21,27 +21,27 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribute = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $attribute = '';
+    protected $attribute = '';
     /**
      * Output only. Description of the purpose of the attribute.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. If true, the triggers for this provider should always specify a filter
      * on these attributes. Trigger creation will fail otherwise.
      *
      * Generated from protobuf field <code>bool required = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $required = false;
+    protected $required = false;
     /**
      * Output only. If true, the attribute accepts matching expressions in the Eventarc
      * PathPattern format.
      *
      * Generated from protobuf field <code>bool path_pattern_supported = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $path_pattern_supported = false;
+    protected $path_pattern_supported = false;
 
     /**
      * Constructor.

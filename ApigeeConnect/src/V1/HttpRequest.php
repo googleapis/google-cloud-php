@@ -20,20 +20,20 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The HTTP request method.
      * Valid methods: "GET", "HEAD", "POST", "PUT", "PATCH","DELETE".
      *
      * Generated from protobuf field <code>string method = 2;</code>
      */
-    private $method = '';
+    protected $method = '';
     /**
      * The HTTP request URL.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.Url url = 3;</code>
      */
-    private $url = null;
+    protected $url = null;
     /**
      * The HTTP request headers.
      *
@@ -45,7 +45,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      */
-    private $body = '';
+    protected $body = '';
 
     /**
      * Constructor.

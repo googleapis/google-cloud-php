@@ -23,13 +23,13 @@ class SinglePackageChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package_description = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $package_description = '';
+    protected $package_description = '';
     /**
      * Optional. Sql code for package body
      *
      * Generated from protobuf field <code>string package_body = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $package_body = '';
+    protected $package_body = '';
 
     /**
      * Constructor.

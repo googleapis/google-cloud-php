@@ -20,7 +20,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional. IP ranges encompassing the subnets to be excluded from peering.
      *

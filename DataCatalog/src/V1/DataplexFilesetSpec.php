@@ -20,7 +20,7 @@ class DataplexFilesetSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexSpec dataplex_spec = 1;</code>
      */
-    private $dataplex_spec = null;
+    protected $dataplex_spec = null;
 
     /**
      * Constructor.

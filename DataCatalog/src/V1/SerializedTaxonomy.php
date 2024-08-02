@@ -23,14 +23,14 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of the serialized taxonomy. At most 2000 bytes when
      * encoded in UTF-8. If not set, defaults to an empty description.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Top level policy tags associated with the taxonomy, if any.
      *

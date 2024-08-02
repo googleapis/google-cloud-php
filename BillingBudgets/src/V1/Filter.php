@@ -55,7 +55,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.Filter.CreditTypesTreatment credit_types_treatment = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $credit_types_treatment = 0;
+    protected $credit_types_treatment = 0;
     /**
      * Optional. A set of services of the form `services/{service_id}`,
      * specifying that usage from only this set of services should be

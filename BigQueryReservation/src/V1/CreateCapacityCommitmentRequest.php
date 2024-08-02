@@ -22,20 +22,20 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Content of the capacity commitment to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 2;</code>
      */
-    private $capacity_commitment = null;
+    protected $capacity_commitment = null;
     /**
      * If true, fail the request if another project in the organization has a
      * capacity commitment.
      *
      * Generated from protobuf field <code>bool enforce_single_admin_project_per_org = 4;</code>
      */
-    private $enforce_single_admin_project_per_org = false;
+    protected $enforce_single_admin_project_per_org = false;
     /**
      * The optional capacity commitment ID. Capacity commitment name will be
      * generated automatically if this field is empty.
@@ -45,7 +45,7 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string capacity_commitment_id = 5;</code>
      */
-    private $capacity_commitment_id = '';
+    protected $capacity_commitment_id = '';
 
     /**
      * @param string                                                   $parent             Required. Resource name of the parent reservation. E.g.,

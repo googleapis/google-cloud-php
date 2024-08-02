@@ -21,13 +21,13 @@ class CreateBudgetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Budget to create.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.Budget budget = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $budget = null;
+    protected $budget = null;
 
     /**
      * @param string                                  $parent Required. The name of the billing account to create the budget in. Values

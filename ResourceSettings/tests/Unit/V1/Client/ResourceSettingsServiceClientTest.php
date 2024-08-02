@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ResourceSettingsServiceClient */
@@ -80,8 +82,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $request = (new GetSettingRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingRequest())->setName($formattedName);
         $response = $gapicClient->getSetting($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -105,17 +106,19 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $request = (new GetSettingRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingRequest())->setName($formattedName);
         try {
             $gapicClient->getSetting($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -140,17 +143,14 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $settingsElement = new Setting();
-        $settings = [
-            $settingsElement,
-        ];
+        $settings = [$settingsElement];
         $expectedResponse = new ListSettingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSettings($settings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListSettingsRequest())
-            ->setParent($parent);
+        $request = (new ListSettingsRequest())->setParent($parent);
         $response = $gapicClient->listSettings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -177,17 +177,19 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListSettingsRequest())
-            ->setParent($parent);
+        $request = (new ListSettingsRequest())->setParent($parent);
         try {
             $gapicClient->listSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -218,8 +220,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $setting = new Setting();
-        $request = (new UpdateSettingRequest())
-            ->setSetting($setting);
+        $request = (new UpdateSettingRequest())->setSetting($setting);
         $response = $gapicClient->updateSetting($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -243,17 +244,19 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $setting = new Setting();
-        $request = (new UpdateSettingRequest())
-            ->setSetting($setting);
+        $request = (new UpdateSettingRequest())->setSetting($setting);
         try {
             $gapicClient->updateSetting($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -284,8 +287,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $request = (new GetSettingRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingRequest())->setName($formattedName);
         $response = $gapicClient->getSettingAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
