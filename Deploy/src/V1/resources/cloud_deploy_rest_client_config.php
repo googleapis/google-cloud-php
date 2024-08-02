@@ -128,21 +128,6 @@ return [
                     'delivery_pipeline_id',
                 ],
             ],
-            'CreateDeployPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deployPolicies',
-                'body' => 'deploy_policy',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'deploy_policy_id',
-                ],
-            ],
             'CreateRelease' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*}/releases',
@@ -221,17 +206,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteDeployPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/deployPolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteTarget' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/targets/*}',
@@ -290,17 +264,6 @@ return [
             'GetDeliveryPipeline' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetDeployPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/deployPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -401,17 +364,6 @@ return [
             'ListDeliveryPipelines' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deliveryPipelines',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDeployPolicies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deployPolicies',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -540,22 +492,6 @@ return [
                     'delivery_pipeline.name' => [
                         'getters' => [
                             'getDeliveryPipeline',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
-            'UpdateDeployPolicy' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{deploy_policy.name=projects/*/locations/*/deployPolicies/*}',
-                'body' => 'deploy_policy',
-                'placeholders' => [
-                    'deploy_policy.name' => [
-                        'getters' => [
-                            'getDeployPolicy',
                             'getName',
                         ],
                     ],
