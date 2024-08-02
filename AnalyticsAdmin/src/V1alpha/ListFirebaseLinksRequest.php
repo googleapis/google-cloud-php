@@ -17,7 +17,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Format: properties/{property_id}
-     * Example: properties/1234
+     * Example: `properties/1234`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,8 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Format: properties/{property_id}
-     *                       Example: properties/1234
+     *
+     *                       Example: `properties/1234`
      *                       Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest
@@ -64,7 +65,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Format: properties/{property_id}
-     *           Example: properties/1234
+     *           Example: `properties/1234`
      *     @type int $page_size
      *           The maximum number of resources to return. The service may return
      *           fewer than this value, even if there are additional pages.
@@ -84,7 +85,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format: properties/{property_id}
-     * Example: properties/1234
+     * Example: `properties/1234`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +97,7 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format: properties/{property_id}
-     * Example: properties/1234
+     * Example: `properties/1234`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

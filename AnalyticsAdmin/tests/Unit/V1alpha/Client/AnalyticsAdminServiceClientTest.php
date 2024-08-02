@@ -58,6 +58,7 @@ use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\CreateAdSenseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\CreateBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
@@ -69,9 +70,11 @@ use Google\Analytics\Admin\V1alpha\CreateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\CreateEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\CreateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateRollupPropertyRequest;
@@ -80,8 +83,6 @@ use Google\Analytics\Admin\V1alpha\CreateRollupPropertySourceLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateSubpropertyEventFilterRequest;
-use Google\Analytics\Admin\V1alpha\CreateSubpropertyRequest;
-use Google\Analytics\Admin\V1alpha\CreateSubpropertyResponse;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
 use Google\Analytics\Admin\V1alpha\CustomDimension\DimensionScope;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
@@ -95,6 +96,7 @@ use Google\Analytics\Admin\V1alpha\DataStream\DataStreamType;
 use Google\Analytics\Admin\V1alpha\DeleteAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAdSenseLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\DeleteChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConnectedSiteTagRequest;
@@ -103,9 +105,11 @@ use Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\DeleteEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\DeleteExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1alpha\DeleteKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
 use Google\Analytics\Admin\V1alpha\DeleteRollupPropertySourceLinkRequest;
@@ -116,6 +120,7 @@ use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
 use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\EventCreateRule;
+use Google\Analytics\Admin\V1alpha\EventEditRule;
 use Google\Analytics\Admin\V1alpha\ExpandedDataSet;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutRequest;
 use Google\Analytics\Admin\V1alpha\FetchAutomatedGa4ConfigurationOptOutResponse;
@@ -141,9 +146,11 @@ use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalReque
 use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\GetEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\GetExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
+use Google\Analytics\Admin\V1alpha\GetKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetRollupPropertySourceLinkRequest;
@@ -153,6 +160,8 @@ use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
+use Google\Analytics\Admin\V1alpha\KeyEvent;
+use Google\Analytics\Admin\V1alpha\KeyEvent\CountingMethod;
 use Google\Analytics\Admin\V1alpha\ListAccessBindingsRequest;
 use Google\Analytics\Admin\V1alpha\ListAccessBindingsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
@@ -185,12 +194,16 @@ use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListEventCreateRulesRequest;
 use Google\Analytics\Admin\V1alpha\ListEventCreateRulesResponse;
+use Google\Analytics\Admin\V1alpha\ListEventEditRulesRequest;
+use Google\Analytics\Admin\V1alpha\ListEventEditRulesResponse;
 use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsRequest;
 use Google\Analytics\Admin\V1alpha\ListExpandedDataSetsResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksResponse;
+use Google\Analytics\Admin\V1alpha\ListKeyEventsRequest;
+use Google\Analytics\Admin\V1alpha\ListKeyEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
@@ -208,6 +221,9 @@ use Google\Analytics\Admin\V1alpha\PostbackWindow;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
+use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyRequest;
+use Google\Analytics\Admin\V1alpha\ProvisionSubpropertyResponse;
+use Google\Analytics\Admin\V1alpha\ReorderEventEditRulesRequest;
 use Google\Analytics\Admin\V1alpha\RollupPropertySourceLink;
 use Google\Analytics\Admin\V1alpha\RunAccessReportRequest;
 use Google\Analytics\Admin\V1alpha\RunAccessReportResponse;
@@ -222,6 +238,7 @@ use Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAudienceRequest;
+use Google\Analytics\Admin\V1alpha\UpdateBigQueryLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCalculatedMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\Analytics\Admin\V1alpha\UpdateConversionEventRequest;
@@ -233,9 +250,11 @@ use Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEventCreateRuleRequest;
+use Google\Analytics\Admin\V1alpha\UpdateEventEditRuleRequest;
 use Google\Analytics\Admin\V1alpha\UpdateExpandedDataSetRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
+use Google\Analytics\Admin\V1alpha\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
@@ -1175,6 +1194,92 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createBigQueryLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $project = 'project-309310695';
+        $dailyExportEnabled = true;
+        $streamingExportEnabled = false;
+        $freshDailyExportEnabled = false;
+        $includeAdvertisingId = false;
+        $datasetLocation = 'datasetLocation1011262364';
+        $expectedResponse = new BigQueryLink();
+        $expectedResponse->setName($name);
+        $expectedResponse->setProject($project);
+        $expectedResponse->setDailyExportEnabled($dailyExportEnabled);
+        $expectedResponse->setStreamingExportEnabled($streamingExportEnabled);
+        $expectedResponse->setFreshDailyExportEnabled($freshDailyExportEnabled);
+        $expectedResponse->setIncludeAdvertisingId($includeAdvertisingId);
+        $expectedResponse->setDatasetLocation($datasetLocation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $bigqueryLink = new BigQueryLink();
+        $bigqueryLinkDatasetLocation = 'bigqueryLinkDatasetLocation714488843';
+        $bigqueryLink->setDatasetLocation($bigqueryLinkDatasetLocation);
+        $request = (new CreateBigQueryLinkRequest())
+            ->setParent($formattedParent)
+            ->setBigqueryLink($bigqueryLink);
+        $response = $gapicClient->createBigQueryLink($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateBigQueryLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getBigqueryLink();
+        $this->assertProtobufEquals($bigqueryLink, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createBigQueryLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $bigqueryLink = new BigQueryLink();
+        $bigqueryLinkDatasetLocation = 'bigqueryLinkDatasetLocation714488843';
+        $bigqueryLink->setDatasetLocation($bigqueryLinkDatasetLocation);
+        $request = (new CreateBigQueryLinkRequest())
+            ->setParent($formattedParent)
+            ->setBigqueryLink($bigqueryLink);
+        try {
+            $gapicClient->createBigQueryLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createCalculatedMetricTest()
     {
         $transport = $this->createTransport();
@@ -1285,11 +1390,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $systemDefined = false;
+        $primary = true;
         $expectedResponse = new ChannelGroup();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSystemDefined($systemDefined);
+        $expectedResponse->setPrimary($primary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
@@ -1993,6 +2100,92 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createEventEditRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $processingOrder = 334545118;
+        $expectedResponse = new EventEditRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setProcessingOrder($processingOrder);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $eventEditRule = new EventEditRule();
+        $eventEditRuleDisplayName = 'eventEditRuleDisplayName160444781';
+        $eventEditRule->setDisplayName($eventEditRuleDisplayName);
+        $eventEditRuleEventConditions = [];
+        $eventEditRule->setEventConditions($eventEditRuleEventConditions);
+        $eventEditRuleParameterMutations = [];
+        $eventEditRule->setParameterMutations($eventEditRuleParameterMutations);
+        $request = (new CreateEventEditRuleRequest())
+            ->setParent($formattedParent)
+            ->setEventEditRule($eventEditRule);
+        $response = $gapicClient->createEventEditRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateEventEditRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getEventEditRule();
+        $this->assertProtobufEquals($eventEditRule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createEventEditRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $eventEditRule = new EventEditRule();
+        $eventEditRuleDisplayName = 'eventEditRuleDisplayName160444781';
+        $eventEditRule->setDisplayName($eventEditRuleDisplayName);
+        $eventEditRuleEventConditions = [];
+        $eventEditRule->setEventConditions($eventEditRuleEventConditions);
+        $eventEditRuleParameterMutations = [];
+        $eventEditRule->setParameterMutations($eventEditRuleParameterMutations);
+        $request = (new CreateEventEditRuleRequest())
+            ->setParent($formattedParent)
+            ->setEventEditRule($eventEditRule);
+        try {
+            $gapicClient->createEventEditRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createExpandedDataSetTest()
     {
         $transport = $this->createTransport();
@@ -2207,6 +2400,86 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setGoogleAdsLink($googleAdsLink);
         try {
             $gapicClient->createGoogleAdsLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createKeyEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $eventName = 'eventName984174864';
+        $deletable = true;
+        $custom = false;
+        $expectedResponse = new KeyEvent();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEventName($eventName);
+        $expectedResponse->setDeletable($deletable);
+        $expectedResponse->setCustom($custom);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $keyEvent = new KeyEvent();
+        $keyEventCountingMethod = CountingMethod::COUNTING_METHOD_UNSPECIFIED;
+        $keyEvent->setCountingMethod($keyEventCountingMethod);
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new CreateKeyEventRequest())
+            ->setKeyEvent($keyEvent)
+            ->setParent($formattedParent);
+        $response = $gapicClient->createKeyEvent($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateKeyEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getKeyEvent();
+        $this->assertProtobufEquals($keyEvent, $actualValue);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createKeyEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $keyEvent = new KeyEvent();
+        $keyEventCountingMethod = CountingMethod::COUNTING_METHOD_UNSPECIFIED;
+        $keyEvent->setCountingMethod($keyEventCountingMethod);
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new CreateKeyEventRequest())
+            ->setKeyEvent($keyEvent)
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->createKeyEvent($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2671,82 +2944,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createSubpropertyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new CreateSubpropertyResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $subproperty = new Property();
-        $subpropertyDisplayName = 'subpropertyDisplayName-1859570920';
-        $subproperty->setDisplayName($subpropertyDisplayName);
-        $subpropertyTimeZone = 'subpropertyTimeZone-1143367858';
-        $subproperty->setTimeZone($subpropertyTimeZone);
-        $request = (new CreateSubpropertyRequest())
-            ->setParent($formattedParent)
-            ->setSubproperty($subproperty);
-        $response = $gapicClient->createSubproperty($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateSubproperty', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSubproperty();
-        $this->assertProtobufEquals($subproperty, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function createSubpropertyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $subproperty = new Property();
-        $subpropertyDisplayName = 'subpropertyDisplayName-1859570920';
-        $subproperty->setDisplayName($subpropertyDisplayName);
-        $subpropertyTimeZone = 'subpropertyTimeZone-1143367858';
-        $subproperty->setTimeZone($subpropertyTimeZone);
-        $request = (new CreateSubpropertyRequest())
-            ->setParent($formattedParent)
-            ->setSubproperty($subproperty);
-        try {
-            $gapicClient->createSubproperty($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
     public function createSubpropertyEventFilterTest()
     {
         $transport = $this->createTransport();
@@ -2994,6 +3191,67 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->deleteAdSenseLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBigQueryLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
+        $request = (new DeleteBigQueryLinkRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteBigQueryLink($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteBigQueryLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBigQueryLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
+        $request = (new DeleteBigQueryLinkRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteBigQueryLink($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3486,6 +3744,67 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteEventEditRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->eventEditRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_EDIT_RULE]');
+        $request = (new DeleteEventEditRuleRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteEventEditRule($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteEventEditRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteEventEditRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->eventEditRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_EDIT_RULE]');
+        $request = (new DeleteEventEditRuleRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteEventEditRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteExpandedDataSetTest()
     {
         $transport = $this->createTransport();
@@ -3657,6 +3976,67 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->deleteGoogleAdsLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteKeyEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->keyEventName('[PROPERTY]', '[KEY_EVENT]');
+        $request = (new DeleteKeyEventRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteKeyEvent($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteKeyEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteKeyEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->keyEventName('[PROPERTY]', '[KEY_EVENT]');
+        $request = (new DeleteKeyEventRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteKeyEvent($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4254,11 +4634,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $regionCode = 'regionCode-1566082984';
         $deleted = false;
+        $gmpOrganization = 'gmpOrganization-1643573496';
         $expectedResponse = new Account();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setRegionCode($regionCode);
         $expectedResponse->setDeleted($deleted);
+        $expectedResponse->setGmpOrganization($gmpOrganization);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->accountName('[ACCOUNT]');
@@ -4528,6 +4910,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $streamingExportEnabled = false;
         $freshDailyExportEnabled = false;
         $includeAdvertisingId = false;
+        $datasetLocation = 'datasetLocation1011262364';
         $expectedResponse = new BigQueryLink();
         $expectedResponse->setName($name2);
         $expectedResponse->setProject($project);
@@ -4535,6 +4918,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setStreamingExportEnabled($streamingExportEnabled);
         $expectedResponse->setFreshDailyExportEnabled($freshDailyExportEnabled);
         $expectedResponse->setIncludeAdvertisingId($includeAdvertisingId);
+        $expectedResponse->setDatasetLocation($datasetLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->bigQueryLinkName('[PROPERTY]', '[BIGQUERY_LINK]');
@@ -4674,11 +5058,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $systemDefined = false;
+        $primary = true;
         $expectedResponse = new ChannelGroup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSystemDefined($systemDefined);
+        $expectedResponse->setPrimary($primary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->channelGroupName('[PROPERTY]', '[CHANNEL_GROUP]');
@@ -5508,6 +5894,74 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getEventEditRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $processingOrder = 334545118;
+        $expectedResponse = new EventEditRule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setProcessingOrder($processingOrder);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->eventEditRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_EDIT_RULE]');
+        $request = (new GetEventEditRuleRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getEventEditRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetEventEditRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEventEditRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->eventEditRuleName('[PROPERTY]', '[DATA_STREAM]', '[EVENT_EDIT_RULE]');
+        $request = (new GetEventEditRuleRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getEventEditRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getExpandedDataSetTest()
     {
         $transport = $this->createTransport();
@@ -5694,6 +6148,76 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getGoogleSignalsSettings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getKeyEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $eventName = 'eventName984174864';
+        $deletable = true;
+        $custom = false;
+        $expectedResponse = new KeyEvent();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEventName($eventName);
+        $expectedResponse->setDeletable($deletable);
+        $expectedResponse->setCustom($custom);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->keyEventName('[PROPERTY]', '[KEY_EVENT]');
+        $request = (new GetKeyEventRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getKeyEvent($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetKeyEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getKeyEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->keyEventName('[PROPERTY]', '[KEY_EVENT]');
+        $request = (new GetKeyEventRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getKeyEvent($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7232,6 +7756,78 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listEventEditRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $eventEditRulesElement = new EventEditRule();
+        $eventEditRules = [
+            $eventEditRulesElement,
+        ];
+        $expectedResponse = new ListEventEditRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEventEditRules($eventEditRules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $request = (new ListEventEditRulesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listEventEditRules($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEventEditRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListEventEditRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listEventEditRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $request = (new ListEventEditRulesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listEventEditRules($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listExpandedDataSetsTest()
     {
         $transport = $this->createTransport();
@@ -7436,6 +8032,78 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setParent($formattedParent);
         try {
             $gapicClient->listGoogleAdsLinks($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listKeyEventsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $keyEventsElement = new KeyEvent();
+        $keyEvents = [
+            $keyEventsElement,
+        ];
+        $expectedResponse = new ListKeyEventsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setKeyEvents($keyEvents);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListKeyEventsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listKeyEvents($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getKeyEvents()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListKeyEvents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listKeyEventsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
+        $request = (new ListKeyEventsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listKeyEvents($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -7936,6 +8604,143 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function provisionSubpropertyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ProvisionSubpropertyResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $subproperty = new Property();
+        $subpropertyDisplayName = 'subpropertyDisplayName-1859570920';
+        $subproperty->setDisplayName($subpropertyDisplayName);
+        $subpropertyTimeZone = 'subpropertyTimeZone-1143367858';
+        $subproperty->setTimeZone($subpropertyTimeZone);
+        $request = (new ProvisionSubpropertyRequest())
+            ->setSubproperty($subproperty);
+        $response = $gapicClient->provisionSubproperty($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ProvisionSubproperty', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSubproperty();
+        $this->assertProtobufEquals($subproperty, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function provisionSubpropertyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $subproperty = new Property();
+        $subpropertyDisplayName = 'subpropertyDisplayName-1859570920';
+        $subproperty->setDisplayName($subpropertyDisplayName);
+        $subpropertyTimeZone = 'subpropertyTimeZone-1143367858';
+        $subproperty->setTimeZone($subpropertyTimeZone);
+        $request = (new ProvisionSubpropertyRequest())
+            ->setSubproperty($subproperty);
+        try {
+            $gapicClient->provisionSubproperty($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reorderEventEditRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $eventEditRules = [];
+        $request = (new ReorderEventEditRulesRequest())
+            ->setParent($formattedParent)
+            ->setEventEditRules($eventEditRules);
+        $gapicClient->reorderEventEditRules($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ReorderEventEditRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getEventEditRules();
+        $this->assertProtobufEquals($eventEditRules, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reorderEventEditRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
+        $eventEditRules = [];
+        $request = (new ReorderEventEditRulesRequest())
+            ->setParent($formattedParent)
+            ->setEventEditRules($eventEditRules);
+        try {
+            $gapicClient->reorderEventEditRules($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function runAccessReportTest()
     {
         $transport = $this->createTransport();
@@ -8204,11 +9009,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $regionCode = 'regionCode-1566082984';
         $deleted = false;
+        $gmpOrganization = 'gmpOrganization-1643573496';
         $expectedResponse = new Account();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setRegionCode($regionCode);
         $expectedResponse->setDeleted($deleted);
+        $expectedResponse->setGmpOrganization($gmpOrganization);
         $transport->addResponse($expectedResponse);
         // Mock request
         $account = new Account();
@@ -8452,6 +9259,92 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateBigQueryLinkTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $project = 'project-309310695';
+        $dailyExportEnabled = true;
+        $streamingExportEnabled = false;
+        $freshDailyExportEnabled = false;
+        $includeAdvertisingId = false;
+        $datasetLocation = 'datasetLocation1011262364';
+        $expectedResponse = new BigQueryLink();
+        $expectedResponse->setName($name);
+        $expectedResponse->setProject($project);
+        $expectedResponse->setDailyExportEnabled($dailyExportEnabled);
+        $expectedResponse->setStreamingExportEnabled($streamingExportEnabled);
+        $expectedResponse->setFreshDailyExportEnabled($freshDailyExportEnabled);
+        $expectedResponse->setIncludeAdvertisingId($includeAdvertisingId);
+        $expectedResponse->setDatasetLocation($datasetLocation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $bigqueryLink = new BigQueryLink();
+        $bigqueryLinkDatasetLocation = 'bigqueryLinkDatasetLocation714488843';
+        $bigqueryLink->setDatasetLocation($bigqueryLinkDatasetLocation);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBigQueryLinkRequest())
+            ->setBigqueryLink($bigqueryLink)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBigQueryLink($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateBigQueryLink', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBigqueryLink();
+        $this->assertProtobufEquals($bigqueryLink, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBigQueryLinkExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $bigqueryLink = new BigQueryLink();
+        $bigqueryLinkDatasetLocation = 'bigqueryLinkDatasetLocation714488843';
+        $bigqueryLink->setDatasetLocation($bigqueryLinkDatasetLocation);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBigQueryLinkRequest())
+            ->setBigqueryLink($bigqueryLink)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateBigQueryLink($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateCalculatedMetricTest()
     {
         $transport = $this->createTransport();
@@ -8556,11 +9449,13 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $systemDefined = false;
+        $primary = true;
         $expectedResponse = new ChannelGroup();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSystemDefined($systemDefined);
+        $expectedResponse->setPrimary($primary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $channelGroup = new ChannelGroup();
@@ -9302,6 +10197,92 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateEventEditRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $processingOrder = 334545118;
+        $expectedResponse = new EventEditRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setProcessingOrder($processingOrder);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $eventEditRule = new EventEditRule();
+        $eventEditRuleDisplayName = 'eventEditRuleDisplayName160444781';
+        $eventEditRule->setDisplayName($eventEditRuleDisplayName);
+        $eventEditRuleEventConditions = [];
+        $eventEditRule->setEventConditions($eventEditRuleEventConditions);
+        $eventEditRuleParameterMutations = [];
+        $eventEditRule->setParameterMutations($eventEditRuleParameterMutations);
+        $updateMask = new FieldMask();
+        $request = (new UpdateEventEditRuleRequest())
+            ->setEventEditRule($eventEditRule)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateEventEditRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateEventEditRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getEventEditRule();
+        $this->assertProtobufEquals($eventEditRule, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateEventEditRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $eventEditRule = new EventEditRule();
+        $eventEditRuleDisplayName = 'eventEditRuleDisplayName160444781';
+        $eventEditRule->setDisplayName($eventEditRuleDisplayName);
+        $eventEditRuleEventConditions = [];
+        $eventEditRule->setEventConditions($eventEditRuleEventConditions);
+        $eventEditRuleParameterMutations = [];
+        $eventEditRule->setParameterMutations($eventEditRuleParameterMutations);
+        $updateMask = new FieldMask();
+        $request = (new UpdateEventEditRuleRequest())
+            ->setEventEditRule($eventEditRule)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateEventEditRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateExpandedDataSetTest()
     {
         $transport = $this->createTransport();
@@ -9508,6 +10489,86 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
             ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateGoogleSignalsSettings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateKeyEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $eventName = 'eventName984174864';
+        $deletable = true;
+        $custom = false;
+        $expectedResponse = new KeyEvent();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEventName($eventName);
+        $expectedResponse->setDeletable($deletable);
+        $expectedResponse->setCustom($custom);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $keyEvent = new KeyEvent();
+        $keyEventCountingMethod = CountingMethod::COUNTING_METHOD_UNSPECIFIED;
+        $keyEvent->setCountingMethod($keyEventCountingMethod);
+        $updateMask = new FieldMask();
+        $request = (new UpdateKeyEventRequest())
+            ->setKeyEvent($keyEvent)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateKeyEvent($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateKeyEvent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getKeyEvent();
+        $this->assertProtobufEquals($keyEvent, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateKeyEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $keyEvent = new KeyEvent();
+        $keyEventCountingMethod = CountingMethod::COUNTING_METHOD_UNSPECIFIED;
+        $keyEvent->setCountingMethod($keyEventCountingMethod);
+        $updateMask = new FieldMask();
+        $request = (new UpdateKeyEventRequest())
+            ->setKeyEvent($keyEvent)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateKeyEvent($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

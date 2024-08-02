@@ -49,6 +49,16 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool system_defined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $system_defined = false;
+    /**
+     * Optional. If true, this channel group will be used as the default channel
+     * group for reports. Only one channel group can be set as `primary` at any
+     * time. If the `primary` field gets set on a channel group, it will get unset
+     * on the previous primary channel group.
+     * The Google Analytics predefined channel group is the primary by default.
+     *
+     * Generated from protobuf field <code>bool primary = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $primary = false;
 
     /**
      * Constructor.
@@ -70,6 +80,12 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      *           Output only. If true, then this channel group is the Default Channel Group
      *           predefined by Google Analytics. Display name and grouping rules cannot be
      *           updated for this channel group.
+     *     @type bool $primary
+     *           Optional. If true, this channel group will be used as the default channel
+     *           group for reports. Only one channel group can be set as `primary` at any
+     *           time. If the `primary` field gets set on a channel group, it will get unset
+     *           on the previous primary channel group.
+     *           The Google Analytics predefined channel group is the primary by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,6 +227,40 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->system_defined = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, this channel group will be used as the default channel
+     * group for reports. Only one channel group can be set as `primary` at any
+     * time. If the `primary` field gets set on a channel group, it will get unset
+     * on the previous primary channel group.
+     * The Google Analytics predefined channel group is the primary by default.
+     *
+     * Generated from protobuf field <code>bool primary = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+
+    /**
+     * Optional. If true, this channel group will be used as the default channel
+     * group for reports. Only one channel group can be set as `primary` at any
+     * time. If the `primary` field gets set on a channel group, it will get unset
+     * on the previous primary channel group.
+     * The Google Analytics predefined channel group is the primary by default.
+     *
+     * Generated from protobuf field <code>bool primary = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPrimary($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->primary = $var;
 
         return $this;
     }
