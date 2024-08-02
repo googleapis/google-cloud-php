@@ -24,7 +24,7 @@ class SchemaEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 1;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

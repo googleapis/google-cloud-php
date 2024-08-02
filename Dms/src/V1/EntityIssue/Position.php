@@ -20,25 +20,25 @@ class Position extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 line = 1;</code>
      */
-    private $line = 0;
+    protected $line = 0;
     /**
      * Issue column number
      *
      * Generated from protobuf field <code>int32 column = 2;</code>
      */
-    private $column = 0;
+    protected $column = 0;
     /**
      * Issue offset
      *
      * Generated from protobuf field <code>int32 offset = 3;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * Issue length
      *
      * Generated from protobuf field <code>int32 length = 4;</code>
      */
-    private $length = 0;
+    protected $length = 0;
 
     /**
      * Constructor.

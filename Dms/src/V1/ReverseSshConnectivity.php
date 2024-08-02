@@ -26,27 +26,27 @@ class ReverseSshConnectivity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_ip = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_ip = '';
+    protected $vm_ip = '';
     /**
      * Required. The forwarding port of the virtual machine (Compute Engine) used
      * as the bastion server for the SSH tunnel.
      *
      * Generated from protobuf field <code>int32 vm_port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_port = 0;
+    protected $vm_port = 0;
     /**
      * The name of the virtual machine (Compute Engine) used as the bastion server
      * for the SSH tunnel.
      *
      * Generated from protobuf field <code>string vm = 3;</code>
      */
-    private $vm = '';
+    protected $vm = '';
     /**
      * The name of the VPC to peer with the Cloud SQL private network.
      *
      * Generated from protobuf field <code>string vpc = 4;</code>
      */
-    private $vpc = '';
+    protected $vpc = '';
 
     /**
      * Constructor.

@@ -20,46 +20,46 @@ class SequenceEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 increment = 1;</code>
      */
-    private $increment = 0;
+    protected $increment = 0;
     /**
      * Start number for the sequence represented as bytes to accommodate large.
      * numbers
      *
      * Generated from protobuf field <code>bytes start_value = 2;</code>
      */
-    private $start_value = '';
+    protected $start_value = '';
     /**
      * Maximum number for the sequence represented as bytes to accommodate large.
      * numbers
      *
      * Generated from protobuf field <code>bytes max_value = 3;</code>
      */
-    private $max_value = '';
+    protected $max_value = '';
     /**
      * Minimum number for the sequence represented as bytes to accommodate large.
      * numbers
      *
      * Generated from protobuf field <code>bytes min_value = 4;</code>
      */
-    private $min_value = '';
+    protected $min_value = '';
     /**
      * Indicates whether the sequence value should cycle through.
      *
      * Generated from protobuf field <code>bool cycle = 5;</code>
      */
-    private $cycle = false;
+    protected $cycle = false;
     /**
      * Indicates number of entries to cache / precreate.
      *
      * Generated from protobuf field <code>int64 cache = 6;</code>
      */
-    private $cache = 0;
+    protected $cache = 0;
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 7;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

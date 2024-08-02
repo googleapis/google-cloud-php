@@ -21,7 +21,7 @@ class AlloyDbSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbSettings.UserPassword initial_user = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $initial_user = null;
+    protected $initial_user = null;
     /**
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
@@ -31,7 +31,7 @@ class AlloyDbSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vpc_network = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vpc_network = '';
+    protected $vpc_network = '';
     /**
      * Labels for the AlloyDB cluster created by DMS. An object containing a list
      * of 'key', 'value' pairs.
@@ -42,7 +42,7 @@ class AlloyDbSettings extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbSettings.PrimaryInstanceSettings primary_instance_settings = 4;</code>
      */
-    private $primary_instance_settings = null;
+    protected $primary_instance_settings = null;
     /**
      * Optional. The encryption config can be specified to encrypt the data disks
      * and other persistent data resources of a cluster with a
@@ -52,7 +52,7 @@ class AlloyDbSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.AlloyDbSettings.EncryptionConfig encryption_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlDatabaseVersion database_version = 1;</code>
      */
-    private $database_version = 0;
+    protected $database_version = 0;
     /**
      * The resource labels for a Cloud SQL instance to use to annotate any related
      * underlying resources such as Compute Engine VMs.
@@ -40,14 +40,14 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tier = 3;</code>
      */
-    private $tier = '';
+    protected $tier = '';
     /**
      * The maximum size to which storage capacity can be automatically increased.
      * The default value is 0, which specifies that there is no limit.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value storage_auto_resize_limit = 4;</code>
      */
-    private $storage_auto_resize_limit = null;
+    protected $storage_auto_resize_limit = null;
     /**
      * The activation policy specifies when the instance is activated; it is
      * applicable only when the instance state is 'RUNNABLE'. Valid values:
@@ -58,7 +58,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlActivationPolicy activation_policy = 5;</code>
      */
-    private $activation_policy = 0;
+    protected $activation_policy = 0;
     /**
      * The settings for IP Management. This allows to enable or disable the
      * instance IP and manage which external networks can connect to the instance.
@@ -66,7 +66,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.SqlIpConfig ip_config = 6;</code>
      */
-    private $ip_config = null;
+    protected $ip_config = null;
     /**
      * [default: ON] If you enable this setting, Cloud SQL checks your available
      * storage every 30 seconds. If the available storage falls below a threshold
@@ -76,7 +76,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue auto_storage_increase = 7;</code>
      */
-    private $auto_storage_increase = null;
+    protected $auto_storage_increase = null;
     /**
      * The database flags passed to the Cloud SQL instance at startup.
      * An object containing a list of "key": value pairs.
@@ -90,21 +90,21 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlDataDiskType data_disk_type = 9;</code>
      */
-    private $data_disk_type = 0;
+    protected $data_disk_type = 0;
     /**
      * The storage capacity available to the database, in GB.
      * The minimum (and default) size is 10GB.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_disk_size_gb = 10;</code>
      */
-    private $data_disk_size_gb = null;
+    protected $data_disk_size_gb = null;
     /**
      * The Google Cloud Platform zone where your Cloud SQL database instance is
      * located.
      *
      * Generated from protobuf field <code>string zone = 11;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Optional. The Google Cloud Platform zone where the failover Cloud SQL
      * database instance is located. Used when the Cloud SQL database availability
@@ -112,7 +112,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secondary_zone = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $secondary_zone = '';
+    protected $secondary_zone = '';
     /**
      * The Database Migration Service source connection profile ID,
      * in the format:
@@ -120,31 +120,31 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_id = 12;</code>
      */
-    private $source_id = '';
+    protected $source_id = '';
     /**
      * Input only. Initial root password.
      *
      * Generated from protobuf field <code>string root_password = 13 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $root_password = '';
+    protected $root_password = '';
     /**
      * Output only. Indicates If this connection profile root password is stored.
      *
      * Generated from protobuf field <code>bool root_password_set = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $root_password_set = false;
+    protected $root_password_set = false;
     /**
      * The Cloud SQL default instance level collation.
      *
      * Generated from protobuf field <code>string collation = 15;</code>
      */
-    private $collation = '';
+    protected $collation = '';
     /**
      * The KMS key name used for the csql instance.
      *
      * Generated from protobuf field <code>string cmek_key_name = 16;</code>
      */
-    private $cmek_key_name = '';
+    protected $cmek_key_name = '';
     /**
      * Optional. Availability type. Potential values:
      * *  `ZONAL`: The instance serves data from only one zone. Outages in that
@@ -154,13 +154,13 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.SqlAvailabilityType availability_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $availability_type = 0;
+    protected $availability_type = 0;
     /**
      * Optional. The edition of the given Cloud SQL instance.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings.Edition edition = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $edition = 0;
+    protected $edition = 0;
 
     /**
      * Constructor.
@@ -370,7 +370,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value storage_auto_resize_limit = 4;</code>
      * @return int|string|null
      */
-    public function getStorageAutoResizeLimitValue()
+    public function getStorageAutoResizeLimitUnwrapped()
     {
         return $this->readWrapperValue("storage_auto_resize_limit");
     }
@@ -401,7 +401,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setStorageAutoResizeLimitValue($var)
+    public function setStorageAutoResizeLimitUnwrapped($var)
     {
         $this->writeWrapperValue("storage_auto_resize_limit", $var);
         return $this;}
@@ -519,7 +519,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue auto_storage_increase = 7;</code>
      * @return bool|null
      */
-    public function getAutoStorageIncreaseValue()
+    public function getAutoStorageIncreaseUnwrapped()
     {
         return $this->readWrapperValue("auto_storage_increase");
     }
@@ -556,7 +556,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAutoStorageIncreaseValue($var)
+    public function setAutoStorageIncreaseUnwrapped($var)
     {
         $this->writeWrapperValue("auto_storage_increase", $var);
         return $this;}
@@ -648,7 +648,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_disk_size_gb = 10;</code>
      * @return int|string|null
      */
-    public function getDataDiskSizeGbValue()
+    public function getDataDiskSizeGbUnwrapped()
     {
         return $this->readWrapperValue("data_disk_size_gb");
     }
@@ -679,7 +679,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setDataDiskSizeGbValue($var)
+    public function setDataDiskSizeGbUnwrapped($var)
     {
         $this->writeWrapperValue("data_disk_size_gb", $var);
         return $this;}

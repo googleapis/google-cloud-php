@@ -21,21 +21,21 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Specifies whether the conversion workspace is to be committed
      * automatically after the conversion.
      *
      * Generated from protobuf field <code>bool auto_commit = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auto_commit = false;
+    protected $auto_commit = false;
     /**
      * Optional. Filter the entities to convert. Leaving this field empty will
      * convert all of the entities. Supports Google AIP-160 style filtering.
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Automatically convert the full entity path for each entity
      * specified by the filter. For example, if the filter specifies a table, that
@@ -43,7 +43,7 @@ class ConvertConversionWorkspaceRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>bool convert_full_path = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $convert_full_path = false;
+    protected $convert_full_path = false;
 
     /**
      * Constructor.
