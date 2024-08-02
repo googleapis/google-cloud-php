@@ -24,7 +24,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Minimum slots available to this reservation. A slot is a unit of
      * computational power in BigQuery, and serves as the unit of parallelism.
@@ -39,7 +39,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 slot_capacity = 2;</code>
      */
-    private $slot_capacity = 0;
+    protected $slot_capacity = 0;
     /**
      * If false, any query or pipeline job using this reservation will use idle
      * slots from other reservations within the same admin project. If true, a
@@ -48,14 +48,14 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
      */
-    private $ignore_idle_slots = false;
+    protected $ignore_idle_slots = false;
     /**
      * The configuration parameters for the auto scaling feature. Note this is an
      * alpha feature.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation.Autoscale autoscale = 7;</code>
      */
-    private $autoscale = null;
+    protected $autoscale = null;
     /**
      * Job concurrency target which sets a soft upper bound on the number of jobs
      * that can run concurrently in this reservation. This is a soft target due to
@@ -68,19 +68,19 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 concurrency = 16;</code>
      */
-    private $concurrency = 0;
+    protected $concurrency = 0;
     /**
      * Output only. Creation time of the reservation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_time = null;
+    protected $creation_time = null;
     /**
      * Output only. Last update time of the reservation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Applicable only for reservations located within one of the BigQuery
      * multi-regions (US or EU).
@@ -92,13 +92,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool multi_region_auxiliary = 14;</code>
      */
-    private $multi_region_auxiliary = false;
+    protected $multi_region_auxiliary = false;
     /**
      * Edition of the reservation.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Edition edition = 17;</code>
      */
-    private $edition = 0;
+    protected $edition = 0;
 
     /**
      * Constructor.
