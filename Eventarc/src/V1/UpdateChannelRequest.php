@@ -20,7 +20,7 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
      */
-    private $channel = null;
+    protected $channel = null;
     /**
      * The fields to be updated; only fields explicitly provided are updated.
      * If no field mask is provided, all provided fields in the request are
@@ -28,14 +28,14 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Eventarc\V1\Channel $channel    The channel to be updated.

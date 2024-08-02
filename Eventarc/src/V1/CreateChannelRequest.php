@@ -20,26 +20,26 @@ class CreateChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The channel to create.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $channel = null;
+    protected $channel = null;
     /**
      * Required. The user-provided ID to be assigned to the channel.
      *
      * Generated from protobuf field <code>string channel_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $channel_id = '';
+    protected $channel_id = '';
     /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                            $parent    Required. The parent collection in which to add this channel. Please see
