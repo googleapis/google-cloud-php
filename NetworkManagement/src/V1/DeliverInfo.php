@@ -20,19 +20,19 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DeliverInfo.Target target = 1;</code>
      */
-    private $target = 0;
+    protected $target = 0;
     /**
      * URI of the resource that the packet is delivered to.
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
-    private $resource_uri = '';
+    protected $resource_uri = '';
     /**
      * IP address of the target (if applicable).
      *
      * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_info) = {</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
 
     /**
      * Constructor.

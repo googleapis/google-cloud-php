@@ -21,7 +21,7 @@ class EdgeLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metropolitan_area = 1;</code>
      */
-    private $metropolitan_area = '';
+    protected $metropolitan_area = '';
 
     /**
      * Constructor.

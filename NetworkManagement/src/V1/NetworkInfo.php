@@ -20,19 +20,19 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Compute Engine network.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The IP range that matches the test.
      *
      * Generated from protobuf field <code>string matched_ip_range = 4;</code>
      */
-    private $matched_ip_range = '';
+    protected $matched_ip_range = '';
 
     /**
      * Constructor.

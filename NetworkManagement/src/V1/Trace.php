@@ -32,7 +32,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.EndpointInfo endpoint_info = 1;</code>
      */
-    private $endpoint_info = null;
+    protected $endpoint_info = null;
     /**
      * A trace of a test contains multiple steps from the initial state to the
      * final state (delivered, dropped, forwarded, or aborted).
@@ -50,7 +50,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 forward_trace_id = 4;</code>
      */
-    private $forward_trace_id = 0;
+    protected $forward_trace_id = 0;
 
     /**
      * Constructor.

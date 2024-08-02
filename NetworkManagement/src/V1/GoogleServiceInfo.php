@@ -24,13 +24,13 @@ class GoogleServiceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_ip = 1;</code>
      */
-    private $source_ip = '';
+    protected $source_ip = '';
     /**
      * Recognized type of a Google Service.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GoogleServiceInfo.GoogleServiceType google_service_type = 2;</code>
      */
-    private $google_service_type = 0;
+    protected $google_service_type = 0;
 
     /**
      * Constructor.

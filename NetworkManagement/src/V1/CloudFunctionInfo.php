@@ -20,25 +20,25 @@ class CloudFunctionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Cloud Function.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Location in which the Cloud Function is deployed.
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Latest successfully deployed version id of the Cloud Function.
      *
      * Generated from protobuf field <code>int64 version_id = 4;</code>
      */
-    private $version_id = 0;
+    protected $version_id = 0;
 
     /**
      * Constructor.

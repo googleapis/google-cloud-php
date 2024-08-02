@@ -20,25 +20,25 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RouteInfo.RouteType route_type = 8;</code>
      */
-    private $route_type = 0;
+    protected $route_type = 0;
     /**
      * Type of next hop.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RouteInfo.NextHopType next_hop_type = 9;</code>
      */
-    private $next_hop_type = 0;
+    protected $next_hop_type = 0;
     /**
      * Indicates where route is applicable.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RouteInfo.RouteScope route_scope = 14;</code>
      */
-    private $route_scope = 0;
+    protected $route_scope = 0;
     /**
      * Name of a route.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a route.
      * Dynamic, peering static and peering dynamic routes do not have an URI.
@@ -47,31 +47,31 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Destination IP range of the route.
      *
      * Generated from protobuf field <code>string dest_ip_range = 3;</code>
      */
-    private $dest_ip_range = '';
+    protected $dest_ip_range = '';
     /**
      * Next hop of the route.
      *
      * Generated from protobuf field <code>string next_hop = 4;</code>
      */
-    private $next_hop = '';
+    protected $next_hop = '';
     /**
      * URI of a Compute Engine network. NETWORK routes only.
      *
      * Generated from protobuf field <code>string network_uri = 5;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * Priority of the route.
      *
      * Generated from protobuf field <code>int32 priority = 6;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * Instance tags of the route.
      *
@@ -83,7 +83,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string src_ip_range = 10;</code>
      */
-    private $src_ip_range = '';
+    protected $src_ip_range = '';
     /**
      * Destination port ranges of the route. Policy based routes only.
      *
@@ -107,13 +107,13 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string ncc_hub_uri = 15;</code>
      */
-    private $ncc_hub_uri = null;
+    protected $ncc_hub_uri = null;
     /**
      * URI of a NCC Spoke. NCC_HUB routes only.
      *
      * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
      */
-    private $ncc_spoke_uri = null;
+    protected $ncc_spoke_uri = null;
 
     /**
      * Constructor.
