@@ -21,14 +21,14 @@ class Filter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_protocol = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ip_protocol = '';
+    protected $ip_protocol = '';
     /**
      * Optional. The source IP range of outgoing packets that this policy based
      * route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
      *
      * Generated from protobuf field <code>string src_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $src_range = '';
+    protected $src_range = '';
     /**
      * Optional. The destination IP range of outgoing packets that this policy
      * based route applies to. Default is "0.0.0.0/0" if protocol version is
@@ -36,14 +36,14 @@ class Filter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dest_range = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dest_range = '';
+    protected $dest_range = '';
     /**
      * Required. Internet protocol versions this policy based route applies to.
      * For this version, only IPV4 is supported.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.Filter.ProtocolVersion protocol_version = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $protocol_version = 0;
+    protected $protocol_version = 0;
 
     /**
      * Constructor.

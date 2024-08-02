@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\NetworkConnectivity\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -48,6 +47,7 @@ use Google\Cloud\NetworkConnectivity\V1\DeletePolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetPolicyBasedRouteRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -98,9 +98,7 @@ final class PolicyBasedRoutingServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -117,7 +115,8 @@ final class PolicyBasedRoutingServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/policy_based_routing_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/policy_based_routing_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -146,10 +145,31 @@ final class PolicyBasedRoutingServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -323,8 +343,10 @@ final class PolicyBasedRoutingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPolicyBasedRoute(CreatePolicyBasedRouteRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPolicyBasedRoute(
+        CreatePolicyBasedRouteRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePolicyBasedRoute', $request, $callOptions)->wait();
     }
 
@@ -350,8 +372,10 @@ final class PolicyBasedRoutingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePolicyBasedRoute(DeletePolicyBasedRouteRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePolicyBasedRoute(
+        DeletePolicyBasedRouteRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePolicyBasedRoute', $request, $callOptions)->wait();
     }
 
@@ -404,8 +428,10 @@ final class PolicyBasedRoutingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPolicyBasedRoutes(ListPolicyBasedRoutesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPolicyBasedRoutes(
+        ListPolicyBasedRoutesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPolicyBasedRoutes', $request, $callOptions);
     }
 
@@ -550,8 +576,10 @@ final class PolicyBasedRoutingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

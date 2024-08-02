@@ -31,13 +31,13 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      */
-    private $site_to_site_data_transfer = false;
+    protected $site_to_site_data_transfer = false;
     /**
      * Output only. The VPC network where these VPN tunnels are located.
      *
      * Generated from protobuf field <code>string vpc_network = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $vpc_network = '';
+    protected $vpc_network = '';
 
     /**
      * Constructor.

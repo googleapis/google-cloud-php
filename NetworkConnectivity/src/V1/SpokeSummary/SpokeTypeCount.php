@@ -22,14 +22,14 @@ class SpokeTypeCount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeType spoke_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $spoke_type = 0;
+    protected $spoke_type = 0;
     /**
      * Output only. The total number of spokes of this type that are
      * associated with the hub.
      *
      * Generated from protobuf field <code>int64 count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

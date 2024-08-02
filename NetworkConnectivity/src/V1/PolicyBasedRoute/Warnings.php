@@ -20,7 +20,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.Warnings.Code code = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Output only. Metadata about this warning in key: value format. The key
      * should provides more detail on the warning being returned. For example,
@@ -37,7 +37,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string warning_message = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $warning_message = '';
+    protected $warning_message = '';
 
     /**
      * Constructor.

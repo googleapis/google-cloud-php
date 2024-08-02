@@ -21,7 +21,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

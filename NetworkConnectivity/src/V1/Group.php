@@ -22,19 +22,19 @@ class Group extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time the group was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the group was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Labels in key-value pair format. For more information about
      * labels, see [Requirements for
@@ -48,7 +48,7 @@ class Group extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The Google-generated UUID for the group. This value is unique
      * across all group resources. If a group is deleted and
@@ -57,13 +57,13 @@ class Group extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The current lifecycle state of this group.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.
