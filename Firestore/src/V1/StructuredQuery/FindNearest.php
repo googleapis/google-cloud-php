@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Nearest Neighbors search config.
+ * Nearest Neighbors search config. The ordering provided by FindNearest
+ * supersedes the order_by stage. If multiple documents have the same vector
+ * distance, the returned document order is not guaranteed to be stable
+ * between queries.
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.FindNearest</code>
  */
@@ -31,7 +34,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      */
     private $query_vector = null;
     /**
-     * Required. The Distance Measure to use, required.
+     * Required. The distance measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,7 +61,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *           Required. The query vector that we are searching on. Must be a vector of
      *           no more than 2048 dimensions.
      *     @type int $distance_measure
-     *           Required. The Distance Measure to use, required.
+     *           Required. The distance measure to use, required.
      *     @type \Google\Protobuf\Int32Value $limit
      *           Required. The number of nearest neighbors to return. Must be a positive
      *           integer of no more than 1000.
@@ -148,7 +151,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Distance Measure to use, required.
+     * Required. The distance measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -159,7 +162,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Distance Measure to use, required.
+     * Required. The distance measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_DeleteLbRouteExtension_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_lb_route_extension_sample(string $formattedName): void
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteLbRouteExtensionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $depServiceClient->deleteLbRouteExtension($formattedName);
+        $response = $depServiceClient->deleteLbRouteExtension($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

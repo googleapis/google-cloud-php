@@ -20,25 +20,25 @@ class InstanceStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * The VM instance provisioning model.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.ProvisioningModel provisioning_model = 2;</code>
      */
-    private $provisioning_model = 0;
+    protected $provisioning_model = 0;
     /**
      * The max number of tasks can be assigned to this instance type.
      *
      * Generated from protobuf field <code>int64 task_pack = 3;</code>
      */
-    private $task_pack = 0;
+    protected $task_pack = 0;
     /**
      * The VM boot disk.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 4;</code>
      */
-    private $boot_disk = null;
+    protected $boot_disk = null;
 
     /**
      * Constructor.

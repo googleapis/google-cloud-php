@@ -20,7 +20,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Detailed info about why the state is reached.
      *

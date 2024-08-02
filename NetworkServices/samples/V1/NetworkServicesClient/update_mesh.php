@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateMesh_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\Mesh;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\UpdateMeshRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,14 +41,16 @@ function update_mesh_sample(string $meshName): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mesh = (new Mesh())
         ->setName($meshName);
+    $request = (new UpdateMeshRequest())
+        ->setMesh($mesh);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateMesh($mesh);
+        $response = $networkServicesClient->updateMesh($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

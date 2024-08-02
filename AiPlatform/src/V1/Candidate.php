@@ -28,6 +28,12 @@ class Candidate extends \Google\Protobuf\Internal\Message
      */
     protected $content = null;
     /**
+     * Output only. Confidence score of the candidate.
+     *
+     * Generated from protobuf field <code>double score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $score = 0.0;
+    /**
      * Output only. The reason why the model stopped generating tokens.
      * If empty, the model has not stopped generating the tokens.
      *
@@ -71,6 +77,8 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *           Output only. Index of the candidate.
      *     @type \Google\Cloud\AIPlatform\V1\Content $content
      *           Output only. Content parts of the candidate.
+     *     @type float $score
+     *           Output only. Confidence score of the candidate.
      *     @type int $finish_reason
      *           Output only. The reason why the model stopped generating tokens.
      *           If empty, the model has not stopped generating the tokens.
@@ -149,6 +157,32 @@ class Candidate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Content::class);
         $this->content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Confidence score of the candidate.
+     *
+     * Generated from protobuf field <code>double score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * Output only. Confidence score of the candidate.
+     *
+     * Generated from protobuf field <code>double score = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScore($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->score = $var;
 
         return $this;
     }

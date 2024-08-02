@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkservices_v1_generated_NetworkServices_GetTlsRoute_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\GetTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
 
 /**
@@ -39,10 +40,14 @@ function get_tls_route_sample(string $formattedName): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new GetTlsRouteRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TlsRoute $response */
-        $response = $networkServicesClient->getTlsRoute($formattedName);
+        $response = $networkServicesClient->getTlsRoute($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -1266,6 +1266,8 @@ class NetAppClientTest extends GeneratedTest
         $ldapEnabled = false;
         $psaRange = 'psaRange1004849276';
         $globalAccessAllowed = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -1279,6 +1281,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setLdapEnabled($ldapEnabled);
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1443,6 +1447,10 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -1461,6 +1469,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3379,6 +3391,8 @@ class NetAppClientTest extends GeneratedTest
         $ldapEnabled = false;
         $psaRange = 'psaRange1004849276';
         $globalAccessAllowed = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -3392,6 +3406,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setLdapEnabled($ldapEnabled);
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->storagePoolName('[PROJECT]', '[LOCATION]', '[STORAGE_POOL]');
@@ -3471,6 +3487,10 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -3489,6 +3509,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
@@ -4487,6 +4511,10 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4505,6 +4533,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5800,6 +5832,8 @@ class NetAppClientTest extends GeneratedTest
         $ldapEnabled = false;
         $psaRange = 'psaRange1004849276';
         $globalAccessAllowed = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new StoragePool();
         $expectedResponse->setName($name);
         $expectedResponse->setCapacityGib($capacityGib);
@@ -5813,6 +5847,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setLdapEnabled($ldapEnabled);
         $expectedResponse->setPsaRange($psaRange);
         $expectedResponse->setGlobalAccessAllowed($globalAccessAllowed);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -5967,6 +6003,10 @@ class NetAppClientTest extends GeneratedTest
         $activeDirectory = 'activeDirectory475662452';
         $kmsConfig = 'kmsConfig917255152';
         $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -5985,6 +6025,10 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setActiveDirectory($activeDirectory);
         $expectedResponse->setKmsConfig($kmsConfig);
         $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

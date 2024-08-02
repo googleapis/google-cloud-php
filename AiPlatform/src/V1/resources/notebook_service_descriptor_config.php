@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'CreateNotebookExecutionJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\NotebookExecutionJob',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateNotebookRuntimeTemplate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate',
@@ -57,6 +76,25 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNotebookExecutionJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\DeleteOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -137,6 +175,18 @@ return [
                     ],
                 ],
             ],
+            'GetNotebookExecutionJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\NotebookExecutionJob',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetNotebookRuntime' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\NotebookRuntime',
@@ -157,6 +207,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNotebookExecutionJobs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getNotebookExecutionJobs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\ListNotebookExecutionJobsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -290,8 +360,10 @@ return [
             'templateMap' => [
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'notebookExecutionJob' => 'projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}',
                 'notebookRuntime' => 'projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}',
                 'notebookRuntimeTemplate' => 'projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}',
+                'schedule' => 'projects/{project}/locations/{location}/schedules/{schedule}',
                 'subnetwork' => 'projects/{project}/regions/{region}/subnetworks/{subnetwork}',
             ],
         ],

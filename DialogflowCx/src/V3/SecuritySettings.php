@@ -181,6 +181,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           for Agent Assist traffic), higher value will be ignored and use default.
      *           Setting a value higher than that has no effect. A missing value or
      *           setting to 0 also means we use default TTL.
+     *           When data retention configuration is changed, it only applies to the data
+     *           created after the change; the TTL of existing data created before the
+     *           change stays intact.
      *     @type int $retention_strategy
      *           Specifies the retention behavior defined by
      *           [SecuritySettings.RetentionStrategy][google.cloud.dialogflow.cx.v3.SecuritySettings.RetentionStrategy].
@@ -443,6 +446,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for Agent Assist traffic), higher value will be ignored and use default.
      * Setting a value higher than that has no effect. A missing value or
      * setting to 0 also means we use default TTL.
+     * When data retention configuration is changed, it only applies to the data
+     * created after the change; the TTL of existing data created before the
+     * change stays intact.
      *
      * Generated from protobuf field <code>int32 retention_window_days = 6;</code>
      * @return int
@@ -463,6 +469,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for Agent Assist traffic), higher value will be ignored and use default.
      * Setting a value higher than that has no effect. A missing value or
      * setting to 0 also means we use default TTL.
+     * When data retention configuration is changed, it only applies to the data
+     * created after the change; the TTL of existing data created before the
+     * change stays intact.
      *
      * Generated from protobuf field <code>int32 retention_window_days = 6;</code>
      * @param int $var

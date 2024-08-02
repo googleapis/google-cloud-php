@@ -21,7 +21,7 @@ class ExportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Client-assigned labels.
      *
@@ -33,7 +33,7 @@ class ExportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.EntityFilter entity_filter = 3;</code>
      */
-    private $entity_filter = null;
+    protected $entity_filter = null;
     /**
      * Required. Location for the export metadata and data files.
      * The full resource URL of the external storage location. Currently, only
@@ -53,7 +53,7 @@ class ExportEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_url_prefix = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_url_prefix = '';
+    protected $output_url_prefix = '';
 
     /**
      * @param string                                        $projectId       Required. Project ID against which to make the request.

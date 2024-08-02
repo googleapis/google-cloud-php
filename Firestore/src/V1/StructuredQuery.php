@@ -122,7 +122,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     private $limit = null;
     /**
-     * Optional. A potential Nearest Neighbors Search.
+     * Optional. A potential nearest neighbors search.
      * Applies after all other filters and ordering.
      * Finds the closest vector embeddings to the given query vector.
      *
@@ -204,7 +204,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *           Requires:
      *           * The value must be greater than or equal to zero if specified.
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery\FindNearest $find_nearest
-     *           Optional. A potential Nearest Neighbors Search.
+     *           Optional. A potential nearest neighbors search.
      *           Applies after all other filters and ordering.
      *           Finds the closest vector embeddings to the given query vector.
      * }
@@ -608,7 +608,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Optional. A potential Nearest Neighbors Search.
+     * Optional. A potential nearest neighbors search.
      * Applies after all other filters and ordering.
      * Finds the closest vector embeddings to the given query vector.
      *
@@ -631,7 +631,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A potential Nearest Neighbors Search.
+     * Optional. A potential nearest neighbors search.
      * Applies after all other filters and ordering.
      * Finds the closest vector embeddings to the given query vector.
      *

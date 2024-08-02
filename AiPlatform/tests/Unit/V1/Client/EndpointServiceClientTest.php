@@ -117,6 +117,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -125,6 +129,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -501,6 +509,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -509,6 +521,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
@@ -915,6 +931,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -923,6 +943,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $endpoint = new Endpoint();
@@ -1345,6 +1369,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1353,6 +1381,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

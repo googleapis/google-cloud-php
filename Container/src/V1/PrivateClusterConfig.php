@@ -41,19 +41,19 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The internal IP address of this cluster's master endpoint.
      *
-     * Generated from protobuf field <code>string private_endpoint = 4;</code>
+     * Generated from protobuf field <code>string private_endpoint = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $private_endpoint = '';
     /**
      * Output only. The external IP address of this cluster's master endpoint.
      *
-     * Generated from protobuf field <code>string public_endpoint = 5;</code>
+     * Generated from protobuf field <code>string public_endpoint = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $public_endpoint = '';
     /**
      * Output only. The peering name in the customer VPC used by this cluster.
      *
-     * Generated from protobuf field <code>string peering_name = 7;</code>
+     * Generated from protobuf field <code>string peering_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $peering_name = '';
     /**
@@ -196,7 +196,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The internal IP address of this cluster's master endpoint.
      *
-     * Generated from protobuf field <code>string private_endpoint = 4;</code>
+     * Generated from protobuf field <code>string private_endpoint = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPrivateEndpoint()
@@ -207,7 +207,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The internal IP address of this cluster's master endpoint.
      *
-     * Generated from protobuf field <code>string private_endpoint = 4;</code>
+     * Generated from protobuf field <code>string private_endpoint = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -222,7 +222,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The external IP address of this cluster's master endpoint.
      *
-     * Generated from protobuf field <code>string public_endpoint = 5;</code>
+     * Generated from protobuf field <code>string public_endpoint = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPublicEndpoint()
@@ -233,7 +233,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The external IP address of this cluster's master endpoint.
      *
-     * Generated from protobuf field <code>string public_endpoint = 5;</code>
+     * Generated from protobuf field <code>string public_endpoint = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -248,7 +248,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The peering name in the customer VPC used by this cluster.
      *
-     * Generated from protobuf field <code>string peering_name = 7;</code>
+     * Generated from protobuf field <code>string peering_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPeeringName()
@@ -259,7 +259,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The peering name in the customer VPC used by this cluster.
      *
-     * Generated from protobuf field <code>string peering_name = 7;</code>
+     * Generated from protobuf field <code>string peering_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

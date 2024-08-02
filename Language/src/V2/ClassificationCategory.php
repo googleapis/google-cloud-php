@@ -28,6 +28,14 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
     private $confidence = 0.0;
+    /**
+     * Optional. The classifier's severity of the category. This is only present
+     * when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and
+     * the corresponding category has a severity score.
+     *
+     * Generated from protobuf field <code>float severity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $severity = 0.0;
 
     /**
      * Constructor.
@@ -40,6 +48,10 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
      *     @type float $confidence
      *           The classifier's confidence of the category. Number represents how certain
      *           the classifier is that this category represents the given text.
+     *     @type float $severity
+     *           Optional. The classifier's severity of the category. This is only present
+     *           when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and
+     *           the corresponding category has a severity score.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +109,36 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The classifier's severity of the category. This is only present
+     * when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and
+     * the corresponding category has a severity score.
+     *
+     * Generated from protobuf field <code>float severity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
+    }
+
+    /**
+     * Optional. The classifier's severity of the category. This is only present
+     * when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and
+     * the corresponding category has a severity score.
+     *
+     * Generated from protobuf field <code>float severity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSeverity($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->severity = $var;
 
         return $this;
     }

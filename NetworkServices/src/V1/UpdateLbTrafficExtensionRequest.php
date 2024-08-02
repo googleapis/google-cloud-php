@@ -49,6 +49,25 @@ class UpdateLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param \Google\Cloud\NetworkServices\V1\LbTrafficExtension $lbTrafficExtension Required. `LbTrafficExtension` resource being updated.
+     * @param \Google\Protobuf\FieldMask                          $updateMask         Optional. Used to specify the fields to be overwritten in the
+     *                                                                                `LbTrafficExtension` resource by the update.
+     *                                                                                The fields specified in the update_mask are relative to the resource, not
+     *                                                                                the full request. A field is overwritten if it is in the mask. If the
+     *                                                                                user does not specify a mask, then all fields are overwritten.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\UpdateLbTrafficExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\NetworkServices\V1\LbTrafficExtension $lbTrafficExtension, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setLbTrafficExtension($lbTrafficExtension)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

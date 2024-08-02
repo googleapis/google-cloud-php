@@ -20,7 +20,7 @@ class RollbackApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The revision ID to roll back to.
      * It must be a revision of the same deployment.
@@ -28,7 +28,7 @@ class RollbackApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
 
     /**
      * Constructor.

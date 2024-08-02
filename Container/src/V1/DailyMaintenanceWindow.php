@@ -24,12 +24,12 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     private $start_time = '';
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      * Duration will be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
      * format "PTnHnMnS".
      *
-     * Generated from protobuf field <code>string duration = 3;</code>
+     * Generated from protobuf field <code>string duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $duration = '';
 
@@ -44,7 +44,7 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *           Time format should be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
      *           format "HH:MM", where HH : [00-23] and MM : [00-59] GMT.
      *     @type string $duration
-     *           [Output only] Duration of the time window, automatically chosen to be
+     *           Output only. Duration of the time window, automatically chosen to be
      *           smallest possible in the given scenario.
      *           Duration will be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
      *           format "PTnHnMnS".
@@ -86,12 +86,12 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      * Duration will be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
      * format "PTnHnMnS".
      *
-     * Generated from protobuf field <code>string duration = 3;</code>
+     * Generated from protobuf field <code>string duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDuration()
@@ -100,12 +100,12 @@ class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      * Duration will be in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)
      * format "PTnHnMnS".
      *
-     * Generated from protobuf field <code>string duration = 3;</code>
+     * Generated from protobuf field <code>string duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

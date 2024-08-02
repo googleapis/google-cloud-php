@@ -20,7 +20,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1;</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Overrides the `CMD` specified in the container. If there is an ENTRYPOINT
      * (either in the container image or with the entrypoint field below) then
@@ -34,7 +34,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entrypoint = 3;</code>
      */
-    private $entrypoint = '';
+    protected $entrypoint = '';
     /**
      * Volumes to mount (bind mount) from the host machine files or directories
      * into the container, formatted to match docker run's --volume option,
@@ -56,7 +56,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string options = 8;</code>
      */
-    private $options = '';
+    protected $options = '';
     /**
      * If set to true, external network access to and from container will be
      * blocked, containers that are with block_external_network as true can
@@ -65,7 +65,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool block_external_network = 9;</code>
      */
-    private $block_external_network = false;
+    protected $block_external_network = false;
     /**
      * Required if the container image is from a private Docker registry. The
      * username to login to the Docker registry that contains the image.
@@ -83,7 +83,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 10;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required if the container image is from a private Docker registry. The
      * password to login to the Docker registry that contains the image.
@@ -100,7 +100,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string password = 11;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Optional. If set to true, this container runnable uses Image streaming.
      * Use Image streaming to allow the runnable to initialize without
@@ -119,7 +119,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_image_streaming = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_image_streaming = false;
+    protected $enable_image_streaming = false;
 
     /**
      * Constructor.

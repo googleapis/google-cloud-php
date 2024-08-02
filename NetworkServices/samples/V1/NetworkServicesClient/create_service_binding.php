@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_CreateServiceBinding_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\CreateServiceBindingRequest;
 use Google\Cloud\NetworkServices\V1\ServiceBinding;
 use Google\Rpc\Status;
 
@@ -50,19 +51,19 @@ function create_service_binding_sample(
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceBinding = (new ServiceBinding())
         ->setName($serviceBindingName)
         ->setService($serviceBindingService);
+    $request = (new CreateServiceBindingRequest())
+        ->setParent($formattedParent)
+        ->setServiceBindingId($serviceBindingId)
+        ->setServiceBinding($serviceBinding);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->createServiceBinding(
-            $formattedParent,
-            $serviceBindingId,
-            $serviceBinding
-        );
+        $response = $networkServicesClient->createServiceBinding($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

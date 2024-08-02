@@ -43,6 +43,12 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $parallel = null;
+    /**
+     * Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions postgres_export_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $postgres_export_options = null;
 
     /**
      * Constructor.
@@ -61,6 +67,8 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      *           Optional. The number of threads to use for parallel export.
      *     @type \Google\Protobuf\BoolValue $parallel
      *           Optional. Whether or not the export should be parallel.
+     *     @type \Google\Cloud\Sql\V1\ExportContext\SqlExportOptions\PostgresExportOptions $postgres_export_options
+     *           Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -318,6 +326,42 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("parallel", $var);
         return $this;}
+
+    /**
+     * Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions postgres_export_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ExportContext\SqlExportOptions\PostgresExportOptions|null
+     */
+    public function getPostgresExportOptions()
+    {
+        return $this->postgres_export_options;
+    }
+
+    public function hasPostgresExportOptions()
+    {
+        return isset($this->postgres_export_options);
+    }
+
+    public function clearPostgresExportOptions()
+    {
+        unset($this->postgres_export_options);
+    }
+
+    /**
+     * Optional. Options for exporting from a Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlExportOptions.PostgresExportOptions postgres_export_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ExportContext\SqlExportOptions\PostgresExportOptions $var
+     * @return $this
+     */
+    public function setPostgresExportOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ExportContext\SqlExportOptions\PostgresExportOptions::class);
+        $this->postgres_export_options = $var;
+
+        return $this;
+    }
 
 }
 

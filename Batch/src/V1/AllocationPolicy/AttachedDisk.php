@@ -24,7 +24,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string device_name = 3;</code>
      */
-    private $device_name = '';
+    protected $device_name = '';
     protected $attached;
 
     /**

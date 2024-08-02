@@ -36,6 +36,25 @@ class CreateGrpcRouteRequest extends \Google\Protobuf\Internal\Message
     protected $grpc_route = null;
 
     /**
+     * @param string                                     $parent      Required. The parent resource of the GrpcRoute. Must be in the
+     *                                                                format `projects/&#42;/locations/global`. Please see
+     *                                                                {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\GrpcRoute $grpcRoute   Required. GrpcRoute resource to be created.
+     * @param string                                     $grpcRouteId Required. Short name of the GrpcRoute resource to be created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateGrpcRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\GrpcRoute $grpcRoute, string $grpcRouteId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGrpcRoute($grpcRoute)
+            ->setGrpcRouteId($grpcRouteId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

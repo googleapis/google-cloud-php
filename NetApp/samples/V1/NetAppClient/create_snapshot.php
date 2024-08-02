@@ -36,9 +36,10 @@ use Google\Rpc\Status;
  * @param string $formattedParent The NetApp volume to create the snapshots of, in the format
  *                                `projects/{project_id}/locations/{location}/volumes/{volume_id}`
  *                                Please see {@see NetAppClient::volumeName()} for help formatting this field.
- * @param string $snapshotId      ID of the snapshot to create.
- *                                This value must start with a lowercase letter followed by up to 62
- *                                lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+ * @param string $snapshotId      ID of the snapshot to create. Must be unique within the parent
+ *                                resource. Must contain only letters, numbers, underscore and hyphen, with
+ *                                the first character a letter or underscore, the last a letter or underscore
+ *                                or a number, and a 63 character maximum.
  */
 function create_snapshot_sample(string $formattedParent, string $snapshotId): void
 {

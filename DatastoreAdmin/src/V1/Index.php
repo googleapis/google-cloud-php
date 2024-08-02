@@ -20,26 +20,26 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Output only. The resource ID of the index.
      *
      * Generated from protobuf field <code>string index_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $index_id = '';
+    protected $index_id = '';
     /**
      * Required. The entity kind to which this index applies.
      *
      * Generated from protobuf field <code>string kind = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Required. The index's ancestor mode.  Must not be
      * ANCESTOR_MODE_UNSPECIFIED.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.AncestorMode ancestor = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ancestor = 0;
+    protected $ancestor = 0;
     /**
      * Required. An ordered sequence of property names and their index attributes.
      * Requires:
@@ -53,7 +53,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

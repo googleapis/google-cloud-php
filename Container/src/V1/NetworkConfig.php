@@ -21,7 +21,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * to which the cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $network = '';
     /**
@@ -30,7 +30,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $subnetwork = '';
     /**
@@ -187,7 +187,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * to which the cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNetwork()
@@ -201,7 +201,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * to which the cluster is connected. Example:
      * projects/my-project/global/networks/my-network
      *
-     * Generated from protobuf field <code>string network = 1;</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -219,7 +219,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSubnetwork()
@@ -233,7 +233,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * cluster is connected. Example:
      * projects/my-project/regions/us-central1/subnetworks/my-subnet
      *
-     * Generated from protobuf field <code>string subnetwork = 2;</code>
+     * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

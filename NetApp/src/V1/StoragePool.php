@@ -124,6 +124,18 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $global_access_allowed = null;
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replica_zone = '';
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $zone = '';
 
     /**
      * Constructor.
@@ -169,6 +181,10 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type bool $global_access_allowed
      *           Deprecated. Used to allow SO pool to access AD or DNS server from other
      *           regions.
+     *     @type string $replica_zone
+     *           Optional. Specifies the replica zone for regional storagePool.
+     *     @type string $zone
+     *           Optional. Specifies the active zone for regional storagePool.
      * }
      */
     public function __construct($data = NULL) {
@@ -648,6 +664,58 @@ class StoragePool extends \Google\Protobuf\Internal\Message
         @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->global_access_allowed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getReplicaZone()
+    {
+        return $this->replica_zone;
+    }
+
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReplicaZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->replica_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->zone = $var;
 
         return $this;
     }

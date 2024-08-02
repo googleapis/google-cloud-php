@@ -37,6 +37,13 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_pod_overprovisioning = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $disable_pod_overprovisioning = false;
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment
+     * resource. This label must already be present in the Deployment.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pod_selector_label = '';
 
     /**
      * Constructor.
@@ -54,6 +61,9 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
      *           overprovisioning is disabled then Cloud Deploy will limit the number of
      *           total Pods used for the deployment strategy to the number of Pods the
      *           Deployment has on the cluster.
+     *     @type string $pod_selector_label
+     *           Optional. The label to use when selecting Pods for the Deployment
+     *           resource. This label must already be present in the Deployment.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +153,34 @@ class ServiceNetworking extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_pod_overprovisioning = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment
+     * resource. This label must already be present in the Deployment.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPodSelectorLabel()
+    {
+        return $this->pod_selector_label;
+    }
+
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment
+     * resource. This label must already be present in the Deployment.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPodSelectorLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pod_selector_label = $var;
 
         return $this;
     }

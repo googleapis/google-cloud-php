@@ -25,6 +25,12 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $parallel = null;
+    /**
+     * Optional. Options for importing from a Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions postgres_import_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $postgres_import_options = null;
 
     /**
      * Constructor.
@@ -36,6 +42,8 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
      *           Optional. The number of threads to use for parallel import.
      *     @type \Google\Protobuf\BoolValue $parallel
      *           Optional. Whether or not the import should be parallel.
+     *     @type \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions\PostgresImportOptions $postgres_import_options
+     *           Optional. Options for importing from a Cloud SQL for PostgreSQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +176,42 @@ class SqlImportOptions extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("parallel", $var);
         return $this;}
+
+    /**
+     * Optional. Options for importing from a Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions postgres_import_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions\PostgresImportOptions|null
+     */
+    public function getPostgresImportOptions()
+    {
+        return $this->postgres_import_options;
+    }
+
+    public function hasPostgresImportOptions()
+    {
+        return isset($this->postgres_import_options);
+    }
+
+    public function clearPostgresImportOptions()
+    {
+        unset($this->postgres_import_options);
+    }
+
+    /**
+     * Optional. Options for importing from a Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions.PostgresImportOptions postgres_import_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions\PostgresImportOptions $var
+     * @return $this
+     */
+    public function setPostgresImportOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions\PostgresImportOptions::class);
+        $this->postgres_import_options = $var;
+
+        return $this;
+    }
 
 }
 

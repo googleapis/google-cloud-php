@@ -182,21 +182,20 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     private $pod_cidr_overprovision_config = null;
     /**
-     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
-     * pods.
+     * Output only. The subnet's IPv6 CIDR block used by nodes and pods.
      *
      * Generated from protobuf field <code>string subnet_ipv6_cidr_block = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $subnet_ipv6_cidr_block = '';
     /**
-     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     * Output only. The services IPv6 CIDR block for the cluster.
      *
      * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $services_ipv6_cidr_block = '';
     /**
-     * Output only. [Output only] The additional pod ranges that are added to the
-     * cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     * Output only. The additional pod ranges that are added to the cluster.
+     * These pod ranges can be used by new node pools to allocate pod IPs
      * automatically. Once the range is removed it will not show up in
      * IPAllocationPolicy.
      *
@@ -204,9 +203,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     private $additional_pod_ranges_config = null;
     /**
-     * Output only. [Output only] The utilization of the cluster default IPv4
-     * range for the pod. The ratio is Usage/[Total number of IPs in the secondary
-     * range], Usage=numNodes*numZones*podIPsPerNode.
+     * Output only. The utilization of the cluster default IPv4 range for the
+     * pod. The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
      *
      * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -318,19 +317,18 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
      *           overprovisioning is disabled.
      *     @type string $subnet_ipv6_cidr_block
-     *           Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
-     *           pods.
+     *           Output only. The subnet's IPv6 CIDR block used by nodes and pods.
      *     @type string $services_ipv6_cidr_block
-     *           Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     *           Output only. The services IPv6 CIDR block for the cluster.
      *     @type \Google\Cloud\Container\V1\AdditionalPodRangesConfig $additional_pod_ranges_config
-     *           Output only. [Output only] The additional pod ranges that are added to the
-     *           cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     *           Output only. The additional pod ranges that are added to the cluster.
+     *           These pod ranges can be used by new node pools to allocate pod IPs
      *           automatically. Once the range is removed it will not show up in
      *           IPAllocationPolicy.
      *     @type float $default_pod_ipv4_range_utilization
-     *           Output only. [Output only] The utilization of the cluster default IPv4
-     *           range for the pod. The ratio is Usage/[Total number of IPs in the secondary
-     *           range], Usage=numNodes*numZones*podIPsPerNode.
+     *           Output only. The utilization of the cluster default IPv4 range for the
+     *           pod. The ratio is Usage/[Total number of IPs in the secondary range],
+     *           Usage=numNodes*numZones*podIPsPerNode.
      * }
      */
     public function __construct($data = NULL) {
@@ -911,8 +909,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
-     * pods.
+     * Output only. The subnet's IPv6 CIDR block used by nodes and pods.
      *
      * Generated from protobuf field <code>string subnet_ipv6_cidr_block = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -923,8 +920,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The subnet's IPv6 CIDR block used by nodes and
-     * pods.
+     * Output only. The subnet's IPv6 CIDR block used by nodes and pods.
      *
      * Generated from protobuf field <code>string subnet_ipv6_cidr_block = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -939,7 +935,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     * Output only. The services IPv6 CIDR block for the cluster.
      *
      * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -950,7 +946,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The services IPv6 CIDR block for the cluster.
+     * Output only. The services IPv6 CIDR block for the cluster.
      *
      * Generated from protobuf field <code>string services_ipv6_cidr_block = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -965,8 +961,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The additional pod ranges that are added to the
-     * cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     * Output only. The additional pod ranges that are added to the cluster.
+     * These pod ranges can be used by new node pools to allocate pod IPs
      * automatically. Once the range is removed it will not show up in
      * IPAllocationPolicy.
      *
@@ -989,8 +985,8 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The additional pod ranges that are added to the
-     * cluster. These pod ranges can be used by new node pools to allocate pod IPs
+     * Output only. The additional pod ranges that are added to the cluster.
+     * These pod ranges can be used by new node pools to allocate pod IPs
      * automatically. Once the range is removed it will not show up in
      * IPAllocationPolicy.
      *
@@ -1007,9 +1003,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The utilization of the cluster default IPv4
-     * range for the pod. The ratio is Usage/[Total number of IPs in the secondary
-     * range], Usage=numNodes*numZones*podIPsPerNode.
+     * Output only. The utilization of the cluster default IPv4 range for the
+     * pod. The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
      *
      * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
@@ -1020,9 +1016,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] The utilization of the cluster default IPv4
-     * range for the pod. The ratio is Usage/[Total number of IPs in the secondary
-     * range], Usage=numNodes*numZones*podIPsPerNode.
+     * Output only. The utilization of the cluster default IPv4 range for the
+     * pod. The ratio is Usage/[Total number of IPs in the secondary range],
+     * Usage=numNodes*numZones*podIPsPerNode.
      *
      * Generated from protobuf field <code>double default_pod_ipv4_range_utilization = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var

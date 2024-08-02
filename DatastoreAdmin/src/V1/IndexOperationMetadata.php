@@ -20,19 +20,19 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.CommonMetadata common = 1;</code>
      */
-    private $common = null;
+    protected $common = null;
     /**
      * An estimate of the number of entities processed.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Progress progress_entities = 2;</code>
      */
-    private $progress_entities = null;
+    protected $progress_entities = null;
     /**
      * The index resource ID that this operation is acting on.
      *
      * Generated from protobuf field <code>string index_id = 3;</code>
      */
-    private $index_id = '';
+    protected $index_id = '';
 
     /**
      * Constructor.

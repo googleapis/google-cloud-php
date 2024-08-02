@@ -22,6 +22,12 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
      */
     protected $sum = 0;
     /**
+     * Output only. Sum of a given population of values that are billable.
+     *
+     * Generated from protobuf field <code>int64 billable_sum = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $billable_sum = 0;
+    /**
      * Output only. The minimum of the population values.
      *
      * Generated from protobuf field <code>double min = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -72,6 +78,8 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
      *
      *     @type int|string $sum
      *           Output only. Sum of a given population of values.
+     *     @type int|string $billable_sum
+     *           Output only. Sum of a given population of values that are billable.
      *     @type float $min
      *           Output only. The minimum of the population values.
      *     @type float $max
@@ -115,6 +123,32 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkInt64($var);
         $this->sum = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Sum of a given population of values that are billable.
+     *
+     * Generated from protobuf field <code>int64 billable_sum = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getBillableSum()
+    {
+        return $this->billable_sum;
+    }
+
+    /**
+     * Output only. Sum of a given population of values that are billable.
+     *
+     * Generated from protobuf field <code>int64 billable_sum = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setBillableSum($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->billable_sum = $var;
 
         return $this;
     }

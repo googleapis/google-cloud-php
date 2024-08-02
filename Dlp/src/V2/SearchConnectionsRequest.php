@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchConnectionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Parent name, typically an organization, without location.
-     * For example: `organizations/12345678`.
+     * Required. Resource name of the organization or project with a wildcard
+     * location, for example, `organizations/433245324/locations/-` or
+     * `projects/project-id/locations/-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,9 +44,10 @@ class SearchConnectionsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
 
     /**
-     * @param string $parent Required. Parent name, typically an organization, without location.
-     *                       For example: `organizations/12345678`. Please see
-     *                       {@see DlpServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Resource name of the organization or project with a wildcard
+     *                       location, for example, `organizations/433245324/locations/-` or
+     *                       `projects/project-id/locations/-`. Please see
+     *                       {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dlp\V2\SearchConnectionsRequest
      *
@@ -64,8 +66,9 @@ class SearchConnectionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Parent name, typically an organization, without location.
-     *           For example: `organizations/12345678`.
+     *           Required. Resource name of the organization or project with a wildcard
+     *           location, for example, `organizations/433245324/locations/-` or
+     *           `projects/project-id/locations/-`.
      *     @type int $page_size
      *           Optional. Number of results per page, max 1000.
      *     @type string $page_token
@@ -81,8 +84,9 @@ class SearchConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent name, typically an organization, without location.
-     * For example: `organizations/12345678`.
+     * Required. Resource name of the organization or project with a wildcard
+     * location, for example, `organizations/433245324/locations/-` or
+     * `projects/project-id/locations/-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,8 +97,9 @@ class SearchConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent name, typically an organization, without location.
-     * For example: `organizations/12345678`.
+     * Required. Resource name of the organization or project with a wildcard
+     * location, for example, `organizations/433245324/locations/-` or
+     * `projects/project-id/locations/-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

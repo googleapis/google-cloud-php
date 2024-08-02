@@ -21,14 +21,14 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The index to create. The name and state fields are output only and will be
      * ignored. Single property indexes cannot be created or deleted.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Index index = 3;</code>
      */
-    private $index = null;
+    protected $index = null;
 
     /**
      * Constructor.

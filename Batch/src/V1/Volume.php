@@ -20,7 +20,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mount_path = 4;</code>
      */
-    private $mount_path = '';
+    protected $mount_path = '';
     /**
      * Mount options vary based on the type of storage volume:
      * * For a Cloud Storage bucket, all the mount options provided

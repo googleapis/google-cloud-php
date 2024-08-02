@@ -35,13 +35,18 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\AssignNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateNotebookRuntimeTemplateRequest;
+use Google\Cloud\AIPlatform\V1\DeleteNotebookExecutionJobRequest;
 use Google\Cloud\AIPlatform\V1\DeleteNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\DeleteNotebookRuntimeTemplateRequest;
+use Google\Cloud\AIPlatform\V1\GetNotebookExecutionJobRequest;
 use Google\Cloud\AIPlatform\V1\GetNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\GetNotebookRuntimeTemplateRequest;
+use Google\Cloud\AIPlatform\V1\ListNotebookExecutionJobsRequest;
 use Google\Cloud\AIPlatform\V1\ListNotebookRuntimeTemplatesRequest;
 use Google\Cloud\AIPlatform\V1\ListNotebookRuntimesRequest;
+use Google\Cloud\AIPlatform\V1\NotebookExecutionJob;
 use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
@@ -71,11 +76,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface assignNotebookRuntimeAsync(AssignNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createNotebookExecutionJobAsync(CreateNotebookExecutionJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createNotebookRuntimeTemplateAsync(CreateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteNotebookExecutionJobAsync(DeleteNotebookExecutionJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteNotebookRuntimeAsync(DeleteNotebookRuntimeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteNotebookRuntimeTemplateAsync(DeleteNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getNotebookExecutionJobAsync(GetNotebookExecutionJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNotebookRuntimeAsync(GetNotebookRuntimeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNotebookRuntimeTemplateAsync(GetNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listNotebookExecutionJobsAsync(ListNotebookExecutionJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNotebookRuntimeTemplatesAsync(ListNotebookRuntimeTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNotebookRuntimesAsync(ListNotebookRuntimesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startNotebookRuntimeAsync(StartNotebookRuntimeRequest $request, array $optionalArgs = [])
@@ -221,6 +230,28 @@ final class NotebookServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * notebook_execution_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookExecutionJob
+     *
+     * @return string The formatted notebook_execution_job resource.
+     */
+    public static function notebookExecutionJobName(
+        string $project,
+        string $location,
+        string $notebookExecutionJob
+    ): string {
+        return self::getPathTemplate('notebookExecutionJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_execution_job' => $notebookExecutionJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * notebook_runtime resource.
      *
      * @param string $project
@@ -261,6 +292,25 @@ final class NotebookServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a schedule
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $schedule
+     *
+     * @return string The formatted schedule resource.
+     */
+    public static function scheduleName(string $project, string $location, string $schedule): string
+    {
+        return self::getPathTemplate('schedule')->render([
+            'project' => $project,
+            'location' => $location,
+            'schedule' => $schedule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a subnetwork
      * resource.
      *
@@ -285,8 +335,10 @@ final class NotebookServiceClient
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - notebookExecutionJob: projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}
      * - notebookRuntime: projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
+     * - schedule: projects/{project}/locations/{location}/schedules/{schedule}
      * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -410,6 +462,35 @@ final class NotebookServiceClient
     }
 
     /**
+     * Creates a NotebookExecutionJob.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::createNotebookExecutionJobAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/create_notebook_execution_job.php
+     *
+     * @param CreateNotebookExecutionJobRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createNotebookExecutionJob(
+        CreateNotebookExecutionJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateNotebookExecutionJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a NotebookRuntimeTemplate.
      *
      * The async variant is
@@ -436,6 +517,35 @@ final class NotebookServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateNotebookRuntimeTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a NotebookExecutionJob.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::deleteNotebookExecutionJobAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/delete_notebook_execution_job.php
+     *
+     * @param DeleteNotebookExecutionJobRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteNotebookExecutionJob(
+        DeleteNotebookExecutionJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteNotebookExecutionJob', $request, $callOptions)->wait();
     }
 
     /**
@@ -497,6 +607,35 @@ final class NotebookServiceClient
     }
 
     /**
+     * Gets a NotebookExecutionJob.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::getNotebookExecutionJobAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_notebook_execution_job.php
+     *
+     * @param GetNotebookExecutionJobRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NotebookExecutionJob
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getNotebookExecutionJob(
+        GetNotebookExecutionJobRequest $request,
+        array $callOptions = []
+    ): NotebookExecutionJob {
+        return $this->startApiCall('GetNotebookExecutionJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a NotebookRuntime.
      *
      * The async variant is {@see NotebookServiceClient::getNotebookRuntimeAsync()} .
@@ -549,6 +688,35 @@ final class NotebookServiceClient
         array $callOptions = []
     ): NotebookRuntimeTemplate {
         return $this->startApiCall('GetNotebookRuntimeTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists NotebookExecutionJobs in a Location.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::listNotebookExecutionJobsAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/list_notebook_execution_jobs.php
+     *
+     * @param ListNotebookExecutionJobsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listNotebookExecutionJobs(
+        ListNotebookExecutionJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListNotebookExecutionJobs', $request, $callOptions);
     }
 
     /**

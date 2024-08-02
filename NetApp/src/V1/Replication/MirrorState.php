@@ -40,7 +40,7 @@ class MirrorState
      */
     const STOPPED = 3;
     /**
-     * Replication is in progress.
+     * Incremental replication is in progress.
      *
      * Generated from protobuf enum <code>TRANSFERRING = 4;</code>
      */

@@ -115,6 +115,19 @@ class Flow extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.KnowledgeConnectorSettings knowledge_connector_settings = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $knowledge_connector_settings = null;
+    /**
+     * Optional. Multi-lingual agent settings for this flow.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow.MultiLanguageSettings multi_language_settings = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_language_settings = null;
+    /**
+     * Indicates whether the flow is locked for changes. If the flow is locked,
+     * modifications to the flow will be rejected.
+     *
+     * Generated from protobuf field <code>bool locked = 30;</code>
+     */
+    protected $locked = false;
 
     /**
      * Constructor.
@@ -175,6 +188,11 @@ class Flow extends \Google\Protobuf\Internal\Message
      *           lower level overrides the settings exposed at the higher level.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\KnowledgeConnectorSettings $knowledge_connector_settings
      *           Optional. Knowledge connector configuration.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Flow\MultiLanguageSettings $multi_language_settings
+     *           Optional. Multi-lingual agent settings for this flow.
+     *     @type bool $locked
+     *           Indicates whether the flow is locked for changes. If the flow is locked,
+     *           modifications to the flow will be rejected.
      * }
      */
     public function __construct($data = NULL) {
@@ -512,6 +530,70 @@ class Flow extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\KnowledgeConnectorSettings::class);
         $this->knowledge_connector_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Multi-lingual agent settings for this flow.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow.MultiLanguageSettings multi_language_settings = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Flow\MultiLanguageSettings|null
+     */
+    public function getMultiLanguageSettings()
+    {
+        return $this->multi_language_settings;
+    }
+
+    public function hasMultiLanguageSettings()
+    {
+        return isset($this->multi_language_settings);
+    }
+
+    public function clearMultiLanguageSettings()
+    {
+        unset($this->multi_language_settings);
+    }
+
+    /**
+     * Optional. Multi-lingual agent settings for this flow.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow.MultiLanguageSettings multi_language_settings = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Flow\MultiLanguageSettings $var
+     * @return $this
+     */
+    public function setMultiLanguageSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Flow\MultiLanguageSettings::class);
+        $this->multi_language_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the flow is locked for changes. If the flow is locked,
+     * modifications to the flow will be rejected.
+     *
+     * Generated from protobuf field <code>bool locked = 30;</code>
+     * @return bool
+     */
+    public function getLocked()
+    {
+        return $this->locked;
+    }
+
+    /**
+     * Indicates whether the flow is locked for changes. If the flow is locked,
+     * modifications to the flow will be rejected.
+     *
+     * Generated from protobuf field <code>bool locked = 30;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLocked($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->locked = $var;
 
         return $this;
     }

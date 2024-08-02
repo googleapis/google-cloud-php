@@ -33,6 +33,25 @@ class UpdateTcpRouteRequest extends \Google\Protobuf\Internal\Message
     protected $tcp_route = null;
 
     /**
+     * @param \Google\Cloud\NetworkServices\V1\TcpRoute $tcpRoute   Required. Updated TcpRoute resource.
+     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
+     *                                                              TcpRoute resource by the update.
+     *                                                              The fields specified in the update_mask are relative to the resource, not
+     *                                                              the full request. A field will be overwritten if it is in the mask. If the
+     *                                                              user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\UpdateTcpRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\NetworkServices\V1\TcpRoute $tcpRoute, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setTcpRoute($tcpRoute)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

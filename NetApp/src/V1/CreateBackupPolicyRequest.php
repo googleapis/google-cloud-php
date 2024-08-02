@@ -31,8 +31,9 @@ class CreateBackupPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backup policy.
      * The ID must be unique within the specified location.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Must contain only letters, numbers, underscore and hyphen, with the first
+     * character a letter or underscore, the last a letter or underscore or a
+     * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_policy_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,8 +46,9 @@ class CreateBackupPolicyRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\NetApp\V1\BackupPolicy $backupPolicy   Required. A backupPolicy resource
      * @param string                               $backupPolicyId Required. The ID to use for the backup policy.
      *                                                             The ID must be unique within the specified location.
-     *                                                             This value must start with a lowercase letter followed by up to 62
-     *                                                             lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *                                                             Must contain only letters, numbers, underscore and hyphen, with the first
+     *                                                             character a letter or underscore, the last a letter or underscore or a
+     *                                                             number, and a 63 character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateBackupPolicyRequest
      *
@@ -74,8 +76,9 @@ class CreateBackupPolicyRequest extends \Google\Protobuf\Internal\Message
      *     @type string $backup_policy_id
      *           Required. The ID to use for the backup policy.
      *           The ID must be unique within the specified location.
-     *           This value must start with a lowercase letter followed by up to 62
-     *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *           Must contain only letters, numbers, underscore and hyphen, with the first
+     *           character a letter or underscore, the last a letter or underscore or a
+     *           number, and a 63 character maximum.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,8 +153,9 @@ class CreateBackupPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backup policy.
      * The ID must be unique within the specified location.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Must contain only letters, numbers, underscore and hyphen, with the first
+     * character a letter or underscore, the last a letter or underscore or a
+     * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_policy_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -164,8 +168,9 @@ class CreateBackupPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backup policy.
      * The ID must be unique within the specified location.
-     * This value must start with a lowercase letter followed by up to 62
-     * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     * Must contain only letters, numbers, underscore and hyphen, with the first
+     * character a letter or underscore, the last a letter or underscore or a
+     * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_policy_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

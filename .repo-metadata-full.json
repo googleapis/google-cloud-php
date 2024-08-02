@@ -84,7 +84,7 @@
     "ApigeeRegistry": {
         "language": "php",
         "distribution_name": "google/cloud-apigee-registry",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-apigee-registry/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "apigeeregistry"
@@ -180,7 +180,7 @@
     "Batch": {
         "language": "php",
         "distribution_name": "google/cloud-batch",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-batch/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/batch/docs",
@@ -363,6 +363,13 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudchannel"
     },
+    "CloudCommonProtos": {
+        "language": "php",
+        "distribution_name": "google/cloud-common-protos",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
+        "library_type": "CORE"
+    },
     "CommerceConsumerProcurement": {
         "language": "php",
         "distribution_name": "google/cloud-commerce-consumer-procurement",
@@ -373,10 +380,10 @@
     },
     "CommonProtos": {
         "language": "php",
-        "distribution_name": "google/cloud-common-protos",
-        "release_level": "preview",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-common-protos/latest",
-        "library_type": "CORE"
+        "distribution_name": "google/common-protos",
+        "release_level": "stable",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/common-protos/latest",
+        "library_type": "GAPIC_AUTO"
     },
     "Compute": {
         "language": "php",
@@ -528,7 +535,7 @@
     "DatastoreAdmin": {
         "language": "php",
         "distribution_name": "google/cloud-datastore-admin",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-datastore-admin/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datastore"
@@ -656,7 +663,7 @@
     "EventarcPublishing": {
         "language": "php",
         "distribution_name": "google/cloud-eventarc-publishing",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-eventarc-publishing/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "eventarcpublishing"
@@ -752,7 +759,7 @@
     "Iam": {
         "language": "php",
         "distribution_name": "google/cloud-iam",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-iam/latest",
         "library_type": "GAPIC_AUTO",
         "product_documentation": "https://cloud.google.com/iam/docs",
@@ -802,7 +809,7 @@
     "KmsInventory": {
         "language": "php",
         "distribution_name": "google/cloud-kms-inventory",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-kms-inventory/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "kmsinventory"

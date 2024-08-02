@@ -24,18 +24,18 @@ class Fleet extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * [Output only] The full resource name of the registered fleet membership of
+     * Output only. The full resource name of the registered fleet membership of
      * the cluster, in the format
      * `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
-     * Generated from protobuf field <code>string membership = 2;</code>
+     * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $membership = '';
     /**
-     * [Output only] Whether the cluster has been registered through the fleet
+     * Output only. Whether the cluster has been registered through the fleet
      * API.
      *
-     * Generated from protobuf field <code>bool pre_registered = 3;</code>
+     * Generated from protobuf field <code>bool pre_registered = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $pre_registered = false;
 
@@ -50,11 +50,11 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *           will be registered to. This field cannot be changed after the cluster has
      *           been registered.
      *     @type string $membership
-     *           [Output only] The full resource name of the registered fleet membership of
+     *           Output only. The full resource name of the registered fleet membership of
      *           the cluster, in the format
      *           `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *     @type bool $pre_registered
-     *           [Output only] Whether the cluster has been registered through the fleet
+     *           Output only. Whether the cluster has been registered through the fleet
      *           API.
      * }
      */
@@ -94,11 +94,11 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The full resource name of the registered fleet membership of
+     * Output only. The full resource name of the registered fleet membership of
      * the cluster, in the format
      * `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
-     * Generated from protobuf field <code>string membership = 2;</code>
+     * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getMembership()
@@ -107,11 +107,11 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The full resource name of the registered fleet membership of
+     * Output only. The full resource name of the registered fleet membership of
      * the cluster, in the format
      * `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
-     * Generated from protobuf field <code>string membership = 2;</code>
+     * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -124,10 +124,10 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Whether the cluster has been registered through the fleet
+     * Output only. Whether the cluster has been registered through the fleet
      * API.
      *
-     * Generated from protobuf field <code>bool pre_registered = 3;</code>
+     * Generated from protobuf field <code>bool pre_registered = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getPreRegistered()
@@ -136,10 +136,10 @@ class Fleet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Whether the cluster has been registered through the fleet
+     * Output only. Whether the cluster has been registered through the fleet
      * API.
      *
-     * Generated from protobuf field <code>bool pre_registered = 3;</code>
+     * Generated from protobuf field <code>bool pre_registered = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

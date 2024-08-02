@@ -21,7 +21,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 2;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * The minimum CPU platform.
      * See
@@ -29,13 +29,13 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      */
-    private $min_cpu_platform = '';
+    protected $min_cpu_platform = '';
     /**
      * The provisioning model.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.ProvisioningModel provisioning_model = 4;</code>
      */
-    private $provisioning_model = 0;
+    protected $provisioning_model = 0;
     /**
      * The accelerators attached to each VM instance.
      *
@@ -49,7 +49,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
      */
-    private $boot_disk = null;
+    protected $boot_disk = null;
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
@@ -66,7 +66,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reservation = '';
+    protected $reservation = '';
 
     /**
      * Constructor.

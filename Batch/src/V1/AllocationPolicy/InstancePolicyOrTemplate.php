@@ -31,14 +31,14 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
      */
-    private $install_gpu_drivers = false;
+    protected $install_gpu_drivers = false;
     /**
      * Optional. Set this field true if you want Batch to install Ops Agent on
      * your behalf. Default is false.
      *
      * Generated from protobuf field <code>bool install_ops_agent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $install_ops_agent = false;
+    protected $install_ops_agent = false;
     protected $policy_template;
 
     /**

@@ -51,6 +51,13 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration stable_cutback_duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $stable_cutback_duration = null;
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and
+     * Service resources. This label must already be present in both resources.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pod_selector_label = '';
 
     /**
      * Constructor.
@@ -74,6 +81,9 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *           Service to the original Service during the stable phase deployment. If
      *           specified, must be between 15s and 3600s. If unspecified, there is no
      *           cutback time.
+     *     @type string $pod_selector_label
+     *           Optional. The label to use when selecting Pods for the Deployment and
+     *           Service resources. This label must already be present in both resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +249,34 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->stable_cutback_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and
+     * Service resources. This label must already be present in both resources.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPodSelectorLabel()
+    {
+        return $this->pod_selector_label;
+    }
+
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and
+     * Service resources. This label must already be present in both resources.
+     *
+     * Generated from protobuf field <code>string pod_selector_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPodSelectorLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pod_selector_label = $var;
 
         return $this;
     }

@@ -70,6 +70,12 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.SBOMStatus sbom_status = 9;</code>
      */
     protected $sbom_status = null;
+    /**
+     * The status of an vulnerability attestation generation.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation vulnerability_attestation = 10;</code>
+     */
+    protected $vulnerability_attestation = null;
 
     /**
      * Constructor.
@@ -97,6 +103,8 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The time occurrences related to this discovery occurrence were archived.
      *     @type \Grafeas\V1\DiscoveryOccurrence\SBOMStatus $sbom_status
      *           The status of an SBOM generation.
+     *     @type \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation $vulnerability_attestation
+     *           The status of an vulnerability attestation generation.
      * }
      */
     public function __construct($data = NULL) {
@@ -386,6 +394,42 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\DiscoveryOccurrence\SBOMStatus::class);
         $this->sbom_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The status of an vulnerability attestation generation.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation vulnerability_attestation = 10;</code>
+     * @return \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation|null
+     */
+    public function getVulnerabilityAttestation()
+    {
+        return $this->vulnerability_attestation;
+    }
+
+    public function hasVulnerabilityAttestation()
+    {
+        return isset($this->vulnerability_attestation);
+    }
+
+    public function clearVulnerabilityAttestation()
+    {
+        unset($this->vulnerability_attestation);
+    }
+
+    /**
+     * The status of an vulnerability attestation generation.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation vulnerability_attestation = 10;</code>
+     * @param \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation $var
+     * @return $this
+     */
+    public function setVulnerabilityAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation::class);
+        $this->vulnerability_attestation = $var;
 
         return $this;
     }

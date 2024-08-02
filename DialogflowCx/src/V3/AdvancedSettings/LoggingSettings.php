@@ -16,17 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class LoggingSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 2;</code>
      */
     protected $enable_stackdriver_logging = false;
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      *
      * Generated from protobuf field <code>bool enable_interaction_logging = 3;</code>
      */
     protected $enable_interaction_logging = false;
+    /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined
+     * session parameter `$session.params.conversation-redaction` will be
+     * used to determine if the utterance should be redacted.
+     *
+     * Generated from protobuf field <code>bool enable_consent_based_redaction = 4;</code>
+     */
+    protected $enable_consent_based_redaction = false;
 
     /**
      * Constructor.
@@ -35,9 +43,13 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_stackdriver_logging
-     *           If true, StackDriver logging is currently enabled.
+     *           Enables StackDriver logging.
      *     @type bool $enable_interaction_logging
-     *           If true, DF Interaction logging is currently enabled.
+     *           Enables DF Interaction logging.
+     *     @type bool $enable_consent_based_redaction
+     *           Enables consent-based end-user input redaction, if true, a pre-defined
+     *           session parameter `$session.params.conversation-redaction` will be
+     *           used to determine if the utterance should be redacted.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +58,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 2;</code>
      * @return bool
@@ -57,7 +69,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, StackDriver logging is currently enabled.
+     * Enables StackDriver logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 2;</code>
      * @param bool $var
@@ -72,7 +84,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      *
      * Generated from protobuf field <code>bool enable_interaction_logging = 3;</code>
      * @return bool
@@ -83,7 +95,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, DF Interaction logging is currently enabled.
+     * Enables DF Interaction logging.
      *
      * Generated from protobuf field <code>bool enable_interaction_logging = 3;</code>
      * @param bool $var
@@ -93,6 +105,36 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_interaction_logging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined
+     * session parameter `$session.params.conversation-redaction` will be
+     * used to determine if the utterance should be redacted.
+     *
+     * Generated from protobuf field <code>bool enable_consent_based_redaction = 4;</code>
+     * @return bool
+     */
+    public function getEnableConsentBasedRedaction()
+    {
+        return $this->enable_consent_based_redaction;
+    }
+
+    /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined
+     * session parameter `$session.params.conversation-redaction` will be
+     * used to determine if the utterance should be redacted.
+     *
+     * Generated from protobuf field <code>bool enable_consent_based_redaction = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConsentBasedRedaction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_consent_based_redaction = $var;
 
         return $this;
     }
