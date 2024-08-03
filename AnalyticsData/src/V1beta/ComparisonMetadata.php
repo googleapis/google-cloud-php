@@ -21,19 +21,19 @@ class ComparisonMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_name = 1;</code>
      */
-    protected $api_name = '';
+    private $api_name = '';
     /**
      * This comparison's name within the Google Analytics user interface.
      *
      * Generated from protobuf field <code>string ui_name = 2;</code>
      */
-    protected $ui_name = '';
+    private $ui_name = '';
     /**
      * This comparison's description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    protected $description = '';
+    private $description = '';
 
     /**
      * Constructor.
