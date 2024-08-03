@@ -243,6 +243,25 @@ final class ConversationProfilesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName(string $project, string $location, string $generator): string
+    {
+        return self::getPathTemplate('generator')->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * knowledge_base resource.
      *
@@ -480,6 +499,7 @@ final class ConversationProfilesClient
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}

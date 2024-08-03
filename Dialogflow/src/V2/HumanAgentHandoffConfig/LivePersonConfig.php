@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration specific to LivePerson (https://www.liveperson.com).
+ * Configuration specific to [LivePerson](https://www.liveperson.com).
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig</code>
  */

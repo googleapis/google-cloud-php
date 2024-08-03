@@ -43,6 +43,12 @@ class Type
      * Generated from protobuf enum <code>KNOWLEDGE_SEARCH = 14;</code>
      */
     const KNOWLEDGE_SEARCH = 14;
+    /**
+     * Run knowledge assist with automatic query generation.
+     *
+     * Generated from protobuf enum <code>KNOWLEDGE_ASSIST = 15;</code>
+     */
+    const KNOWLEDGE_ASSIST = 15;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class Type
         self::FAQ => 'FAQ',
         self::SMART_REPLY => 'SMART_REPLY',
         self::KNOWLEDGE_SEARCH => 'KNOWLEDGE_SEARCH',
+        self::KNOWLEDGE_ASSIST => 'KNOWLEDGE_ASSIST',
     ];
 
     public static function name($value)

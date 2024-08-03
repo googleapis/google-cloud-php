@@ -36,6 +36,25 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool group_suggestion_responses = 3;</code>
      */
     private $group_suggestion_responses = false;
+    /**
+     * Optional. List of various generator resource names used in the
+     * conversation profile.
+     *
+     * Generated from protobuf field <code>repeated string generators = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $generators;
+    /**
+     * Optional. When disable_high_latency_features_sync_delivery is true and
+     * using the AnalyzeContent API, we will not deliver the responses from high
+     * latency features in the API response. The
+     * human_agent_assistant_config.notification_config must be configured and
+     * enable_event_based_suggestion must be set to true to receive the
+     * responses from high latency features in Pub/Sub. High latency feature(s):
+     * KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool disable_high_latency_features_sync_delivery = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disable_high_latency_features_sync_delivery = false;
 
     /**
      * Constructor.
@@ -56,6 +75,17 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      *           If `group_suggestion_responses` set to true. All the suggestions to the
      *           same participant based on the same context will be grouped into a single
      *           Pub/Sub event or StreamingAnalyzeContentResponse.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $generators
+     *           Optional. List of various generator resource names used in the
+     *           conversation profile.
+     *     @type bool $disable_high_latency_features_sync_delivery
+     *           Optional. When disable_high_latency_features_sync_delivery is true and
+     *           using the AnalyzeContent API, we will not deliver the responses from high
+     *           latency features in the API response. The
+     *           human_agent_assistant_config.notification_config must be configured and
+     *           enable_event_based_suggestion must be set to true to receive the
+     *           responses from high latency features in Pub/Sub. High latency feature(s):
+     *           KNOWLEDGE_ASSIST
      * }
      */
     public function __construct($data = NULL) {
@@ -129,6 +159,72 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->group_suggestion_responses = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of various generator resource names used in the
+     * conversation profile.
+     *
+     * Generated from protobuf field <code>repeated string generators = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGenerators()
+    {
+        return $this->generators;
+    }
+
+    /**
+     * Optional. List of various generator resource names used in the
+     * conversation profile.
+     *
+     * Generated from protobuf field <code>repeated string generators = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGenerators($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->generators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When disable_high_latency_features_sync_delivery is true and
+     * using the AnalyzeContent API, we will not deliver the responses from high
+     * latency features in the API response. The
+     * human_agent_assistant_config.notification_config must be configured and
+     * enable_event_based_suggestion must be set to true to receive the
+     * responses from high latency features in Pub/Sub. High latency feature(s):
+     * KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool disable_high_latency_features_sync_delivery = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableHighLatencyFeaturesSyncDelivery()
+    {
+        return $this->disable_high_latency_features_sync_delivery;
+    }
+
+    /**
+     * Optional. When disable_high_latency_features_sync_delivery is true and
+     * using the AnalyzeContent API, we will not deliver the responses from high
+     * latency features in the API response. The
+     * human_agent_assistant_config.notification_config must be configured and
+     * enable_event_based_suggestion must be set to true to receive the
+     * responses from high latency features in Pub/Sub. High latency feature(s):
+     * KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool disable_high_latency_features_sync_delivery = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableHighLatencyFeaturesSyncDelivery($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_high_latency_features_sync_delivery = $var;
 
         return $this;
     }

@@ -27,7 +27,7 @@ class HumanAgentHandoffConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig\LivePersonConfig $live_person_config
-     *           Uses LivePerson (https://www.liveperson.com).
+     *           Uses [LivePerson](https://www.liveperson.com).
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig\SalesforceLiveAgentConfig $salesforce_live_agent_config
      *           Uses Salesforce Live Agent.
      * }
@@ -38,7 +38,7 @@ class HumanAgentHandoffConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uses LivePerson (https://www.liveperson.com).
+     * Uses [LivePerson](https://www.liveperson.com).
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig live_person_config = 1;</code>
      * @return \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig\LivePersonConfig|null
@@ -54,7 +54,7 @@ class HumanAgentHandoffConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uses LivePerson (https://www.liveperson.com).
+     * Uses [LivePerson](https://www.liveperson.com).
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig live_person_config = 1;</code>
      * @param \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig\LivePersonConfig $var

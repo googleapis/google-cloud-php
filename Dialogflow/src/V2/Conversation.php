@@ -19,11 +19,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Conversation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The unique identifier of this conversation.
+     * Output only. Identifier. The unique identifier of this conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -61,8 +61,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a
-     * human agent is handling the conversation.
+     * Optional. The stage of a conversation. It indicates whether the virtual
+     * agent or a human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
      * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -76,7 +76,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $conversation_stage = 0;
 
@@ -87,7 +87,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The unique identifier of this conversation.
+     *           Output only. Identifier. The unique identifier of this conversation.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>`.
      *     @type int $lifecycle_state
@@ -105,8 +105,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the conversation was finished.
      *     @type int $conversation_stage
-     *           The stage of a conversation. It indicates whether the virtual agent or a
-     *           human agent is handling the conversation.
+     *           Optional. The stage of a conversation. It indicates whether the virtual
+     *           agent or a human agent is handling the conversation.
      *           If the conversation is created with the conversation profile that has
      *           Dialogflow config set, defaults to
      *           [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -127,11 +127,11 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique identifier of this conversation.
+     * Output only. Identifier. The unique identifier of this conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -140,11 +140,11 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique identifier of this conversation.
+     * Output only. Identifier. The unique identifier of this conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -325,8 +325,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a
-     * human agent is handling the conversation.
+     * Optional. The stage of a conversation. It indicates whether the virtual
+     * agent or a human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
      * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -340,7 +340,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getConversationStage()
@@ -349,8 +349,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stage of a conversation. It indicates whether the virtual agent or a
-     * human agent is handling the conversation.
+     * Optional. The stage of a conversation. It indicates whether the virtual
+     * agent or a human agent is handling the conversation.
      * If the conversation is created with the conversation profile that has
      * Dialogflow config set, defaults to
      * [ConversationStage.VIRTUAL_AGENT_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.VIRTUAL_AGENT_STAGE];
@@ -364,7 +364,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * stage and directly goes to
      * [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

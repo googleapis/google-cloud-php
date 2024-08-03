@@ -31,6 +31,8 @@ use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
@@ -211,6 +213,68 @@ class ConversationsClientTest extends GeneratedTest
             ->setConversation($conversation);
         try {
             $gapicClient->createConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateStatelessSuggestionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GenerateStatelessSuggestionResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new GenerateStatelessSuggestionRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->generateStatelessSuggestion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Conversations/GenerateStatelessSuggestion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateStatelessSuggestionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new GenerateStatelessSuggestionRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->generateStatelessSuggestion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -530,15 +594,19 @@ class ConversationsClientTest extends GeneratedTest
         $expectedResponse->setRewrittenQuery($rewrittenQuery);
         $transport->addResponse($expectedResponse);
         // Mock request
+        $parent = 'parent-995424086';
         $query = new TextInput();
         $queryText = 'queryText-1806881259';
         $query->setText($queryText);
         $queryLanguageCode = 'queryLanguageCode66898509';
         $query->setLanguageCode($queryLanguageCode);
         $formattedConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
+        $sessionId = 'sessionId1661853540';
         $request = (new SearchKnowledgeRequest())
+            ->setParent($parent)
             ->setQuery($query)
-            ->setConversationProfile($formattedConversationProfile);
+            ->setConversationProfile($formattedConversationProfile)
+            ->setSessionId($sessionId);
         $response = $gapicClient->searchKnowledge($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -546,10 +614,14 @@ class ConversationsClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Conversations/SearchKnowledge', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
         $this->assertProtobufEquals($query, $actualValue);
         $actualValue = $actualRequestObject->getConversationProfile();
         $this->assertProtobufEquals($formattedConversationProfile, $actualValue);
+        $actualValue = $actualRequestObject->getSessionId();
+        $this->assertProtobufEquals($sessionId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -572,15 +644,19 @@ class ConversationsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
+        $parent = 'parent-995424086';
         $query = new TextInput();
         $queryText = 'queryText-1806881259';
         $query->setText($queryText);
         $queryLanguageCode = 'queryLanguageCode66898509';
         $query->setLanguageCode($queryLanguageCode);
         $formattedConversationProfile = $gapicClient->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
+        $sessionId = 'sessionId1661853540';
         $request = (new SearchKnowledgeRequest())
+            ->setParent($parent)
             ->setQuery($query)
-            ->setConversationProfile($formattedConversationProfile);
+            ->setConversationProfile($formattedConversationProfile)
+            ->setSessionId($sessionId);
         try {
             $gapicClient->searchKnowledge($request);
             // If the $gapicClient method call did not throw, fail the test
