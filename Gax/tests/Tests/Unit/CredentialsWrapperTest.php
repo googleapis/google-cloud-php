@@ -303,6 +303,19 @@ class CredentialsWrapperTest extends TestCase
         ];
     }
 
+    public function testCheckUniverseDomainOnGceCredentialsDoesNotCheck()
+    {
+        $fetcher = $this->prophesize(GCECredentials::class);
+        $fetcher->getUniverseDomain()->shouldNotBeCalled();
+        $credentialsWrapper = new CredentialsWrapper(
+            $fetcher->reveal(),
+            null,
+            'some-random-universe-domain'
+        );
+
+        $credentialsWrapper->checkUniverseDomain();
+    }
+
     /**
      * @dataProvider getBearerStringData
      */
