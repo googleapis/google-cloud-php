@@ -2776,6 +2776,11 @@ class SecurityCenterGapicClient
      *     @type string $muteAnnotation
      *           This can be a mute configuration name or any identifier for mute/unmute
      *           of findings based on the filter.
+     *     @type int $muteState
+     *           Optional. All findings matching the given filter will have their mute state
+     *           set to this value. The default value is `MUTED`. Setting this to
+     *           `UNDEFINED` will clear the mute state on all matching findings.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest\MuteState}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2798,6 +2803,10 @@ class SecurityCenterGapicClient
 
         if (isset($optionalArgs['muteAnnotation'])) {
             $request->setMuteAnnotation($optionalArgs['muteAnnotation']);
+        }
+
+        if (isset($optionalArgs['muteState'])) {
+            $request->setMuteState($optionalArgs['muteState']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3214,9 +3223,9 @@ class SecurityCenterGapicClient
      *
      *                             Its format is:
      *
-     *                             * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
-     *                             * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
-     *                             * "projects/{project}/eventThreatDetectionSettings/customModules/{module}".
+     *                             * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
+     *                             * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
+     *                             * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
