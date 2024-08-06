@@ -27,6 +27,8 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      *           Export data profiles into a provided location.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PubSubNotification $pub_sub_notification
      *           Publish a message into the Pub/Sub topic.
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $tag_resources
+     *           Tags the profiled resources with the specified tag values.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +94,37 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\PubSubNotification::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Tags the profiled resources with the specified tag values.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.TagResources tag_resources = 8;</code>
+     * @return \Google\Cloud\Dlp\V2\DataProfileAction\TagResources|null
+     */
+    public function getTagResources()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasTagResources()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Tags the profiled resources with the specified tag values.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.TagResources tag_resources = 8;</code>
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $var
+     * @return $this
+     */
+    public function setTagResources($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\TagResources::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
