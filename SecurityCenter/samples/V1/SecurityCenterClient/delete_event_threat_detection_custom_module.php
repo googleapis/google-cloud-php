@@ -36,9 +36,9 @@ use Google\Cloud\SecurityCenter\V1\DeleteEventThreatDetectionCustomModuleRequest
  *
  *                              Its format is:
  *
- *                              * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
- *                              * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
- *                              * "projects/{project}/eventThreatDetectionSettings/customModules/{module}". Please see
+ *                              * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
+ *                              * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
+ *                              * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`. Please see
  *                              {@see SecurityCenterClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
  */
 function delete_event_threat_detection_custom_module_sample(string $formattedName): void
