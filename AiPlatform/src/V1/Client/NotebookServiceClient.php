@@ -292,6 +292,25 @@ final class NotebookServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a schedule
      * resource.
      *
@@ -338,6 +357,7 @@ final class NotebookServiceClient
      * - notebookExecutionJob: projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}
      * - notebookRuntime: projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      * - schedule: projects/{project}/locations/{location}/schedules/{schedule}
      * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *

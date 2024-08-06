@@ -77,6 +77,13 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.AutoscalingMetricSpec autoscaling_metric_specs = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $autoscaling_metric_specs;
+    /**
+     * Optional. If true, schedule the deployment workload on [spot
+     * VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     *
+     * Generated from protobuf field <code>bool spot = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $spot = false;
 
     /**
      * Constructor.
@@ -129,6 +136,9 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *           to `aiplatform.googleapis.com/prediction/online/cpu/utilization` and
      *           [autoscaling_metric_specs.target][google.cloud.aiplatform.v1.AutoscalingMetricSpec.target]
      *           to `80`.
+     *     @type bool $spot
+     *           Optional. If true, schedule the deployment workload on [spot
+     *           VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
      * }
      */
     public function __construct($data = NULL) {
@@ -320,6 +330,34 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec::class);
         $this->autoscaling_metric_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, schedule the deployment workload on [spot
+     * VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     *
+     * Generated from protobuf field <code>bool spot = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Optional. If true, schedule the deployment workload on [spot
+     * VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     *
+     * Generated from protobuf field <code>bool spot = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
 
         return $this;
     }

@@ -20,7 +20,8 @@ class AcceleratorType
      */
     const ACCELERATOR_TYPE_UNSPECIFIED = 0;
     /**
-     * Nvidia Tesla K80 GPU.
+     * Deprecated: Nvidia Tesla K80 GPU has reached end of support,
+     * see https://cloud.google.com/compute/docs/eol/k80-eol.
      *
      * Generated from protobuf enum <code>NVIDIA_TESLA_K80 = 1 [deprecated = true];</code>
      */
