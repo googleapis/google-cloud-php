@@ -363,6 +363,7 @@ return [
                 'notebookExecutionJob' => 'projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}',
                 'notebookRuntime' => 'projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}',
                 'notebookRuntimeTemplate' => 'projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
                 'schedule' => 'projects/{project}/locations/{location}/schedules/{schedule}',
                 'subnetwork' => 'projects/{project}/regions/{region}/subnetworks/{subnetwork}',
             ],

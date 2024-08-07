@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UsageMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Number of tokens in the request.
+     * Number of tokens in the request. When `cached_content` is set, this is
+     * still the total effective prompt size meaning this includes the number of
+     * tokens in the cached content.
      *
      * Generated from protobuf field <code>int32 prompt_token_count = 1;</code>
      */
@@ -39,7 +41,9 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $prompt_token_count
-     *           Number of tokens in the request.
+     *           Number of tokens in the request. When `cached_content` is set, this is
+     *           still the total effective prompt size meaning this includes the number of
+     *           tokens in the cached content.
      *     @type int $candidates_token_count
      *           Number of tokens in the response(s).
      *     @type int $total_token_count
@@ -51,7 +55,9 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of tokens in the request.
+     * Number of tokens in the request. When `cached_content` is set, this is
+     * still the total effective prompt size meaning this includes the number of
+     * tokens in the cached content.
      *
      * Generated from protobuf field <code>int32 prompt_token_count = 1;</code>
      * @return int
@@ -62,7 +68,9 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of tokens in the request.
+     * Number of tokens in the request. When `cached_content` is set, this is
+     * still the total effective prompt size meaning this includes the number of
+     * tokens in the cached content.
      *
      * Generated from protobuf field <code>int32 prompt_token_count = 1;</code>
      * @param int $var

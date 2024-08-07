@@ -32,14 +32,28 @@ class Strategy
     /**
      * Low cost by making potential use of spot resources.
      *
-     * Generated from protobuf enum <code>LOW_COST = 2;</code>
+     * Generated from protobuf enum <code>LOW_COST = 2 [deprecated = true];</code>
      */
     const LOW_COST = 2;
+    /**
+     * Standard provisioning strategy uses regular on-demand resources.
+     *
+     * Generated from protobuf enum <code>STANDARD = 3;</code>
+     */
+    const STANDARD = 3;
+    /**
+     * Spot provisioning strategy uses spot resources.
+     *
+     * Generated from protobuf enum <code>SPOT = 4;</code>
+     */
+    const SPOT = 4;
 
     private static $valueToName = [
         self::STRATEGY_UNSPECIFIED => 'STRATEGY_UNSPECIFIED',
         self::ON_DEMAND => 'ON_DEMAND',
         self::LOW_COST => 'LOW_COST',
+        self::STANDARD => 'STANDARD',
+        self::SPOT => 'SPOT',
     ];
 
     public static function name($value)

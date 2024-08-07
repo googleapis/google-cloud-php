@@ -33,6 +33,16 @@ return [
                         'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:computeTokens',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=endpoints/*}:computeTokens',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=publishers/*/models/*}:computeTokens',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'endpoint' => [
@@ -50,6 +60,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{endpoint=projects/*/locations/*/publishers/*/models/*}:countTokens',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=endpoints/*}:countTokens',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{endpoint=publishers/*/models/*}:countTokens',
                         'body' => '*',
                     ],
                 ],

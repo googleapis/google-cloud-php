@@ -583,6 +583,25 @@ final class JobServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a tensorboard
      * resource.
      *
@@ -643,6 +662,7 @@ final class JobServiceClient
      * - persistentResource: projects/{project}/locations/{location}/persistentResources/{persistent_resource}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}
      * - trial: projects/{project}/locations/{location}/studies/{study}/trials/{trial}
      *

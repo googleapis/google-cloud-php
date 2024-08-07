@@ -240,6 +240,7 @@ return [
                 'index' => 'projects/{project}/locations/{location}/indexes/{index}',
                 'indexEndpoint' => 'projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}',
                 'location' => 'projects/{project}/locations/{location}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
             ],
         ],
     ],
