@@ -69,6 +69,16 @@ return [
                         'uriTemplate' => '/v1/{model=projects/*/locations/*/publishers/*/models/*}:generateContent',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{model=endpoints/*}:generateContent',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{model=publishers/*/models/*}:generateContent',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'model' => [
@@ -143,6 +153,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{model=projects/*/locations/*/publishers/*/models/*}:streamGenerateContent',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{model=endpoints/*}:streamGenerateContent',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{model=publishers/*/models/*}:streamGenerateContent',
                         'body' => '*',
                     ],
                 ],
