@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.254.0
+
+<details><summary>google/analytics-data 0.18.0</summary>
+
+
+
+### Features
+
+* Add the `Comparison` type ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+* Add the `ComparisonMetadata` type ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+* Add the `comparisons` field to the `Metadata` resource ([#7578](https://github.com/googleapis/google-cloud-php/issues/7578)) ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+* Add the `comparisons` field to the `RunReportRequest`, `RunPivotReportRequest` resources ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+
+
+### Documentation
+
+* A comment for field `custom_definition` in message `DimensionMetadata` is changed ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+
+</details>
+
 ## 0.253.0
 
 <details><summary>google/cloud-access-approval 2.0.0-RC1</summary>
