@@ -17,9 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
-
 /**
  * Represents the result set of an AggregateQuery.
  *
@@ -36,10 +33,9 @@ use Google\Cloud\Core\TimeTrait;
  */
 class AggregateQuerySnapshot
 {
-    use TimeTrait;
 
     /**
-     * @var Timestamp
+     * @var array
      */
     private $readTime;
 
@@ -64,8 +60,7 @@ class AggregateQuerySnapshot
             $this->transaction = $snapshot['transaction'];
         }
         if (isset($snapshot['readTime'])) {
-            $time = $this->parseTimeString($snapshot['readTime']);
-            $this->readTime = new Timestamp($time[0], $time[1]);
+            $this->readTime = $snapshot['readTime'];
         }
         if (isset($snapshot['result']['aggregateFields'])) {
             $this->aggregateFields = $snapshot['result']['aggregateFields'];
@@ -85,7 +80,7 @@ class AggregateQuerySnapshot
     /**
      * Get the Aggregation read time.
      *
-     * @return Timestamp
+     * @return array|null
      */
     public function getReadTime()
     {

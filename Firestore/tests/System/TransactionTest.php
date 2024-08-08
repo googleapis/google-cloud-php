@@ -18,7 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Firestore\Aggregate;
-use Google\Cloud\Core\Timestamp;
+use Google\Protobuf\Timestamp;
 
 /**
  * @group firestore
@@ -144,9 +144,15 @@ class TransactionTest extends FirestoreTestCase
 
         // without sleep, test fails intermittently
         sleep(1);
-        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+        $timeSeconds = time();
+        $readTime = new Timestamp(['seconds' => $timeSeconds]);
 
-        self::$client->runTransaction(function ($t) use ($query, $readTime, $expected) {
+        self::$client->runTransaction(function ($t) use (
+            $query,
+            $readTime,
+            $expected,
+            $timeSeconds
+        ) {
             $snapshot = $t->runAggregateQuery($query, [
                 'readTime' => $readTime
             ]);
@@ -154,8 +160,8 @@ class TransactionTest extends FirestoreTestCase
             $this->assertEquals($expected, $snapshot->get('res'));
 
             $this->assertEqualsWithDelta(
-                $readTime->get()->getTimestamp(),
-                $snapshot->getReadTime()->get()->getTimestamp(),
+                $timeSeconds,
+                $snapshot->getReadTime()['seconds'],
                 100
             );
         });
@@ -185,9 +191,15 @@ class TransactionTest extends FirestoreTestCase
 
         // without sleep, test fails intermittently
         sleep(1);
-        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+        $timeSeconds = time();
+        $readTime = new Timestamp(['seconds' => $timeSeconds]);
 
-        self::$client->runTransaction(function ($t) use ($query, $readTime, $expected) {
+        self::$client->runTransaction(function ($t) use (
+            $query,
+            $readTime,
+            $expected,
+            $timeSeconds
+        ) {
             $snapshot = $t->runAggregateQuery($query, [
                 'readTime' => $readTime
             ]);
@@ -197,8 +209,8 @@ class TransactionTest extends FirestoreTestCase
             $this->assertEquals($expected, $snapshot->get('res_3'));
 
             $this->assertEqualsWithDelta(
-                $readTime->get()->getTimestamp(),
-                $snapshot->getReadTime()->get()->getTimestamp(),
+                $timeSeconds,
+                $snapshot->getReadTime()['seconds'],
                 100
             );
         });
