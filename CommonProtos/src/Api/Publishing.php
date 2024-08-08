@@ -87,6 +87,13 @@ class Publishing extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string proto_reference_documentation_uri = 110;</code>
      */
     protected $proto_reference_documentation_uri = '';
+    /**
+     * Optional link to REST reference documentation.  Example:
+     * https://cloud.google.com/pubsub/lite/docs/reference/rest
+     *
+     * Generated from protobuf field <code>string rest_reference_documentation_uri = 111;</code>
+     */
+    protected $rest_reference_documentation_uri = '';
 
     /**
      * Constructor.
@@ -124,6 +131,9 @@ class Publishing extends \Google\Protobuf\Internal\Message
      *     @type string $proto_reference_documentation_uri
      *           Optional link to proto reference documentation.  Example:
      *           https://cloud.google.com/pubsub/lite/docs/reference/rpc
+     *     @type string $rest_reference_documentation_uri
+     *           Optional link to REST reference documentation.  Example:
+     *           https://cloud.google.com/pubsub/lite/docs/reference/rest
      * }
      */
     public function __construct($data = NULL) {
@@ -407,6 +417,34 @@ class Publishing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->proto_reference_documentation_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional link to REST reference documentation.  Example:
+     * https://cloud.google.com/pubsub/lite/docs/reference/rest
+     *
+     * Generated from protobuf field <code>string rest_reference_documentation_uri = 111;</code>
+     * @return string
+     */
+    public function getRestReferenceDocumentationUri()
+    {
+        return $this->rest_reference_documentation_uri;
+    }
+
+    /**
+     * Optional link to REST reference documentation.  Example:
+     * https://cloud.google.com/pubsub/lite/docs/reference/rest
+     *
+     * Generated from protobuf field <code>string rest_reference_documentation_uri = 111;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRestReferenceDocumentationUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rest_reference_documentation_uri = $var;
 
         return $this;
     }
