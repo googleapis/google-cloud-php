@@ -32,6 +32,9 @@ use Google\Cloud\Dialogflow\V2\TextInput;
 /**
  * Get answers for the given query based on knowledge documents.
  *
+ * @param string $parent                       The parent resource contains the conversation profile
+ *                                             Format: 'projects/<Project ID>' or `projects/<Project
+ *                                             ID>/locations/<Location ID>`.
  * @param string $queryText                    The UTF-8 encoded natural language text to be processed.
  *                                             Text length must not exceed 256 characters for virtual agent interactions.
  * @param string $queryLanguageCode            The language of this conversational query. See [Language
@@ -42,11 +45,20 @@ use Google\Cloud\Dialogflow\V2\TextInput;
  *                                             Format: `projects/<Project ID>/locations/<Location
  *                                             ID>/conversationProfiles/<Conversation Profile ID>`. Please see
  *                                             {@see ConversationsClient::conversationProfileName()} for help formatting this field.
+ * @param string $sessionId                    The ID of the search session.
+ *                                             The session_id can be combined with Dialogflow V3 Agent ID retrieved from
+ *                                             conversation profile or on its own to identify a search session. The search
+ *                                             history of the same session will impact the search result. It's up to the
+ *                                             API caller to choose an appropriate `Session ID`. It can be a random number
+ *                                             or some type of session identifiers (preferably hashed). The length must
+ *                                             not exceed 36 characters.
  */
 function search_knowledge_sample(
+    string $parent,
     string $queryText,
     string $queryLanguageCode,
-    string $formattedConversationProfile
+    string $formattedConversationProfile,
+    string $sessionId
 ): void {
     // Create a client.
     $conversationsClient = new ConversationsClient();
@@ -56,8 +68,10 @@ function search_knowledge_sample(
         ->setText($queryText)
         ->setLanguageCode($queryLanguageCode);
     $request = (new SearchKnowledgeRequest())
+        ->setParent($parent)
         ->setQuery($query)
-        ->setConversationProfile($formattedConversationProfile);
+        ->setConversationProfile($formattedConversationProfile)
+        ->setSessionId($sessionId);
 
     // Call the API and handle any network failures.
     try {
@@ -80,13 +94,21 @@ function search_knowledge_sample(
  */
 function callSample(): void
 {
+    $parent = '[PARENT]';
     $queryText = '[TEXT]';
     $queryLanguageCode = '[LANGUAGE_CODE]';
     $formattedConversationProfile = ConversationsClient::conversationProfileName(
         '[PROJECT]',
         '[CONVERSATION_PROFILE]'
     );
+    $sessionId = '[SESSION_ID]';
 
-    search_knowledge_sample($queryText, $queryLanguageCode, $formattedConversationProfile);
+    search_knowledge_sample(
+        $parent,
+        $queryText,
+        $queryLanguageCode,
+        $formattedConversationProfile,
+        $sessionId
+    );
 }
 // [END dialogflow_v2_generated_Conversations_SearchKnowledge_sync]

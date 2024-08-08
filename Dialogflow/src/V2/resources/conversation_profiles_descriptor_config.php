@@ -170,6 +170,7 @@ return [
                 'conversationModel' => 'projects/{project}/locations/{location}/conversationModels/{conversation_model}',
                 'conversationProfile' => 'projects/{project}/conversationProfiles/{conversation_profile}',
                 'document' => 'projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}',
+                'generator' => 'projects/{project}/locations/{location}/generators/{generator}',
                 'knowledgeBase' => 'projects/{project}/knowledgeBases/{knowledge_base}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',

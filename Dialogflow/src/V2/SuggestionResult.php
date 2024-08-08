@@ -33,6 +33,8 @@ class SuggestionResult extends \Google\Protobuf\Internal\Message
      *           Error status if the request failed.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestArticlesResponse $suggest_articles_response
      *           SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse $suggest_knowledge_assist_response
+     *           SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse $suggest_faq_answers_response
      *           SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse $suggest_smart_replies_response
@@ -102,6 +104,37 @@ class SuggestionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestArticlesResponse::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestKnowledgeAssistResponse suggest_knowledge_assist_response = 8;</code>
+     * @return \Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse|null
+     */
+    public function getSuggestKnowledgeAssistResponse()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasSuggestKnowledgeAssistResponse()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * SuggestKnowledgeAssistResponse if request is for KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestKnowledgeAssistResponse suggest_knowledge_assist_response = 8;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse $var
+     * @return $this
+     */
+    public function setSuggestKnowledgeAssistResponse($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

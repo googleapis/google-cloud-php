@@ -32,20 +32,20 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
      */
     private $conversation_profile = null;
     /**
-     * The name of the latest conversation message used as context for
+     * Optional. The name of the latest conversation message used as context for
      * generating a Summary. If empty, the latest message of the conversation will
      * be used. The format is specific to the user and the names of the messages
      * provided.
      *
-     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $latest_message = '';
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 500 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 max_context_size = 4;</code>
+     * Generated from protobuf field <code>int32 max_context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_context_size = 0;
 
@@ -63,12 +63,12 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
      *           Required fields: {language_code, security_settings}
      *           Optional fields: {agent_assistant_config}
      *     @type string $latest_message
-     *           The name of the latest conversation message used as context for
+     *           Optional. The name of the latest conversation message used as context for
      *           generating a Summary. If empty, the latest message of the conversation will
      *           be used. The format is specific to the user and the names of the messages
      *           provided.
      *     @type int $max_context_size
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      * }
@@ -157,12 +157,12 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the latest conversation message used as context for
+     * Optional. The name of the latest conversation message used as context for
      * generating a Summary. If empty, the latest message of the conversation will
      * be used. The format is specific to the user and the names of the messages
      * provided.
      *
-     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLatestMessage()
@@ -171,12 +171,12 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the latest conversation message used as context for
+     * Optional. The name of the latest conversation message used as context for
      * generating a Summary. If empty, the latest message of the conversation will
      * be used. The format is specific to the user and the names of the messages
      * provided.
      *
-     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -189,11 +189,11 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 500 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 max_context_size = 4;</code>
+     * Generated from protobuf field <code>int32 max_context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxContextSize()
@@ -202,11 +202,11 @@ class GenerateStatelessSummaryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 500 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 max_context_size = 4;</code>
+     * Generated from protobuf field <code>int32 max_context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

@@ -44,6 +44,8 @@ use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistRequest;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
@@ -69,6 +71,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface suggestArticlesAsync(SuggestArticlesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface suggestFaqAnswersAsync(SuggestFaqAnswersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface suggestKnowledgeAssistAsync(SuggestKnowledgeAssistRequest $request, array $optionalArgs = [])
  * @method PromiseInterface suggestSmartRepliesAsync(SuggestSmartRepliesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateParticipantAsync(UpdateParticipantRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -919,6 +922,32 @@ final class ParticipantsClient
     public function suggestFaqAnswers(SuggestFaqAnswersRequest $request, array $callOptions = []): SuggestFaqAnswersResponse
     {
         return $this->startApiCall('SuggestFaqAnswers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets knowledge assist suggestions based on historical messages.
+     *
+     * The async variant is {@see ParticipantsClient::suggestKnowledgeAssistAsync()} .
+     *
+     * @example samples/V2/ParticipantsClient/suggest_knowledge_assist.php
+     *
+     * @param SuggestKnowledgeAssistRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SuggestKnowledgeAssistResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function suggestKnowledgeAssist(SuggestKnowledgeAssistRequest $request, array $callOptions = []): SuggestKnowledgeAssistResponse
+    {
+        return $this->startApiCall('SuggestKnowledgeAssist', $request, $callOptions)->wait();
     }
 
     /**
