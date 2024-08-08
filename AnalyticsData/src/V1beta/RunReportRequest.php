@@ -139,6 +139,14 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool return_property_quota = 14;</code>
      */
     private $return_property_quota = false;
+    /**
+     * Optional. The configuration of comparisons requested and displayed. The
+     * request only requires a comparisons field in order to receive a comparison
+     * column in the response.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Comparison comparisons = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $comparisons;
 
     /**
      * Constructor.
@@ -214,6 +222,10 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $return_property_quota
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *     @type array<\Google\Analytics\Data\V1beta\Comparison>|\Google\Protobuf\Internal\RepeatedField $comparisons
+     *           Optional. The configuration of comparisons requested and displayed. The
+     *           request only requires a comparisons field in order to receive a comparison
+     *           column in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -691,6 +703,36 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_property_quota = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration of comparisons requested and displayed. The
+     * request only requires a comparisons field in order to receive a comparison
+     * column in the response.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Comparison comparisons = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getComparisons()
+    {
+        return $this->comparisons;
+    }
+
+    /**
+     * Optional. The configuration of comparisons requested and displayed. The
+     * request only requires a comparisons field in order to receive a comparison
+     * column in the response.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Comparison comparisons = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Analytics\Data\V1beta\Comparison>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setComparisons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1beta\Comparison::class);
+        $this->comparisons = $arr;
 
         return $this;
     }
