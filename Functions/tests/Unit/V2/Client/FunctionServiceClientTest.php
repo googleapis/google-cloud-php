@@ -109,11 +109,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $url = 'url116079';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUrl($url);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -481,11 +483,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $url = 'url116079';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUrl($url);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
@@ -697,11 +701,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $url = 'url116079';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUrl($url);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1096,11 +1102,13 @@ class FunctionServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $url = 'url116079';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new PBFunction();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUrl($url);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

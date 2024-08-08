@@ -38,6 +38,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Functions\V2\CreateFunctionRequest;
 use Google\Cloud\Functions\V2\DeleteFunctionRequest;
+use Google\Cloud\Functions\V2\Environment;
 use Google\Cloud\Functions\V2\GenerateDownloadUrlRequest;
 use Google\Cloud\Functions\V2\GenerateDownloadUrlResponse;
 use Google\Cloud\Functions\V2\GenerateUploadUrlRequest;
@@ -930,11 +931,11 @@ class FunctionServiceGapicClient
      * attached, the identity from the credentials would be used, but that
      * identity does not have permissions to upload files to the URL.
      *
-     * When making a HTTP PUT request, these two headers need to be specified:
+     * When making a HTTP PUT request, specify this header:
      *
      * * `content-type: application/zip`
      *
-     * And this header SHOULD NOT be specified:
+     * Do not specify this header:
      *
      * * `Authorization: Bearer YOUR_TOKEN`
      *
@@ -970,6 +971,12 @@ class FunctionServiceGapicClient
      *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
      *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
      *           Key/KeyRing/Project/Organization (least access preferred).
+     *     @type int $environment
+     *           The function environment the generated upload url will be used for.
+     *           The upload url for 2nd Gen functions can also be used for 1st gen
+     *           functions, but not vice versa. If not specified, 2nd generation-style
+     *           upload URLs are generated.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Functions\V2\Environment}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -988,6 +995,10 @@ class FunctionServiceGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['kmsKeyName'])) {
             $request->setKmsKeyName($optionalArgs['kmsKeyName']);
+        }
+
+        if (isset($optionalArgs['environment'])) {
+            $request->setEnvironment($optionalArgs['environment']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1022,6 +1033,13 @@ class FunctionServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $revision
+     *           Optional. The version of the 1st gen function whose details should
+     *           be obtained. The version of a 1st gen function is an integer that starts
+     *           from 1 and gets incremented on redeployments. GCF may keep historical
+     *           configs for old versions of 1st gen function. This field can be specified
+     *           to fetch the historical configs. This field is valid only for GCF 1st gen
+     *           function.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1038,6 +1056,10 @@ class FunctionServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['revision'])) {
+            $request->setRevision($optionalArgs['revision']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1250,8 +1272,7 @@ class FunctionServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
-     *           If no field mask is provided, all provided fields in the request will be
-     *           updated.
+     *           If no field mask is provided, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
