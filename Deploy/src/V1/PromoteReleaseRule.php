@@ -35,10 +35,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      * Optional. The ID of the stage in the pipeline to which this `Release` is
      * deploying. If unspecified, default it to the next stage in the promotion
      * flow. The value of this field could be one of the following:
-     * * The last segment of a target name. It only needs the ID to determine
-     * if the target is one of the stages in the promotion sequence defined
-     * in the pipeline.
-     * * "&#64;next", the next target in the promotion sequence.
+     * * The last segment of a target name
+     * * "&#64;next", the next target in the promotion sequence
      *
      * Generated from protobuf field <code>string destination_target_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -74,10 +72,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      *           Optional. The ID of the stage in the pipeline to which this `Release` is
      *           deploying. If unspecified, default it to the next stage in the promotion
      *           flow. The value of this field could be one of the following:
-     *           * The last segment of a target name. It only needs the ID to determine
-     *           if the target is one of the stages in the promotion sequence defined
-     *           in the pipeline.
-     *           * "&#64;next", the next target in the promotion sequence.
+     *           * The last segment of a target name
+     *           * "&#64;next", the next target in the promotion sequence
      *     @type \Google\Cloud\Deploy\V1\AutomationRuleCondition $condition
      *           Output only. Information around the state of the Automation rule.
      *     @type string $destination_phase
@@ -162,10 +158,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      * Optional. The ID of the stage in the pipeline to which this `Release` is
      * deploying. If unspecified, default it to the next stage in the promotion
      * flow. The value of this field could be one of the following:
-     * * The last segment of a target name. It only needs the ID to determine
-     * if the target is one of the stages in the promotion sequence defined
-     * in the pipeline.
-     * * "&#64;next", the next target in the promotion sequence.
+     * * The last segment of a target name
+     * * "&#64;next", the next target in the promotion sequence
      *
      * Generated from protobuf field <code>string destination_target_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -179,10 +173,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      * Optional. The ID of the stage in the pipeline to which this `Release` is
      * deploying. If unspecified, default it to the next stage in the promotion
      * flow. The value of this field could be one of the following:
-     * * The last segment of a target name. It only needs the ID to determine
-     * if the target is one of the stages in the promotion sequence defined
-     * in the pipeline.
-     * * "&#64;next", the next target in the promotion sequence.
+     * * The last segment of a target name
+     * * "&#64;next", the next target in the promotion sequence
      *
      * Generated from protobuf field <code>string destination_target_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
