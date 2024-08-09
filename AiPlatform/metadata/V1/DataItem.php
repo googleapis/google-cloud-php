@@ -20,15 +20,18 @@ class DataItem
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∂
-*google/cloud/aiplatform/v1/data_item.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"ª
+Ó
+*google/cloud/aiplatform/v1/data_item.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Û
 DataItem
 name (	B‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡AE
 labels (20.google.cloud.aiplatform.v1.DataItem.LabelsEntryB‡A,
 payload (2.google.protobuf.ValueB‡A
-etag (	B‡A-
+etag (	B‡A
+satisfies_pzs
+ (B‡A
+satisfies_pzi (B‡A-
 LabelsEntry
 key (	
 value (	:8:yÍAv

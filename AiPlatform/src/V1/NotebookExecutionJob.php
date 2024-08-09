@@ -82,6 +82,14 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 19;</code>
      */
     private $labels;
+    /**
+     * Customer-managed encryption key spec for the notebook execution job.
+     * This field is auto-populated if the
+     * [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 22;</code>
+     */
+    protected $encryption_spec = null;
     protected $notebook_source;
     protected $environment_spec;
     protected $execution_sink;
@@ -140,6 +148,10 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Customer-managed encryption key spec for the notebook execution job.
+     *           This field is auto-populated if the
+     *           [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
      * }
      */
     public function __construct($data = NULL) {
@@ -664,6 +676,46 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Customer-managed encryption key spec for the notebook execution job.
+     * This field is auto-populated if the
+     * [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 22;</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Customer-managed encryption key spec for the notebook execution job.
+     * This field is auto-populated if the
+     * [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 22;</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }
