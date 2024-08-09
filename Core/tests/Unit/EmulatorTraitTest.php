@@ -22,8 +22,6 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
-use function extension_loaded;
-
 /**
  * @group core
  */
@@ -58,7 +56,7 @@ class EmulatorTraitTest extends TestCase
      */
     public function testEmulatorGapicConfigWithNoGrpc($hostname, $expected = null)
     {
-        if (extension_loaded('grpc')) {
+        if (\extension_loaded('grpc')) {
             $this->markTestSkipped("Cannot run test with grpc extension loaded");
         }
 
