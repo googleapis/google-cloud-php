@@ -40,14 +40,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Unimplemented. Dot not use.
-     * DEPRECATED: This field is no longer supported. Instead of using aliases,
-     * please specify multiple [google.api.Endpoint][google.api.Endpoint] for each
-     * of the intended aliases.
-     * Additional names that this endpoint will be hosted on.
+     * Aliases for this endpoint, these will be served by the same UrlMap as the
+     * parent endpoint, and will be provisioned in the GCP stack for the Regional
+     * Endpoints.
      *
-     * Generated from protobuf field <code>repeated string aliases = 2 [deprecated = true];</code>
-     * @deprecated
+     * Generated from protobuf field <code>repeated string aliases = 2;</code>
      */
     private $aliases;
     /**
@@ -81,11 +78,9 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The canonical name of this endpoint.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aliases
-     *           Unimplemented. Dot not use.
-     *           DEPRECATED: This field is no longer supported. Instead of using aliases,
-     *           please specify multiple [google.api.Endpoint][google.api.Endpoint] for each
-     *           of the intended aliases.
-     *           Additional names that this endpoint will be hosted on.
+     *           Aliases for this endpoint, these will be served by the same UrlMap as the
+     *           parent endpoint, and will be provisioned in the GCP stack for the Regional
+     *           Endpoints.
      *     @type string $target
      *           The specification of an Internet routable address of API frontend that will
      *           handle requests to this [API
@@ -133,37 +128,29 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unimplemented. Dot not use.
-     * DEPRECATED: This field is no longer supported. Instead of using aliases,
-     * please specify multiple [google.api.Endpoint][google.api.Endpoint] for each
-     * of the intended aliases.
-     * Additional names that this endpoint will be hosted on.
+     * Aliases for this endpoint, these will be served by the same UrlMap as the
+     * parent endpoint, and will be provisioned in the GCP stack for the Regional
+     * Endpoints.
      *
-     * Generated from protobuf field <code>repeated string aliases = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated string aliases = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
-     * @deprecated
      */
     public function getAliases()
     {
-        @trigger_error('aliases is deprecated.', E_USER_DEPRECATED);
         return $this->aliases;
     }
 
     /**
-     * Unimplemented. Dot not use.
-     * DEPRECATED: This field is no longer supported. Instead of using aliases,
-     * please specify multiple [google.api.Endpoint][google.api.Endpoint] for each
-     * of the intended aliases.
-     * Additional names that this endpoint will be hosted on.
+     * Aliases for this endpoint, these will be served by the same UrlMap as the
+     * parent endpoint, and will be provisioned in the GCP stack for the Regional
+     * Endpoints.
      *
-     * Generated from protobuf field <code>repeated string aliases = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated string aliases = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
-     * @deprecated
      */
     public function setAliases($var)
     {
-        @trigger_error('aliases is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->aliases = $arr;
 
