@@ -22,6 +22,8 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
+use function extension_loaded;
+
 /**
  * @group core
  */
@@ -48,6 +50,23 @@ class EmulatorTraitTest extends TestCase
         $res = $this->impl->call('emulatorGapicConfig', [$hostname]);
         $this->assertEquals($expected, $res['apiEndpoint']);
         $this->assertNull($res['transportConfig']['grpc']['stubOpts']['credentials']);
+    }
+
+
+    /**
+     * @dataProvider hostnames
+     */
+    public function testEmulatorGapicConfigWithNoGrpc($hostname, $expected = null)
+    {
+        if (extension_loaded('grpc')) {
+            $this->markTestSkipped("Cannot run test with grpc extension loaded");
+        }
+
+        $expected = $expected ?: $hostname;
+
+        $res = $this->impl->call('emulatorGapicConfig', [$hostname]);
+        $this->assertEquals($expected, $res['apiEndpoint']);
+        $this->assertArrayNotHasKey('transportConfig', $res);
     }
 
     public function hostnames()
