@@ -39,35 +39,64 @@ use Google\Cloud\Translate\V3\BatchTranslateResponse;
 use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
 use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\CreateDatasetRequest;
+use Google\Cloud\Translate\V3\CreateGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\CreateGlossaryRequest;
+use Google\Cloud\Translate\V3\CreateModelRequest;
+use Google\Cloud\Translate\V3\Dataset;
+use Google\Cloud\Translate\V3\DatasetInputConfig;
+use Google\Cloud\Translate\V3\DatasetOutputConfig;
 use Google\Cloud\Translate\V3\DeleteAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\DeleteAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\DeleteDatasetRequest;
+use Google\Cloud\Translate\V3\DeleteGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryResponse;
+use Google\Cloud\Translate\V3\DeleteModelRequest;
 use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
 use Google\Cloud\Translate\V3\DocumentInputConfig;
+use Google\Cloud\Translate\V3\Example;
+use Google\Cloud\Translate\V3\ExportDataRequest;
 use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\GetAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\GetDatasetRequest;
+use Google\Cloud\Translate\V3\GetGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\GetGlossaryRequest;
+use Google\Cloud\Translate\V3\GetModelRequest;
 use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\Glossary;
+use Google\Cloud\Translate\V3\GlossaryEntry;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
+use Google\Cloud\Translate\V3\ImportDataRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsResponse;
 use Google\Cloud\Translate\V3\ListAdaptiveMtFilesRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtFilesResponse;
 use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesResponse;
+use Google\Cloud\Translate\V3\ListDatasetsRequest;
+use Google\Cloud\Translate\V3\ListDatasetsResponse;
+use Google\Cloud\Translate\V3\ListExamplesRequest;
+use Google\Cloud\Translate\V3\ListExamplesResponse;
 use Google\Cloud\Translate\V3\ListGlossariesRequest;
 use Google\Cloud\Translate\V3\ListGlossariesResponse;
+use Google\Cloud\Translate\V3\ListGlossaryEntriesRequest;
+use Google\Cloud\Translate\V3\ListGlossaryEntriesResponse;
+use Google\Cloud\Translate\V3\ListModelsRequest;
+use Google\Cloud\Translate\V3\ListModelsResponse;
+use Google\Cloud\Translate\V3\Model;
 use Google\Cloud\Translate\V3\OutputConfig;
+use Google\Cloud\Translate\V3\RomanizeTextRequest;
+use Google\Cloud\Translate\V3\RomanizeTextResponse;
 use Google\Cloud\Translate\V3\SupportedLanguages;
 use Google\Cloud\Translate\V3\TranslateDocumentRequest;
 use Google\Cloud\Translate\V3\TranslateDocumentResponse;
 use Google\Cloud\Translate\V3\TranslateTextRequest;
 use Google\Cloud\Translate\V3\TranslateTextResponse;
+use Google\Cloud\Translate\V3\UpdateGlossaryEntryRequest;
+use Google\Cloud\Translate\V3\UpdateGlossaryRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -574,6 +603,149 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createDatasetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $sourceLanguageCode = 'sourceLanguageCode1687263568';
+        $targetLanguageCode = 'targetLanguageCode1323228230';
+        $exampleCount = 1517063674;
+        $trainExampleCount = 1755438077;
+        $validateExampleCount = 159308433;
+        $testExampleCount = 483147021;
+        $expectedResponse = new Dataset();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSourceLanguageCode($sourceLanguageCode);
+        $expectedResponse->setTargetLanguageCode($targetLanguageCode);
+        $expectedResponse->setExampleCount($exampleCount);
+        $expectedResponse->setTrainExampleCount($trainExampleCount);
+        $expectedResponse->setValidateExampleCount($validateExampleCount);
+        $expectedResponse->setTestExampleCount($testExampleCount);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createDatasetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataset = new Dataset();
+        $request = (new CreateDatasetRequest())
+            ->setParent($formattedParent)
+            ->setDataset($dataset);
+        $response = $gapicClient->createDataset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/CreateDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createDatasetTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createDatasetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataset = new Dataset();
+        $request = (new CreateDatasetRequest())
+            ->setParent($formattedParent)
+            ->setDataset($dataset);
+        $response = $gapicClient->createDataset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createDatasetTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createGlossaryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -693,6 +865,221 @@ class TranslationServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createGlossaryTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createGlossaryEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new GlossaryEntry();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $glossaryEntry = new GlossaryEntry();
+        $request = (new CreateGlossaryEntryRequest())
+            ->setParent($formattedParent)
+            ->setGlossaryEntry($glossaryEntry);
+        $response = $gapicClient->createGlossaryEntry($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/CreateGlossaryEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGlossaryEntry();
+        $this->assertProtobufEquals($glossaryEntry, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createGlossaryEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $glossaryEntry = new GlossaryEntry();
+        $request = (new CreateGlossaryEntryRequest())
+            ->setParent($formattedParent)
+            ->setGlossaryEntry($glossaryEntry);
+        try {
+            $gapicClient->createGlossaryEntry($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createModelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $dataset = 'dataset1443214456';
+        $sourceLanguageCode = 'sourceLanguageCode1687263568';
+        $targetLanguageCode = 'targetLanguageCode1323228230';
+        $trainExampleCount = 1755438077;
+        $validateExampleCount = 159308433;
+        $testExampleCount = 483147021;
+        $expectedResponse = new Model();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDataset($dataset);
+        $expectedResponse->setSourceLanguageCode($sourceLanguageCode);
+        $expectedResponse->setTargetLanguageCode($targetLanguageCode);
+        $expectedResponse->setTrainExampleCount($trainExampleCount);
+        $expectedResponse->setValidateExampleCount($validateExampleCount);
+        $expectedResponse->setTestExampleCount($testExampleCount);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createModelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $model = new Model();
+        $request = (new CreateModelRequest())
+            ->setParent($formattedParent)
+            ->setModel($model);
+        $response = $gapicClient->createModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/CreateModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getModel();
+        $this->assertProtobufEquals($model, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createModelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createModelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $model = new Model();
+        $request = (new CreateModelRequest())
+            ->setParent($formattedParent)
+            ->setModel($model);
+        $response = $gapicClient->createModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createModelTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -833,6 +1220,127 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteDatasetTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteDatasetTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new DeleteDatasetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteDataset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/DeleteDataset', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteDatasetExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteDatasetTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new DeleteDatasetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteDataset($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteDatasetTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteGlossaryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -956,6 +1464,188 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteGlossaryEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->glossaryEntryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]', '[GLOSSARY_ENTRY]');
+        $request = (new DeleteGlossaryEntryRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteGlossaryEntry($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/DeleteGlossaryEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteGlossaryEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->glossaryEntryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]', '[GLOSSARY_ENTRY]');
+        $request = (new DeleteGlossaryEntryRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteGlossaryEntry($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteModelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteModelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $request = (new DeleteModelRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/DeleteModel', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteModelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteModelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $request = (new DeleteModelRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteModelTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function detectLanguageTest()
     {
         $transport = $this->createTransport();
@@ -1015,6 +1705,133 @@ class TranslationServiceClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exportDataTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/exportDataTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $dataset = 'dataset1443214456';
+        $outputConfig = new DatasetOutputConfig();
+        $request = (new ExportDataRequest())
+            ->setDataset($dataset)
+            ->setOutputConfig($outputConfig);
+        $response = $gapicClient->exportData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ExportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
+        $actualValue = $actualApiRequestObject->getOutputConfig();
+        $this->assertProtobufEquals($outputConfig, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportDataTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function exportDataExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $dataset = 'dataset1443214456';
+        $outputConfig = new DatasetOutputConfig();
+        $request = (new ExportDataRequest())
+            ->setDataset($dataset)
+            ->setOutputConfig($outputConfig);
+        $response = $gapicClient->exportData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportDataTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1158,6 +1975,84 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getDatasetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $sourceLanguageCode = 'sourceLanguageCode1687263568';
+        $targetLanguageCode = 'targetLanguageCode1323228230';
+        $exampleCount = 1517063674;
+        $trainExampleCount = 1755438077;
+        $validateExampleCount = 159308433;
+        $testExampleCount = 483147021;
+        $expectedResponse = new Dataset();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSourceLanguageCode($sourceLanguageCode);
+        $expectedResponse->setTargetLanguageCode($targetLanguageCode);
+        $expectedResponse->setExampleCount($exampleCount);
+        $expectedResponse->setTrainExampleCount($trainExampleCount);
+        $expectedResponse->setValidateExampleCount($validateExampleCount);
+        $expectedResponse->setTestExampleCount($testExampleCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new GetDatasetRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getDataset($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/GetDataset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDatasetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new GetDatasetRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getDataset($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getGlossaryTest()
     {
         $transport = $this->createTransport();
@@ -1214,6 +2109,150 @@ class TranslationServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getGlossary($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGlossaryEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $expectedResponse = new GlossaryEntry();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->glossaryEntryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]', '[GLOSSARY_ENTRY]');
+        $request = (new GetGlossaryEntryRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getGlossaryEntry($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/GetGlossaryEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getGlossaryEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->glossaryEntryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]', '[GLOSSARY_ENTRY]');
+        $request = (new GetGlossaryEntryRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getGlossaryEntry($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getModelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $dataset = 'dataset1443214456';
+        $sourceLanguageCode = 'sourceLanguageCode1687263568';
+        $targetLanguageCode = 'targetLanguageCode1323228230';
+        $trainExampleCount = 1755438077;
+        $validateExampleCount = 159308433;
+        $testExampleCount = 483147021;
+        $expectedResponse = new Model();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDataset($dataset);
+        $expectedResponse->setSourceLanguageCode($sourceLanguageCode);
+        $expectedResponse->setTargetLanguageCode($targetLanguageCode);
+        $expectedResponse->setTrainExampleCount($trainExampleCount);
+        $expectedResponse->setValidateExampleCount($validateExampleCount);
+        $expectedResponse->setTestExampleCount($testExampleCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $request = (new GetModelRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getModel($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/GetModel', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getModelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $request = (new GetModelRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getModel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1347,6 +2386,133 @@ class TranslationServiceClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function importDataTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/importDataTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $dataset = 'dataset1443214456';
+        $inputConfig = new DatasetInputConfig();
+        $request = (new ImportDataRequest())
+            ->setDataset($dataset)
+            ->setInputConfig($inputConfig);
+        $response = $gapicClient->importData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ImportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDataset();
+        $this->assertProtobufEquals($dataset, $actualValue);
+        $actualValue = $actualApiRequestObject->getInputConfig();
+        $this->assertProtobufEquals($inputConfig, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importDataTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function importDataExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $dataset = 'dataset1443214456';
+        $inputConfig = new DatasetInputConfig();
+        $request = (new ImportDataRequest())
+            ->setDataset($dataset)
+            ->setInputConfig($inputConfig);
+        $response = $gapicClient->importData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importDataTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1566,6 +2732,150 @@ class TranslationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listDatasetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $datasetsElement = new Dataset();
+        $datasets = [
+            $datasetsElement,
+        ];
+        $expectedResponse = new ListDatasetsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDatasets($datasets);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDatasetsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listDatasets($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDatasets()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListDatasets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDatasetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDatasetsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listDatasets($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listExamplesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $examplesElement = new Example();
+        $examples = [
+            $examplesElement,
+        ];
+        $expectedResponse = new ListExamplesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setExamples($examples);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListExamplesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listExamples($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getExamples()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListExamples', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listExamplesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $request = (new ListExamplesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listExamples($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listGlossariesTest()
     {
         $transport = $this->createTransport();
@@ -1626,6 +2936,218 @@ class TranslationServiceClientTest extends GeneratedTest
             ->setParent($formattedParent);
         try {
             $gapicClient->listGlossaries($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGlossaryEntriesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $glossaryEntriesElement = new GlossaryEntry();
+        $glossaryEntries = [
+            $glossaryEntriesElement,
+        ];
+        $expectedResponse = new ListGlossaryEntriesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setGlossaryEntries($glossaryEntries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $request = (new ListGlossaryEntriesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listGlossaryEntries($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getGlossaryEntries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListGlossaryEntries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listGlossaryEntriesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $request = (new ListGlossaryEntriesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listGlossaryEntries($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listModelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $modelsElement = new Model();
+        $models = [
+            $modelsElement,
+        ];
+        $expectedResponse = new ListModelsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setModels($models);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListModelsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listModels($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getModels()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/ListModels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listModelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListModelsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listModels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function romanizeTextTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RomanizeTextResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $contents = [];
+        $request = (new RomanizeTextRequest())
+            ->setParent($formattedParent)
+            ->setContents($contents);
+        $response = $gapicClient->romanizeText($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/RomanizeText', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getContents();
+        $this->assertProtobufEquals($contents, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function romanizeTextExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $contents = [];
+        $request = (new RomanizeTextRequest())
+            ->setParent($formattedParent)
+            ->setContents($contents);
+        try {
+            $gapicClient->romanizeText($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1776,6 +3298,203 @@ class TranslationServiceClientTest extends GeneratedTest
             ->setParent($formattedParent);
         try {
             $gapicClient->translateText($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGlossaryTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateGlossaryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $entryCount = 811131134;
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Glossary();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEntryCount($entryCount);
+        $expectedResponse->setDisplayName($displayName);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateGlossaryTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $glossary = new Glossary();
+        $glossaryName = 'glossaryName-297469495';
+        $glossary->setName($glossaryName);
+        $request = (new UpdateGlossaryRequest())
+            ->setGlossary($glossary);
+        $response = $gapicClient->updateGlossary($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/UpdateGlossary', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlossary();
+        $this->assertProtobufEquals($glossary, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateGlossaryTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGlossaryExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateGlossaryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $glossary = new Glossary();
+        $glossaryName = 'glossaryName-297469495';
+        $glossary->setName($glossaryName);
+        $request = (new UpdateGlossaryRequest())
+            ->setGlossary($glossary);
+        $response = $gapicClient->updateGlossary($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateGlossaryTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGlossaryEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new GlossaryEntry();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $glossaryEntry = new GlossaryEntry();
+        $request = (new UpdateGlossaryEntryRequest())
+            ->setGlossaryEntry($glossaryEntry);
+        $response = $gapicClient->updateGlossaryEntry($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.translation.v3.TranslationService/UpdateGlossaryEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlossaryEntry();
+        $this->assertProtobufEquals($glossaryEntry, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGlossaryEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $glossaryEntry = new GlossaryEntry();
+        $request = (new UpdateGlossaryEntryRequest())
+            ->setGlossaryEntry($glossaryEntry);
+        try {
+            $gapicClient->updateGlossaryEntry($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

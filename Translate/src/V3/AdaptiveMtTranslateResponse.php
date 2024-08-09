@@ -27,6 +27,13 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $language_code = '';
+    /**
+     * Text translation response if a glossary is provided in the request. This
+     * could be the same as 'translation' above if no terms apply.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation glossary_translations = 4;</code>
+     */
+    private $glossary_translations;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      *           Output only. The translation.
      *     @type string $language_code
      *           Output only. The translation's language code.
+     *     @type array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\Internal\RepeatedField $glossary_translations
+     *           Text translation response if a glossary is provided in the request. This
+     *           could be the same as 'translation' above if no terms apply.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Text translation response if a glossary is provided in the request. This
+     * could be the same as 'translation' above if no terms apply.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation glossary_translations = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGlossaryTranslations()
+    {
+        return $this->glossary_translations;
+    }
+
+    /**
+     * Text translation response if a glossary is provided in the request. This
+     * could be the same as 'translation' above if no terms apply.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.translation.v3.AdaptiveMtTranslation glossary_translations = 4;</code>
+     * @param array<\Google\Cloud\Translate\V3\AdaptiveMtTranslation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGlossaryTranslations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Translate\V3\AdaptiveMtTranslation::class);
+        $this->glossary_translations = $arr;
 
         return $this;
     }
