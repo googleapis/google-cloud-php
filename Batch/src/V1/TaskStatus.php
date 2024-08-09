@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Status of a task
+ * Status of a task.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.TaskStatus</code>
  */
 class TaskStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Task state
+     * Task state.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State state = 1;</code>
      */
@@ -35,7 +35,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Task state
+     *           Task state.
      *     @type array<\Google\Cloud\Batch\V1\StatusEvent>|\Google\Protobuf\Internal\RepeatedField $status_events
      *           Detailed info about why the state is reached.
      * }
@@ -46,7 +46,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Task state
+     * Task state.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State state = 1;</code>
      * @return int
@@ -57,7 +57,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Task state
+     * Task state.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.TaskStatus.State state = 1;</code>
      * @param int $var
