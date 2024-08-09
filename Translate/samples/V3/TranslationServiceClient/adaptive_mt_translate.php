@@ -39,7 +39,6 @@ use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
  *                                 `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
  *                                 Please see {@see TranslationServiceClient::adaptiveMtDatasetName()} for help formatting this field.
  * @param string $contentElement   The content of the input in string format.
- *                                 For now only one sentence per request is supported.
  */
 function adaptive_mt_translate_sample(
     string $formattedParent,

@@ -38,29 +38,46 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Translate\V3\AdaptiveMtDataset;
 use Google\Cloud\Translate\V3\AdaptiveMtFile;
 use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\GlossaryConfig;
+use Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig;
 use Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse;
 use Google\Cloud\Translate\V3\BatchDocumentInputConfig;
 use Google\Cloud\Translate\V3\BatchDocumentOutputConfig;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentRequest;
 use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
 use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\CreateDatasetRequest;
+use Google\Cloud\Translate\V3\CreateGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\CreateGlossaryRequest;
+use Google\Cloud\Translate\V3\CreateModelRequest;
+use Google\Cloud\Translate\V3\Dataset;
+use Google\Cloud\Translate\V3\DatasetInputConfig;
+use Google\Cloud\Translate\V3\DatasetOutputConfig;
 use Google\Cloud\Translate\V3\DeleteAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\DeleteAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\DeleteDatasetRequest;
+use Google\Cloud\Translate\V3\DeleteGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryRequest;
+use Google\Cloud\Translate\V3\DeleteModelRequest;
 use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
 use Google\Cloud\Translate\V3\DocumentInputConfig;
 use Google\Cloud\Translate\V3\DocumentOutputConfig;
+use Google\Cloud\Translate\V3\ExportDataRequest;
 use Google\Cloud\Translate\V3\FileInputSource;
 use Google\Cloud\Translate\V3\GcsInputSource;
 use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\GetAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\GetDatasetRequest;
+use Google\Cloud\Translate\V3\GetGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\GetGlossaryRequest;
+use Google\Cloud\Translate\V3\GetModelRequest;
 use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\Glossary;
+use Google\Cloud\Translate\V3\GlossaryEntry;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
+use Google\Cloud\Translate\V3\ImportDataRequest;
 use Google\Cloud\Translate\V3\InputConfig;
 use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsResponse;
@@ -68,16 +85,31 @@ use Google\Cloud\Translate\V3\ListAdaptiveMtFilesRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtFilesResponse;
 use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesResponse;
+use Google\Cloud\Translate\V3\ListDatasetsRequest;
+use Google\Cloud\Translate\V3\ListDatasetsResponse;
+use Google\Cloud\Translate\V3\ListExamplesRequest;
+use Google\Cloud\Translate\V3\ListExamplesResponse;
 use Google\Cloud\Translate\V3\ListGlossariesRequest;
 use Google\Cloud\Translate\V3\ListGlossariesResponse;
+use Google\Cloud\Translate\V3\ListGlossaryEntriesRequest;
+use Google\Cloud\Translate\V3\ListGlossaryEntriesResponse;
+use Google\Cloud\Translate\V3\ListModelsRequest;
+use Google\Cloud\Translate\V3\ListModelsResponse;
+use Google\Cloud\Translate\V3\Model;
 use Google\Cloud\Translate\V3\OutputConfig;
+use Google\Cloud\Translate\V3\RomanizeTextRequest;
+use Google\Cloud\Translate\V3\RomanizeTextResponse;
 use Google\Cloud\Translate\V3\SupportedLanguages;
 use Google\Cloud\Translate\V3\TranslateDocumentRequest;
 use Google\Cloud\Translate\V3\TranslateDocumentResponse;
 use Google\Cloud\Translate\V3\TranslateTextGlossaryConfig;
 use Google\Cloud\Translate\V3\TranslateTextRequest;
 use Google\Cloud\Translate\V3\TranslateTextResponse;
+use Google\Cloud\Translate\V3\TransliterationConfig;
+use Google\Cloud\Translate\V3\UpdateGlossaryEntryRequest;
+use Google\Cloud\Translate\V3\UpdateGlossaryRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -138,9 +170,15 @@ class TranslationServiceGapicClient
 
     private static $adaptiveMtFileNameTemplate;
 
+    private static $datasetNameTemplate;
+
     private static $glossaryNameTemplate;
 
+    private static $glossaryEntryNameTemplate;
+
     private static $locationNameTemplate;
+
+    private static $modelNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -183,6 +221,15 @@ class TranslationServiceGapicClient
         return self::$adaptiveMtFileNameTemplate;
     }
 
+    private static function getDatasetNameTemplate()
+    {
+        if (self::$datasetNameTemplate == null) {
+            self::$datasetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}');
+        }
+
+        return self::$datasetNameTemplate;
+    }
+
     private static function getGlossaryNameTemplate()
     {
         if (self::$glossaryNameTemplate == null) {
@@ -190,6 +237,15 @@ class TranslationServiceGapicClient
         }
 
         return self::$glossaryNameTemplate;
+    }
+
+    private static function getGlossaryEntryNameTemplate()
+    {
+        if (self::$glossaryEntryNameTemplate == null) {
+            self::$glossaryEntryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/glossaries/{glossary}/glossaryEntries/{glossary_entry}');
+        }
+
+        return self::$glossaryEntryNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -201,14 +257,26 @@ class TranslationServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getModelNameTemplate()
+    {
+        if (self::$modelNameTemplate == null) {
+            self::$modelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}');
+        }
+
+        return self::$modelNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'adaptiveMtDataset' => self::getAdaptiveMtDatasetNameTemplate(),
                 'adaptiveMtFile' => self::getAdaptiveMtFileNameTemplate(),
+                'dataset' => self::getDatasetNameTemplate(),
                 'glossary' => self::getGlossaryNameTemplate(),
+                'glossaryEntry' => self::getGlossaryEntryNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'model' => self::getModelNameTemplate(),
             ];
         }
 
@@ -256,6 +324,25 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     */
+    public static function datasetName($project, $location, $dataset)
+    {
+        return self::getDatasetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a glossary
      * resource.
      *
@@ -271,6 +358,27 @@ class TranslationServiceGapicClient
             'project' => $project,
             'location' => $location,
             'glossary' => $glossary,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * glossary_entry resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     * @param string $glossaryEntry
+     *
+     * @return string The formatted glossary_entry resource.
+     */
+    public static function glossaryEntryName($project, $location, $glossary, $glossaryEntry)
+    {
+        return self::getGlossaryEntryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
+            'glossary_entry' => $glossaryEntry,
         ]);
     }
 
@@ -292,13 +400,35 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a model
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $model
+     *
+     * @return string The formatted model resource.
+     */
+    public static function modelName($project, $location, $model)
+    {
+        return self::getModelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - adaptiveMtDataset: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}
      * - adaptiveMtFile: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}
+     * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
      * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
+     * - glossaryEntry: projects/{project}/locations/{location}/glossaries/{glossary}/glossaryEntries/{glossary_entry}
      * - location: projects/{project}/locations/{location}
+     * - model: projects/{project}/locations/{location}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -447,10 +577,15 @@ class TranslationServiceGapicClient
      * @param string   $dataset      Required. The resource name for the dataset to use for adaptive MT.
      *                               `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
      * @param string[] $content      Required. The content of the input in string format.
-     *                               For now only one sentence per request is supported.
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type ReferenceSentenceConfig $referenceSentenceConfig
+     *           Configuration for caller provided reference sentences.
+     *     @type GlossaryConfig $glossaryConfig
+     *           Optional. Glossary to be applied. The glossary must be
+     *           within the same region (have the same location-id) as the model, otherwise
+     *           an INVALID_ARGUMENT (400) error is returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -469,6 +604,14 @@ class TranslationServiceGapicClient
         $request->setDataset($dataset);
         $request->setContent($content);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['referenceSentenceConfig'])) {
+            $request->setReferenceSentenceConfig($optionalArgs['referenceSentenceConfig']);
+        }
+
+        if (isset($optionalArgs['glossaryConfig'])) {
+            $request->setGlossaryConfig($optionalArgs['glossaryConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AdaptiveMtTranslate', AdaptiveMtTranslateResponse::class, $optionalArgs, $request)->wait();
@@ -817,6 +960,73 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Creates a Dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dataset = new Dataset();
+     *     $operationResponse = $translationServiceClient->createDataset($formattedParent, $dataset);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->createDataset($formattedParent, $dataset);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'createDataset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string  $parent       Required. The project name.
+     * @param Dataset $dataset      Required. The Dataset to create.
+     * @param array   $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createDataset($parent, $dataset, array $optionalArgs = [])
+    {
+        $request = new CreateDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDataset($dataset);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateDataset', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Creates a glossary and returns the long-running operation. Returns
      * NOT_FOUND, if the project doesn't exist.
      *
@@ -882,6 +1092,116 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateGlossary', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a glossary entry.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+     *     $glossaryEntry = new GlossaryEntry();
+     *     $response = $translationServiceClient->createGlossaryEntry($formattedParent, $glossaryEntry);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string        $parent        Required. The resource name of the glossary to create the entry under.
+     * @param GlossaryEntry $glossaryEntry Required. The glossary entry to create
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\GlossaryEntry
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createGlossaryEntry($parent, $glossaryEntry, array $optionalArgs = [])
+    {
+        $request = new CreateGlossaryEntryRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setGlossaryEntry($glossaryEntry);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateGlossaryEntry', GlossaryEntry::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a Model.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $model = new Model();
+     *     $operationResponse = $translationServiceClient->createModel($formattedParent, $model);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->createModel($formattedParent, $model);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'createModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project name, in form of
+     *                             `projects/{project}/locations/{location}`
+     * @param Model  $model        Required. The Model to create.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createModel($parent, $model, array $optionalArgs = [])
+    {
+        $request = new CreateModelRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setModel($model);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -962,6 +1282,68 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Deletes a dataset and all of its contents.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $operationResponse = $translationServiceClient->deleteDataset($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->deleteDataset($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'deleteDataset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the dataset to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDataset($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteDataset', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Deletes a glossary, or cancels glossary construction
      * if the glossary isn't created yet.
      * Returns NOT_FOUND, if the glossary doesn't exist.
@@ -1025,6 +1407,105 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteGlossary', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Deletes a single entry from the glossary
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->glossaryEntryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]', '[GLOSSARY_ENTRY]');
+     *     $translationServiceClient->deleteGlossaryEntry($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the glossary entry to delete
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteGlossaryEntry($name, array $optionalArgs = [])
+    {
+        $request = new DeleteGlossaryEntryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteGlossaryEntry', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a model.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $translationServiceClient->deleteModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->deleteModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'deleteModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the model to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteModel($name, array $optionalArgs = [])
+    {
+        $request = new DeleteModelRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1118,6 +1599,72 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Exports dataset's data to the provided output location.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $dataset = 'dataset';
+     *     $outputConfig = new DatasetOutputConfig();
+     *     $operationResponse = $translationServiceClient->exportData($dataset, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->exportData($dataset, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'exportData');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string              $dataset      Required. Name of the dataset. In form of
+     *                                          `projects/{project-number-or-id}/locations/{location-id}/datasets/{dataset-id}`
+     * @param DatasetOutputConfig $outputConfig Required. The config for the output content.
+     * @param array               $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function exportData($dataset, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportDataRequest();
+        $requestParamHeaders = [];
+        $request->setDataset($dataset);
+        $request->setOutputConfig($outputConfig);
+        $requestParamHeaders['dataset'] = $dataset;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ExportData', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Gets the Adaptive MT dataset.
      *
      * Sample code:
@@ -1198,6 +1745,45 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Gets a Dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $response = $translationServiceClient->getDataset($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the dataset to retrieve.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\Dataset
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getDataset($name, array $optionalArgs = [])
+    {
+        $request = new GetDatasetRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDataset', Dataset::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
      * exist.
      *
@@ -1235,6 +1821,84 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetGlossary', Glossary::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets a single glossary entry by the given id.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->glossaryEntryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]', '[GLOSSARY_ENTRY]');
+     *     $response = $translationServiceClient->getGlossaryEntry($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the glossary entry to get
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\GlossaryEntry
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getGlossaryEntry($name, array $optionalArgs = [])
+    {
+        $request = new GetGlossaryEntryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetGlossaryEntry', GlossaryEntry::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets a model.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedName = $translationServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $response = $translationServiceClient->getModel($formattedName);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the model to retrieve.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\Model
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getModel($name, array $optionalArgs = [])
+    {
+        $request = new GetModelRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetModel', Model::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1365,6 +2029,72 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ImportAdaptiveMtFile', ImportAdaptiveMtFileResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Import sentence pairs into translation Dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $dataset = 'dataset';
+     *     $inputConfig = new DatasetInputConfig();
+     *     $operationResponse = $translationServiceClient->importData($dataset, $inputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->importData($dataset, $inputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'importData');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string             $dataset      Required. Name of the dataset. In form of
+     *                                         `projects/{project-number-or-id}/locations/{location-id}/datasets/{dataset-id}`
+     * @param DatasetInputConfig $inputConfig  Required. The config for the input content.
+     * @param array              $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importData($dataset, $inputConfig, array $optionalArgs = [])
+    {
+        $request = new ImportDataRequest();
+        $requestParamHeaders = [];
+        $request->setDataset($dataset);
+        $request->setInputConfig($inputConfig);
+        $requestParamHeaders['dataset'] = $dataset;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportData', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1586,6 +2316,152 @@ class TranslationServiceGapicClient
     }
 
     /**
+     * Lists datasets.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listDatasets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listDatasets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the parent project. In form of
+     *                             `projects/{project-number-or-id}/locations/{location-id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listDatasets($parent, array $optionalArgs = [])
+    {
+        $request = new ListDatasetsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDatasets', $optionalArgs, ListDatasetsResponse::class, $request);
+    }
+
+    /**
+     * Lists sentence pairs in the dataset.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listExamples($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listExamples($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the parent dataset. In form of
+     *                             `projects/{project-number-or-id}/locations/{location-id}/datasets/{dataset-id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Optional. An expression for filtering the examples that will be returned.
+     *           Example filter:
+     *           * `usage=TRAIN`
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listExamples($parent, array $optionalArgs = [])
+    {
+        $request = new ListExamplesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListExamples', $optionalArgs, ListExamplesResponse::class, $request);
+    }
+
+    /**
      * Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't
      * exist.
      *
@@ -1673,6 +2549,210 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListGlossaries', $optionalArgs, ListGlossariesResponse::class, $request);
+    }
+
+    /**
+     * List the entries for the glossary.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listGlossaryEntries($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listGlossaryEntries($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent glossary resource name for listing the glossary's
+     *                             entries.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listGlossaryEntries($parent, array $optionalArgs = [])
+    {
+        $request = new ListGlossaryEntriesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListGlossaryEntries', $optionalArgs, ListGlossaryEntriesResponse::class, $request);
+    }
+
+    /**
+     * Lists models.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $translationServiceClient->listModels($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $translationServiceClient->listModels($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Name of the parent project. In form of
+     *                             `projects/{project-number-or-id}/locations/{location-id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Optional. An expression for filtering the models that will be returned.
+     *           Supported filter:
+     *           `dataset_id=${dataset_id}`
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listModels($parent, array $optionalArgs = [])
+    {
+        $request = new ListModelsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListModels', $optionalArgs, ListModelsResponse::class, $request);
+    }
+
+    /**
+     * Romanize input text written in non-Latin scripts to Latin text.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $formattedParent = $translationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $contents = [];
+     *     $response = $translationServiceClient->romanizeText($formattedParent, $contents);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. Project or location to make a call. Must refer to a caller's
+     *                               project.
+     *
+     *                               Format: `projects/{project-number-or-id}/locations/{location-id}` or
+     *                               `projects/{project-number-or-id}`.
+     *
+     *                               For global calls, use `projects/{project-number-or-id}/locations/global` or
+     *                               `projects/{project-number-or-id}`.
+     * @param string[] $contents     Required. The content of the input in string format.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $sourceLanguageCode
+     *           Optional. The ISO-639 language code of the input text if
+     *           known, for example, "hi" or "zh". If the source language isn't specified,
+     *           the API attempts to identify the source language automatically and returns
+     *           the source language for each content in the response.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\RomanizeTextResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function romanizeText($parent, $contents, array $optionalArgs = [])
+    {
+        $request = new RomanizeTextRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setContents($contents);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['sourceLanguageCode'])) {
+            $request->setSourceLanguageCode($optionalArgs['sourceLanguageCode']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RomanizeText', RomanizeTextResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1883,6 +2963,8 @@ class TranslationServiceGapicClient
      *           - General (built-in) models:
      *           `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
      *
+     *           - Translation LLM models:
+     *           `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`,
      *
      *           For global (non-regionalized) requests, use `location-id` `global`.
      *           For example,
@@ -1893,6 +2975,8 @@ class TranslationServiceGapicClient
      *           Optional. Glossary to be applied. The glossary must be
      *           within the same region (have the same location-id) as the model, otherwise
      *           an INVALID_ARGUMENT (400) error is returned.
+     *     @type TransliterationConfig $transliterationConfig
+     *           Optional. Transliteration to be applied.
      *     @type array $labels
      *           Optional. The labels with user-defined metadata for the request.
      *
@@ -1937,6 +3021,10 @@ class TranslationServiceGapicClient
             $request->setGlossaryConfig($optionalArgs['glossaryConfig']);
         }
 
+        if (isset($optionalArgs['transliterationConfig'])) {
+            $request->setTransliterationConfig($optionalArgs['transliterationConfig']);
+        }
+
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
         }
@@ -1944,5 +3032,116 @@ class TranslationServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TranslateText', TranslateTextResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a glossary. A LRO is used since the update can be async if the
+     * glossary's entry file is updated.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $glossary = new Glossary();
+     *     $operationResponse = $translationServiceClient->updateGlossary($glossary);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $translationServiceClient->updateGlossary($glossary);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $translationServiceClient->resumeOperation($operationName, 'updateGlossary');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Glossary $glossary     Required. The glossary entry to update.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated. Currently only `display_name` and
+     *           'input_config'
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateGlossary($glossary, array $optionalArgs = [])
+    {
+        $request = new UpdateGlossaryRequest();
+        $requestParamHeaders = [];
+        $request->setGlossary($glossary);
+        $requestParamHeaders['glossary.name'] = $glossary->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateGlossary', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Updates a glossary entry.
+     *
+     * Sample code:
+     * ```
+     * $translationServiceClient = new TranslationServiceClient();
+     * try {
+     *     $glossaryEntry = new GlossaryEntry();
+     *     $response = $translationServiceClient->updateGlossaryEntry($glossaryEntry);
+     * } finally {
+     *     $translationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param GlossaryEntry $glossaryEntry Required. The glossary entry to update.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Translate\V3\GlossaryEntry
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateGlossaryEntry($glossaryEntry, array $optionalArgs = [])
+    {
+        $request = new UpdateGlossaryEntryRequest();
+        $requestParamHeaders = [];
+        $request->setGlossaryEntry($glossaryEntry);
+        $requestParamHeaders['glossary_entry.name'] = $glossaryEntry->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateGlossaryEntry', GlossaryEntry::class, $optionalArgs, $request)->wait();
     }
 }

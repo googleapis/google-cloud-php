@@ -30,9 +30,24 @@
                                 "createAdaptiveMtDataset"
                             ]
                         },
+                        "CreateDataset": {
+                            "methods": [
+                                "createDataset"
+                            ]
+                        },
                         "CreateGlossary": {
                             "methods": [
                                 "createGlossary"
+                            ]
+                        },
+                        "CreateGlossaryEntry": {
+                            "methods": [
+                                "createGlossaryEntry"
+                            ]
+                        },
+                        "CreateModel": {
+                            "methods": [
+                                "createModel"
                             ]
                         },
                         "DeleteAdaptiveMtDataset": {
@@ -45,14 +60,34 @@
                                 "deleteAdaptiveMtFile"
                             ]
                         },
+                        "DeleteDataset": {
+                            "methods": [
+                                "deleteDataset"
+                            ]
+                        },
                         "DeleteGlossary": {
                             "methods": [
                                 "deleteGlossary"
                             ]
                         },
+                        "DeleteGlossaryEntry": {
+                            "methods": [
+                                "deleteGlossaryEntry"
+                            ]
+                        },
+                        "DeleteModel": {
+                            "methods": [
+                                "deleteModel"
+                            ]
+                        },
                         "DetectLanguage": {
                             "methods": [
                                 "detectLanguage"
+                            ]
+                        },
+                        "ExportData": {
+                            "methods": [
+                                "exportData"
                             ]
                         },
                         "GetAdaptiveMtDataset": {
@@ -65,9 +100,24 @@
                                 "getAdaptiveMtFile"
                             ]
                         },
+                        "GetDataset": {
+                            "methods": [
+                                "getDataset"
+                            ]
+                        },
                         "GetGlossary": {
                             "methods": [
                                 "getGlossary"
+                            ]
+                        },
+                        "GetGlossaryEntry": {
+                            "methods": [
+                                "getGlossaryEntry"
+                            ]
+                        },
+                        "GetModel": {
+                            "methods": [
+                                "getModel"
                             ]
                         },
                         "GetSupportedLanguages": {
@@ -78,6 +128,11 @@
                         "ImportAdaptiveMtFile": {
                             "methods": [
                                 "importAdaptiveMtFile"
+                            ]
+                        },
+                        "ImportData": {
+                            "methods": [
+                                "importData"
                             ]
                         },
                         "ListAdaptiveMtDatasets": {
@@ -95,9 +150,34 @@
                                 "listAdaptiveMtSentences"
                             ]
                         },
+                        "ListDatasets": {
+                            "methods": [
+                                "listDatasets"
+                            ]
+                        },
+                        "ListExamples": {
+                            "methods": [
+                                "listExamples"
+                            ]
+                        },
                         "ListGlossaries": {
                             "methods": [
                                 "listGlossaries"
+                            ]
+                        },
+                        "ListGlossaryEntries": {
+                            "methods": [
+                                "listGlossaryEntries"
+                            ]
+                        },
+                        "ListModels": {
+                            "methods": [
+                                "listModels"
+                            ]
+                        },
+                        "RomanizeText": {
+                            "methods": [
+                                "romanizeText"
                             ]
                         },
                         "TranslateDocument": {
@@ -108,6 +188,16 @@
                         "TranslateText": {
                             "methods": [
                                 "translateText"
+                            ]
+                        },
+                        "UpdateGlossary": {
+                            "methods": [
+                                "updateGlossary"
+                            ]
+                        },
+                        "UpdateGlossaryEntry": {
+                            "methods": [
+                                "updateGlossaryEntry"
                             ]
                         }
                     }

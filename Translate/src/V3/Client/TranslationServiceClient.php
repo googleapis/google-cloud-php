@@ -42,28 +42,50 @@ use Google\Cloud\Translate\V3\AdaptiveMtTranslateResponse;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentRequest;
 use Google\Cloud\Translate\V3\BatchTranslateTextRequest;
 use Google\Cloud\Translate\V3\CreateAdaptiveMtDatasetRequest;
+use Google\Cloud\Translate\V3\CreateDatasetRequest;
+use Google\Cloud\Translate\V3\CreateGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\CreateGlossaryRequest;
+use Google\Cloud\Translate\V3\CreateModelRequest;
+use Google\Cloud\Translate\V3\Dataset;
 use Google\Cloud\Translate\V3\DeleteAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\DeleteAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\DeleteDatasetRequest;
+use Google\Cloud\Translate\V3\DeleteGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\DeleteGlossaryRequest;
+use Google\Cloud\Translate\V3\DeleteModelRequest;
 use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
+use Google\Cloud\Translate\V3\ExportDataRequest;
 use Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
 use Google\Cloud\Translate\V3\GetAdaptiveMtFileRequest;
+use Google\Cloud\Translate\V3\GetDatasetRequest;
+use Google\Cloud\Translate\V3\GetGlossaryEntryRequest;
 use Google\Cloud\Translate\V3\GetGlossaryRequest;
+use Google\Cloud\Translate\V3\GetModelRequest;
 use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\Glossary;
+use Google\Cloud\Translate\V3\GlossaryEntry;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileRequest;
 use Google\Cloud\Translate\V3\ImportAdaptiveMtFileResponse;
+use Google\Cloud\Translate\V3\ImportDataRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtDatasetsRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtFilesRequest;
 use Google\Cloud\Translate\V3\ListAdaptiveMtSentencesRequest;
+use Google\Cloud\Translate\V3\ListDatasetsRequest;
+use Google\Cloud\Translate\V3\ListExamplesRequest;
 use Google\Cloud\Translate\V3\ListGlossariesRequest;
+use Google\Cloud\Translate\V3\ListGlossaryEntriesRequest;
+use Google\Cloud\Translate\V3\ListModelsRequest;
+use Google\Cloud\Translate\V3\Model;
+use Google\Cloud\Translate\V3\RomanizeTextRequest;
+use Google\Cloud\Translate\V3\RomanizeTextResponse;
 use Google\Cloud\Translate\V3\SupportedLanguages;
 use Google\Cloud\Translate\V3\TranslateDocumentRequest;
 use Google\Cloud\Translate\V3\TranslateDocumentResponse;
 use Google\Cloud\Translate\V3\TranslateTextRequest;
 use Google\Cloud\Translate\V3\TranslateTextResponse;
+use Google\Cloud\Translate\V3\UpdateGlossaryEntryRequest;
+use Google\Cloud\Translate\V3\UpdateGlossaryRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -82,22 +104,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface batchTranslateDocumentAsync(BatchTranslateDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchTranslateTextAsync(BatchTranslateTextRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAdaptiveMtDatasetAsync(CreateAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createGlossaryAsync(CreateGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createGlossaryEntryAsync(CreateGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAdaptiveMtDatasetAsync(DeleteAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAdaptiveMtFileAsync(DeleteAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteGlossaryAsync(DeleteGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteGlossaryEntryAsync(DeleteGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface detectLanguageAsync(DetectLanguageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAdaptiveMtDatasetAsync(GetAdaptiveMtDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAdaptiveMtFileAsync(GetAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getGlossaryAsync(GetGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getGlossaryEntryAsync(GetGlossaryEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getModelAsync(GetModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSupportedLanguagesAsync(GetSupportedLanguagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importAdaptiveMtFileAsync(ImportAdaptiveMtFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAdaptiveMtDatasetsAsync(ListAdaptiveMtDatasetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAdaptiveMtFilesAsync(ListAdaptiveMtFilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAdaptiveMtSentencesAsync(ListAdaptiveMtSentencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listExamplesAsync(ListExamplesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listGlossariesAsync(ListGlossariesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listGlossaryEntriesAsync(ListGlossaryEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface romanizeTextAsync(RomanizeTextRequest $request, array $optionalArgs = [])
  * @method PromiseInterface translateDocumentAsync(TranslateDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface translateTextAsync(TranslateTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateGlossaryAsync(UpdateGlossaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateGlossaryEntryAsync(UpdateGlossaryEntryRequest $request, array $optionalArgs = [])
  */
 final class TranslationServiceClient
 {
@@ -220,6 +260,25 @@ final class TranslationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     */
+    public static function datasetName(string $project, string $location, string $dataset): string
+    {
+        return self::getPathTemplate('dataset')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a glossary
      * resource.
      *
@@ -235,6 +294,27 @@ final class TranslationServiceClient
             'project' => $project,
             'location' => $location,
             'glossary' => $glossary,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * glossary_entry resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $glossary
+     * @param string $glossaryEntry
+     *
+     * @return string The formatted glossary_entry resource.
+     */
+    public static function glossaryEntryName(string $project, string $location, string $glossary, string $glossaryEntry): string
+    {
+        return self::getPathTemplate('glossaryEntry')->render([
+            'project' => $project,
+            'location' => $location,
+            'glossary' => $glossary,
+            'glossary_entry' => $glossaryEntry,
         ]);
     }
 
@@ -256,13 +336,35 @@ final class TranslationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a model
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $model
+     *
+     * @return string The formatted model resource.
+     */
+    public static function modelName(string $project, string $location, string $model): string
+    {
+        return self::getPathTemplate('model')->render([
+            'project' => $project,
+            'location' => $location,
+            'model' => $model,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - adaptiveMtDataset: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}
      * - adaptiveMtFile: projects/{project}/locations/{location}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}
+     * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
      * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
+     * - glossaryEntry: projects/{project}/locations/{location}/glossaries/{glossary}/glossaryEntries/{glossary_entry}
      * - location: projects/{project}/locations/{location}
+     * - model: projects/{project}/locations/{location}/models/{model}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -475,6 +577,32 @@ final class TranslationServiceClient
     }
 
     /**
+     * Creates a Dataset.
+     *
+     * The async variant is {@see TranslationServiceClient::createDatasetAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/create_dataset.php
+     *
+     * @param CreateDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDataset(CreateDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDataset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a glossary and returns the long-running operation. Returns
      * NOT_FOUND, if the project doesn't exist.
      *
@@ -499,6 +627,59 @@ final class TranslationServiceClient
     public function createGlossary(CreateGlossaryRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateGlossary', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a glossary entry.
+     *
+     * The async variant is {@see TranslationServiceClient::createGlossaryEntryAsync()}
+     * .
+     *
+     * @example samples/V3/TranslationServiceClient/create_glossary_entry.php
+     *
+     * @param CreateGlossaryEntryRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GlossaryEntry
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGlossaryEntry(CreateGlossaryEntryRequest $request, array $callOptions = []): GlossaryEntry
+    {
+        return $this->startApiCall('CreateGlossaryEntry', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Model.
+     *
+     * The async variant is {@see TranslationServiceClient::createModelAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/create_model.php
+     *
+     * @param CreateModelRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createModel(CreateModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateModel', $request, $callOptions)->wait();
     }
 
     /**
@@ -553,6 +734,32 @@ final class TranslationServiceClient
     }
 
     /**
+     * Deletes a dataset and all of its contents.
+     *
+     * The async variant is {@see TranslationServiceClient::deleteDatasetAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/delete_dataset.php
+     *
+     * @param DeleteDatasetRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDataset(DeleteDatasetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDataset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a glossary, or cancels glossary construction
      * if the glossary isn't created yet.
      * Returns NOT_FOUND, if the glossary doesn't exist.
@@ -581,6 +788,57 @@ final class TranslationServiceClient
     }
 
     /**
+     * Deletes a single entry from the glossary
+     *
+     * The async variant is {@see TranslationServiceClient::deleteGlossaryEntryAsync()}
+     * .
+     *
+     * @example samples/V3/TranslationServiceClient/delete_glossary_entry.php
+     *
+     * @param DeleteGlossaryEntryRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGlossaryEntry(DeleteGlossaryEntryRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteGlossaryEntry', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a model.
+     *
+     * The async variant is {@see TranslationServiceClient::deleteModelAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/delete_model.php
+     *
+     * @param DeleteModelRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteModel(DeleteModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteModel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Detects the language of text within a request.
      *
      * The async variant is {@see TranslationServiceClient::detectLanguageAsync()} .
@@ -604,6 +862,32 @@ final class TranslationServiceClient
     public function detectLanguage(DetectLanguageRequest $request, array $callOptions = []): DetectLanguageResponse
     {
         return $this->startApiCall('DetectLanguage', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Exports dataset's data to the provided output location.
+     *
+     * The async variant is {@see TranslationServiceClient::exportDataAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/export_data.php
+     *
+     * @param ExportDataRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportData(ExportDataRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportData', $request, $callOptions)->wait();
     }
 
     /**
@@ -660,6 +944,32 @@ final class TranslationServiceClient
     }
 
     /**
+     * Gets a Dataset.
+     *
+     * The async variant is {@see TranslationServiceClient::getDatasetAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/get_dataset.php
+     *
+     * @param GetDatasetRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Dataset
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDataset(GetDatasetRequest $request, array $callOptions = []): Dataset
+    {
+        return $this->startApiCall('GetDataset', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a glossary. Returns NOT_FOUND, if the glossary doesn't
      * exist.
      *
@@ -684,6 +994,58 @@ final class TranslationServiceClient
     public function getGlossary(GetGlossaryRequest $request, array $callOptions = []): Glossary
     {
         return $this->startApiCall('GetGlossary', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a single glossary entry by the given id.
+     *
+     * The async variant is {@see TranslationServiceClient::getGlossaryEntryAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/get_glossary_entry.php
+     *
+     * @param GetGlossaryEntryRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GlossaryEntry
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGlossaryEntry(GetGlossaryEntryRequest $request, array $callOptions = []): GlossaryEntry
+    {
+        return $this->startApiCall('GetGlossaryEntry', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a model.
+     *
+     * The async variant is {@see TranslationServiceClient::getModelAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/get_model.php
+     *
+     * @param GetModelRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Model
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getModel(GetModelRequest $request, array $callOptions = []): Model
+    {
+        return $this->startApiCall('GetModel', $request, $callOptions)->wait();
     }
 
     /**
@@ -739,6 +1101,32 @@ final class TranslationServiceClient
     public function importAdaptiveMtFile(ImportAdaptiveMtFileRequest $request, array $callOptions = []): ImportAdaptiveMtFileResponse
     {
         return $this->startApiCall('ImportAdaptiveMtFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Import sentence pairs into translation Dataset.
+     *
+     * The async variant is {@see TranslationServiceClient::importDataAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/import_data.php
+     *
+     * @param ImportDataRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importData(ImportDataRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ImportData', $request, $callOptions)->wait();
     }
 
     /**
@@ -823,6 +1211,58 @@ final class TranslationServiceClient
     }
 
     /**
+     * Lists datasets.
+     *
+     * The async variant is {@see TranslationServiceClient::listDatasetsAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/list_datasets.php
+     *
+     * @param ListDatasetsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDatasets(ListDatasetsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDatasets', $request, $callOptions);
+    }
+
+    /**
+     * Lists sentence pairs in the dataset.
+     *
+     * The async variant is {@see TranslationServiceClient::listExamplesAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/list_examples.php
+     *
+     * @param ListExamplesRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listExamples(ListExamplesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListExamples', $request, $callOptions);
+    }
+
+    /**
      * Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't
      * exist.
      *
@@ -847,6 +1287,85 @@ final class TranslationServiceClient
     public function listGlossaries(ListGlossariesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListGlossaries', $request, $callOptions);
+    }
+
+    /**
+     * List the entries for the glossary.
+     *
+     * The async variant is {@see TranslationServiceClient::listGlossaryEntriesAsync()}
+     * .
+     *
+     * @example samples/V3/TranslationServiceClient/list_glossary_entries.php
+     *
+     * @param ListGlossaryEntriesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGlossaryEntries(ListGlossaryEntriesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListGlossaryEntries', $request, $callOptions);
+    }
+
+    /**
+     * Lists models.
+     *
+     * The async variant is {@see TranslationServiceClient::listModelsAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/list_models.php
+     *
+     * @param ListModelsRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listModels(ListModelsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListModels', $request, $callOptions);
+    }
+
+    /**
+     * Romanize input text written in non-Latin scripts to Latin text.
+     *
+     * The async variant is {@see TranslationServiceClient::romanizeTextAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/romanize_text.php
+     *
+     * @param RomanizeTextRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RomanizeTextResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function romanizeText(RomanizeTextRequest $request, array $callOptions = []): RomanizeTextResponse
+    {
+        return $this->startApiCall('RomanizeText', $request, $callOptions)->wait();
     }
 
     /**
@@ -899,5 +1418,59 @@ final class TranslationServiceClient
     public function translateText(TranslateTextRequest $request, array $callOptions = []): TranslateTextResponse
     {
         return $this->startApiCall('TranslateText', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a glossary. A LRO is used since the update can be async if the
+     * glossary's entry file is updated.
+     *
+     * The async variant is {@see TranslationServiceClient::updateGlossaryAsync()} .
+     *
+     * @example samples/V3/TranslationServiceClient/update_glossary.php
+     *
+     * @param UpdateGlossaryRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateGlossary(UpdateGlossaryRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateGlossary', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a glossary entry.
+     *
+     * The async variant is {@see TranslationServiceClient::updateGlossaryEntryAsync()}
+     * .
+     *
+     * @example samples/V3/TranslationServiceClient/update_glossary_entry.php
+     *
+     * @param UpdateGlossaryEntryRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GlossaryEntry
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateGlossaryEntry(UpdateGlossaryEntryRequest $request, array $callOptions = []): GlossaryEntry
+    {
+        return $this->startApiCall('UpdateGlossaryEntry', $request, $callOptions)->wait();
     }
 }
