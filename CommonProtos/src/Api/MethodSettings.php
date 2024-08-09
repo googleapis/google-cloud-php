@@ -18,6 +18,11 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
     /**
      * The fully qualified name of the method, for which the options below apply.
      * This is used to find the method to apply the options.
+     * Example:
+     *    publishing:
+     *      method_settings:
+     *      - selector: google.storage.control.v2.StorageControl.CreateFolder
+     *        # method settings for CreateFolder...
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      */
@@ -27,17 +32,14 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      * API methods for RPCs. Complements RPCs that use the annotations in
      * google/longrunning/operations.proto.
      * Example of a YAML configuration::
-     *  publishing:
-     *    method_settings:
+     *    publishing:
+     *      method_settings:
      *      - selector: google.cloud.speech.v2.Speech.BatchRecognize
      *        long_running:
-     *          initial_poll_delay:
-     *            seconds: 60 # 1 minute
+     *          initial_poll_delay: 60s # 1 minute
      *          poll_delay_multiplier: 1.5
-     *          max_poll_delay:
-     *            seconds: 360 # 6 minutes
-     *          total_poll_timeout:
-     *             seconds: 54000 # 90 minutes
+     *          max_poll_delay: 360s # 6 minutes
+     *          total_poll_timeout: 54000s # 90 minutes
      *
      * Generated from protobuf field <code>.google.api.MethodSettings.LongRunning long_running = 2;</code>
      */
@@ -47,8 +49,8 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      * automatically populated by the client libraries based on their
      * (google.api.field_info).format. Currently supported format: UUID4.
      * Example of a YAML configuration:
-     *  publishing:
-     *    method_settings:
+     *    publishing:
+     *      method_settings:
      *      - selector: google.example.v1.ExampleService.CreateExample
      *        auto_populated_fields:
      *        - request_id
@@ -66,29 +68,31 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      *     @type string $selector
      *           The fully qualified name of the method, for which the options below apply.
      *           This is used to find the method to apply the options.
+     *           Example:
+     *              publishing:
+     *                method_settings:
+     *                - selector: google.storage.control.v2.StorageControl.CreateFolder
+     *                  # method settings for CreateFolder...
      *     @type \Google\Api\MethodSettings\LongRunning $long_running
      *           Describes settings to use for long-running operations when generating
      *           API methods for RPCs. Complements RPCs that use the annotations in
      *           google/longrunning/operations.proto.
      *           Example of a YAML configuration::
-     *            publishing:
-     *              method_settings:
+     *              publishing:
+     *                method_settings:
      *                - selector: google.cloud.speech.v2.Speech.BatchRecognize
      *                  long_running:
-     *                    initial_poll_delay:
-     *                      seconds: 60 # 1 minute
+     *                    initial_poll_delay: 60s # 1 minute
      *                    poll_delay_multiplier: 1.5
-     *                    max_poll_delay:
-     *                      seconds: 360 # 6 minutes
-     *                    total_poll_timeout:
-     *                       seconds: 54000 # 90 minutes
+     *                    max_poll_delay: 360s # 6 minutes
+     *                    total_poll_timeout: 54000s # 90 minutes
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_populated_fields
      *           List of top-level fields of the request message, that should be
      *           automatically populated by the client libraries based on their
      *           (google.api.field_info).format. Currently supported format: UUID4.
      *           Example of a YAML configuration:
-     *            publishing:
-     *              method_settings:
+     *              publishing:
+     *                method_settings:
      *                - selector: google.example.v1.ExampleService.CreateExample
      *                  auto_populated_fields:
      *                  - request_id
@@ -102,6 +106,11 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
     /**
      * The fully qualified name of the method, for which the options below apply.
      * This is used to find the method to apply the options.
+     * Example:
+     *    publishing:
+     *      method_settings:
+     *      - selector: google.storage.control.v2.StorageControl.CreateFolder
+     *        # method settings for CreateFolder...
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @return string
@@ -114,6 +123,11 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
     /**
      * The fully qualified name of the method, for which the options below apply.
      * This is used to find the method to apply the options.
+     * Example:
+     *    publishing:
+     *      method_settings:
+     *      - selector: google.storage.control.v2.StorageControl.CreateFolder
+     *        # method settings for CreateFolder...
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
@@ -132,17 +146,14 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      * API methods for RPCs. Complements RPCs that use the annotations in
      * google/longrunning/operations.proto.
      * Example of a YAML configuration::
-     *  publishing:
-     *    method_settings:
+     *    publishing:
+     *      method_settings:
      *      - selector: google.cloud.speech.v2.Speech.BatchRecognize
      *        long_running:
-     *          initial_poll_delay:
-     *            seconds: 60 # 1 minute
+     *          initial_poll_delay: 60s # 1 minute
      *          poll_delay_multiplier: 1.5
-     *          max_poll_delay:
-     *            seconds: 360 # 6 minutes
-     *          total_poll_timeout:
-     *             seconds: 54000 # 90 minutes
+     *          max_poll_delay: 360s # 6 minutes
+     *          total_poll_timeout: 54000s # 90 minutes
      *
      * Generated from protobuf field <code>.google.api.MethodSettings.LongRunning long_running = 2;</code>
      * @return \Google\Api\MethodSettings\LongRunning|null
@@ -167,17 +178,14 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      * API methods for RPCs. Complements RPCs that use the annotations in
      * google/longrunning/operations.proto.
      * Example of a YAML configuration::
-     *  publishing:
-     *    method_settings:
+     *    publishing:
+     *      method_settings:
      *      - selector: google.cloud.speech.v2.Speech.BatchRecognize
      *        long_running:
-     *          initial_poll_delay:
-     *            seconds: 60 # 1 minute
+     *          initial_poll_delay: 60s # 1 minute
      *          poll_delay_multiplier: 1.5
-     *          max_poll_delay:
-     *            seconds: 360 # 6 minutes
-     *          total_poll_timeout:
-     *             seconds: 54000 # 90 minutes
+     *          max_poll_delay: 360s # 6 minutes
+     *          total_poll_timeout: 54000s # 90 minutes
      *
      * Generated from protobuf field <code>.google.api.MethodSettings.LongRunning long_running = 2;</code>
      * @param \Google\Api\MethodSettings\LongRunning $var
@@ -196,8 +204,8 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      * automatically populated by the client libraries based on their
      * (google.api.field_info).format. Currently supported format: UUID4.
      * Example of a YAML configuration:
-     *  publishing:
-     *    method_settings:
+     *    publishing:
+     *      method_settings:
      *      - selector: google.example.v1.ExampleService.CreateExample
      *        auto_populated_fields:
      *        - request_id
@@ -215,8 +223,8 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      * automatically populated by the client libraries based on their
      * (google.api.field_info).format. Currently supported format: UUID4.
      * Example of a YAML configuration:
-     *  publishing:
-     *    method_settings:
+     *    publishing:
+     *      method_settings:
      *      - selector: google.example.v1.ExampleService.CreateExample
      *        auto_populated_fields:
      *        - request_id

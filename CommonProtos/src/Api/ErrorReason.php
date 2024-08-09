@@ -576,6 +576,25 @@ class ErrorReason
      * Generated from protobuf enum <code>GCP_SUSPENDED = 30;</code>
      */
     const GCP_SUSPENDED = 30;
+    /**
+     * The request violates the location policies when creating resources in
+     * the restricted region.
+     * Example of an ErrorInfo when creating the Cloud Storage Bucket by
+     * "projects/123" for service storage.googleapis.com:
+     *     { "reason": "LOCATION_POLICY_VIOLATED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *         "consumer": "projects/123",
+     *         "service": "storage.googleapis.com",
+     *       }
+     *     }
+     * This response indicates creating the Cloud Storage Bucket in
+     * "locations/asia-northeast3" violates at least one location policy.
+     * The troubleshooting guidance is provided in the Help links.
+     *
+     * Generated from protobuf enum <code>LOCATION_POLICY_VIOLATED = 31;</code>
+     */
+    const LOCATION_POLICY_VIOLATED = 31;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -608,6 +627,7 @@ class ErrorReason
         self::ORG_RESTRICTION_HEADER_INVALID => 'ORG_RESTRICTION_HEADER_INVALID',
         self::SERVICE_NOT_VISIBLE => 'SERVICE_NOT_VISIBLE',
         self::GCP_SUSPENDED => 'GCP_SUSPENDED',
+        self::LOCATION_POLICY_VIOLATED => 'LOCATION_POLICY_VIOLATED',
     ];
 
     public static function name($value)
