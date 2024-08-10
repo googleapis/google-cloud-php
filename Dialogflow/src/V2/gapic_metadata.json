@@ -354,6 +354,11 @@
                                 "suggestFaqAnswers"
                             ]
                         },
+                        "SuggestKnowledgeAssist": {
+                            "methods": [
+                                "suggestKnowledgeAssist"
+                            ]
+                        },
                         "SuggestSmartReplies": {
                             "methods": [
                                 "suggestSmartReplies"
@@ -461,6 +466,50 @@
                 }
             }
         },
+        "Generators": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GeneratorsGapicClient",
+                    "rpcs": {
+                        "CreateGenerator": {
+                            "methods": [
+                                "createGenerator"
+                            ]
+                        },
+                        "DeleteGenerator": {
+                            "methods": [
+                                "deleteGenerator"
+                            ]
+                        },
+                        "GetGenerator": {
+                            "methods": [
+                                "getGenerator"
+                            ]
+                        },
+                        "ListGenerators": {
+                            "methods": [
+                                "listGenerators"
+                            ]
+                        },
+                        "UpdateGenerator": {
+                            "methods": [
+                                "updateGenerator"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Conversations": {
             "clients": {
                 "grpc": {
@@ -474,6 +523,11 @@
                         "CreateConversation": {
                             "methods": [
                                 "createConversation"
+                            ]
+                        },
+                        "GenerateStatelessSuggestion": {
+                            "methods": [
+                                "generateStatelessSuggestion"
                             ]
                         },
                         "GenerateStatelessSummary": {
@@ -671,6 +725,35 @@
                         "UpdateDocument": {
                             "methods": [
                                 "updateDocument"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EncryptionSpecService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EncryptionSpecServiceGapicClient",
+                    "rpcs": {
+                        "GetEncryptionSpec": {
+                            "methods": [
+                                "getEncryptionSpec"
+                            ]
+                        },
+                        "InitializeEncryptionSpec": {
+                            "methods": [
+                                "initializeEncryptionSpec"
                             ]
                         },
                         "GetLocation": {

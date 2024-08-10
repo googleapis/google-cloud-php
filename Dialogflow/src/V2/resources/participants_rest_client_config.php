@@ -133,6 +133,25 @@ return [
                     ],
                 ],
             ],
+            'SuggestKnowledgeAssist' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/conversations/*/participants/*}/suggestions:suggestKnowledgeAssist',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/conversations/*/participants/*}/suggestions:suggestKnowledgeAssist',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SuggestSmartReplies' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/conversations/*/participants/*}/suggestions:suggestSmartReplies',
