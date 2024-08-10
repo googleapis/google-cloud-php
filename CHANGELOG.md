@@ -1,5 +1,231 @@
 # Changelog
 
+## 0.254.0
+
+<details><summary>google/cloud-ai-platform 1.3.0</summary>
+
+
+
+### Features
+
+* A new field `avg_logprobs` is added to message `.google.cloud.aiplatform.v1.Candidate` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `encryption_spec` is added to message `.google.cloud.aiplatform.v1.NotebookExecutionJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `hugging_face_token` is added to message `.google.cloud.aiplatform.v1.GetPublisherModelRequest` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `routing_config` is added to message `.google.cloud.aiplatform.v1.GenerationConfig` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `sample_request` is added to message `.google.cloud.aiplatform.v1.PublisherModel` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.BatchPredictionJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.CustomJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.DataItem` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.Dataset` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.DatasetVersion` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.DeploymentResourcePool` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.EntityType` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.FeatureOnlineStore` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.Featurestore` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.FeatureView` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.FeatureViewSync` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.HyperparameterTuningJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.Index` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.IndexEndpoint` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.aiplatform.v1.NasJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.BatchPredictionJob` ([#7594](https://github.com/googleapis/google-cloud-php/issues/7594)) ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.CustomJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.DataItem` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.Dataset` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.DatasetVersion` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.DeploymentResourcePool` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.EntityType` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.FeatureOnlineStore` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.Featurestore` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.FeatureView` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.FeatureViewSync` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.HyperparameterTuningJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.Index` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.IndexEndpoint` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `satisfies_pzs` is added to message `.google.cloud.aiplatform.v1.NasJob` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `seed` is added to message `.google.cloud.aiplatform.v1.GenerationConfig` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `service_attachment` is added to message `.google.cloud.aiplatform.v1.PrivateServiceConnectConfig` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `time_series` is added to message `.google.cloud.aiplatform.v1.FeatureGroup` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `total_truncated_example_count` is added to message `.google.cloud.aiplatform.v1.SupervisedTuningDataStats` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new field `truncated_example_indices` is added to message `.google.cloud.aiplatform.v1.SupervisedTuningDataStats` ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new message `RoutingConfig` is added ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new message `TimeSeries` is added ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A new resource_definition `compute.googleapis.com/NetworkAttachment` is added ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* Allow v1 api calls for some dataset_service, llm_utility_service, and prediction_service apis without project and location ([#7584](https://github.com/googleapis/google-cloud-php/issues/7584)) ([5741c30](https://github.com/googleapis/google-cloud-php/commit/5741c3084c54c6704da68cdbc15a37b31a411ce8))
+
+
+### Documentation
+
+* A comment for enum `Strategy` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `AUTO` in enum `Mode` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `BLOCKLIST` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `MAX_TOKENS` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `OTHER` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `PROHIBITED_CONTENT` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `RECITATION` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `SAFETY` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `SPII` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `STOP` in enum `FinishReason` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for enum value `STRATEGY_UNSPECIFIED` in enum `Strategy` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+* A comment for field `model` in message `.google.cloud.aiplatform.v1.GenerateContentRequest` is changed ([b34e4f4](https://github.com/googleapis/google-cloud-php/commit/b34e4f454ddb4069ddbabccb207612c4cefa3b9f))
+
+</details>
+
+<details><summary>google/analytics-data 0.18.0</summary>
+
+
+
+### Features
+
+* Add the `Comparison` type ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+* Add the `ComparisonMetadata` type ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+* Add the `comparisons` field to the `Metadata` resource ([#7578](https://github.com/googleapis/google-cloud-php/issues/7578)) ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+* Add the `comparisons` field to the `RunReportRequest`, `RunPivotReportRequest` resources ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+
+
+### Documentation
+
+* A comment for field `custom_definition` in message `DimensionMetadata` is changed ([c215263](https://github.com/googleapis/google-cloud-php/commit/c215263c7aefdf56a29f56cc3a62e408d0e3111f))
+
+</details>
+
+<details><summary>google/cloud-batch 1.0.1</summary>
+
+
+
+### Documentation
+
+* Refine usage scope for fields `task_execution` and `task_state` in StatusEvent ([#7583](https://github.com/googleapis/google-cloud-php/issues/7583)) ([d8dde84](https://github.com/googleapis/google-cloud-php/commit/d8dde841509c15156c5e8e54cd6ed87d1c90baae))
+
+</details>
+
+<details><summary>google/common-protos 4.8.1</summary>
+
+
+
+### Bug Fixes
+
+* Ensure common-protos is up-to-date ([#7591](https://github.com/googleapis/google-cloud-php/issues/7591)) ([3d20307](https://github.com/googleapis/google-cloud-php/commit/3d20307b9e280072650f23832cd3bfdb1eaa3521))
+
+</details>
+
+<details><summary>google/cloud-core 1.59.1</summary>
+
+
+
+### Bug Fixes
+
+* Prevent fatal error when using emulator without grpc ([#7588](https://github.com/googleapis/google-cloud-php/issues/7588)) ([8563ba4](https://github.com/googleapis/google-cloud-php/commit/8563ba4bae2e886ecc764dacdafda73863d0f11f))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.1.1</summary>
+
+
+
+### Documentation
+
+* Very minor documentation updates ([#7592](https://github.com/googleapis/google-cloud-php/issues/7592)) ([80addd3](https://github.com/googleapis/google-cloud-php/commit/80addd3f42154f404cfdade705d487f6a403f065))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.13.0</summary>
+
+
+
+### Features
+
+* Add GenerateStatelessSuggestion related endpoints and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add GenerateStatelessSuggestion related endpoints and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add GenerateStatelessSuggestion related endpoints and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add Generator related services and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add Generator related services and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add Generator related services and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add Proactive Generative Knowledge Assist endpoints and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add Proactive Generative Knowledge Assist endpoints and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+* Add Proactive Generative Knowledge Assist endpoints and types ([02d7bf9](https://github.com/googleapis/google-cloud-php/commit/02d7bf92bf219738bb5adec20f28fdfa94b8918e))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.18.0</summary>
+
+
+
+### Features
+
+* Add the TagResources API ([#7585](https://github.com/googleapis/google-cloud-php/issues/7585)) ([95491b1](https://github.com/googleapis/google-cloud-php/commit/95491b1eeb8d005e099639110b1aaae7b13f2e62))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.45.0</summary>
+
+
+
+### Features
+
+* Expose the `FindNearest.distance_result_field` parameter ([#7589](https://github.com/googleapis/google-cloud-php/issues/7589)) ([39a378c](https://github.com/googleapis/google-cloud-php/commit/39a378c88032c5eef2f10d3a8e73567d896b3bf4))
+* Expose the `FindNearest.distance_threshold` parameter ([39a378c](https://github.com/googleapis/google-cloud-php/commit/39a378c88032c5eef2f10d3a8e73567d896b3bf4))
+
+</details>
+
+<details><summary>google/cloud-functions 1.7.0</summary>
+
+
+
+### Features
+
+* Additional field on the output that specified whether the deployment supports Physical Zone Separation. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* Generate upload URL now supports for specifying the GCF generation that the generated upload url will be used for. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* ListRuntimes response now includes deprecation and decommissioning dates. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* Optional field for binary authorization policy. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* Optional field for deploying a source from a GitHub repository. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* Optional field for specifying a revision on GetFunction. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* Optional field for specifying a service account to use for the build. This helps navigate the change of historical default on new projects. For more details, see https://cloud.google.com/build/docs/cloud-build-service-account-updates ([#7590](https://github.com/googleapis/google-cloud-php/issues/7590)) ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+* Optional fields for setting up automatic base image updates. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+
+
+### Documentation
+
+* Refined description in several fields. ([7d6cbc8](https://github.com/googleapis/google-cloud-php/commit/7d6cbc8ba5a99e6921bfc114f605b7d83cb74474))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.32.0</summary>
+
+
+
+### Features
+
+* Enable Dynamic Mute ([#7581](https://github.com/googleapis/google-cloud-php/issues/7581)) ([b524991](https://github.com/googleapis/google-cloud-php/commit/b5249915147ad0b2cc24c3713cb90283dae6dc00))
+* New values `EXPLOITATION_FOR_PRIVILEGE_ESCALATION` corresponding to T1068 and `INDICATOR_REMOVAL_FILE_DELETION` corresponding to T1070.004 are added to enum `Technique` ([b524991](https://github.com/googleapis/google-cloud-php/commit/b5249915147ad0b2cc24c3713cb90283dae6dc00))
+
+
+### Documentation
+
+* T1068 is added for value `EXPLOITATION_FOR_PRIVILEGE_ESCALATION` and T1070.004 is added for value `INDICATOR_REMOVAL_FILE_DELETION` for enum `Technique ([b524991](https://github.com/googleapis/google-cloud-php/commit/b5249915147ad0b2cc24c3713cb90283dae6dc00))
+
+</details>
+
+<details><summary>google/cloud-translate 1.18.0</summary>
+
+
+
+### Features
+
+* Adds AdaptiveMt HTML/Glossary support ([#7582](https://github.com/googleapis/google-cloud-php/issues/7582)) ([1c33473](https://github.com/googleapis/google-cloud-php/commit/1c334738dcc4b40e4559bd74e01791329b7d4f26))
+* Adds protos for Custom Translation API (AutoML) ([1c33473](https://github.com/googleapis/google-cloud-php/commit/1c334738dcc4b40e4559bd74e01791329b7d4f26))
+* Adds protos for Romanization APIs ([1c33473](https://github.com/googleapis/google-cloud-php/commit/1c334738dcc4b40e4559bd74e01791329b7d4f26))
+* Adds protos for Transliteration in V3 Advanced translate text ([1c33473](https://github.com/googleapis/google-cloud-php/commit/1c334738dcc4b40e4559bd74e01791329b7d4f26))
+
+
+### Documentation
+
+* Fixes typos in docs ([1c33473](https://github.com/googleapis/google-cloud-php/commit/1c334738dcc4b40e4559bd74e01791329b7d4f26))
+
+</details>
+
 ## 0.253.0
 
 <details><summary>google/cloud-access-approval 2.0.0-RC1</summary>
