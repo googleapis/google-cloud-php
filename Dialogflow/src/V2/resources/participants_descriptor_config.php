@@ -110,6 +110,18 @@ return [
                     ],
                 ],
             ],
+            'SuggestKnowledgeAssist' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SuggestSmartReplies' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse',

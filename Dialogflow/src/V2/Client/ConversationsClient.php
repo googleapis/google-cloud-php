@@ -36,6 +36,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
@@ -64,6 +66,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
@@ -225,6 +228,25 @@ final class ConversationsClient
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName(string $project, string $location, string $generator): string
+    {
+        return self::getPathTemplate('generator')->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
         ]);
     }
 
@@ -562,6 +584,7 @@ final class ConversationsClient
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
@@ -741,6 +764,34 @@ final class ConversationsClient
     public function createConversation(CreateConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('CreateConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates and returns a suggestion for a conversation that does not have a
+     * resource created for it.
+     *
+     * The async variant is
+     * {@see ConversationsClient::generateStatelessSuggestionAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/generate_stateless_suggestion.php
+     *
+     * @param GenerateStatelessSuggestionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateStatelessSuggestionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateStatelessSuggestion(GenerateStatelessSuggestionRequest $request, array $callOptions = []): GenerateStatelessSuggestionResponse
+    {
+        return $this->startApiCall('GenerateStatelessSuggestion', $request, $callOptions)->wait();
     }
 
     /**

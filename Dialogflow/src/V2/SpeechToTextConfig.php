@@ -56,6 +56,42 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
+     * Audio encoding of the audio content to process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 6;</code>
+     */
+    private $audio_encoding = 0;
+    /**
+     * Sample rate (in Hertz) of the audio content sent in the query.
+     * Refer to [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     * more details.
+     *
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 7;</code>
+     */
+    private $sample_rate_hertz = 0;
+    /**
+     * The language of the supplied audio. Dialogflow does not do
+     * translations. See [Language
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
+     *
+     * Generated from protobuf field <code>string language_code = 8;</code>
+     */
+    private $language_code = '';
+    /**
+     * If `true`, Dialogflow returns
+     * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     * with information about the recognized speech words, e.g. start and end time
+     * offsets. If false or unspecified, Speech doesn't return any word-level
+     * information.
+     *
+     * Generated from protobuf field <code>bool enable_word_info = 9;</code>
+     */
+    private $enable_word_info = false;
+    /**
      * Use timeout based endpointing, interpreting endpointer sensitivy as
      * seconds of timeout value.
      *
@@ -100,6 +136,26 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           [Agent Speech
      *           settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
      *           for model selection.
+     *     @type int $audio_encoding
+     *           Audio encoding of the audio content to process.
+     *     @type int $sample_rate_hertz
+     *           Sample rate (in Hertz) of the audio content sent in the query.
+     *           Refer to [Cloud Speech API
+     *           documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     *           more details.
+     *     @type string $language_code
+     *           The language of the supplied audio. Dialogflow does not do
+     *           translations. See [Language
+     *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     *           for a list of the currently supported language codes. Note that queries in
+     *           the same session do not necessarily need to specify the same language.
+     *     @type bool $enable_word_info
+     *           If `true`, Dialogflow returns
+     *           [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     *           [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     *           with information about the recognized speech words, e.g. start and end time
+     *           offsets. If false or unspecified, Speech doesn't return any word-level
+     *           information.
      *     @type bool $use_timeout_based_endpointing
      *           Use timeout based endpointing, interpreting endpointer sensitivy as
      *           seconds of timeout value.
@@ -212,6 +268,134 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Audio encoding of the audio content to process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 6;</code>
+     * @return int
+     */
+    public function getAudioEncoding()
+    {
+        return $this->audio_encoding;
+    }
+
+    /**
+     * Audio encoding of the audio content to process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAudioEncoding($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\AudioEncoding::class);
+        $this->audio_encoding = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sample rate (in Hertz) of the audio content sent in the query.
+     * Refer to [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     * more details.
+     *
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 7;</code>
+     * @return int
+     */
+    public function getSampleRateHertz()
+    {
+        return $this->sample_rate_hertz;
+    }
+
+    /**
+     * Sample rate (in Hertz) of the audio content sent in the query.
+     * Refer to [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     * more details.
+     *
+     * Generated from protobuf field <code>int32 sample_rate_hertz = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSampleRateHertz($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->sample_rate_hertz = $var;
+
+        return $this;
+    }
+
+    /**
+     * The language of the supplied audio. Dialogflow does not do
+     * translations. See [Language
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
+     *
+     * Generated from protobuf field <code>string language_code = 8;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * The language of the supplied audio. Dialogflow does not do
+     * translations. See [Language
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
+     *
+     * Generated from protobuf field <code>string language_code = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `true`, Dialogflow returns
+     * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     * with information about the recognized speech words, e.g. start and end time
+     * offsets. If false or unspecified, Speech doesn't return any word-level
+     * information.
+     *
+     * Generated from protobuf field <code>bool enable_word_info = 9;</code>
+     * @return bool
+     */
+    public function getEnableWordInfo()
+    {
+        return $this->enable_word_info;
+    }
+
+    /**
+     * If `true`, Dialogflow returns
+     * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
+     * [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult]
+     * with information about the recognized speech words, e.g. start and end time
+     * offsets. If false or unspecified, Speech doesn't return any word-level
+     * information.
+     *
+     * Generated from protobuf field <code>bool enable_word_info = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableWordInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_word_info = $var;
 
         return $this;
     }
