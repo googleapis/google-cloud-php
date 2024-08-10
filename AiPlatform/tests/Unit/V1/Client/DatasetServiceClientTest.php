@@ -140,6 +140,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -149,6 +151,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -291,12 +295,16 @@ class DatasetServiceClientTest extends GeneratedTest
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -983,6 +991,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -992,6 +1002,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
@@ -1059,12 +1071,16 @@ class DatasetServiceClientTest extends GeneratedTest
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
@@ -1625,12 +1641,16 @@ class DatasetServiceClientTest extends GeneratedTest
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1819,6 +1839,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1828,6 +1850,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataset = new Dataset();
@@ -1911,12 +1935,16 @@ class DatasetServiceClientTest extends GeneratedTest
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
         $displayName = 'displayName1615086568';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $datasetVersion = new DatasetVersion();
@@ -2340,6 +2368,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
         $modelReference = 'modelReference-1502407243';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2349,6 +2379,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
         $expectedResponse->setModelReference($modelReference);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

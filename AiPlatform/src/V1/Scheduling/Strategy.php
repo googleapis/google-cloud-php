@@ -8,8 +8,8 @@ use UnexpectedValueException;
 
 /**
  * Optional. This determines which type of scheduling strategy to use. Right
- * now users have two options such as ON_DEMAND which will use regular on
- * demand resources to schedule the job, the other is LOW_COST which would
+ * now users have two options such as STANDARD which will use regular on
+ * demand resources to schedule the job, the other is SPOT which would
  * leverage spot resources alongwith regular resources to schedule
  * the job.
  *
@@ -18,7 +18,7 @@ use UnexpectedValueException;
 class Strategy
 {
     /**
-     * Strategy will default to ON_DEMAND.
+     * Strategy will default to STANDARD.
      *
      * Generated from protobuf enum <code>STRATEGY_UNSPECIFIED = 0;</code>
      */
@@ -26,7 +26,7 @@ class Strategy
     /**
      * Regular on-demand provisioning strategy.
      *
-     * Generated from protobuf enum <code>ON_DEMAND = 1;</code>
+     * Generated from protobuf enum <code>ON_DEMAND = 1 [deprecated = true];</code>
      */
     const ON_DEMAND = 1;
     /**

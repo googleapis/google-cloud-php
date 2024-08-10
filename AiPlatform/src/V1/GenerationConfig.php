@@ -64,6 +64,12 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     protected $frequency_penalty = null;
     /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $seed = null;
+    /**
      * Optional. Output response mimetype of the generated candidate text.
      * Supported mimetype:
      * - `text/plain`: (default) Text output.
@@ -87,6 +93,12 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $response_schema = null;
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $routing_config = null;
 
     /**
      * Constructor.
@@ -110,6 +122,8 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Positive penalties.
      *     @type float $frequency_penalty
      *           Optional. Frequency penalties.
+     *     @type int $seed
+     *           Optional. Seed.
      *     @type string $response_mime_type
      *           Optional. Output response mimetype of the generated candidate text.
      *           Supported mimetype:
@@ -126,6 +140,8 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           If set, a compatible response_mime_type must also be set.
      *           Compatible mimetypes:
      *           `application/json`: Schema for JSON response.
+     *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
+     *           Optional. Routing configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -412,6 +428,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSeed()
+    {
+        return isset($this->seed) ? $this->seed : 0;
+    }
+
+    public function hasSeed()
+    {
+        return isset($this->seed);
+    }
+
+    public function clearSeed()
+    {
+        unset($this->seed);
+    }
+
+    /**
+     * Optional. Seed.
+     *
+     * Generated from protobuf field <code>optional int32 seed = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeed($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->seed = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Output response mimetype of the generated candidate text.
      * Supported mimetype:
      * - `text/plain`: (default) Text output.
@@ -493,6 +545,42 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->response_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig|null
+     */
+    public function getRoutingConfig()
+    {
+        return $this->routing_config;
+    }
+
+    public function hasRoutingConfig()
+    {
+        return isset($this->routing_config);
+    }
+
+    public function clearRoutingConfig()
+    {
+        unset($this->routing_config);
+    }
+
+    /**
+     * Optional. Routing configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig routing_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $var
+     * @return $this
+     */
+    public function setRoutingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
+        $this->routing_config = $var;
 
         return $this;
     }
