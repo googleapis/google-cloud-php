@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Barrier runnable blocks until all tasks in a taskgroup reach it.
+ * A barrier runnable automatically blocks the execution of subsequent
+ * runnables until all the tasks in the task group reach the barrier.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.Runnable.Barrier</code>
  */

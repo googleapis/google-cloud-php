@@ -79,9 +79,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           You can also use Batch customized image in short names.
      *           The following image values are supported for a boot disk:
      *           * `batch-debian`: use Batch Debian images.
-     *           * `batch-centos`: use Batch CentOS images.
      *           * `batch-cos`: use Batch Container-Optimized images.
-     *           * `batch-hpc-centos`: use Batch HPC CentOS images.
      *           * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *     @type string $snapshot
      *           Name of a snapshot used as the data source.
@@ -134,9 +132,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
      * * `batch-debian`: use Batch Debian images.
-     * * `batch-centos`: use Batch CentOS images.
      * * `batch-cos`: use Batch Container-Optimized images.
-     * * `batch-hpc-centos`: use Batch HPC CentOS images.
      * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
@@ -162,9 +158,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * You can also use Batch customized image in short names.
      * The following image values are supported for a boot disk:
      * * `batch-debian`: use Batch Debian images.
-     * * `batch-centos`: use Batch CentOS images.
      * * `batch-cos`: use Batch Container-Optimized images.
-     * * `batch-hpc-centos`: use Batch HPC CentOS images.
      * * `batch-hpc-rocky`: use Batch HPC Rocky Linux images.
      *
      * Generated from protobuf field <code>string image = 4;</code>
