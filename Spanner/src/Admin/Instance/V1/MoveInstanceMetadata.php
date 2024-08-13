@@ -10,32 +10,35 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Metadata type for the operation returned by
- * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig].
+ * [MoveInstance][google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance].
  *
- * Generated from protobuf message <code>google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata</code>
+ * Generated from protobuf message <code>google.spanner.admin.instance.v1.MoveInstanceMetadata</code>
  */
-class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
+class MoveInstanceMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The desired instance configuration after updating.
+     * The target instance configuration where to move the instance.
+     * Values are of the form `projects/<project>/instanceConfigs/<config>`.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
+     * Generated from protobuf field <code>string target_config = 1;</code>
      */
-    protected $instance_config = null;
+    private $target_config = '';
     /**
      * The progress of the
-     * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
+     * [MoveInstance][google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance]
      * operation.
+     * [progress_percent][google.spanner.admin.instance.v1.OperationProgress.progress_percent]
+     * is reset when cancellation is requested.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
      */
-    protected $progress = null;
+    private $progress = null;
     /**
      * The time at which this operation was cancelled.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      */
-    protected $cancel_time = null;
+    private $cancel_time = null;
 
     /**
      * Constructor.
@@ -43,12 +46,15 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instance_config
-     *           The desired instance configuration after updating.
+     *     @type string $target_config
+     *           The target instance configuration where to move the instance.
+     *           Values are of the form `projects/<project>/instanceConfigs/<config>`.
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress $progress
      *           The progress of the
-     *           [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
+     *           [MoveInstance][google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance]
      *           operation.
+     *           [progress_percent][google.spanner.admin.instance.v1.OperationProgress.progress_percent]
+     *           is reset when cancellation is requested.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which this operation was cancelled.
      * }
@@ -59,45 +65,39 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired instance configuration after updating.
+     * The target instance configuration where to move the instance.
+     * Values are of the form `projects/<project>/instanceConfigs/<config>`.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
-     * @return \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig|null
+     * Generated from protobuf field <code>string target_config = 1;</code>
+     * @return string
      */
-    public function getInstanceConfig()
+    public function getTargetConfig()
     {
-        return $this->instance_config;
-    }
-
-    public function hasInstanceConfig()
-    {
-        return isset($this->instance_config);
-    }
-
-    public function clearInstanceConfig()
-    {
-        unset($this->instance_config);
+        return $this->target_config;
     }
 
     /**
-     * The desired instance configuration after updating.
+     * The target instance configuration where to move the instance.
+     * Values are of the form `projects/<project>/instanceConfigs/<config>`.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 1;</code>
-     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $var
+     * Generated from protobuf field <code>string target_config = 1;</code>
+     * @param string $var
      * @return $this
      */
-    public function setInstanceConfig($var)
+    public function setTargetConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig::class);
-        $this->instance_config = $var;
+        GPBUtil::checkString($var, True);
+        $this->target_config = $var;
 
         return $this;
     }
 
     /**
      * The progress of the
-     * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
+     * [MoveInstance][google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance]
      * operation.
+     * [progress_percent][google.spanner.admin.instance.v1.OperationProgress.progress_percent]
+     * is reset when cancellation is requested.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress|null
@@ -119,8 +119,10 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
+     * [MoveInstance][google.spanner.admin.instance.v1.InstanceAdmin.MoveInstance]
      * operation.
+     * [progress_percent][google.spanner.admin.instance.v1.OperationProgress.progress_percent]
+     * is reset when cancellation is requested.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress $var
