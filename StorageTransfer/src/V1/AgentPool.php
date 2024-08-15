@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an On-Premises Agent pool.
+ * Represents an agent pool.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.AgentPool</code>
  */

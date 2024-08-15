@@ -60,8 +60,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     private $transfer_spec = null;
     /**
-     * Notification configuration. This is not supported for transfers involving
-     * PosixFilesystem.
+     * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      */
@@ -161,8 +160,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\StorageTransfer\V1\TransferSpec $transfer_spec
      *           Transfer specification.
      *     @type \Google\Cloud\StorageTransfer\V1\NotificationConfig $notification_config
-     *           Notification configuration. This is not supported for transfers involving
-     *           PosixFilesystem.
+     *           Notification configuration.
      *     @type \Google\Cloud\StorageTransfer\V1\LoggingConfig $logging_config
      *           Logging configuration.
      *     @type \Google\Cloud\StorageTransfer\V1\Schedule $schedule
@@ -351,8 +349,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Notification configuration. This is not supported for transfers involving
-     * PosixFilesystem.
+     * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      * @return \Google\Cloud\StorageTransfer\V1\NotificationConfig|null
@@ -373,8 +370,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Notification configuration. This is not supported for transfers involving
-     * PosixFilesystem.
+     * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      * @param \Google\Cloud\StorageTransfer\V1\NotificationConfig $var
