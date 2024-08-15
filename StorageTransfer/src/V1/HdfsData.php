@@ -23,7 +23,7 @@ class HdfsData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    protected $path = '';
+    private $path = '';
 
     /**
      * Constructor.
