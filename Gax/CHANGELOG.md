@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.1](https://github.com/googleapis/gax-php/compare/v1.34.0...v1.34.1) (2024-08-13)
+
+
+### Bug Fixes
+
+* Disable universe domain check for MDS ([#575](https://github.com/googleapis/gax-php/issues/575)) ([a47a469](https://github.com/googleapis/gax-php/commit/a47a469d9ef76613c5d320539646323a5e7b978d))
+
 ## [1.34.0](https://github.com/googleapis/gax-php/compare/v1.33.0...v1.34.0) (2024-05-29)
 
 
