@@ -17,7 +17,7 @@ class Example extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the example, in form of
-     * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}'
+     * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -49,7 +49,7 @@ class Example extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the example, in form of
-     *           `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}'
+     *           `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}`
      *     @type string $source_text
      *           Sentence in source language.
      *     @type string $target_text
@@ -65,7 +65,7 @@ class Example extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the example, in form of
-     * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}'
+     * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -77,7 +77,7 @@ class Example extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the example, in form of
-     * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}'
+     * `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
