@@ -16,10 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class TaskSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The sequence of scripts or containers to run for this Task. Each Task using
-     * this TaskSpec executes its list of runnables in order. The Task succeeds if
-     * all of its runnables either exit with a zero status or any that exit with a
-     * non-zero status have the ignore_exit_status flag.
+     * Required. The sequence of one or more runnables (executable scripts,
+     * executable containers, and/or barriers) for each task in this task group to
+     * run. Each task runs this list of runnables in order. For a task to succeed,
+     * all of its script and container runnables each must either exit with a zero
+     * status or enable the `ignore_exit_status` subfield and exit with any
+     * status.
      * Background runnables are killed automatically (if they have not already
      * exited) a short time after all foreground runnables have completed. Even
      * though this is likely to result in a non-zero exit status for the
@@ -97,10 +99,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Batch\V1\Runnable>|\Google\Protobuf\Internal\RepeatedField $runnables
-     *           The sequence of scripts or containers to run for this Task. Each Task using
-     *           this TaskSpec executes its list of runnables in order. The Task succeeds if
-     *           all of its runnables either exit with a zero status or any that exit with a
-     *           non-zero status have the ignore_exit_status flag.
+     *           Required. The sequence of one or more runnables (executable scripts,
+     *           executable containers, and/or barriers) for each task in this task group to
+     *           run. Each task runs this list of runnables in order. For a task to succeed,
+     *           all of its script and container runnables each must either exit with a zero
+     *           status or enable the `ignore_exit_status` subfield and exit with any
+     *           status.
      *           Background runnables are killed automatically (if they have not already
      *           exited) a short time after all foreground runnables have completed. Even
      *           though this is likely to result in a non-zero exit status for the
@@ -145,10 +149,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sequence of scripts or containers to run for this Task. Each Task using
-     * this TaskSpec executes its list of runnables in order. The Task succeeds if
-     * all of its runnables either exit with a zero status or any that exit with a
-     * non-zero status have the ignore_exit_status flag.
+     * Required. The sequence of one or more runnables (executable scripts,
+     * executable containers, and/or barriers) for each task in this task group to
+     * run. Each task runs this list of runnables in order. For a task to succeed,
+     * all of its script and container runnables each must either exit with a zero
+     * status or enable the `ignore_exit_status` subfield and exit with any
+     * status.
      * Background runnables are killed automatically (if they have not already
      * exited) a short time after all foreground runnables have completed. Even
      * though this is likely to result in a non-zero exit status for the
@@ -164,10 +170,12 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sequence of scripts or containers to run for this Task. Each Task using
-     * this TaskSpec executes its list of runnables in order. The Task succeeds if
-     * all of its runnables either exit with a zero status or any that exit with a
-     * non-zero status have the ignore_exit_status flag.
+     * Required. The sequence of one or more runnables (executable scripts,
+     * executable containers, and/or barriers) for each task in this task group to
+     * run. Each task runs this list of runnables in order. For a task to succeed,
+     * all of its script and container runnables each must either exit with a zero
+     * status or enable the `ignore_exit_status` subfield and exit with any
+     * status.
      * Background runnables are killed automatically (if they have not already
      * exited) a short time after all foreground runnables have completed. Even
      * though this is likely to result in a non-zero exit status for the
