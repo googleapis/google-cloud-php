@@ -23,7 +23,7 @@ class StreamingSynthesizeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes audio_content = 1;</code>
      */
-    protected $audio_content = '';
+    private $audio_content = '';
 
     /**
      * Constructor.
