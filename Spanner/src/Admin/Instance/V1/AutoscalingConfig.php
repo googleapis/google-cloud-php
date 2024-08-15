@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Autoscaling config for an instance.
+ * Autoscaling configuration for an instance.
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.AutoscalingConfig</code>
  */

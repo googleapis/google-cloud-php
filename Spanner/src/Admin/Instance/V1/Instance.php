@@ -128,6 +128,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Optional. The `Edition` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $edition = 0;
 
     /**
      * Constructor.
@@ -204,6 +210,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which the instance was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time at which the instance was most recently updated.
+     *     @type int $edition
+     *           Optional. The `Edition` of the current instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -617,6 +625,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The `Edition` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Optional. The `Edition` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\Edition::class);
+        $this->edition = $var;
 
         return $this;
     }
