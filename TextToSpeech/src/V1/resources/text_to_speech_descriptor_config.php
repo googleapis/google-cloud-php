@@ -27,6 +27,13 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\TextToSpeech\V1\ListVoicesResponse',
             ],
+            'StreamingSynthesize' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\TextToSpeech\V1\StreamingSynthesizeResponse',
+            ],
             'SynthesizeSpeech' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse',

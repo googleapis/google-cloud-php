@@ -25,6 +25,7 @@
 namespace Google\Cloud\TextToSpeech\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -35,6 +36,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\ListVoicesRequest;
 use Google\Cloud\TextToSpeech\V1\ListVoicesResponse;
+use Google\Cloud\TextToSpeech\V1\StreamingSynthesizeRequest;
+use Google\Cloud\TextToSpeech\V1\StreamingSynthesizeResponse;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechRequest;
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse;
@@ -313,6 +316,72 @@ class TextToSpeechGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Performs bidirectional streaming speech synthesis: receive audio while
+     * sending text.
+     *
+     * Sample code:
+     * ```
+     * $textToSpeechClient = new TextToSpeechClient();
+     * try {
+     *     $request = new StreamingSynthesizeRequest();
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $textToSpeechClient->streamingSynthesize();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *     // Alternatively:
+     *     // Write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $requests = [
+     *         $request,
+     *     ];
+     *     $stream = $textToSpeechClient->streamingSynthesize();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $textToSpeechClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\BidiStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function streamingSynthesize(array $optionalArgs = [])
+    {
+        return $this->startCall(
+            'StreamingSynthesize',
+            StreamingSynthesizeResponse::class,
+            $optionalArgs,
+            null,
+            Call::BIDI_STREAMING_CALL
+        );
     }
 
     /**

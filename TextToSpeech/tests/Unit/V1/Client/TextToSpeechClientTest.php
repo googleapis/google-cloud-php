@@ -23,6 +23,7 @@
 namespace Google\Cloud\TextToSpeech\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -31,6 +32,8 @@ use Google\Cloud\TextToSpeech\V1\AudioEncoding;
 use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\ListVoicesRequest;
 use Google\Cloud\TextToSpeech\V1\ListVoicesResponse;
+use Google\Cloud\TextToSpeech\V1\StreamingSynthesizeRequest;
+use Google\Cloud\TextToSpeech\V1\StreamingSynthesizeResponse;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechRequest;
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse;
@@ -110,6 +113,100 @@ class TextToSpeechClientTest extends GeneratedTest
         try {
             $gapicClient->listVoices($request);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamingSynthesizeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $audioContent = '16';
+        $expectedResponse = new StreamingSynthesizeResponse();
+        $expectedResponse->setAudioContent($audioContent);
+        $transport->addResponse($expectedResponse);
+        $audioContent2 = '-61';
+        $expectedResponse2 = new StreamingSynthesizeResponse();
+        $expectedResponse2->setAudioContent($audioContent2);
+        $transport->addResponse($expectedResponse2);
+        $audioContent3 = '-60';
+        $expectedResponse3 = new StreamingSynthesizeResponse();
+        $expectedResponse3->setAudioContent($audioContent3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $request = new StreamingSynthesizeRequest();
+        $request2 = new StreamingSynthesizeRequest();
+        $request3 = new StreamingSynthesizeRequest();
+        $bidi = $gapicClient->streamingSynthesize();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([
+            $request2,
+            $request3,
+        ]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.texttospeech.v1.TextToSpeech/StreamingSynthesize', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamingSynthesizeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->streamingSynthesize();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
