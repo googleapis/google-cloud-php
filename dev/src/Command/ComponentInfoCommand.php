@@ -297,7 +297,13 @@ class ComponentInfoCommand extends Command
                 '!=' => ($row[$field] !== $value),
                 '~=' => strpos($row[$field], $value) !== false,
                 '!~=' => strpos($row[$field], $value) === false,
-                '>','<','>=','<=' => version_compare($row[$field], $value, $operator),
+                '>','<','>=','<=' => match($field) {
+                    'downloads' => version_compare(
+                        str_replace(',' , '', $row[$field]),
+                        $value,
+                        $operator),
+                    default => version_compare($row[$field], $value, $operator),
+                },
             }) {
                 return true; // filter out the row
             }
