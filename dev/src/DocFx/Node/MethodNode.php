@@ -148,6 +148,12 @@ class MethodNode
         return $this->isStatic() ? 'static::' . $this->getName() : $this->getName();
     }
 
+    public function getProtoPath(string $package = null): string
+    {
+        return ($package ? $package . '.' : '')
+            . strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', substr($this->getName(), 3)));
+    }
+
     public function getContent(): string
     {
         $content = $this->getDocblockContent();

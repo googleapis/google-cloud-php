@@ -38,6 +38,7 @@ class DocFxCommand extends Command
 {
     use XrefValidationTrait;
 
+    private string $componentName;
     private array $composerJson;
     private array $repoMetadataJson;
 
@@ -73,9 +74,9 @@ class DocFxCommand extends Command
             throw new RuntimeException('This command must be run on PHP 8.0 or above');
         }
 
-        $componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
-        $component = new Component($componentName, $input->getOption('component-path'));
-        $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
+        $this->componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
+        $component = new Component($this->componentName, $input->getOption('component-path'));
+        $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $this->componentName));
         $xml = $input->getOption('xml');
         $outDir = $input->getOption('out');
         if (empty($xml)) {
@@ -225,6 +226,7 @@ class DocFxCommand extends Command
         $valid = true;
         $emptyRef = '<options=bold>empty</>';
         $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
+        $warnings = [];
         foreach (array_merge([$class], $class->getMethods(), $class->getConstants()) as $node) {
             foreach ($this->getInvalidXrefs($node->getContent()) as $invalidRef) {
                 if (isset(self::$allowedReferenceFailures[$node->getFullname()])
@@ -236,10 +238,9 @@ class DocFxCommand extends Command
                 $valid = false;
             }
             foreach ($this->getBrokenXrefs($node->getContent()) as $brokenRef) {
-                $output->writeln(
-                    sprintf('<comment>Broken xref in %s: %s</>', $node->getFullname(), $brokenRef ?: $emptyRef),
-                    $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL
-                );
+                $nodePath = $isGenerated ? $node->getProtoPath($class->getProtoPath()) : $node->getFullname();
+                $brokenRef = $isGenerated ? $this->classnameToProtobufPath((string) $brokenRef) : $brokenRef;
+                $warnings[] = sprintf('[%s] <comment>Broken xref in %s: <options=bold>%s</></>', $this->componentName, $nodePath, $brokenRef ?: $emptyRef);
                 // generated classes are allowed to have broken xrefs
                 if ($isGenerated) {
                     continue;
@@ -247,9 +248,41 @@ class DocFxCommand extends Command
                 $valid = false;
             }
         }
-        if (!$valid) {
+        if (!$valid || count($warnings) > 0) {
             $output->writeln('');
         }
+        foreach ($warnings as $warning) {
+            $output->writeln($warning, $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL);
+        }
         return $valid;
+    }
+
+    private function classnameToProtobufPath(string $ref): string
+    {
+        // remove leading and trailing slashes and parentheses
+        $ref = trim(trim($ref, '\\'), '()');
+        // convert methods to snake case
+        if (strpos($ref, '::set') !== false || strpos($ref, '::get') !== false) {
+            $parts = explode('::', $ref);
+            $ref = $parts[0] . '.' . strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', substr($parts[1], 3)));
+        }
+
+        // convert namespace separators and function calls to dots
+        $ref = str_replace(['\\', '::'], '.', $ref);
+
+        // lowercase the namespace
+        $parts = explode('.', $ref);
+        foreach ($parts as $i => $part) {
+            if (preg_match(Component::VERSION_REGEX, $part) || $part === 'Master') {
+                for ($j = 0; $j <= $i; $j++) {
+                    $parts[$j] = strtolower($parts[$j]);
+                }
+                $ref = implode('.', $parts);
+                break;
+            }
+        }
+
+        // convert namespace to lowercase
+        return false === strpos($ref, '.') ? strtolower($ref) : $ref;
     }
 }

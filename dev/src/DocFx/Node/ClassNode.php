@@ -246,6 +246,25 @@ class ClassNode
         return null;
     }
 
+    public function getProtoPath(): ?string
+    {
+        if ($this->isProtobufMessageClass()) {
+            if ($generatedFrom = (string) $this->xmlNode?->docblock?->{'long-description'}) {
+                if (preg_match('/Generated from protobuf message <code>(.*)<\/code>/', $generatedFrom, $matches)) {
+                    return $matches[1];
+                }
+            }
+
+            return null;
+        }
+
+        if ($this->isServiceClass()) {
+            return $this->getProtoPackage() . '.' . $this->getName();
+        }
+
+        return null;
+    }
+
     public function setProtoPackages(array $protoPackages)
     {
         $this->protoPackages = $protoPackages;

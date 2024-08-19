@@ -89,10 +89,12 @@ trait XrefValidationTrait
                         if (method_exists($class, $method)) {
                             return;
                         }
+
                         // Assume it's a magic Async method
                         if ('Async' === substr($method, -5)) {
                             return;
                         }
+
                     } elseif (defined($matches[1])) {
                         // Valid constant reference
                         return;
