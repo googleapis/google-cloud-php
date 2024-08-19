@@ -1,5 +1,199 @@
 # Changelog
 
+## 0.255.0
+
+<details><summary>google/cloud-access-approval 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 1.0.2</summary>
+
+
+
+### Documentation
+
+* Batch CentOS images and HPC CentOS images are EOS ([#7597](https://github.com/googleapis/google-cloud-php/issues/7597)) ([fa1f59a](https://github.com/googleapis/google-cloud-php/commit/fa1f59af6600b6ad969c959b492969ef9903a888))
+* Clarify required fields for Runnable.Container ([fa1f59a](https://github.com/googleapis/google-cloud-php/commit/fa1f59af6600b6ad969c959b492969ef9903a888))
+* Clarify required oneof fields for Runnable.Script ([fa1f59a](https://github.com/googleapis/google-cloud-php/commit/fa1f59af6600b6ad969c959b492969ef9903a888))
+* Clarify TaskSpec requires one or more runnables ([fa1f59a](https://github.com/googleapis/google-cloud-php/commit/fa1f59af6600b6ad969c959b492969ef9903a888))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dms 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managed-identities 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.1.2</summary>
+
+
+
+### Documentation
+
+* Changed API title to official name ([#7601](https://github.com/googleapis/google-cloud-php/issues/7601)) ([27a5c40](https://github.com/googleapis/google-cloud-php/commit/27a5c40b8ff29d49cccd5da83b7fc583e5b9ed84))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oslogin 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommender 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-settings 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-shell 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.84.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add resource reference annotation to backup schedules ([#7596](https://github.com/googleapis/google-cloud-php/issues/7596)) ([c6d6e49](https://github.com/googleapis/google-cloud-php/commit/c6d6e491bd5c3d7da4e818d5c76d9ea6b3a78c13))
+
+
+### Documentation
+
+* **spanner:** Add an example to filter backups based on schedule name ([c6d6e49](https://github.com/googleapis/google-cloud-php/commit/c6d6e491bd5c3d7da4e818d5c76d9ea6b3a78c13))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.5.0</summary>
+
+
+
+### Features
+
+* Add GCS Managed Folders ([919960b](https://github.com/googleapis/google-cloud-php/commit/919960bb48ba15303ee2bccc45a3c9e86beea667))
+* Add HDFS configuration ([#7602](https://github.com/googleapis/google-cloud-php/issues/7602)) ([919960b](https://github.com/googleapis/google-cloud-php/commit/919960bb48ba15303ee2bccc45a3c9e86beea667))
+* Add S3 Cloudfront Domain ([919960b](https://github.com/googleapis/google-cloud-php/commit/919960bb48ba15303ee2bccc45a3c9e86beea667))
+* Add S3 Managed Private Network ([919960b](https://github.com/googleapis/google-cloud-php/commit/919960bb48ba15303ee2bccc45a3c9e86beea667))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.9.0</summary>
+
+
+
+### Features
+
+* A new method `StreamingSynthesize` is added to service `TextToSpeech` ([#7603](https://github.com/googleapis/google-cloud-php/issues/7603)) ([3165771](https://github.com/googleapis/google-cloud-php/commit/316577111daf9483b64042b9cc15462bb58e5d13))
+
+
+### Documentation
+
+* A comment for field `name` in message `.google.cloud.texttospeech.v1.VoiceSelectionParams` is changed ([3165771](https://github.com/googleapis/google-cloud-php/commit/316577111daf9483b64042b9cc15462bb58e5d13))
+
+</details>
+
+<details><summary>google/cloud-translate 1.18.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vpc-access 2.0.0</summary>
+
+
+
+</details>
+
 ## 0.254.0
 
 <details><summary>google/cloud-ai-platform 1.3.0</summary>
