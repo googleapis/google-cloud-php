@@ -145,6 +145,11 @@ EOF;
     {
         $xref = new class {
             use XrefTrait;
+            private $protoPackages = [
+                'google.cloud.aiplatform.v1' => 'Google\\Cloud\\AIPlatform\\V1',
+                'google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2',
+                'google.logging.v2' => 'Google\\Cloud\\Logging\\V2',
+            ];
             public function replace(string $description) {
                 return $this->replaceProtoRef($description);
             }
@@ -177,7 +182,7 @@ EOF;
             [
                 // service method reference
                 '[projects.locations.endpoints.predict][google.cloud.aiplatform.v1.PredictionService.Predict]',
-                '<xref uid="\Google\Cloud\Aiplatform\V1\PredictionServiceClient::predict()">projects.locations.endpoints.predict</xref>',
+                '<xref uid="\Google\Cloud\AIPlatform\V1\Client\PredictionServiceClient::predict()">projects.locations.endpoints.predict</xref>',
             ],
             [
                 // nested class reference
@@ -192,7 +197,7 @@ EOF;
             [
                 // service methods without a "service" suffix
                 '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]',
-                '<xref uid="\Google\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>'
+                '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>'
             ],
             [
                 // Enum constants
@@ -202,34 +207,34 @@ EOF;
             [
                 // Numbers in the class name
                 'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use [GetCmekSettings][google.logging.v2.ConfigServiceV2.GetCmekSettings] to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.',
-                'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use <xref uid="\Google\Logging\V2\ConfigServiceV2Client::getCmekSettings()">GetCmekSettings</xref> to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.'
+                'Output only. The service account that will be used by the Log Router to access your Cloud KMS key. Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use <xref uid="\Google\Cloud\Logging\V2\ConfigServiceV2Client::getCmekSettings()">GetCmekSettings</xref> to obtain the service account ID. See [Enabling CMEK for Log Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.'
             ],
             [
                 // Separation between links using newlines
                 'Required. The [Model\'s][google.cloud.aiplatform.v1.BatchPredictionJob.model]' . PHP_EOL
                 . '[PredictSchemata\'s][google.cloud.aiplatform.v1.Model.predict_schemata]' . PHP_EOL
                 . '[instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
-                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>' . PHP_EOL
-                . '<xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>' . PHP_EOL
-                . '<xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+                'Required. The <xref uid="\Google\Cloud\AIPlatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>' . PHP_EOL
+                . '<xref uid="\Google\Cloud\AIPlatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>' . PHP_EOL
+                . '<xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
             ],
             [
                 // Separation within links using newlines
                 'Required. The [Model\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.BatchPredictionJob.model]'
                 . ' [PredictSchemata\'s]' . PHP_EOL . '[google.cloud.aiplatform.v1.Model.predict_schemata]'
                 . ' [instance_schema_uri]' . PHP_EOL . '[google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
-                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
-                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
-                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+                'Required. The <xref uid="\Google\Cloud\AIPlatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
             ],
             [
                 // Separation within links using a space - some APIs do this :/
                 'Required. The [Model\'s] [google.cloud.aiplatform.v1.BatchPredictionJob.model]'
                 . ' [PredictSchemata\'s] [google.cloud.aiplatform.v1.Model.predict_schemata]'
                 . ' [instance_schema_uri] [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].',
-                'Required. The <xref uid="\Google\Cloud\Aiplatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
-                . ' <xref uid="\Google\Cloud\Aiplatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
-                . ' <xref uid="\Google\Cloud\Aiplatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
+                'Required. The <xref uid="\Google\Cloud\AIPlatform\V1\BatchPredictionJob::getModel()">Model\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\Model::getPredictSchemata()">PredictSchemata\'s</xref>'
+                . ' <xref uid="\Google\Cloud\AIPlatform\V1\PredictSchemata::getInstanceSchemaUri()">instance_schema_uri</xref>.'
             ],
             [
                 'Testing that a code sample like $foo["bar"]["baz"] does not get replaced',
@@ -254,7 +259,7 @@ EOF;
         $xref->protoPackages = $protoPackages;
 
         $this->assertEquals(
-            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
+            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
             $xref->replace($description)
         );
 
@@ -266,7 +271,7 @@ EOF;
         $classNode->setProtoPackages($protoPackages);
 
         $this->assertEquals(
-            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
+            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
             $classNode->getContent()
         );
     }

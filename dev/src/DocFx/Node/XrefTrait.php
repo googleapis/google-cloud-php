@@ -87,7 +87,7 @@ trait XrefTrait
     private function replaceProtoRef(string $description): string
     {
         return preg_replace_callback(
-            '/\[([^\]]*?)\]\s?\[([a-z1-9\.]*)([a-zA-Z1-9_\.]*)\]/',
+            '/\[([^\]]*?)\]\s?\[([a-z1-9\._]*)([a-zA-Z1-9_\.]*)\]/',
             function ($matches) {
                 list($link, $name, $package, $class) = $matches;
                 $property = $method = $constant = null;
@@ -95,12 +95,12 @@ trait XrefTrait
                 // if the last word is all lowercase, it's a property
                 // if the last word is all uppercase, it's a constant
                 // otherwise, it's a nested class
-                if (preg_match('/([a-zA-Z\.]+)?\.([a-z_]+)$/', $class, $matches)) {
-                    $class = $matches[1];
-                    $property = $matches[2];
-                } elseif (preg_match('/([a-zA-Z\.]+)?\.([A-Z_]+)$/', $class, $matches)) {
-                    $class = $matches[1];
-                    $constant = $matches[2];
+                if (preg_match('/([a-zA-Z\.]+)?\.([a-z_1-9]+)$/', $class, $propertyMatches)) {
+                    $class = $propertyMatches[1];
+                    $property = $propertyMatches[2];
+                } elseif (preg_match('/([a-zA-Z\.]+)?\.([A-Z_1-9]+)$/', $class, $constantMatches)) {
+                    $class = $constantMatches[1];
+                    $constant = $constantMatches[2];
                 }
 
                 // Determine namespace
@@ -111,19 +111,33 @@ trait XrefTrait
                     $this->protoPackages[$package]
                     ?? str_replace(' ', '\\', ucwords(str_replace('.', ' ', $package)));
 
-                $classParts = explode('.', $class);
+                $classParts = empty($class) ? [] : explode('.', $class);
 
                 if ($property) {
                     // Convert the underscore property name to camel case getter method name
                     $property = ltrim($property, '.');
                     $method = 'get' . str_replace(' ', '', ucwords(str_replace('_', ' ', $property)));
-                } elseif (count($classParts) === 2) {
+                } elseif (is_null($constant) && count($classParts) === 2) {
                     // Check if the nested class exists, and if not, assume this is a service method
-                    $uid = sprintf('\\%s\\%s', $namespace, implode('\\', $classParts));
-                    if (!class_exists($uid)) {
-                        $classParts[0] .= 'Client';
-                        $method = lcfirst($classParts[1]);
-                        array_pop($classParts);
+                    if (!class_exists($namespace . '\\' . implode('\\', $classParts))) {
+                        if (class_exists($namespace . '\\' . $classParts[0] . 'Client')) {
+                            $classParts[0] .= 'Client';
+                            $method = lcfirst($classParts[1]);
+                            array_pop($classParts);
+                        } elseif (class_exists($namespace . '\\Client\\' . $classParts[0] . 'Client')) {
+                            $classParts[0] = 'Client\\' . $classParts[0] . 'Client';
+                            $method = lcfirst($classParts[1]);
+                            array_pop($classParts);
+                        }
+                    }
+                } elseif (
+                    count($classParts) === 1
+                    && !class_exists($namespace . '\\' . $classParts[0])
+                ) {
+                    if (class_exists($namespace . '\\Client\\' . $classParts[0])) {
+                        $classParts = ['Client', $classParts[0]];
+                    } elseif (class_exists($namespace . '\\Client\\' . $classParts[0] . 'Client')) {
+                        $classParts = ['Client', $classParts[0] . 'Client'];
                     }
                 }
 
@@ -133,6 +147,7 @@ trait XrefTrait
                 } elseif ($constant) {
                     $uid = sprintf('%s::%s', $uid, $constant);
                 }
+
                 return $this->replaceUidWithLink($uid, $name);
             },
             $description
