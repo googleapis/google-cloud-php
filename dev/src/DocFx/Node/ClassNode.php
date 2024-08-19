@@ -68,6 +68,49 @@ class ClassNode
         return false;
     }
 
+    public function getProtoFileName(string $ref = null): string|null
+    {
+        if (!$this->isProtobufMessageClass()
+            && !$this->isProtobufEnumClass()
+            && !$this->isServiceClass()
+        ) {
+            return null;
+        }
+
+        $filename = (new \ReflectionClass($this->getFullName()))->getFileName();
+
+        if ($this->isProtobufMessageClass() || $this->isProtobufEnumClass()) {
+            $lines = explode("\n", file_get_contents($filename));
+            $proto = str_replace('# source: ', '', $lines[2]);
+        } else {
+            $lines = explode("\n", file_get_contents($filename));
+            $proto = str_replace(' * https://github.com/googleapis/googleapis/blob/master/', '', $lines[20]);
+        }
+
+        $vendor = __DIR__ . '/../../../vendor/googleapis/googleapis/';
+        if (!$ref || !file_exists($vendor . $proto)) {
+            return $proto;
+        }
+
+        $lines = explode("\n", file_get_contents($vendor . $proto));
+        $ref1 = $ref2 = null;
+        if (false !== strpos($ref, "\n")) {
+            [$ref1, $ref2] = explode("\n", $ref);
+        }
+        foreach ($lines as $i => $line) {
+            if ($ref1 && $ref2) {
+                if (false !== stripos($line, $ref1)
+                    && false !== stripos($lines[$i+1], $ref2)) {
+                    return $proto . '#' . ($i + 1);
+                }
+            } elseif (false !== stripos($line, $ref)) {
+                return $proto . '#' . ($i + 1);
+            }
+        }
+
+        return $proto;
+    }
+
     public function isGapicEnumClass(): bool
     {
         // returns true if the class extends \Google\Protobuf\Internal\Message
@@ -98,10 +141,11 @@ class ClassNode
     public function isV2ServiceClass(): bool
     {
         // returns true if the class does not extend another class and isn't a
-        // base class
+        // base class and it contains a "Client" namespace
         if (!$this->getExtends()
             && !$this->isServiceBaseClass()
             && 'Client' === substr($this->getName(), -6)
+            && false !== strpos($this->getFullName(), '\\Client\\')
         ) {
             return true;
         }

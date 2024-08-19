@@ -64,7 +64,7 @@ trait XrefValidationTrait
     {
         $brokenRefs = [];
         preg_replace_callback(
-            '/<xref uid="([^ ]*)"/',
+            '/<xref uid="([^ ]*)">([^ ]*)<\/xref>/',
             function ($matches) use (&$brokenRefs) {
                 // Valid external reference
                 if (0 === strpos($matches[1], 'http')) {
@@ -78,10 +78,11 @@ trait XrefValidationTrait
                     return;
                 }
                 // Valid class reference
-                if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
+                if (class_exists($matches[1]) || interface_exists($matches[1]) || trait_exists($matches[1])) {
                     return;
                 }
-                // Valid method, magic method, andd constant references
+
+                // Valid method, magic method, and constant references
                 if (false !== strpos($matches[1], '::')) {
                     if (false !== strpos($matches[1], '()')) {
                         list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
@@ -103,9 +104,9 @@ trait XrefValidationTrait
                 // Invalid reference!
                 if ($matches[1] === '\\\\') {
                     // empty hrefs show up as "\\"
-                    $brokenRefs[] = null;
+                    $brokenRefs[] = [null, $matches[2]];
                 } else {
-                    $brokenRefs[] = $matches[1];
+                    $brokenRefs[] = [$matches[1], $matches[2]];
                 }
             },
             $description
