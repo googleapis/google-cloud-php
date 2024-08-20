@@ -98,10 +98,11 @@ class ClassNode
     public function isV2ServiceClass(): bool
     {
         // returns true if the class does not extend another class and isn't a
-        // base class
+        // base class and it contains a "Client" namespace
         if (!$this->getExtends()
             && !$this->isServiceBaseClass()
             && 'Client' === substr($this->getName(), -6)
+            && false !== strpos($this->getFullName(), '\\Client\\')
         ) {
             return true;
         }
