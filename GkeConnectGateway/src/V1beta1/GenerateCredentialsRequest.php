@@ -20,7 +20,7 @@ class GenerateCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Optional. Whether to force the use of Connect Agent-based transport.
      * This will return a configuration that uses Connect Agent as the underlying
@@ -30,7 +30,7 @@ class GenerateCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force_use_agent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $force_use_agent = false;
+    private $force_use_agent = false;
     /**
      * Optional. The Connect Gateway version to be used in the resulting
      * configuration.
@@ -38,7 +38,7 @@ class GenerateCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $version = '';
+    private $version = '';
     /**
      * Optional. The namespace to use in the kubeconfig context.
      * If this field is specified, the server will set the `namespace` field in
@@ -46,13 +46,13 @@ class GenerateCredentialsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kubernetes_namespace = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $kubernetes_namespace = '';
+    private $kubernetes_namespace = '';
     /**
      * Optional. The operating system where the kubeconfig will be used.
      *
      * Generated from protobuf field <code>.google.cloud.gkeconnect.gateway.v1beta1.GenerateCredentialsRequest.OperatingSystem operating_system = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $operating_system = 0;
+    private $operating_system = 0;
 
     /**
      * Constructor.

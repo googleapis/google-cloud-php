@@ -89,16 +89,22 @@ class GatewayControlGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/gateway_control_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/gateway_control_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/gateway_control_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/gateway_control_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/gateway_control_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/gateway_control_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/gateway_control_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/gateway_control_rest_client_config.php',
                 ],
             ],
         ];
@@ -232,15 +238,26 @@ class GatewayControlGapicClient
         }
 
         if (isset($optionalArgs['kubernetesNamespace'])) {
-            $request->setKubernetesNamespace($optionalArgs['kubernetesNamespace']);
+            $request->setKubernetesNamespace(
+                $optionalArgs['kubernetesNamespace']
+            );
         }
 
         if (isset($optionalArgs['operatingSystem'])) {
             $request->setOperatingSystem($optionalArgs['operatingSystem']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GenerateCredentials', GenerateCredentialsResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateCredentials',
+            GenerateCredentialsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
