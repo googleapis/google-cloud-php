@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "RecaptchaEnterpriseServiceGapicClient",
                     "rpcs": {
+                        "AddIpOverride": {
+                            "methods": [
+                                "addIpOverride"
+                            ]
+                        },
                         "AnnotateAssessment": {
                             "methods": [
                                 "annotateAssessment"

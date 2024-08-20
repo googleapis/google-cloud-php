@@ -33,6 +33,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
@@ -46,6 +48,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
 use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesResponse;
@@ -78,9 +81,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
  * try {
- *     $formattedName = $recaptchaEnterpriseServiceClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
- *     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
- *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+ *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+ *     $ipOverrideData = new IpOverrideData();
+ *     $response = $recaptchaEnterpriseServiceClient->addIpOverride($formattedName, $ipOverrideData);
  * } finally {
  *     $recaptchaEnterpriseServiceClient->close();
  * }
@@ -453,6 +456,64 @@ class RecaptchaEnterpriseServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Adds an IP override to a key. The following restrictions hold:
+     * * The maximum number of IP overrides per key is 100.
+     * * For any conflict (such as IP already exists or IP part of an existing
+     * IP range), an error will be returned.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     $ipOverrideData = new IpOverrideData();
+     *     $response = $recaptchaEnterpriseServiceClient->addIpOverride($formattedName, $ipOverrideData);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string         $name           Required. The name of the key to which the IP override is added, in the
+     *                                       format `projects/{project}/keys/{key}`.
+     * @param IpOverrideData $ipOverrideData Required. IP override added to the key.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addIpOverride(
+        $name,
+        $ipOverrideData,
+        array $optionalArgs = []
+    ) {
+        $request = new AddIpOverrideRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setIpOverrideData($ipOverrideData);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AddIpOverride',
+            AddIpOverrideResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1293,11 +1354,11 @@ class RecaptchaEnterpriseServiceGapicClient
      *           Optional. If true, skips the billing check.
      *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
      *           reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
-     *           https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     *           https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid
      *           any disruption of your usage, we check that a billing account is present.
      *           If your usage of reCAPTCHA is under the free quota, you can safely skip the
      *           billing check and proceed with the migration. See
-     *           https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     *           https://cloud.google.com/recaptcha/docs/billing-information.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
