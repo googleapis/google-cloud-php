@@ -26,16 +26,26 @@ class Runnable extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Normally, a non-zero exit status causes the Task to fail. This flag allows
-     * execution of other Runnables to continue instead.
+     * Normally, a runnable that returns a non-zero exit status fails and causes
+     * the task to fail. However, you can set this field to `true` to allow the
+     * task to continue executing its other runnables even if this runnable
+     * fails.
      *
      * Generated from protobuf field <code>bool ignore_exit_status = 3;</code>
      */
     protected $ignore_exit_status = false;
     /**
-     * This flag allows a Runnable to continue running in the background while the
-     * Task executes subsequent Runnables. This is useful to provide services to
-     * other Runnables (or to provide debugging support tools like SSH servers).
+     * Normally, a runnable that doesn't exit causes its task to fail. However,
+     * you can set this field to `true` to configure a background runnable.
+     * Background runnables are allowed continue running in the background while
+     * the task executes subsequent runnables. For example, background runnables
+     * are useful for providing services to other runnables or providing
+     * debugging-support tools like SSH servers.
+     * Specifically, background runnables are killed automatically (if they have
+     * not already exited) a short time after all foreground runnables have
+     * completed. Even though this is likely to result in a non-zero exit status
+     * for the background runnable, these automatic kills are not treated as task
+     * failures.
      *
      * Generated from protobuf field <code>bool background = 4;</code>
      */
@@ -91,12 +101,22 @@ class Runnable extends \Google\Protobuf\Internal\Message
      *           the script, making it easier for users to understand the logs. If not
      *           provided the index of the runnable will be used for outputs.
      *     @type bool $ignore_exit_status
-     *           Normally, a non-zero exit status causes the Task to fail. This flag allows
-     *           execution of other Runnables to continue instead.
+     *           Normally, a runnable that returns a non-zero exit status fails and causes
+     *           the task to fail. However, you can set this field to `true` to allow the
+     *           task to continue executing its other runnables even if this runnable
+     *           fails.
      *     @type bool $background
-     *           This flag allows a Runnable to continue running in the background while the
-     *           Task executes subsequent Runnables. This is useful to provide services to
-     *           other Runnables (or to provide debugging support tools like SSH servers).
+     *           Normally, a runnable that doesn't exit causes its task to fail. However,
+     *           you can set this field to `true` to configure a background runnable.
+     *           Background runnables are allowed continue running in the background while
+     *           the task executes subsequent runnables. For example, background runnables
+     *           are useful for providing services to other runnables or providing
+     *           debugging-support tools like SSH servers.
+     *           Specifically, background runnables are killed automatically (if they have
+     *           not already exited) a short time after all foreground runnables have
+     *           completed. Even though this is likely to result in a non-zero exit status
+     *           for the background runnable, these automatic kills are not treated as task
+     *           failures.
      *     @type bool $always_run
      *           By default, after a Runnable fails, no further Runnable are executed. This
      *           flag indicates that this Runnable must be run even if the Task has already
@@ -245,8 +265,10 @@ class Runnable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Normally, a non-zero exit status causes the Task to fail. This flag allows
-     * execution of other Runnables to continue instead.
+     * Normally, a runnable that returns a non-zero exit status fails and causes
+     * the task to fail. However, you can set this field to `true` to allow the
+     * task to continue executing its other runnables even if this runnable
+     * fails.
      *
      * Generated from protobuf field <code>bool ignore_exit_status = 3;</code>
      * @return bool
@@ -257,8 +279,10 @@ class Runnable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Normally, a non-zero exit status causes the Task to fail. This flag allows
-     * execution of other Runnables to continue instead.
+     * Normally, a runnable that returns a non-zero exit status fails and causes
+     * the task to fail. However, you can set this field to `true` to allow the
+     * task to continue executing its other runnables even if this runnable
+     * fails.
      *
      * Generated from protobuf field <code>bool ignore_exit_status = 3;</code>
      * @param bool $var
@@ -273,9 +297,17 @@ class Runnable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag allows a Runnable to continue running in the background while the
-     * Task executes subsequent Runnables. This is useful to provide services to
-     * other Runnables (or to provide debugging support tools like SSH servers).
+     * Normally, a runnable that doesn't exit causes its task to fail. However,
+     * you can set this field to `true` to configure a background runnable.
+     * Background runnables are allowed continue running in the background while
+     * the task executes subsequent runnables. For example, background runnables
+     * are useful for providing services to other runnables or providing
+     * debugging-support tools like SSH servers.
+     * Specifically, background runnables are killed automatically (if they have
+     * not already exited) a short time after all foreground runnables have
+     * completed. Even though this is likely to result in a non-zero exit status
+     * for the background runnable, these automatic kills are not treated as task
+     * failures.
      *
      * Generated from protobuf field <code>bool background = 4;</code>
      * @return bool
@@ -286,9 +318,17 @@ class Runnable extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag allows a Runnable to continue running in the background while the
-     * Task executes subsequent Runnables. This is useful to provide services to
-     * other Runnables (or to provide debugging support tools like SSH servers).
+     * Normally, a runnable that doesn't exit causes its task to fail. However,
+     * you can set this field to `true` to configure a background runnable.
+     * Background runnables are allowed continue running in the background while
+     * the task executes subsequent runnables. For example, background runnables
+     * are useful for providing services to other runnables or providing
+     * debugging-support tools like SSH servers.
+     * Specifically, background runnables are killed automatically (if they have
+     * not already exited) a short time after all foreground runnables have
+     * completed. Even though this is likely to result in a non-zero exit status
+     * for the background runnable, these automatic kills are not treated as task
+     * failures.
      *
      * Generated from protobuf field <code>bool background = 4;</code>
      * @param bool $var
