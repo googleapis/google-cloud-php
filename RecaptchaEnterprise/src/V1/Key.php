@@ -31,7 +31,7 @@ class Key extends \Google\Protobuf\Internal\Message
     private $display_name = '';
     /**
      * Optional. See [Creating and managing labels]
-     * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
+     * (https://cloud.google.com/recaptcha/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -73,9 +73,11 @@ class Key extends \Google\Protobuf\Internal\Message
      *           Settings for keys that can be used by Android apps.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings $ios_settings
      *           Settings for keys that can be used by iOS apps.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings $express_settings
+     *           Settings for keys that can be used by reCAPTCHA Express.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. See [Creating and managing labels]
-     *           (https://cloud.google.com/recaptcha-enterprise/docs/labels).
+     *           (https://cloud.google.com/recaptcha/docs/labels).
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp corresponding to the creation of this key.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
@@ -237,8 +239,39 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Settings for keys that can be used by reCAPTCHA Express.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ExpressKeySettings express_settings = 11;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings|null
+     */
+    public function getExpressSettings()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasExpressSettings()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Settings for keys that can be used by reCAPTCHA Express.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ExpressKeySettings express_settings = 11;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings $var
+     * @return $this
+     */
+    public function setExpressSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. See [Creating and managing labels]
-     * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
+     * (https://cloud.google.com/recaptcha/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -250,7 +283,7 @@ class Key extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. See [Creating and managing labels]
-     * (https://cloud.google.com/recaptcha-enterprise/docs/labels).
+     * (https://cloud.google.com/recaptcha/docs/labels).
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

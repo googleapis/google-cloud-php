@@ -33,6 +33,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
@@ -72,6 +74,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface addIpOverrideAsync(AddIpOverrideRequest $request, array $optionalArgs = [])
  * @method PromiseInterface annotateAssessmentAsync(AnnotateAssessmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAssessmentAsync(CreateAssessmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createFirewallPolicyAsync(CreateFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -338,6 +341,36 @@ final class RecaptchaEnterpriseServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Adds an IP override to a key. The following restrictions hold:
+     * * The maximum number of IP overrides per key is 100.
+     * * For any conflict (such as IP already exists or IP part of an existing
+     * IP range), an error will be returned.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::addIpOverrideAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/add_ip_override.php
+     *
+     * @param AddIpOverrideRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AddIpOverrideResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addIpOverride(AddIpOverrideRequest $request, array $callOptions = []): AddIpOverrideResponse
+    {
+        return $this->startApiCall('AddIpOverride', $request, $callOptions)->wait();
     }
 
     /**
