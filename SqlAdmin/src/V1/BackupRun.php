@@ -130,6 +130,12 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string time_zone = 23;</code>
      */
     protected $time_zone = '';
+    /**
+     * Output only. The maximum chargeable bytes for the backup.
+     *
+     * Generated from protobuf field <code>optional int64 max_chargeable_bytes = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $max_chargeable_bytes = null;
 
     /**
      * Constructor.
@@ -184,6 +190,8 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *     @type string $time_zone
      *           Backup time zone to prevent restores to an instance with
      *           a different time zone. Now relevant only for SQL Server.
+     *     @type int|string $max_chargeable_bytes
+     *           Output only. The maximum chargeable bytes for the backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -725,6 +733,42 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->time_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The maximum chargeable bytes for the backup.
+     *
+     * Generated from protobuf field <code>optional int64 max_chargeable_bytes = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getMaxChargeableBytes()
+    {
+        return isset($this->max_chargeable_bytes) ? $this->max_chargeable_bytes : 0;
+    }
+
+    public function hasMaxChargeableBytes()
+    {
+        return isset($this->max_chargeable_bytes);
+    }
+
+    public function clearMaxChargeableBytes()
+    {
+        unset($this->max_chargeable_bytes);
+    }
+
+    /**
+     * Output only. The maximum chargeable bytes for the backup.
+     *
+     * Generated from protobuf field <code>optional int64 max_chargeable_bytes = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxChargeableBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_chargeable_bytes = $var;
 
         return $this;
     }
