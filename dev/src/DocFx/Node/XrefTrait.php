@@ -89,7 +89,7 @@ trait XrefTrait
         return preg_replace_callback(
             '/\[([^\]]*?)\]\s?\[([a-z][a-z1-9\._]*)?([a-zA-Z][a-zA-Z1-9_\.]*)?\]/',
             function ($matches) {
-                list($link, $name, $package, $class) = $matches;
+                list($link, $name, $package, $class) = $matches + ['', '', '', ''];
                 $property = $method = $constant = null;
 
                 // if the last word is all lowercase, it's a property

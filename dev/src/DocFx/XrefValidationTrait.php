@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Dev\DocFx;
 
+use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
 use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
 
@@ -77,6 +79,10 @@ trait XrefValidationTrait
                 )) {
                     return;
                 }
+                if ('\\' === $matches[1]) {
+                    $brokenRefs[] = [null, $matches[2]];
+                    return;
+                }
                 // Valid class reference
                 if (class_exists($matches[1]) || interface_exists($matches[1]) || trait_exists($matches[1])) {
                     return;
@@ -114,4 +120,82 @@ trait XrefValidationTrait
 
         return $brokenRefs;
     }
+
+    private function classnameToProtobufPath(string $ref, string $text): string
+    {
+        // remove leading and trailing slashes and parentheses
+        $ref = trim(trim($ref, '\\'), '()');
+        // convert methods to snake case
+        if (strpos($ref, '::set') !== false || strpos($ref, '::get') !== false) {
+            $parts = explode('::', $ref);
+            $ref = $parts[0] . '.' . strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', substr($parts[1], 3)));
+        }
+
+        // convert namespace separators and function calls to dots
+        $ref = str_replace(['\\', '::'], '.', $ref);
+
+        // lowercase the namespace
+        $parts = explode('.', $ref);
+        foreach ($parts as $i => $part) {
+            if (preg_match(Component::VERSION_REGEX, $part) || $part === 'Master') {
+                for ($j = 0; $j <= $i; $j++) {
+                    $parts[$j] = strtolower($parts[$j]);
+                }
+                $ref = implode('.', $parts);
+                break;
+            }
+        }
+
+        // convert namespace to lowercase
+        $ref = false === strpos($ref, '.') ? strtolower($ref) : $ref;
+
+        return sprintf('[%s][%s]', $text, $ref);
+    }
+
+    private function getProtoFileName(
+        ClassNode $classNode,
+        string $ref = null
+    ): string|null {
+        if (!$classNode->isProtobufMessageClass()
+            && !$classNode->isProtobufEnumClass()
+            && !$classNode->isServiceClass()
+        ) {
+            return null;
+        }
+
+        $filename = (new \ReflectionClass($classNode->getFullName()))->getFileName();
+
+        if ($classNode->isProtobufMessageClass() || $classNode->isProtobufEnumClass()) {
+            $lines = explode("\n", file_get_contents($filename));
+            $proto = str_replace('# source: ', '', $lines[2]);
+        } else {
+            $lines = explode("\n", file_get_contents($filename));
+            $proto = str_replace(' * https://github.com/googleapis/googleapis/blob/master/', '', $lines[20]);
+        }
+
+        // Find the line number of the reference
+        $vendor = __DIR__ . '/../../vendor/googleapis/googleapis/';
+        if (!$ref || !file_exists($vendor . $proto)) {
+            return $proto;
+        }
+
+        $lines = explode("\n", file_get_contents($vendor . $proto));
+        $ref1 = $ref2 = null;
+        if (false !== strpos($ref, "\n")) {
+            [$ref1, $ref2] = explode("\n", $ref);
+        }
+        foreach ($lines as $i => $line) {
+            if ($ref1 && $ref2) {
+                if (false !== stripos($line, $ref1)
+                    && false !== stripos($lines[$i+1], $ref2)) {
+                    return $proto . '#' . ($i + 1);
+                }
+            } elseif (false !== stripos($line, $ref)) {
+                return $proto . '#' . ($i + 1);
+            }
+        }
+
+        return $proto;
+    }
+
 }
