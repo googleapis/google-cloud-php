@@ -87,7 +87,7 @@ trait XrefTrait
     private function replaceProtoRef(string $description): string
     {
         return preg_replace_callback(
-            '/\[([^\]]*?)\]\s?\[([a-z1-9\._]*)([a-zA-Z1-9_\.]*)\]/',
+            '/\[([^\]]*?)\]\s?\[([a-z][a-z1-9\._]*)?([a-zA-Z][a-zA-Z1-9_\.]*)?\]/',
             function ($matches) {
                 list($link, $name, $package, $class) = $matches;
                 $property = $method = $constant = null;
@@ -95,10 +95,10 @@ trait XrefTrait
                 // if the last word is all lowercase, it's a property
                 // if the last word is all uppercase, it's a constant
                 // otherwise, it's a nested class
-                if (preg_match('/([a-zA-Z\.]+)?\.([a-z_1-9]+)$/', $class, $propertyMatches)) {
+                if (preg_match('/([a-zA-Z\.]+)?\.([a-z1-9_]+)$/', $class, $propertyMatches)) {
                     $class = $propertyMatches[1];
                     $property = $propertyMatches[2];
-                } elseif (preg_match('/([a-zA-Z\.]+)?\.([A-Z_1-9]+)$/', $class, $constantMatches)) {
+                } elseif (preg_match('/([a-zA-Z\.]+)?\.([A-Z1-9_]+)$/', $class, $constantMatches)) {
                     $class = $constantMatches[1];
                     $constant = $constantMatches[2];
                 }
@@ -108,8 +108,7 @@ trait XrefTrait
 
                 // Check the package name against the proto packages for this component (see Command\DocFx)
                 $namespace =
-                    $this->protoPackages[$package]
-                    ?? str_replace(' ', '\\', ucwords(str_replace('.', ' ', $package)));
+                    $this->protoPackages[$package] ?? implode('\\', array_map('ucfirst', explode('.', $package)));
 
                 $classParts = empty($class) ? [] : explode('.', $class);
 
@@ -141,7 +140,7 @@ trait XrefTrait
                     }
                 }
 
-                $uid = sprintf('\\%s\\%s', $namespace, implode('\\', $classParts));
+                $uid = ($namespace ? '\\' . $namespace : '') . '\\' . implode('\\', $classParts);
                 if ($method) {
                     $uid = sprintf('%s::%s()', $uid, $method);
                 } elseif ($constant) {

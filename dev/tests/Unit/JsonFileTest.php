@@ -53,7 +53,7 @@ class JsonFileTest extends TestCase
     {
         $files = [];
         foreach (Component::getComponents() as $component) {
-            $files[] = [$component->getPath() . '/composer.json'];
+            $files[$component->getName()] = [$component->getPath() . '/composer.json'];
         }
 
         return $files;

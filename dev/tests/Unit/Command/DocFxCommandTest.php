@@ -150,7 +150,7 @@ class DocFxCommandTest extends TestCase
             if ($file === 'docs.metadata') {
                 continue;
             }
-            $filesAsArguments[] = [$file];
+            $filesAsArguments[basename($file)] = [$file];
         }
 
         return $filesAsArguments;
