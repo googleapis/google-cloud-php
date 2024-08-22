@@ -262,7 +262,7 @@ class PubSubClient
      * Lazily instantiate a topic with a topic name.
      *
      * No API requests are made by this method. If you want to create a new
-     * topic, use {@see Topic::createTopic()}.
+     * topic, use {@see Topic::create()}.
      *
      * Example:
      * ```

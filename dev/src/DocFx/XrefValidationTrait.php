@@ -64,7 +64,7 @@ trait XrefValidationTrait
     {
         $brokenRefs = [];
         preg_replace_callback(
-            '/<xref uid="([^ ]*)"/',
+            '/<xref uid="([^ ]*)">([^ ]*)<\/xref>/',
             function ($matches) use (&$brokenRefs) {
                 // Valid external reference
                 if (0 === strpos($matches[1], 'http')) {
@@ -78,10 +78,11 @@ trait XrefValidationTrait
                     return;
                 }
                 // Valid class reference
-                if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
+                if (class_exists($matches[1]) || interface_exists($matches[1]) || trait_exists($matches[1])) {
                     return;
                 }
-                // Valid method, magic method, andd constant references
+
+                // Valid method, magic method, and constant references
                 if (false !== strpos($matches[1], '::')) {
                     if (false !== strpos($matches[1], '()')) {
                         list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
@@ -89,10 +90,12 @@ trait XrefValidationTrait
                         if (method_exists($class, $method)) {
                             return;
                         }
+
                         // Assume it's a magic Async method
                         if ('Async' === substr($method, -5)) {
                             return;
                         }
+
                     } elseif (defined($matches[1])) {
                         // Valid constant reference
                         return;
