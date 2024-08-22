@@ -62,8 +62,7 @@ class Event extends \Google\Protobuf\Internal\Message
     protected $hashed_account_id = '';
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
-     * token. If enabled, `site_key` must reference a SCORE key with WAF feature
-     * set to EXPRESS.
+     * token. If enabled, `site_key` must reference an Express site key.
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -154,8 +153,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *           be hashed using hmac-sha256 with stable secret.
      *     @type bool $express
      *           Optional. Flag for a reCAPTCHA express request for an assessment without a
-     *           token. If enabled, `site_key` must reference a SCORE key with WAF feature
-     *           set to EXPRESS.
+     *           token. If enabled, `site_key` must reference an Express site key.
      *     @type string $requested_uri
      *           Optional. The URI resource the user requested that triggered an assessment.
      *     @type bool $waf_token_assessment
@@ -366,8 +364,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
-     * token. If enabled, `site_key` must reference a SCORE key with WAF feature
-     * set to EXPRESS.
+     * token. If enabled, `site_key` must reference an Express site key.
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -379,8 +376,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
-     * token. If enabled, `site_key` must reference a SCORE key with WAF feature
-     * set to EXPRESS.
+     * token. If enabled, `site_key` must reference an Express site key.
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
