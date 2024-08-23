@@ -63,6 +63,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "apigateway"
     },
+    "ApiHub": {
+        "language": "php",
+        "distribution_name": "google/cloud-apihub",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-apihub/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "apihub"
+    },
     "ApiKeys": {
         "language": "php",
         "distribution_name": "google/cloud-api-keys",
