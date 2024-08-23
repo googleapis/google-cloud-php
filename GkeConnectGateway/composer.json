@@ -1,5 +1,5 @@
 {
-    "name": "google/cloud-gke-connect-gateway",
+    "name": "google/cloud-gkeconnect-gateway",
     "description": "Google Cloud Gke Connect Gateway Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
@@ -9,17 +9,11 @@
             "GPBMetadata\\Google\\Cloud\\Gkeconnect\\Gateway\\": "metadata"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Google\\Cloud\\GkeConnect\\Gateway\\Tests\\": "tests"
-        }
-    },
     "extra": {
         "component": {
-            "id": "cloud-gke-connect-gateway",
+            "id": "cloud-gkeconnect-gateway",
             "path": "GkeConnectGateway",
-            "entry": null,
-            "target": "googleapis/google-cloud-php-gke-connect-gateway.git"
+            "target": "googleapis/google-cloud-php-gkeconnect-gateway"
         }
     },
     "require": {

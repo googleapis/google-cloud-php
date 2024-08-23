@@ -1,10 +1,10 @@
 # Google Cloud Gke Connect Gateway for PHP
 
-> Idiomatic PHP client for [Google Cloud Gke Connect Gateway](https://cloud.google.com/anthos/multicluster-management/gateway).
+> Idiomatic PHP client for [Google Cloud Gke Connect Gateway](https://cloud.google.com/kubernetes-engine/enterprise/multicluster-management/gateway).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-gke-connect-gateway/v/stable)](https://packagist.org/packages/google/cloud-gke-connect-gateway) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gke-connect-gateway.svg)](https://packagist.org/packages/google/cloud-gke-connect-gateway)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-gkeconnect-gateway/v/stable)](https://packagist.org/packages/google/cloud-gkeconnect-gateway) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gkeconnect-gateway.svg)](https://packagist.org/packages/google/cloud-gkeconnect-gateway)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/cloud-gke-connect-gateway/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-gkeconnect-gateway/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -14,26 +14,32 @@ that project.
 
 To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-Now install this component:
+Now, install this component:
 
 ```sh
-$ composer require google/cloud-gke-connect-gateway
+$ composer require google/cloud-gkeconnect-gateway
 ```
 
-This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
-please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
+> Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
+> for PHP
+
+This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits
+offered by gRPC (such as streaming methods) please see our
+[gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+### Sample
+
+See the [samples directory](https://github.com/googleapis/google-cloud-php-gkeconnect-gateway/tree/main/samples) for a canonical list of samples.
+
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/anthos/multicluster-management/gateway).
+1. Understand the [official documentation](https://cloud.google.com/kubernetes-engine/enterprise/multicluster-management/gateway).
