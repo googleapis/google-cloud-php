@@ -33,7 +33,7 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The end of the time period over which this metric value's measurement
      * applies.  If not specified,
@@ -41,7 +41,7 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     protected $value;
 
     /**

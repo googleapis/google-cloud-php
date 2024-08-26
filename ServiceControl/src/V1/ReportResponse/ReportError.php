@@ -23,14 +23,14 @@ class ReportError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Details of the error when processing the
      * [Operation][google.api.servicecontrol.v1.Operation].
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
