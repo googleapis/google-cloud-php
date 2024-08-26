@@ -99,6 +99,12 @@ class ComponentInfoCommand extends Command
             default => explode(',', $input->getOption('fields')),
         };
 
+        // support "+" prefix to add requested field to the default fields
+        if (0 === strpos($fields[0], '+')) {
+            $fields[0] = substr($fields[0], 1);
+            $fields = array_merge(self::$defaultFields, $fields);
+        }
+
         $this->token = $input->getOption('token');
         $this->packagist = new Packagist(new Client(), '', '');
 
