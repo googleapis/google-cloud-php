@@ -59,6 +59,4 @@ class CompressionCodec
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompressionCodec::class, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions_CompressionCodec::class);
 

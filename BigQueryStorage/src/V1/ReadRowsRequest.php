@@ -20,7 +20,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string read_stream = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $read_stream = '';
+    protected $read_stream = '';
     /**
      * The offset requested must be less than the last row read from Read.
      * Requesting a larger offset is undefined. If not specified, start reading
@@ -28,7 +28,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 2;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
 
     /**
      * @param string $readStream Required. Stream to read rows from. Please see

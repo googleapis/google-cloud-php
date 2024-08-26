@@ -27,14 +27,14 @@ class Progress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double at_response_start = 1;</code>
      */
-    private $at_response_start = 0.0;
+    protected $at_response_start = 0.0;
     /**
      * Similar to `at_response_start`, except that this value includes the
      * rows in the current response.
      *
      * Generated from protobuf field <code>double at_response_end = 2;</code>
      */
-    private $at_response_end = 0.0;
+    protected $at_response_end = 0.0;
 
     /**
      * Constructor.
@@ -137,6 +137,4 @@ class Progress extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Progress::class, \Google\Cloud\BigQuery\Storage\V1\StreamStats_Progress::class);
 
