@@ -59,6 +59,4 @@ class Tier
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Tier::class, \Google\Cloud\Redis\V1\Instance_Tier::class);
 

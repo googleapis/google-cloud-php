@@ -23,13 +23,13 @@ class UpgradeInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Specifies the target version of Redis software to upgrade to.
      *
      * Generated from protobuf field <code>string redis_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $redis_version = '';
+    protected $redis_version = '';
 
     /**
      * @param string $name         Required. Redis instance resource name using the form:
