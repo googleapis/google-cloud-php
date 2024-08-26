@@ -78,3 +78,4 @@ jobs:
       - name: Run Script
         run: |
           vendor/bin/phpstan analyse
+

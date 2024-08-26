@@ -1,42 +1,23 @@
 name: Generate Documentation
+
 on:
     push:
         tags:
             - "*"
     workflow_dispatch:
+        inputs:
+            tag:
+                description: 'Tag to release'
+    pull_request:
+
 permissions:
   contents: write
+
 jobs:
     docs:
         name: "Generate and Deploy Documentation"
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout
-          uses: actions/checkout@v4
-        - id: getTag
-          name: Get Tag
-          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-        - name: Setup PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: 8.1
-        - name: Install composer dependencies
-          uses: nick-invision/retry@v3
-          with:
-            timeout_minutes: 10
-            max_attempts: 3
-            command: composer install
-        - name: Generate Documentation
-          uses: docker://php:8.1-cli
-          with:
-            entrypoint: ./dev/sh/build-docs.sh
-            args: ${{ steps.getTag.outputs.tag }}
-        - run: |
-            git submodule add -q -f -b gh-pages https://github.com/${{github.repository}} ghpages
-            rsync -aP tmp_gh-pages/* ghpages/
-        - name: Deploy 🚀
-          uses: JamesIves/github-pages-deploy-action@releases/v3
-          with:
-            ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            BRANCH: gh-pages
-            FOLDER: ghpages
+        uses: GoogleCloudPlatform/php-tools/.github/workflows/doctum.yml@main
+        with:
+          title: "Google API Core (GAX) Reference Documentation"
+          default_version: ${{ inputs.tag || github.head_ref || github.ref_name }}
+          dry_run: ${{ github.event_name == 'pull_request' }}
