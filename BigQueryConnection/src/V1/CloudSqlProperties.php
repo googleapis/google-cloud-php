@@ -20,25 +20,25 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 1;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Database name.
      *
      * Generated from protobuf field <code>string database = 2;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Type of the Cloud SQL database.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlProperties.DatabaseType type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Input only. Cloud SQL credential.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlCredential credential = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $credential = null;
+    protected $credential = null;
     /**
      * Output only. The account ID of the service used for the purpose of this
      * connection.
@@ -48,7 +48,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account_id = '';
+    protected $service_account_id = '';
 
     /**
      * Constructor.
