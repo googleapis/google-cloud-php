@@ -21,25 +21,25 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Each step is in one of the pre-defined states.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Step.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * This is a step that leads to the final state Drop.
      *
      * Generated from protobuf field <code>bool causes_drop = 3;</code>
      */
-    private $causes_drop = false;
+    protected $causes_drop = false;
     /**
      * Project ID that contains the configuration this step is validating.
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     protected $step_info;
 
     /**

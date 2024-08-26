@@ -28,13 +28,13 @@ class DataplexTableSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexSpec dataplex_spec = 2;</code>
      */
-    private $dataplex_spec = null;
+    protected $dataplex_spec = null;
     /**
      * Indicates if the table schema is managed by the user or not.
      *
      * Generated from protobuf field <code>bool user_managed = 3;</code>
      */
-    private $user_managed = false;
+    protected $user_managed = false;
 
     /**
      * Constructor.

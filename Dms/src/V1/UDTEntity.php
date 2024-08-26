@@ -20,19 +20,19 @@ class UDTEntity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string udt_sql_code = 1;</code>
      */
-    private $udt_sql_code = '';
+    protected $udt_sql_code = '';
     /**
      * The SQL code which creates the udt body.
      *
      * Generated from protobuf field <code>string udt_body = 2;</code>
      */
-    private $udt_body = '';
+    protected $udt_body = '';
     /**
      * Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 3;</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class DoubleComparisonFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ValueComparison value_comparison = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value_comparison = 0;
+    protected $value_comparison = 0;
     /**
      * Required. Double compare value to be used
      *
      * Generated from protobuf field <code>double value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = 0.0;
+    protected $value = 0.0;
 
     /**
      * Constructor.

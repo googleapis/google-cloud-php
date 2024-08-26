@@ -22,26 +22,26 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server-assigned unique identifier for the trigger. The value is a UUID4
      * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. Unordered list. The list of filters that applies to event attributes. Only events that
      * match all the provided filters are sent to the destination.
@@ -65,13 +65,13 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Required. Destination specifies where the events should be sent to.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Destination destination = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * Optional. To deliver messages, Eventarc might use other GCP
      * products as a transport intermediary. This field contains a reference to
@@ -80,7 +80,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Transport transport = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $transport = null;
+    protected $transport = null;
     /**
      * Optional. User labels attached to the triggers that can be used to group resources.
      *
@@ -94,7 +94,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string channel = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $channel = '';
+    protected $channel = '';
     /**
      * Output only. The reason(s) why a trigger is in FAILED state.
      *
@@ -108,7 +108,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

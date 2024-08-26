@@ -21,13 +21,13 @@ class ReconcileTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The name of the tag template, which is used for reconciliation.
      *
      * Generated from protobuf field <code>string tag_template = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $tag_template = '';
+    protected $tag_template = '';
     /**
      * If set to `true`, deletes entry tags related to a tag template
      * not listed in the tags source from an entry. If set to `false`,
@@ -35,7 +35,7 @@ class ReconcileTagsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force_delete_missing = 3;</code>
      */
-    private $force_delete_missing = false;
+    protected $force_delete_missing = false;
     /**
      * A list of tags to apply to an entry. A tag can specify a
      * tag template, which must be the template specified in the

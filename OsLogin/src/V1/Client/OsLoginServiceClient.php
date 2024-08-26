@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface importSshPublicKeyAsync(ImportSshPublicKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSshPublicKeyAsync(UpdateSshPublicKeyRequest $request, array $optionalArgs = [])
  */
-class OsLoginServiceClient
+final class OsLoginServiceClient
 {
     use GapicClientTrait;
     use ResourceHelperTrait;
@@ -413,8 +413,10 @@ class OsLoginServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importSshPublicKey(ImportSshPublicKeyRequest $request, array $callOptions = []): ImportSshPublicKeyResponse
-    {
+    public function importSshPublicKey(
+        ImportSshPublicKeyRequest $request,
+        array $callOptions = []
+    ): ImportSshPublicKeyResponse {
         return $this->startApiCall('ImportSshPublicKey', $request, $callOptions)->wait();
     }
 

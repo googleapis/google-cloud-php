@@ -23,26 +23,26 @@ class AuthorizeEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The OAuth access token that should be sent to the environment.
      *
      * Generated from protobuf field <code>string access_token = 2;</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * The OAuth ID token that should be sent to the environment.
      *
      * Generated from protobuf field <code>string id_token = 4;</code>
      */
-    private $id_token = '';
+    protected $id_token = '';
     /**
      * The time when the credentials expire. If not set, defaults to one hour from
      * when the server received the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

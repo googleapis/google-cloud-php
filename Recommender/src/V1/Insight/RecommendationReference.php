@@ -21,7 +21,7 @@ class RecommendationReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recommendation = 1;</code>
      */
-    private $recommendation = '';
+    protected $recommendation = '';
 
     /**
      * Constructor.
@@ -69,6 +69,4 @@ class RecommendationReference extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RecommendationReference::class, \Google\Cloud\Recommender\V1\Insight_RecommendationReference::class);
 

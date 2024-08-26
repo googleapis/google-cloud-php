@@ -16,12 +16,12 @@ class Endpoint
         }
         $pool->internalAddGeneratedFile(
             '
-ó
+ï
 google/api/endpoint.proto
-google.api"Q
+google.api"M
 Endpoint
-name (	
-aliases (	B
+name (	
+aliases (	
 targete (	
 
 allow_cors (Bo

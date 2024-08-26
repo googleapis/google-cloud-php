@@ -23,13 +23,13 @@ class ConditionalColumnSetValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ValueTransformation value_transformation = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value_transformation = null;
+    protected $value_transformation = null;
     /**
      * Optional. Custom engine specific features.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct custom_features = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_features = null;
+    protected $custom_features = null;
     protected $source_filter;
 
     /**

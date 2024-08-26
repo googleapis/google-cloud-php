@@ -30,7 +30,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource this metadata entry refers to.
      * For Google Cloud Platform resources, `linked_resource` is the
@@ -48,7 +48,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      */
-    private $linked_resource = '';
+    protected $linked_resource = '';
     /**
      * [Fully Qualified Name
      * (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names)
@@ -58,7 +58,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
      */
-    private $fully_qualified_name = '';
+    protected $fully_qualified_name = '';
     /**
      * Display name of an entry.
      * The maximum size is 500 bytes when encoded in UTF-8.
@@ -66,7 +66,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Entry description that can consist of several sentences or paragraphs
      * that describe entry contents.
@@ -78,19 +78,19 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Business Context of the entry. Not supported for BigQuery datasets
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
      */
-    private $business_context = null;
+    protected $business_context = null;
     /**
      * Schema of the entry. An entry might not have any schema attached to it.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Schema schema = 5;</code>
      */
-    private $schema = null;
+    protected $schema = null;
     /**
      * Timestamps from the underlying resource, not from the Data Catalog
      * entry.
@@ -100,13 +100,13 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      */
-    private $source_system_timestamps = null;
+    protected $source_system_timestamps = null;
     /**
      * Resource usage statistics.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13;</code>
      */
-    private $usage_signal = null;
+    protected $usage_signal = null;
     /**
      * Cloud labels attached to the entry.
      * In Data Catalog, you can create and modify labels attached only to custom
@@ -121,14 +121,14 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_source = null;
+    protected $data_source = null;
     /**
      * Output only. Additional information related to the entry. Private to the
      * current user.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $personal_details = null;
+    protected $personal_details = null;
     protected $entry_type;
     protected $system;
     protected $system_spec;

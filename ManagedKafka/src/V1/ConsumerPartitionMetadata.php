@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConsumerPartitionMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The offset for this partition, or 0 if no offset has been
+     * Required. The current offset for this partition, or 0 if no offset has been
      * committed.
      *
      * Generated from protobuf field <code>int64 offset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -37,7 +37,7 @@ class ConsumerPartitionMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $offset
-     *           Required. The offset for this partition, or 0 if no offset has been
+     *           Required. The current offset for this partition, or 0 if no offset has been
      *           committed.
      *     @type string $metadata
      *           Optional. The associated metadata for this partition, or empty if it does
@@ -50,7 +50,7 @@ class ConsumerPartitionMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The offset for this partition, or 0 if no offset has been
+     * Required. The current offset for this partition, or 0 if no offset has been
      * committed.
      *
      * Generated from protobuf field <code>int64 offset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -62,7 +62,7 @@ class ConsumerPartitionMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The offset for this partition, or 0 if no offset has been
+     * Required. The current offset for this partition, or 0 if no offset has been
      * committed.
      *
      * Generated from protobuf field <code>int64 offset = 1 [(.google.api.field_behavior) = REQUIRED];</code>

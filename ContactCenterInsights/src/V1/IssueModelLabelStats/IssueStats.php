@@ -22,19 +22,19 @@ class IssueStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issue = 1;</code>
      */
-    private $issue = '';
+    protected $issue = '';
     /**
      * Number of conversations attached to the issue at this point in time.
      *
      * Generated from protobuf field <code>int64 labeled_conversations_count = 2;</code>
      */
-    private $labeled_conversations_count = 0;
+    protected $labeled_conversations_count = 0;
     /**
      * Display name of the issue.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

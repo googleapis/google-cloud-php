@@ -20,38 +20,38 @@ class CloudSQLInstanceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Cloud SQL instance.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * URI of a Cloud SQL instance network or empty string if the instance does
      * not have one.
      *
      * Generated from protobuf field <code>string network_uri = 4;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * Internal IP address of a Cloud SQL instance.
      *
      * Generated from protobuf field <code>string internal_ip = 5;</code>
      */
-    private $internal_ip = '';
+    protected $internal_ip = '';
     /**
      * External IP address of a Cloud SQL instance.
      *
      * Generated from protobuf field <code>string external_ip = 6;</code>
      */
-    private $external_ip = '';
+    protected $external_ip = '';
     /**
      * Region in which the Cloud SQL instance is running.
      *
      * Generated from protobuf field <code>string region = 7;</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

@@ -31,6 +31,4 @@ class OrcSchema extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrcSchema::class, \Google\Cloud\DataCatalog\V1\PhysicalSchema_OrcSchema::class);
 

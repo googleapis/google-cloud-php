@@ -22,7 +22,7 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      * - User-provided custom glossary:
      *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
-     * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $glossary = '';
     /**
@@ -60,7 +60,7 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      * - User-provided custom glossary:
      *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
-     * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getGlossary()
@@ -74,7 +74,7 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      * - User-provided custom glossary:
      *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
-     * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

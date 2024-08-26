@@ -35,6 +35,7 @@ use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
@@ -543,6 +544,68 @@ class ParticipantsClientTest extends GeneratedTest
         $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         try {
             $gapicClient->suggestFaqAnswers($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function suggestKnowledgeAssistTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $latestMessage2 = 'latestMessage2-440913086';
+        $contextSize2 = 397491196;
+        $expectedResponse = new SuggestKnowledgeAssistResponse();
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $expectedResponse->setContextSize($contextSize2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $response = $gapicClient->suggestKnowledgeAssist($formattedParent);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestKnowledgeAssist', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function suggestKnowledgeAssistExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        try {
+            $gapicClient->suggestKnowledgeAssist($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

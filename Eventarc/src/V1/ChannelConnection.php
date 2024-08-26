@@ -23,14 +23,14 @@ class ChannelConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned ID of the resource.
      * The server guarantees uniqueness and immutability until deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Required. The name of the connected subscriber Channel.
      * This is a weak reference to avoid cross project and cross accounts
@@ -39,19 +39,19 @@ class ChannelConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string channel = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $channel = '';
+    protected $channel = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Input only. Activation token for the channel. The token will be used
      * during the creation of ChannelConnection to bind the channel with the
@@ -59,7 +59,7 @@ class ChannelConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string activation_token = 8 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $activation_token = '';
+    protected $activation_token = '';
 
     /**
      * Constructor.

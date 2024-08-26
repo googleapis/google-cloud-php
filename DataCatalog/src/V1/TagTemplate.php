@@ -29,7 +29,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Display name for this template. Defaults to an empty string.
      * The name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -38,7 +38,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Indicates whether tags created with this template are public. Public tags
      * do not require tag template access to appear in
@@ -48,7 +48,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_publicly_readable = 5;</code>
      */
-    private $is_publicly_readable = false;
+    protected $is_publicly_readable = false;
     /**
      * Required. Map of tag template field IDs to the settings for the field.
      * This map is an exhaustive list of the allowed fields. The map must contain

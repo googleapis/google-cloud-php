@@ -20,43 +20,43 @@ class ForwardingRuleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a Compute Engine forwarding rule.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Protocol defined in the forwarding rule that matches the test.
      *
      * Generated from protobuf field <code>string matched_protocol = 3;</code>
      */
-    private $matched_protocol = '';
+    protected $matched_protocol = '';
     /**
      * Port range defined in the forwarding rule that matches the test.
      *
      * Generated from protobuf field <code>string matched_port_range = 6;</code>
      */
-    private $matched_port_range = '';
+    protected $matched_port_range = '';
     /**
      * VIP of the forwarding rule.
      *
      * Generated from protobuf field <code>string vip = 4;</code>
      */
-    private $vip = '';
+    protected $vip = '';
     /**
      * Target type of the forwarding rule.
      *
      * Generated from protobuf field <code>string target = 5;</code>
      */
-    private $target = '';
+    protected $target = '';
     /**
      * Network URI. Only valid for Internal Load Balancer.
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
 
     /**
      * Constructor.

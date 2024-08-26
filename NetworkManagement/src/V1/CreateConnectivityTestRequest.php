@@ -21,7 +21,7 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The logical name of the Connectivity Test in your project
      * with the following restrictions:
@@ -33,13 +33,13 @@ class CreateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string test_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $test_id = '';
+    protected $test_id = '';
     /**
      * Required. A `ConnectivityTest` resource
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ConnectivityTest resource = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * @param string                                              $parent   Required. The parent resource of the Connectivity Test to create:

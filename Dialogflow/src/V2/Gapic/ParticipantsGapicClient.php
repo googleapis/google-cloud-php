@@ -51,6 +51,8 @@ use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistRequest;
+use Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestionInput;
@@ -1506,6 +1508,74 @@ class ParticipantsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SuggestFaqAnswers', SuggestFaqAnswersResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets knowledge assist suggestions based on historical messages.
+     *
+     * Sample code:
+     * ```
+     * $participantsClient = new ParticipantsClient();
+     * try {
+     *     $formattedParent = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+     *     $response = $participantsClient->suggestKnowledgeAssist($formattedParent);
+     * } finally {
+     *     $participantsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the participant to fetch suggestions for.
+     *                             Format: `projects/<Project ID>/locations/<Location
+     *                             ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $latestMessage
+     *           Optional. The name of the latest conversation message to compile
+     *           suggestions for. If empty, it will be the latest message of the
+     *           conversation. Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type int $contextSize
+     *           Optional. Max number of messages prior to and including
+     *           [latest_message][google.cloud.dialogflow.v2.SuggestKnowledgeAssistRequest.latest_message]
+     *           to use as context when compiling the suggestion. The context size is by
+     *           default 100 and at most 100.
+     *     @type string $previousSuggestedQuery
+     *           Optional. The previously suggested query for the given conversation. This
+     *           helps identify whether the next suggestion we generate is resonably
+     *           different from the previous one. This is useful to avoid similar
+     *           suggestions within the conversation.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function suggestKnowledgeAssist($parent, array $optionalArgs = [])
+    {
+        $request = new SuggestKnowledgeAssistRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['latestMessage'])) {
+            $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        if (isset($optionalArgs['contextSize'])) {
+            $request->setContextSize($optionalArgs['contextSize']);
+        }
+
+        if (isset($optionalArgs['previousSuggestedQuery'])) {
+            $request->setPreviousSuggestedQuery($optionalArgs['previousSuggestedQuery']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SuggestKnowledgeAssist', SuggestKnowledgeAssistResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

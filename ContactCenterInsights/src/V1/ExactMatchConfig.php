@@ -20,7 +20,7 @@ class ExactMatchConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool case_sensitive = 1;</code>
      */
-    private $case_sensitive = false;
+    protected $case_sensitive = false;
 
     /**
      * Constructor.

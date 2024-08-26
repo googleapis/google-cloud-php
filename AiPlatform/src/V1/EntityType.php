@@ -92,6 +92,18 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 offline_storage_ttl_days = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $offline_storage_ttl_days = 0;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -142,6 +154,10 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           The Feature Store offline storage periodically removes obsolete feature
      *           values older than `offline_storage_ttl_days` since the feature generation
      *           time. If unset (or explicitly set to 0), default to 4000 days TTL.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -437,6 +453,58 @@ class EntityType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->offline_storage_ttl_days = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

@@ -21,27 +21,27 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_offset = 1;</code>
      */
-    private $start_offset = null;
+    protected $start_offset = null;
     /**
      * Time offset of the end of this word relative to the beginning of the
      * total conversation.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_offset = 2;</code>
      */
-    private $end_offset = null;
+    protected $end_offset = null;
     /**
      * The word itself. Includes punctuation marks that surround the word.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      */
-    private $word = '';
+    protected $word = '';
     /**
      * A confidence estimate between 0.0 and 1.0 of the fidelity of this
      * word. A default value of 0.0 indicates that the value is unset.
      *
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

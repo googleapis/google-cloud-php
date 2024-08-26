@@ -18,13 +18,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The region of the cluster.
      *
      * Generated from protobuf field <code>string region = 2;</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

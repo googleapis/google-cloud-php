@@ -83,9 +83,10 @@ class MetadataOptions extends \Google\Protobuf\Internal\Message
     private $kms_key = 0;
     /**
      * Specifies how each object's `timeCreated` metadata is preserved for
-     * transfers between Google Cloud Storage buckets.  If unspecified, the
-     * default behavior is the same as
+     * transfers. If unspecified, the default behavior is the same as
      * [TIME_CREATED_SKIP][google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP].
+     * This behavior is supported for transfers to Cloud Storage buckets from
+     * Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.MetadataOptions.TimeCreated time_created = 9;</code>
      */
@@ -133,9 +134,10 @@ class MetadataOptions extends \Google\Protobuf\Internal\Message
      *           [KMS_KEY_DESTINATION_BUCKET_DEFAULT][google.storagetransfer.v1.MetadataOptions.KmsKey.KMS_KEY_DESTINATION_BUCKET_DEFAULT].
      *     @type int $time_created
      *           Specifies how each object's `timeCreated` metadata is preserved for
-     *           transfers between Google Cloud Storage buckets.  If unspecified, the
-     *           default behavior is the same as
+     *           transfers. If unspecified, the default behavior is the same as
      *           [TIME_CREATED_SKIP][google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP].
+     *           This behavior is supported for transfers to Cloud Storage buckets from
+     *           Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources.
      * }
      */
     public function __construct($data = NULL) {
@@ -389,9 +391,10 @@ class MetadataOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies how each object's `timeCreated` metadata is preserved for
-     * transfers between Google Cloud Storage buckets.  If unspecified, the
-     * default behavior is the same as
+     * transfers. If unspecified, the default behavior is the same as
      * [TIME_CREATED_SKIP][google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP].
+     * This behavior is supported for transfers to Cloud Storage buckets from
+     * Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.MetadataOptions.TimeCreated time_created = 9;</code>
      * @return int
@@ -403,9 +406,10 @@ class MetadataOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies how each object's `timeCreated` metadata is preserved for
-     * transfers between Google Cloud Storage buckets.  If unspecified, the
-     * default behavior is the same as
+     * transfers. If unspecified, the default behavior is the same as
      * [TIME_CREATED_SKIP][google.storagetransfer.v1.MetadataOptions.TimeCreated.TIME_CREATED_SKIP].
+     * This behavior is supported for transfers to Cloud Storage buckets from
+     * Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.MetadataOptions.TimeCreated time_created = 9;</code>
      * @param int $var

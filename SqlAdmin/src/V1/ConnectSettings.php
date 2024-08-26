@@ -77,6 +77,12 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string dns_name = 34;</code>
      */
     protected $dns_name = '';
+    /**
+     * Specify what type of CA is used for the server certificate.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ConnectSettings.CaMode server_ca_mode = 35;</code>
+     */
+    protected $server_ca_mode = 0;
 
     /**
      * Constructor.
@@ -114,6 +120,8 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           Whether PSC connectivity is enabled for this instance.
      *     @type string $dns_name
      *           The dns name of the instance.
+     *     @type int $server_ca_mode
+     *           Specify what type of CA is used for the server certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -363,6 +371,32 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dns_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify what type of CA is used for the server certificate.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ConnectSettings.CaMode server_ca_mode = 35;</code>
+     * @return int
+     */
+    public function getServerCaMode()
+    {
+        return $this->server_ca_mode;
+    }
+
+    /**
+     * Specify what type of CA is used for the server certificate.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ConnectSettings.CaMode server_ca_mode = 35;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServerCaMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\ConnectSettings\CaMode::class);
+        $this->server_ca_mode = $var;
 
         return $this;
     }

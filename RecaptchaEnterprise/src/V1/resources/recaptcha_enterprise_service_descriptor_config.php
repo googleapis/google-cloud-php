@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService' => [
+            'AddIpOverride' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'AnnotateAssessment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse',

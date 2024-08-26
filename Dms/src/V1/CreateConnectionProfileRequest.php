@@ -20,19 +20,19 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The connection profile identifier.
      *
      * Generated from protobuf field <code>string connection_profile_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection_profile_id = '';
+    protected $connection_profile_id = '';
     /**
      * Required. The create request body including the connection profile data
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.ConnectionProfile connection_profile = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection_profile = null;
+    protected $connection_profile = null;
     /**
      * Optional. A unique ID used to identify the request. If the server receives
      * two requests with the same ID, then the second request is ignored.
@@ -42,7 +42,7 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Only validate the connection profile, but don't create any
      * resources. The default is false. Only supported for Oracle connection
@@ -50,7 +50,7 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. Create the connection profile without validating it.
      * The default is false.
@@ -58,7 +58,7 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_validation = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_validation = false;
+    protected $skip_validation = false;
 
     /**
      * @param string                                      $parent              Required. The parent which owns this collection of connection profiles. Please see

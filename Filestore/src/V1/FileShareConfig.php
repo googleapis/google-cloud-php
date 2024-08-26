@@ -23,14 +23,14 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * File share capacity in gigabytes (GB).
      * Filestore defines 1 GB as 1024^3 bytes.
      *
      * Generated from protobuf field <code>int64 capacity_gb = 2;</code>
      */
-    private $capacity_gb = 0;
+    protected $capacity_gb = 0;
     /**
      * Nfs Export Options.
      * There is a limit of 10 export options per file share.

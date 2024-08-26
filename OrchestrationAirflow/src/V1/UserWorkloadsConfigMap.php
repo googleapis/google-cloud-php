@@ -22,7 +22,7 @@ class UserWorkloadsConfigMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value
      * pairs. For details see:

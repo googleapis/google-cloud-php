@@ -80,6 +80,4 @@ class LookerColumnType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LookerColumnType::class, \Google\Cloud\DataCatalog\V1\ColumnSchema_LookerColumnSpec_LookerColumnType::class);
 

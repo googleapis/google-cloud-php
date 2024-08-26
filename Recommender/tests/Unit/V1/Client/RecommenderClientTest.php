@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,9 @@ class RecommenderClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RecommenderClient */
@@ -98,8 +100,7 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $request = (new GetInsightRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightRequest())->setName($formattedName);
         $response = $gapicClient->getInsight($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -123,17 +124,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $request = (new GetInsightRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightRequest())->setName($formattedName);
         try {
             $gapicClient->getInsight($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -168,8 +171,7 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new GetInsightTypeConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightTypeConfigRequest())->setName($formattedName);
         $response = $gapicClient->getInsightTypeConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -193,17 +195,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new GetInsightTypeConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightTypeConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getInsightTypeConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -239,9 +243,13 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new GetRecommendationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
+        $request = (new GetRecommendationRequest())->setName($formattedName);
         $response = $gapicClient->getRecommendation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -265,17 +273,24 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new GetRecommendationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
+        $request = (new GetRecommendationRequest())->setName($formattedName);
         try {
             $gapicClient->getRecommendation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -310,8 +325,7 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new GetRecommenderConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetRecommenderConfigRequest())->setName($formattedName);
         $response = $gapicClient->getRecommenderConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -335,17 +349,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new GetRecommenderConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetRecommenderConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getRecommenderConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -370,17 +386,14 @@ class RecommenderClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $insightsElement = new Insight();
-        $insights = [
-            $insightsElement,
-        ];
+        $insights = [$insightsElement];
         $expectedResponse = new ListInsightsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setInsights($insights);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new ListInsightsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInsightsRequest())->setParent($formattedParent);
         $response = $gapicClient->listInsights($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -407,17 +420,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $request = (new ListInsightsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListInsightsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInsights($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -442,17 +457,14 @@ class RecommenderClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $recommendationsElement = new Recommendation();
-        $recommendations = [
-            $recommendationsElement,
-        ];
+        $recommendations = [$recommendationsElement];
         $expectedResponse = new ListRecommendationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecommendations($recommendations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new ListRecommendationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRecommendationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRecommendations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -479,17 +491,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $request = (new ListRecommendationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRecommendationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRecommendations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -525,9 +539,7 @@ class RecommenderClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         $etag = 'etag3123477';
-        $request = (new MarkInsightAcceptedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkInsightAcceptedRequest())->setName($formattedName)->setEtag($etag);
         $response = $gapicClient->markInsightAccepted($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -553,19 +565,20 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         $etag = 'etag3123477';
-        $request = (new MarkInsightAcceptedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkInsightAcceptedRequest())->setName($formattedName)->setEtag($etag);
         try {
             $gapicClient->markInsightAccepted($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -601,11 +614,14 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
         $etag = 'etag3123477';
-        $request = (new MarkRecommendationClaimedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkRecommendationClaimedRequest())->setName($formattedName)->setEtag($etag);
         $response = $gapicClient->markRecommendationClaimed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -631,19 +647,25 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
         $etag = 'etag3123477';
-        $request = (new MarkRecommendationClaimedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkRecommendationClaimedRequest())->setName($formattedName)->setEtag($etag);
         try {
             $gapicClient->markRecommendationClaimed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -679,9 +701,13 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new MarkRecommendationDismissedRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
+        $request = (new MarkRecommendationDismissedRequest())->setName($formattedName);
         $response = $gapicClient->markRecommendationDismissed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -705,17 +731,24 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $request = (new MarkRecommendationDismissedRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
+        $request = (new MarkRecommendationDismissedRequest())->setName($formattedName);
         try {
             $gapicClient->markRecommendationDismissed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -751,11 +784,14 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
         $etag = 'etag3123477';
-        $request = (new MarkRecommendationFailedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkRecommendationFailedRequest())->setName($formattedName)->setEtag($etag);
         $response = $gapicClient->markRecommendationFailed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -781,19 +817,25 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
         $etag = 'etag3123477';
-        $request = (new MarkRecommendationFailedRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkRecommendationFailedRequest())->setName($formattedName)->setEtag($etag);
         try {
             $gapicClient->markRecommendationFailed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -829,11 +871,14 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
         $etag = 'etag3123477';
-        $request = (new MarkRecommendationSucceededRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkRecommendationSucceededRequest())->setName($formattedName)->setEtag($etag);
         $response = $gapicClient->markRecommendationSucceeded($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -859,19 +904,25 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[RECOMMENDER]',
+            '[RECOMMENDATION]'
+        );
         $etag = 'etag3123477';
-        $request = (new MarkRecommendationSucceededRequest())
-            ->setName($formattedName)
-            ->setEtag($etag);
+        $request = (new MarkRecommendationSucceededRequest())->setName($formattedName)->setEtag($etag);
         try {
             $gapicClient->markRecommendationSucceeded($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -906,8 +957,7 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $insightTypeConfig = new InsightTypeConfig();
-        $request = (new UpdateInsightTypeConfigRequest())
-            ->setInsightTypeConfig($insightTypeConfig);
+        $request = (new UpdateInsightTypeConfigRequest())->setInsightTypeConfig($insightTypeConfig);
         $response = $gapicClient->updateInsightTypeConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -931,17 +981,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $insightTypeConfig = new InsightTypeConfig();
-        $request = (new UpdateInsightTypeConfigRequest())
-            ->setInsightTypeConfig($insightTypeConfig);
+        $request = (new UpdateInsightTypeConfigRequest())->setInsightTypeConfig($insightTypeConfig);
         try {
             $gapicClient->updateInsightTypeConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -976,8 +1028,7 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $recommenderConfig = new RecommenderConfig();
-        $request = (new UpdateRecommenderConfigRequest())
-            ->setRecommenderConfig($recommenderConfig);
+        $request = (new UpdateRecommenderConfigRequest())->setRecommenderConfig($recommenderConfig);
         $response = $gapicClient->updateRecommenderConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1001,17 +1052,19 @@ class RecommenderClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $recommenderConfig = new RecommenderConfig();
-        $request = (new UpdateRecommenderConfigRequest())
-            ->setRecommenderConfig($recommenderConfig);
+        $request = (new UpdateRecommenderConfigRequest())->setRecommenderConfig($recommenderConfig);
         try {
             $gapicClient->updateRecommenderConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1046,8 +1099,7 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $request = (new GetInsightRequest())
-            ->setName($formattedName);
+        $request = (new GetInsightRequest())->setName($formattedName);
         $response = $gapicClient->getInsightAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

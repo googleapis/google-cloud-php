@@ -21,6 +21,11 @@ fi
 if [ "$STAGING_BUCKET" != "" ]; then
     echo "Using staging bucket ${STAGING_BUCKET}..."
 fi
+VERBOSITY="";
+if [ "$GCLOUD_DEBUG" -eq 1 ]; then
+    echo "Setting verbosity to VERBOSE...";
+    VERBOSITY=" -v";
+fi
 
 find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -regex "$PROJECT_DIR/[A-Z].*" -exec dirname {} \; | while read DIR
 do
@@ -31,13 +36,15 @@ do
             --component $COMPONENT \
             --out $DIR/out \
             --metadata-version $VERSION \
-            --staging-bucket $STAGING_BUCKET
+            --staging-bucket $STAGING_BUCKET \
+            $VERBOSITY
     else
         # dry run
         $PROJECT_DIR/dev/google-cloud docfx \
             --component $COMPONENT \
             --out $DIR/out \
-            --metadata-version $VERSION
+            --metadata-version $VERSION \
+            $VERBOSITY
     fi
 done
 

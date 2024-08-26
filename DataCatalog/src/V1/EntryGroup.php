@@ -24,14 +24,14 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A short name to identify the entry group, for example,
      * "analytics data - jan 2011". Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Entry group description. Can consist of several sentences or
      * paragraphs that describe the entry group contents.
@@ -39,13 +39,13 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Timestamps of the entry group. Default value is empty.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_catalog_timestamps = null;
+    protected $data_catalog_timestamps = null;
 
     /**
      * Constructor.

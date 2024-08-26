@@ -21,7 +21,7 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.
@@ -69,6 +69,4 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldElementType::class, \Google\Cloud\DataCatalog\V1\ColumnSchema_FieldElementType::class);
 

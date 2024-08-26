@@ -21,25 +21,25 @@ class ListImageVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of image_versions to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The next_page_token value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Whether or not image versions from old releases should be included.
      *
      * Generated from protobuf field <code>bool include_past_releases = 4;</code>
      */
-    private $include_past_releases = false;
+    protected $include_past_releases = false;
 
     /**
      * @param string $parent List ImageVersions in the given project and location, in the form:

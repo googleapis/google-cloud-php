@@ -22,14 +22,14 @@ class SeedConversionWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Should the conversion workspace be committed automatically after the
      * seed operation.
      *
      * Generated from protobuf field <code>bool auto_commit = 2;</code>
      */
-    private $auto_commit = false;
+    protected $auto_commit = false;
     protected $seed_from;
 
     /**

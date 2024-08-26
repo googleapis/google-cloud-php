@@ -21,13 +21,13 @@ class CreateTaxonomyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The taxonomy to create.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Taxonomy taxonomy = 2;</code>
      */
-    private $taxonomy = null;
+    protected $taxonomy = null;
 
     /**
      * @param string                                $parent   Required. Resource name of the project that the taxonomy will belong to. Please see

@@ -20,19 +20,19 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 customer_satisfaction_rating = 1;</code>
      */
-    private $customer_satisfaction_rating = 0;
+    protected $customer_satisfaction_rating = 0;
     /**
      * The amount of time the customer waited to connect with an agent.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration wait_duration = 2;</code>
      */
-    private $wait_duration = null;
+    protected $wait_duration = null;
     /**
      * An arbitrary string value specifying the menu path the customer took.
      *
      * Generated from protobuf field <code>string menu_path = 3;</code>
      */
-    private $menu_path = '';
+    protected $menu_path = '';
     /**
      * Information about agents involved in the call.
      *

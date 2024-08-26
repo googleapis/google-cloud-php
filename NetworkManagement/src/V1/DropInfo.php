@@ -20,31 +20,31 @@ class DropInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.DropInfo.Cause cause = 1;</code>
      */
-    private $cause = 0;
+    protected $cause = 0;
     /**
      * URI of the resource that caused the drop.
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
-    private $resource_uri = '';
+    protected $resource_uri = '';
     /**
      * Source IP address of the dropped packet (if relevant).
      *
      * Generated from protobuf field <code>string source_ip = 3;</code>
      */
-    private $source_ip = '';
+    protected $source_ip = '';
     /**
      * Destination IP address of the dropped packet (if relevant).
      *
      * Generated from protobuf field <code>string destination_ip = 4;</code>
      */
-    private $destination_ip = '';
+    protected $destination_ip = '';
     /**
      * Region of the dropped packet (if relevant).
      *
      * Generated from protobuf field <code>string region = 5;</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

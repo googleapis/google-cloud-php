@@ -20,7 +20,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of conversations to return in the response. A valid page
      * size ranges from 0 to 1,000 inclusive. If the page size is zero or
@@ -29,7 +29,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last `ListConversationsResponse`. This value
      * indicates that this is a continuation of a prior `ListConversations` call
@@ -37,20 +37,20 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A filter to reduce results to a specific subset. Useful for querying
      * conversations with specific properties.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The level of details of the conversation. Default is `BASIC`.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationView view = 5;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $parent Required. The parent resource of the conversation. Please see

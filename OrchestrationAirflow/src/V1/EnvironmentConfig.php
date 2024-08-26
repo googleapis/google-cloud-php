@@ -20,7 +20,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gke_cluster = 1;</code>
      */
-    private $gke_cluster = '';
+    protected $gke_cluster = '';
     /**
      * Output only. The Cloud Storage prefix of the DAGs for this environment.
      * Although Cloud Storage objects reside in a flat namespace, a hierarchical
@@ -30,7 +30,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dag_gcs_prefix = 2;</code>
      */
-    private $dag_gcs_prefix = '';
+    protected $dag_gcs_prefix = '';
     /**
      * The number of nodes in the Kubernetes Engine cluster that will be
      * used to run this environment.
@@ -39,25 +39,25 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 node_count = 3;</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
     /**
      * The configuration settings for software inside the environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4;</code>
      */
-    private $software_config = null;
+    protected $software_config = null;
     /**
      * The configuration used for the Kubernetes Engine cluster.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5;</code>
      */
-    private $node_config = null;
+    protected $node_config = null;
     /**
      * The configuration used for the Private IP Cloud Composer environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7;</code>
      */
-    private $private_environment_config = null;
+    protected $private_environment_config = null;
     /**
      * Optional. The network-level access control policy for the Airflow web
      * server. If unspecified, no network-level access restrictions will be
@@ -65,28 +65,28 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl web_server_network_access_control = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $web_server_network_access_control = null;
+    protected $web_server_network_access_control = null;
     /**
      * Optional. The configuration settings for Cloud SQL instance used internally
      * by Apache Airflow software.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DatabaseConfig database_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $database_config = null;
+    protected $database_config = null;
     /**
      * Optional. The configuration settings for the Airflow web server App Engine
      * instance.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WebServerConfig web_server_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $web_server_config = null;
+    protected $web_server_config = null;
     /**
      * Optional. The encryption options for the Cloud Composer environment
      * and its dependencies. Cannot be updated.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EncryptionConfig encryption_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Optional. The maintenance window is the period when Cloud Composer
      * components may undergo maintenance. It is defined so that maintenance is
@@ -102,7 +102,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.MaintenanceWindow maintenance_window = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maintenance_window = null;
+    protected $maintenance_window = null;
     /**
      * Optional. The workloads configuration settings for the GKE cluster
      * associated with the Cloud Composer environment. The GKE cluster runs
@@ -112,7 +112,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig workloads_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $workloads_config = null;
+    protected $workloads_config = null;
     /**
      * Optional. The size of the Cloud Composer environment.
      * This field is supported for Cloud Composer environments in versions
@@ -120,25 +120,25 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig.EnvironmentSize environment_size = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $environment_size = 0;
+    protected $environment_size = 0;
     /**
      * Output only. The URI of the Apache Airflow Web UI hosted within this
      * environment (see [Airflow web
-     * interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
+     * interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      *
      * Generated from protobuf field <code>string airflow_uri = 6;</code>
      */
-    private $airflow_uri = '';
+    protected $airflow_uri = '';
     /**
      * Output only. The 'bring your own identity' variant of the URI of the Apache
      * Airflow Web UI hosted within this environment, to be accessed with external
      * identities using workforce identity federation (see [Access environments
      * with workforce identity
-     * federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     * federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
      *
      * Generated from protobuf field <code>string airflow_byoid_uri = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $airflow_byoid_uri = '';
+    protected $airflow_byoid_uri = '';
     /**
      * Optional. The configuration options for GKE cluster master authorized
      * networks. By default master authorized networks feature is:
@@ -148,7 +148,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $master_authorized_networks_config = null;
+    protected $master_authorized_networks_config = null;
     /**
      * Optional. The Recovery settings configuration of an environment.
      * This field is supported for Cloud Composer environments in versions
@@ -156,7 +156,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.RecoveryConfig recovery_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $recovery_config = null;
+    protected $recovery_config = null;
     /**
      * Optional. Resilience mode of the Cloud Composer Environment.
      * This field is supported for Cloud Composer environments in versions
@@ -164,14 +164,14 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig.ResilienceMode resilience_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resilience_mode = 0;
+    protected $resilience_mode = 0;
     /**
      * Optional. The configuration setting for Airflow database data retention
      * mechanism.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DataRetentionConfig data_retention_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_retention_config = null;
+    protected $data_retention_config = null;
 
     /**
      * Constructor.
@@ -236,13 +236,13 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *     @type string $airflow_uri
      *           Output only. The URI of the Apache Airflow Web UI hosted within this
      *           environment (see [Airflow web
-     *           interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
+     *           interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      *     @type string $airflow_byoid_uri
      *           Output only. The 'bring your own identity' variant of the URI of the Apache
      *           Airflow Web UI hosted within this environment, to be accessed with external
      *           identities using workforce identity federation (see [Access environments
      *           with workforce identity
-     *           federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     *           federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig $master_authorized_networks_config
      *           Optional. The configuration options for GKE cluster master authorized
      *           networks. By default master authorized networks feature is:
@@ -754,7 +754,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The URI of the Apache Airflow Web UI hosted within this
      * environment (see [Airflow web
-     * interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
+     * interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      *
      * Generated from protobuf field <code>string airflow_uri = 6;</code>
      * @return string
@@ -767,7 +767,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The URI of the Apache Airflow Web UI hosted within this
      * environment (see [Airflow web
-     * interface](https://cloud.google.com/composer/docs/how-to/accessing/airflow-web-interface)).
+     * interface](/composer/docs/how-to/accessing/airflow-web-interface)).
      *
      * Generated from protobuf field <code>string airflow_uri = 6;</code>
      * @param string $var
@@ -786,7 +786,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Airflow Web UI hosted within this environment, to be accessed with external
      * identities using workforce identity federation (see [Access environments
      * with workforce identity
-     * federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     * federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
      *
      * Generated from protobuf field <code>string airflow_byoid_uri = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -801,7 +801,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Airflow Web UI hosted within this environment, to be accessed with external
      * identities using workforce identity federation (see [Access environments
      * with workforce identity
-     * federation](https://cloud.google.com/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
+     * federation](/composer/docs/composer-2/access-environments-with-workforce-identity-federation)).
      *
      * Generated from protobuf field <code>string airflow_byoid_uri = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

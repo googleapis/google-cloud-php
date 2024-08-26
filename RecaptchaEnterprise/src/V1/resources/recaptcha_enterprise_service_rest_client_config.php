@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService' => [
+            'AddIpOverride' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:addIpOverride',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'AnnotateAssessment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/assessments/*}:annotate',

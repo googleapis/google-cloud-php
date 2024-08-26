@@ -20,13 +20,13 @@ class ApproveApprovalRequestMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The expiration time of this approval.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

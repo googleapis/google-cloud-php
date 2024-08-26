@@ -22,7 +22,7 @@ class RoundToScale extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 scale = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scale = 0;
+    protected $scale = 0;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\NetworkConnectivity\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -69,6 +68,7 @@ use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -92,7 +92,9 @@ class HubServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return HubServiceClient */
@@ -136,9 +138,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
         $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new AcceptHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = (new AcceptHubSpokeRequest())->setName($formattedName)->setSpokeUri($formattedSpokeUri);
         $response = $gapicClient->acceptHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -196,19 +196,20 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
         $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new AcceptHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = (new AcceptHubSpokeRequest())->setName($formattedName)->setSpokeUri($formattedSpokeUri);
         $response = $gapicClient->acceptHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -333,12 +334,15 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -476,12 +480,15 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -544,8 +551,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new DeleteHubRequest())
-            ->setName($formattedName);
+        $request = (new DeleteHubRequest())->setName($formattedName);
         $response = $gapicClient->deleteHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -601,17 +607,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new DeleteHubRequest())
-            ->setName($formattedName);
+        $request = (new DeleteHubRequest())->setName($formattedName);
         $response = $gapicClient->deleteHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -665,8 +673,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new DeleteSpokeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSpokeRequest())->setName($formattedName);
         $response = $gapicClient->deleteSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -722,17 +729,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new DeleteSpokeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSpokeRequest())->setName($formattedName);
         $response = $gapicClient->deleteSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -774,8 +783,7 @@ class HubServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetGroupRequest())->setName($formattedName);
         $response = $gapicClient->getGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -799,17 +807,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
-        $request = (new GetGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -842,8 +852,7 @@ class HubServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new GetHubRequest())
-            ->setName($formattedName);
+        $request = (new GetHubRequest())->setName($formattedName);
         $response = $gapicClient->getHub($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -867,17 +876,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new GetHubRequest())
-            ->setName($formattedName);
+        $request = (new GetHubRequest())->setName($formattedName);
         try {
             $gapicClient->getHub($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -916,8 +927,7 @@ class HubServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
-        $request = (new GetRouteRequest())
-            ->setName($formattedName);
+        $request = (new GetRouteRequest())->setName($formattedName);
         $response = $gapicClient->getRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -941,17 +951,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
-        $request = (new GetRouteRequest())
-            ->setName($formattedName);
+        $request = (new GetRouteRequest())->setName($formattedName);
         try {
             $gapicClient->getRoute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -984,8 +996,7 @@ class HubServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new GetRouteTableRequest())
-            ->setName($formattedName);
+        $request = (new GetRouteTableRequest())->setName($formattedName);
         $response = $gapicClient->getRouteTable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1009,17 +1020,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new GetRouteTableRequest())
-            ->setName($formattedName);
+        $request = (new GetRouteTableRequest())->setName($formattedName);
         try {
             $gapicClient->getRouteTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1056,8 +1069,7 @@ class HubServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new GetSpokeRequest())
-            ->setName($formattedName);
+        $request = (new GetSpokeRequest())->setName($formattedName);
         $response = $gapicClient->getSpoke($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1081,17 +1093,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new GetSpokeRequest())
-            ->setName($formattedName);
+        $request = (new GetSpokeRequest())->setName($formattedName);
         try {
             $gapicClient->getSpoke($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1116,17 +1130,14 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $groupsElement = new Group();
-        $groups = [
-            $groupsElement,
-        ];
+        $groups = [$groupsElement];
         $expectedResponse = new ListGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGroups($groups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGroupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1153,17 +1164,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListGroupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGroupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1188,17 +1201,14 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $spokesElement = new Spoke();
-        $spokes = [
-            $spokesElement,
-        ];
+        $spokes = [$spokesElement];
         $expectedResponse = new ListHubSpokesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSpokes($spokes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListHubSpokesRequest())
-            ->setName($formattedName);
+        $request = (new ListHubSpokesRequest())->setName($formattedName);
         $response = $gapicClient->listHubSpokes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1225,17 +1235,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListHubSpokesRequest())
-            ->setName($formattedName);
+        $request = (new ListHubSpokesRequest())->setName($formattedName);
         try {
             $gapicClient->listHubSpokes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1260,17 +1272,14 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $hubsElement = new Hub();
-        $hubs = [
-            $hubsElement,
-        ];
+        $hubs = [$hubsElement];
         $expectedResponse = new ListHubsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setHubs($hubs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListHubsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListHubsRequest())->setParent($formattedParent);
         $response = $gapicClient->listHubs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1297,17 +1306,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListHubsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListHubsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listHubs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1332,17 +1343,14 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $routeTablesElement = new RouteTable();
-        $routeTables = [
-            $routeTablesElement,
-        ];
+        $routeTables = [$routeTablesElement];
         $expectedResponse = new ListRouteTablesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRouteTables($routeTables);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListRouteTablesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRouteTablesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRouteTables($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1369,17 +1377,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->hubName('[PROJECT]', '[HUB]');
-        $request = (new ListRouteTablesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRouteTablesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRouteTables($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1404,17 +1414,14 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $routesElement = new Route();
-        $routes = [
-            $routesElement,
-        ];
+        $routes = [$routesElement];
         $expectedResponse = new ListRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRoutes($routes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new ListRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRoutesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1441,17 +1448,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->routeTableName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]');
-        $request = (new ListRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRoutesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1476,17 +1485,14 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $spokesElement = new Spoke();
-        $spokes = [
-            $spokesElement,
-        ];
+        $spokes = [$spokesElement];
         $expectedResponse = new ListSpokesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSpokes($spokes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSpokesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSpokesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSpokes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1513,17 +1519,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSpokesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSpokesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSpokes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1569,9 +1577,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
         $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new RejectHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = (new RejectHubSpokeRequest())->setName($formattedName)->setSpokeUri($formattedSpokeUri);
         $response = $gapicClient->rejectHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1629,19 +1635,20 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
         $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new RejectHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = (new RejectHubSpokeRequest())->setName($formattedName)->setSpokeUri($formattedSpokeUri);
         $response = $gapicClient->rejectHubSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1701,8 +1708,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $hub = new Hub();
-        $request = (new UpdateHubRequest())
-            ->setHub($hub);
+        $request = (new UpdateHubRequest())->setHub($hub);
         $response = $gapicClient->updateHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1758,17 +1764,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $hub = new Hub();
-        $request = (new UpdateHubRequest())
-            ->setHub($hub);
+        $request = (new UpdateHubRequest())->setHub($hub);
         $response = $gapicClient->updateHub($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1832,8 +1840,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $spoke = new Spoke();
-        $request = (new UpdateSpokeRequest())
-            ->setSpoke($spoke);
+        $request = (new UpdateSpokeRequest())->setSpoke($spoke);
         $response = $gapicClient->updateSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1889,17 +1896,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $spoke = new Spoke();
-        $request = (new UpdateSpokeRequest())
-            ->setSpoke($spoke);
+        $request = (new UpdateSpokeRequest())->setSpoke($spoke);
         $response = $gapicClient->updateSpoke($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1961,12 +1970,15 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1993,9 +2005,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2025,12 +2035,15 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -2063,8 +2076,7 @@ class HubServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2088,17 +2100,19 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2130,9 +2144,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2158,19 +2170,20 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2198,9 +2211,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2226,19 +2237,20 @@ class HubServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2284,9 +2296,7 @@ class HubServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
         $formattedSpokeUri = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $request = (new AcceptHubSpokeRequest())
-            ->setName($formattedName)
-            ->setSpokeUri($formattedSpokeUri);
+        $request = (new AcceptHubSpokeRequest())->setName($formattedName)->setSpokeUri($formattedSpokeUri);
         $response = $gapicClient->acceptHubSpokeAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -20,27 +20,27 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Configuration that applies to all conversations.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.ConversationConfig conversation_config = 4;</code>
      */
-    private $conversation_config = null;
+    protected $conversation_config = null;
     /**
      * Optional. DLP settings for transcript redaction. Optional, will default to
      * the config specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $redaction_config = null;
+    protected $redaction_config = null;
     /**
      * Optional. Default Speech-to-Text configuration. Optional, will default to
      * the config specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $speech_config = null;
+    protected $speech_config = null;
     protected $source;
     protected $object_config;
 

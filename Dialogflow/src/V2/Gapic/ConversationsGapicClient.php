@@ -37,11 +37,15 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\AssistQueryParameters;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
+use Google\Cloud\Dialogflow\V2\ConversationContext;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
+use Google\Cloud\Dialogflow\V2\Generator;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
@@ -121,6 +125,8 @@ class ConversationsGapicClient
     private static $conversationProfileNameTemplate;
 
     private static $documentNameTemplate;
+
+    private static $generatorNameTemplate;
 
     private static $knowledgeBaseNameTemplate;
 
@@ -231,6 +237,15 @@ class ConversationsGapicClient
         }
 
         return self::$documentNameTemplate;
+    }
+
+    private static function getGeneratorNameTemplate()
+    {
+        if (self::$generatorNameTemplate == null) {
+            self::$generatorNameTemplate = new PathTemplate('projects/{project}/locations/{location}/generators/{generator}');
+        }
+
+        return self::$generatorNameTemplate;
     }
 
     private static function getKnowledgeBaseNameTemplate()
@@ -405,6 +420,7 @@ class ConversationsGapicClient
                 'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
                 'document' => self::getDocumentNameTemplate(),
+                'generator' => self::getGeneratorNameTemplate(),
                 'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'message' => self::getMessageNameTemplate(),
@@ -532,6 +548,25 @@ class ConversationsGapicClient
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName($project, $location, $generator)
+    {
+        return self::getGeneratorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
         ]);
     }
 
@@ -869,6 +904,7 @@ class ConversationsGapicClient
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
@@ -1104,6 +1140,75 @@ class ConversationsGapicClient
     }
 
     /**
+     * Generates and returns a suggestion for a conversation that does not have a
+     * resource created for it.
+     *
+     * Sample code:
+     * ```
+     * $conversationsClient = new ConversationsClient();
+     * try {
+     *     $formattedParent = $conversationsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $conversationsClient->generateStatelessSuggestion($formattedParent);
+     * } finally {
+     *     $conversationsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource to charge for the Suggestion's generation.
+     *                             Format: `projects/<Project ID>/locations/<Location ID>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Generator $generator
+     *           Uncreated generator. It should be a complete generator that includes all
+     *           information about the generator.
+     *     @type string $generatorName
+     *           The resource name of the existing created generator. Format:
+     *           `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
+     *     @type ConversationContext $conversationContext
+     *           Optional. Context of the conversation, including transcripts.
+     *     @type int[] $triggerEvents
+     *           Optional. A list of trigger events. Generator will be triggered only if
+     *           it's trigger event is included here.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\TriggerEvent}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateStatelessSuggestion($parent, array $optionalArgs = [])
+    {
+        $request = new GenerateStatelessSuggestionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['generator'])) {
+            $request->setGenerator($optionalArgs['generator']);
+        }
+
+        if (isset($optionalArgs['generatorName'])) {
+            $request->setGeneratorName($optionalArgs['generatorName']);
+        }
+
+        if (isset($optionalArgs['conversationContext'])) {
+            $request->setConversationContext($optionalArgs['conversationContext']);
+        }
+
+        if (isset($optionalArgs['triggerEvents'])) {
+            $request->setTriggerEvents($optionalArgs['triggerEvents']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateStatelessSuggestion', GenerateStatelessSuggestionResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Generates and returns a summary for a conversation that does not have a
      * resource created for it.
      *
@@ -1128,12 +1233,12 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $latestMessage
-     *           The name of the latest conversation message used as context for
+     *           Optional. The name of the latest conversation message used as context for
      *           generating a Summary. If empty, the latest message of the conversation will
      *           be used. The format is specific to the user and the names of the messages
      *           provided.
      *     @type int $maxContextSize
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type RetrySettings|array $retrySettings
@@ -1248,18 +1353,9 @@ class ConversationsGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           A filter expression that filters conversations listed in the response. In
-     *           general, the expression must specify the field name, a comparison operator,
-     *           and the value to use for filtering:
-     *           <ul>
-     *           <li>The value must be a string, a number, or a boolean.</li>
-     *           <li>The comparison operator must be either `=`,`!=`, `>`, or `<`.</li>
-     *           <li>To filter on multiple expressions, separate the
-     *           expressions with `AND` or `OR` (omitting both implies `AND`).</li>
-     *           <li>For clarity, expressions can be enclosed in parentheses.</li>
-     *           </ul>
-     *           Only `lifecycle_state` can be filtered on in this way. For example,
-     *           the following expression only returns `COMPLETED` conversations:
+     *           Optional. A filter expression that filters conversations listed in the
+     *           response. Only `lifecycle_state` can be filtered on in this way. For
+     *           example, the following expression only returns `COMPLETED` conversations:
      *
      *           `lifecycle_state = "COMPLETED"`
      *
@@ -1408,11 +1504,11 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $parent
-     *           The parent resource contains the conversation profile
+     *           Required. The parent resource contains the conversation profile
      *           Format: 'projects/<Project ID>' or `projects/<Project
      *           ID>/locations/<Location ID>`.
      *     @type string $sessionId
-     *           The ID of the search session.
+     *           Required. The ID of the search session.
      *           The session_id can be combined with Dialogflow V3 Agent ID retrieved from
      *           conversation profile or on its own to identify a search session. The search
      *           history of the same session will impact the search result. It's up to the
@@ -1420,11 +1516,11 @@ class ConversationsGapicClient
      *           or some type of session identifiers (preferably hashed). The length must
      *           not exceed 36 characters.
      *     @type string $conversation
-     *           The conversation (between human agent and end user) where the search
-     *           request is triggered. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/conversations/<Conversation ID>`.
+     *           Optional. The conversation (between human agent and end user) where the
+     *           search request is triggered. Format: `projects/<Project
+     *           ID>/locations/<Location ID>/conversations/<Conversation ID>`.
      *     @type string $latestMessage
-     *           The name of the latest conversation message when the request is
+     *           Optional. The name of the latest conversation message when the request is
      *           triggered.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
@@ -1490,18 +1586,19 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $latestMessage
-     *           The name of the latest conversation message used as context for
+     *           Optional. The name of the latest conversation message used as context for
      *           compiling suggestion. If empty, the latest message of the conversation will
      *           be used.
      *
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $contextSize
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type AssistQueryParameters $assistQueryParams
-     *           Parameters for a human assist query. Only used for POC/demo purpose.
+     *           Optional. Parameters for a human assist query. Only used for POC/demo
+     *           purpose.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

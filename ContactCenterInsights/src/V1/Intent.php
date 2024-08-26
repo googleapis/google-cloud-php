@@ -21,13 +21,13 @@ class Intent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The human-readable name of the intent.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

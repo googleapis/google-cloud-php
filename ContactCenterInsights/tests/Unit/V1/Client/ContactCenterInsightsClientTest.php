@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\ContactCenterInsights\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
@@ -89,6 +88,7 @@ use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\View;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -113,7 +113,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ContactCenterInsightsClient */
@@ -175,7 +177,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getFilter();
@@ -225,12 +230,15 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -293,8 +301,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new BulkDeleteConversationsRequest())
-            ->setParent($formattedParent);
+        $request = (new BulkDeleteConversationsRequest())->setParent($formattedParent);
         $response = $gapicClient->bulkDeleteConversations($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -304,7 +311,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkDeleteConversations', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkDeleteConversations',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -350,17 +360,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new BulkDeleteConversationsRequest())
-            ->setParent($formattedParent);
+        $request = (new BulkDeleteConversationsRequest())->setParent($formattedParent);
         $response = $gapicClient->bulkDeleteConversations($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -396,15 +408,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedIssueModel = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new CalculateIssueModelStatsRequest())
-            ->setIssueModel($formattedIssueModel);
+        $request = (new CalculateIssueModelStatsRequest())->setIssueModel($formattedIssueModel);
         $response = $gapicClient->calculateIssueModelStats($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateIssueModelStats', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateIssueModelStats',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getIssueModel();
         $this->assertProtobufEquals($formattedIssueModel, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -421,17 +435,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedIssueModel = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new CalculateIssueModelStatsRequest())
-            ->setIssueModel($formattedIssueModel);
+        $request = (new CalculateIssueModelStatsRequest())->setIssueModel($formattedIssueModel);
         try {
             $gapicClient->calculateIssueModelStats($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -462,15 +478,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CalculateStatsRequest())
-            ->setLocation($formattedLocation);
+        $request = (new CalculateStatsRequest())->setLocation($formattedLocation);
         $response = $gapicClient->calculateStats($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateStats', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CalculateStats',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getLocation();
         $this->assertProtobufEquals($formattedLocation, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -487,17 +505,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new CalculateStatsRequest())
-            ->setLocation($formattedLocation);
+        $request = (new CalculateStatsRequest())->setLocation($formattedLocation);
         try {
             $gapicClient->calculateStats($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -545,9 +565,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         $analysis = new Analysis();
-        $request = (new CreateAnalysisRequest())
-            ->setParent($formattedParent)
-            ->setAnalysis($analysis);
+        $request = (new CreateAnalysisRequest())->setParent($formattedParent)->setAnalysis($analysis);
         $response = $gapicClient->createAnalysis($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -557,7 +575,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateAnalysis', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateAnalysis',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAnalysis();
@@ -605,19 +626,20 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         $analysis = new Analysis();
-        $request = (new CreateAnalysisRequest())
-            ->setParent($formattedParent)
-            ->setAnalysis($analysis);
+        $request = (new CreateAnalysisRequest())->setParent($formattedParent)->setAnalysis($analysis);
         $response = $gapicClient->createAnalysis($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -664,16 +686,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $conversation = new Conversation();
-        $request = (new CreateConversationRequest())
-            ->setParent($formattedParent)
-            ->setConversation($conversation);
+        $request = (new CreateConversationRequest())->setParent($formattedParent)->setConversation($conversation);
         $response = $gapicClient->createConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateConversation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateConversation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getConversation();
@@ -692,19 +715,20 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $conversation = new Conversation();
-        $request = (new CreateConversationRequest())
-            ->setParent($formattedParent)
-            ->setConversation($conversation);
+        $request = (new CreateConversationRequest())->setParent($formattedParent)->setConversation($conversation);
         try {
             $gapicClient->createConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -758,9 +782,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $issueModel = new IssueModel();
-        $request = (new CreateIssueModelRequest())
-            ->setParent($formattedParent)
-            ->setIssueModel($issueModel);
+        $request = (new CreateIssueModelRequest())->setParent($formattedParent)->setIssueModel($issueModel);
         $response = $gapicClient->createIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -770,7 +792,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateIssueModel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateIssueModel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getIssueModel();
@@ -818,19 +843,20 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $issueModel = new IssueModel();
-        $request = (new CreateIssueModelRequest())
-            ->setParent($formattedParent)
-            ->setIssueModel($issueModel);
+        $request = (new CreateIssueModelRequest())->setParent($formattedParent)->setIssueModel($issueModel);
         $response = $gapicClient->createIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -879,16 +905,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
-        $request = (new CreatePhraseMatcherRequest())
-            ->setParent($formattedParent)
-            ->setPhraseMatcher($phraseMatcher);
+        $request = (new CreatePhraseMatcherRequest())->setParent($formattedParent)->setPhraseMatcher($phraseMatcher);
         $response = $gapicClient->createPhraseMatcher($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreatePhraseMatcher', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreatePhraseMatcher',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getPhraseMatcher();
@@ -907,21 +934,22 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
-        $request = (new CreatePhraseMatcherRequest())
-            ->setParent($formattedParent)
-            ->setPhraseMatcher($phraseMatcher);
+        $request = (new CreatePhraseMatcherRequest())->setParent($formattedParent)->setPhraseMatcher($phraseMatcher);
         try {
             $gapicClient->createPhraseMatcher($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -955,9 +983,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $view = new View();
-        $request = (new CreateViewRequest())
-            ->setParent($formattedParent)
-            ->setView($view);
+        $request = (new CreateViewRequest())->setParent($formattedParent)->setView($view);
         $response = $gapicClient->createView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -983,19 +1009,20 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $view = new View();
-        $request = (new CreateViewRequest())
-            ->setParent($formattedParent)
-            ->setView($view);
+        $request = (new CreateViewRequest())->setParent($formattedParent)->setView($view);
         try {
             $gapicClient->createView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1022,14 +1049,16 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $request = (new DeleteAnalysisRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAnalysisRequest())->setName($formattedName);
         $gapicClient->deleteAnalysis($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysis', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysis',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1046,17 +1075,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $request = (new DeleteAnalysisRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAnalysisRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAnalysis($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1083,14 +1114,16 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $request = (new DeleteConversationRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversationRequest())->setName($formattedName);
         $gapicClient->deleteConversation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteConversation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteConversation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1107,17 +1140,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $request = (new DeleteConversationRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversationRequest())->setName($formattedName);
         try {
             $gapicClient->deleteConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1144,8 +1179,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $request = (new DeleteIssueRequest())
-            ->setName($formattedName);
+        $request = (new DeleteIssueRequest())->setName($formattedName);
         $gapicClient->deleteIssue($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1168,17 +1202,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $request = (new DeleteIssueRequest())
-            ->setName($formattedName);
+        $request = (new DeleteIssueRequest())->setName($formattedName);
         try {
             $gapicClient->deleteIssue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1223,8 +1259,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new DeleteIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->deleteIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1234,7 +1269,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssueModel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteIssueModel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1280,17 +1318,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new DeleteIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->deleteIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1326,14 +1366,16 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $request = (new DeletePhraseMatcherRequest())
-            ->setName($formattedName);
+        $request = (new DeletePhraseMatcherRequest())->setName($formattedName);
         $gapicClient->deletePhraseMatcher($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeletePhraseMatcher', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeletePhraseMatcher',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1350,17 +1392,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $request = (new DeletePhraseMatcherRequest())
-            ->setName($formattedName);
+        $request = (new DeletePhraseMatcherRequest())->setName($formattedName);
         try {
             $gapicClient->deletePhraseMatcher($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1387,8 +1431,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $request = (new DeleteViewRequest())
-            ->setName($formattedName);
+        $request = (new DeleteViewRequest())->setName($formattedName);
         $gapicClient->deleteView($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1411,17 +1454,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $request = (new DeleteViewRequest())
-            ->setName($formattedName);
+        $request = (new DeleteViewRequest())->setName($formattedName);
         try {
             $gapicClient->deleteView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1466,8 +1511,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new DeployIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new DeployIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->deployIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1477,7 +1521,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeployIssueModel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeployIssueModel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1523,17 +1570,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new DeployIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new DeployIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->deployIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1587,8 +1636,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ExportInsightsDataRequest())
-            ->setParent($formattedParent);
+        $request = (new ExportInsightsDataRequest())->setParent($formattedParent);
         $response = $gapicClient->exportInsightsData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1598,7 +1646,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ExportInsightsData', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ExportInsightsData',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1644,17 +1695,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ExportInsightsDataRequest())
-            ->setParent($formattedParent);
+        $request = (new ExportInsightsDataRequest())->setParent($formattedParent);
         $response = $gapicClient->exportInsightsData($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1692,8 +1745,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $request = (new GetAnalysisRequest())
-            ->setName($formattedName);
+        $request = (new GetAnalysisRequest())->setName($formattedName);
         $response = $gapicClient->getAnalysis($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1717,17 +1769,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $request = (new GetAnalysisRequest())
-            ->setName($formattedName);
+        $request = (new GetAnalysisRequest())->setName($formattedName);
         try {
             $gapicClient->getAnalysis($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1764,15 +1818,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $request = (new GetConversationRequest())
-            ->setName($formattedName);
+        $request = (new GetConversationRequest())->setName($formattedName);
         $response = $gapicClient->getConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetConversation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetConversation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1789,17 +1845,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $request = (new GetConversationRequest())
-            ->setName($formattedName);
+        $request = (new GetConversationRequest())->setName($formattedName);
         try {
             $gapicClient->getConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1830,8 +1888,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $request = (new GetIssueRequest())
-            ->setName($formattedName);
+        $request = (new GetIssueRequest())->setName($formattedName);
         $response = $gapicClient->getIssue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1855,17 +1912,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $request = (new GetIssueRequest())
-            ->setName($formattedName);
+        $request = (new GetIssueRequest())->setName($formattedName);
         try {
             $gapicClient->getIssue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1900,15 +1959,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new GetIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new GetIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->getIssueModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetIssueModel', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetIssueModel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1925,17 +1986,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new GetIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new GetIssueModelRequest())->setName($formattedName);
         try {
             $gapicClient->getIssueModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1972,15 +2035,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $request = (new GetPhraseMatcherRequest())
-            ->setName($formattedName);
+        $request = (new GetPhraseMatcherRequest())->setName($formattedName);
         $response = $gapicClient->getPhraseMatcher($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetPhraseMatcher', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetPhraseMatcher',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1997,17 +2062,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $request = (new GetPhraseMatcherRequest())
-            ->setName($formattedName);
+        $request = (new GetPhraseMatcherRequest())->setName($formattedName);
         try {
             $gapicClient->getPhraseMatcher($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2038,8 +2105,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingsRequest())->setName($formattedName);
         $response = $gapicClient->getSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2063,17 +2129,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetSettingsRequest())->setName($formattedName);
         try {
             $gapicClient->getSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2106,8 +2174,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $request = (new GetViewRequest())
-            ->setName($formattedName);
+        $request = (new GetViewRequest())->setName($formattedName);
         $response = $gapicClient->getView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2131,17 +2198,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $request = (new GetViewRequest())
-            ->setName($formattedName);
+        $request = (new GetViewRequest())->setName($formattedName);
         try {
             $gapicClient->getView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2186,8 +2255,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new IngestConversationsRequest())
-            ->setParent($formattedParent);
+        $request = (new IngestConversationsRequest())->setParent($formattedParent);
         $response = $gapicClient->ingestConversations($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2197,7 +2265,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/IngestConversations', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/IngestConversations',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2243,17 +2314,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new IngestConversationsRequest())
-            ->setParent($formattedParent);
+        $request = (new IngestConversationsRequest())->setParent($formattedParent);
         $response = $gapicClient->ingestConversations($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2287,17 +2360,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $analysesElement = new Analysis();
-        $analyses = [
-            $analysesElement,
-        ];
+        $analyses = [$analysesElement];
         $expectedResponse = new ListAnalysesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnalyses($analyses);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $request = (new ListAnalysesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnalysesRequest())->setParent($formattedParent);
         $response = $gapicClient->listAnalyses($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2324,17 +2394,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $request = (new ListAnalysesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnalysesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnalyses($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2359,17 +2431,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $conversationsElement = new Conversation();
-        $conversations = [
-            $conversationsElement,
-        ];
+        $conversations = [$conversationsElement];
         $expectedResponse = new ListConversationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversations($conversations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConversations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2379,7 +2448,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListConversations', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListConversations',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2396,17 +2468,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConversations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2433,15 +2507,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListIssueModelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListIssueModelsRequest())->setParent($formattedParent);
         $response = $gapicClient->listIssueModels($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListIssueModels', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListIssueModels',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2458,17 +2534,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListIssueModelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListIssueModelsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listIssueModels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2495,8 +2573,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new ListIssuesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListIssuesRequest())->setParent($formattedParent);
         $response = $gapicClient->listIssues($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2520,17 +2597,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new ListIssuesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListIssuesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listIssues($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2555,17 +2634,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $phraseMatchersElement = new PhraseMatcher();
-        $phraseMatchers = [
-            $phraseMatchersElement,
-        ];
+        $phraseMatchers = [$phraseMatchersElement];
         $expectedResponse = new ListPhraseMatchersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPhraseMatchers($phraseMatchers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPhraseMatchersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPhraseMatchersRequest())->setParent($formattedParent);
         $response = $gapicClient->listPhraseMatchers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2575,7 +2651,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListPhraseMatchers', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListPhraseMatchers',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2592,17 +2671,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPhraseMatchersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPhraseMatchersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPhraseMatchers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2627,17 +2708,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $viewsElement = new View();
-        $views = [
-            $viewsElement,
-        ];
+        $views = [$viewsElement];
         $expectedResponse = new ListViewsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setViews($views);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListViewsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListViewsRequest())->setParent($formattedParent);
         $response = $gapicClient->listViews($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2664,17 +2742,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListViewsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListViewsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listViews($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2719,8 +2799,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new UndeployIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new UndeployIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->undeployIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2730,7 +2809,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UndeployIssueModel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UndeployIssueModel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2776,17 +2858,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $request = (new UndeployIssueModelRequest())
-            ->setName($formattedName);
+        $request = (new UndeployIssueModelRequest())->setName($formattedName);
         $response = $gapicClient->undeployIssueModel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2832,15 +2916,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $conversation = new Conversation();
-        $request = (new UpdateConversationRequest())
-            ->setConversation($conversation);
+        $request = (new UpdateConversationRequest())->setConversation($conversation);
         $response = $gapicClient->updateConversation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateConversation', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateConversation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getConversation();
         $this->assertProtobufEquals($conversation, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2857,17 +2943,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $conversation = new Conversation();
-        $request = (new UpdateConversationRequest())
-            ->setConversation($conversation);
+        $request = (new UpdateConversationRequest())->setConversation($conversation);
         try {
             $gapicClient->updateConversation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2898,8 +2986,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $issue = new Issue();
-        $request = (new UpdateIssueRequest())
-            ->setIssue($issue);
+        $request = (new UpdateIssueRequest())->setIssue($issue);
         $response = $gapicClient->updateIssue($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2923,17 +3010,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $issue = new Issue();
-        $request = (new UpdateIssueRequest())
-            ->setIssue($issue);
+        $request = (new UpdateIssueRequest())->setIssue($issue);
         try {
             $gapicClient->updateIssue($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2968,15 +3057,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $issueModel = new IssueModel();
-        $request = (new UpdateIssueModelRequest())
-            ->setIssueModel($issueModel);
+        $request = (new UpdateIssueModelRequest())->setIssueModel($issueModel);
         $response = $gapicClient->updateIssueModel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssueModel', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateIssueModel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getIssueModel();
         $this->assertProtobufEquals($issueModel, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2993,17 +3084,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $issueModel = new IssueModel();
-        $request = (new UpdateIssueModelRequest())
-            ->setIssueModel($issueModel);
+        $request = (new UpdateIssueModelRequest())->setIssueModel($issueModel);
         try {
             $gapicClient->updateIssueModel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3042,15 +3135,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
-        $request = (new UpdatePhraseMatcherRequest())
-            ->setPhraseMatcher($phraseMatcher);
+        $request = (new UpdatePhraseMatcherRequest())->setPhraseMatcher($phraseMatcher);
         $response = $gapicClient->updatePhraseMatcher($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getPhraseMatcher();
         $this->assertProtobufEquals($phraseMatcher, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -3067,19 +3162,21 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
-        $request = (new UpdatePhraseMatcherRequest())
-            ->setPhraseMatcher($phraseMatcher);
+        $request = (new UpdatePhraseMatcherRequest())->setPhraseMatcher($phraseMatcher);
         try {
             $gapicClient->updatePhraseMatcher($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3111,16 +3208,17 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $settings = new Settings();
         $updateMask = new FieldMask();
-        $request = (new UpdateSettingsRequest())
-            ->setSettings($settings)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSettingsRequest())->setSettings($settings)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateSettings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getSettings();
         $this->assertProtobufEquals($settings, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
@@ -3139,19 +3237,20 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $settings = new Settings();
         $updateMask = new FieldMask();
-        $request = (new UpdateSettingsRequest())
-            ->setSettings($settings)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSettingsRequest())->setSettings($settings)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3184,8 +3283,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $view = new View();
-        $request = (new UpdateViewRequest())
-            ->setView($view);
+        $request = (new UpdateViewRequest())->setView($view);
         $response = $gapicClient->updateView($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3209,17 +3307,19 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $view = new View();
-        $request = (new UpdateViewRequest())
-            ->setView($view);
+        $request = (new UpdateViewRequest())->setView($view);
         try {
             $gapicClient->updateView($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3275,9 +3375,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $conversation = new Conversation();
-        $request = (new UploadConversationRequest())
-            ->setParent($formattedParent)
-            ->setConversation($conversation);
+        $request = (new UploadConversationRequest())->setParent($formattedParent)->setConversation($conversation);
         $response = $gapicClient->uploadConversation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3287,7 +3385,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UploadConversation', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UploadConversation',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getConversation();
@@ -3335,19 +3436,20 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $conversation = new Conversation();
-        $request = (new UploadConversationRequest())
-            ->setParent($formattedParent)
-            ->setConversation($conversation);
+        $request = (new UploadConversationRequest())->setParent($formattedParent)->setConversation($conversation);
         $response = $gapicClient->uploadConversation($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3420,7 +3522,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkAnalyzeConversations',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getFilter();

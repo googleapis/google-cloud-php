@@ -31,11 +31,24 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
     private $dataset = '';
     /**
      * Required. The content of the input in string format.
-     * For now only one sentence per request is supported.
      *
      * Generated from protobuf field <code>repeated string content = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $content;
+    /**
+     * Configuration for caller provided reference sentences.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig reference_sentence_config = 6;</code>
+     */
+    private $reference_sentence_config = null;
+    /**
+     * Optional. Glossary to be applied. The glossary must be
+     * within the same region (have the same location-id) as the model, otherwise
+     * an INVALID_ARGUMENT (400) error is returned.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $glossary_config = null;
 
     /**
      * @param string   $parent  Required. Location to make a regional call.
@@ -43,7 +56,6 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *                          Format: `projects/{project-number-or-id}/locations/{location-id}`. Please see
      *                          {@see TranslationServiceClient::locationName()} for help formatting this field.
      * @param string[] $content Required. The content of the input in string format.
-     *                          For now only one sentence per request is supported.
      *
      * @return \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest
      *
@@ -70,7 +82,12 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $content
      *           Required. The content of the input in string format.
-     *           For now only one sentence per request is supported.
+     *     @type \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig $reference_sentence_config
+     *           Configuration for caller provided reference sentences.
+     *     @type \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\GlossaryConfig $glossary_config
+     *           Optional. Glossary to be applied. The glossary must be
+     *           within the same region (have the same location-id) as the model, otherwise
+     *           an INVALID_ARGUMENT (400) error is returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,7 +153,6 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the input in string format.
-     * For now only one sentence per request is supported.
      *
      * Generated from protobuf field <code>repeated string content = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -148,7 +164,6 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The content of the input in string format.
-     * For now only one sentence per request is supported.
      *
      * Generated from protobuf field <code>repeated string content = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -158,6 +173,82 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->content = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for caller provided reference sentences.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig reference_sentence_config = 6;</code>
+     * @return \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig|null
+     */
+    public function getReferenceSentenceConfig()
+    {
+        return $this->reference_sentence_config;
+    }
+
+    public function hasReferenceSentenceConfig()
+    {
+        return isset($this->reference_sentence_config);
+    }
+
+    public function clearReferenceSentenceConfig()
+    {
+        unset($this->reference_sentence_config);
+    }
+
+    /**
+     * Configuration for caller provided reference sentences.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig reference_sentence_config = 6;</code>
+     * @param \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig $var
+     * @return $this
+     */
+    public function setReferenceSentenceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\ReferenceSentenceConfig::class);
+        $this->reference_sentence_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Glossary to be applied. The glossary must be
+     * within the same region (have the same location-id) as the model, otherwise
+     * an INVALID_ARGUMENT (400) error is returned.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\GlossaryConfig|null
+     */
+    public function getGlossaryConfig()
+    {
+        return $this->glossary_config;
+    }
+
+    public function hasGlossaryConfig()
+    {
+        return isset($this->glossary_config);
+    }
+
+    public function clearGlossaryConfig()
+    {
+        unset($this->glossary_config);
+    }
+
+    /**
+     * Optional. Glossary to be applied. The glossary must be
+     * within the same region (have the same location-id) as the model, otherwise
+     * an INVALID_ARGUMENT (400) error is returned.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\GlossaryConfig $var
+     * @return $this
+     */
+    public function setGlossaryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest\GlossaryConfig::class);
+        $this->glossary_config = $var;
 
         return $this;
     }

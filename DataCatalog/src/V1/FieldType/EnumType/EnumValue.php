@@ -22,7 +22,7 @@ class EnumValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.
@@ -79,6 +79,4 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnumValue::class, \Google\Cloud\DataCatalog\V1\FieldType_EnumType_EnumValue::class);
 

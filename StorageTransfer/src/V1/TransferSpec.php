@@ -81,6 +81,8 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *           An Azure Blob Storage data source.
      *     @type \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData $aws_s3_compatible_data_source
      *           An AWS S3 compatible data source.
+     *     @type \Google\Cloud\StorageTransfer\V1\HdfsData $hdfs_data_source
+     *           An HDFS cluster data source.
      *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_intermediate_data_location
      *           For transfers between file systems, specifies a Cloud Storage bucket
      *           to be used as an intermediate location through which to transfer data.
@@ -358,6 +360,37 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * An HDFS cluster data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.HdfsData hdfs_data_source = 20;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\HdfsData|null
+     */
+    public function getHdfsDataSource()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasHdfsDataSource()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * An HDFS cluster data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.HdfsData hdfs_data_source = 20;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\HdfsData $var
+     * @return $this
+     */
+    public function setHdfsDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\HdfsData::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

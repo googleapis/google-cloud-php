@@ -22,19 +22,19 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time at which the settings was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which the settings were last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * A language code to be applied to each transcript segment unless the segment
      * already specifies a language code. Language code defaults to "en-US" if it
@@ -42,7 +42,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 4;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The default TTL for newly-created conversations. If a conversation has a
      * specified expiration, that value will be used instead. Changing this
@@ -51,7 +51,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration conversation_ttl = 5;</code>
      */
-    private $conversation_ttl = null;
+    protected $conversation_ttl = null;
     /**
      * A map that maps a notification trigger to a Pub/Sub topic. Each time a
      * specified trigger occurs, Insights will notify the corresponding Pub/Sub
@@ -74,21 +74,21 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Settings.AnalysisConfig analysis_config = 7;</code>
      */
-    private $analysis_config = null;
+    protected $analysis_config = null;
     /**
      * Default DLP redaction resources to be applied while ingesting
      * conversations.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 10;</code>
      */
-    private $redaction_config = null;
+    protected $redaction_config = null;
     /**
      * Optional. Default Speech-to-Text resources to be used while ingesting audio
      * files. Optional, CCAI Insights will create a default if not provided.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $speech_config = null;
+    protected $speech_config = null;
 
     /**
      * Constructor.

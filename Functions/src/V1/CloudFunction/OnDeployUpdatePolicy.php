@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. contains the runtime version which was used during latest
+     * Output only. Contains the runtime version which was used during latest
      * function deployment.
      *
      * Generated from protobuf field <code>string runtime_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -30,7 +30,7 @@ class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $runtime_version
-     *           Output only. contains the runtime version which was used during latest
+     *           Output only. Contains the runtime version which was used during latest
      *           function deployment.
      * }
      */
@@ -40,7 +40,7 @@ class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. contains the runtime version which was used during latest
+     * Output only. Contains the runtime version which was used during latest
      * function deployment.
      *
      * Generated from protobuf field <code>string runtime_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -52,7 +52,7 @@ class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. contains the runtime version which was used during latest
+     * Output only. Contains the runtime version which was used during latest
      * function deployment.
      *
      * Generated from protobuf field <code>string runtime_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

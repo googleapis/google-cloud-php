@@ -37,7 +37,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitored resource type. For example, the type
      * `"cloudsql_database"` represents databases in Google Cloud SQL.
-     *  For a list of types, see [Monitoring resource
+     *  For a list of types, see [Monitored resource
      *  types](https://cloud.google.com/monitoring/api/resources)
      * and [Logging resource
      * types](https://cloud.google.com/logging/docs/api/v2/resource-list).
@@ -92,7 +92,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      *     @type string $type
      *           Required. The monitored resource type. For example, the type
      *           `"cloudsql_database"` represents databases in Google Cloud SQL.
-     *            For a list of types, see [Monitoring resource
+     *            For a list of types, see [Monitored resource
      *            types](https://cloud.google.com/monitoring/api/resources)
      *           and [Logging resource
      *           types](https://cloud.google.com/logging/docs/api/v2/resource-list).
@@ -156,7 +156,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitored resource type. For example, the type
      * `"cloudsql_database"` represents databases in Google Cloud SQL.
-     *  For a list of types, see [Monitoring resource
+     *  For a list of types, see [Monitored resource
      *  types](https://cloud.google.com/monitoring/api/resources)
      * and [Logging resource
      * types](https://cloud.google.com/logging/docs/api/v2/resource-list).
@@ -172,7 +172,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
     /**
      * Required. The monitored resource type. For example, the type
      * `"cloudsql_database"` represents databases in Google Cloud SQL.
-     *  For a list of types, see [Monitoring resource
+     *  For a list of types, see [Monitored resource
      *  types](https://cloud.google.com/monitoring/api/resources)
      * and [Logging resource
      * types](https://cloud.google.com/logging/docs/api/v2/resource-list).

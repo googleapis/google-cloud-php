@@ -23,7 +23,7 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the entry to create.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9),
@@ -32,13 +32,13 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entry_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_id = '';
+    protected $entry_id = '';
     /**
      * Required. The entry to create.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Entry entry = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry = null;
+    protected $entry = null;
 
     /**
      * @param string                             $parent  Required. The name of the entry group this entry belongs to.

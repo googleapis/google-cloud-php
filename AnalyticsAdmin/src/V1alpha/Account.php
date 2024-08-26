@@ -54,6 +54,14 @@ class Account extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool deleted = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $deleted = false;
+    /**
+     * Output only. The URI for a Google Marketing Platform organization resource.
+     * Only set when this account is connected to a GMP organization.
+     * Format: marketingplatformadmin.googleapis.com/organizations/{org_id}
+     *
+     * Generated from protobuf field <code>string gmp_organization = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $gmp_organization = '';
 
     /**
      * Constructor.
@@ -76,6 +84,10 @@ class Account extends \Google\Protobuf\Internal\Message
      *     @type bool $deleted
      *           Output only. Indicates whether this Account is soft-deleted or not. Deleted
      *           accounts are excluded from List results unless specifically requested.
+     *     @type string $gmp_organization
+     *           Output only. The URI for a Google Marketing Platform organization resource.
+     *           Only set when this account is connected to a GMP organization.
+     *           Format: marketingplatformadmin.googleapis.com/organizations/{org_id}
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +273,36 @@ class Account extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->deleted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The URI for a Google Marketing Platform organization resource.
+     * Only set when this account is connected to a GMP organization.
+     * Format: marketingplatformadmin.googleapis.com/organizations/{org_id}
+     *
+     * Generated from protobuf field <code>string gmp_organization = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getGmpOrganization()
+    {
+        return $this->gmp_organization;
+    }
+
+    /**
+     * Output only. The URI for a Google Marketing Platform organization resource.
+     * Only set when this account is connected to a GMP organization.
+     * Format: marketingplatformadmin.googleapis.com/organizations/{org_id}
+     *
+     * Generated from protobuf field <code>string gmp_organization = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGmpOrganization($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gmp_organization = $var;
 
         return $this;
     }

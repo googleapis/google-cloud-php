@@ -22,39 +22,39 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The URI of the VPC firewall rule. This field is not applicable to
      * implied firewall rules or hierarchical firewall policy rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Possible values: INGRESS, EGRESS
      *
      * Generated from protobuf field <code>string direction = 3;</code>
      */
-    private $direction = '';
+    protected $direction = '';
     /**
      * Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP
      *
      * Generated from protobuf field <code>string action = 4;</code>
      */
-    private $action = '';
+    protected $action = '';
     /**
      * The priority of the firewall rule.
      *
      * Generated from protobuf field <code>int32 priority = 5;</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * The URI of the VPC network that the firewall rule is associated with.
      * This field is not applicable to hierarchical firewall policy rules.
      *
      * Generated from protobuf field <code>string network_uri = 6;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * The target tags defined by the VPC firewall rule. This field is not
      * applicable to hierarchical firewall policy rules.
@@ -74,13 +74,13 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string policy = 9;</code>
      */
-    private $policy = '';
+    protected $policy = '';
     /**
      * The firewall rule's type.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.FirewallInfo.FirewallRuleType firewall_rule_type = 10;</code>
      */
-    private $firewall_rule_type = 0;
+    protected $firewall_rule_type = 0;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class ConversionWorkspaceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The commit ID of the conversion workspace.
      *
      * Generated from protobuf field <code>string commit_id = 2;</code>
      */
-    private $commit_id = '';
+    protected $commit_id = '';
 
     /**
      * Constructor.

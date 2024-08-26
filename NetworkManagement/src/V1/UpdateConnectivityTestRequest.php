@@ -21,13 +21,13 @@ class UpdateConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ConnectivityTest resource = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = null;
+    protected $resource = null;
 
     /**
      * @param \Google\Protobuf\FieldMask                          $updateMask Required. Mask of fields to update. At least one path must be supplied in

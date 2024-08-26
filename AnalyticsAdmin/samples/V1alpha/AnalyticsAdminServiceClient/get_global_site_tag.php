@@ -35,7 +35,8 @@ use Google\ApiCore\ApiException;
  * @param string $formattedName The name of the site tag to lookup.
  *                              Note that site tags are singletons and do not have unique IDs.
  *                              Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
- *                              Example: "properties/123/dataStreams/456/globalSiteTag"
+ *
+ *                              Example: `properties/123/dataStreams/456/globalSiteTag`
  *                              Please see {@see AnalyticsAdminServiceClient::globalSiteTagName()} for help formatting this field.
  */
 function get_global_site_tag_sample(string $formattedName): void

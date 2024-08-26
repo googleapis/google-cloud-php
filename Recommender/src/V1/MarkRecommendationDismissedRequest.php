@@ -20,13 +20,13 @@ class MarkRecommendationDismissedRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Fingerprint of the Recommendation. Provides optimistic locking.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

@@ -22,19 +22,19 @@ class EntityMentionData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_unique_id = 1;</code>
      */
-    private $entity_unique_id = '';
+    protected $entity_unique_id = '';
     /**
      * The type of the entity mention.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.EntityMentionData.MentionType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Sentiment expressed for this mention of the entity.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SentimentData sentiment = 3;</code>
      */
-    private $sentiment = null;
+    protected $sentiment = null;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
      */
-    private $capacity_commitment = null;
+    protected $capacity_commitment = null;
     /**
      * Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacityCommitment Content of the capacity commitment to update.

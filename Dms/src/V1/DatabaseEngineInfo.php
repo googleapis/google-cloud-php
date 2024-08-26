@@ -20,13 +20,13 @@ class DatabaseEngineInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEngine engine = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $engine = 0;
+    protected $engine = 0;
     /**
      * Required. Engine named version, for example 12.c.1.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

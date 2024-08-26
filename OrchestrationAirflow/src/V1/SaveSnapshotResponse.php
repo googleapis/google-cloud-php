@@ -23,7 +23,7 @@ class SaveSnapshotResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot_path = 1;</code>
      */
-    private $snapshot_path = '';
+    protected $snapshot_path = '';
 
     /**
      * Constructor.

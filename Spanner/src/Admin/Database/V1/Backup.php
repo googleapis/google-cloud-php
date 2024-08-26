@@ -176,7 +176,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * this backup. If collapsing is not done, then this field captures the
      * single backup schedule URI associated with creating this backup.
      *
-     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $backup_schedules;
     /**
@@ -899,7 +899,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * this backup. If collapsing is not done, then this field captures the
      * single backup schedule URI associated with creating this backup.
      *
-     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBackupSchedules()
@@ -917,7 +917,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * this backup. If collapsing is not done, then this field captures the
      * single backup schedule URI associated with creating this backup.
      *
-     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -23,38 +23,38 @@ class Route extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time the route was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the route was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The destination IP address range.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 1;</code>
      */
-    private $ip_cidr_range = '';
+    protected $ip_cidr_range = '';
     /**
      * Output only. The route's type. Its type is determined by the properties of
      * its IP address range.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.RouteType type = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Immutable. The destination VPC network for packets on this route.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopVpcNetwork next_hop_vpc_network = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $next_hop_vpc_network = null;
+    protected $next_hop_vpc_network = null;
     /**
      * Optional labels in key-value pair format. For more information about
      * labels, see [Requirements for
@@ -68,7 +68,7 @@ class Route extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The Google-generated UUID for the route. This value is unique
      * across all Network Connectivity Center route resources. If a
@@ -77,20 +77,20 @@ class Route extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The current lifecycle state of the route.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Immutable. The spoke that this route leads to.
      * Example: projects/12345/locations/global/spokes/SPOKE
      *
      * Generated from protobuf field <code>string spoke = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $spoke = '';
+    protected $spoke = '';
     /**
      * Output only. The location of the route.
      * Uses the following form: "projects/{project}/locations/{location}"
@@ -98,7 +98,7 @@ class Route extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

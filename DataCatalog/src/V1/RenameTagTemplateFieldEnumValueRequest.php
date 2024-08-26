@@ -21,14 +21,14 @@ class RenameTagTemplateFieldEnumValueRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new display name of the enum value. For example,
      * `my_new_enum_value`.
      *
      * Generated from protobuf field <code>string new_enum_value_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_enum_value_display_name = '';
+    protected $new_enum_value_display_name = '';
 
     /**
      * @param string $name                    Required. The name of the enum field value. Please see

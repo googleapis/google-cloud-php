@@ -20,19 +20,19 @@ class ComposerWorkload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Type of a workload.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.ListWorkloadsResponse.ComposerWorkloadType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. Status of a workload.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.ListWorkloadsResponse.ComposerWorkloadStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

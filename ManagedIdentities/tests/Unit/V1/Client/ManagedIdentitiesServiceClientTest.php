@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\ManagedIdentities\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ManagedIdentities\V1\AttachTrustRequest;
@@ -44,6 +43,7 @@ use Google\Cloud\ManagedIdentities\V1\Trust\TrustDirection;
 use Google\Cloud\ManagedIdentities\V1\Trust\TrustType;
 use Google\Cloud\ManagedIdentities\V1\UpdateDomainRequest;
 use Google\Cloud\ManagedIdentities\V1\ValidateTrustRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -68,7 +68,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ManagedIdentitiesServiceClient */
@@ -132,9 +134,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new AttachTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new AttachTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->attachTrust($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -144,7 +144,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/AttachTrust', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/AttachTrust',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getTrust();
@@ -192,12 +195,15 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
@@ -212,9 +218,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new AttachTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new AttachTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->attachTrust($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -299,7 +303,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/CreateMicrosoftAdDomain', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/CreateMicrosoftAdDomain',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getDomainName();
@@ -349,12 +356,15 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -423,8 +433,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $request = (new DeleteDomainRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDomainRequest())->setName($formattedName);
         $response = $gapicClient->deleteDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -434,7 +443,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/DeleteDomain', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/DeleteDomain',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -480,17 +492,19 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $request = (new DeleteDomainRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDomainRequest())->setName($formattedName);
         $response = $gapicClient->deleteDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -565,9 +579,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new DetachTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new DetachTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->detachTrust($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -577,7 +589,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/DetachTrust', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/DetachTrust',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getTrust();
@@ -625,12 +640,15 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
@@ -645,9 +663,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new DetachTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new DetachTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->detachTrust($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -693,8 +709,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $request = (new GetDomainRequest())
-            ->setName($formattedName);
+        $request = (new GetDomainRequest())->setName($formattedName);
         $response = $gapicClient->getDomain($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -718,17 +733,19 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $request = (new GetDomainRequest())
-            ->setName($formattedName);
+        $request = (new GetDomainRequest())->setName($formattedName);
         try {
             $gapicClient->getDomain($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -753,17 +770,14 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $domainsElement = new Domain();
-        $domains = [
-            $domainsElement,
-        ];
+        $domains = [$domainsElement];
         $expectedResponse = new ListDomainsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDomains($domains);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDomainsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDomainsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDomains($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -790,17 +804,19 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDomainsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDomainsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDomains($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -870,7 +886,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/ReconfigureTrust', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/ReconfigureTrust',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getTargetDomainName();
@@ -920,12 +939,15 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
@@ -972,15 +994,17 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $request = (new ResetAdminPasswordRequest())
-            ->setName($formattedName);
+        $request = (new ResetAdminPasswordRequest())->setName($formattedName);
         $response = $gapicClient->resetAdminPassword($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/ResetAdminPassword', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/ResetAdminPassword',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -997,17 +1021,19 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $request = (new ResetAdminPasswordRequest())
-            ->setName($formattedName);
+        $request = (new ResetAdminPasswordRequest())->setName($formattedName);
         try {
             $gapicClient->resetAdminPassword($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1069,9 +1095,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $domain->setReservedIpRange($domainReservedIpRange);
         $domainLocations = [];
         $domain->setLocations($domainLocations);
-        $request = (new UpdateDomainRequest())
-            ->setUpdateMask($updateMask)
-            ->setDomain($domain);
+        $request = (new UpdateDomainRequest())->setUpdateMask($updateMask)->setDomain($domain);
         $response = $gapicClient->updateDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1081,7 +1105,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/UpdateDomain', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/UpdateDomain',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getDomain();
@@ -1129,12 +1156,15 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -1145,9 +1175,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $domain->setReservedIpRange($domainReservedIpRange);
         $domainLocations = [];
         $domain->setLocations($domainLocations);
-        $request = (new UpdateDomainRequest())
-            ->setUpdateMask($updateMask)
-            ->setDomain($domain);
+        $request = (new UpdateDomainRequest())->setUpdateMask($updateMask)->setDomain($domain);
         $response = $gapicClient->updateDomain($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1222,9 +1250,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new ValidateTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new ValidateTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->validateTrust($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1234,7 +1260,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/ValidateTrust', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/ValidateTrust',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getTrust();
@@ -1282,12 +1311,15 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
@@ -1302,9 +1334,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new ValidateTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new ValidateTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->validateTrust($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1379,9 +1409,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $trust->setTargetDnsIpAddresses($trustTargetDnsIpAddresses);
         $trustTrustHandshakeSecret = 'trustTrustHandshakeSecret-1896647033';
         $trust->setTrustHandshakeSecret($trustTrustHandshakeSecret);
-        $request = (new AttachTrustRequest())
-            ->setName($formattedName)
-            ->setTrust($trust);
+        $request = (new AttachTrustRequest())->setName($formattedName)->setTrust($trust);
         $response = $gapicClient->attachTrustAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1391,7 +1419,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.managedidentities.v1.ManagedIdentitiesService/AttachTrust', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.managedidentities.v1.ManagedIdentitiesService/AttachTrust',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getTrust();

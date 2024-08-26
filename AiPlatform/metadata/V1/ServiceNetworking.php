@@ -18,17 +18,19 @@ class ServiceNetworking
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‡
-3google/cloud/aiplatform/v1/service_networking.protogoogle.cloud.aiplatform.v1google/api/resource.proto"e
+¢
+3google/cloud/aiplatform/v1/service_networking.protogoogle.cloud.aiplatform.v1google/api/resource.proto"†
 PrivateServiceConnectConfig+
 enable_private_service_connect (BàA
-project_allowlist (	"S
+project_allowlist (	
+service_attachment (	BàA"S
 PscAutomatedEndpoints
 
 project_id (	
 network (	
-match_address (	BÔ
-com.google.cloud.aiplatform.v1BServiceNetworkingProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+match_address (	BÍ
+com.google.cloud.aiplatform.v1BServiceNetworkingProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1êAv
+(compute.googleapis.com/NetworkAttachmentJprojects/{project}/regions/{region}/networkAttachments/{networkattachment}bproto3'
         , true);
 
         static::$is_initialized = true;

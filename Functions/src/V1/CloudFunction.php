@@ -241,12 +241,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     private $source_token = '';
     /**
-     * User managed repository created in Artifact Registry optionally with a
-     * customer managed encryption key. If specified, deployments will use
-     * Artifact Registry. If unspecified and the deployment is eligible to use
-     * Artifact Registry, GCF will create and use a repository named
-     * 'gcf-artifacts' for every deployed region. This is the repository to which
-     * the function docker image will be pushed after it is built by Cloud Build.
+     * User-managed repository created in Artifact Registry to which the
+     * function's Docker image will be pushed after it is built by Cloud Build.
+     * May optionally be encrypted with a customer-managed encryption key (CMEK).
+     * If unspecified and `docker_registry` is not explicitly set to
+     * `CONTAINER_REGISTRY`, GCF will create and use a default Artifact Registry
+     * repository named 'gcf-artifacts' in the region.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
      * Cross-project repositories are not supported.
@@ -265,6 +265,14 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
      */
     private $docker_registry = 0;
+    /**
+     * A service account the user provides for use with Cloud Build. The format of
+     * this field is
+     * `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
+     *
+     * Generated from protobuf field <code>string build_service_account = 43;</code>
+     */
+    private $build_service_account = '';
     protected $source_code;
     protected $trigger;
     protected $runtime_update_policy;
@@ -411,12 +419,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           Input only. An identifier for Firebase function sources. Disclaimer: This
      *           field is only supported for Firebase function deployments.
      *     @type string $docker_repository
-     *           User managed repository created in Artifact Registry optionally with a
-     *           customer managed encryption key. If specified, deployments will use
-     *           Artifact Registry. If unspecified and the deployment is eligible to use
-     *           Artifact Registry, GCF will create and use a repository named
-     *           'gcf-artifacts' for every deployed region. This is the repository to which
-     *           the function docker image will be pushed after it is built by Cloud Build.
+     *           User-managed repository created in Artifact Registry to which the
+     *           function's Docker image will be pushed after it is built by Cloud Build.
+     *           May optionally be encrypted with a customer-managed encryption key (CMEK).
+     *           If unspecified and `docker_registry` is not explicitly set to
+     *           `CONTAINER_REGISTRY`, GCF will create and use a default Artifact Registry
+     *           repository named 'gcf-artifacts' in the region.
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/repositories/{repository}`.
      *           Cross-project repositories are not supported.
@@ -428,9 +436,11 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           If `docker_repository` field is specified, this field should either be left
      *           unspecified or set to `ARTIFACT_REGISTRY`.
      *     @type \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy $automatic_update_policy
-     *           See the comment next to this message for more details.
      *     @type \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy $on_deploy_update_policy
-     *           See the comment next to this message for more details.
+     *     @type string $build_service_account
+     *           A service account the user provides for use with Cloud Build. The format of
+     *           this field is
+     *           `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -1440,12 +1450,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User managed repository created in Artifact Registry optionally with a
-     * customer managed encryption key. If specified, deployments will use
-     * Artifact Registry. If unspecified and the deployment is eligible to use
-     * Artifact Registry, GCF will create and use a repository named
-     * 'gcf-artifacts' for every deployed region. This is the repository to which
-     * the function docker image will be pushed after it is built by Cloud Build.
+     * User-managed repository created in Artifact Registry to which the
+     * function's Docker image will be pushed after it is built by Cloud Build.
+     * May optionally be encrypted with a customer-managed encryption key (CMEK).
+     * If unspecified and `docker_registry` is not explicitly set to
+     * `CONTAINER_REGISTRY`, GCF will create and use a default Artifact Registry
+     * repository named 'gcf-artifacts' in the region.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
      * Cross-project repositories are not supported.
@@ -1461,12 +1471,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User managed repository created in Artifact Registry optionally with a
-     * customer managed encryption key. If specified, deployments will use
-     * Artifact Registry. If unspecified and the deployment is eligible to use
-     * Artifact Registry, GCF will create and use a repository named
-     * 'gcf-artifacts' for every deployed region. This is the repository to which
-     * the function docker image will be pushed after it is built by Cloud Build.
+     * User-managed repository created in Artifact Registry to which the
+     * function's Docker image will be pushed after it is built by Cloud Build.
+     * May optionally be encrypted with a customer-managed encryption key (CMEK).
+     * If unspecified and `docker_registry` is not explicitly set to
+     * `CONTAINER_REGISTRY`, GCF will create and use a default Artifact Registry
+     * repository named 'gcf-artifacts' in the region.
      * It must match the pattern
      * `projects/{project}/locations/{location}/repositories/{repository}`.
      * Cross-project repositories are not supported.
@@ -1518,8 +1528,6 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See the comment next to this message for more details.
-     *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.AutomaticUpdatePolicy automatic_update_policy = 40;</code>
      * @return \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy|null
      */
@@ -1534,8 +1542,6 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See the comment next to this message for more details.
-     *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.AutomaticUpdatePolicy automatic_update_policy = 40;</code>
      * @param \Google\Cloud\Functions\V1\CloudFunction\AutomaticUpdatePolicy $var
      * @return $this
@@ -1549,8 +1555,6 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See the comment next to this message for more details.
-     *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.OnDeployUpdatePolicy on_deploy_update_policy = 41;</code>
      * @return \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy|null
      */
@@ -1565,8 +1569,6 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See the comment next to this message for more details.
-     *
      * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.OnDeployUpdatePolicy on_deploy_update_policy = 41;</code>
      * @param \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy $var
      * @return $this
@@ -1575,6 +1577,36 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Functions\V1\CloudFunction\OnDeployUpdatePolicy::class);
         $this->writeOneof(41, $var);
+
+        return $this;
+    }
+
+    /**
+     * A service account the user provides for use with Cloud Build. The format of
+     * this field is
+     * `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
+     *
+     * Generated from protobuf field <code>string build_service_account = 43;</code>
+     * @return string
+     */
+    public function getBuildServiceAccount()
+    {
+        return $this->build_service_account;
+    }
+
+    /**
+     * A service account the user provides for use with Cloud Build. The format of
+     * this field is
+     * `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
+     *
+     * Generated from protobuf field <code>string build_service_account = 43;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBuildServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->build_service_account = $var;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class DataRetentionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig task_logs_retention_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $task_logs_retention_config = null;
+    protected $task_logs_retention_config = null;
 
     /**
      * Constructor.

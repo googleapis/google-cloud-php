@@ -29,19 +29,19 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time the spoke was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the spoke was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional labels in key-value pair format. For more information about
      * labels, see [Requirements for
@@ -55,43 +55,43 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $hub = '';
+    protected $hub = '';
     /**
      * Optional. The name of the group that this spoke is associated with.
      *
      * Generated from protobuf field <code>string group = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $group = '';
+    protected $group = '';
     /**
      * VPN tunnels that are associated with the spoke.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedVpnTunnels linked_vpn_tunnels = 17;</code>
      */
-    private $linked_vpn_tunnels = null;
+    protected $linked_vpn_tunnels = null;
     /**
      * VLAN attachments that are associated with the spoke.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedInterconnectAttachments linked_interconnect_attachments = 18;</code>
      */
-    private $linked_interconnect_attachments = null;
+    protected $linked_interconnect_attachments = null;
     /**
      * Router appliance instances that are associated with the spoke.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedRouterApplianceInstances linked_router_appliance_instances = 19;</code>
      */
-    private $linked_router_appliance_instances = null;
+    protected $linked_router_appliance_instances = null;
     /**
      * Optional. VPC network that is associated with the spoke.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.LinkedVpcNetwork linked_vpc_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $linked_vpc_network = null;
+    protected $linked_vpc_network = null;
     /**
      * Output only. The Google-generated UUID for the spoke. This value is unique
      * across all spoke resources. If a spoke is deleted and another with the same
@@ -99,13 +99,13 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $unique_id = '';
+    protected $unique_id = '';
     /**
      * Output only. The current lifecycle state of this spoke.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The reasons for current state of the spoke. Only present when
      * the spoke is in the `INACTIVE` state.
@@ -118,7 +118,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeType spoke_type = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $spoke_type = 0;
+    protected $spoke_type = 0;
 
     /**
      * Constructor.

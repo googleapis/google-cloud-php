@@ -21,14 +21,14 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user-supplied description of the Connectivity Test.
      * Maximum of 512 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Source specification of the Connectivity Test.
      * You can use a combination of source IP address, virtual machine
@@ -50,7 +50,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint source = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * Required. Destination specification of the Connectivity Test.
      * You can use a combination of destination IP address, Compute Engine
@@ -69,13 +69,13 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * IP Protocol of the test. When not provided, "TCP" is assumed.
      *
      * Generated from protobuf field <code>string protocol = 5;</code>
      */
-    private $protocol = '';
+    protected $protocol = '';
     /**
      * Other projects that may be relevant for reachability analysis.
      * This is applicable to scenarios where a test can cross project boundaries.
@@ -88,7 +88,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Resource labels to represent user-provided metadata.
      *
@@ -100,13 +100,13 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the test's configuration was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The reachability details of this test from the latest run.
      * The details are updated when creating a new test, updating an
@@ -114,7 +114,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails reachability_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reachability_details = null;
+    protected $reachability_details = null;
     /**
      * Output only. The probing details of this test from the latest run, present
      * for applicable tests only. The details are updated when creating a new
@@ -123,14 +123,14 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails probing_details = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $probing_details = null;
+    protected $probing_details = null;
     /**
      * Whether the test should skip firewall checking.
      * If not provided, we assume false.
      *
      * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
      */
-    private $bypass_firewall_checks = false;
+    protected $bypass_firewall_checks = false;
 
     /**
      * Constructor.

@@ -20,38 +20,38 @@ class EgressRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Actual payload to send to agent.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.Payload payload = 2;</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * Tether Endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.TetherEndpoint endpoint = 3;</code>
      */
-    private $endpoint = 0;
+    protected $endpoint = 0;
     /**
      * GCP Project.
      * Format: `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Unique identifier for clients to trace their request/response.
      *
      * Generated from protobuf field <code>string trace_id = 5;</code>
      */
-    private $trace_id = '';
+    protected $trace_id = '';
     /**
      * Timeout for the HTTP request.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 6;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
 
     /**
      * Constructor.

@@ -19,10 +19,10 @@ class ListAttackPathsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of parent to list attack paths.
      * Valid formats:
-     * "organizations/{organization}",
-     * "organizations/{organization}/simulations/{simulation}"
-     * "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
-     * "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+     * `organizations/{organization}`,
+     * `organizations/{organization}/simulations/{simulation}`
+     * `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,10 +55,10 @@ class ListAttackPathsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. Name of parent to list attack paths.
      *
      *                       Valid formats:
-     *                       "organizations/{organization}",
-     *                       "organizations/{organization}/simulations/{simulation}"
-     *                       "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
-     *                       "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+     *                       `organizations/{organization}`,
+     *                       `organizations/{organization}/simulations/{simulation}`
+     *                       `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     *                       `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
      *                       Please see {@see SecurityCenterClient::organizationValuedResourceName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\ListAttackPathsRequest
@@ -80,10 +80,10 @@ class ListAttackPathsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Name of parent to list attack paths.
      *           Valid formats:
-     *           "organizations/{organization}",
-     *           "organizations/{organization}/simulations/{simulation}"
-     *           "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
-     *           "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+     *           `organizations/{organization}`,
+     *           `organizations/{organization}/simulations/{simulation}`
+     *           `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     *           `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
      *     @type string $filter
      *           The filter expression that filters the attack path in the response.
      *           Supported fields:
@@ -105,10 +105,10 @@ class ListAttackPathsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of parent to list attack paths.
      * Valid formats:
-     * "organizations/{organization}",
-     * "organizations/{organization}/simulations/{simulation}"
-     * "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
-     * "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+     * `organizations/{organization}`,
+     * `organizations/{organization}/simulations/{simulation}`
+     * `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -121,10 +121,10 @@ class ListAttackPathsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of parent to list attack paths.
      * Valid formats:
-     * "organizations/{organization}",
-     * "organizations/{organization}/simulations/{simulation}"
-     * "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
-     * "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
+     * `organizations/{organization}`,
+     * `organizations/{organization}/simulations/{simulation}`
+     * `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

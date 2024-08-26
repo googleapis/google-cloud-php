@@ -29,6 +29,16 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string entity_id_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $entity_id_columns;
+    /**
+     * Optional. If the source is a time-series source, this can be set to
+     * control how downstream sources (ex:
+     * [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
+     * time-series sources. If not set, will treat the source as a time-series
+     * source with `feature_timestamp` as timestamp column and no scan boundary.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureGroup.BigQuery.TimeSeries time_series = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $time_series = null;
 
     /**
      * Constructor.
@@ -42,6 +52,12 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_id_columns
      *           Optional. Columns to construct entity_id / row keys.
      *           If not provided defaults to `entity_id`.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureGroup\BigQuery\TimeSeries $time_series
+     *           Optional. If the source is a time-series source, this can be set to
+     *           control how downstream sources (ex:
+     *           [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
+     *           time-series sources. If not set, will treat the source as a time-series
+     *           source with `feature_timestamp` as timestamp column and no scan boundary.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +127,50 @@ class BigQuery extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->entity_id_columns = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the source is a time-series source, this can be set to
+     * control how downstream sources (ex:
+     * [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
+     * time-series sources. If not set, will treat the source as a time-series
+     * source with `feature_timestamp` as timestamp column and no scan boundary.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureGroup.BigQuery.TimeSeries time_series = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureGroup\BigQuery\TimeSeries|null
+     */
+    public function getTimeSeries()
+    {
+        return $this->time_series;
+    }
+
+    public function hasTimeSeries()
+    {
+        return isset($this->time_series);
+    }
+
+    public function clearTimeSeries()
+    {
+        unset($this->time_series);
+    }
+
+    /**
+     * Optional. If the source is a time-series source, this can be set to
+     * control how downstream sources (ex:
+     * [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
+     * time-series sources. If not set, will treat the source as a time-series
+     * source with `feature_timestamp` as timestamp column and no scan boundary.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureGroup.BigQuery.TimeSeries time_series = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureGroup\BigQuery\TimeSeries $var
+     * @return $this
+     */
+    public function setTimeSeries($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureGroup\BigQuery\TimeSeries::class);
+        $this->time_series = $var;
 
         return $this;
     }

@@ -148,6 +148,8 @@ class ConversationProfilesGapicClient
 
     private static $documentNameTemplate;
 
+    private static $generatorNameTemplate;
+
     private static $knowledgeBaseNameTemplate;
 
     private static $locationNameTemplate;
@@ -240,6 +242,15 @@ class ConversationProfilesGapicClient
         }
 
         return self::$documentNameTemplate;
+    }
+
+    private static function getGeneratorNameTemplate()
+    {
+        if (self::$generatorNameTemplate == null) {
+            self::$generatorNameTemplate = new PathTemplate('projects/{project}/locations/{location}/generators/{generator}');
+        }
+
+        return self::$generatorNameTemplate;
     }
 
     private static function getKnowledgeBaseNameTemplate()
@@ -368,6 +379,7 @@ class ConversationProfilesGapicClient
                 'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
                 'document' => self::getDocumentNameTemplate(),
+                'generator' => self::getGeneratorNameTemplate(),
                 'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
@@ -473,6 +485,25 @@ class ConversationProfilesGapicClient
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName($project, $location, $generator)
+    {
+        return self::getGeneratorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
         ]);
     }
 
@@ -714,6 +745,7 @@ class ConversationProfilesGapicClient
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - project: projects/{project}

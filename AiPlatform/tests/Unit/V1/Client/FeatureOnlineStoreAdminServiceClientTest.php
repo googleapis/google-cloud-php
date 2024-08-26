@@ -117,9 +117,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureOnlineStore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -260,9 +264,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureView();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -651,9 +659,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureOnlineStore();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featureOnlineStoreName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]');
@@ -721,9 +733,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureView();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featureViewName(
@@ -797,8 +813,12 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureViewSync();
         $expectedResponse->setName($name2);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featureViewSyncName(
@@ -1198,9 +1218,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureOnlineStore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1327,9 +1351,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureView();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1789,9 +1817,13 @@ class FeatureOnlineStoreAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new FeatureOnlineStore();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

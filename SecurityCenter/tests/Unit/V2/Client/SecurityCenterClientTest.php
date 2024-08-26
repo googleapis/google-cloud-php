@@ -2930,8 +2930,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resourceValueConfig = new ResourceValueConfig();
-        $resourceValueConfigTagValues = [];
-        $resourceValueConfig->setTagValues($resourceValueConfigTagValues);
         $request = (new UpdateResourceValueConfigRequest())
             ->setResourceValueConfig($resourceValueConfig);
         $response = $gapicClient->updateResourceValueConfig($request);
@@ -2966,8 +2964,6 @@ class SecurityCenterClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $resourceValueConfig = new ResourceValueConfig();
-        $resourceValueConfigTagValues = [];
-        $resourceValueConfig->setTagValues($resourceValueConfigTagValues);
         $request = (new UpdateResourceValueConfigRequest())
             ->setResourceValueConfig($resourceValueConfig);
         try {

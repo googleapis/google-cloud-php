@@ -44,6 +44,12 @@ class GetPublisherModelRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool is_hugging_face_model = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $is_hugging_face_model = false;
+    /**
+     * Optional. Token used to access Hugging Face gated models.
+     *
+     * Generated from protobuf field <code>string hugging_face_token = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $hugging_face_token = '';
 
     /**
      * @param string $name Required. The name of the PublisherModel resource.
@@ -79,6 +85,8 @@ class GetPublisherModelRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $is_hugging_face_model
      *           Optional. Boolean indicates whether the requested model is a Hugging Face
      *           model.
+     *     @type string $hugging_face_token
+     *           Optional. Token used to access Hugging Face gated models.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,6 +202,32 @@ class GetPublisherModelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->is_hugging_face_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Token used to access Hugging Face gated models.
+     *
+     * Generated from protobuf field <code>string hugging_face_token = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getHuggingFaceToken()
+    {
+        return $this->hugging_face_token;
+    }
+
+    /**
+     * Optional. Token used to access Hugging Face gated models.
+     *
+     * Generated from protobuf field <code>string hugging_face_token = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setHuggingFaceToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->hugging_face_token = $var;
 
         return $this;
     }

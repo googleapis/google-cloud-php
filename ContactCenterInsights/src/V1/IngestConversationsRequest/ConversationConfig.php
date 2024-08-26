@@ -21,7 +21,7 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_id = 1;</code>
      */
-    private $agent_id = '';
+    protected $agent_id = '';
     /**
      * Optional. Indicates which of the channels, 1 or 2, contains the agent.
      * Note that this must be set for conversations to be properly displayed and
@@ -29,7 +29,7 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 agent_channel = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $agent_channel = 0;
+    protected $agent_channel = 0;
     /**
      * Optional. Indicates which of the channels, 1 or 2, contains the agent.
      * Note that this must be set for conversations to be properly displayed and
@@ -37,7 +37,7 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 customer_channel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_channel = 0;
+    protected $customer_channel = 0;
 
     /**
      * Constructor.
