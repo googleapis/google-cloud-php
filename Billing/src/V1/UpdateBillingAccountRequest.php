@@ -20,21 +20,21 @@ class UpdateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The billing account resource to replace the resource on the
      * server.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $account = null;
+    protected $account = null;
     /**
      * The update mask applied to the resource.
      * Only "display_name" is currently supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                  $name    Required. The name of the billing account resource to be updated. Please see

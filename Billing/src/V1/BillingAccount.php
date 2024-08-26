@@ -25,7 +25,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
@@ -34,14 +34,14 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $open = false;
+    protected $open = false;
     /**
      * The display name given to the billing account, such as `My Billing
      * Account`. This name is displayed in the Google Cloud Console.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * If this account is a
      * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
@@ -51,7 +51,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string master_billing_account = 4;</code>
      */
-    private $master_billing_account = '';
+    protected $master_billing_account = '';
     /**
      * Output only. The billing account's parent resource identifier.
      * Use the `MoveBillingAccount` method to update the account's parent resource
@@ -64,7 +64,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * Constructor.
