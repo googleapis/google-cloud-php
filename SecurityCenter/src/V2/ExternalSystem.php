@@ -30,7 +30,7 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * References primary/secondary etc assignees in the external system.
      *
@@ -43,58 +43,58 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_uid = 3;</code>
      */
-    private $external_uid = '';
+    protected $external_uid = '';
     /**
      * The most recent status of the finding's corresponding case, as reported by
      * the external system.
      *
      * Generated from protobuf field <code>string status = 4;</code>
      */
-    private $status = '';
+    protected $status = '';
     /**
      * The time when the case was last updated, as reported by the external
      * system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp external_system_update_time = 5;</code>
      */
-    private $external_system_update_time = null;
+    protected $external_system_update_time = null;
     /**
      * The link to the finding's corresponding case in the external system.
      *
      * Generated from protobuf field <code>string case_uri = 6;</code>
      */
-    private $case_uri = '';
+    protected $case_uri = '';
     /**
      * The priority of the finding's corresponding case in the external system.
      *
      * Generated from protobuf field <code>string case_priority = 7;</code>
      */
-    private $case_priority = '';
+    protected $case_priority = '';
     /**
      * The SLA of the finding's corresponding case in the external system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp case_sla = 9;</code>
      */
-    private $case_sla = null;
+    protected $case_sla = null;
     /**
      * The time when the case was created, as reported by the external system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp case_create_time = 10;</code>
      */
-    private $case_create_time = null;
+    protected $case_create_time = null;
     /**
      * The time when the case was closed, as reported by the external system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp case_close_time = 11;</code>
      */
-    private $case_close_time = null;
+    protected $case_close_time = null;
     /**
      * Information about the ticket, if any, that is being used to track the
      * resolution of the issue that is identified by this finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ExternalSystem.TicketInfo ticket_info = 8;</code>
      */
-    private $ticket_info = null;
+    protected $ticket_info = null;
 
     /**
      * Constructor.

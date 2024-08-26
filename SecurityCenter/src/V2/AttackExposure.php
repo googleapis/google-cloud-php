@@ -22,49 +22,49 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double score = 1;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * The most recent time the attack exposure was updated on this finding.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_calculation_time = 2;</code>
      */
-    private $latest_calculation_time = null;
+    protected $latest_calculation_time = null;
     /**
      * The resource name of the attack path simulation result that contains the
      * details regarding this attack exposure score.
-     * Example: `organizations/123/simulations/456/attackExposureResults/789`
+     * Example: organizations/123/simulations/456/attackExposureResults/789
      *
      * Generated from protobuf field <code>string attack_exposure_result = 3;</code>
      */
-    private $attack_exposure_result = '';
+    protected $attack_exposure_result = '';
     /**
      * Output only. What state this AttackExposure is in. This captures whether or
      * not an attack exposure has been calculated or not.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AttackExposure.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The number of high value resources that are exposed as a result of this
      * finding.
      *
      * Generated from protobuf field <code>int32 exposed_high_value_resources_count = 5;</code>
      */
-    private $exposed_high_value_resources_count = 0;
+    protected $exposed_high_value_resources_count = 0;
     /**
      * The number of medium value resources that are exposed as a result of this
      * finding.
      *
      * Generated from protobuf field <code>int32 exposed_medium_value_resources_count = 6;</code>
      */
-    private $exposed_medium_value_resources_count = 0;
+    protected $exposed_medium_value_resources_count = 0;
     /**
      * The number of high value resources that are exposed as a result of this
      * finding.
      *
      * Generated from protobuf field <code>int32 exposed_low_value_resources_count = 7;</code>
      */
-    private $exposed_low_value_resources_count = 0;
+    protected $exposed_low_value_resources_count = 0;
 
     /**
      * Constructor.
@@ -81,7 +81,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
      *     @type string $attack_exposure_result
      *           The resource name of the attack path simulation result that contains the
      *           details regarding this attack exposure score.
-     *           Example: `organizations/123/simulations/456/attackExposureResults/789`
+     *           Example: organizations/123/simulations/456/attackExposureResults/789
      *     @type int $state
      *           Output only. What state this AttackExposure is in. This captures whether or
      *           not an attack exposure has been calculated or not.
@@ -170,7 +170,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the attack path simulation result that contains the
      * details regarding this attack exposure score.
-     * Example: `organizations/123/simulations/456/attackExposureResults/789`
+     * Example: organizations/123/simulations/456/attackExposureResults/789
      *
      * Generated from protobuf field <code>string attack_exposure_result = 3;</code>
      * @return string
@@ -183,7 +183,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the attack path simulation result that contains the
      * details regarding this attack exposure score.
-     * Example: `organizations/123/simulations/456/attackExposureResults/789`
+     * Example: organizations/123/simulations/456/attackExposureResults/789
      *
      * Generated from protobuf field <code>string attack_exposure_result = 3;</code>
      * @param string $var

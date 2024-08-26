@@ -38,7 +38,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 total_exfiltrated_bytes = 3;</code>
      */
-    private $total_exfiltrated_bytes = 0;
+    protected $total_exfiltrated_bytes = 0;
 
     /**
      * Constructor.

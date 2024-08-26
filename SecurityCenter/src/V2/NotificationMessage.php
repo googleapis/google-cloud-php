@@ -20,13 +20,13 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notification_config_name = 1;</code>
      */
-    private $notification_config_name = '';
+    protected $notification_config_name = '';
     /**
      * The Cloud resource tied to this notification's Finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Resource resource = 3;</code>
      */
-    private $resource = null;
+    protected $resource = null;
     protected $event;
 
     /**

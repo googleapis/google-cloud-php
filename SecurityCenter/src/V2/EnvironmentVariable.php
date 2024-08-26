@@ -21,13 +21,13 @@ class EnvironmentVariable extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Environment variable value as a JSON encoded string.
      *
      * Generated from protobuf field <code>string val = 2;</code>
      */
-    private $val = '';
+    protected $val = '';
 
     /**
      * Constructor.

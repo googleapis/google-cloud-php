@@ -18,13 +18,13 @@ class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns the collection of BigQuery exports. Its
-     * format is `organizations/[organization_id]/locations/[location_id]`,
-     * `folders/[folder_id]/locations/[location_id]`, or
-     * `projects/[project_id]/locations/[location_id]`.
+     * format is "organizations/[organization_id]/locations/[location_id]",
+     * "folders/[folder_id]/locations/[location_id]", or
+     * "projects/[project_id]/locations/[location_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of configs to return. The service may return fewer than
      * this value.
@@ -33,7 +33,7 @@ class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListBigQueryExports` call.
      * Provide this to retrieve the subsequent page.
@@ -42,13 +42,13 @@ class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The parent, which owns the collection of BigQuery exports. Its
-     *                       format is `organizations/[organization_id]/locations/[location_id]`,
-     *                       `folders/[folder_id]/locations/[location_id]`, or
-     *                       `projects/[project_id]/locations/[location_id]`. Please see
+     *                       format is "organizations/[organization_id]/locations/[location_id]",
+     *                       "folders/[folder_id]/locations/[location_id]", or
+     *                       "projects/[project_id]/locations/[location_id]". Please see
      *                       {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\ListBigQueryExportsRequest
@@ -69,9 +69,9 @@ class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns the collection of BigQuery exports. Its
-     *           format is `organizations/[organization_id]/locations/[location_id]`,
-     *           `folders/[folder_id]/locations/[location_id]`, or
-     *           `projects/[project_id]/locations/[location_id]`.
+     *           format is "organizations/[organization_id]/locations/[location_id]",
+     *           "folders/[folder_id]/locations/[location_id]", or
+     *           "projects/[project_id]/locations/[location_id]".
      *     @type int $page_size
      *           The maximum number of configs to return. The service may return fewer than
      *           this value.
@@ -91,9 +91,9 @@ class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns the collection of BigQuery exports. Its
-     * format is `organizations/[organization_id]/locations/[location_id]`,
-     * `folders/[folder_id]/locations/[location_id]`, or
-     * `projects/[project_id]/locations/[location_id]`.
+     * format is "organizations/[organization_id]/locations/[location_id]",
+     * "folders/[folder_id]/locations/[location_id]", or
+     * "projects/[project_id]/locations/[location_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -105,9 +105,9 @@ class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns the collection of BigQuery exports. Its
-     * format is `organizations/[organization_id]/locations/[location_id]`,
-     * `folders/[folder_id]/locations/[location_id]`, or
-     * `projects/[project_id]/locations/[location_id]`.
+     * format is "organizations/[organization_id]/locations/[location_id]",
+     * "folders/[folder_id]/locations/[location_id]", or
+     * "projects/[project_id]/locations/[location_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

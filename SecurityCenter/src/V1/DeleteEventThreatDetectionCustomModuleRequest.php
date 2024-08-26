@@ -18,22 +18,22 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     /**
      * Required. Name of the custom module to delete.
      * Its format is:
-     * * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
-     * * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
-     * * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
+     * * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
+     * * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
+     * * "projects/{project}/eventThreatDetectionSettings/customModules/{module}".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. Name of the custom module to delete.
      *
      *                     Its format is:
      *
-     *                     * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
-     *                     * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
-     *                     * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`. Please see
+     *                     * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
+     *                     * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
+     *                     * "projects/{project}/eventThreatDetectionSettings/customModules/{module}". Please see
      *                     {@see SecurityCenterClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V1\DeleteEventThreatDetectionCustomModuleRequest
@@ -55,9 +55,9 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *     @type string $name
      *           Required. Name of the custom module to delete.
      *           Its format is:
-     *           * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
-     *           * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
-     *           * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
+     *           * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
+     *           * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
+     *           * "projects/{project}/eventThreatDetectionSettings/customModules/{module}".
      * }
      */
     public function __construct($data = NULL) {
@@ -68,9 +68,9 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     /**
      * Required. Name of the custom module to delete.
      * Its format is:
-     * * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
-     * * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
-     * * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
+     * * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
+     * * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
+     * * "projects/{project}/eventThreatDetectionSettings/customModules/{module}".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -83,9 +83,9 @@ class DeleteEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     /**
      * Required. Name of the custom module to delete.
      * Its format is:
-     * * `organizations/{organization}/eventThreatDetectionSettings/customModules/{module}`.
-     * * `folders/{folder}/eventThreatDetectionSettings/customModules/{module}`.
-     * * `projects/{project}/eventThreatDetectionSettings/customModules/{module}`.
+     * * "organizations/{organization}/eventThreatDetectionSettings/customModules/{module}".
+     * * "folders/{folder}/eventThreatDetectionSettings/customModules/{module}".
+     * * "projects/{project}/eventThreatDetectionSettings/customModules/{module}".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

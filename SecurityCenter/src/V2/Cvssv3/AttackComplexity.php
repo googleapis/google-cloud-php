@@ -66,6 +66,4 @@ class AttackComplexity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AttackComplexity::class, \Google\Cloud\SecurityCenter\V2\Cvssv3_AttackComplexity::class);
 

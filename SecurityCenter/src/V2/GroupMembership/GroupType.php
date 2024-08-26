@@ -52,6 +52,4 @@ class GroupType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GroupType::class, \Google\Cloud\SecurityCenter\V2\GroupMembership_GroupType::class);
 

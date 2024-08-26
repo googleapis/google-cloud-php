@@ -24,7 +24,7 @@ class DeleteSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. Name of the custom module to delete. Its format is

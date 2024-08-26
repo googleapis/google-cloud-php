@@ -66,6 +66,4 @@ class AuthType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AuthType::class, \Google\Cloud\SecurityCenter\V1\Kubernetes_Subject_AuthType::class);
 

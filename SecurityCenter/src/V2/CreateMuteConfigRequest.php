@@ -17,19 +17,19 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the new mute configs's parent. Its format is
-     * `organizations/[organization_id]/locations/[location_id]`,
-     * `folders/[folder_id]/locations/[location_id]`, or
-     * `projects/[project_id]/locations/[location_id]`.
+     * "organizations/[organization_id]/locations/[location_id]",
+     * "folders/[folder_id]/locations/[location_id]", or
+     * "projects/[project_id]/locations/[location_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The mute config being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.MuteConfig mute_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mute_config = null;
+    protected $mute_config = null;
     /**
      * Required. Unique identifier provided by the client within the parent scope.
      * It must consist of only lowercase letters, numbers, and hyphens, must start
@@ -38,13 +38,13 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mute_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mute_config_id = '';
+    protected $mute_config_id = '';
 
     /**
      * @param string                                     $parent       Required. Resource name of the new mute configs's parent. Its format is
-     *                                                                 `organizations/[organization_id]/locations/[location_id]`,
-     *                                                                 `folders/[folder_id]/locations/[location_id]`, or
-     *                                                                 `projects/[project_id]/locations/[location_id]`. Please see
+     *                                                                 "organizations/[organization_id]/locations/[location_id]",
+     *                                                                 "folders/[folder_id]/locations/[location_id]", or
+     *                                                                 "projects/[project_id]/locations/[location_id]". Please see
      *                                                                 {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenter\V2\MuteConfig $muteConfig   Required. The mute config being created.
      * @param string                                     $muteConfigId Required. Unique identifier provided by the client within the parent scope.
@@ -72,9 +72,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Resource name of the new mute configs's parent. Its format is
-     *           `organizations/[organization_id]/locations/[location_id]`,
-     *           `folders/[folder_id]/locations/[location_id]`, or
-     *           `projects/[project_id]/locations/[location_id]`.
+     *           "organizations/[organization_id]/locations/[location_id]",
+     *           "folders/[folder_id]/locations/[location_id]", or
+     *           "projects/[project_id]/locations/[location_id]".
      *     @type \Google\Cloud\SecurityCenter\V2\MuteConfig $mute_config
      *           Required. The mute config being created.
      *     @type string $mute_config_id
@@ -91,9 +91,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the new mute configs's parent. Its format is
-     * `organizations/[organization_id]/locations/[location_id]`,
-     * `folders/[folder_id]/locations/[location_id]`, or
-     * `projects/[project_id]/locations/[location_id]`.
+     * "organizations/[organization_id]/locations/[location_id]",
+     * "folders/[folder_id]/locations/[location_id]", or
+     * "projects/[project_id]/locations/[location_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -105,9 +105,9 @@ class CreateMuteConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the new mute configs's parent. Its format is
-     * `organizations/[organization_id]/locations/[location_id]`,
-     * `folders/[folder_id]/locations/[location_id]`, or
-     * `projects/[project_id]/locations/[location_id]`.
+     * "organizations/[organization_id]/locations/[location_id]",
+     * "folders/[folder_id]/locations/[location_id]", or
+     * "projects/[project_id]/locations/[location_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
