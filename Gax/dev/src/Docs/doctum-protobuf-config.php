@@ -30,12 +30,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Dev\Docs;
+use Doctum\Doctum;
+use Doctum\RemoteRepository\GitHubRemoteRepository;
+use Symfony\Component\Finder\Finder;
 
-require_once __DIR__ . '../../../../vendor/autoload.php';
+if (version_compare(phpversion(), '7.1', '<')) {
+    throw new RuntimeException('PHP must be >= 7.1 to build docs, found version ' . phpversion());
+}
 
-DoctumConfigBuilder::checkPhpVersion();
+$version = getenv('PROTOBUF_DOCS_VERSION');
 
-$currentVersion = getenv('PROTOBUF_DOCS_VERSION');
+$gaxRootDir = realpath(__DIR__ . '/../../../');
+$protobufRootDir = realpath($gaxRootDir . '/vendor/google/protobuf');
+$iterator = Finder::create()
+    ->files()
+    ->name('*.php')
+    ->exclude('GPBMetadata')
+    ->in("$protobufRootDir/src")
+;
 
-return DoctumConfigBuilder::buildProtobufConfigForVersion($currentVersion);
+return new Doctum($iterator, [
+    'title'                => "Google Protobuf - $version",
+    'version'              => $version,
+    'build_dir'            => "$gaxRootDir/api-docs",
+    'cache_dir'            => "$gaxRootDir/cache/%version%",
+    'remote_repository'    => new GitHubRemoteRepository('protocolbuffers/protobuf-php', $protobufRootDir),
+    'default_opened_level' => 1,
+]);
