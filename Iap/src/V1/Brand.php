@@ -23,26 +23,26 @@ class Brand extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Support email displayed on the OAuth consent screen.
      *
      * Generated from protobuf field <code>string support_email = 2;</code>
      */
-    private $support_email = '';
+    protected $support_email = '';
     /**
      * Application name displayed on OAuth consent screen.
      *
      * Generated from protobuf field <code>string application_title = 3;</code>
      */
-    private $application_title = '';
+    protected $application_title = '';
     /**
      * Output only. Whether the brand is only intended for usage inside the
      * G Suite organization only.
      *
      * Generated from protobuf field <code>bool org_internal_only = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $org_internal_only = false;
+    protected $org_internal_only = false;
 
     /**
      * Constructor.

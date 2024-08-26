@@ -21,13 +21,13 @@ class CreateBrandRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The brand to be created.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.Brand brand = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $brand = null;
+    protected $brand = null;
 
     /**
      * Constructor.

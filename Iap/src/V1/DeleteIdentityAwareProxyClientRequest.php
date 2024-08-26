@@ -22,7 +22,7 @@ class DeleteIdentityAwareProxyClientRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
