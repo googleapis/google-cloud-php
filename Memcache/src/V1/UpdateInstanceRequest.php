@@ -21,14 +21,14 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. A Memcached Instance.
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * @param \Google\Cloud\Memcache\V1\Instance $instance   Required. A Memcached Instance.

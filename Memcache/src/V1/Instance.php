@@ -26,14 +26,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User provided name for the instance, which is only used for display
      * purposes. Cannot be more than 80 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Resource labels to represent user-provided metadata.
      * Refer to cloud documentation on labels for more details.
@@ -44,13 +44,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
      * Generated from protobuf field <code>string authorized_network = 4;</code>
      */
-    private $authorized_network = '';
+    protected $authorized_network = '';
     /**
      * Zones in which Memcached nodes should be provisioned.
      * Memcached nodes will be equally distributed across these zones. If not
@@ -65,13 +65,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 node_count = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
     /**
      * Required. Configuration for Memcached nodes.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance.NodeConfig node_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_config = null;
+    protected $node_config = null;
     /**
      * The major version of Memcached software.
      * If not provided, latest supported version will be used. Currently the
@@ -81,14 +81,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MemcacheVersion memcache_version = 9;</code>
      */
-    private $memcache_version = 0;
+    protected $memcache_version = 0;
     /**
      * User defined parameters to apply to the memcached process
      * on each node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MemcacheParameters parameters = 11;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * Output only. List of Memcached nodes.
      * Refer to [Node][google.cloud.memcache.v1.Instance.Node] message for more details.
@@ -101,19 +101,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the instance was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The state of this Memcached instance.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance.State state = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The full version of memcached server running on this instance.
      * System automatically determines the full memcached version for an instance
@@ -122,7 +122,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string memcache_full_version = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $memcache_full_version = '';
+    protected $memcache_full_version = '';
     /**
      * List of messages that describe the current state of the Memcached instance.
      *
@@ -134,7 +134,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string discovery_endpoint = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $discovery_endpoint = '';
+    protected $discovery_endpoint = '';
     /**
      * The maintenance policy for the instance. If not provided,
      * the maintenance event will be performed based on Memorystore
@@ -142,13 +142,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MaintenancePolicy maintenance_policy = 21;</code>
      */
-    private $maintenance_policy = null;
+    protected $maintenance_policy = null;
     /**
      * Output only. Published maintenance schedule.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MaintenanceSchedule maintenance_schedule = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $maintenance_schedule = null;
+    protected $maintenance_schedule = null;
 
     /**
      * Constructor.
@@ -173,7 +173,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/compute/docs/labeling-resources
      *     @type string $authorized_network
      *           The full name of the Google Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     *           [network](/compute/docs/networks-and-firewalls#networks) to which the
      *           instance is connected. If left unspecified, the `default` network
      *           will be used.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
@@ -323,7 +323,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -337,7 +337,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](/compute/docs/networks-and-firewalls#networks) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *

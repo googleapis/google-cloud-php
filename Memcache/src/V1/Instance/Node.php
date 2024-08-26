@@ -19,38 +19,38 @@ class Node extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_id = '';
+    protected $node_id = '';
     /**
      * Output only. Location (GCP Zone) for the Memcached node.
      *
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Output only. Current state of the Memcached node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance.Node.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Hostname or IP address of the Memcached node used by the
      * clients to connect to the Memcached server on this node.
      *
      * Generated from protobuf field <code>string host = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Output only. The port number of the Memcached server on this node.
      *
      * Generated from protobuf field <code>int32 port = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * User defined parameters currently applied to the node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MemcacheParameters parameters = 6;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * Constructor.
