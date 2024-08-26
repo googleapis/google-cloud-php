@@ -22,7 +22,7 @@ class KeyId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
 
     /**
      * Constructor.

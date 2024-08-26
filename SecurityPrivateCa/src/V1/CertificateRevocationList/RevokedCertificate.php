@@ -23,14 +23,14 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string certificate = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $certificate = '';
+    protected $certificate = '';
     /**
      * The serial number of the
      * [Certificate][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>string hex_serial_number = 2;</code>
      */
-    private $hex_serial_number = '';
+    protected $hex_serial_number = '';
     /**
      * The reason the
      * [Certificate][google.cloud.security.privateca.v1.Certificate] was
@@ -38,7 +38,7 @@ class RevokedCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason revocation_reason = 3;</code>
      */
-    private $revocation_reason = 0;
+    protected $revocation_reason = 0;
 
     /**
      * Constructor.

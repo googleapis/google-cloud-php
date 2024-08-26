@@ -20,7 +20,7 @@ class CertificateFingerprint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sha256_hash = 1;</code>
      */
-    private $sha256_hash = '';
+    protected $sha256_hash = '';
 
     /**
      * Constructor.
