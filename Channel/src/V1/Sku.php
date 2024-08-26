@@ -24,19 +24,19 @@ class Sku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Marketing information for the SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MarketingInfo marketing_info = 2;</code>
      */
-    private $marketing_info = null;
+    protected $marketing_info = null;
     /**
      * Product the SKU is associated with.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Product product = 3;</code>
      */
-    private $product = null;
+    protected $product = null;
 
     /**
      * Constructor.

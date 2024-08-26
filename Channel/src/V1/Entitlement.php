@@ -21,45 +21,45 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time at which the entitlement is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which the entitlement is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. The offer resource name for which the entitlement is to be
      * created. Takes the form: accounts/{account_id}/offers/{offer_id}.
      *
      * Generated from protobuf field <code>string offer = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $offer = '';
+    protected $offer = '';
     /**
      * Commitment settings for a commitment-based Offer.
      * Required for commitment based offers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CommitmentSettings commitment_settings = 12;</code>
      */
-    private $commitment_settings = null;
+    protected $commitment_settings = null;
     /**
      * Output only. Current provisioning state of the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Entitlement.ProvisioningState provisioning_state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $provisioning_state = 0;
+    protected $provisioning_state = 0;
     /**
      * Output only. Service provisioning details for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ProvisionedService provisioned_service = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $provisioned_service = null;
+    protected $provisioned_service = null;
     /**
      * Output only. Enumerable of all current suspension reasons for an
      * entitlement.
@@ -76,19 +76,19 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string purchase_order_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $purchase_order_id = '';
+    protected $purchase_order_id = '';
     /**
      * Output only. Settings for trial offers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TrialSettings trial_settings = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $trial_settings = null;
+    protected $trial_settings = null;
     /**
      * Association information to other entitlements.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.AssociationInfo association_info = 23;</code>
      */
-    private $association_info = null;
+    protected $association_info = null;
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
      * parameter names and values are defined in the
@@ -112,7 +112,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string billing_account = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $billing_account = '';
+    protected $billing_account = '';
 
     /**
      * Constructor.

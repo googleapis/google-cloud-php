@@ -24,19 +24,19 @@ class ReportResultsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Report report = 1;</code>
      */
-    private $report = null;
+    protected $report = null;
     /**
      * The total number of rows of data in the final report.
      *
      * Generated from protobuf field <code>int64 row_count = 2;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * The date range of reported usage.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.DateRange date_range = 3;</code>
      */
-    private $date_range = null;
+    protected $date_range = null;
     /**
      * The usage dates immediately preceding `date_range` with the same duration.
      * Use this to calculate trending usage and costs. This is only populated if
@@ -46,7 +46,7 @@ class ReportResultsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.DateRange preceding_date_range = 4;</code>
      */
-    private $preceding_date_range = null;
+    protected $preceding_date_range = null;
 
     /**
      * Constructor.

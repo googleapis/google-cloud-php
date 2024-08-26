@@ -24,7 +24,7 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ReportResultsMetadata report_metadata = 1;</code>
      */
-    private $report_metadata = null;
+    protected $report_metadata = null;
     /**
      * The report's lists of values. Each row follows the settings and ordering
      * of the columns from `report_metadata`.
@@ -39,7 +39,7 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

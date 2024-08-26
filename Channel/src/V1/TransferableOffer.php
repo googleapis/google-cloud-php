@@ -21,7 +21,7 @@ class TransferableOffer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Offer offer = 1;</code>
      */
-    private $offer = null;
+    protected $offer = null;
 
     /**
      * Constructor.
