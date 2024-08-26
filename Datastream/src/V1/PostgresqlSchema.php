@@ -20,7 +20,7 @@ class PostgresqlSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schema = 1;</code>
      */
-    private $schema = '';
+    protected $schema = '';
     /**
      * Tables in the schema.
      *

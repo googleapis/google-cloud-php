@@ -20,56 +20,56 @@ class MysqlColumn extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column = 1;</code>
      */
-    private $column = '';
+    protected $column = '';
     /**
      * The MySQL data type. Full data types list can be found here:
      * https://dev.mysql.com/doc/refman/8.0/en/data-types.html
      *
      * Generated from protobuf field <code>string data_type = 2;</code>
      */
-    private $data_type = '';
+    protected $data_type = '';
     /**
      * Column length.
      *
      * Generated from protobuf field <code>int32 length = 3;</code>
      */
-    private $length = 0;
+    protected $length = 0;
     /**
      * Column collation.
      *
      * Generated from protobuf field <code>string collation = 4;</code>
      */
-    private $collation = '';
+    protected $collation = '';
     /**
      * Whether or not the column represents a primary key.
      *
      * Generated from protobuf field <code>bool primary_key = 5;</code>
      */
-    private $primary_key = false;
+    protected $primary_key = false;
     /**
      * Whether or not the column can accept a null value.
      *
      * Generated from protobuf field <code>bool nullable = 6;</code>
      */
-    private $nullable = false;
+    protected $nullable = false;
     /**
      * The ordinal position of the column in the table.
      *
      * Generated from protobuf field <code>int32 ordinal_position = 7;</code>
      */
-    private $ordinal_position = 0;
+    protected $ordinal_position = 0;
     /**
      * Column precision.
      *
      * Generated from protobuf field <code>int32 precision = 8;</code>
      */
-    private $precision = 0;
+    protected $precision = 0;
     /**
      * Column scale.
      *
      * Generated from protobuf field <code>int32 scale = 9;</code>
      */
-    private $scale = 0;
+    protected $scale = 0;
 
     /**
      * Constructor.

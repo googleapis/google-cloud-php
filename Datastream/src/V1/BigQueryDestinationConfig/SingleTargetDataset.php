@@ -20,7 +20,7 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
 
     /**
      * Constructor.
