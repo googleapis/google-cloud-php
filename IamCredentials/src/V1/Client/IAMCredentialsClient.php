@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,9 +91,7 @@ final class IAMCredentialsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -247,8 +245,10 @@ final class IAMCredentialsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAccessToken(GenerateAccessTokenRequest $request, array $callOptions = []): GenerateAccessTokenResponse
-    {
+    public function generateAccessToken(
+        GenerateAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAccessTokenResponse {
         return $this->startApiCall('GenerateAccessToken', $request, $callOptions)->wait();
     }
 
