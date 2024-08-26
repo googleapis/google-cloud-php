@@ -20,7 +20,7 @@ class LoggingVariantConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.LoggingVariantConfig.Variant variant = 1;</code>
      */
-    private $variant = 0;
+    protected $variant = 0;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel.Channel channel = 1;</code>
      */
-    private $channel = 0;
+    protected $channel = 0;
     /**
      * The default version for newly created clusters on the channel.
      *
      * Generated from protobuf field <code>string default_version = 2;</code>
      */
-    private $default_version = '';
+    protected $default_version = '';
     /**
      * List of valid versions for the channel.
      *
@@ -133,6 +133,4 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReleaseChannelConfig::class, \Google\Cloud\Container\V1\ServerConfig_ReleaseChannelConfig::class);
 

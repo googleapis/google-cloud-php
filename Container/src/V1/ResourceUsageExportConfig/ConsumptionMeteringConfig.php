@@ -22,7 +22,7 @@ class ConsumptionMeteringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class ConsumptionMeteringConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConsumptionMeteringConfig::class, \Google\Cloud\Container\V1\ResourceUsageExportConfig_ConsumptionMeteringConfig::class);
 

@@ -47,14 +47,14 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicy network_policy = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_policy = null;
+    protected $network_policy = null;
     /**
      * The name (project, location, cluster name) of the cluster to set networking
      * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string                                   $projectId     Deprecated. The Google Developers Console [project ID or project

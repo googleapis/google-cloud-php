@@ -55,7 +55,7 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 node_count = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_count = 0;
+    protected $node_count = 0;
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set
      * size.
@@ -63,7 +63,7 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

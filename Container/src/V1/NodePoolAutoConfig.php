@@ -24,21 +24,21 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkTags network_tags = 1;</code>
      */
-    private $network_tags = null;
+    protected $network_tags = null;
     /**
      * Resource manager tag keys and values to be attached to the nodes
      * for managing Compute Engine firewalls using Network Firewall Policies.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 2;</code>
      */
-    private $resource_manager_tags = null;
+    protected $resource_manager_tags = null;
     /**
      * NodeKubeletConfig controls the defaults for autoprovisioned node-pools.
      * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 3;</code>
      */
-    private $node_kubelet_config = null;
+    protected $node_kubelet_config = null;
 
     /**
      * Constructor.

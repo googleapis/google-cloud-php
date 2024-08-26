@@ -21,27 +21,27 @@ class UpgradeAvailableEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The resource type of the release version.
      *
      * Generated from protobuf field <code>.google.container.v1.UpgradeResourceType resource_type = 2;</code>
      */
-    private $resource_type = 0;
+    protected $resource_type = 0;
     /**
      * The release channel of the version. If empty, it means a non-channel
      * release.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 3;</code>
      */
-    private $release_channel = null;
+    protected $release_channel = null;
     /**
      * Optional relative path to the resource. For example, the relative path of
      * the node pool.
      *
      * Generated from protobuf field <code>string resource = 4;</code>
      */
-    private $resource = '';
+    protected $resource = '';
 
     /**
      * Constructor.

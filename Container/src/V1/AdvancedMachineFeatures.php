@@ -22,13 +22,13 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 threads_per_core = 1;</code>
      */
-    private $threads_per_core = null;
+    protected $threads_per_core = null;
     /**
      * Whether or not to enable nested virtualization (defaults to false).
      *
      * Generated from protobuf field <code>optional bool enable_nested_virtualization = 2;</code>
      */
-    private $enable_nested_virtualization = null;
+    protected $enable_nested_virtualization = null;
 
     /**
      * Constructor.

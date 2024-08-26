@@ -20,19 +20,19 @@ class RayOperatorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Optional. Logging configuration for Ray clusters.
      *
      * Generated from protobuf field <code>.google.container.v1.RayClusterLoggingConfig ray_cluster_logging_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ray_cluster_logging_config = null;
+    protected $ray_cluster_logging_config = null;
     /**
      * Optional. Monitoring configuration for Ray clusters.
      *
      * Generated from protobuf field <code>.google.container.v1.RayClusterMonitoringConfig ray_cluster_monitoring_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ray_cluster_monitoring_config = null;
+    protected $ray_cluster_monitoring_config = null;
 
     /**
      * Constructor.

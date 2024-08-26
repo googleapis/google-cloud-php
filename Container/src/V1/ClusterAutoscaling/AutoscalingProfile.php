@@ -59,6 +59,4 @@ class AutoscalingProfile
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoscalingProfile::class, \Google\Cloud\Container\V1\ClusterAutoscaling_AutoscalingProfile::class);
 

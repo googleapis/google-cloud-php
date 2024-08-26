@@ -20,13 +20,13 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Which load balancer type is installed for Cloud Run.
      *
      * Generated from protobuf field <code>.google.container.v1.CloudRunConfig.LoadBalancerType load_balancer_type = 3;</code>
      */
-    private $load_balancer_type = 0;
+    protected $load_balancer_type = 0;
 
     /**
      * Constructor.

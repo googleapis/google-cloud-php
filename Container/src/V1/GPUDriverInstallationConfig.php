@@ -21,7 +21,7 @@ class GPUDriverInstallationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.container.v1.GPUDriverInstallationConfig.GPUDriverVersion gpu_driver_version = 1;</code>
      */
-    private $gpu_driver_version = null;
+    protected $gpu_driver_version = null;
 
     /**
      * Constructor.

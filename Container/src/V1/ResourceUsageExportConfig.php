@@ -20,20 +20,20 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig.BigQueryDestination bigquery_destination = 1;</code>
      */
-    private $bigquery_destination = null;
+    protected $bigquery_destination = null;
     /**
      * Whether to enable network egress metering for this cluster. If enabled, a
      * daemonset will be created in the cluster to meter network egress traffic.
      *
      * Generated from protobuf field <code>bool enable_network_egress_metering = 2;</code>
      */
-    private $enable_network_egress_metering = false;
+    protected $enable_network_egress_metering = false;
     /**
      * Configuration to enable resource consumption metering.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig.ConsumptionMeteringConfig consumption_metering_config = 3;</code>
      */
-    private $consumption_metering_config = null;
+    protected $consumption_metering_config = null;
 
     /**
      * Constructor.

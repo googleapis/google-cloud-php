@@ -20,7 +20,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     protected $value;
 
     /**
@@ -173,6 +173,4 @@ class Metric extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Metric::class, \Google\Cloud\Container\V1\OperationProgress_Metric::class);
 

@@ -39,13 +39,13 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CgroupMode cgroup_mode = 2;</code>
      */
-    private $cgroup_mode = 0;
+    protected $cgroup_mode = 0;
     /**
      * Optional. Amounts for 2M and 1G hugepages
      *
      * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.HugepagesConfig hugepages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $hugepages = null;
+    protected $hugepages = null;
 
     /**
      * Constructor.

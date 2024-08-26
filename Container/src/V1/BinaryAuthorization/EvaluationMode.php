@@ -61,6 +61,4 @@ class EvaluationMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EvaluationMode::class, \Google\Cloud\Container\V1\BinaryAuthorization_EvaluationMode::class);
 
