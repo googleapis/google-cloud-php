@@ -23,19 +23,19 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Created time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Updated time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Resource labels to represent user-provided metadata.
      * Refer to cloud documentation on labels for more details.
@@ -49,27 +49,27 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Resource name of the API Config for this Gateway.
      * Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}
      *
      * Generated from protobuf field <code>string api_config = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $api_config = '';
+    protected $api_config = '';
     /**
      * Output only. The current state of the Gateway.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The default API Gateway host name of the form
      * `{gateway_id}-{hash}.{region_code}.gateway.dev`.
      *
      * Generated from protobuf field <code>string default_hostname = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $default_hostname = '';
+    protected $default_hostname = '';
 
     /**
      * Constructor.
