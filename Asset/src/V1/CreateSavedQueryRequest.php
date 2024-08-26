@@ -24,14 +24,14 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The saved_query details. The `name` field must be empty as it
      * will be generated based on the parent and saved_query_id.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.SavedQuery saved_query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $saved_query = null;
+    protected $saved_query = null;
     /**
      * Required. The ID to use for the saved query, which must be unique in the
      * specified parent. It will become the final component of the saved query's
@@ -43,7 +43,7 @@ class CreateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string saved_query_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $saved_query_id = '';
+    protected $saved_query_id = '';
 
     /**
      * @param string                            $parent       Required. The name of the project/folder/organization where this

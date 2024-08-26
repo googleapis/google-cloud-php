@@ -68,6 +68,4 @@ class EvaluationValue
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EvaluationValue::class, \Google\Cloud\Asset\V1\ConditionEvaluation_EvaluationValue::class);
 
