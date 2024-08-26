@@ -24,7 +24,7 @@ class GenerateConfigReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any new_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_config = null;
+    protected $new_config = null;
     /**
      * Optional. Service configuration against which the comparison will be done.
      * For this version of API, the supported types are
@@ -34,7 +34,7 @@ class GenerateConfigReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any old_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $old_config = null;
+    protected $old_config = null;
 
     /**
      * @param \Google\Protobuf\Any $newConfig Required. Service configuration for which we want to generate the report.

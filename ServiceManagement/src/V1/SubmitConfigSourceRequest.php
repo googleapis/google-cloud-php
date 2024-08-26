@@ -22,13 +22,13 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * Required. The source configuration for the service.
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.ConfigSource config_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config_source = null;
+    protected $config_source = null;
     /**
      * Optional. If set, this will result in the generation of a
      * `google.api.Service` configuration based on the `ConfigSource` provided,
@@ -36,7 +36,7 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                          $serviceName  Required. The name of the service.  See the
