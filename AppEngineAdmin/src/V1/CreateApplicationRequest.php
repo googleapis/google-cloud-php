@@ -20,7 +20,7 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.Application application = 2;</code>
      */
-    private $application = null;
+    protected $application = null;
 
     /**
      * Constructor.

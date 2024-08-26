@@ -26,7 +26,7 @@ class CertificateRawData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_certificate = 1;</code>
      */
-    private $public_certificate = '';
+    protected $public_certificate = '';
     /**
      * Unencrypted PEM encoded RSA private key. This field is set once on
      * certificate creation and then encrypted. The key size must be 2048
@@ -40,7 +40,7 @@ class CertificateRawData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_key = 2;</code>
      */
-    private $private_key = '';
+    protected $private_key = '';
 
     /**
      * Constructor.

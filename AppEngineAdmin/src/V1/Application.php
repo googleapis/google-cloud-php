@@ -23,7 +23,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Identifier of the Application resource. This identifier is equivalent
      * to the project ID of the Google Cloud Platform project where you want to
@@ -32,7 +32,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * HTTP path dispatch rules for requests to the application that do not
      * explicitly target a service or version. Rules are order-dependent.
@@ -48,7 +48,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string auth_domain = 6;</code>
      */
-    private $auth_domain = '';
+    protected $auth_domain = '';
     /**
      * Location from which this application runs. Application instances
      * run out of the data centers in the specified location, which is also where
@@ -59,7 +59,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
     /**
      * Google Cloud Storage bucket that can be used for storing files
      * associated with this application. This bucket is associated with the
@@ -68,26 +68,26 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code_bucket = 8;</code>
      */
-    private $code_bucket = '';
+    protected $code_bucket = '';
     /**
      * Cookie expiration policy for this application.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration default_cookie_expiration = 9;</code>
      */
-    private $default_cookie_expiration = null;
+    protected $default_cookie_expiration = null;
     /**
      * Serving status of this application.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Application.ServingStatus serving_status = 10;</code>
      */
-    private $serving_status = 0;
+    protected $serving_status = 0;
     /**
      * Hostname used to reach this application, as resolved by App Engine.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>string default_hostname = 11;</code>
      */
-    private $default_hostname = '';
+    protected $default_hostname = '';
     /**
      * Google Cloud Storage bucket that can be used by this application to store
      * content.
@@ -95,7 +95,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_bucket = 12;</code>
      */
-    private $default_bucket = '';
+    protected $default_bucket = '';
     /**
      * The service account associated with the application.
      * This is the app-level default identity. If no identity provided during
@@ -103,31 +103,31 @@ class Application extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 13;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Generated from protobuf field <code>.google.appengine.v1.Application.IdentityAwareProxy iap = 14;</code>
      */
-    private $iap = null;
+    protected $iap = null;
     /**
      * The Google Container Registry domain used for storing managed build docker
      * images for this application.
      *
      * Generated from protobuf field <code>string gcr_domain = 16;</code>
      */
-    private $gcr_domain = '';
+    protected $gcr_domain = '';
     /**
      * The type of the Cloud Firestore or Cloud Datastore database associated with
      * this application.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Application.DatabaseType database_type = 17;</code>
      */
-    private $database_type = 0;
+    protected $database_type = 0;
     /**
      * The feature specific settings to be used in the application.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Application.FeatureSettings feature_settings = 18;</code>
      */
-    private $feature_settings = null;
+    protected $feature_settings = null;
 
     /**
      * Constructor.

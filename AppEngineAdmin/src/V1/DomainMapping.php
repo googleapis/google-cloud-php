@@ -22,21 +22,21 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Relative name of the domain serving the application. Example:
      * `example.com`.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * SSL configuration for this domain. If unconfigured, this domain will not
      * serve with SSL.
      *
      * Generated from protobuf field <code>.google.appengine.v1.SslSettings ssl_settings = 3;</code>
      */
-    private $ssl_settings = null;
+    protected $ssl_settings = null;
     /**
      * The resource records required to configure this domain mapping. These
      * records must be added to the domain's DNS configuration in order to

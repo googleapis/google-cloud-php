@@ -22,47 +22,47 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_health_check = 1;</code>
      */
-    private $disable_health_check = false;
+    protected $disable_health_check = false;
     /**
      * Host header to send when performing an HTTP health check.
      * Example: "myapp.appspot.com"
      *
      * Generated from protobuf field <code>string host = 2;</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Number of consecutive successful health checks required before receiving
      * traffic.
      *
      * Generated from protobuf field <code>uint32 healthy_threshold = 3;</code>
      */
-    private $healthy_threshold = 0;
+    protected $healthy_threshold = 0;
     /**
      * Number of consecutive failed health checks required before removing
      * traffic.
      *
      * Generated from protobuf field <code>uint32 unhealthy_threshold = 4;</code>
      */
-    private $unhealthy_threshold = 0;
+    protected $unhealthy_threshold = 0;
     /**
      * Number of consecutive failed health checks required before an instance is
      * restarted.
      *
      * Generated from protobuf field <code>uint32 restart_threshold = 5;</code>
      */
-    private $restart_threshold = 0;
+    protected $restart_threshold = 0;
     /**
      * Interval between health checks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration check_interval = 6;</code>
      */
-    private $check_interval = null;
+    protected $check_interval = null;
     /**
      * Time before the health check is considered failed.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 7;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
 
     /**
      * Constructor.

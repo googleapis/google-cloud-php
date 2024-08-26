@@ -21,25 +21,25 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Controls the set of fields returned in the `List` response.
      *
      * Generated from protobuf field <code>.google.appengine.v1.VersionView view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * Maximum results to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Continuation token for fetching the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

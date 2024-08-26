@@ -20,19 +20,19 @@ class ErrorHandler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.ErrorHandler.ErrorCode error_code = 1;</code>
      */
-    private $error_code = 0;
+    protected $error_code = 0;
     /**
      * Static file content to be served for this error.
      *
      * Generated from protobuf field <code>string static_file = 2;</code>
      */
-    private $static_file = '';
+    protected $static_file = '';
     /**
      * MIME type of file. Defaults to `text/html`.
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
 
     /**
      * Constructor.
