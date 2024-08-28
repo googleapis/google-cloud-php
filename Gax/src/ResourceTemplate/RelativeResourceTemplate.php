@@ -124,7 +124,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                     $segment->getSeparator()
                 );
             } else {
-                $valueString = is_null($value) ? "null" : "'$value'";
+                $valueString = is_null($value) ? 'null' : "'$value'";
                 throw $this->renderingException(
                     $bindings,
                     "expected binding '$key' to match segment '$segment', instead got $valueString"
@@ -198,7 +198,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
             }
             if ($segment->getSeparator() === '/') {
                 if ($pathPiecesIndex >= $slashPathPiecesCount) {
-                    throw $this->matchException($path, "segment and path length mismatch");
+                    throw $this->matchException($path, 'segment and path length mismatch');
                 }
                 $pathPiece = substr($slashPathPieces[$pathPiecesIndex++], $startIndex);
                 $startIndex = 0;
@@ -229,7 +229,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         if ($pathPiecesCount < $flattenedKeySegmentTuplesCount) {
             // Each segment in $flattenedKeyedSegments must consume at least one
             // segment in $pathSegments, so matching must fail.
-            throw $this->matchException($path, "path does not contain enough segments to be matched");
+            throw $this->matchException($path, 'path does not contain enough segments to be matched');
         }
 
         $doubleWildcardPieceCount = $pathPiecesCount - $flattenedKeySegmentTuplesCount + 1;
@@ -377,7 +377,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      */
     private static function renderSegments(array $segmentsToRender)
     {
-        $renderResult = "";
+        $renderResult = '';
         for ($i = 0; $i < count($segmentsToRender); $i++) {
             $segment = $segmentsToRender[$i];
             $renderResult .= $segment;

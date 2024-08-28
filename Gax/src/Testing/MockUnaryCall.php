@@ -32,8 +32,8 @@
 
 namespace Google\ApiCore\Testing;
 
-use Google\Rpc\Code;
 use Google\Protobuf\Internal\Message;
+use Google\Rpc\Code;
 use stdClass;
 
 /**

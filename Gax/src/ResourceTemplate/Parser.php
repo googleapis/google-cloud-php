@@ -51,7 +51,7 @@ class Parser
     public static function parseSegments(string $path = null)
     {
         if (empty($path)) {
-            throw new ValidationException("Cannot parse empty path");
+            throw new ValidationException('Cannot parse empty path');
         }
         $segments = [];
         $index = 0;
@@ -172,7 +172,7 @@ class Parser
         if ($equalsIndex === false) {
             // If the variable does not contain '=', we assume the pattern is '*' as per google.rpc.Http
             $variableKey = $segmentStringWithoutBraces;
-            $nestedResource = new RelativeResourceTemplate("*");
+            $nestedResource = new RelativeResourceTemplate('*');
         } else {
             $variableKey = substr($segmentStringWithoutBraces, 0, $equalsIndex);
             $nestedResourceString = substr($segmentStringWithoutBraces, $equalsIndex + 1);
@@ -222,6 +222,6 @@ class Parser
      */
     private static function isValidLiteral(string $literal)
     {
-        return preg_match("/^[0-9a-zA-Z\\.\\-~_]+$/", $literal) === 1;
+        return preg_match('/^[0-9a-zA-Z\\.\\-~_]+$/', $literal) === 1;
     }
 }

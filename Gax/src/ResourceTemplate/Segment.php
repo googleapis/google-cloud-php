@@ -81,10 +81,10 @@ class Segment
                 $this->stringRepr = "{$this->value}";
                 break;
             case Segment::WILDCARD_SEGMENT:
-                $this->stringRepr = "*";
+                $this->stringRepr = '*';
                 break;
             case Segment::DOUBLE_WILDCARD_SEGMENT:
-                $this->stringRepr = "**";
+                $this->stringRepr = '**';
                 break;
             case Segment::VARIABLE_SEGMENT:
                 $this->stringRepr = "{{$this->key}={$this->template}}";
@@ -178,7 +178,7 @@ class Segment
      */
     private static function isValidBinding(string $binding)
     {
-        return preg_match("-^[^/]+$-", $binding) === 1;
+        return preg_match('-^[^/]+$-', $binding) === 1;
     }
 
     /**
@@ -190,6 +190,6 @@ class Segment
      */
     private static function isValidDoubleWildcardBinding(string $binding)
     {
-        return preg_match("-^.+$-", $binding) === 1;
+        return preg_match('-^.+$-', $binding) === 1;
     }
 }

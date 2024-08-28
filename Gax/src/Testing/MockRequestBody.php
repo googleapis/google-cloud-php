@@ -91,7 +91,8 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      *     @type string $field_3
      * }
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
         parent::__construct($data);
     }
@@ -112,7 +113,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setName($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->name = $var;
 
         return $this;
@@ -221,7 +222,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function getBytesValueUnwrapped()
     {
-        return $this->readWrapperValue("bytes_value");
+        return $this->readWrapperValue('bytes_value');
     }
 
     /**
@@ -246,8 +247,9 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setBytesValueUnwrapped($var)
     {
-        $this->writeWrapperValue("bytes_value", $var);
-        return $this;}
+        $this->writeWrapperValue('bytes_value', $var);
+        return $this;
+    }
 
     /**
      * Generated from protobuf field <code>.google.protobuf.Duration duration_value = 6;</code>
@@ -340,7 +342,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function getInt64ValueUnwrapped()
     {
-        return $this->readWrapperValue("int64_value");
+        return $this->readWrapperValue('int64_value');
     }
 
     /**
@@ -365,8 +367,9 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setInt64ValueUnwrapped($var)
     {
-        $this->writeWrapperValue("int64_value", $var);
-        return $this;}
+        $this->writeWrapperValue('int64_value', $var);
+        return $this;
+    }
 
     /**
      * Generated from protobuf field <code>.google.protobuf.ListValue list_value = 9;</code>
@@ -427,7 +430,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function getStringValueUnwrapped()
     {
-        return $this->readWrapperValue("string_value");
+        return $this->readWrapperValue('string_value');
     }
 
     /**
@@ -452,8 +455,9 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setStringValueUnwrapped($var)
     {
-        $this->writeWrapperValue("string_value", $var);
-        return $this;}
+        $this->writeWrapperValue('string_value', $var);
+        return $this;
+    }
 
     /**
      * Generated from protobuf field <code>.google.protobuf.Struct struct_value = 11;</code>
@@ -572,7 +576,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setField1($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->writeOneof(14, $var);
 
         return $this;
@@ -599,7 +603,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setField2($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->writeOneof(15, $var);
 
         return $this;
@@ -626,7 +630,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function setField3($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->writeOneof(16, $var);
 
         return $this;
@@ -637,8 +641,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     public function getOneofField()
     {
-        return $this->whichOneof("oneof_field");
+        return $this->whichOneof('oneof_field');
     }
 
 }
-

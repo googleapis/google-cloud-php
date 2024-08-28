@@ -86,7 +86,7 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
     public function write($request, array $options = [])
     {
         if ($this->waitCalled) {
-            throw new ApiException("Cannot call write() after wait()",  Code::INTERNAL, ApiStatus::INTERNAL);
+            throw new ApiException('Cannot call write() after wait()',  Code::INTERNAL, ApiStatus::INTERNAL);
         }
         if (is_a($request, '\Google\Protobuf\Internal\Message')) {
             /** @var Message $newRequest */

@@ -68,10 +68,10 @@ class BidiStream
     public function write($request)
     {
         if ($this->isComplete) {
-            throw new ValidationException("Cannot call write() after streaming call is complete.");
+            throw new ValidationException('Cannot call write() after streaming call is complete.');
         }
         if ($this->writesClosed) {
-            throw new ValidationException("Cannot call write() after calling closeWrite().");
+            throw new ValidationException('Cannot call write() after calling closeWrite().');
         }
         $this->call->write($request);
     }
@@ -99,7 +99,7 @@ class BidiStream
     {
         if ($this->isComplete) {
             throw new ValidationException(
-                "Cannot call closeWrite() after streaming call is complete."
+                'Cannot call closeWrite() after streaming call is complete.'
             );
         }
         if (!$this->writesClosed) {
@@ -119,7 +119,7 @@ class BidiStream
     public function read()
     {
         if ($this->isComplete) {
-            throw new ValidationException("Cannot call read() after streaming call is complete.");
+            throw new ValidationException('Cannot call read() after streaming call is complete.');
         }
         $resourcesGetMethod = $this->resourcesGetMethod;
         if (!is_null($resourcesGetMethod)) {

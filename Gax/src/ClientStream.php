@@ -47,7 +47,7 @@ class ClientStream
      * @param ClientStreamingCall $clientStreamingCall The gRPC client streaming call object
      * @param array $streamingDescriptor
      */
-    public function __construct(  // @phpstan-ignore-line
+    public function __construct(// @phpstan-ignore-line
         ClientStreamingCall $clientStreamingCall,
         array $streamingDescriptor = []
     ) {

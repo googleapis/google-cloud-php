@@ -34,10 +34,10 @@ namespace Google\ApiCore\Options;
 
 use ArrayAccess;
 use Closure;
-use InvalidArgumentException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
+use InvalidArgumentException;
 
 /**
  * The ClientOptions class adds typing to the associative array of options

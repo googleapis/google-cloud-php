@@ -32,12 +32,12 @@
 
 namespace Google\ApiCore;
 
-use Google\LongRunning\Client\OperationsClient;
-use Google\LongRunning\OperationsClient as LegacyOperationsClient;
 use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
+use Google\LongRunning\OperationsClient as LegacyOperationsClient;
 use Google\Protobuf\Any;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
@@ -272,7 +272,7 @@ class OperationResponse
     public function reload()
     {
         if ($this->deleted) {
-            throw new ValidationException("Cannot call reload() on a deleted operation");
+            throw new ValidationException('Cannot call reload() on a deleted operation');
         }
 
         $requestClass = $this->isNewSurfaceOperationsClient() ? $this->getOperationRequest : null;

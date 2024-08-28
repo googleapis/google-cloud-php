@@ -88,7 +88,7 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements Serve
     {
         if (count($this->responses) > 0) {
             throw new ApiException(
-                "Calls to getStatus() will block if all responses are not read",
+                'Calls to getStatus() will block if all responses are not read',
                 Code::INTERNAL,
                 ApiStatus::INTERNAL
             );

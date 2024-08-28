@@ -87,7 +87,7 @@ class RequestAutoPopulationMiddleware implements MiddlewareInterface
                         break;
                     default:
                         throw new \UnexpectedValueException(sprintf(
-                            "Value type %s::%s not supported for auto population of the field %s",
+                            'Value type %s::%s not supported for auto population of the field %s',
                             Format::class,
                             Format::name($valueType),
                             $fieldName

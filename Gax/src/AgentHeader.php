@@ -101,9 +101,9 @@ class AgentHeader
 
         $metricsList = [];
         foreach ($metricsHeaders as $key => $value) {
-            $metricsList[] = $key . "/" . $value;
+            $metricsList[] = $key . '/' . $value;
         }
-        return [self::AGENT_HEADER_KEY => [implode(" ", $metricsList)]];
+        return [self::AGENT_HEADER_KEY => [implode(' ', $metricsList)]];
     }
 
     /**

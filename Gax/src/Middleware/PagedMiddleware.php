@@ -36,7 +36,6 @@ use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\Protobuf\Internal\Message;
-use GuzzleHttp\Promise\PromiseInterface;
 
 /**
 * Middleware which wraps the response in an PagedListResponses object.
