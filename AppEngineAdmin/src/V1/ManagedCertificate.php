@@ -23,7 +23,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_renewal_time = 1;</code>
      */
-    private $last_renewal_time = null;
+    protected $last_renewal_time = null;
     /**
      * Status of certificate management. Refers to the most recent certificate
      * acquisition or renewal attempt.
@@ -31,7 +31,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.ManagementStatus status = 2;</code>
      */
-    private $status = 0;
+    protected $status = 0;
 
     /**
      * Constructor.

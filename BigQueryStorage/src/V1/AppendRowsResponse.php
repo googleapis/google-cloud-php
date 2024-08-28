@@ -22,7 +22,7 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableSchema updated_schema = 3;</code>
      */
-    private $updated_schema = null;
+    protected $updated_schema = null;
     /**
      * If a request failed due to corrupted rows, no rows in the batch will be
      * appended. The API will return row level error info, so that the caller can
@@ -37,7 +37,7 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string write_stream = 5;</code>
      */
-    private $write_stream = '';
+    protected $write_stream = '';
     protected $response;
 
     /**

@@ -22,13 +22,13 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The TunnelDestGroup to create.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.TunnelDestGroup tunnel_dest_group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tunnel_dest_group = null;
+    protected $tunnel_dest_group = null;
     /**
      * Required. The ID to use for the TunnelDestGroup, which becomes the final
      * component of the resource name.
@@ -37,7 +37,7 @@ class CreateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tunnel_dest_group_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tunnel_dest_group_id = '';
+    protected $tunnel_dest_group_id = '';
 
     /**
      * @param string                               $parent            Required. Google Cloud Project ID and location.

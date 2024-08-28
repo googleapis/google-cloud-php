@@ -21,20 +21,20 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Identifier to assign to the Gateway. Must be unique within scope of
      * the parent resource.
      *
      * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gateway_id = '';
+    protected $gateway_id = '';
     /**
      * Required. Gateway resource.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway gateway = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gateway = null;
+    protected $gateway = null;
 
     /**
      * @param string                              $parent    Required. Parent resource of the Gateway, of the form:

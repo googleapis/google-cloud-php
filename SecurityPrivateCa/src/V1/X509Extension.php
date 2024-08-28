@@ -22,7 +22,7 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.ObjectId object_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $object_id = null;
+    protected $object_id = null;
     /**
      * Optional. Indicates whether or not this extension is critical (i.e., if the
      * client does not know how to handle this extension, the client should
@@ -30,13 +30,13 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $critical = false;
+    protected $critical = false;
     /**
      * Required. The value of this X.509 extension.
      *
      * Generated from protobuf field <code>bytes value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

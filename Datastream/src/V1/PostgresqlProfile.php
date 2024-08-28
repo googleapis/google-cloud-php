@@ -20,31 +20,31 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Port for the PostgreSQL connection, default value is 5432.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Required. Username for the PostgreSQL connection.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required. Password for the PostgreSQL connection.
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Required. Database for the PostgreSQL connection.
      *
      * Generated from protobuf field <code>string database = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
 
     /**
      * Constructor.

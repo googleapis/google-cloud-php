@@ -20,7 +20,7 @@ class NodePoolDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodeConfigDefaults node_config_defaults = 1;</code>
      */
-    private $node_config_defaults = null;
+    protected $node_config_defaults = null;
 
     /**
      * Constructor.

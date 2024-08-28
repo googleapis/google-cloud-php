@@ -23,7 +23,7 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The entitlements to transfer to Google.
      *
@@ -44,7 +44,7 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

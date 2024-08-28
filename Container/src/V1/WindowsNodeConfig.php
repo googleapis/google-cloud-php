@@ -22,7 +22,7 @@ class WindowsNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig.OSVersion os_version = 1;</code>
      */
-    private $os_version = 0;
+    protected $os_version = 0;
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class GetServiceRolloutRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * Required. The id of the rollout resource.
      *
      * Generated from protobuf field <code>string rollout_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollout_id = '';
+    protected $rollout_id = '';
 
     /**
      * @param string $serviceName Required. The name of the service.  See the

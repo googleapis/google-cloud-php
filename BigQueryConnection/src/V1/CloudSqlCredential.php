@@ -20,13 +20,13 @@ class CloudSqlCredential extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The password for the credential.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
-    private $password = '';
+    protected $password = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Session to be created.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession read_session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $read_session = null;
+    protected $read_session = null;
     /**
      * Max initial number of streams. If unset or zero, the server will
      * provide a value of streams so as to produce reasonable throughput. Must be
@@ -41,7 +41,7 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_stream_count = 3;</code>
      */
-    private $max_stream_count = 0;
+    protected $max_stream_count = 0;
     /**
      * The minimum preferred stream count. This parameter can be used to inform
      * the service that there is a desired lower bound on the number of streams.
@@ -53,7 +53,7 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 preferred_min_stream_count = 4;</code>
      */
-    private $preferred_min_stream_count = 0;
+    protected $preferred_min_stream_count = 0;
 
     /**
      * @param string                                        $parent         Required. The request project that owns the session, in the form of

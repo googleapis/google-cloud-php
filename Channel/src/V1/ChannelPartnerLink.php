@@ -22,50 +22,50 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Cloud Identity ID of the linked reseller.
      *
      * Generated from protobuf field <code>string reseller_cloud_identity_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reseller_cloud_identity_id = '';
+    protected $reseller_cloud_identity_id = '';
     /**
      * Required. State of the channel partner link.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLinkState link_state = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $link_state = 0;
+    protected $link_state = 0;
     /**
      * Output only. URI of the web page where partner accepts the link invitation.
      *
      * Generated from protobuf field <code>string invite_link_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invite_link_uri = '';
+    protected $invite_link_uri = '';
     /**
      * Output only. Timestamp of when the channel partner link is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp of when the channel partner link is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Public identifier that a customer must use to generate a
      * transfer token to move to this distributor-reseller combination.
      *
      * Generated from protobuf field <code>string public_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $public_id = '';
+    protected $public_id = '';
     /**
      * Output only. Cloud Identity info of the channel partner (IR).
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo channel_partner_cloud_identity_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $channel_partner_cloud_identity_info = null;
+    protected $channel_partner_cloud_identity_info = null;
 
     /**
      * Constructor.

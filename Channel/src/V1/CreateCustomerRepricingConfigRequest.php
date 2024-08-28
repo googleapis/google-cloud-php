@@ -23,13 +23,13 @@ class CreateCustomerRepricingConfigRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The CustomerRepricingConfig object to update.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerRepricingConfig customer_repricing_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $customer_repricing_config = null;
+    protected $customer_repricing_config = null;
 
     /**
      * @param string                                           $parent                  Required. The resource name of the customer that will receive this

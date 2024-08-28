@@ -20,19 +20,19 @@ class GetSimulationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The organization name or simulation name of this simulation
      * Valid format:
-     * `organizations/{organization}/simulations/latest`
-     * `organizations/{organization}/simulations/{simulation}`
+     * "organizations/{organization}/simulations/latest"
+     * "organizations/{organization}/simulations/{simulation}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The organization name or simulation name of this simulation
      *
      *                     Valid format:
-     *                     `organizations/{organization}/simulations/latest`
-     *                     `organizations/{organization}/simulations/{simulation}`
+     *                     "organizations/{organization}/simulations/latest"
+     *                     "organizations/{organization}/simulations/{simulation}"
      *                     Please see {@see SecurityCenterClient::simulationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\GetSimulationRequest
@@ -54,8 +54,8 @@ class GetSimulationRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The organization name or simulation name of this simulation
      *           Valid format:
-     *           `organizations/{organization}/simulations/latest`
-     *           `organizations/{organization}/simulations/{simulation}`
+     *           "organizations/{organization}/simulations/latest"
+     *           "organizations/{organization}/simulations/{simulation}"
      * }
      */
     public function __construct($data = NULL) {
@@ -66,8 +66,8 @@ class GetSimulationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The organization name or simulation name of this simulation
      * Valid format:
-     * `organizations/{organization}/simulations/latest`
-     * `organizations/{organization}/simulations/{simulation}`
+     * "organizations/{organization}/simulations/latest"
+     * "organizations/{organization}/simulations/{simulation}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -80,8 +80,8 @@ class GetSimulationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The organization name or simulation name of this simulation
      * Valid format:
-     * `organizations/{organization}/simulations/latest`
-     * `organizations/{organization}/simulations/{simulation}`
+     * "organizations/{organization}/simulations/latest"
+     * "organizations/{organization}/simulations/{simulation}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

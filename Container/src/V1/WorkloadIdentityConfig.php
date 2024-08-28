@@ -21,7 +21,7 @@ class WorkloadIdentityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string workload_pool = 2;</code>
      */
-    private $workload_pool = '';
+    protected $workload_pool = '';
 
     /**
      * Constructor.

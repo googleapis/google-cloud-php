@@ -38,13 +38,13 @@ class ReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_config_id = 2;</code>
      */
-    private $service_config_id = '';
+    protected $service_config_id = '';
     /**
      * The current service rollout id used to process the request.
      *
      * Generated from protobuf field <code>string service_rollout_id = 4;</code>
      */
-    private $service_rollout_id = '';
+    protected $service_rollout_id = '';
 
     /**
      * Constructor.

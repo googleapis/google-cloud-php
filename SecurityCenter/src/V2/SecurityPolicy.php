@@ -23,7 +23,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of Google Cloud Armor security policy for example, 'backend
      * security policy', 'edge security policy', 'network edge security policy',
@@ -31,13 +31,13 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Whether or not the associated rule or policy is in preview mode.
      *
      * Generated from protobuf field <code>bool preview = 3;</code>
      */
-    private $preview = false;
+    protected $preview = false;
 
     /**
      * Constructor.

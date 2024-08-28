@@ -23,20 +23,20 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The [supported resource
      * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * Human-readable name of this resource.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The findings associated with this node in the attack path.
      *
@@ -48,7 +48,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uuid = 5;</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     /**
      * A list of attack step nodes that exist in this attack path node.
      *
@@ -251,6 +251,4 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AttackPathNode::class, \Google\Cloud\SecurityCenter\V1\AttackPath_AttackPathNode::class);
 

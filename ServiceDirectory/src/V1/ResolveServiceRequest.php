@@ -22,7 +22,7 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The maximum number of endpoints to return. Defaults to 25.
      * Maximum is 100. If a value less than one is specified, the Default is used.
@@ -30,7 +30,7 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_endpoints = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_endpoints = 0;
+    protected $max_endpoints = 0;
     /**
      * Optional. The filter applied to the endpoints of the resolved service.
      * General `filter` string syntax:
@@ -66,7 +66,7 @@ class ResolveServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $endpoint_filter = '';
+    protected $endpoint_filter = '';
 
     /**
      * Constructor.

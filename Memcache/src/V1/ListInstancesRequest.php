@@ -22,7 +22,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of items to return.
      * If not specified, a default value of 1000 will be used by the service.
@@ -33,26 +33,26 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The `next_page_token` value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * List filter. For example, exclude all Memcached instances with name as
      * my-instance by specifying `"name != my-instance"`.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Sort results. Supported values are "name", "name desc" or "" (unsorted).
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The resource name of the instance location using the form:

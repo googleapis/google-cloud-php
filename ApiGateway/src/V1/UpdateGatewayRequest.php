@@ -24,13 +24,13 @@ class UpdateGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. Gateway resource.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.Gateway gateway = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $gateway = null;
+    protected $gateway = null;
 
     /**
      * @param \Google\Cloud\ApiGateway\V1\Gateway $gateway    Required. Gateway resource.

@@ -70,6 +70,4 @@ class IssueType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IssueType::class, \Google\Cloud\Container\V1\AutopilotCompatibilityIssue_IssueType::class);
 

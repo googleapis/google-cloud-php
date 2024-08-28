@@ -28,7 +28,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of this resource. Example: `compute.googleapis.com/Disk`.
      * To search against the `asset_type`:
@@ -36,7 +36,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * The project that this resource belongs to, in the form of
      * projects/{PROJECT_NUMBER}. This field is available when the resource
@@ -48,7 +48,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 3;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that this resource belongs to, in the form of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
@@ -72,7 +72,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 18;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The display name of this resource. This field is available only when the
      * resource's Protobuf contains it.
@@ -82,7 +82,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes. This field is available only when the resource's
@@ -93,7 +93,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Location can be `global`, regional like `us-east1`, or zonal like
      * `us-west1-b`. This field is available only when the resource's Protobuf
@@ -104,7 +104,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Labels associated with this resource. See [Labelling and grouping Google
      * Cloud
@@ -182,7 +182,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The last update timestamp of this resource, at which the resource was last
      * modified or deleted. The granularity is in seconds. Timestamp.nanos will
@@ -197,7 +197,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The state of this resource. Different resources types have different state
      * definitions that are mapped from various fields of different resource
@@ -219,7 +219,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string state = 13;</code>
      */
-    private $state = '';
+    protected $state = '';
     /**
      * The additional searchable attributes of this resource. The attributes may
      * vary from one resource type to another. Examples: `projectId` for Project,
@@ -240,7 +240,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
      */
-    private $additional_attributes = null;
+    protected $additional_attributes = null;
     /**
      * The full resource name of this resource's parent, if it has one.
      * To search against the `parent_full_resource_name`:
@@ -251,7 +251,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_full_resource_name = 19;</code>
      */
-    private $parent_full_resource_name = '';
+    protected $parent_full_resource_name = '';
     /**
      * Versioned resource representations of this resource. This is repeated
      * because there could be multiple versions of resource representations during
@@ -382,7 +382,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_asset_type = 103;</code>
      */
-    private $parent_asset_type = '';
+    protected $parent_asset_type = '';
     /**
      * The actual content of Security Command Center security marks associated
      * with the asset.

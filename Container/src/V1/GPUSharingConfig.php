@@ -21,13 +21,13 @@ class GPUSharingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_shared_clients_per_gpu = 1;</code>
      */
-    private $max_shared_clients_per_gpu = 0;
+    protected $max_shared_clients_per_gpu = 0;
     /**
      * The type of GPU sharing strategy to enable on the GPU node.
      *
      * Generated from protobuf field <code>optional .google.container.v1.GPUSharingConfig.GPUSharingStrategy gpu_sharing_strategy = 2;</code>
      */
-    private $gpu_sharing_strategy = null;
+    protected $gpu_sharing_strategy = null;
 
     /**
      * Constructor.

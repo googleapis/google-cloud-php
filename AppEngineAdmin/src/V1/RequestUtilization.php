@@ -21,13 +21,13 @@ class RequestUtilization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_request_count_per_second = 1;</code>
      */
-    private $target_request_count_per_second = 0;
+    protected $target_request_count_per_second = 0;
     /**
      * Target number of concurrent requests.
      *
      * Generated from protobuf field <code>int32 target_concurrent_requests = 2;</code>
      */
-    private $target_concurrent_requests = 0;
+    protected $target_concurrent_requests = 0;
 
     /**
      * Constructor.

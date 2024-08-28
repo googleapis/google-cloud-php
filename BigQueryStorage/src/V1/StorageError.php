@@ -23,19 +23,19 @@ class StorageError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.StorageError.StorageErrorCode code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Name of the failed entity.
      *
      * Generated from protobuf field <code>string entity = 2;</code>
      */
-    private $entity = '';
+    protected $entity = '';
     /**
      * Message that describes the error.
      *
      * Generated from protobuf field <code>string error_message = 3;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
 
     /**
      * Constructor.

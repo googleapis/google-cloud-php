@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Datastream\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -71,6 +70,7 @@ use Google\Cloud\Datastream\V1\UpdateStreamRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -138,9 +138,7 @@ final class DatastreamClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -186,10 +184,31 @@ final class DatastreamClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -275,8 +294,12 @@ final class DatastreamClient
      *
      * @return string The formatted route resource.
      */
-    public static function routeName(string $project, string $location, string $privateConnection, string $route): string
-    {
+    public static function routeName(
+        string $project,
+        string $location,
+        string $privateConnection,
+        string $route
+    ): string {
         return self::getPathTemplate('route')->render([
             'project' => $project,
             'location' => $location,
@@ -448,8 +471,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConnectionProfile(CreateConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConnectionProfile(
+        CreateConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -474,8 +499,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPrivateConnection(CreatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPrivateConnection(
+        CreatePrivateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -553,8 +580,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConnectionProfile(DeleteConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConnectionProfile(
+        DeleteConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -579,8 +608,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePrivateConnection(DeletePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePrivateConnection(
+        DeletePrivateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -660,8 +691,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function discoverConnectionProfile(DiscoverConnectionProfileRequest $request, array $callOptions = []): DiscoverConnectionProfileResponse
-    {
+    public function discoverConnectionProfile(
+        DiscoverConnectionProfileRequest $request,
+        array $callOptions = []
+    ): DiscoverConnectionProfileResponse {
         return $this->startApiCall('DiscoverConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -713,8 +746,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConnectionProfile(GetConnectionProfileRequest $request, array $callOptions = []): ConnectionProfile
-    {
+    public function getConnectionProfile(
+        GetConnectionProfileRequest $request,
+        array $callOptions = []
+    ): ConnectionProfile {
         return $this->startApiCall('GetConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -739,8 +774,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPrivateConnection(GetPrivateConnectionRequest $request, array $callOptions = []): PrivateConnection
-    {
+    public function getPrivateConnection(
+        GetPrivateConnectionRequest $request,
+        array $callOptions = []
+    ): PrivateConnection {
         return $this->startApiCall('GetPrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -844,8 +881,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConnectionProfiles(ListConnectionProfilesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConnectionProfiles(
+        ListConnectionProfilesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConnectionProfiles', $request, $callOptions);
     }
 
@@ -871,8 +910,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateConnections(ListPrivateConnectionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPrivateConnections(
+        ListPrivateConnectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPrivateConnections', $request, $callOptions);
     }
 
@@ -1002,8 +1043,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startBackfillJob(StartBackfillJobRequest $request, array $callOptions = []): StartBackfillJobResponse
-    {
+    public function startBackfillJob(
+        StartBackfillJobRequest $request,
+        array $callOptions = []
+    ): StartBackfillJobResponse {
         return $this->startApiCall('StartBackfillJob', $request, $callOptions)->wait();
     }
 
@@ -1054,8 +1097,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConnectionProfile(UpdateConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateConnectionProfile(
+        UpdateConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateConnectionProfile', $request, $callOptions)->wait();
     }
 

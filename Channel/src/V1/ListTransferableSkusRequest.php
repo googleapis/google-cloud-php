@@ -22,7 +22,7 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The requested page size. Server might return fewer results than requested.
      * If unspecified, returns at most 100 SKUs.
@@ -31,7 +31,7 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token for a page of results other than the first page.
      * Obtained using
@@ -42,7 +42,7 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
@@ -51,7 +51,7 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auth_token = '';
+    protected $auth_token = '';
     /**
      * The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
@@ -60,7 +60,7 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 6;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     protected $transferred_customer_identity;
 
     /**

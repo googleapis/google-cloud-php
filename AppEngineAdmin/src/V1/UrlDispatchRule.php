@@ -22,7 +22,7 @@ class UrlDispatchRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain = 1;</code>
      */
-    private $domain = '';
+    protected $domain = '';
     /**
      * Pathname within the host. Must start with a "`/`". A
      * single "`*`" can be included at the end of the path.
@@ -31,7 +31,7 @@ class UrlDispatchRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Resource ID of a service in this application that should
      * serve the matched request. The service must already
@@ -39,7 +39,7 @@ class UrlDispatchRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 3;</code>
      */
-    private $service = '';
+    protected $service = '';
 
     /**
      * Constructor.

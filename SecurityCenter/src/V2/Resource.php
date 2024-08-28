@@ -21,58 +21,58 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The human readable name of the resource.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The full resource type of the resource.
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Indicates which cloud provider the finding is from.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
      */
-    private $cloud_provider = 0;
+    protected $cloud_provider = 0;
     /**
      * The service or resource provider associated with the resource.
      *
      * Generated from protobuf field <code>string service = 5;</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * The region or location of the service (if applicable).
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Provides the path to the resource within the resource hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourcePath resource_path = 10;</code>
      */
-    private $resource_path = null;
+    protected $resource_path = null;
     /**
      * A string representation of the resource path.
      * For Google Cloud, it has the format of
-     * `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}`
+     * organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
      * where there can be any number of folders.
      * For AWS, it has the format of
-     * `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}`
+     * org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
      * where there can be any number of organizational units.
      * For Azure, it has the format of
-     * `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}`
+     * mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
      * where there can be any number of management groups.
      *
      * Generated from protobuf field <code>string resource_path_string = 11;</code>
      */
-    private $resource_path_string = '';
+    protected $resource_path_string = '';
     protected $cloud_provider_metadata;
 
     /**
@@ -105,13 +105,13 @@ class Resource extends \Google\Protobuf\Internal\Message
      *     @type string $resource_path_string
      *           A string representation of the resource path.
      *           For Google Cloud, it has the format of
-     *           `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}`
+     *           organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
      *           where there can be any number of folders.
      *           For AWS, it has the format of
-     *           `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}`
+     *           org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
      *           where there can be any number of organizational units.
      *           For Azure, it has the format of
-     *           `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}`
+     *           mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
      *           where there can be any number of management groups.
      * }
      */
@@ -410,13 +410,13 @@ class Resource extends \Google\Protobuf\Internal\Message
     /**
      * A string representation of the resource path.
      * For Google Cloud, it has the format of
-     * `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}`
+     * organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
      * where there can be any number of folders.
      * For AWS, it has the format of
-     * `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}`
+     * org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
      * where there can be any number of organizational units.
      * For Azure, it has the format of
-     * `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}`
+     * mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
      * where there can be any number of management groups.
      *
      * Generated from protobuf field <code>string resource_path_string = 11;</code>
@@ -430,13 +430,13 @@ class Resource extends \Google\Protobuf\Internal\Message
     /**
      * A string representation of the resource path.
      * For Google Cloud, it has the format of
-     * `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}`
+     * organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}
      * where there can be any number of folders.
      * For AWS, it has the format of
-     * `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}`
+     * org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}
      * where there can be any number of organizational units.
      * For Azure, it has the format of
-     * `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}`
+     * mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}
      * where there can be any number of management groups.
      *
      * Generated from protobuf field <code>string resource_path_string = 11;</code>

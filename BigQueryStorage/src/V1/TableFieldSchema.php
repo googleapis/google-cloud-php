@@ -22,19 +22,19 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The field data type.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.Type type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Optional. The field mode. The default value is NULLABLE.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.Mode mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Optional. Describes the nested schema fields if the type property is set to
      * STRUCT.
@@ -47,7 +47,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Maximum length of values of this field for STRINGS or BYTES.
      * If max_length is not specified, no maximum length constraint is imposed
@@ -60,7 +60,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_length = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_length = 0;
+    protected $max_length = 0;
     /**
      * Optional. Precision (maximum number of total digits in base 10) and scale
      * (maximum number of digits in the fractional part in base 10) constraints
@@ -88,20 +88,20 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 precision = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $precision = 0;
+    protected $precision = 0;
     /**
      * Optional. See documentation for precision.
      *
      * Generated from protobuf field <code>int64 scale = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scale = 0;
+    protected $scale = 0;
     /**
      * Optional. A SQL expression to specify the [default value]
      * (https://cloud.google.com/bigquery/docs/default-values) for this field.
      *
      * Generated from protobuf field <code>string default_value_expression = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_value_expression = '';
+    protected $default_value_expression = '';
     /**
      * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
      * the type is RANGE, this field is required. Possible values for the field
@@ -112,7 +112,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.FieldElementType range_element_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $range_element_type = null;
+    protected $range_element_type = null;
 
     /**
      * Constructor.

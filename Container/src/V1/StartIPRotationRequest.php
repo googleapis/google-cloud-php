@@ -49,13 +49,13 @@ class StartIPRotationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Whether to rotate credentials during IP rotation.
      *
      * Generated from protobuf field <code>bool rotate_credentials = 7;</code>
      */
-    private $rotate_credentials = false;
+    protected $rotate_credentials = false;
 
     /**
      * @param string $projectId Deprecated. The Google Developers Console [project ID or project

@@ -47,7 +47,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool node_pool = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_pool = null;
+    protected $node_pool = null;
     /**
      * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
@@ -55,7 +55,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string                              $projectId Deprecated. The Google Developers Console [project ID or project

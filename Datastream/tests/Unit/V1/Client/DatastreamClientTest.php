@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Datastream\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Datastream\V1\Client\DatastreamClient;
@@ -74,6 +73,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -97,7 +97,9 @@ class DatastreamClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DatastreamClient */
@@ -211,12 +213,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -352,12 +357,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -499,12 +507,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
@@ -582,11 +593,19 @@ class DatastreamClientTest extends GeneratedTest
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
         $request = (new CreateStreamRequest())
@@ -652,12 +671,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -666,11 +688,19 @@ class DatastreamClientTest extends GeneratedTest
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
         $request = (new CreateStreamRequest())
@@ -730,8 +760,7 @@ class DatastreamClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new DeleteConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectionProfileRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectionProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -787,17 +816,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new DeleteConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectionProfileRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectionProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -851,8 +882,7 @@ class DatastreamClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new DeletePrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -908,17 +938,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new DeletePrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -972,8 +1004,7 @@ class DatastreamClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $request = (new DeleteRouteRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRouteRequest())->setName($formattedName);
         $response = $gapicClient->deleteRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1029,17 +1060,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $request = (new DeleteRouteRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRouteRequest())->setName($formattedName);
         $response = $gapicClient->deleteRoute($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1093,8 +1126,7 @@ class DatastreamClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $request = (new DeleteStreamRequest())
-            ->setName($formattedName);
+        $request = (new DeleteStreamRequest())->setName($formattedName);
         $response = $gapicClient->deleteStream($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1150,17 +1182,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $request = (new DeleteStreamRequest())
-            ->setName($formattedName);
+        $request = (new DeleteStreamRequest())->setName($formattedName);
         $response = $gapicClient->deleteStream($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1196,8 +1230,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new DiscoverConnectionProfileRequest())
-            ->setParent($formattedParent);
+        $request = (new DiscoverConnectionProfileRequest())->setParent($formattedParent);
         $response = $gapicClient->discoverConnectionProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1221,17 +1254,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new DiscoverConnectionProfileRequest())
-            ->setParent($formattedParent);
+        $request = (new DiscoverConnectionProfileRequest())->setParent($formattedParent);
         try {
             $gapicClient->discoverConnectionProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1256,17 +1291,14 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $staticIpsElement = 'staticIpsElement2078370200';
-        $staticIps = [
-            $staticIpsElement,
-        ];
+        $staticIps = [$staticIpsElement];
         $expectedResponse = new FetchStaticIpsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStaticIps($staticIps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new FetchStaticIpsRequest())
-            ->setName($formattedName);
+        $request = (new FetchStaticIpsRequest())->setName($formattedName);
         $response = $gapicClient->fetchStaticIps($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1293,17 +1325,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new FetchStaticIpsRequest())
-            ->setName($formattedName);
+        $request = (new FetchStaticIpsRequest())->setName($formattedName);
         try {
             $gapicClient->fetchStaticIps($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1334,8 +1368,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new GetConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectionProfileRequest())->setName($formattedName);
         $response = $gapicClient->getConnectionProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1359,17 +1392,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new GetConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectionProfileRequest())->setName($formattedName);
         try {
             $gapicClient->getConnectionProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1400,8 +1435,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new GetPrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->getPrivateConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1425,17 +1459,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new GetPrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateConnectionRequest())->setName($formattedName);
         try {
             $gapicClient->getPrivateConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1470,8 +1506,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $request = (new GetRouteRequest())
-            ->setName($formattedName);
+        $request = (new GetRouteRequest())->setName($formattedName);
         $response = $gapicClient->getRoute($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1495,17 +1530,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $request = (new GetRouteRequest())
-            ->setName($formattedName);
+        $request = (new GetRouteRequest())->setName($formattedName);
         try {
             $gapicClient->getRoute($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1538,8 +1575,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $request = (new GetStreamRequest())
-            ->setName($formattedName);
+        $request = (new GetStreamRequest())->setName($formattedName);
         $response = $gapicClient->getStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1563,17 +1599,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $request = (new GetStreamRequest())
-            ->setName($formattedName);
+        $request = (new GetStreamRequest())->setName($formattedName);
         try {
             $gapicClient->getStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1604,8 +1642,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $request = (new GetStreamObjectRequest())
-            ->setName($formattedName);
+        $request = (new GetStreamObjectRequest())->setName($formattedName);
         $response = $gapicClient->getStreamObject($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1629,17 +1666,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $request = (new GetStreamObjectRequest())
-            ->setName($formattedName);
+        $request = (new GetStreamObjectRequest())->setName($formattedName);
         try {
             $gapicClient->getStreamObject($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1664,17 +1703,14 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $connectionProfilesElement = new ConnectionProfile();
-        $connectionProfiles = [
-            $connectionProfilesElement,
-        ];
+        $connectionProfiles = [$connectionProfilesElement];
         $expectedResponse = new ListConnectionProfilesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnectionProfiles($connectionProfiles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionProfilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectionProfilesRequest())->setParent($formattedParent);
         $response = $gapicClient->listConnectionProfiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1701,17 +1737,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionProfilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectionProfilesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConnectionProfiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1736,17 +1774,14 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $privateConnectionsElement = new PrivateConnection();
-        $privateConnections = [
-            $privateConnectionsElement,
-        ];
+        $privateConnections = [$privateConnectionsElement];
         $expectedResponse = new ListPrivateConnectionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPrivateConnections($privateConnections);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPrivateConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1773,17 +1808,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPrivateConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1808,17 +1845,14 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $routesElement = new Route();
-        $routes = [
-            $routesElement,
-        ];
+        $routes = [$routesElement];
         $expectedResponse = new ListRoutesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRoutes($routes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new ListRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRoutesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRoutes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1845,17 +1879,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new ListRoutesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRoutesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRoutes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1880,17 +1916,14 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $streamObjectsElement = new StreamObject();
-        $streamObjects = [
-            $streamObjectsElement,
-        ];
+        $streamObjects = [$streamObjectsElement];
         $expectedResponse = new ListStreamObjectsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStreamObjects($streamObjects);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $request = (new ListStreamObjectsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListStreamObjectsRequest())->setParent($formattedParent);
         $response = $gapicClient->listStreamObjects($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1917,17 +1950,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $request = (new ListStreamObjectsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListStreamObjectsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listStreamObjects($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1952,17 +1987,14 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $streamsElement = new Stream();
-        $streams = [
-            $streamsElement,
-        ];
+        $streams = [$streamsElement];
         $expectedResponse = new ListStreamsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStreams($streams);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStreamsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListStreamsRequest())->setParent($formattedParent);
         $response = $gapicClient->listStreams($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1989,17 +2021,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListStreamsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListStreamsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listStreams($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2059,12 +2093,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
@@ -2098,8 +2135,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $request = (new StartBackfillJobRequest())
-            ->setObject($formattedObject);
+        $request = (new StartBackfillJobRequest())->setObject($formattedObject);
         $response = $gapicClient->startBackfillJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2123,17 +2159,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $request = (new StartBackfillJobRequest())
-            ->setObject($formattedObject);
+        $request = (new StartBackfillJobRequest())->setObject($formattedObject);
         try {
             $gapicClient->startBackfillJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2160,8 +2198,7 @@ class DatastreamClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $request = (new StopBackfillJobRequest())
-            ->setObject($formattedObject);
+        $request = (new StopBackfillJobRequest())->setObject($formattedObject);
         $response = $gapicClient->stopBackfillJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2185,17 +2222,19 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $request = (new StopBackfillJobRequest())
-            ->setObject($formattedObject);
+        $request = (new StopBackfillJobRequest())->setObject($formattedObject);
         try {
             $gapicClient->stopBackfillJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2246,8 +2285,7 @@ class DatastreamClientTest extends GeneratedTest
         $connectionProfile = new ConnectionProfile();
         $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
         $connectionProfile->setDisplayName($connectionProfileDisplayName);
-        $request = (new UpdateConnectionProfileRequest())
-            ->setConnectionProfile($connectionProfile);
+        $request = (new UpdateConnectionProfileRequest())->setConnectionProfile($connectionProfile);
         $response = $gapicClient->updateConnectionProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2303,19 +2341,21 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $connectionProfile = new ConnectionProfile();
         $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
         $connectionProfile->setDisplayName($connectionProfileDisplayName);
-        $request = (new UpdateConnectionProfileRequest())
-            ->setConnectionProfile($connectionProfile);
+        $request = (new UpdateConnectionProfileRequest())->setConnectionProfile($connectionProfile);
         $response = $gapicClient->updateConnectionProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2378,15 +2418,22 @@ class DatastreamClientTest extends GeneratedTest
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
-        $request = (new UpdateStreamRequest())
-            ->setStream($stream);
+        $request = (new UpdateStreamRequest())->setStream($stream);
         $response = $gapicClient->updateStream($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2442,27 +2489,37 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $stream = new Stream();
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONNECTION_PROFILE]'
+        );
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
-        $request = (new UpdateStreamRequest())
-            ->setStream($stream);
+        $request = (new UpdateStreamRequest())->setStream($stream);
         $response = $gapicClient->updateStream($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2524,12 +2581,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -2556,9 +2616,7 @@ class DatastreamClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -2588,12 +2646,15 @@ class DatastreamClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {

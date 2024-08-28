@@ -70,6 +70,4 @@ class StateChange
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StateChange::class, \Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult_StateChange::class);
 

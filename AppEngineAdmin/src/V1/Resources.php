@@ -20,19 +20,19 @@ class Resources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double cpu = 1;</code>
      */
-    private $cpu = 0.0;
+    protected $cpu = 0.0;
     /**
      * Disk size (GB) needed.
      *
      * Generated from protobuf field <code>double disk_gb = 2;</code>
      */
-    private $disk_gb = 0.0;
+    protected $disk_gb = 0.0;
     /**
      * Memory (GB) needed.
      *
      * Generated from protobuf field <code>double memory_gb = 3;</code>
      */
-    private $memory_gb = 0.0;
+    protected $memory_gb = 0.0;
     /**
      * User specified volumes.
      *
@@ -45,7 +45,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_reference = 5;</code>
      */
-    private $kms_key_reference = '';
+    protected $kms_key_reference = '';
 
     /**
      * Constructor.

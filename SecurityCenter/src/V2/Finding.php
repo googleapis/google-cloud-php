@@ -37,7 +37,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The canonical name of the finding. The following list shows
      * some examples:
@@ -56,7 +56,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $canonical_name = '';
+    protected $canonical_name = '';
     /**
      * The relative resource name of the source and location the finding belongs
      * to. See:
@@ -73,7 +73,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 3;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Immutable. For findings on Google Cloud resources, the full resource
      * name of the Google Cloud resource this finding is for. See:
@@ -83,20 +83,20 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_name = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * Output only. The state of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Immutable. The additional taxonomy group within findings from a given
      * source. Example: "XSS_FLASH_INJECTION"
      *
      * Generated from protobuf field <code>string category = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $category = '';
+    protected $category = '';
     /**
      * The URI that, if available, points to a web page outside of Security
      * Command Center where additional information about the finding can be found.
@@ -104,7 +104,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_uri = 8;</code>
      */
-    private $external_uri = '';
+    protected $external_uri = '';
     /**
      * Source specific properties. These properties are managed by the source
      * that writes the finding. The key names in the source_properties map must be
@@ -121,7 +121,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.SecurityMarks security_marks = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $security_marks = null;
+    protected $security_marks = null;
     /**
      * The time the finding was first detected. If an existing finding is updated,
      * then this is the time the update occurred.
@@ -133,21 +133,21 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 11;</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * Output only. The time at which the finding was created in Security Command
      * Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The severity of the finding. This field is managed by the source that
      * writes the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.Severity severity = 14;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Indicates the mute state of a finding (either muted, unmuted
      * or undefined). Unlike other attributes of a finding, a finding provider
@@ -155,19 +155,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.Mute mute = 15;</code>
      */
-    private $mute = 0;
-    /**
-     * Output only. The mute information regarding this finding.
-     *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    private $mute_info = null;
+    protected $mute = 0;
     /**
      * The class of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.FindingClass finding_class = 16;</code>
      */
-    private $finding_class = 0;
+    protected $finding_class = 0;
     /**
      * Represents what's commonly known as an *indicator of compromise* (IoC) in
      * computer forensics. This is an artifact observed on a network or in an
@@ -177,7 +171,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Indicator indicator = 17;</code>
      */
-    private $indicator = null;
+    protected $indicator = null;
     /**
      * Represents vulnerability-specific fields like CVE and CVSS scores.
      * CVE stands for Common Vulnerabilities and Exposures
@@ -185,13 +179,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Vulnerability vulnerability = 18;</code>
      */
-    private $vulnerability = null;
+    protected $vulnerability = null;
     /**
      * Output only. The most recent time this finding was muted or unmuted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp mute_update_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $mute_update_time = null;
+    protected $mute_update_time = null;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external
      * system information and external system finding fields.
@@ -205,14 +199,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.MitreAttack mitre_attack = 21;</code>
      */
-    private $mitre_attack = null;
+    protected $mitre_attack = null;
     /**
      * Access details associated with the finding, such as more information on the
      * caller, which method was accessed, and from where.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Access access = 22;</code>
      */
-    private $access = null;
+    protected $access = null;
     /**
      * Contains information about the IP connection associated with the finding.
      *
@@ -227,7 +221,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mute_initiator = 24;</code>
      */
-    private $mute_initiator = '';
+    protected $mute_initiator = '';
     /**
      * Represents operating system processes associated with the Finding.
      *
@@ -268,19 +262,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent_display_name = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parent_display_name = '';
+    protected $parent_display_name = '';
     /**
      * Contains more details about the finding.
      *
      * Generated from protobuf field <code>string description = 30;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Represents exfiltrations associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Exfiltration exfiltration = 31;</code>
      */
-    private $exfiltration = null;
+    protected $exfiltration = null;
     /**
      * Represents IAM bindings associated with the finding.
      *
@@ -292,7 +286,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_steps = 33;</code>
      */
-    private $next_steps = '';
+    protected $next_steps = '';
     /**
      * Unique identifier of the module which generated the finding.
      * Example:
@@ -300,7 +294,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string module_name = 34;</code>
      */
-    private $module_name = '';
+    protected $module_name = '';
     /**
      * Containers associated with the finding. This field provides information for
      * both Kubernetes and non-Kubernetes containers.
@@ -313,19 +307,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Kubernetes kubernetes = 36;</code>
      */
-    private $kubernetes = null;
+    protected $kubernetes = null;
     /**
      * Database associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Database database = 37;</code>
      */
-    private $database = null;
+    protected $database = null;
     /**
      * The results of an attack path simulation relevant to this finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AttackExposure attack_exposure = 38;</code>
      */
-    private $attack_exposure = null;
+    protected $attack_exposure = null;
     /**
      * File associated with the finding.
      *
@@ -338,19 +332,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudDlpInspection cloud_dlp_inspection = 40;</code>
      */
-    private $cloud_dlp_inspection = null;
+    protected $cloud_dlp_inspection = null;
     /**
      * Cloud DLP data profile that is associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudDlpDataProfile cloud_dlp_data_profile = 41;</code>
      */
-    private $cloud_dlp_data_profile = null;
+    protected $cloud_dlp_data_profile = null;
     /**
      * Signature of the kernel rootkit.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.KernelRootkit kernel_rootkit = 42;</code>
      */
-    private $kernel_rootkit = null;
+    protected $kernel_rootkit = null;
     /**
      * Contains information about the org policies associated with the finding.
      *
@@ -362,19 +356,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Application application = 45;</code>
      */
-    private $application = null;
+    protected $application = null;
     /**
      * Fields related to Backup and DR findings.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.BackupDisasterRecovery backup_disaster_recovery = 47;</code>
      */
-    private $backup_disaster_recovery = null;
+    protected $backup_disaster_recovery = null;
     /**
      * The security posture associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.SecurityPosture security_posture = 48;</code>
      */
-    private $security_posture = null;
+    protected $security_posture = null;
     /**
      * Log entries that are relevant to the finding.
      *
@@ -392,13 +386,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudArmor cloud_armor = 51;</code>
      */
-    private $cloud_armor = null;
+    protected $cloud_armor = null;
     /**
      * Notebook associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Notebook notebook = 55;</code>
      */
-    private $notebook = null;
+    protected $notebook = null;
     /**
      * Contains details about a group of security issues that, when the issues
      * occur together, represent a greater risk than when the issues occur
@@ -408,7 +402,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ToxicCombination toxic_combination = 56;</code>
      */
-    private $toxic_combination = null;
+    protected $toxic_combination = null;
     /**
      * Contains details about groups of which this finding is a member. A group is
      * a collection of findings that are related in some way.
@@ -508,8 +502,6 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Indicates the mute state of a finding (either muted, unmuted
      *           or undefined). Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
-     *     @type \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo $mute_info
-     *           Output only. The mute information regarding this finding.
      *     @type int $finding_class
      *           The class of the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\Indicator $indicator
@@ -1108,42 +1100,6 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\Finding\Mute::class);
         $this->mute = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. The mute information regarding this finding.
-     *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo|null
-     */
-    public function getMuteInfo()
-    {
-        return $this->mute_info;
-    }
-
-    public function hasMuteInfo()
-    {
-        return isset($this->mute_info);
-    }
-
-    public function clearMuteInfo()
-    {
-        unset($this->mute_info);
-    }
-
-    /**
-     * Output only. The mute information regarding this finding.
-     *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.MuteInfo mute_info = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo $var
-     * @return $this
-     */
-    public function setMuteInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo::class);
-        $this->mute_info = $var;
 
         return $this;
     }

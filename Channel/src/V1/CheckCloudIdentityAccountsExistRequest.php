@@ -22,13 +22,13 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Domain to fetch for Cloud Identity account customer.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $domain = '';
+    protected $domain = '';
 
     /**
      * Constructor.

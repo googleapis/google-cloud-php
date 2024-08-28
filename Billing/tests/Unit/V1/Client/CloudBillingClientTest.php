@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,9 @@ class CloudBillingClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudBillingClient */
@@ -98,8 +100,7 @@ class CloudBillingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $billingAccount = new BillingAccount();
-        $request = (new CreateBillingAccountRequest())
-            ->setBillingAccount($billingAccount);
+        $request = (new CreateBillingAccountRequest())->setBillingAccount($billingAccount);
         $response = $gapicClient->createBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -123,17 +124,19 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $billingAccount = new BillingAccount();
-        $request = (new CreateBillingAccountRequest())
-            ->setBillingAccount($billingAccount);
+        $request = (new CreateBillingAccountRequest())->setBillingAccount($billingAccount);
         try {
             $gapicClient->createBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -170,8 +173,7 @@ class CloudBillingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
-        $request = (new GetBillingAccountRequest())
-            ->setName($formattedName);
+        $request = (new GetBillingAccountRequest())->setName($formattedName);
         $response = $gapicClient->getBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -195,17 +197,19 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
-        $request = (new GetBillingAccountRequest())
-            ->setName($formattedName);
+        $request = (new GetBillingAccountRequest())->setName($formattedName);
         try {
             $gapicClient->getBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -236,8 +240,7 @@ class CloudBillingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -261,17 +264,19 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -306,8 +311,7 @@ class CloudBillingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new GetProjectBillingInfoRequest())
-            ->setName($formattedName);
+        $request = (new GetProjectBillingInfoRequest())->setName($formattedName);
         $response = $gapicClient->getProjectBillingInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -331,17 +335,19 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->projectName('[PROJECT]');
-        $request = (new GetProjectBillingInfoRequest())
-            ->setName($formattedName);
+        $request = (new GetProjectBillingInfoRequest())->setName($formattedName);
         try {
             $gapicClient->getProjectBillingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,9 +372,7 @@ class CloudBillingClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $billingAccountsElement = new BillingAccount();
-        $billingAccounts = [
-            $billingAccountsElement,
-        ];
+        $billingAccounts = [$billingAccountsElement];
         $expectedResponse = new ListBillingAccountsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBillingAccounts($billingAccounts);
@@ -398,12 +402,15 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListBillingAccountsRequest();
         try {
@@ -430,17 +437,14 @@ class CloudBillingClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $projectBillingInfoElement = new ProjectBillingInfo();
-        $projectBillingInfo = [
-            $projectBillingInfoElement,
-        ];
+        $projectBillingInfo = [$projectBillingInfoElement];
         $expectedResponse = new ListProjectBillingInfoResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProjectBillingInfo($projectBillingInfo);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
-        $request = (new ListProjectBillingInfoRequest())
-            ->setName($formattedName);
+        $request = (new ListProjectBillingInfoRequest())->setName($formattedName);
         $response = $gapicClient->listProjectBillingInfo($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -467,17 +471,19 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
-        $request = (new ListProjectBillingInfoRequest())
-            ->setName($formattedName);
+        $request = (new ListProjectBillingInfoRequest())->setName($formattedName);
         try {
             $gapicClient->listProjectBillingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -543,12 +549,15 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
@@ -587,9 +596,7 @@ class CloudBillingClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -615,19 +622,20 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -655,9 +663,7 @@ class CloudBillingClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -683,19 +689,20 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -733,9 +740,7 @@ class CloudBillingClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $account = new BillingAccount();
-        $request = (new UpdateBillingAccountRequest())
-            ->setName($formattedName)
-            ->setAccount($account);
+        $request = (new UpdateBillingAccountRequest())->setName($formattedName)->setAccount($account);
         $response = $gapicClient->updateBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -761,19 +766,20 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
         $account = new BillingAccount();
-        $request = (new UpdateBillingAccountRequest())
-            ->setName($formattedName)
-            ->setAccount($account);
+        $request = (new UpdateBillingAccountRequest())->setName($formattedName)->setAccount($account);
         try {
             $gapicClient->updateBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -808,8 +814,7 @@ class CloudBillingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new UpdateProjectBillingInfoRequest())
-            ->setName($name);
+        $request = (new UpdateProjectBillingInfoRequest())->setName($name);
         $response = $gapicClient->updateProjectBillingInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -833,17 +838,19 @@ class CloudBillingClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new UpdateProjectBillingInfoRequest())
-            ->setName($name);
+        $request = (new UpdateProjectBillingInfoRequest())->setName($name);
         try {
             $gapicClient->updateProjectBillingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -880,8 +887,7 @@ class CloudBillingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $billingAccount = new BillingAccount();
-        $request = (new CreateBillingAccountRequest())
-            ->setBillingAccount($billingAccount);
+        $request = (new CreateBillingAccountRequest())->setBillingAccount($billingAccount);
         $response = $gapicClient->createBillingAccountAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

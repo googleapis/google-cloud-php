@@ -22,13 +22,13 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_private_nodes = 1;</code>
      */
-    private $enable_private_nodes = false;
+    protected $enable_private_nodes = false;
     /**
      * Whether the master's internal IP address is used as the cluster endpoint.
      *
      * Generated from protobuf field <code>bool enable_private_endpoint = 2;</code>
      */
-    private $enable_private_endpoint = false;
+    protected $enable_private_endpoint = false;
     /**
      * The IP range in CIDR notation to use for the hosted master network. This
      * range will be used for assigning internal IP addresses to the master or
@@ -37,38 +37,38 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string master_ipv4_cidr_block = 3;</code>
      */
-    private $master_ipv4_cidr_block = '';
+    protected $master_ipv4_cidr_block = '';
     /**
      * Output only. The internal IP address of this cluster's master endpoint.
      *
      * Generated from protobuf field <code>string private_endpoint = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $private_endpoint = '';
+    protected $private_endpoint = '';
     /**
      * Output only. The external IP address of this cluster's master endpoint.
      *
      * Generated from protobuf field <code>string public_endpoint = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $public_endpoint = '';
+    protected $public_endpoint = '';
     /**
      * Output only. The peering name in the customer VPC used by this cluster.
      *
      * Generated from protobuf field <code>string peering_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $peering_name = '';
+    protected $peering_name = '';
     /**
      * Controls master global access settings.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;</code>
      */
-    private $master_global_access_config = null;
+    protected $master_global_access_config = null;
     /**
      * Subnet to provision the master's private endpoint during cluster creation.
      * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
      *
      * Generated from protobuf field <code>string private_endpoint_subnetwork = 10;</code>
      */
-    private $private_endpoint_subnetwork = '';
+    protected $private_endpoint_subnetwork = '';
 
     /**
      * Constructor.

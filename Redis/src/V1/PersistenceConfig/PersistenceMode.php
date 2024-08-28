@@ -60,6 +60,4 @@ class PersistenceMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PersistenceMode::class, \Google\Cloud\Redis\V1\PersistenceConfig_PersistenceMode::class);
 

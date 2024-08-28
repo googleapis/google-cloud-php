@@ -21,7 +21,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -36,19 +36,19 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.Operation.Type operation_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
     /**
      * Output only. The current status of the operation.
      *
      * Generated from protobuf field <code>.google.container.v1.Operation.Status status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Output only. Detailed operation progress, if available.
      *
      * Generated from protobuf field <code>string detail = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $detail = '';
+    protected $detail = '';
     /**
      * Output only. If an error has occurred, a textual description of the error.
      * Deprecated. Use the field error instead.
@@ -63,7 +63,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * Output only. Server-defined URI for the target of the operation. The format
      * of this is a URI to the resource being modified (such as a cluster, node
@@ -79,7 +79,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_link = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target_link = '';
+    protected $target_link = '';
     /**
      * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
@@ -89,27 +89,27 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Output only. The time the operation started, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
      * Generated from protobuf field <code>string start_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = '';
+    protected $start_time = '';
     /**
      * Output only. The time the operation completed, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
      * Generated from protobuf field <code>string end_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = '';
+    protected $end_time = '';
     /**
      * Output only. Progress information for an operation.
      *
      * Generated from protobuf field <code>.google.container.v1.OperationProgress progress = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * Which conditions caused the current cluster state.
      * Deprecated. Use field error instead.
@@ -131,7 +131,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 15;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

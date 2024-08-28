@@ -20,7 +20,7 @@ class NetworkPerformanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig.Tier total_egress_bandwidth_tier = 1;</code>
      */
-    private $total_egress_bandwidth_tier = null;
+    protected $total_egress_bandwidth_tier = null;
 
     /**
      * Constructor.
@@ -75,6 +75,4 @@ class NetworkPerformanceConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NetworkPerformanceConfig::class, \Google\Cloud\Container\V1\NodeNetworkConfig_NetworkPerformanceConfig::class);
 

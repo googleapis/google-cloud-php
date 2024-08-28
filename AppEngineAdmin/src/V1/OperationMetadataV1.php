@@ -22,28 +22,28 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string method = 1;</code>
      */
-    private $method = '';
+    protected $method = '';
     /**
      * Time that this operation was created.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 2;</code>
      */
-    private $insert_time = null;
+    protected $insert_time = null;
     /**
      * Time that this operation completed.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * User who requested this operation.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>string user = 4;</code>
      */
-    private $user = '';
+    protected $user = '';
     /**
      * Name of the resource that this operation is acting on. Example:
      * `apps/myapp/services/default`.
@@ -51,14 +51,14 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 5;</code>
      */
-    private $target = '';
+    protected $target = '';
     /**
      * Ephemeral message that may change every time the operation is polled.
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>string ephemeral_message = 6;</code>
      */
-    private $ephemeral_message = '';
+    protected $ephemeral_message = '';
     /**
      * Durable messages that persist on every operation poll.
      * &#64;OutputOnly

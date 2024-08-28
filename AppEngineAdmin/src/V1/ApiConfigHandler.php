@@ -22,32 +22,32 @@ class ApiConfigHandler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.AuthFailAction auth_fail_action = 1;</code>
      */
-    private $auth_fail_action = 0;
+    protected $auth_fail_action = 0;
     /**
      * Level of login required to access this resource. Defaults to
      * `optional`.
      *
      * Generated from protobuf field <code>.google.appengine.v1.LoginRequirement login = 2;</code>
      */
-    private $login = 0;
+    protected $login = 0;
     /**
      * Path to the script from the application root directory.
      *
      * Generated from protobuf field <code>string script = 3;</code>
      */
-    private $script = '';
+    protected $script = '';
     /**
      * Security (HTTPS) enforcement for this URL.
      *
      * Generated from protobuf field <code>.google.appengine.v1.SecurityLevel security_level = 4;</code>
      */
-    private $security_level = 0;
+    protected $security_level = 0;
     /**
      * URL to serve the endpoint at.
      *
      * Generated from protobuf field <code>string url = 5;</code>
      */
-    private $url = '';
+    protected $url = '';
 
     /**
      * Constructor.

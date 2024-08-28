@@ -21,20 +21,20 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Identifier to assign to the API Config. Must be unique within scope of
      * the parent resource.
      *
      * Generated from protobuf field <code>string api_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_config_id = '';
+    protected $api_config_id = '';
     /**
      * Required. API resource.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.ApiConfig api_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_config = null;
+    protected $api_config = null;
 
     /**
      * @param string                                $parent      Required. Parent resource of the API Config, of the form:

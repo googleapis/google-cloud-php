@@ -60,7 +60,7 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
      */
-    private $condition_evaluation = null;
+    protected $condition_evaluation = null;
 
     /**
      * Constructor.
@@ -232,6 +232,4 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AccessControlList::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult_AccessControlList::class);
 

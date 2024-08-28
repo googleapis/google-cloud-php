@@ -18,11 +18,11 @@ class Position extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>int32 line_number = 1;</code>
      */
-    private $line_number = 0;
+    protected $line_number = 0;
     /**
      * Generated from protobuf field <code>int32 column_number = 2;</code>
      */
-    private $column_number = 0;
+    protected $column_number = 0;
 
     /**
      * Constructor.

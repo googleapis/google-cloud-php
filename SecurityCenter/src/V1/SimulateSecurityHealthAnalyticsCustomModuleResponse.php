@@ -21,7 +21,7 @@ class SimulateSecurityHealthAnalyticsCustomModuleResponse extends \Google\Protob
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleResponse.SimulatedResult result = 1;</code>
      */
-    private $result = null;
+    protected $result = null;
 
     /**
      * Constructor.

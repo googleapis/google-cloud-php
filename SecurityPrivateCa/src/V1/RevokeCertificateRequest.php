@@ -23,7 +23,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The
      * [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
@@ -31,7 +31,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.RevocationReason reason = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reason = 0;
+    protected $reason = 0;
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -47,7 +47,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $name Required. The resource name for this

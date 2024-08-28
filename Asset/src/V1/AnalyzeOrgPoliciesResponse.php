@@ -30,14 +30,14 @@ class AnalyzeOrgPoliciesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicyConstraint constraint = 2;</code>
      */
-    private $constraint = null;
+    protected $constraint = null;
     /**
      * The page token to fetch the next page for
      * [AnalyzeOrgPoliciesResponse.org_policy_results][google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.org_policy_results].
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

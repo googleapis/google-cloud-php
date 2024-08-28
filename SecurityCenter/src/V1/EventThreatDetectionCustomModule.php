@@ -28,7 +28,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Config for the module. For the resident module, its config value is defined
      * at this level. For the inherited module, its config value is inherited from
@@ -36,7 +36,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Output only. The closest ancestor module that this module inherits the
      * enablement state from. The format is the same as the
@@ -44,43 +44,43 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ancestor_module = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $ancestor_module = '';
+    protected $ancestor_module = '';
     /**
      * The state of enablement for the module at the given level of the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.EventThreatDetectionCustomModule.EnablementState enablement_state = 4;</code>
      */
-    private $enablement_state = 0;
+    protected $enablement_state = 0;
     /**
      * Type for the module. e.g. CONFIGURABLE_BAD_IP.
      *
      * Generated from protobuf field <code>string type = 5;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The human readable name to be displayed for the module.
      *
      * Generated from protobuf field <code>string display_name = 6;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The description for the module.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The time the module was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The editor the module was last updated by.
      *
      * Generated from protobuf field <code>string last_editor = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_editor = '';
+    protected $last_editor = '';
 
     /**
      * Constructor.

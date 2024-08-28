@@ -21,19 +21,19 @@ class Volume extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Underlying volume type, e.g. 'tmpfs'.
      *
      * Generated from protobuf field <code>string volume_type = 2;</code>
      */
-    private $volume_type = '';
+    protected $volume_type = '';
     /**
      * Volume size in gigabytes.
      *
      * Generated from protobuf field <code>double size_gb = 3;</code>
      */
-    private $size_gb = 0.0;
+    protected $size_gb = 0.0;
 
     /**
      * Constructor.

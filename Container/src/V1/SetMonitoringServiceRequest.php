@@ -55,14 +55,14 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string monitoring_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $monitoring_service = '';
+    protected $monitoring_service = '';
     /**
      * The name (project, location, cluster) of the cluster to set monitoring.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $projectId         Deprecated. The Google Developers Console [project ID or project

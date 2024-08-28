@@ -21,14 +21,14 @@ class DiskPath extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string partition_uuid = 1;</code>
      */
-    private $partition_uuid = '';
+    protected $partition_uuid = '';
     /**
      * Relative path of the file in the partition as a JSON encoded string.
      * Example: /home/user1/executable_file.sh
      *
      * Generated from protobuf field <code>string relative_path = 2;</code>
      */
-    private $relative_path = '';
+    protected $relative_path = '';
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class DiskPath extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DiskPath::class, \Google\Cloud\SecurityCenter\V1\File_DiskPath::class);
 

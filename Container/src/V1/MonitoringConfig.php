@@ -20,20 +20,20 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.MonitoringComponentConfig component_config = 1;</code>
      */
-    private $component_config = null;
+    protected $component_config = null;
     /**
      * Enable Google Cloud Managed Service for Prometheus
      * in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedPrometheusConfig managed_prometheus_config = 2;</code>
      */
-    private $managed_prometheus_config = null;
+    protected $managed_prometheus_config = null;
     /**
      * Configuration of Advanced Datapath Observability features.
      *
      * Generated from protobuf field <code>.google.container.v1.AdvancedDatapathObservabilityConfig advanced_datapath_observability_config = 3;</code>
      */
-    private $advanced_datapath_observability_config = null;
+    protected $advanced_datapath_observability_config = null;
 
     /**
      * Constructor.

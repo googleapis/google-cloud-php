@@ -20,7 +20,7 @@ class StandardRolloutPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration batch_soak_duration = 3;</code>
      */
-    private $batch_soak_duration = null;
+    protected $batch_soak_duration = null;
     protected $update_batch_size;
 
     /**
@@ -153,6 +153,4 @@ class StandardRolloutPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StandardRolloutPolicy::class, \Google\Cloud\Container\V1\BlueGreenSettings_StandardRolloutPolicy::class);
 

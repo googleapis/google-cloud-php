@@ -22,7 +22,7 @@ class GetServiceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * Required. The id of the service configuration resource.
      * This field must be specified for the server to return all fields, including
@@ -30,14 +30,14 @@ class GetServiceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config_id = '';
+    protected $config_id = '';
     /**
      * Specifies which parts of the Service Config should be returned in the
      * response.
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView view = 3;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $serviceName Required. The name of the service.  See the

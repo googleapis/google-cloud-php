@@ -20,7 +20,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The URL of the discovery document containing the resource's JSON schema.
      * Example:
@@ -30,7 +30,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string discovery_document_uri = 2;</code>
      */
-    private $discovery_document_uri = '';
+    protected $discovery_document_uri = '';
     /**
      * The JSON schema name listed in the discovery document. Example:
      * `Project`
@@ -39,7 +39,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string discovery_name = 3;</code>
      */
-    private $discovery_name = '';
+    protected $discovery_name = '';
     /**
      * The REST URL for accessing the resource. An HTTP `GET` request using this
      * URL returns the resource itself. Example:
@@ -48,7 +48,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_url = 4;</code>
      */
-    private $resource_url = '';
+    protected $resource_url = '';
     /**
      * The full name of the immediate parent of this resource. See
      * [Resource
@@ -62,21 +62,21 @@ class Resource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The content of the resource, in which some sensitive fields are removed
      * and may not be present.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 6;</code>
      */
-    private $data = null;
+    protected $data = null;
     /**
      * The location of the resource in Google Cloud, such as its zone and region.
      * For more information, see https://cloud.google.com/about/locations/.
      *
      * Generated from protobuf field <code>string location = 8;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

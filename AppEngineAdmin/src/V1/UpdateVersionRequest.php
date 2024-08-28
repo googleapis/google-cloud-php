@@ -21,20 +21,20 @@ class UpdateVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A Version containing the updated resource. Only fields set in the field
      * mask will be updated.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Version version = 2;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

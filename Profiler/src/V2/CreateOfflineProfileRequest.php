@@ -21,13 +21,13 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Contents of the profile to create.
      *
      * Generated from protobuf field <code>.google.devtools.cloudprofiler.v2.Profile profile = 2;</code>
      */
-    private $profile = null;
+    protected $profile = null;
 
     /**
      * @param string                            $parent  Parent project to create the profile in.

@@ -24,7 +24,7 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding finding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $finding = null;
+    protected $finding = null;
     /**
      * The FieldMask to use when updating the finding resource. This field should
      * not be specified when creating a finding.
@@ -35,7 +35,7 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V2\Finding $finding    Required. The finding resource to update or create if it does not already

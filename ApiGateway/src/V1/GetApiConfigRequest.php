@@ -21,14 +21,14 @@ class GetApiConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Specifies which fields of the API Config are returned in the response.
      * Defaults to `BASIC` view.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.GetApiConfigRequest.ConfigView view = 3;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. Resource name of the form:

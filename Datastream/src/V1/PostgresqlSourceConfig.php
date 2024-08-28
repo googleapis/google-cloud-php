@@ -20,27 +20,27 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms include_objects = 1;</code>
      */
-    private $include_objects = null;
+    protected $include_objects = null;
     /**
      * PostgreSQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms exclude_objects = 2;</code>
      */
-    private $exclude_objects = null;
+    protected $exclude_objects = null;
     /**
      * Required. Immutable. The name of the logical replication slot that's
      * configured with the pgoutput plugin.
      *
      * Generated from protobuf field <code>string replication_slot = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $replication_slot = '';
+    protected $replication_slot = '';
     /**
      * Required. The name of the publication that includes the set of all tables
      * that are defined in the stream's include_objects.
      *
      * Generated from protobuf field <code>string publication = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $publication = '';
+    protected $publication = '';
     /**
      * Maximum number of concurrent backfill tasks. The number should be non
      * negative. If not set (or set to 0), the system's default value will be
@@ -48,7 +48,7 @@ class PostgresqlSourceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 5;</code>
      */
-    private $max_concurrent_backfill_tasks = 0;
+    protected $max_concurrent_backfill_tasks = 0;
 
     /**
      * Constructor.

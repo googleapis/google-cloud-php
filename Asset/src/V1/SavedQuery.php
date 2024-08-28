@@ -23,39 +23,39 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The description of this saved query. This value should be fewer than 255
      * characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The create time of this saved query.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The account's email address who has created this saved query.
      *
      * Generated from protobuf field <code>string creator = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Output only. The last update time of this saved query.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_update_time = null;
+    protected $last_update_time = null;
     /**
      * Output only. The account's email address who has updated this saved query
      * most recently.
      *
      * Generated from protobuf field <code>string last_updater = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_updater = '';
+    protected $last_updater = '';
     /**
      * Labels applied on the resource.
      * This value should not contain more than 10 entries. The key and value of
@@ -69,7 +69,7 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.SavedQuery.QueryContent content = 8;</code>
      */
-    private $content = null;
+    protected $content = null;
 
     /**
      * Constructor.

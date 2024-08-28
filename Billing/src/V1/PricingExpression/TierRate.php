@@ -22,14 +22,14 @@ class TierRate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double start_usage_amount = 1;</code>
      */
-    private $start_usage_amount = 0.0;
+    protected $start_usage_amount = 0.0;
     /**
      * The price per unit of usage.
      * Example: unit_price of amount $10 indicates that each unit will cost $10.
      *
      * Generated from protobuf field <code>.google.type.Money unit_price = 2;</code>
      */
-    private $unit_price = null;
+    protected $unit_price = null;
 
     /**
      * Constructor.
@@ -121,6 +121,4 @@ class TierRate extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TierRate::class, \Google\Cloud\Billing\V1\PricingExpression_TierRate::class);
 

@@ -23,13 +23,13 @@ class BillableSku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sku = 1;</code>
      */
-    private $sku = '';
+    protected $sku = '';
     /**
      * Unique human readable name for the SKU.
      *
      * Generated from protobuf field <code>string sku_display_name = 2;</code>
      */
-    private $sku_display_name = '';
+    protected $sku_display_name = '';
     /**
      * Resource name of Service which contains Repricing SKU. Format:
      * services/{service}.
@@ -38,13 +38,13 @@ class BillableSku extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 3;</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * Unique human readable name for the Service.
      *
      * Generated from protobuf field <code>string service_display_name = 4;</code>
      */
-    private $service_display_name = '';
+    protected $service_display_name = '';
 
     /**
      * Constructor.

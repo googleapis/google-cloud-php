@@ -21,7 +21,7 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
 
     /**
      * @param string $serviceName Required. The name of the service.  See the `ServiceManager` overview for
