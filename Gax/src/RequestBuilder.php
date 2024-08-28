@@ -111,7 +111,7 @@ class RequestBuilder
 
                 // Request enum fields will be encoded as numbers rather than strings  (in the response).
                 if ($numericEnums) {
-                    $queryParams['$alt'] = "json;enum-encoding=int";
+                    $queryParams['$alt'] = 'json;enum-encoding=int';
                 }
 
                 $uri = $this->buildUri($pathTemplate, $queryParams);
@@ -132,8 +132,8 @@ class RequestBuilder
         }
 
         throw new ValidationException("Could not map bindings for $path to any Uri template.\n" .
-            "Bindings: " . print_r($bindings, true) .
-            "UriTemplates: " . print_r($uriTemplates, true));
+            'Bindings: ' . print_r($bindings, true) .
+            'UriTemplates: ' . print_r($uriTemplates, true));
     }
 
     /**

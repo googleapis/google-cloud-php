@@ -33,8 +33,8 @@
 namespace Google\ApiCore\Testing;
 
 use Google\Protobuf\Internal\Message;
-use UnderflowException;
 use stdClass;
+use UnderflowException;
 
 /**
  * The MockStubTrait is used by generated mock stub classes which extent \Grpc\BaseStub
@@ -77,7 +77,7 @@ trait MockStubTrait
     ) {
         $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
-            throw new UnderflowException("ran out of responses");
+            throw new UnderflowException('ran out of responses');
         }
         list($response, $status) = array_shift($this->responses);
         $call = new MockUnaryCall($response, $deserialize, $status);
@@ -106,7 +106,7 @@ trait MockStubTrait
     ) {
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
-            throw new UnderflowException("ran out of responses");
+            throw new UnderflowException('ran out of responses');
         }
         list($response, $status) = array_shift($this->responses);
         $call = new MockClientStreamingCall($response, $deserialize, $status);

@@ -13,8 +13,8 @@ branchProtectionRules:
     - 'PHP 8.3 Unit Test'
     - 'PHP 8.3 Unit Test protobuf,grpc'
     - 'Run google-cloud-php tests'
-    - 'PHP Style Check'
-    - 'PHPStan Static Analysis'
+    - 'PHP Style Check / PHP Code Standards'
+    - 'PHPStan Static Analysis / PHPStan Static Analysis'
     - 'cla/google'
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true

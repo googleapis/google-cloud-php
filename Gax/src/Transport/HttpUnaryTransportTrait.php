@@ -131,7 +131,7 @@ trait HttpUnaryTransportTrait
         try {
             return [HttpHandlerFactory::build(), 'async'];
         } catch (Exception $ex) {
-            throw new ValidationException("Failed to build HttpHandler", $ex->getCode(), $ex);
+            throw new ValidationException('Failed to build HttpHandler', $ex->getCode(), $ex);
         }
     }
 

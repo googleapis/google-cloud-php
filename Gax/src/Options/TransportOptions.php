@@ -32,10 +32,10 @@
 
 namespace Google\ApiCore\Options;
 
-use Google\ApiCore\Options\TransportOptions\GrpcTransportOptions;
-use Google\ApiCore\Options\TransportOptions\GrpcFallbackTransportOptions;
-use Google\ApiCore\Options\TransportOptions\RestTransportOptions;
 use ArrayAccess;
+use Google\ApiCore\Options\TransportOptions\GrpcFallbackTransportOptions;
+use Google\ApiCore\Options\TransportOptions\GrpcTransportOptions;
+use Google\ApiCore\Options\TransportOptions\RestTransportOptions;
 
 class TransportOptions implements ArrayAccess
 {

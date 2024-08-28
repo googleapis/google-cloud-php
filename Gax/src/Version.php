@@ -64,7 +64,7 @@ class Version
     {
         $versionString = file_exists($file)
             ? (string) file_get_contents($file)
-            : "";
+            : '';
         return trim($versionString);
     }
 

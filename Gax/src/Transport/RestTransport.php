@@ -31,7 +31,6 @@
  */
 namespace Google\ApiCore\Transport;
 
-use BadMethodCallException;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
@@ -124,7 +123,7 @@ class RestTransport implements TransportInterface
             function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
                 /** @var Message $return */
-                $return = new $decodeType;
+                $return = new $decodeType();
                 $body = (string) $response->getBody();
 
                 // In some rare cases LRO response metadata may not be loaded

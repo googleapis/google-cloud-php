@@ -1,4 +1,4 @@
-name: Generate Documentation
+name: Documentation
 
 on:
     push:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
     docs:
-        name: "Generate and Deploy Documentation"
+        name: "Generate Documentation"
         uses: GoogleCloudPlatform/php-tools/.github/workflows/doctum.yml@main
         with:
           title: "Google API Core (GAX) Reference Documentation"

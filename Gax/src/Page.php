@@ -42,7 +42,7 @@ use IteratorAggregate;
  */
 class Page implements IteratorAggregate
 {
-    const FINAL_PAGE_TOKEN = "";
+    const FINAL_PAGE_TOKEN = '';
 
     private $call;
     private $callable;
@@ -243,9 +243,9 @@ class Page implements IteratorAggregate
     {
         if (!$this->pageStreamingDescriptor->requestHasPageSizeField()) {
             throw new ValidationException(
-                "FixedSizeCollection is not supported for this method, because " .
-                "the method does not support an optional argument to set the " .
-                "page size."
+                'FixedSizeCollection is not supported for this method, because ' .
+                'the method does not support an optional argument to set the ' .
+                'page size.'
             );
         }
         $request = $this->getRequestObject();
@@ -253,16 +253,16 @@ class Page implements IteratorAggregate
         $pageSize = $request->$pageSizeGetMethod();
         if (is_null($pageSize)) {
             throw new ValidationException(
-                "Error while expanding Page to FixedSizeCollection: No page size " .
-                "parameter found. The page size parameter must be set in the API " .
-                "optional arguments array, and must be less than the collectionSize " .
-                "parameter, in order to create a FixedSizeCollection object."
+                'Error while expanding Page to FixedSizeCollection: No page size ' .
+                'parameter found. The page size parameter must be set in the API ' .
+                'optional arguments array, and must be less than the collectionSize ' .
+                'parameter, in order to create a FixedSizeCollection object.'
             );
         }
         if ($pageSize > $collectionSize) {
             throw new ValidationException(
-                "Error while expanding Page to FixedSizeCollection: collectionSize " .
-                "parameter is less than the page size optional argument specified in " .
+                'Error while expanding Page to FixedSizeCollection: collectionSize ' .
+                'parameter is less than the page size optional argument specified in ' .
                 "the API call. collectionSize: $collectionSize, page size: $pageSize"
             );
         }

@@ -91,8 +91,8 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
             return null;
         } else {
             throw new ApiException(
-                "No more responses to read, but closeWrite() not called - "
-                . "this would be blocking",
+                'No more responses to read, but closeWrite() not called - '
+                . 'this would be blocking',
                 Grpc\STATUS_INTERNAL,
                 null
             );
@@ -107,14 +107,14 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
     {
         if (count($this->responses) > 0) {
             throw new ApiException(
-                "Calls to getStatus() will block if all responses are not read",
+                'Calls to getStatus() will block if all responses are not read',
                 Grpc\STATUS_INTERNAL,
                 null
             );
         }
         if (!$this->writesDone) {
             throw new ApiException(
-                "Calls to getStatus() will block if closeWrite() not called",
+                'Calls to getStatus() will block if closeWrite() not called',
                 Grpc\STATUS_INTERNAL,
                 null
             );
@@ -132,7 +132,7 @@ class MockBidiStreamingCall extends Grpc\BidiStreamingCall
     {
         if ($this->writesDone) {
             throw new ApiException(
-                "Cannot call write() after writesDone()",
+                'Cannot call write() after writesDone()',
                 Grpc\STATUS_INTERNAL,
                 null
             );
