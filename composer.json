@@ -66,9 +66,6 @@
         "psr/log": "^2.0||^3.0",
         "dg/bypass-finals": "^1.7"
     },
-    "conflict": {
-        "psr/log": ">=3"
-    },
     "replace": {
         "google/access-context-manager": "1.0.0",
         "google/analytics-admin": "0.24.0",
