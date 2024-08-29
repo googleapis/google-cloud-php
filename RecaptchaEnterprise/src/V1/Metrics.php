@@ -29,14 +29,14 @@ class Metrics extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity
+     * Metrics are continuous and in order by dates, and in the granularity
      * of day. All Key types should have score-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ScoreMetrics score_metrics = 2;</code>
      */
     private $score_metrics;
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity
+     * Metrics are continuous and in order by dates, and in the granularity
      * of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
      * challenge-based data.
      *
@@ -56,10 +56,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Inclusive start time aligned to a day (UTC).
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $score_metrics
-     *           Metrics will be continuous and in order by dates, and in the granularity
+     *           Metrics are continuous and in order by dates, and in the granularity
      *           of day. All Key types should have score-based data.
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>|\Google\Protobuf\Internal\RepeatedField $challenge_metrics
-     *           Metrics will be continuous and in order by dates, and in the granularity
+     *           Metrics are continuous and in order by dates, and in the granularity
      *           of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
      *           challenge-based data.
      * }
@@ -134,7 +134,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity
+     * Metrics are continuous and in order by dates, and in the granularity
      * of day. All Key types should have score-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ScoreMetrics score_metrics = 2;</code>
@@ -146,7 +146,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity
+     * Metrics are continuous and in order by dates, and in the granularity
      * of day. All Key types should have score-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ScoreMetrics score_metrics = 2;</code>
@@ -162,7 +162,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity
+     * Metrics are continuous and in order by dates, and in the granularity
      * of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
      * challenge-based data.
      *
@@ -175,7 +175,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity
+     * Metrics are continuous and in order by dates, and in the granularity
      * of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have
      * challenge-based data.
      *
