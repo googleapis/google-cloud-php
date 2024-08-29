@@ -23,14 +23,14 @@ class QueryScope
     /**
      * Indexes with a collection query scope specified allow queries
      * against a collection that is the child of a specific document, specified
-     * at query time, and that has the collection id specified by the index.
+     * at query time, and that has the collection ID specified by the index.
      *
      * Generated from protobuf enum <code>COLLECTION = 1;</code>
      */
     const COLLECTION = 1;
     /**
      * Indexes with a collection group query scope specified allow queries
-     * against all collections that has the collection id specified by the
+     * against all collections that has the collection ID specified by the
      * index.
      *
      * Generated from protobuf enum <code>COLLECTION_GROUP = 2;</code>
