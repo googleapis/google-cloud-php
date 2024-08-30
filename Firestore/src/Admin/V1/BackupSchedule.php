@@ -46,6 +46,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     /**
      * At what relative time in the future, compared to its creation time,
      * the backup should be deleted, e.g. keep backups for 7 days.
+     * The maximum supported retention period is 14 weeks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention = 6;</code>
      */
@@ -75,6 +76,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $retention
      *           At what relative time in the future, compared to its creation time,
      *           the backup should be deleted, e.g. keep backups for 7 days.
+     *           The maximum supported retention period is 14 weeks.
      *     @type \Google\Cloud\Firestore\Admin\V1\DailyRecurrence $daily_recurrence
      *           For a schedule that runs daily.
      *     @type \Google\Cloud\Firestore\Admin\V1\WeeklyRecurrence $weekly_recurrence
@@ -203,6 +205,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     /**
      * At what relative time in the future, compared to its creation time,
      * the backup should be deleted, e.g. keep backups for 7 days.
+     * The maximum supported retention period is 14 weeks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention = 6;</code>
      * @return \Google\Protobuf\Duration|null
@@ -225,6 +228,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     /**
      * At what relative time in the future, compared to its creation time,
      * the backup should be deleted, e.g. keep backups for 7 days.
+     * The maximum supported retention period is 14 weeks.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention = 6;</code>
      * @param \Google\Protobuf\Duration $var
