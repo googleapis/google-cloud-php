@@ -1,5 +1,340 @@
 # Changelog
 
+## 0.257.0
+
+<details><summary>google/cloud-ai-platform 1.4.0</summary>
+
+
+
+### Features
+
+* Add max_wait_duration to Scheduling ([#7629](https://github.com/googleapis/google-cloud-php/issues/7629)) ([8848f17](https://github.com/googleapis/google-cloud-php/commit/8848f1715cdbaafc3c86436ba828952a50809521))
+* Add v1 NotebookExecutionJob to Schedule ([#7635](https://github.com/googleapis/google-cloud-php/issues/7635)) ([31f3d36](https://github.com/googleapis/google-cloud-php/commit/31f3d3607329d29dfabd4dc5e35b1428676ea42a))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-asset 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-billing 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-channel 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-container 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Features
+
+* Add ReleaseChannel EXTENDED value ([#7628](https://github.com/googleapis/google-cloud-php/issues/7628)) ([20d2cac](https://github.com/googleapis/google-cloud-php/commit/20d2cac8e52797fdc6d13ee70fb5c16d151a7a45))
+
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.1.1</summary>
+
+
+
+### Documentation
+
+* Swap comments on `BONDED` and `NON_BONDED` enums in `BondingType` ([#7636](https://github.com/googleapis/google-cloud-php/issues/7636)) ([d8f70c8](https://github.com/googleapis/google-cloud-php/commit/d8f70c8731e3eabe496104526620ff0b31a80951))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.45.2</summary>
+
+
+
+### Documentation
+
+* Clarify maximum retention of backups (max 14 weeks) ([#7634](https://github.com/googleapis/google-cloud-php/issues/7634)) ([83e7aea](https://github.com/googleapis/google-cloud-php/commit/83e7aeadd7c8b5945f653bb54f9e966baf51496e))
+* Remove note about backups running at a specific time ([83e7aea](https://github.com/googleapis/google-cloud-php/commit/83e7aeadd7c8b5945f653bb54f9e966baf51496e))
+* Standardize on the capitalization of "ID" ([83e7aea](https://github.com/googleapis/google-cloud-php/commit/83e7aeadd7c8b5945f653bb54f9e966baf51496e))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-iap 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-memcache 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-profiler 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.15.0</summary>
+
+
+
+### Features
+
+* Add AssessmentEnvironment for CreateAssessement to explicitly describe the environment of the assessment ([#7627](https://github.com/googleapis/google-cloud-php/issues/7627)) ([c12b9a4](https://github.com/googleapis/google-cloud-php/commit/c12b9a4292d6220056ae17b178d0aa9b64a85a55))
+
+
+### Documentation
+
+* Minor doc fixes ([#7633](https://github.com/googleapis/google-cloud-php/issues/7633)) ([b6816fe](https://github.com/googleapis/google-cloud-php/commit/b6816fe2170460a7cb7f19ae9d2cac90bdc3a907))
+
+</details>
+
+<details><summary>google/cloud-redis 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-service-control 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-service-management 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
+<details><summary>google/cloud-service-usage 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7626](https://github.com/googleapis/google-cloud-php/issues/7626)) ([887fe65](https://github.com/googleapis/google-cloud-php/commit/887fe6581907942a50cf01ac6a9ca42a3b3fc925))
+
+</details>
+
 ## 0.256.0
 
 <details><summary>google/cloud-apihub 0.1.0</summary>
