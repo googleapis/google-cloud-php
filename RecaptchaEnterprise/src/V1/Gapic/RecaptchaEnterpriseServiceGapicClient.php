@@ -462,7 +462,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * Adds an IP override to a key. The following restrictions hold:
      * * The maximum number of IP overrides per key is 100.
      * * For any conflict (such as IP already exists or IP part of an existing
-     * IP range), an error will be returned.
+     * IP range), an error is returned.
      *
      * Sample code:
      * ```
@@ -534,7 +534,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
      *                             `projects/{project}/assessments/{assessment}`.
-     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
+     * @param int    $annotation   Optional. The annotation that is assigned to the Event. This field can
      *                             be left empty to provide reasons that apply to an event without concluding
      *                             whether the event is legitimate or fraudulent.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
@@ -621,7 +621,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The name of the project in which the assessment will be created,
+     * @param string     $parent       Required. The name of the project in which the assessment is created,
      *                                 in the format `projects/{project}`.
      * @param Assessment $assessment   Required. The assessment details.
      * @param array      $optionalArgs {
@@ -733,7 +733,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which the key will be created, in the
+     * @param string $parent       Required. The name of the project in which the key is created, in the
      *                             format `projects/{project}`.
      * @param Key    $key          Required. Information to create a reCAPTCHA Enterprise key.
      * @param array  $optionalArgs {
@@ -1116,7 +1116,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project that contains the keys that will be
+     * @param string $parent       Required. The name of the project that contains the keys that are
      *                             listed, in the format `projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1622,7 +1622,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields of the policy get updated. If
-     *           the mask is not present, all fields will be updated.
+     *           the mask is not present, all fields are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1681,7 +1681,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields of the key get updated. If the
-     *           mask is not present, all fields will be updated.
+     *           mask is not present, all fields are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

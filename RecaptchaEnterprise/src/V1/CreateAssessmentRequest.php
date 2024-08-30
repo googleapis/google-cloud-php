@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project in which the assessment will be created,
+     * Required. The name of the project in which the assessment is created,
      * in the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +30,7 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
     private $assessment = null;
 
     /**
-     * @param string                                          $parent     Required. The name of the project in which the assessment will be created,
+     * @param string                                          $parent     Required. The name of the project in which the assessment is created,
      *                                                                    in the format `projects/{project}`. Please see
      *                                                                    {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\RecaptchaEnterprise\V1\Assessment $assessment Required. The assessment details.
@@ -53,7 +53,7 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the project in which the assessment will be created,
+     *           Required. The name of the project in which the assessment is created,
      *           in the format `projects/{project}`.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Assessment $assessment
      *           Required. The assessment details.
@@ -65,7 +65,7 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which the assessment will be created,
+     * Required. The name of the project in which the assessment is created,
      * in the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -77,7 +77,7 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which the assessment will be created,
+     * Required. The name of the project in which the assessment is created,
      * in the format `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -34,7 +34,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData\OverrideType;
  * Adds an IP override to a key. The following restrictions hold:
  * * The maximum number of IP overrides per key is 100.
  * * For any conflict (such as IP already exists or IP part of an existing
- * IP range), an error will be returned.
+ * IP range), an error is returned.
  *
  * @param string $formattedName              The name of the key to which the IP override is added, in the
  *                                           format `projects/{project}/keys/{key}`. Please see
