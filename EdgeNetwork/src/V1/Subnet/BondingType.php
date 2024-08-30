@@ -24,13 +24,13 @@ class BondingType
      */
     const BONDING_TYPE_UNSPECIFIED = 0;
     /**
-     * Single homed.
+     * Multi homed.
      *
      * Generated from protobuf enum <code>BONDED = 1;</code>
      */
     const BONDED = 1;
     /**
-     * Multi homed.
+     * Single homed.
      *
      * Generated from protobuf enum <code>NON_BONDED = 2;</code>
      */
