@@ -204,6 +204,8 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'metadataStore' => 'projects/{project}/locations/{location}/metadataStores/{metadata_store}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'notebookExecutionJob' => 'projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}',
+                'notebookRuntimeTemplate' => 'projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}',
                 'pipelineJob' => 'projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}',
                 'schedule' => 'projects/{project}/locations/{location}/schedules/{schedule}',
             ],
