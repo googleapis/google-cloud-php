@@ -21,14 +21,12 @@ use Google\Cloud\Tasks\V2\CloudTasksClient;
 ```
 
 The main difference is that RPC methods which used to take a varying number of
-required arguments plus an array of optional arguments, now always take a
-__single__ `Request` object:
+required arguments plus an array of optional arguments, now only take a
+_single_ `Request` object:
 
 ```php
 // The NEW surface client
 use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
-// The DEPRECATED client
-use Google\Cloud\Tasks\V2\CloudTasksClient as DeprecatedCloudTasksClient;
 // The Request class required to make the RPC
 use Google\Cloud\Tasks\V2\CreateTaskRequest;
 // Messages used to build the request
@@ -46,7 +44,9 @@ $request = (new CreateTaskRequest())
 $response = $taskClient->createTask($request);
 
 // This is the DEPRECATED way to make the same RPC request
-$tasksClient = new DeprecatedCloudTasksClient()
+use Google\Cloud\Tasks\V2\CloudTasksClient as DeprecatedCloudTasksClient;
+
+$tasksClient = new DeprecatedCloudTasksClient();
 $response = $taskClient->createTask($parent, $task, [
     'responseView' => Task\View::FULL,
 ]);
