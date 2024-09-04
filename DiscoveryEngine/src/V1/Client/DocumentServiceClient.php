@@ -34,6 +34,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataResponse;
 use Google\Cloud\DiscoveryEngine\V1\CreateDocumentRequest;
 use Google\Cloud\DiscoveryEngine\V1\DeleteDocumentRequest;
 use Google\Cloud\DiscoveryEngine\V1\Document;
@@ -58,6 +60,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface batchGetDocumentsMetadataAsync(BatchGetDocumentsMetadataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
@@ -446,6 +449,37 @@ final class DocumentServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Gets index freshness metadata for
+     * [Document][google.cloud.discoveryengine.v1.Document]s. Supported for
+     * website search only.
+     *
+     * The async variant is
+     * {@see DocumentServiceClient::batchGetDocumentsMetadataAsync()} .
+     *
+     * @example samples/V1/DocumentServiceClient/batch_get_documents_metadata.php
+     *
+     * @param BatchGetDocumentsMetadataRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchGetDocumentsMetadataResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchGetDocumentsMetadata(
+        BatchGetDocumentsMetadataRequest $request,
+        array $callOptions = []
+    ): BatchGetDocumentsMetadataResponse {
+        return $this->startApiCall('BatchGetDocumentsMetadata', $request, $callOptions)->wait();
     }
 
     /**

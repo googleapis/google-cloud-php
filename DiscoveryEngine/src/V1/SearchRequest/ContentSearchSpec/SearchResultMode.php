@@ -8,11 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Specifies the search result mode. If unspecified, the
- * search result mode is based on
- * [DataStore.DocumentProcessingConfig.chunking_config][]:
- * * If [DataStore.DocumentProcessingConfig.chunking_config][] is specified,
- *   it defaults to `CHUNKS`.
- * * Otherwise, it defaults to `DOCUMENTS`.
+ * search result mode defaults to `DOCUMENTS`.
  *
  * Protobuf type <code>google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode</code>
  */

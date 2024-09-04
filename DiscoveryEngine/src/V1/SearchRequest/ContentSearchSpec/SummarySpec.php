@@ -77,6 +77,16 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      */
     protected $ignore_non_summary_seeking_query = false;
     /**
+     * Specifies whether to filter out queries that have low relevance. The
+     * default value is `false`.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true`, only queries with
+     * high relevance search results will generate answers.
+     *
+     * Generated from protobuf field <code>bool ignore_low_relevant_content = 9;</code>
+     */
+    protected $ignore_low_relevant_content = false;
+    /**
      * If specified, the spec will be used to modify the prompt provided to
      * the LLM.
      *
@@ -160,6 +170,12 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           navigational queries. If this field is set to `true`, we skip
      *           generating summaries for non-summary seeking queries and return
      *           fallback messages instead.
+     *     @type bool $ignore_low_relevant_content
+     *           Specifies whether to filter out queries that have low relevance. The
+     *           default value is `false`.
+     *           If this field is set to `false`, all search results are used regardless
+     *           of relevance to generate answers. If set to `true`, only queries with
+     *           high relevance search results will generate answers.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $model_prompt_spec
      *           If specified, the spec will be used to modify the prompt provided to
      *           the LLM.
@@ -356,6 +372,40 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_non_summary_seeking_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether to filter out queries that have low relevance. The
+     * default value is `false`.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true`, only queries with
+     * high relevance search results will generate answers.
+     *
+     * Generated from protobuf field <code>bool ignore_low_relevant_content = 9;</code>
+     * @return bool
+     */
+    public function getIgnoreLowRelevantContent()
+    {
+        return $this->ignore_low_relevant_content;
+    }
+
+    /**
+     * Specifies whether to filter out queries that have low relevance. The
+     * default value is `false`.
+     * If this field is set to `false`, all search results are used regardless
+     * of relevance to generate answers. If set to `true`, only queries with
+     * high relevance search results will generate answers.
+     *
+     * Generated from protobuf field <code>bool ignore_low_relevant_content = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreLowRelevantContent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_low_relevant_content = $var;
 
         return $this;
     }

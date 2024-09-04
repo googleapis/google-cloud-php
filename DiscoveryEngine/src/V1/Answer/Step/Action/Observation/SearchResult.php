@@ -48,9 +48,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     /**
      * Data representation.
      * The structured JSON data for the document.
-     * It's populated from the struct data from the Document (code
-     * pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
-     * (code pointer: http://shortn/_Ipo6KFFGBL).
+     * It's populated from the struct data from the Document, or the
+     * Chunk in search result.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 6;</code>
      */
@@ -77,9 +76,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $struct_data
      *           Data representation.
      *           The structured JSON data for the document.
-     *           It's populated from the struct data from the Document (code
-     *           pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
-     *           (code pointer: http://shortn/_Ipo6KFFGBL).
+     *           It's populated from the struct data from the Document, or the
+     *           Chunk in search result.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,9 +222,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     /**
      * Data representation.
      * The structured JSON data for the document.
-     * It's populated from the struct data from the Document (code
-     * pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
-     * (code pointer: http://shortn/_Ipo6KFFGBL).
+     * It's populated from the struct data from the Document, or the
+     * Chunk in search result.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 6;</code>
      * @return \Google\Protobuf\Struct|null
@@ -249,9 +246,8 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     /**
      * Data representation.
      * The structured JSON data for the document.
-     * It's populated from the struct data from the Document (code
-     * pointer: http://shortn/_objzAfIiHq), or the Chunk in search result
-     * (code pointer: http://shortn/_Ipo6KFFGBL).
+     * It's populated from the struct data from the Document, or the
+     * Chunk in search result.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 6;</code>
      * @param \Google\Protobuf\Struct $var
