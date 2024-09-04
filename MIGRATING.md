@@ -9,8 +9,8 @@
 
 ## WHAT are the new Cloud Clients?
 
-The new Cloud Clients in the namespace `\Client\`, whereas the previous clients
-are one directory above that with the same name. For example:
+The new Cloud Clients are in the namespace `\Client\`, whereas the previous
+clients are one directory above with the same name. For example:
 
 ```php
 // This is the "new" client
