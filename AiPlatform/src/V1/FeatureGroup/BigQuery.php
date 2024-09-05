@@ -30,6 +30,12 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      */
     private $entity_id_columns;
     /**
+     * Optional. Set if the data source is not a time-series.
+     *
+     * Generated from protobuf field <code>bool static_data_source = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $static_data_source = false;
+    /**
      * Optional. If the source is a time-series source, this can be set to
      * control how downstream sources (ex:
      * [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
@@ -39,6 +45,22 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureGroup.BigQuery.TimeSeries time_series = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $time_series = null;
+    /**
+     * Optional. If set, all feature values will be fetched
+     * from a single row per unique entityId including nulls.
+     * If not set, will collapse all rows for each unique entityId into a singe
+     * row with any non-null values if present, if no non-null values are
+     * present will sync null.
+     * ex: If source has schema
+     * `(entity_id, feature_timestamp, f0, f1)` and the following rows:
+     * `(e1, 2020-01-01T10:00:00.123Z, 10, 15)`
+     * `(e1, 2020-02-01T10:00:00.123Z, 20, null)`
+     * If dense is set, `(e1, 20, null)` is synced to online stores. If dense is
+     * not set, `(e1, 20, 15)` is synced to online stores.
+     *
+     * Generated from protobuf field <code>bool dense = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dense = false;
 
     /**
      * Constructor.
@@ -52,12 +74,26 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_id_columns
      *           Optional. Columns to construct entity_id / row keys.
      *           If not provided defaults to `entity_id`.
+     *     @type bool $static_data_source
+     *           Optional. Set if the data source is not a time-series.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureGroup\BigQuery\TimeSeries $time_series
      *           Optional. If the source is a time-series source, this can be set to
      *           control how downstream sources (ex:
      *           [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
      *           time-series sources. If not set, will treat the source as a time-series
      *           source with `feature_timestamp` as timestamp column and no scan boundary.
+     *     @type bool $dense
+     *           Optional. If set, all feature values will be fetched
+     *           from a single row per unique entityId including nulls.
+     *           If not set, will collapse all rows for each unique entityId into a singe
+     *           row with any non-null values if present, if no non-null values are
+     *           present will sync null.
+     *           ex: If source has schema
+     *           `(entity_id, feature_timestamp, f0, f1)` and the following rows:
+     *           `(e1, 2020-01-01T10:00:00.123Z, 10, 15)`
+     *           `(e1, 2020-02-01T10:00:00.123Z, 20, null)`
+     *           If dense is set, `(e1, 20, null)` is synced to online stores. If dense is
+     *           not set, `(e1, 20, 15)` is synced to online stores.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,6 +168,32 @@ class BigQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Set if the data source is not a time-series.
+     *
+     * Generated from protobuf field <code>bool static_data_source = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getStaticDataSource()
+    {
+        return $this->static_data_source;
+    }
+
+    /**
+     * Optional. Set if the data source is not a time-series.
+     *
+     * Generated from protobuf field <code>bool static_data_source = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStaticDataSource($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->static_data_source = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. If the source is a time-series source, this can be set to
      * control how downstream sources (ex:
      * [FeatureView][google.cloud.aiplatform.v1.FeatureView] ) will treat
@@ -171,6 +233,52 @@ class BigQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureGroup\BigQuery\TimeSeries::class);
         $this->time_series = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, all feature values will be fetched
+     * from a single row per unique entityId including nulls.
+     * If not set, will collapse all rows for each unique entityId into a singe
+     * row with any non-null values if present, if no non-null values are
+     * present will sync null.
+     * ex: If source has schema
+     * `(entity_id, feature_timestamp, f0, f1)` and the following rows:
+     * `(e1, 2020-01-01T10:00:00.123Z, 10, 15)`
+     * `(e1, 2020-02-01T10:00:00.123Z, 20, null)`
+     * If dense is set, `(e1, 20, null)` is synced to online stores. If dense is
+     * not set, `(e1, 20, 15)` is synced to online stores.
+     *
+     * Generated from protobuf field <code>bool dense = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDense()
+    {
+        return $this->dense;
+    }
+
+    /**
+     * Optional. If set, all feature values will be fetched
+     * from a single row per unique entityId including nulls.
+     * If not set, will collapse all rows for each unique entityId into a singe
+     * row with any non-null values if present, if no non-null values are
+     * present will sync null.
+     * ex: If source has schema
+     * `(entity_id, feature_timestamp, f0, f1)` and the following rows:
+     * `(e1, 2020-01-01T10:00:00.123Z, 10, 15)`
+     * `(e1, 2020-02-01T10:00:00.123Z, 20, null)`
+     * If dense is set, `(e1, 20, null)` is synced to online stores. If dense is
+     * not set, `(e1, 20, 15)` is synced to online stores.
+     *
+     * Generated from protobuf field <code>bool dense = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDense($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dense = $var;
 
         return $this;
     }
