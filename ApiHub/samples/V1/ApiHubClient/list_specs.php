@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
 use Google\Cloud\ApiHub\V1\ListSpecsRequest;
-use Google\Cloud\ApiHub\V1\Spec;
 
 /**
  * List specs corresponding to a particular API resource.
@@ -51,7 +50,6 @@ function list_specs_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $apiHubClient->listSpecs($request);
 
-        /** @var Spec $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
