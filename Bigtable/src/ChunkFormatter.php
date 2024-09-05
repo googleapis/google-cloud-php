@@ -228,7 +228,7 @@ class ChunkFormatter implements \IteratorAggregate
     {
         if ($this->originalRowsLimit) {
             $request->setRowsLimit($this->originalRowsLimit - $this->numberOfRowsRead);
-            if ($this->numberOfRowsRead == $this->originalRowsLimit) {
+            if ($this->numberOfRowsRead === $this->originalRowsLimit) {
                 $options['requestCompleted'] = true;
             }
         }
