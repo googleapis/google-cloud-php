@@ -54,6 +54,8 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
      * layout parsing are supported.
      * * `pptx`: Override parsing config for PPTX files, only digital parsing and
      * layout parsing are supported.
+     * * `xlsx`: Override parsing config for XLSX files, only digital parsing and
+     * layout parsing are supported.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig> parsing_config_overrides = 5;</code>
      */
@@ -86,6 +88,8 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
      *           * `docx`: Override parsing config for DOCX files, only digital parsing and
      *           layout parsing are supported.
      *           * `pptx`: Override parsing config for PPTX files, only digital parsing and
+     *           layout parsing are supported.
+     *           * `xlsx`: Override parsing config for XLSX files, only digital parsing and
      *           layout parsing are supported.
      * }
      */
@@ -213,6 +217,8 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
      * layout parsing are supported.
      * * `pptx`: Override parsing config for PPTX files, only digital parsing and
      * layout parsing are supported.
+     * * `xlsx`: Override parsing config for XLSX files, only digital parsing and
+     * layout parsing are supported.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig> parsing_config_overrides = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -232,6 +238,8 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
      * * `docx`: Override parsing config for DOCX files, only digital parsing and
      * layout parsing are supported.
      * * `pptx`: Override parsing config for PPTX files, only digital parsing and
+     * layout parsing are supported.
+     * * `xlsx`: Override parsing config for XLSX files, only digital parsing and
      * layout parsing are supported.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig> parsing_config_overrides = 5;</code>
