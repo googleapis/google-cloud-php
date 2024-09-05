@@ -29,12 +29,10 @@ jobs:
       config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php@exclude-patterns
       exclude-patterns: |
         [
-          "*/samples",
-          "*/src/V[0-9]+",
-          "*/src/*/V[0-9]+",
-          "*/src/*/*/V[0-9]+",
-          "*/tests/*/V[0-9]+",
-          "*/tests/*/*/V[0-9]+",
+          "#.*/src/V[0-9]+#",
+          "#.*/(src|tests)/.*/V[0-9]+#",
+          "#.*/samples#",
+          "#.*/metadata#",
           "AccessContextManager/src/Type",
           "Asset/external",
           "BigQueryDataExchange/src/Common",
@@ -46,12 +44,11 @@ jobs:
           "vendor",
           "dev",
           "docs",
-          "*/metadata",
           "Firestore/tests/Conformance",
           "tests/Component/TestComposerInstall.php",
           "CommonProtos",
           "Translate/src/TranslateClient.php",
-          "Translate/src/Connection/*"
+          "#Translate/src/Connection/.*#"
         ]
 
   staticanalysis:
