@@ -142,7 +142,7 @@ class ChunkFormatter implements \IteratorAggregate
         $this->gapicClient = $gapicClient;
         $this->request = $request;
         $this->options = $options;
-        
+
         if ($request->getRowsLimit()) {
             $this->originalRowsLimit = $request->getRowsLimit();
         }
@@ -228,6 +228,9 @@ class ChunkFormatter implements \IteratorAggregate
     {
         if ($this->originalRowsLimit) {
             $request->setRowsLimit($this->originalRowsLimit - $this->numberOfRowsRead);
+            if ($this->numberOfRowsRead === $this->originalRowsLimit) {
+                $options['requestCompleted'] = true;
+            }
         }
 
         if ($request->hasRows()) {
