@@ -24,13 +24,13 @@ class Strategy
      */
     const STRATEGY_UNSPECIFIED = 0;
     /**
-     * Regular on-demand provisioning strategy.
+     * Deprecated. Regular on-demand provisioning strategy.
      *
      * Generated from protobuf enum <code>ON_DEMAND = 1 [deprecated = true];</code>
      */
     const ON_DEMAND = 1;
     /**
-     * Low cost by making potential use of spot resources.
+     * Deprecated. Low cost by making potential use of spot resources.
      *
      * Generated from protobuf enum <code>LOW_COST = 2 [deprecated = true];</code>
      */
@@ -47,6 +47,12 @@ class Strategy
      * Generated from protobuf enum <code>SPOT = 4;</code>
      */
     const SPOT = 4;
+    /**
+     * Flex Start strategy uses DWS to queue for resources.
+     *
+     * Generated from protobuf enum <code>FLEX_START = 6;</code>
+     */
+    const FLEX_START = 6;
 
     private static $valueToName = [
         self::STRATEGY_UNSPECIFIED => 'STRATEGY_UNSPECIFIED',
@@ -54,6 +60,7 @@ class Strategy
         self::LOW_COST => 'LOW_COST',
         self::STANDARD => 'STANDARD',
         self::SPOT => 'SPOT',
+        self::FLEX_START => 'FLEX_START',
     ];
 
     public static function name($value)
