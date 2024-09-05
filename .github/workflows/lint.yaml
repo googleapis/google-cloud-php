@@ -30,25 +30,22 @@ jobs:
       exclude-patterns: |
         [
           "#.*/src/V[0-9]+#",
-          "#.*/(src|tests)/.*/V[0-9]+#",
-          "#.*/samples#",
-          "#.*/metadata#",
+          "#.*/src/.*/V[0-9]+#",
+          "#.*/(tests|samples|metadata)#",
+          "vendor",
+          "dev",
+          "docs",
           "AccessContextManager/src/Type",
           "Asset/external",
           "BigQueryDataExchange/src/Common",
+          "CommonProtos",
           "Core/src/Testing",
           "GSuiteAddOns/external",
           "OsLogin/src/Common",
           "LongRunning/src/ApiCore/LongRunning",
           "LongRunning/src/LongRunning",
-          "vendor",
-          "dev",
-          "docs",
-          "Firestore/tests/Conformance",
-          "tests/Component/TestComposerInstall.php",
-          "CommonProtos",
-          "Translate/src/TranslateClient.php",
-          "#Translate/src/Connection/.*#"
+          "Translate/src/Connection",
+          "Translate/src/TranslateClient.php"
         ]
 
   staticanalysis:
