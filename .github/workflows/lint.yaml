@@ -21,6 +21,11 @@ jobs:
       run: composer global require "squizlabs/php_codesniffer:3.*"
     - name: Run PHPCS Code Style Checker
       run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
+
+  style2:
+    name: PHP CS Fixer
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml
+
   staticanalysis:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
