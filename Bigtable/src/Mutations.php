@@ -49,7 +49,7 @@ class Mutations
      */
     public function upsert($family, $qualifier, $value, $timeStamp = null)
     {
-        $mutationSetCell = (new SetCell)
+        $mutationSetCell = (new SetCell())
             ->setFamilyName($family)
             ->setColumnQualifier($qualifier)
             ->setValue($value);
@@ -63,7 +63,7 @@ class Mutations
         } else {
             $mutationSetCell->setTimestampMicros($timeStamp);
         }
-        $this->mutations[] = (new Mutation)->setSetCell($mutationSetCell);
+        $this->mutations[] = (new Mutation())->setSetCell($mutationSetCell);
         return $this;
     }
 
@@ -76,9 +76,9 @@ class Mutations
      */
     public function deleteFromFamily($family)
     {
-        $this->mutations[] = (new Mutation)
+        $this->mutations[] = (new Mutation())
             ->setDeleteFromFamily(
-                (new DeleteFromFamily)->setFamilyName($family)
+                (new DeleteFromFamily())->setFamilyName($family)
             );
         return $this;
     }
@@ -97,11 +97,11 @@ class Mutations
      */
     public function deleteFromColumn($family, $qualifier, array $timeRange = [])
     {
-        $deleteFromColumn = (new DeleteFromColumn)
+        $deleteFromColumn = (new DeleteFromColumn())
             ->setFamilyName($family)
             ->setColumnQualifier($qualifier);
         if (!empty($timeRange)) {
-            $timestampRange = new TimestampRange;
+            $timestampRange = new TimestampRange();
             if (isset($timeRange['start'])) {
                 $timestampRange->setStartTimestampMicros($timeRange['start']);
             }
@@ -110,7 +110,7 @@ class Mutations
             }
             $deleteFromColumn->setTimeRange($timestampRange);
         }
-        $this->mutations[] = (new Mutation)->setDeleteFromColumn($deleteFromColumn);
+        $this->mutations[] = (new Mutation())->setDeleteFromColumn($deleteFromColumn);
         return $this;
     }
 
@@ -121,7 +121,7 @@ class Mutations
      */
     public function deleteRow()
     {
-        $this->mutations[] = (new Mutation)->setDeleteFromRow(new DeleteFromRow);
+        $this->mutations[] = (new Mutation())->setDeleteFromRow(new DeleteFromRow());
         return $this;
     }
 

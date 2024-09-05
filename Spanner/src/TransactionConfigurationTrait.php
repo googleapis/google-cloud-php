@@ -82,7 +82,7 @@ trait TransactionConfigurationTrait
         if (isset($requestOptions['transaction']['singleUse']) || (
             isset($requestOptions['transactionContext']) &&
             $requestOptions['transactionContext'] == SessionPoolInterface::CONTEXT_READ
-            ) || isset($requestOptions['transactionOptions']['readOnly'])
+        ) || isset($requestOptions['transactionOptions']['readOnly'])
         ) {
             if (isset($clientOptions['includeReplicas'])) {
                 return ['includeReplicas' => $clientOptions['includeReplicas']];

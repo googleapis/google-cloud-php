@@ -36,12 +36,12 @@ trait FormatterTrait
         }
 
         list($usec, $sec) = explode(' ', microtime());
-        $usec = (int)(((float)$usec)*1000000000);
-        $sec = (int)$sec;
+        $usec = (int) (((float) $usec) * 1000000000);
+        $sec = (int) $sec;
 
         $payload = [
             'message' => $message,
-            'timestamp'=> ['seconds' => $sec, 'nanos' => $usec],
+            'timestamp' => ['seconds' => $sec, 'nanos' => $usec],
             'thread' => '',
             'severity' => $record['level_name'],
         ];

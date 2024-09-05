@@ -125,7 +125,7 @@ class Bootstrap
      */
     public static function exceptionHandler($ex)
     {
-        $message = sprintf('PHP Notice: %s', (string)$ex);
+        $message = sprintf('PHP Notice: %s', (string) $ex);
         if (self::$psrLogger) {
             $service = self::$psrLogger->getMetadataProvider()->serviceId();
             $version = self::$psrLogger->getMetadataProvider()->versionId();

@@ -18,24 +18,24 @@
 namespace Google\Cloud\Firestore;
 
 if (false) {
-/**
- * Enqueue and write multiple mutations to Cloud Firestore.
- *
- * This class may be used directly for multiple non-transactional writes. To
- * run changes in a transaction (with automatic retry/rollback on failure),
- * use {@see \Google\Cloud\Firestore\Transaction}. Single modifications can be
- * made using the various methods on {@see \Google\Cloud\Firestore\DocumentReference}.
- *
- * Example:
- * ```
- * use Google\Cloud\Firestore\FirestoreClient;
- *
- * $firestore = new FirestoreClient();
- * $batch = $firestore->batch();
- * ```
- * This class is deprecated. Use Google\Cloud\Firestore\BulkWriter instead.
- * @deprecated
- */
+    /**
+     * Enqueue and write multiple mutations to Cloud Firestore.
+     *
+     * This class may be used directly for multiple non-transactional writes. To
+     * run changes in a transaction (with automatic retry/rollback on failure),
+     * use {@see \Google\Cloud\Firestore\Transaction}. Single modifications can be
+     * made using the various methods on {@see \Google\Cloud\Firestore\DocumentReference}.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\FirestoreClient;
+     *
+     * $firestore = new FirestoreClient();
+     * $batch = $firestore->batch();
+     * ```
+     * This class is deprecated. Use Google\Cloud\Firestore\BulkWriter instead.
+     * @deprecated
+     */
     class WriteBatch
     {
     }

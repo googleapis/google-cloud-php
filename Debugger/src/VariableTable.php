@@ -273,7 +273,7 @@ class VariableTable
 
     private function truncatedStringValue($value)
     {
-        $ret = (string)$value;
+        $ret = (string) $value;
         if (strlen($ret) > $this->maxValueLength) {
             $ret = substr($ret, 0, $this->maxValueLength - 3) . '...';
         }

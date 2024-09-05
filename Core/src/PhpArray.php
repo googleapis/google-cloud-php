@@ -18,10 +18,10 @@
 namespace Google\Cloud\Core;
 
 use DrSlump\Protobuf;
-use google\protobuf\Value;
 use google\protobuf\ListValue;
 use google\protobuf\NullValue;
 use google\protobuf\Struct;
+use google\protobuf\Value;
 
 /**
  * Extend the Protobuf-PHP array codec to allow messages to match the format
@@ -86,7 +86,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
             if ($field->isRepeated()) {
                 // Make sure the value is an array of values
-                $v = is_array($v) ? $v : array($v);
+                $v = is_array($v) ? $v : [$v];
                 $arr = [];
 
                 foreach ($v as $k => $vv) {
@@ -145,7 +145,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
             if ($field->isRepeated()) {
                 // Make sure the value is an array of values
-                $v = is_array($v) && is_int(key($v)) ? $v : array($v);
+                $v = is_array($v) && is_int(key($v)) ? $v : [$v];
                 foreach ($v as $k => $vv) {
                     $v[$k] = $this->filterValue($vv, $field);
                 }

@@ -50,7 +50,7 @@ class SigningHelper
     {
         static $helper;
         if (!$helper) {
-            $helper = new static;
+            $helper = new static();
         }
 
         return $helper;
@@ -169,7 +169,7 @@ class SigningHelper
 
         $signedHeaders = [];
         foreach ($headers as $name => $value) {
-            $signedHeaders[] = $name .':'. $value;
+            $signedHeaders[] = $name . ':' . $value;
         }
 
         // Push the headers onto the end of the signing string.

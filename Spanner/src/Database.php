@@ -28,16 +28,14 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
@@ -294,7 +292,7 @@ class Database
      */
     public function backups(array $options = [])
     {
-        $filter = "database:" . $this->name();
+        $filter = 'database:' . $this->name();
 
         if (isset($options['filter'])) {
             $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
@@ -2107,9 +2105,10 @@ class Database
     {
         try {
             $this->close();
-        //@codingStandardsIgnoreStart
-        //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {}
+            //@codingStandardsIgnoreStart
+            //@codeCoverageIgnoreStart
+        } catch (\Exception $ex) {
+        }
         //@codeCoverageIgnoreEnd
         //@codingStandardsIgnoreStart
     }
@@ -2264,7 +2263,7 @@ class Database
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

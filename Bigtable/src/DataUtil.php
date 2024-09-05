@@ -34,7 +34,7 @@ class DataUtil
     public static function isSystemLittleEndian()
     {
         if (self::$isLittleEndian === null) {
-            self::$isLittleEndian = (pack("P", 2) === pack("Q", 2));
+            self::$isLittleEndian = (pack('P', 2) === pack('Q', 2));
         }
         return self::$isLittleEndian;
     }
@@ -75,7 +75,7 @@ class DataUtil
                 )
             );
         }
-        $bytes = pack("J", $intValue);
+        $bytes = pack('J', $intValue);
         return $bytes;
     }
 
@@ -94,6 +94,6 @@ class DataUtil
         if (self::isSystemLittleEndian()) {
             $bytes = strrev($bytes);
         }
-        return unpack("q", $bytes)[1];
+        return unpack('q', $bytes)[1];
     }
 }

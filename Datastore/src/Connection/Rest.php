@@ -129,7 +129,7 @@ class Rest implements ConnectionInterface
             foreach ($args['aggregationQuery']['aggregations'] as &$aggregation) {
                 $aggregation = array_map(
                     fn ($item) => is_array($item) && count($item) === 0
-                        ? new \stdClass
+                        ? new \stdClass()
                         : $item,
                     $aggregation
                 );

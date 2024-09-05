@@ -37,7 +37,7 @@ trait RegexTrait
     private function buildRegexFilter($value, $setter)
     {
         return new SimpleFilter(
-            (new RowFilter)->$setter($value)
+            (new RowFilter())->$setter($value)
         );
     }
 

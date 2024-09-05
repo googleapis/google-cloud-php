@@ -17,8 +17,8 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Exception\ServiceException;
-use SessionHandlerInterface;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use SessionHandlerInterface;
 
 /**
  * Custom session handler backed by Cloud Firestore.

@@ -17,10 +17,9 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Cloud\Core\Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Rpc\Code;
 
 /**
@@ -77,7 +76,7 @@ class GrpcRequestWrapper
 
         $config += [
             'authHttpHandler' => null,
-            'serializer' => new Serializer,
+            'serializer' => new Serializer(),
             'grpcOptions' => []
         ];
 

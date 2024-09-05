@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Datastore\Query;
 
-use Google\Cloud\Datastore\Query\Query;
-
 /**
  * Represents an interface to create composite and property filters for
  * Google\Cloud\Datastore\Query\Query via static methods.

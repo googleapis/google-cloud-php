@@ -18,17 +18,17 @@
 namespace Google\Cloud\Firestore\Connection;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\EmulatorTrait;
-use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\FirestoreClient;
 use Google\Cloud\Firestore\V1\StructuredAggregationQuery;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
-use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
+use Google\Cloud\Firestore\V1\Write;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
@@ -153,13 +153,13 @@ class Grpc implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        $rw = new ReadWrite;
+        $rw = new ReadWrite();
         $retry = $this->pluck('retryTransaction', $args, false);
         if ($retry) {
             $rw->setRetryTransaction($retry);
         }
 
-        $args['options'] = new TransactionOptions;
+        $args['options'] = new TransactionOptions();
         $args['options']->setReadWrite($rw);
 
         return $this->send([$this->firestore, 'beginTransaction'], [
@@ -176,7 +176,7 @@ class Grpc implements ConnectionInterface
     {
         $writes = $this->pluck('writes', $args);
         foreach ($writes as $idx => $write) {
-            $writes[$idx] = $this->serializer->decodeMessage(new Write, $write);
+            $writes[$idx] = $this->serializer->decodeMessage(new Write(), $write);
         }
 
         return $this->send([$this->firestore, 'commit'], [
@@ -195,7 +195,7 @@ class Grpc implements ConnectionInterface
         $writes = $this->pluck('writes', $args);
         foreach ($writes as $idx => $write) {
             $args['writes'][$idx] = $this->serializer->decodeMessage(
-                new Write,
+                new Write(),
                 $write
             );
         }
@@ -259,7 +259,7 @@ class Grpc implements ConnectionInterface
     public function runQuery(array $args)
     {
         $args['structuredQuery'] = $this->serializer->decodeMessage(
-            new StructuredQuery,
+            new StructuredQuery(),
             $this->pluck('structuredQuery', $args)
         );
         $args = $this->decodeTimestamp($args);
@@ -283,7 +283,7 @@ class Grpc implements ConnectionInterface
             );
         }
         $args['structuredAggregationQuery'] = $this->serializer->decodeMessage(
-            new StructuredAggregationQuery,
+            new StructuredAggregationQuery(),
             $this->pluck('structuredAggregationQuery', $args)
         );
 

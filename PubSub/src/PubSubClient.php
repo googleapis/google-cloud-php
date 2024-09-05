@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
@@ -35,12 +36,10 @@ use Google\Cloud\PubSub\V1\ListSchemasRequest;
 use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\ListTopicsRequest;
-use InvalidArgumentException;
 use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
 use Google\Cloud\PubSub\V1\ValidateMessageRequest;
 use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
-use Google\ApiCore\ClientOptionsTrait;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -183,7 +182,7 @@ class PubSubClient
             'transportConfig' => [
                 'grpc' => [
                     // increase default limit to 4MB to prevent metadata exhausted errors
-                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
+                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024, ]
                 ]
             ]
         ];

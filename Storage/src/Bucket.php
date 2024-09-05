@@ -30,7 +30,6 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
-use Google\Cloud\Storage\SigningHelper;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\MimeType;
 use GuzzleHttp\Psr7\Utils;

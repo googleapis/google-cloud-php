@@ -45,7 +45,7 @@ class ReadModifyWriteRowRules
      */
     public function append($familyName, $qualifier, $value)
     {
-        $this->rules[] = (new ReadModifyWriteRule)
+        $this->rules[] = (new ReadModifyWriteRule())
             ->setFamilyName($familyName)
             ->setColumnQualifier($qualifier)
             ->setAppendValue($value);
@@ -65,7 +65,7 @@ class ReadModifyWriteRowRules
      */
     public function increment($familyName, $qualifier, $amount)
     {
-        $this->rules[] = (new ReadModifyWriteRule)
+        $this->rules[] = (new ReadModifyWriteRule())
             ->setFamilyName($familyName)
             ->setColumnQualifier($qualifier)
             ->setIncrementAmount($amount);

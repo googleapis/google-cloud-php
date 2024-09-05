@@ -19,11 +19,10 @@ namespace Google\Cloud\Core\Iam;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Iam\PolicyBuilder;
-use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use InvalidArgumentException;
@@ -152,7 +151,7 @@ class IamManager
         }
 
         $policy = $this->serializer->decodeMessage(
-            new Policy,
+            new Policy(),
             $policy
         );
 

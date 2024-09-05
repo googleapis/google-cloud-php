@@ -182,7 +182,7 @@ class ResumableStream implements \IteratorAggregate
         return isset(self::$retryableStatusCodes[$code]);
     }
 
-    private function getMaxRetries(array $options) : int
+    private function getMaxRetries(array $options): int
     {
         $retrySettings = $options['retrySettings'] ?? [];
 

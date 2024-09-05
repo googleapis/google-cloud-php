@@ -19,9 +19,6 @@ namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\GeoPoint;
-use Google\Cloud\Datastore\Key;
 
 /**
  * Utility methods for mapping between datastore and {@see \Google\Cloud\Datastore\Entity}.
@@ -329,7 +326,6 @@ class EntityMapper
                 break;
         }
 
-
         return $result;
     }
 
@@ -413,7 +409,7 @@ class EntityMapper
                 ];
                 break;
 
-            //@codeCoverageIgnoreStart
+                //@codeCoverageIgnoreStart
             case 'unknown type':
                 throw new \InvalidArgumentException(sprintf(
                     'Unknown type for `%s',
@@ -427,7 +423,7 @@ class EntityMapper
                     $value
                 ));
                 break;
-            //@codeCoverageIgnoreEnd
+                //@codeCoverageIgnoreEnd
         }
 
         if ($exclude) {

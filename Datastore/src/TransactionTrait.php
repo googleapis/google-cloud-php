@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Query\AggregationQuery;
+use Google\Cloud\Datastore\Query\QueryInterface;
 
 /**
  * Common operations for datastore transactions.

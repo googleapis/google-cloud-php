@@ -105,7 +105,7 @@ class ValueFilter
     public function strip()
     {
         return new SimpleFilter(
-            (new RowFilter)->setStripValueTransformer(true)
+            (new RowFilter())->setStripValueTransformer(true)
         );
     }
 }

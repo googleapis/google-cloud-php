@@ -18,22 +18,20 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
-use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
-use Google\Cloud\Bigtable\V2\Row;
-use Google\Cloud\Bigtable\V2\RowRange;
-use Google\Cloud\Bigtable\V2\RowSet;
-use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\Row;
+use Google\Cloud\Bigtable\V2\RowRange;
+use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Rpc\Code;
@@ -216,7 +214,7 @@ class Table
     {
         $entries = [];
         foreach ($rows as $rowKey => $families) {
-            $mutations = new Mutations;
+            $mutations = new Mutations();
             foreach ($families as $family => $qualifiers) {
                 foreach ($qualifiers as $qualifier => $value) {
                     if (isset($value['timeStamp'])) {
@@ -308,7 +306,7 @@ class Table
 
         if ($ranges || $rowKeys) {
             $data['rows'] = $this->serializer->decodeMessage(
-                new RowSet,
+                new RowSet(),
                 [
                     'rowKeys' => $rowKeys,
                     'rowRanges' => $ranges
@@ -520,7 +518,7 @@ class Table
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['table_name'] = $this->tableName;
         $data['row_key'] = $rowKey;
-        $request = $this->serializer->decodeMessage(new CheckAndMutateRowRequest, $data);
+        $request = $this->serializer->decodeMessage(new CheckAndMutateRowRequest(), $data);
 
         return $this->gapicClient->checkAndMutateRow(
             $request,
@@ -641,7 +639,7 @@ class Table
 
     private function toEntry($rowKey, Mutations $mutations)
     {
-        return (new Entry)
+        return (new Entry())
             ->setRowKey($rowKey)
             ->setMutations($mutations->toProto());
     }
