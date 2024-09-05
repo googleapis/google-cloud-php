@@ -260,11 +260,11 @@ class SmartRetriesTest extends TestCase
                 )
             );
         $this->bigtableClient->readRows(
-                Argument::that(function ($request) use (&$allowedRowsLimit) {
-                    return $request->getRowsLimit() === 1;
-                }),
-                Argument::type('array')
-            )
+            Argument::that(function ($request) use (&$allowedRowsLimit) {
+                return $request->getRowsLimit() === 1;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
