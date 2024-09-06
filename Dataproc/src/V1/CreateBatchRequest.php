@@ -20,13 +20,13 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The batch to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Batch batch = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $batch = null;
+    protected $batch = null;
     /**
      * Optional. The ID to use for the batch, which will become the final
      * component of the batch's resource name.
@@ -34,7 +34,7 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string batch_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $batch_id = '';
+    protected $batch_id = '';
     /**
      * Optional. A unique ID used to identify the request. If the service
      * receives two
@@ -49,7 +49,7 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                          $parent  Required. The parent resource where this batch will be created. Please see

@@ -20,7 +20,7 @@ class UpdateSessionTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SessionTemplate session_template = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session_template = null;
+    protected $session_template = null;
 
     /**
      * @param \Google\Cloud\Dataproc\V1\SessionTemplate $sessionTemplate Required. The updated session template.

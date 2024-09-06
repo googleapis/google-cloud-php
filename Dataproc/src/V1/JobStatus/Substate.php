@@ -73,6 +73,4 @@ class Substate
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Substate::class, \Google\Cloud\Dataproc\V1\JobStatus_Substate::class);
 

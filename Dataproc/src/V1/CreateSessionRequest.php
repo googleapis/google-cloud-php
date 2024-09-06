@@ -20,13 +20,13 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The interactive session to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Session session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session = null;
+    protected $session = null;
     /**
      * Required. The ID to use for the session, which becomes the final component
      * of the session's resource name.
@@ -35,7 +35,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session_id = '';
+    protected $session_id = '';
     /**
      * Optional. A unique ID used to identify the request. If the service
      * receives two
@@ -50,7 +50,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                            $parent    Required. The parent resource where this session will be created. Please see

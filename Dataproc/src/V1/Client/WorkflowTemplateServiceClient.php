@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Dataproc\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -49,6 +48,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -100,9 +100,7 @@ final class WorkflowTemplateServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -119,7 +117,8 @@ final class WorkflowTemplateServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/workflow_template_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/workflow_template_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -148,10 +147,31 @@ final class WorkflowTemplateServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -221,8 +241,11 @@ final class WorkflowTemplateServiceClient
      *
      * @return string The formatted project_location_workflow_template resource.
      */
-    public static function projectLocationWorkflowTemplateName(string $project, string $location, string $workflowTemplate): string
-    {
+    public static function projectLocationWorkflowTemplateName(
+        string $project,
+        string $location,
+        string $workflowTemplate
+    ): string {
         return self::getPathTemplate('projectLocationWorkflowTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -240,8 +263,11 @@ final class WorkflowTemplateServiceClient
      *
      * @return string The formatted project_region_workflow_template resource.
      */
-    public static function projectRegionWorkflowTemplateName(string $project, string $region, string $workflowTemplate): string
-    {
+    public static function projectRegionWorkflowTemplateName(
+        string $project,
+        string $region,
+        string $workflowTemplate
+    ): string {
         return self::getPathTemplate('projectRegionWorkflowTemplate')->render([
             'project' => $project,
             'region' => $region,
@@ -429,8 +455,10 @@ final class WorkflowTemplateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createWorkflowTemplate(CreateWorkflowTemplateRequest $request, array $callOptions = []): WorkflowTemplate
-    {
+    public function createWorkflowTemplate(
+        CreateWorkflowTemplateRequest $request,
+        array $callOptions = []
+    ): WorkflowTemplate {
         return $this->startApiCall('CreateWorkflowTemplate', $request, $callOptions)->wait();
     }
 
@@ -535,8 +563,10 @@ final class WorkflowTemplateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function instantiateInlineWorkflowTemplate(InstantiateInlineWorkflowTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function instantiateInlineWorkflowTemplate(
+        InstantiateInlineWorkflowTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('InstantiateInlineWorkflowTemplate', $request, $callOptions)->wait();
     }
 
@@ -581,8 +611,10 @@ final class WorkflowTemplateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function instantiateWorkflowTemplate(InstantiateWorkflowTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function instantiateWorkflowTemplate(
+        InstantiateWorkflowTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('InstantiateWorkflowTemplate', $request, $callOptions)->wait();
     }
 
@@ -608,8 +640,10 @@ final class WorkflowTemplateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listWorkflowTemplates(ListWorkflowTemplatesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listWorkflowTemplates(
+        ListWorkflowTemplatesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListWorkflowTemplates', $request, $callOptions);
     }
 
@@ -636,8 +670,10 @@ final class WorkflowTemplateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateWorkflowTemplate(UpdateWorkflowTemplateRequest $request, array $callOptions = []): WorkflowTemplate
-    {
+    public function updateWorkflowTemplate(
+        UpdateWorkflowTemplateRequest $request,
+        array $callOptions = []
+    ): WorkflowTemplate {
         return $this->startApiCall('UpdateWorkflowTemplate', $request, $callOptions)->wait();
     }
 
@@ -726,8 +762,10 @@ final class WorkflowTemplateServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

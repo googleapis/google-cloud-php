@@ -19,14 +19,14 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of VM instances in the instance group.
      * For [HA
-     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * cluster](/dataproc/docs/concepts/configuring-clusters/high-availability)
      * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
      * For standard cluster [master_config](#FIELDS.master_config) groups,
      * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $num_instances = 0;
+    protected $num_instances = 0;
     /**
      * Output only. The list of instance names. Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
@@ -56,7 +56,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Optional. The Compute Engine machine type used for cluster instances.
      * A full URL, partial URI, or short name are valid. Examples:
@@ -71,20 +71,20 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $machine_type_uri = '';
+    protected $machine_type_uri = '';
     /**
      * Optional. Disk option config settings.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disk_config = null;
+    protected $disk_config = null;
     /**
      * Output only. Specifies that this instance group contains preemptible
      * instances.
      *
      * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_preemptible = false;
+    protected $is_preemptible = false;
     /**
      * Optional. Specifies the preemptibility of the instance group.
      * The default value for master and worker groups is
@@ -94,7 +94,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig.Preemptibility preemptibility = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $preemptibility = 0;
+    protected $preemptibility = 0;
     /**
      * Output only. The config for Compute Engine Instance Group
      * Manager that manages this group.
@@ -102,7 +102,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $managed_group_config = null;
+    protected $managed_group_config = null;
     /**
      * Optional. The Compute Engine accelerator configuration for these
      * instances.
@@ -117,7 +117,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_cpu_platform = '';
+    protected $min_cpu_platform = '';
     /**
      * Optional. The minimum number of primary worker instances to create.
      * If `min_num_instances` is set, cluster creation will succeed if
@@ -134,21 +134,21 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_num_instances = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_num_instances = 0;
+    protected $min_num_instances = 0;
     /**
      * Optional. Instance flexibility Policy allowing a mixture of VM shapes and
      * provisioning models.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $instance_flexibility_policy = null;
+    protected $instance_flexibility_policy = null;
     /**
      * Optional. Configuration to handle the startup of instances during cluster
      * create and update process.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $startup_config = null;
+    protected $startup_config = null;
 
     /**
      * Constructor.
@@ -159,7 +159,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type int $num_instances
      *           Optional. The number of VM instances in the instance group.
      *           For [HA
-     *           cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     *           cluster](/dataproc/docs/concepts/configuring-clusters/high-availability)
      *           [master_config](#FIELDS.master_config) groups, **must be set to 3**.
      *           For standard cluster [master_config](#FIELDS.master_config) groups,
      *           **must be set to 1**.
@@ -243,7 +243,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of VM instances in the instance group.
      * For [HA
-     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * cluster](/dataproc/docs/concepts/configuring-clusters/high-availability)
      * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
      * For standard cluster [master_config](#FIELDS.master_config) groups,
      * **must be set to 1**.
@@ -259,7 +259,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of VM instances in the instance group.
      * For [HA
-     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * cluster](/dataproc/docs/concepts/configuring-clusters/high-availability)
      * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
      * For standard cluster [master_config](#FIELDS.master_config) groups,
      * **must be set to 1**.
