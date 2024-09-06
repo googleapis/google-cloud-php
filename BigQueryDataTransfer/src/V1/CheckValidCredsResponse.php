@@ -20,7 +20,7 @@ class CheckValidCredsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool has_valid_creds = 1;</code>
      */
-    private $has_valid_creds = false;
+    protected $has_valid_creds = false;
 
     /**
      * Constructor.

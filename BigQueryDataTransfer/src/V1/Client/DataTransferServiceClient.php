@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,9 +115,7 @@ final class DataTransferServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -233,8 +231,11 @@ final class DataTransferServiceClient
      *
      * @return string The formatted project_location_transfer_config resource.
      */
-    public static function projectLocationTransferConfigName(string $project, string $location, string $transferConfig): string
-    {
+    public static function projectLocationTransferConfigName(
+        string $project,
+        string $location,
+        string $transferConfig
+    ): string {
         return self::getPathTemplate('projectLocationTransferConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -253,8 +254,12 @@ final class DataTransferServiceClient
      *
      * @return string The formatted project_location_transfer_config_run resource.
      */
-    public static function projectLocationTransferConfigRunName(string $project, string $location, string $transferConfig, string $run): string
-    {
+    public static function projectLocationTransferConfigRunName(
+        string $project,
+        string $location,
+        string $transferConfig,
+        string $run
+    ): string {
         return self::getPathTemplate('projectLocationTransferConfigRun')->render([
             'project' => $project,
             'location' => $location,
@@ -790,8 +795,10 @@ final class DataTransferServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function scheduleTransferRuns(ScheduleTransferRunsRequest $request, array $callOptions = []): ScheduleTransferRunsResponse
-    {
+    public function scheduleTransferRuns(
+        ScheduleTransferRunsRequest $request,
+        array $callOptions = []
+    ): ScheduleTransferRunsResponse {
         return $this->startApiCall('ScheduleTransferRuns', $request, $callOptions)->wait();
     }
 
@@ -820,8 +827,10 @@ final class DataTransferServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startManualTransferRuns(StartManualTransferRunsRequest $request, array $callOptions = []): StartManualTransferRunsResponse
-    {
+    public function startManualTransferRuns(
+        StartManualTransferRunsRequest $request,
+        array $callOptions = []
+    ): StartManualTransferRunsResponse {
         return $this->startApiCall('StartManualTransferRuns', $request, $callOptions)->wait();
     }
 
