@@ -21,7 +21,7 @@ class SensitivityScore extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore.SensitivityScoreLevel score = 1;</code>
      */
-    private $score = 0;
+    protected $score = 0;
 
     /**
      * Constructor.

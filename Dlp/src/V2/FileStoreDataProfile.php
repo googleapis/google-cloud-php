@@ -21,25 +21,25 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource type that was profiled.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 2;</code>
      */
-    private $data_source_type = null;
+    protected $data_source_type = null;
     /**
      * The resource name of the project data profile for this file store.
      *
      * Generated from protobuf field <code>string project_data_profile = 3;</code>
      */
-    private $project_data_profile = '';
+    protected $project_data_profile = '';
     /**
      * The Google Cloud project ID that owns the resource.
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The location of the file store.
      * * Cloud Storage:
@@ -47,7 +47,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_store_location = 5;</code>
      */
-    private $file_store_location = '';
+    protected $file_store_location = '';
     /**
      * For resources that have multiple storage locations, these are those
      * regions. For Cloud Storage this is the list of regions chosen for
@@ -65,76 +65,76 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location_type = 20;</code>
      */
-    private $location_type = '';
+    protected $location_type = '';
     /**
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      */
-    private $file_store_path = '';
+    protected $file_store_path = '';
     /**
      * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 24;</code>
      */
-    private $full_resource = '';
+    protected $full_resource = '';
     /**
      * The snapshot of the configurations used to generate the profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileConfigSnapshot config_snapshot = 7;</code>
      */
-    private $config_snapshot = null;
+    protected $config_snapshot = null;
     /**
      * Success or error status from the most recent profile generation attempt.
      * May be empty if the profile is still being generated.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProfileStatus profile_status = 8;</code>
      */
-    private $profile_status = null;
+    protected $profile_status = null;
     /**
      * State of a profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FileStoreDataProfile.State state = 9;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The last time the profile was generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp profile_last_generated = 10;</code>
      */
-    private $profile_last_generated = null;
+    protected $profile_last_generated = null;
     /**
      * How broadly a resource has been shared.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ResourceVisibility resource_visibility = 11;</code>
      */
-    private $resource_visibility = 0;
+    protected $resource_visibility = 0;
     /**
      * The sensitivity score of this resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 12;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
     /**
      * The data risk level of this resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataRiskLevel data_risk_level = 13;</code>
      */
-    private $data_risk_level = null;
+    protected $data_risk_level = null;
     /**
      * The time the file store was first created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time the file store was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified_time = 15;</code>
      */
-    private $last_modified_time = null;
+    protected $last_modified_time = null;
     /**
      * FileClusterSummary per each cluster.
      *
@@ -168,7 +168,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool file_store_is_empty = 23;</code>
      */
-    private $file_store_is_empty = false;
+    protected $file_store_is_empty = false;
 
     /**
      * Constructor.

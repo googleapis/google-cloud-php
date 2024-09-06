@@ -21,27 +21,27 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The instance where this resource is located. For example: Cloud
      * SQL instance ID.
      *
      * Generated from protobuf field <code>string instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Required. Name of a database within the instance.
      *
      * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Required. Name of a database resource, for example, a table within the
      * database.
      *
      * Generated from protobuf field <code>string database_resource = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database_resource = '';
+    protected $database_resource = '';
 
     /**
      * Constructor.

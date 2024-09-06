@@ -22,7 +22,7 @@ class DiscoveryInspectTemplateModifiedCadence extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency frequency = 1;</code>
      */
-    private $frequency = 0;
+    protected $frequency = 0;
 
     /**
      * Constructor.

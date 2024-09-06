@@ -22,9 +22,9 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):
-     *   `projects/{project_id}`
+     *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -32,19 +32,19 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 8;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
     /**
      * Configuration for the inspector.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
      */
-    private $inspect_config = null;
+    protected $inspect_config = null;
     /**
      * The configuration for specifying what content to redact from images.
      *
@@ -57,13 +57,13 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_findings = 6;</code>
      */
-    private $include_findings = false;
+    protected $include_findings = false;
     /**
      * The content must be PNG, JPEG, SVG or BMP.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ByteContentItem byte_item = 7;</code>
      */
-    private $byte_item = null;
+    protected $byte_item = null;
 
     /**
      * Constructor.
@@ -77,9 +77,9 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *           + Projects scope, location specified:
-     *             `projects/{project_id}/locations/{location_id}`
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Projects scope, no location specified (defaults to global):
-     *             `projects/{project_id}`
+     *             `projects/`<var>PROJECT_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -108,9 +108,9 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):
-     *   `projects/{project_id}`
+     *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -130,9 +130,9 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):
-     *   `projects/{project_id}`
+     *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:

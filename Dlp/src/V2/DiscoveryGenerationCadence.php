@@ -23,13 +23,13 @@ class DiscoveryGenerationCadence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoverySchemaModifiedCadence schema_modified_cadence = 1;</code>
      */
-    private $schema_modified_cadence = null;
+    protected $schema_modified_cadence = null;
     /**
      * Governs when to update data profiles when a table is modified.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryTableModifiedCadence table_modified_cadence = 2;</code>
      */
-    private $table_modified_cadence = null;
+    protected $table_modified_cadence = null;
     /**
      * Governs when to update data profiles when the inspection rules
      * defined by the `InspectTemplate` change.
@@ -37,14 +37,7 @@ class DiscoveryGenerationCadence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 3;</code>
      */
-    private $inspect_template_modified_cadence = null;
-    /**
-     * Frequency at which profiles should be updated, regardless of whether the
-     * underlying resource has changed. Defaults to never.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 4;</code>
-     */
-    private $refresh_frequency = 0;
+    protected $inspect_template_modified_cadence = null;
 
     /**
      * Constructor.
@@ -60,9 +53,6 @@ class DiscoveryGenerationCadence extends \Google\Protobuf\Internal\Message
      *           Governs when to update data profiles when the inspection rules
      *           defined by the `InspectTemplate` change.
      *           If not set, changing the template will not cause a data profile to update.
-     *     @type int $refresh_frequency
-     *           Frequency at which profiles should be updated, regardless of whether the
-     *           underlying resource has changed. Defaults to never.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,34 +168,6 @@ class DiscoveryGenerationCadence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DiscoveryInspectTemplateModifiedCadence::class);
         $this->inspect_template_modified_cadence = $var;
-
-        return $this;
-    }
-
-    /**
-     * Frequency at which profiles should be updated, regardless of whether the
-     * underlying resource has changed. Defaults to never.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 4;</code>
-     * @return int
-     */
-    public function getRefreshFrequency()
-    {
-        return $this->refresh_frequency;
-    }
-
-    /**
-     * Frequency at which profiles should be updated, regardless of whether the
-     * underlying resource has changed. Defaults to never.
-     *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 4;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setRefreshFrequency($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DataProfileUpdateFrequency::class);
-        $this->refresh_frequency = $var;
 
         return $this;
     }

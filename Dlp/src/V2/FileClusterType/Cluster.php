@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Cluster type. Each cluster corresponds to a set of file types.
- * Over time, new types may be added and files may move between clusters.
+ * Over time new types may be added.
  *
  * Protobuf type <code>google.privacy.dlp.v2.FileClusterType.Cluster</code>
  */
@@ -109,6 +109,4 @@ class Cluster
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Cluster::class, \Google\Cloud\Dlp\V2\FileClusterType_Cluster::class);
 

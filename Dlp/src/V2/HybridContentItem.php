@@ -21,13 +21,13 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 1;</code>
      */
-    private $item = null;
+    protected $item = null;
     /**
      * Supplementary information that will be added to each finding.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridFindingDetails finding_details = 2;</code>
      */
-    private $finding_details = null;
+    protected $finding_details = null;
 
     /**
      * Constructor.

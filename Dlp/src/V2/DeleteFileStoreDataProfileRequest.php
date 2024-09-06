@@ -20,7 +20,7 @@ class DeleteFileStoreDataProfileRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. Resource name of the file store data profile. Please see

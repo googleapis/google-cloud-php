@@ -21,9 +21,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):
-     *   `projects/{project_id}`
+     *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -31,7 +31,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Configuration for the de-identification of the content item.
      * Items specified here will override the template referenced by the
@@ -39,7 +39,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig deidentify_config = 2;</code>
      */
-    private $deidentify_config = null;
+    protected $deidentify_config = null;
     /**
      * Configuration for the inspector.
      * Items specified here will override the template referenced by the
@@ -47,7 +47,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 3;</code>
      */
-    private $inspect_config = null;
+    protected $inspect_config = null;
     /**
      * The item to de-identify. Will be treated as text.
      * This value must be of type
@@ -59,7 +59,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 4;</code>
      */
-    private $item = null;
+    protected $item = null;
     /**
      * Template to use. Any configuration directly specified in
      * inspect_config will override those set in the template. Singular fields
@@ -69,7 +69,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string inspect_template_name = 5;</code>
      */
-    private $inspect_template_name = '';
+    protected $inspect_template_name = '';
     /**
      * Template to use. Any configuration directly specified in
      * deidentify_config will override those set in the template. Singular fields
@@ -79,13 +79,13 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deidentify_template_name = 6;</code>
      */
-    private $deidentify_template_name = '';
+    protected $deidentify_template_name = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * Constructor.
@@ -99,9 +99,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *           + Projects scope, location specified:
-     *             `projects/{project_id}/locations/{location_id}`
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Projects scope, no location specified (defaults to global):
-     *             `projects/{project_id}`
+     *             `projects/`<var>PROJECT_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -149,9 +149,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):
-     *   `projects/{project_id}`
+     *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -171,9 +171,9 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):
-     *   `projects/{project_id}`
+     *   `projects/`<var>PROJECT_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:

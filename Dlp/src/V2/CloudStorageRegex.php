@@ -23,7 +23,7 @@ class CloudStorageRegex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id_regex = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $project_id_regex = '';
+    protected $project_id_regex = '';
     /**
      * Optional. Regex to test the bucket name against. If empty, all buckets
      * match. Example: "marketing2021" or "(marketing)\d{4}" will both match the
@@ -31,7 +31,7 @@ class CloudStorageRegex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_name_regex = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bucket_name_regex = '';
+    protected $bucket_name_regex = '';
 
     /**
      * Constructor.

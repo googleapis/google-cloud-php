@@ -20,7 +20,7 @@ class TransformationOverview extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 transformed_bytes = 2;</code>
      */
-    private $transformed_bytes = 0;
+    protected $transformed_bytes = 0;
     /**
      * Transformations applied to the dataset.
      *

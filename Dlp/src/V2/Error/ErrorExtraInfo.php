@@ -59,6 +59,4 @@ class ErrorExtraInfo
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ErrorExtraInfo::class, \Google\Cloud\Dlp\V2\Error_ErrorExtraInfo::class);
 
