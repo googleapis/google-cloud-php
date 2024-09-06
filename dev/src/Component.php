@@ -27,7 +27,7 @@ use RuntimeException;
 class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
-    private const ROOT_DIR = __DIR__ . '/../../';
+    public const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
     private string $packageName;

@@ -139,6 +139,17 @@ class DocFxCommand extends Command
         }
 
         if (file_exists($overviewFile = sprintf('%s/README.md', $component->getPath()))) {
+            // Add Migrating Doc if we are in a V2 component
+            if (str_starts_with(file_get_contents($component->getPath() . '/VERSION'), '2.')) {
+                if (!file_exists($migratingFile = sprintf('%s/MIGRATING.md', $component->getPath()))) {
+                    $migratingFile = Component::ROOT_DIR . '/MIGRATING.md';
+                }
+                $outFile = sprintf('%s/migrating.md', $outDir);
+                file_put_contents($outFile, $overview->getContents());
+                // Add "migrating" as the second item on the TOC (after "overview")
+                array_unshift($tocItems, ['name' => 'Migrating', 'href' => 'migrating.md']);
+            }
+
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
                 $isBeta
