@@ -26,13 +26,13 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes thumbnail = 4;</code>
      */
-    private $thumbnail = '';
+    protected $thumbnail = '';
     /**
      * Feature version.
      *
      * Generated from protobuf field <code>string version = 5;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.
