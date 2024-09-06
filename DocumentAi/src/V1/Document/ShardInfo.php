@@ -22,13 +22,13 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 shard_index = 1;</code>
      */
-    private $shard_index = 0;
+    protected $shard_index = 0;
     /**
      * Total number of shards.
      *
      * Generated from protobuf field <code>int64 shard_count = 2;</code>
      */
-    private $shard_count = 0;
+    protected $shard_count = 0;
     /**
      * The index of the first character in
      * [Document.text][google.cloud.documentai.v1.Document.text] in the overall
@@ -36,7 +36,7 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 text_offset = 3;</code>
      */
-    private $text_offset = 0;
+    protected $text_offset = 0;
 
     /**
      * Constructor.

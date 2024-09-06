@@ -21,19 +21,19 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_selection_mark_detection = 3;</code>
      */
-    private $enable_selection_mark_detection = false;
+    protected $enable_selection_mark_detection = false;
     /**
      * Turn on font identification model and return font style information.
      *
      * Generated from protobuf field <code>bool compute_style_info = 4;</code>
      */
-    private $compute_style_info = false;
+    protected $compute_style_info = false;
     /**
      * Turn on the model that can extract LaTeX math formulas.
      *
      * Generated from protobuf field <code>bool enable_math_ocr = 5;</code>
      */
-    private $enable_math_ocr = false;
+    protected $enable_math_ocr = false;
 
     /**
      * Constructor.

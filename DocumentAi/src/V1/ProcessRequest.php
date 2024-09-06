@@ -31,14 +31,14 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Whether human review should be skipped for this request. Default to
      * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 3;</code>
      */
-    private $skip_human_review = false;
+    protected $skip_human_review = false;
     /**
      * Specifies which fields to include in the
      * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
@@ -47,13 +47,13 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 6;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
     /**
      * Inference-time options for the process API
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
      */
-    private $process_options = null;
+    protected $process_options = null;
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters
@@ -64,12 +64,6 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
-    /**
-     * Optional. Option to remove images from the document.
-     *
-     * Generated from protobuf field <code>bool imageless_mode = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $imageless_mode = false;
     protected $source;
 
     /**
@@ -133,8 +127,6 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints) and can only contain lowercase letters, numeric
      *           characters, underscores, and dashes. International characters are allowed.
      *           Label values are optional. Label keys must start with a letter.
-     *     @type bool $imageless_mode
-     *           Optional. Option to remove images from the document.
      * }
      */
     public function __construct($data = NULL) {
@@ -415,32 +407,6 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Option to remove images from the document.
-     *
-     * Generated from protobuf field <code>bool imageless_mode = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getImagelessMode()
-    {
-        return $this->imageless_mode;
-    }
-
-    /**
-     * Optional. Option to remove images from the document.
-     *
-     * Generated from protobuf field <code>bool imageless_mode = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setImagelessMode($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->imageless_mode = $var;
 
         return $this;
     }

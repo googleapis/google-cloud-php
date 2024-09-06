@@ -22,7 +22,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 13;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Name of the type. It must be unique within the schema file and
      * cannot be a "Common Type".  The following naming conventions are used:
@@ -39,7 +39,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The entity type that this type is derived from.  For now, one and only
      * one should be set.

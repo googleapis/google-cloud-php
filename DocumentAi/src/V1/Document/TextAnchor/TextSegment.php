@@ -26,7 +26,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      */
-    private $start_index = 0;
+    protected $start_index = 0;
     /**
      * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
      * half open end UTF-8 char index in the
@@ -34,7 +34,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>
      */
-    private $end_index = 0;
+    protected $end_index = 0;
 
     /**
      * Constructor.

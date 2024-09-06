@@ -23,19 +23,19 @@ class ReviewDocumentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_destination = 1;</code>
      */
-    private $gcs_destination = '';
+    protected $gcs_destination = '';
     /**
      * The state of the review operation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ReviewDocumentResponse.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The reason why the review is rejected by reviewer.
      *
      * Generated from protobuf field <code>string rejection_reason = 3;</code>
      */
-    private $rejection_reason = '';
+    protected $rejection_reason = '';
 
     /**
      * Constructor.
