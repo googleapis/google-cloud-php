@@ -23,14 +23,14 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 version = 1;</code>
      */
-    private $version = 0;
+    protected $version = 0;
     /**
      * [Output only] The time at which this configuration version was updated in
      * Cloud IoT Core. This timestamp is set by the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cloud_update_time = 2;</code>
      */
-    private $cloud_update_time = null;
+    protected $cloud_update_time = null;
     /**
      * [Output only] The time at which Cloud IoT Core received the
      * acknowledgment from the device, indicating that the device has received
@@ -44,13 +44,13 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp device_ack_time = 3;</code>
      */
-    private $device_ack_time = null;
+    protected $device_ack_time = null;
     /**
      * The device configuration data.
      *
      * Generated from protobuf field <code>bytes binary_data = 4;</code>
      */
-    private $binary_data = '';
+    protected $binary_data = '';
 
     /**
      * Constructor.

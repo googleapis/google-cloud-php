@@ -20,14 +20,14 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The resource path name. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The configuration for notification of telemetry events received from the
      * device. All telemetry events that were successfully published by the
@@ -52,19 +52,19 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.StateNotificationConfig state_notification_config = 7;</code>
      */
-    private $state_notification_config = null;
+    protected $state_notification_config = null;
     /**
      * The MQTT configuration for this device registry.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.MqttConfig mqtt_config = 4;</code>
      */
-    private $mqtt_config = null;
+    protected $mqtt_config = null;
     /**
      * The DeviceService (HTTP) configuration for this device registry.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.HttpConfig http_config = 9;</code>
      */
-    private $http_config = null;
+    protected $http_config = null;
     /**
      * **Beta Feature**
      * The default logging verbosity for activity from devices in this registry.
@@ -72,7 +72,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 11;</code>
      */
-    private $log_level = 0;
+    protected $log_level = 0;
     /**
      * The credentials used to verify the device credentials. No more than 10
      * credentials can be bound to a single registry at a time. The verification

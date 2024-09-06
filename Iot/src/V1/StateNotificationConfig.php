@@ -21,7 +21,7 @@ class StateNotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pubsub_topic_name = 1;</code>
      */
-    private $pubsub_topic_name = '';
+    protected $pubsub_topic_name = '';
 
     /**
      * Constructor.

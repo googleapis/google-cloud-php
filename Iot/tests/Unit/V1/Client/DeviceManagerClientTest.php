@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,7 +79,9 @@ class DeviceManagerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DeviceManagerClient */
@@ -137,12 +139,15 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
@@ -187,9 +192,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $device = new Device();
-        $request = (new CreateDeviceRequest())
-            ->setParent($formattedParent)
-            ->setDevice($device);
+        $request = (new CreateDeviceRequest())->setParent($formattedParent)->setDevice($device);
         $response = $gapicClient->createDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -215,19 +218,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $device = new Device();
-        $request = (new CreateDeviceRequest())
-            ->setParent($formattedParent)
-            ->setDevice($device);
+        $request = (new CreateDeviceRequest())->setParent($formattedParent)->setDevice($device);
         try {
             $gapicClient->createDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -259,9 +263,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deviceRegistry = new DeviceRegistry();
-        $request = (new CreateDeviceRegistryRequest())
-            ->setParent($formattedParent)
-            ->setDeviceRegistry($deviceRegistry);
+        $request = (new CreateDeviceRegistryRequest())->setParent($formattedParent)->setDeviceRegistry($deviceRegistry);
         $response = $gapicClient->createDeviceRegistry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -287,19 +289,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deviceRegistry = new DeviceRegistry();
-        $request = (new CreateDeviceRegistryRequest())
-            ->setParent($formattedParent)
-            ->setDeviceRegistry($deviceRegistry);
+        $request = (new CreateDeviceRegistryRequest())->setParent($formattedParent)->setDeviceRegistry($deviceRegistry);
         try {
             $gapicClient->createDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -326,8 +329,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new DeleteDeviceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeviceRequest())->setName($formattedName);
         $gapicClient->deleteDevice($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -350,17 +352,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new DeleteDeviceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeviceRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -387,8 +391,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new DeleteDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeviceRegistryRequest())->setName($formattedName);
         $gapicClient->deleteDeviceRegistry($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -411,17 +414,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new DeleteDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeviceRegistryRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -456,8 +461,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new GetDeviceRequest())
-            ->setName($formattedName);
+        $request = (new GetDeviceRequest())->setName($formattedName);
         $response = $gapicClient->getDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -481,17 +485,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new GetDeviceRequest())
-            ->setName($formattedName);
+        $request = (new GetDeviceRequest())->setName($formattedName);
         try {
             $gapicClient->getDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -522,8 +528,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new GetDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = (new GetDeviceRegistryRequest())->setName($formattedName);
         $response = $gapicClient->getDeviceRegistry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -547,17 +552,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new GetDeviceRegistryRequest())
-            ->setName($formattedName);
+        $request = (new GetDeviceRegistryRequest())->setName($formattedName);
         try {
             $gapicClient->getDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -588,8 +595,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -613,17 +619,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -650,8 +658,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceConfigVersionsRequest())
-            ->setName($formattedName);
+        $request = (new ListDeviceConfigVersionsRequest())->setName($formattedName);
         $response = $gapicClient->listDeviceConfigVersions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -675,17 +682,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceConfigVersionsRequest())
-            ->setName($formattedName);
+        $request = (new ListDeviceConfigVersionsRequest())->setName($formattedName);
         try {
             $gapicClient->listDeviceConfigVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -710,17 +719,14 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $deviceRegistriesElement = new DeviceRegistry();
-        $deviceRegistries = [
-            $deviceRegistriesElement,
-        ];
+        $deviceRegistries = [$deviceRegistriesElement];
         $expectedResponse = new ListDeviceRegistriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeviceRegistries($deviceRegistries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeviceRegistriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeviceRegistriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDeviceRegistries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -747,17 +753,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeviceRegistriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeviceRegistriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDeviceRegistries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -784,8 +792,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceStatesRequest())
-            ->setName($formattedName);
+        $request = (new ListDeviceStatesRequest())->setName($formattedName);
         $response = $gapicClient->listDeviceStates($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -809,17 +816,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $request = (new ListDeviceStatesRequest())
-            ->setName($formattedName);
+        $request = (new ListDeviceStatesRequest())->setName($formattedName);
         try {
             $gapicClient->listDeviceStates($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -844,17 +853,14 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $devicesElement = new Device();
-        $devices = [
-            $devicesElement,
-        ];
+        $devices = [$devicesElement];
         $expectedResponse = new ListDevicesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDevices($devices);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new ListDevicesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDevicesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDevices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -881,17 +887,19 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $request = (new ListDevicesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDevicesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDevices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -923,9 +931,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
-        $request = (new ModifyCloudToDeviceConfigRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = (new ModifyCloudToDeviceConfigRequest())->setName($formattedName)->setBinaryData($binaryData);
         $response = $gapicClient->modifyCloudToDeviceConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -951,19 +957,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
-        $request = (new ModifyCloudToDeviceConfigRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = (new ModifyCloudToDeviceConfigRequest())->setName($formattedName)->setBinaryData($binaryData);
         try {
             $gapicClient->modifyCloudToDeviceConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -991,9 +998,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
-        $request = (new SendCommandToDeviceRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = (new SendCommandToDeviceRequest())->setName($formattedName)->setBinaryData($binaryData);
         $response = $gapicClient->sendCommandToDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1019,19 +1024,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
-        $request = (new SendCommandToDeviceRequest())
-            ->setName($formattedName)
-            ->setBinaryData($binaryData);
+        $request = (new SendCommandToDeviceRequest())->setName($formattedName)->setBinaryData($binaryData);
         try {
             $gapicClient->sendCommandToDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1063,9 +1069,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1091,19 +1095,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1131,9 +1136,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1159,19 +1162,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1231,12 +1235,15 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
@@ -1281,9 +1288,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $device = new Device();
         $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRequest())
-            ->setDevice($device)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDeviceRequest())->setDevice($device)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDevice($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1309,19 +1314,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $device = new Device();
         $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRequest())
-            ->setDevice($device)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDeviceRequest())->setDevice($device)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateDevice($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1353,9 +1359,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $deviceRegistry = new DeviceRegistry();
         $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRegistryRequest())
-            ->setDeviceRegistry($deviceRegistry)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDeviceRegistryRequest())->setDeviceRegistry($deviceRegistry)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDeviceRegistry($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1381,19 +1385,20 @@ class DeviceManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $deviceRegistry = new DeviceRegistry();
         $updateMask = new FieldMask();
-        $request = (new UpdateDeviceRegistryRequest())
-            ->setDeviceRegistry($deviceRegistry)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDeviceRegistryRequest())->setDeviceRegistry($deviceRegistry)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateDeviceRegistry($request);
             // If the $gapicClient method call did not throw, fail the test

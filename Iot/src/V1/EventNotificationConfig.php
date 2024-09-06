@@ -23,14 +23,14 @@ class EventNotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subfolder_matches = 2;</code>
      */
-    private $subfolder_matches = '';
+    protected $subfolder_matches = '';
     /**
      * A Cloud Pub/Sub topic name. For example,
      * `projects/myProject/topics/deviceEvents`.
      *
      * Generated from protobuf field <code>string pubsub_topic_name = 1;</code>
      */
-    private $pubsub_topic_name = '';
+    protected $pubsub_topic_name = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class HttpConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.HttpState http_enabled_state = 1;</code>
      */
-    private $http_enabled_state = 0;
+    protected $http_enabled_state = 0;
 
     /**
      * Constructor.

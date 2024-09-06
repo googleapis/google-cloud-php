@@ -20,37 +20,37 @@ class X509CertificateDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer = 1;</code>
      */
-    private $issuer = '';
+    protected $issuer = '';
     /**
      * The entity the certificate and public key belong to.
      *
      * Generated from protobuf field <code>string subject = 2;</code>
      */
-    private $subject = '';
+    protected $subject = '';
     /**
      * The time the certificate becomes valid.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The time the certificate becomes invalid.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 4;</code>
      */
-    private $expiry_time = null;
+    protected $expiry_time = null;
     /**
      * The algorithm used to sign the certificate.
      *
      * Generated from protobuf field <code>string signature_algorithm = 5;</code>
      */
-    private $signature_algorithm = '';
+    protected $signature_algorithm = '';
     /**
      * The type of public key in the certificate.
      *
      * Generated from protobuf field <code>string public_key_type = 6;</code>
      */
-    private $public_key_type = '';
+    protected $public_key_type = '';
 
     /**
      * Constructor.
