@@ -21,7 +21,7 @@ class GetGoogleServiceAccountRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.
