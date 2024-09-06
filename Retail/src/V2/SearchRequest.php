@@ -26,7 +26,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $placement = '';
+    protected $placement = '';
     /**
      * The branch resource name, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`.
@@ -35,7 +35,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string branch = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $branch = '';
+    protected $branch = '';
     /**
      * Raw search query.
      * If this field is empty, the request is considered a category browsing
@@ -45,7 +45,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 3;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Required. A unique identifier for tracking visitors. For example, this
      * could be implemented with an HTTP cookie, which should be able to uniquely
@@ -58,13 +58,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string visitor_id = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $visitor_id = '';
+    protected $visitor_id = '';
     /**
      * User information.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserInfo user_info = 5;</code>
      */
-    private $user_info = null;
+    protected $user_info = null;
     /**
      * Maximum number of [Product][google.cloud.retail.v2.Product]s to return. If
      * unspecified, defaults to a reasonable value. The maximum allowed value is
@@ -73,7 +73,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 7;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token
      * [SearchResponse.next_page_token][google.cloud.retail.v2.SearchResponse.next_page_token],
@@ -87,7 +87,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 8;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A 0-indexed integer that specifies the current offset (that is, starting
      * result location, amongst the [Product][google.cloud.retail.v2.Product]s
@@ -98,7 +98,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offset = 9;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
@@ -108,7 +108,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 10;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The default filter that is applied when a user performs a search without
      * checking any filters on the search page.
@@ -123,7 +123,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_filter = 28;</code>
      */
-    private $canonical_filter = '';
+    protected $canonical_filter = '';
     /**
      * The order in which products are returned. Products can be ordered by
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
@@ -134,7 +134,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
      * A maximum of 200 values are allowed. Otherwise, an INVALID_ARGUMENT error
@@ -166,7 +166,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      */
-    private $boost_spec = null;
+    protected $boost_spec = null;
     /**
      * The query expansion specification that specifies the conditions under which
      * query expansion occurs. For more information, see [Query
@@ -174,7 +174,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      */
-    private $query_expansion_spec = null;
+    protected $query_expansion_spec = null;
     /**
      * The keys to fetch and rollup the matching
      * [variant][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -267,7 +267,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.SearchMode search_mode = 31;</code>
      */
-    private $search_mode = 0;
+    protected $search_mode = 0;
     /**
      * The specification for personalization.
      * Notice that if both
@@ -281,7 +281,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.PersonalizationSpec personalization_spec = 32;</code>
      */
-    private $personalization_spec = null;
+    protected $personalization_spec = null;
     /**
      * The labels applied to a resource must meet the following requirements:
      * * Each resource can have multiple labels, up to a maximum of 64.
@@ -308,7 +308,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.retail.v2.SearchRequest.SpellCorrectionSpec spell_correction_spec = 35;</code>
      */
-    private $spell_correction_spec = null;
+    protected $spell_correction_spec = null;
     /**
      * The entity for customers that may run multiple different entities, domains,
      * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
@@ -319,7 +319,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity = 38;</code>
      */
-    private $entity = '';
+    protected $entity = '';
 
     /**
      * Constructor.

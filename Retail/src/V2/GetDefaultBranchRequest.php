@@ -21,7 +21,7 @@ class GetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $catalog = '';
+    protected $catalog = '';
 
     /**
      * @param string $catalog The parent catalog resource name, such as

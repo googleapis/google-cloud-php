@@ -25,7 +25,7 @@ class RedirectAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string redirect_uri = 1;</code>
      */
-    private $redirect_uri = '';
+    protected $redirect_uri = '';
 
     /**
      * Constructor.

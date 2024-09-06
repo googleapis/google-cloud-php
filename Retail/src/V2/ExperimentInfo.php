@@ -22,7 +22,7 @@ class ExperimentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string experiment = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $experiment = '';
+    protected $experiment = '';
     protected $experiment_metadata;
 
     /**

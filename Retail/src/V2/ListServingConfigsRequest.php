@@ -21,7 +21,7 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Maximum number of results to return. If unspecified, defaults
      * to 100. If a value greater than 100 is provided, at most 100 results are
@@ -29,14 +29,14 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous `ListServingConfigs` call.
      * Provide this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The catalog resource name. Format:

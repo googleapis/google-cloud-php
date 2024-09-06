@@ -23,13 +23,13 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The [Product][google.cloud.retail.v2.Product] to create.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product = null;
+    protected $product = null;
     /**
      * Required. The ID to use for the [Product][google.cloud.retail.v2.Product],
      * which will become the final component of the
@@ -46,7 +46,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product_id = '';
+    protected $product_id = '';
 
     /**
      * @param string                          $parent    Required. The parent catalog resource name, such as

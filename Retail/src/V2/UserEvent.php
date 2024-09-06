@@ -32,7 +32,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_type = '';
+    protected $event_type = '';
     /**
      * Required. A unique identifier for tracking visitors.
      * For example, this could be implemented with an HTTP cookie, which should be
@@ -50,7 +50,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string visitor_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $visitor_id = '';
+    protected $visitor_id = '';
     /**
      * A unique identifier for tracking a visitor session with a length limit of
      * 128 bytes. A session is an aggregation of an end user behavior in a time
@@ -62,7 +62,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session_id = 21;</code>
      */
-    private $session_id = '';
+    protected $session_id = '';
     /**
      * Only required for
      * [UserEventService.ImportUserEvents][google.cloud.retail.v2.UserEventService.ImportUserEvents]
@@ -70,7 +70,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 3;</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
@@ -105,7 +105,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribution_token = 5;</code>
      */
-    private $attribution_token = '';
+    protected $attribution_token = '';
     /**
      * The main product details related to the event.
      * This field is optional except for the following event types:
@@ -130,7 +130,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
      */
-    private $completion_detail = null;
+    protected $completion_detail = null;
     /**
      * Extra user event features to include in the recommendation model.
      * If you provide custom attributes for ingested user events, also include
@@ -163,7 +163,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cart_id = 8;</code>
      */
-    private $cart_id = '';
+    protected $cart_id = '';
     /**
      * A transaction represents the entire purchase transaction.
      * Required for `purchase-complete` events. Other event types should not set
@@ -171,7 +171,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PurchaseTransaction purchase_transaction = 9;</code>
      */
-    private $purchase_transaction = null;
+    protected $purchase_transaction = null;
     /**
      * The user's search query.
      * See [SearchRequest.query][google.cloud.retail.v2.SearchRequest.query] for
@@ -186,7 +186,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string search_query = 10;</code>
      */
-    private $search_query = '';
+    protected $search_query = '';
     /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered.
@@ -197,7 +197,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 16;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The order in which products are returned.
      * See [SearchRequest.order_by][google.cloud.retail.v2.SearchRequest.order_by]
@@ -209,7 +209,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 17;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * An integer that specifies the current offset for pagination (the 0-indexed
      * starting location, amongst the products deemed by the API as relevant).
@@ -221,7 +221,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offset = 18;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The categories associated with a category page.
      * To represent full path of category, use '>' sign to separate different
@@ -244,7 +244,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserInfo user_info = 12;</code>
      */
-    private $user_info = null;
+    protected $user_info = null;
     /**
      * Complete URL (window.location.href) of the user's current page.
      * When using the client side event reporting with JavaScript pixel and Google
@@ -253,7 +253,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 13;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The referrer URL of the current page.
      * When using the client side event reporting with JavaScript pixel and Google
@@ -261,7 +261,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string referrer_uri = 14;</code>
      */
-    private $referrer_uri = '';
+    protected $referrer_uri = '';
     /**
      * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
@@ -274,7 +274,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_view_id = 15;</code>
      */
-    private $page_view_id = '';
+    protected $page_view_id = '';
     /**
      * The entity for customers that may run multiple different entities, domains,
      * sites or regions, for example, `Google US`, `Google Ads`, `Waymo`,
@@ -284,7 +284,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity = 23;</code>
      */
-    private $entity = '';
+    protected $entity = '';
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class UpdateAttributesConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.AttributesConfig attributes_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attributes_config = null;
+    protected $attributes_config = null;
     /**
      * Indicates which fields in the provided
      * [AttributesConfig][google.cloud.retail.v2.AttributesConfig] to update. The
@@ -33,7 +33,7 @@ class UpdateAttributesConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Retail\V2\AttributesConfig $attributesConfig Required. The [AttributesConfig][google.cloud.retail.v2.AttributesConfig]

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Retail\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\AddFulfillmentPlacesRequest;
@@ -50,6 +49,7 @@ use Google\Cloud\Retail\V2\RemoveLocalInventoriesResponse;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
 use Google\Cloud\Retail\V2\SetInventoryResponse;
 use Google\Cloud\Retail\V2\UpdateProductRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -73,7 +73,9 @@ class ProductServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ProductServiceClient */
@@ -181,12 +183,15 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
@@ -310,12 +315,15 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
@@ -409,12 +417,15 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
@@ -452,8 +463,7 @@ class ProductServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new DeleteProductRequest())
-            ->setName($formattedName);
+        $request = (new DeleteProductRequest())->setName($formattedName);
         $gapicClient->deleteProduct($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -476,17 +486,19 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new DeleteProductRequest())
-            ->setName($formattedName);
+        $request = (new DeleteProductRequest())->setName($formattedName);
         try {
             $gapicClient->deleteProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -529,8 +541,7 @@ class ProductServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new GetProductRequest())
-            ->setName($formattedName);
+        $request = (new GetProductRequest())->setName($formattedName);
         $response = $gapicClient->getProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -554,17 +565,19 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
-        $request = (new GetProductRequest())
-            ->setName($formattedName);
+        $request = (new GetProductRequest())->setName($formattedName);
         try {
             $gapicClient->getProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -610,9 +623,7 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
         $inputConfig = new ProductInputConfig();
-        $request = (new ImportProductsRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportProductsRequest())->setParent($formattedParent)->setInputConfig($inputConfig);
         $response = $gapicClient->importProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -670,19 +681,20 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
         $inputConfig = new ProductInputConfig();
-        $request = (new ImportProductsRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportProductsRequest())->setParent($formattedParent)->setInputConfig($inputConfig);
         $response = $gapicClient->importProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -716,17 +728,14 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $productsElement = new Product();
-        $products = [
-            $productsElement,
-        ];
+        $products = [$productsElement];
         $expectedResponse = new ListProductsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $request = (new ListProductsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProductsRequest())->setParent($formattedParent);
         $response = $gapicClient->listProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -753,17 +762,19 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
-        $request = (new ListProductsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListProductsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -811,9 +822,7 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeProductsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeProductsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -871,19 +880,20 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeProductsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeProductsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeProducts($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1002,12 +1012,15 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
@@ -1071,9 +1084,7 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock request
         $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
         $placeIds = [];
-        $request = (new RemoveLocalInventoriesRequest())
-            ->setProduct($formattedProduct)
-            ->setPlaceIds($placeIds);
+        $request = (new RemoveLocalInventoriesRequest())->setProduct($formattedProduct)->setPlaceIds($placeIds);
         $response = $gapicClient->removeLocalInventories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1131,19 +1142,20 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedProduct = $gapicClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
         $placeIds = [];
-        $request = (new RemoveLocalInventoriesRequest())
-            ->setProduct($formattedProduct)
-            ->setPlaceIds($placeIds);
+        $request = (new RemoveLocalInventoriesRequest())->setProduct($formattedProduct)->setPlaceIds($placeIds);
         $response = $gapicClient->removeLocalInventories($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1199,8 +1211,7 @@ class ProductServiceClientTest extends GeneratedTest
         $inventory = new Product();
         $inventoryTitle = 'inventoryTitle-43609508';
         $inventory->setTitle($inventoryTitle);
-        $request = (new SetInventoryRequest())
-            ->setInventory($inventory);
+        $request = (new SetInventoryRequest())->setInventory($inventory);
         $response = $gapicClient->setInventory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1256,19 +1267,21 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $inventory = new Product();
         $inventoryTitle = 'inventoryTitle-43609508';
         $inventory->setTitle($inventoryTitle);
-        $request = (new SetInventoryRequest())
-            ->setInventory($inventory);
+        $request = (new SetInventoryRequest())->setInventory($inventory);
         $response = $gapicClient->setInventory($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1322,8 +1335,7 @@ class ProductServiceClientTest extends GeneratedTest
         $product = new Product();
         $productTitle = 'productTitle1004085929';
         $product->setTitle($productTitle);
-        $request = (new UpdateProductRequest())
-            ->setProduct($product);
+        $request = (new UpdateProductRequest())->setProduct($product);
         $response = $gapicClient->updateProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1347,19 +1359,21 @@ class ProductServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $product = new Product();
         $productTitle = 'productTitle1004085929';
         $product->setTitle($productTitle);
-        $request = (new UpdateProductRequest())
-            ->setProduct($product);
+        $request = (new UpdateProductRequest())->setProduct($product);
         try {
             $gapicClient->updateProduct($request);
             // If the $gapicClient method call did not throw, fail the test

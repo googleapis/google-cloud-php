@@ -23,7 +23,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string original_serving_config = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $original_serving_config = '';
+    protected $original_serving_config = '';
     /**
      * The fully qualified resource name of the serving config
      * [Experiment.VariantArm.serving_config_id][] responsible for generating
@@ -32,7 +32,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string experiment_serving_config = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $experiment_serving_config = '';
+    protected $experiment_serving_config = '';
 
     /**
      * Constructor.
