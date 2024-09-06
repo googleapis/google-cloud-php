@@ -66,6 +66,7 @@ class ComponentInfoCommand extends Command
     protected function configure()
     {
         $this->setName('component-info')
+            ->setAliases(['info'])
             ->setDescription('list info of a component or the whole library')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])
             ->addOption('csv', '', InputOption::VALUE_OPTIONAL, 'export findings to csv.', false)
