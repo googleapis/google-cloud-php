@@ -22,7 +22,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Mode of a search.
      * Defaults to
@@ -30,7 +30,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.SearchMode search_mode = 2;</code>
      */
-    private $search_mode = 0;
+    protected $search_mode = 0;
     /**
      * Required. The meta information collected about the job searcher, used to
      * improve the search quality of the service. The identifiers (such as
@@ -38,13 +38,13 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.RequestMetadata request_metadata = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $request_metadata = null;
+    protected $request_metadata = null;
     /**
      * Query used to search against jobs, such as keyword, location filters, etc.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobQuery job_query = 4;</code>
      */
-    private $job_query = null;
+    protected $job_query = null;
     /**
      * Controls whether to broaden the search when it produces sparse results.
      * Broadened queries append results to the end of the matching results
@@ -53,7 +53,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_broadening = 5;</code>
      */
-    private $enable_broadening = false;
+    protected $enable_broadening = false;
     /**
      * An expression specifies a histogram request against matching jobs.
      * Expression syntax is an aggregation function call with histogram facets and
@@ -165,7 +165,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobView job_view = 8;</code>
      */
-    private $job_view = 0;
+    protected $job_view = 0;
     /**
      * An integer that specifies the current offset (that is, starting result
      * location, amongst the jobs deemed by the API as relevant) in search
@@ -179,7 +179,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 offset = 9;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * A limit on the number of jobs returned in the search results.
      * Increasing this value above the default value of 10 can increase search
@@ -187,7 +187,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_page_size = 10;</code>
      */
-    private $max_page_size = 0;
+    protected $max_page_size = 0;
     /**
      * The token specifying the current offset within
      * search results. See
@@ -196,7 +196,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 11;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The criteria determining how search results are sorted. Default is
      * `"relevance desc"`.
@@ -252,7 +252,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 12;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Controls whether highly similar jobs are returned next to each other in
      * the search results. Jobs are identified as highly similar based on
@@ -266,14 +266,14 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.DiversificationLevel diversification_level = 13;</code>
      */
-    private $diversification_level = 0;
+    protected $diversification_level = 0;
     /**
      * Controls over how job documents get ranked on top of existing relevance
      * score (determined by API algorithm).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.CustomRankingInfo custom_ranking_info = 14;</code>
      */
-    private $custom_ranking_info = null;
+    protected $custom_ranking_info = null;
     /**
      * This field is deprecated. Please use
      * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode]
@@ -320,7 +320,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
      */
-    private $keyword_match_mode = 0;
+    protected $keyword_match_mode = 0;
 
     /**
      * Constructor.

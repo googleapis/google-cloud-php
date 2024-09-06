@@ -25,14 +25,14 @@ class JobResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1;</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * The status of the job processed. This field is populated if the
      * processing of the [job][google.cloud.talent.v4.JobResult.job] fails.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
