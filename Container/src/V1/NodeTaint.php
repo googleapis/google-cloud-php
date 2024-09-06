@@ -24,19 +24,19 @@ class NodeTaint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Value for taint.
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Effect for taint.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeTaint.Effect effect = 3;</code>
      */
-    private $effect = 0;
+    protected $effect = 0;
 
     /**
      * Constructor.

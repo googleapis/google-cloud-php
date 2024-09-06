@@ -325,6 +325,50 @@ final class ScheduleServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * notebook_execution_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookExecutionJob
+     *
+     * @return string The formatted notebook_execution_job resource.
+     */
+    public static function notebookExecutionJobName(
+        string $project,
+        string $location,
+        string $notebookExecutionJob
+    ): string {
+        return self::getPathTemplate('notebookExecutionJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_execution_job' => $notebookExecutionJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * notebook_runtime_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookRuntimeTemplate
+     *
+     * @return string The formatted notebook_runtime_template resource.
+     */
+    public static function notebookRuntimeTemplateName(
+        string $project,
+        string $location,
+        string $notebookRuntimeTemplate
+    ): string {
+        return self::getPathTemplate('notebookRuntimeTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_runtime_template' => $notebookRuntimeTemplate,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a pipeline_job
      * resource.
      *
@@ -373,6 +417,8 @@ final class ScheduleServiceClient
      * - location: projects/{project}/locations/{location}
      * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
      * - network: projects/{project}/global/networks/{network}
+     * - notebookExecutionJob: projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}
+     * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
      * - schedule: projects/{project}/locations/{location}/schedules/{schedule}
      *

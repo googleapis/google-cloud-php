@@ -36,7 +36,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Expression that defines the filter to apply across findings.
      * The expression is a list of one or more restrictions combined via logical
@@ -80,7 +80,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Expression that defines what fields and order to use for sorting. The
      * string value should follow SQL syntax: comma separated list of fields. For
@@ -101,14 +101,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 3;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * A field mask to specify the Finding fields to be listed in the response.
      * An empty field mask will list all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
     /**
      * The value returned by the last `ListFindingsResponse`; indicates
      * that this is a continuation of a prior `ListFindings` call, and
@@ -116,14 +116,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 8;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of results to return in a single response. Default is
      * 10, minimum is 1, maximum is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 9;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * @param string $parent Required. Name of the source the findings belong to. If no location is

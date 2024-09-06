@@ -26,7 +26,7 @@ class CheckAutopilotCompatibilityResponse extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string summary = 2;</code>
      */
-    private $summary = '';
+    protected $summary = '';
 
     /**
      * Constructor.

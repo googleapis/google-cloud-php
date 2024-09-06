@@ -25,19 +25,19 @@ class PriceTier extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 first_resource = 1;</code>
      */
-    private $first_resource = 0;
+    protected $first_resource = 0;
     /**
      * Last resource for which the tier price applies.
      *
      * Generated from protobuf field <code>int32 last_resource = 2;</code>
      */
-    private $last_resource = 0;
+    protected $last_resource = 0;
     /**
      * Price of the tier.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Price price = 3;</code>
      */
-    private $price = null;
+    protected $price = null;
 
     /**
      * Constructor.

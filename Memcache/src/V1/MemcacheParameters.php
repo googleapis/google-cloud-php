@@ -22,7 +22,7 @@ class MemcacheParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * User defined set of parameters to use in the memcached process.
      *

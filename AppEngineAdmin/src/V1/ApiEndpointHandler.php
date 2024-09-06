@@ -20,7 +20,7 @@ class ApiEndpointHandler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string script_path = 1;</code>
      */
-    private $script_path = '';
+    protected $script_path = '';
 
     /**
      * Constructor.

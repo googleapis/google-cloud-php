@@ -22,14 +22,14 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The end time of any upcoming scheduled maintenance for this
      * instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * If the scheduled maintenance can be rescheduled, default is true.
      *
@@ -43,7 +43,7 @@ class MaintenanceSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_deadline_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $schedule_deadline_time = null;
+    protected $schedule_deadline_time = null;
 
     /**
      * Constructor.

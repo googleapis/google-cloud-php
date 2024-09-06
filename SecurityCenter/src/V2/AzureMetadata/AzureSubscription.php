@@ -17,17 +17,17 @@ class AzureSubscription extends \Google\Protobuf\Internal\Message
 {
     /**
      * The UUID of the Azure subscription, for example,
-     * `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     * "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The display name of the Azure subscription.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.
@@ -37,7 +37,7 @@ class AzureSubscription extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           The UUID of the Azure subscription, for example,
-     *           `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     *           "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
      *     @type string $display_name
      *           The display name of the Azure subscription.
      * }
@@ -49,7 +49,7 @@ class AzureSubscription extends \Google\Protobuf\Internal\Message
 
     /**
      * The UUID of the Azure subscription, for example,
-     * `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     * "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @return string
@@ -61,7 +61,7 @@ class AzureSubscription extends \Google\Protobuf\Internal\Message
 
     /**
      * The UUID of the Azure subscription, for example,
-     * `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     * "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @param string $var
@@ -103,6 +103,4 @@ class AzureSubscription extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AzureSubscription::class, \Google\Cloud\SecurityCenter\V2\AzureMetadata_AzureSubscription::class);
 

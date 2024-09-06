@@ -33,12 +33,19 @@ class PurgeDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $filter = '';
     /**
+     * The desired location of errors incurred during the purge.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.PurgeErrorConfig error_config = 7;</code>
+     */
+    protected $error_config = null;
+    /**
      * Actually performs the purge. If `force` is set to false, return the
      * expected purge count without deleting any documents.
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      */
     protected $force = false;
+    protected $source;
 
     /**
      * Constructor.
@@ -46,6 +53,13 @@ class PurgeDocumentsRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GcsSource $gcs_source
+     *           Cloud Storage location for the input content.
+     *           Supported `data_schema`:
+     *           * `document_id`: One valid
+     *           [Document.id][google.cloud.discoveryengine.v1.Document.id] per line.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest\InlineSource $inline_source
+     *           Inline source for the input content for purge.
      *     @type string $parent
      *           Required. The parent resource name, such as
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
@@ -53,6 +67,8 @@ class PurgeDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Filter matching documents to purge. Only currently supported
      *           value is
      *           `*` (all items).
+     *     @type \Google\Cloud\DiscoveryEngine\V1\PurgeErrorConfig $error_config
+     *           The desired location of errors incurred during the purge.
      *     @type bool $force
      *           Actually performs the purge. If `force` is set to false, return the
      *           expected purge count without deleting any documents.
@@ -61,6 +77,74 @@ class PurgeDocumentsRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Discoveryengine\V1\PurgeConfig::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Cloud Storage location for the input content.
+     * Supported `data_schema`:
+     * * `document_id`: One valid
+     * [Document.id][google.cloud.discoveryengine.v1.Document.id] per line.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GcsSource gcs_source = 5;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\GcsSource|null
+     */
+    public function getGcsSource()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Cloud Storage location for the input content.
+     * Supported `data_schema`:
+     * * `document_id`: One valid
+     * [Document.id][google.cloud.discoveryengine.v1.Document.id] per line.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.GcsSource gcs_source = 5;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\GcsSource $var
+     * @return $this
+     */
+    public function setGcsSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\GcsSource::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Inline source for the input content for purge.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.PurgeDocumentsRequest.InlineSource inline_source = 6;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest\InlineSource|null
+     */
+    public function getInlineSource()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasInlineSource()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Inline source for the input content for purge.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.PurgeDocumentsRequest.InlineSource inline_source = 6;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest\InlineSource $var
+     * @return $this
+     */
+    public function setInlineSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest\InlineSource::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
     }
 
     /**
@@ -122,6 +206,42 @@ class PurgeDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired location of errors incurred during the purge.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.PurgeErrorConfig error_config = 7;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\PurgeErrorConfig|null
+     */
+    public function getErrorConfig()
+    {
+        return $this->error_config;
+    }
+
+    public function hasErrorConfig()
+    {
+        return isset($this->error_config);
+    }
+
+    public function clearErrorConfig()
+    {
+        unset($this->error_config);
+    }
+
+    /**
+     * The desired location of errors incurred during the purge.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.PurgeErrorConfig error_config = 7;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\PurgeErrorConfig $var
+     * @return $this
+     */
+    public function setErrorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\PurgeErrorConfig::class);
+        $this->error_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Actually performs the purge. If `force` is set to false, return the
      * expected purge count without deleting any documents.
      *
@@ -147,6 +267,14 @@ class PurgeDocumentsRequest extends \Google\Protobuf\Internal\Message
         $this->force = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->whichOneof("source");
     }
 
 }

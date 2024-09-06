@@ -62,6 +62,4 @@ class UserInteraction
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UserInteraction::class, \Google\Cloud\SecurityCenter\V1\Cvssv3_UserInteraction::class);
 

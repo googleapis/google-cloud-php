@@ -21,31 +21,31 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Display name of the billing account.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The time when this billing account was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The 3-letter currency code defined in ISO 4217.
      *
      * Generated from protobuf field <code>string currency_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Output only. The CLDR region code.
      *
      * Generated from protobuf field <code>string region_code = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $region_code = '';
+    protected $region_code = '';
 
     /**
      * Constructor.

@@ -21,14 +21,14 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Data type of the parameter. Minimal value, Maximum value and allowed values
      * will use specified data type here.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ParameterDefinition.ParameterType parameter_type = 2;</code>
      */
-    private $parameter_type = 0;
+    protected $parameter_type = 0;
     /**
      * Minimal value of the parameter, if applicable. Inclusive. For example,
      * minimal commitment when purchasing Anthos is 0.01.
@@ -36,7 +36,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value min_value = 3;</code>
      */
-    private $min_value = null;
+    protected $min_value = null;
     /**
      * Maximum value of the parameter, if applicable. Inclusive. For example,
      * maximum seats when purchasing Google Workspace Business Standard.
@@ -44,7 +44,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value max_value = 4;</code>
      */
-    private $max_value = null;
+    protected $max_value = null;
     /**
      * If not empty, parameter values must be drawn from this list.
      * For example, [us-west1, us-west2, ...]
@@ -58,7 +58,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool optional = 6;</code>
      */
-    private $optional = false;
+    protected $optional = false;
 
     /**
      * Constructor.

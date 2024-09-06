@@ -22,7 +22,7 @@ class BatchCreateResourceValueConfigsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The resource value configs to be created.
      *

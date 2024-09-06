@@ -62,6 +62,4 @@ class ReadReplicasMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadReplicasMode::class, \Google\Cloud\Redis\V1\Instance_ReadReplicasMode::class);
 

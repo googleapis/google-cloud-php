@@ -92,6 +92,4 @@ class Status
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Status::class, \Google\Cloud\Container\V1\Cluster_Status::class);
 

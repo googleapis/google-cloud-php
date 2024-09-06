@@ -25,7 +25,7 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string policy_blob = 1;</code>
      */
-    private $policy_blob = '';
+    protected $policy_blob = '';
 
     /**
      * Constructor.
@@ -76,6 +76,4 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IamPolicy::class, \Google\Cloud\SecurityCenter\V1\Asset_IamPolicy::class);
 

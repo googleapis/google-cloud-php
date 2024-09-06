@@ -25,7 +25,7 @@ class AccessUrls extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ca_certificate_access_url = 1;</code>
      */
-    private $ca_certificate_access_url = '';
+    protected $ca_certificate_access_url = '';
     /**
      * The URLs where this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s

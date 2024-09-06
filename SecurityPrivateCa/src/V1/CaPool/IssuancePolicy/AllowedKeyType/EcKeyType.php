@@ -23,7 +23,7 @@ class EcKeyType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType.EcSignatureAlgorithm signature_algorithm = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $signature_algorithm = 0;
+    protected $signature_algorithm = 0;
 
     /**
      * Constructor.

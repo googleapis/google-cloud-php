@@ -20,7 +20,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Tables in the database.
      *

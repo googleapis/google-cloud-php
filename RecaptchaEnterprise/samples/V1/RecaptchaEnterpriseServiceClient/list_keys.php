@@ -32,7 +32,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 /**
  * Returns the list of all keys that belong to a project.
  *
- * @param string $formattedParent The name of the project that contains the keys that will be
+ * @param string $formattedParent The name of the project that contains the keys that are
  *                                listed, in the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */

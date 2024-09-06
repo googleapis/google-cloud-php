@@ -22,13 +22,13 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $client_key = '';
+    protected $client_key = '';
     /**
      * Output only. Indicates whether the client_key field is set.
      *
      * Generated from protobuf field <code>bool client_key_set = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $client_key_set = false;
+    protected $client_key_set = false;
     /**
      * Input only. PEM-encoded certificate that will be used by the replica to
      * authenticate against the source database server. If this field is used
@@ -36,26 +36,26 @@ class MysqlSslConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_certificate = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $client_certificate = '';
+    protected $client_certificate = '';
     /**
      * Output only. Indicates whether the client_certificate field is set.
      *
      * Generated from protobuf field <code>bool client_certificate_set = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $client_certificate_set = false;
+    protected $client_certificate_set = false;
     /**
      * Input only. PEM-encoded certificate of the CA that signed the source
      * database server's certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $ca_certificate = '';
+    protected $ca_certificate = '';
     /**
      * Output only. Indicates whether the ca_certificate field is set.
      *
      * Generated from protobuf field <code>bool ca_certificate_set = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ca_certificate_set = false;
+    protected $ca_certificate_set = false;
 
     /**
      * Constructor.

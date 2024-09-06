@@ -27,7 +27,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool create_pod_range = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $create_pod_range = false;
+    protected $create_pod_range = false;
     /**
      * The ID of the secondary range for pod IPs.
      * If `create_pod_range` is true, this ID is used for the new range.
@@ -38,7 +38,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pod_range = 5;</code>
      */
-    private $pod_range = '';
+    protected $pod_range = '';
     /**
      * The IP address range for pod IPs in this node pool.
      * Only applicable if `create_pod_range` is true.
@@ -53,7 +53,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pod_ipv4_cidr_block = 6;</code>
      */
-    private $pod_ipv4_cidr_block = '';
+    protected $pod_ipv4_cidr_block = '';
     /**
      * Whether nodes have internal IP addresses only.
      * If enable_private_nodes is not specified, then the value is derived from
@@ -61,13 +61,13 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
      */
-    private $enable_private_nodes = null;
+    protected $enable_private_nodes = null;
     /**
      * Network bandwidth tier configuration.
      *
      * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
      */
-    private $network_performance_config = null;
+    protected $network_performance_config = null;
     /**
      * [PRIVATE FIELD]
      * Pod CIDR size overprovisioning config for the nodepool.
@@ -82,7 +82,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.PodCIDROverprovisionConfig pod_cidr_overprovision_config = 13;</code>
      */
-    private $pod_cidr_overprovision_config = null;
+    protected $pod_cidr_overprovision_config = null;
     /**
      * We specify the additional node networks for this node pool using this list.
      * Each node network corresponds to an additional interface
@@ -104,7 +104,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double pod_ipv4_range_utilization = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pod_ipv4_range_utilization = 0.0;
+    protected $pod_ipv4_range_utilization = 0.0;
 
     /**
      * Constructor.

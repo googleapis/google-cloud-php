@@ -22,7 +22,7 @@ class WorkloadMetadataConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig.Mode mode = 2;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
 
     /**
      * Constructor.

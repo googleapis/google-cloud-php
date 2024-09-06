@@ -24,13 +24,13 @@ class UpdateStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The stream resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Stream stream = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $stream = null;
+    protected $stream = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -46,20 +46,20 @@ class UpdateStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Only validate the stream with the changes, without actually
      * updating it. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. Update the stream without validating it.
      *
      * Generated from protobuf field <code>bool force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param \Google\Cloud\Datastream\V1\Stream $stream     Required. The stream resource to update.

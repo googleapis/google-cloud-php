@@ -25,7 +25,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.DateTime usage_start_date_time = 1;</code>
      */
-    private $usage_start_date_time = null;
+    protected $usage_start_date_time = null;
     /**
      * The latest usage date time (exclusive).
      * If you use time groupings (daily, weekly, etc), each group uses
@@ -35,7 +35,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.DateTime usage_end_date_time = 2;</code>
      */
-    private $usage_end_date_time = null;
+    protected $usage_end_date_time = null;
     /**
      * The earliest invoice date (inclusive).
      * If this value is not the first day of a month, this will move it back to
@@ -43,7 +43,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date invoice_start_date = 3;</code>
      */
-    private $invoice_start_date = null;
+    protected $invoice_start_date = null;
     /**
      * The latest invoice date (inclusive).
      * If this value is not the last day of a month, this will move it forward to
@@ -51,7 +51,7 @@ class DateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date invoice_end_date = 4;</code>
      */
-    private $invoice_end_date = null;
+    protected $invoice_end_date = null;
 
     /**
      * Constructor.

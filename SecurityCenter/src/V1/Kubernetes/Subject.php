@@ -20,19 +20,19 @@ class Subject extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes.Subject.AuthType kind = 1;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * Namespace for the subject.
      *
      * Generated from protobuf field <code>string ns = 2;</code>
      */
-    private $ns = '';
+    protected $ns = '';
     /**
      * Name for the subject.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -133,6 +133,4 @@ class Subject extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Subject::class, \Google\Cloud\SecurityCenter\V1\Kubernetes_Subject::class);
 

@@ -22,7 +22,7 @@ class ValuedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The
      * [full resource
@@ -31,7 +31,7 @@ class ValuedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 2;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The [resource
      * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
@@ -39,26 +39,26 @@ class ValuedResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 3;</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * Human-readable name of the valued resource.
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * How valuable this resource is.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ValuedResource.ResourceValue resource_value = 5;</code>
      */
-    private $resource_value = 0;
+    protected $resource_value = 0;
     /**
      * Exposed score for this valued resource. A value of 0 means no exposure was
      * detected exposure.
      *
      * Generated from protobuf field <code>double exposed_score = 6;</code>
      */
-    private $exposed_score = 0.0;
+    protected $exposed_score = 0.0;
     /**
      * List of resource value configurations' metadata used to determine the value
      * of this resource. Maximum of 100.

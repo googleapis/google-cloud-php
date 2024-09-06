@@ -22,13 +22,13 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The BigQuery export being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BigQueryExport big_query_export = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $big_query_export = null;
+    protected $big_query_export = null;
     /**
      * Required. Unique identifier provided by the client within the parent scope.
      * It must consist of only lowercase letters, numbers, and hyphens, must start
@@ -37,7 +37,7 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string big_query_export_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $big_query_export_id = '';
+    protected $big_query_export_id = '';
 
     /**
      * @param string                                         $parent           Required. The name of the parent resource of the new BigQuery export. Its

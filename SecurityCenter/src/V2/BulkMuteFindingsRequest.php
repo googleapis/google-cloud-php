@@ -32,7 +32,7 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Expression that identifies findings that should be updated.
      * The expression is a list of zero or more restrictions combined
@@ -52,15 +52,7 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
-    /**
-     * Optional. All findings matching the given filter will have their mute state
-     * set to this value. The default value is `MUTED`. Setting this to
-     * `UNDEFINED` will clear the mute state on all matching findings.
-     *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState mute_state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $mute_state = 0;
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent, at which bulk action needs to be applied. If no
@@ -116,10 +108,6 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * string literals in quotes.
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
-     *     @type int $mute_state
-     *           Optional. All findings matching the given filter will have their mute state
-     *           set to this value. The default value is `MUTED`. Setting this to
-     *           `UNDEFINED` will clear the mute state on all matching findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -219,36 +207,6 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. All findings matching the given filter will have their mute state
-     * set to this value. The default value is `MUTED`. Setting this to
-     * `UNDEFINED` will clear the mute state on all matching findings.
-     *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState mute_state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
-     */
-    public function getMuteState()
-    {
-        return $this->mute_state;
-    }
-
-    /**
-     * Optional. All findings matching the given filter will have their mute state
-     * set to this value. The default value is `MUTED`. Setting this to
-     * `UNDEFINED` will clear the mute state on all matching findings.
-     *
-     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.BulkMuteFindingsRequest.MuteState mute_state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setMuteState($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\BulkMuteFindingsRequest\MuteState::class);
-        $this->mute_state = $var;
 
         return $this;
     }

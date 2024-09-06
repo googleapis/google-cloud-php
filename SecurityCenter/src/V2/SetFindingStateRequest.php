@@ -33,13 +33,13 @@ class SetFindingStateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The desired State of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * @param string $name  Required. The [relative resource

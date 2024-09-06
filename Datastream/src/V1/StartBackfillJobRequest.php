@@ -21,7 +21,7 @@ class StartBackfillJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string object = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $object = '';
+    protected $object = '';
 
     /**
      * @param string $object Required. The name of the stream object resource to start a backfill job

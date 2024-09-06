@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\RuntimeProjectAttachmentServiceClient;
 use Google\Cloud\ApiHub\V1\ListRuntimeProjectAttachmentsRequest;
-use Google\Cloud\ApiHub\V1\RuntimeProjectAttachment;
 
 /**
  * List runtime projects attached to the host project.
@@ -50,7 +49,6 @@ function list_runtime_project_attachments_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $runtimeProjectAttachmentServiceClient->listRuntimeProjectAttachments($request);
 
-        /** @var RuntimeProjectAttachment $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

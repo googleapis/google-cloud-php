@@ -43,6 +43,13 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $tarball_gcs_dir = '';
     /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not
+     * specified, falls back to default access of the bucket
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tarball_access = 0;
+    /**
      * Optional. Time interval in which diagnosis should be carried out on the
      * cluster.
      *
@@ -99,6 +106,9 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The output Cloud Storage directory for the diagnostic
      *           tarball. If not specified, a task-specific directory in the cluster's
      *           staging bucket will be used.
+     *     @type int $tarball_access
+     *           Optional. (Optional) The access type to the diagnostic tarball. If not
+     *           specified, falls back to default access of the bucket
      *     @type \Google\Type\Interval $diagnosis_interval
      *           Optional. Time interval in which diagnosis should be carried out on the
      *           cluster.
@@ -221,6 +231,34 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tarball_gcs_dir = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not
+     * specified, falls back to default access of the bucket
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTarballAccess()
+    {
+        return $this->tarball_access;
+    }
+
+    /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not
+     * specified, falls back to default access of the bucket
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTarballAccess($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\DiagnoseClusterRequest\TarballAccess::class);
+        $this->tarball_access = $var;
 
         return $this;
     }

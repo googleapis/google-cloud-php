@@ -23,7 +23,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Output only. The relative name of the Google Compute Engine
      * [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the
@@ -32,14 +32,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Whether Intra-node visibility is enabled for this cluster.
      * This makes same node pod to pod traffic visible for VPC network.
      *
      * Generated from protobuf field <code>bool enable_intra_node_visibility = 5;</code>
      */
-    private $enable_intra_node_visibility = false;
+    protected $enable_intra_node_visibility = false;
     /**
      * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules
      * will be disabled when default_snat_status is disabled. When disabled is set
@@ -48,20 +48,20 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus default_snat_status = 7;</code>
      */
-    private $default_snat_status = null;
+    protected $default_snat_status = null;
     /**
      * Whether L4ILB Subsetting is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enable_l4ilb_subsetting = 10;</code>
      */
-    private $enable_l4ilb_subsetting = false;
+    protected $enable_l4ilb_subsetting = false;
     /**
      * The desired datapath provider for this cluster. By default, uses the
      * IPTables-based kube-proxy implementation.
      *
      * Generated from protobuf field <code>.google.container.v1.DatapathProvider datapath_provider = 11;</code>
      */
-    private $datapath_provider = 0;
+    protected $datapath_provider = 0;
     /**
      * The desired state of IPv6 connectivity to Google Services.
      * By default, no private IPv6 access to or from Google Services (all access
@@ -69,58 +69,58 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateIPv6GoogleAccess private_ipv6_google_access = 12;</code>
      */
-    private $private_ipv6_google_access = 0;
+    protected $private_ipv6_google_access = 0;
     /**
      * DNSConfig contains clusterDNS config for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig dns_config = 13;</code>
      */
-    private $dns_config = null;
+    protected $dns_config = null;
     /**
      * ServiceExternalIPsConfig specifies if services with externalIPs field are
      * blocked or not.
      *
      * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig service_external_ips_config = 15;</code>
      */
-    private $service_external_ips_config = null;
+    protected $service_external_ips_config = null;
     /**
      * GatewayAPIConfig contains the desired config of Gateway API on this
      * cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
      */
-    private $gateway_api_config = null;
+    protected $gateway_api_config = null;
     /**
      * Whether multi-networking is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enable_multi_networking = 17;</code>
      */
-    private $enable_multi_networking = false;
+    protected $enable_multi_networking = false;
     /**
      * Network bandwidth tier configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig network_performance_config = 18;</code>
      */
-    private $network_performance_config = null;
+    protected $network_performance_config = null;
     /**
      * Whether FQDN Network Policy is enabled on this cluster.
      *
      * Generated from protobuf field <code>optional bool enable_fqdn_network_policy = 19;</code>
      */
-    private $enable_fqdn_network_policy = null;
+    protected $enable_fqdn_network_policy = null;
     /**
      * Specify the details of in-transit encryption.
      * Now named inter-node transparent encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
      */
-    private $in_transit_encryption_config = null;
+    protected $in_transit_encryption_config = null;
     /**
      * Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
      *
      * Generated from protobuf field <code>optional bool enable_cilium_clusterwide_network_policy = 21;</code>
      */
-    private $enable_cilium_clusterwide_network_policy = null;
+    protected $enable_cilium_clusterwide_network_policy = null;
 
     /**
      * Constructor.

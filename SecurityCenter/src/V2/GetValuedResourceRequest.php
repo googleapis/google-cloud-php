@@ -18,17 +18,17 @@ class GetValuedResourceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this valued resource
      * Valid format:
-     * `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     * "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The name of this valued resource
      *
      *                     Valid format:
-     *                     `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     *                     "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
      *                     Please see {@see SecurityCenterClient::valuedResourceName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\GetValuedResourceRequest
@@ -50,7 +50,7 @@ class GetValuedResourceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of this valued resource
      *           Valid format:
-     *           `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     *           "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +61,7 @@ class GetValuedResourceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this valued resource
      * Valid format:
-     * `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     * "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,7 +74,7 @@ class GetValuedResourceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this valued resource
      * Valid format:
-     * `organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}`
+     * "organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

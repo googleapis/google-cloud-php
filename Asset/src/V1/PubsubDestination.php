@@ -21,7 +21,7 @@ class PubsubDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
 
     /**
      * Constructor.

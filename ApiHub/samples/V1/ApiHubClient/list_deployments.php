@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
-use Google\Cloud\ApiHub\V1\Deployment;
 use Google\Cloud\ApiHub\V1\ListDeploymentsRequest;
 
 /**
@@ -50,7 +49,6 @@ function list_deployments_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $apiHubClient->listDeployments($request);
 
-        /** @var Deployment $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

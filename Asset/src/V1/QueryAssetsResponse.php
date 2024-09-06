@@ -20,7 +20,7 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_reference = 1;</code>
      */
-    private $job_reference = '';
+    protected $job_reference = '';
     /**
      * The query response, which can be either an `error` or a valid `response`.
      * If `done` == `false` and the query result is being saved in a output, the
@@ -30,7 +30,7 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool done = 2;</code>
      */
-    private $done = false;
+    protected $done = false;
     protected $response;
 
     /**

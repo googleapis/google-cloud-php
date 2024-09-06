@@ -31,11 +31,18 @@ class Type
      * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY = 2;</code>
      */
     const NON_ANSWER_SEEKING_QUERY = 2;
+    /**
+     * Jail-breaking query classification type.
+     *
+     * Generated from protobuf enum <code>JAIL_BREAKING_QUERY = 3;</code>
+     */
+    const JAIL_BREAKING_QUERY = 3;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::ADVERSARIAL_QUERY => 'ADVERSARIAL_QUERY',
         self::NON_ANSWER_SEEKING_QUERY => 'NON_ANSWER_SEEKING_QUERY',
+        self::JAIL_BREAKING_QUERY => 'JAIL_BREAKING_QUERY',
     ];
 
     public static function name($value)

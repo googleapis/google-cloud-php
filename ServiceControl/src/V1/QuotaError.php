@@ -20,7 +20,7 @@ class QuotaError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.QuotaError.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Subject to whom this error applies. See the specific enum for more details
      * on this field. For example, "clientip:<ip address of client>" or
@@ -28,20 +28,20 @@ class QuotaError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subject = 2;</code>
      */
-    private $subject = '';
+    protected $subject = '';
     /**
      * Free-form text that provides details on the cause of the error.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Contains additional information about the quota error.
      * If available, `status.code` will be non zero.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 4;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

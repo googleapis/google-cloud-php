@@ -28,7 +28,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.CheckResponse.ConsumerInfo consumer_info = 2;</code>
      */
-    private $consumer_info = null;
+    protected $consumer_info = null;
     /**
      * The unique id of the api key in the format of "apikey:<UID>".
      * This field will be populated when the consumer passed to Service Control
@@ -36,7 +36,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_key_uid = 5;</code>
      */
-    private $api_key_uid = '';
+    protected $api_key_uid = '';
 
     /**
      * Constructor.

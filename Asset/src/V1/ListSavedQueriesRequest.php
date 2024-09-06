@@ -22,7 +22,7 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The expression to filter resources.
      * The expression is a list of zero or more restrictions combined via logical
@@ -33,7 +33,7 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The maximum number of saved queries to return per page. The
      * service may return fewer than this value. If unspecified, at most 50 will
@@ -42,7 +42,7 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous `ListSavedQueries` call.
      * Provide this to retrieve the subsequent page.
@@ -51,7 +51,7 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The parent project/folder/organization whose savedQueries are to

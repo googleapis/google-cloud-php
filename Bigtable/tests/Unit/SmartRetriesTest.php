@@ -247,6 +247,34 @@ class SmartRetriesTest extends TestCase
         $this->assertEquals($expectedRows, $rows);
     }
 
+    public function testReadRowsWithRowsLimitAndExceptionThrownAfterSuccess()
+    {
+        $args = ['rowsLimit' => 1];
+        $expectedArgs = $args + $this->options;
+        $this->serverStream->readAll()
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                $this->arrayAsGeneratorWithException(
+                    $this->generateRowsResponse(1, 1),
+                    $this->retryingApiException
+                )
+            );
+        $this->bigtableClient->readRows(
+            Argument::that(function ($request) use (&$allowedRowsLimit) {
+                return $request->getRowsLimit() === 1;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $rows = $this->table->readRows($args);
+        $expectedRows = $this->generateExpectedRows(1, 1);
+        $this->assertEquals($expectedRows, iterator_to_array($rows));
+    }
+
     public function testReadRowsWithRowKeys()
     {
         $args = ['rowKeys' => ['rk1', 'rk2', 'rk3', 'rk4']];

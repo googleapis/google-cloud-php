@@ -684,6 +684,10 @@ class ClusterControllerGapicClient
      *           Optional. The output Cloud Storage directory for the diagnostic
      *           tarball. If not specified, a task-specific directory in the cluster's
      *           staging bucket will be used.
+     *     @type int $tarballAccess
+     *           Optional. (Optional) The access type to the diagnostic tarball. If not
+     *           specified, falls back to default access of the bucket
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dataproc\V1\DiagnoseClusterRequest\TarballAccess}
      *     @type Interval $diagnosisInterval
      *           Optional. Time interval in which diagnosis should be carried out on the
      *           cluster.
@@ -715,6 +719,10 @@ class ClusterControllerGapicClient
         $requestParamHeaders['cluster_name'] = $clusterName;
         if (isset($optionalArgs['tarballGcsDir'])) {
             $request->setTarballGcsDir($optionalArgs['tarballGcsDir']);
+        }
+
+        if (isset($optionalArgs['tarballAccess'])) {
+            $request->setTarballAccess($optionalArgs['tarballAccess']);
         }
 
         if (isset($optionalArgs['diagnosisInterval'])) {

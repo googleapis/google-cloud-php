@@ -26,7 +26,7 @@ class EffectiveIamPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 1;</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
     /**
      * The effective policies for the
      * [full_resource_name][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.full_resource_name].
@@ -191,6 +191,4 @@ class EffectiveIamPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EffectiveIamPolicy::class, \Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse_EffectiveIamPolicy::class);
 

@@ -62,7 +62,7 @@ class Event extends \Google\Protobuf\Internal\Message
     protected $hashed_account_id = '';
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
-     * token. If enabled, `site_key` must reference an Express site key.
+     * token. If enabled, `site_key` must reference an express key.
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -95,15 +95,15 @@ class Event extends \Google\Protobuf\Internal\Message
     private $headers;
     /**
      * Optional. Flag for enabling firewall policy config assessment.
-     * If this flag is enabled, the firewall policy will be evaluated and a
-     * suggested firewall action will be returned in the response.
+     * If this flag is enabled, the firewall policy is evaluated and a
+     * suggested firewall action is returned in the response.
      *
      * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $firewall_policy_evaluation = false;
     /**
      * Optional. Data describing a payment transaction to be assessed. Sending
-     * this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     * this data enables reCAPTCHA Fraud Prevention and the
      * FraudPreventionAssessment component in the response.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -153,7 +153,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *           be hashed using hmac-sha256 with stable secret.
      *     @type bool $express
      *           Optional. Flag for a reCAPTCHA express request for an assessment without a
-     *           token. If enabled, `site_key` must reference an Express site key.
+     *           token. If enabled, `site_key` must reference an express key.
      *     @type string $requested_uri
      *           Optional. The URI resource the user requested that triggered an assessment.
      *     @type bool $waf_token_assessment
@@ -166,11 +166,11 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Optional. HTTP header information about the request.
      *     @type bool $firewall_policy_evaluation
      *           Optional. Flag for enabling firewall policy config assessment.
-     *           If this flag is enabled, the firewall policy will be evaluated and a
-     *           suggested firewall action will be returned in the response.
+     *           If this flag is enabled, the firewall policy is evaluated and a
+     *           suggested firewall action is returned in the response.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData $transaction_data
      *           Optional. Data describing a payment transaction to be assessed. Sending
-     *           this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     *           this data enables reCAPTCHA Fraud Prevention and the
      *           FraudPreventionAssessment component in the response.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\UserInfo $user_info
      *           Optional. Information about the user that generates this event, when they
@@ -364,7 +364,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
-     * token. If enabled, `site_key` must reference an Express site key.
+     * token. If enabled, `site_key` must reference an express key.
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -376,7 +376,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag for a reCAPTCHA express request for an assessment without a
-     * token. If enabled, `site_key` must reference an Express site key.
+     * token. If enabled, `site_key` must reference an express key.
      *
      * Generated from protobuf field <code>bool express = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -500,8 +500,8 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag for enabling firewall policy config assessment.
-     * If this flag is enabled, the firewall policy will be evaluated and a
-     * suggested firewall action will be returned in the response.
+     * If this flag is enabled, the firewall policy is evaluated and a
+     * suggested firewall action is returned in the response.
      *
      * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -513,8 +513,8 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag for enabling firewall policy config assessment.
-     * If this flag is enabled, the firewall policy will be evaluated and a
-     * suggested firewall action will be returned in the response.
+     * If this flag is enabled, the firewall policy is evaluated and a
+     * suggested firewall action is returned in the response.
      *
      * Generated from protobuf field <code>bool firewall_policy_evaluation = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -530,7 +530,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Data describing a payment transaction to be assessed. Sending
-     * this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     * this data enables reCAPTCHA Fraud Prevention and the
      * FraudPreventionAssessment component in the response.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -553,7 +553,7 @@ class Event extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Data describing a payment transaction to be assessed. Sending
-     * this data enables reCAPTCHA Enterprise Fraud Prevention and the
+     * this data enables reCAPTCHA Fraud Prevention and the
      * FraudPreventionAssessment component in the response.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionData transaction_data = 13 [(.google.api.field_behavior) = OPTIONAL];</code>

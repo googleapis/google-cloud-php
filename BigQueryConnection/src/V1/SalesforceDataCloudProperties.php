@@ -21,20 +21,20 @@ class SalesforceDataCloudProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_uri = 1;</code>
      */
-    private $instance_uri = '';
+    protected $instance_uri = '';
     /**
      * Output only. A unique Google-owned and Google-generated service account
      * identity for the connection.
      *
      * Generated from protobuf field <code>string identity = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $identity = '';
+    protected $identity = '';
     /**
      * The ID of the user's Salesforce tenant.
      *
      * Generated from protobuf field <code>string tenant_id = 3;</code>
      */
-    private $tenant_id = '';
+    protected $tenant_id = '';
 
     /**
      * Constructor.

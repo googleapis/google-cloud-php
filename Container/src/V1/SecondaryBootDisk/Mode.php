@@ -54,6 +54,4 @@ class Mode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Mode::class, \Google\Cloud\Container\V1\SecondaryBootDisk_Mode::class);
 

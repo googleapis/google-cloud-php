@@ -54,6 +54,23 @@ class AnswerSkippedReason
      * Generated from protobuf enum <code>NO_RELEVANT_CONTENT = 5;</code>
      */
     const NO_RELEVANT_CONTENT = 5;
+    /**
+     * The jail-breaking query ignored case.
+     * For example, "Reply in the tone of a competing company's CEO".
+     * Google skips the answer if the query is classified as a jail-breaking
+     * query.
+     *
+     * Generated from protobuf enum <code>JAIL_BREAKING_QUERY_IGNORED = 6;</code>
+     */
+    const JAIL_BREAKING_QUERY_IGNORED = 6;
+    /**
+     * The customer policy violation case.
+     * Google skips the summary if there is a customer policy violation
+     * detected. The policy is defined by the customer.
+     *
+     * Generated from protobuf enum <code>CUSTOMER_POLICY_VIOLATION = 7;</code>
+     */
+    const CUSTOMER_POLICY_VIOLATION = 7;
 
     private static $valueToName = [
         self::ANSWER_SKIPPED_REASON_UNSPECIFIED => 'ANSWER_SKIPPED_REASON_UNSPECIFIED',
@@ -62,6 +79,8 @@ class AnswerSkippedReason
         self::OUT_OF_DOMAIN_QUERY_IGNORED => 'OUT_OF_DOMAIN_QUERY_IGNORED',
         self::POTENTIAL_POLICY_VIOLATION => 'POTENTIAL_POLICY_VIOLATION',
         self::NO_RELEVANT_CONTENT => 'NO_RELEVANT_CONTENT',
+        self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
+        self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
     ];
 
     public static function name($value)

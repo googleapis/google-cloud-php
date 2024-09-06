@@ -20,31 +20,31 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Port for the MySQL connection, default value is 3306.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Required. Username for the MySQL connection.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required. Input only. Password for the MySQL connection.
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * SSL configuration for the MySQL connection.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSslConfig ssl_config = 5;</code>
      */
-    private $ssl_config = null;
+    protected $ssl_config = null;
 
     /**
      * Constructor.

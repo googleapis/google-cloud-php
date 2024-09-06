@@ -25,13 +25,13 @@ class UpdateSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.SavedQuery saved_query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $saved_query = null;
+    protected $saved_query = null;
     /**
      * Required. The list of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Asset\V1\SavedQuery $savedQuery Required. The saved query to update.

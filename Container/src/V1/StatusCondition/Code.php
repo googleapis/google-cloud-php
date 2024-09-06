@@ -90,6 +90,4 @@ class Code
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Code::class, \Google\Cloud\Container\V1\StatusCondition_Code::class);
 

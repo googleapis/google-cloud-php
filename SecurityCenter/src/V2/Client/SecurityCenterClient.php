@@ -168,9 +168,7 @@ final class SecurityCenterClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -216,7 +214,9 @@ final class SecurityCenterClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -288,8 +288,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted external_system resource.
      */
-    public static function externalSystemName(string $organization, string $source, string $finding, string $externalsystem): string
-    {
+    public static function externalSystemName(
+        string $organization,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('externalSystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -431,8 +435,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_location_notification_config resource.
      */
-    public static function folderLocationNotificationConfigName(string $folder, string $location, string $notificationConfig): string
-    {
+    public static function folderLocationNotificationConfigName(
+        string $folder,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('folderLocationNotificationConfig')->render([
             'folder' => $folder,
             'location' => $location,
@@ -504,8 +511,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_finding_externalsystem resource.
      */
-    public static function folderSourceFindingExternalsystemName(string $folder, string $source, string $finding, string $externalsystem): string
-    {
+    public static function folderSourceFindingExternalsystemName(
+        string $folder,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('folderSourceFindingExternalsystem')->render([
             'folder' => $folder,
             'source' => $source,
@@ -544,8 +555,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_location_finding resource.
      */
-    public static function folderSourceLocationFindingName(string $folder, string $source, string $location, string $finding): string
-    {
+    public static function folderSourceLocationFindingName(
+        string $folder,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('folderSourceLocationFinding')->render([
             'folder' => $folder,
             'source' => $source,
@@ -566,8 +581,13 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_location_finding_externalsystem resource.
      */
-    public static function folderSourceLocationFindingExternalsystemName(string $folder, string $source, string $location, string $finding, string $externalsystem): string
-    {
+    public static function folderSourceLocationFindingExternalsystemName(
+        string $folder,
+        string $source,
+        string $location,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('folderSourceLocationFindingExternalsystem')->render([
             'folder' => $folder,
             'source' => $source,
@@ -588,8 +608,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_location_finding_securityMarks resource.
      */
-    public static function folderSourceLocationFindingSecurityMarksName(string $folder, string $source, string $location, string $finding): string
-    {
+    public static function folderSourceLocationFindingSecurityMarksName(
+        string $folder,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('folderSourceLocationFindingSecurityMarks')->render([
             'folder' => $folder,
             'source' => $source,
@@ -642,8 +666,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted notification_config resource.
      */
-    public static function notificationConfigName(string $organization, string $location, string $notificationConfig): string
-    {
+    public static function notificationConfigName(
+        string $organization,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('notificationConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -727,8 +754,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_export resource.
      */
-    public static function organizationLocationExportName(string $organization, string $location, string $export): string
-    {
+    public static function organizationLocationExportName(
+        string $organization,
+        string $location,
+        string $export
+    ): string {
         return self::getPathTemplate('organizationLocationExport')->render([
             'organization' => $organization,
             'location' => $location,
@@ -746,8 +776,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_mute_config resource.
      */
-    public static function organizationLocationMuteConfigName(string $organization, string $location, string $muteConfig): string
-    {
+    public static function organizationLocationMuteConfigName(
+        string $organization,
+        string $location,
+        string $muteConfig
+    ): string {
         return self::getPathTemplate('organizationLocationMuteConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -765,8 +798,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_notification_config resource.
      */
-    public static function organizationLocationNotificationConfigName(string $organization, string $location, string $notificationConfig): string
-    {
+    public static function organizationLocationNotificationConfigName(
+        string $organization,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('organizationLocationNotificationConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -784,8 +820,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_resource_value_config resource.
      */
-    public static function organizationLocationResourceValueConfigName(string $organization, string $location, string $resourceValueConfig): string
-    {
+    public static function organizationLocationResourceValueConfigName(
+        string $organization,
+        string $location,
+        string $resourceValueConfig
+    ): string {
         return self::getPathTemplate('organizationLocationResourceValueConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -803,8 +842,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_simluation resource.
      */
-    public static function organizationLocationSimluationName(string $organization, string $location, string $simluation): string
-    {
+    public static function organizationLocationSimluationName(
+        string $organization,
+        string $location,
+        string $simluation
+    ): string {
         return self::getPathTemplate('organizationLocationSimluation')->render([
             'organization' => $organization,
             'location' => $location,
@@ -823,8 +865,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_simluation_valued_resource resource.
      */
-    public static function organizationLocationSimluationValuedResourceName(string $organization, string $location, string $simluation, string $valuedResource): string
-    {
+    public static function organizationLocationSimluationValuedResourceName(
+        string $organization,
+        string $location,
+        string $simluation,
+        string $valuedResource
+    ): string {
         return self::getPathTemplate('organizationLocationSimluationValuedResource')->render([
             'organization' => $organization,
             'location' => $location,
@@ -859,8 +905,10 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_resource_value_config resource.
      */
-    public static function organizationResourceValueConfigName(string $organization, string $resourceValueConfig): string
-    {
+    public static function organizationResourceValueConfigName(
+        string $organization,
+        string $resourceValueConfig
+    ): string {
         return self::getPathTemplate('organizationResourceValueConfig')->render([
             'organization' => $organization,
             'resource_value_config' => $resourceValueConfig,
@@ -894,8 +942,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_simulation_valued_resource resource.
      */
-    public static function organizationSimulationValuedResourceName(string $organization, string $simulation, string $valuedResource): string
-    {
+    public static function organizationSimulationValuedResourceName(
+        string $organization,
+        string $simulation,
+        string $valuedResource
+    ): string {
         return self::getPathTemplate('organizationSimulationValuedResource')->render([
             'organization' => $organization,
             'simulation' => $simulation,
@@ -950,8 +1001,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_finding_externalsystem resource.
      */
-    public static function organizationSourceFindingExternalsystemName(string $organization, string $source, string $finding, string $externalsystem): string
-    {
+    public static function organizationSourceFindingExternalsystemName(
+        string $organization,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('organizationSourceFindingExternalsystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -970,8 +1025,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_finding_securityMarks resource.
      */
-    public static function organizationSourceFindingSecurityMarksName(string $organization, string $source, string $finding): string
-    {
+    public static function organizationSourceFindingSecurityMarksName(
+        string $organization,
+        string $source,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceFindingSecurityMarks')->render([
             'organization' => $organization,
             'source' => $source,
@@ -990,8 +1048,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_location_finding resource.
      */
-    public static function organizationSourceLocationFindingName(string $organization, string $source, string $location, string $finding): string
-    {
+    public static function organizationSourceLocationFindingName(
+        string $organization,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceLocationFinding')->render([
             'organization' => $organization,
             'source' => $source,
@@ -1012,8 +1074,13 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_location_finding_externalsystem resource.
      */
-    public static function organizationSourceLocationFindingExternalsystemName(string $organization, string $source, string $location, string $finding, string $externalsystem): string
-    {
+    public static function organizationSourceLocationFindingExternalsystemName(
+        string $organization,
+        string $source,
+        string $location,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('organizationSourceLocationFindingExternalsystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -1034,8 +1101,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_location_finding_securityMarks resource.
      */
-    public static function organizationSourceLocationFindingSecurityMarksName(string $organization, string $source, string $location, string $finding): string
-    {
+    public static function organizationSourceLocationFindingSecurityMarksName(
+        string $organization,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceLocationFindingSecurityMarks')->render([
             'organization' => $organization,
             'source' => $source,
@@ -1055,8 +1126,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_valued_resource resource.
      */
-    public static function organizationValuedResourceName(string $organization, string $location, string $simulation, string $valuedResource): string
-    {
+    public static function organizationValuedResourceName(
+        string $organization,
+        string $location,
+        string $simulation,
+        string $valuedResource
+    ): string {
         return self::getPathTemplate('organizationValuedResource')->render([
             'organization' => $organization,
             'location' => $location,
@@ -1215,8 +1290,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_location_notification_config resource.
      */
-    public static function projectLocationNotificationConfigName(string $project, string $location, string $notificationConfig): string
-    {
+    public static function projectLocationNotificationConfigName(
+        string $project,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('projectLocationNotificationConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -1234,8 +1312,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_location_table_profile resource.
      */
-    public static function projectLocationTableProfileName(string $project, string $location, string $tableProfile): string
-    {
+    public static function projectLocationTableProfileName(
+        string $project,
+        string $location,
+        string $tableProfile
+    ): string {
         return self::getPathTemplate('projectLocationTableProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -1307,8 +1388,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_finding_externalsystem resource.
      */
-    public static function projectSourceFindingExternalsystemName(string $project, string $source, string $finding, string $externalsystem): string
-    {
+    public static function projectSourceFindingExternalsystemName(
+        string $project,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('projectSourceFindingExternalsystem')->render([
             'project' => $project,
             'source' => $source,
@@ -1327,8 +1412,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_finding_securityMarks resource.
      */
-    public static function projectSourceFindingSecurityMarksName(string $project, string $source, string $finding): string
-    {
+    public static function projectSourceFindingSecurityMarksName(
+        string $project,
+        string $source,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceFindingSecurityMarks')->render([
             'project' => $project,
             'source' => $source,
@@ -1347,8 +1435,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_location_finding resource.
      */
-    public static function projectSourceLocationFindingName(string $project, string $source, string $location, string $finding): string
-    {
+    public static function projectSourceLocationFindingName(
+        string $project,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceLocationFinding')->render([
             'project' => $project,
             'source' => $source,
@@ -1369,8 +1461,13 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_location_finding_externalsystem resource.
      */
-    public static function projectSourceLocationFindingExternalsystemName(string $project, string $source, string $location, string $finding, string $externalsystem): string
-    {
+    public static function projectSourceLocationFindingExternalsystemName(
+        string $project,
+        string $source,
+        string $location,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('projectSourceLocationFindingExternalsystem')->render([
             'project' => $project,
             'source' => $source,
@@ -1391,8 +1488,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_location_finding_securityMarks resource.
      */
-    public static function projectSourceLocationFindingSecurityMarksName(string $project, string $source, string $location, string $finding): string
-    {
+    public static function projectSourceLocationFindingSecurityMarksName(
+        string $project,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceLocationFindingSecurityMarks')->render([
             'project' => $project,
             'source' => $source,
@@ -1727,8 +1828,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateResourceValueConfigs(BatchCreateResourceValueConfigsRequest $request, array $callOptions = []): BatchCreateResourceValueConfigsResponse
-    {
+    public function batchCreateResourceValueConfigs(
+        BatchCreateResourceValueConfigsRequest $request,
+        array $callOptions = []
+    ): BatchCreateResourceValueConfigsResponse {
         return $this->startApiCall('BatchCreateResourceValueConfigs', $request, $callOptions)->wait();
     }
 
@@ -1862,8 +1965,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNotificationConfig(CreateNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function createNotificationConfig(
+        CreateNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('CreateNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -2092,8 +2197,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationConfig(GetNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function getNotificationConfig(
+        GetNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('GetNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -2119,8 +2226,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getResourceValueConfig(GetResourceValueConfigRequest $request, array $callOptions = []): ResourceValueConfig
-    {
+    public function getResourceValueConfig(
+        GetResourceValueConfigRequest $request,
+        array $callOptions = []
+    ): ResourceValueConfig {
         return $this->startApiCall('GetResourceValueConfig', $request, $callOptions)->wait();
     }
 
@@ -2382,8 +2491,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotificationConfigs(ListNotificationConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationConfigs(
+        ListNotificationConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationConfigs', $request, $callOptions);
     }
 
@@ -2409,8 +2520,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listResourceValueConfigs(ListResourceValueConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listResourceValueConfigs(
+        ListResourceValueConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListResourceValueConfigs', $request, $callOptions);
     }
 
@@ -2567,8 +2680,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -2703,8 +2818,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNotificationConfig(UpdateNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function updateNotificationConfig(
+        UpdateNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('UpdateNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -2730,8 +2847,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateResourceValueConfig(UpdateResourceValueConfigRequest $request, array $callOptions = []): ResourceValueConfig
-    {
+    public function updateResourceValueConfig(
+        UpdateResourceValueConfigRequest $request,
+        array $callOptions = []
+    ): ResourceValueConfig {
         return $this->startApiCall('UpdateResourceValueConfig', $request, $callOptions)->wait();
     }
 

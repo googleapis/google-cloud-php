@@ -20,14 +20,14 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 accelerator_count = 1;</code>
      */
-    private $accelerator_count = 0;
+    protected $accelerator_count = 0;
     /**
      * The accelerator type resource name. List of supported accelerators
      * [here](https://cloud.google.com/compute/docs/gpus)
      *
      * Generated from protobuf field <code>string accelerator_type = 2;</code>
      */
-    private $accelerator_type = '';
+    protected $accelerator_type = '';
     /**
      * Size of partitions to create on the GPU. Valid values are described in the
      * NVIDIA [mig user
@@ -35,19 +35,19 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gpu_partition_size = 3;</code>
      */
-    private $gpu_partition_size = '';
+    protected $gpu_partition_size = '';
     /**
      * The configuration for GPU sharing options.
      *
      * Generated from protobuf field <code>optional .google.container.v1.GPUSharingConfig gpu_sharing_config = 5;</code>
      */
-    private $gpu_sharing_config = null;
+    protected $gpu_sharing_config = null;
     /**
      * The configuration for auto installation of GPU driver.
      *
      * Generated from protobuf field <code>optional .google.container.v1.GPUDriverInstallationConfig gpu_driver_installation_config = 6;</code>
      */
-    private $gpu_driver_installation_config = null;
+    protected $gpu_driver_installation_config = null;
 
     /**
      * Constructor.

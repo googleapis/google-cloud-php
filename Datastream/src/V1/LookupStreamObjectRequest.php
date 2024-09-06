@@ -21,13 +21,13 @@ class LookupStreamObjectRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The source object identifier which maps to the stream object.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier source_object_identifier = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_object_identifier = null;
+    protected $source_object_identifier = null;
 
     /**
      * Constructor.

@@ -18,13 +18,13 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of parent to list exposed resources.
      * Valid formats:
-     * `organizations/{organization}`,
-     * `organizations/{organization}/simulations/{simulation}`
-     * `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * "organizations/{organization}",
+     * "organizations/{organization}/simulations/{simulation}"
+     * "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The filter expression that filters the valued resources in the response.
      * Supported fields:
@@ -33,7 +33,7 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The value returned by the last `ListValuedResourcesResponse`; indicates
      * that this is a continuation of a prior `ListValuedResources` call, and
@@ -41,14 +41,14 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The maximum number of results to return in a single response. Default is
      * 10, minimum is 1, maximum is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The fields by which to order the valued resources response.
      * Supported fields:
@@ -63,15 +63,15 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. Name of parent to list exposed resources.
      *
      *                       Valid formats:
-     *                       `organizations/{organization}`,
-     *                       `organizations/{organization}/simulations/{simulation}`
-     *                       `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     *                       "organizations/{organization}",
+     *                       "organizations/{organization}/simulations/{simulation}"
+     *                       "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
      *                       Please see {@see SecurityCenterClient::simulationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\ListValuedResourcesRequest
@@ -93,9 +93,9 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Name of parent to list exposed resources.
      *           Valid formats:
-     *           `organizations/{organization}`,
-     *           `organizations/{organization}/simulations/{simulation}`
-     *           `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     *           "organizations/{organization}",
+     *           "organizations/{organization}/simulations/{simulation}"
+     *           "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
      *     @type string $filter
      *           The filter expression that filters the valued resources in the response.
      *           Supported fields:
@@ -129,9 +129,9 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of parent to list exposed resources.
      * Valid formats:
-     * `organizations/{organization}`,
-     * `organizations/{organization}/simulations/{simulation}`
-     * `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * "organizations/{organization}",
+     * "organizations/{organization}/simulations/{simulation}"
+     * "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -144,9 +144,9 @@ class ListValuedResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Name of parent to list exposed resources.
      * Valid formats:
-     * `organizations/{organization}`,
-     * `organizations/{organization}/simulations/{simulation}`
-     * `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
+     * "organizations/{organization}",
+     * "organizations/{organization}/simulations/{simulation}"
+     * "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

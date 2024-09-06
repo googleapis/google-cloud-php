@@ -21,7 +21,7 @@ class CheckError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.CheckError.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Subject to whom this error applies. See the specific code enum for more
      * details on this field. For example:
@@ -31,13 +31,13 @@ class CheckError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subject = 4;</code>
      */
-    private $subject = '';
+    protected $subject = '';
     /**
      * Free-form text providing details on the error cause of the error.
      *
      * Generated from protobuf field <code>string detail = 2;</code>
      */
-    private $detail = '';
+    protected $detail = '';
     /**
      * Contains public information about the check error. If available,
      * `status.code` will be non zero and client can propagate it out as public
@@ -45,7 +45,7 @@ class CheckError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 3;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.

@@ -28,7 +28,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Relative name of the service within the application.
      * Example: `default`.
@@ -36,14 +36,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Mapping that defines fractional HTTP traffic diversion to
      * different versions within the service.
      *
      * Generated from protobuf field <code>.google.appengine.v1.TrafficSplit split = 3;</code>
      */
-    private $split = null;
+    protected $split = null;
     /**
      * A set of labels to apply to this service. Labels are key/value pairs that
      * describe the service and all resources that belong to it (e.g.,
@@ -64,7 +64,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.NetworkSettings network_settings = 6;</code>
      */
-    private $network_settings = null;
+    protected $network_settings = null;
 
     /**
      * Constructor.

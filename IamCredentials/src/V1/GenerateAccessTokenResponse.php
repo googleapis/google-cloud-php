@@ -18,14 +18,14 @@ class GenerateAccessTokenResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string access_token = 1;</code>
      */
-    private $access_token = '';
+    protected $access_token = '';
     /**
      * Token expiration time.
      * The expiration time is always set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

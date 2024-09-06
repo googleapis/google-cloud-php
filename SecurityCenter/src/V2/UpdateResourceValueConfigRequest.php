@@ -20,7 +20,7 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourceValueConfig resource_value_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_value_config = null;
+    protected $resource_value_config = null;
     /**
      * The list of fields to be updated.
      * If empty all mutable fields will be updated.
@@ -30,7 +30,7 @@ class UpdateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V2\ResourceValueConfig $resourceValueConfig Required. The resource value config being updated.

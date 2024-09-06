@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\ApiHubDependenciesClient;
-use Google\Cloud\ApiHub\V1\Dependency;
 use Google\Cloud\ApiHub\V1\ListDependenciesRequest;
 
 /**
@@ -50,7 +49,6 @@ function list_dependencies_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $apiHubDependenciesClient->listDependencies($request);
 
-        /** @var Dependency $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

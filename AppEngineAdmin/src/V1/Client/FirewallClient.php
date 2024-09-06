@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -209,8 +209,10 @@ final class FirewallClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateIngressRules(BatchUpdateIngressRulesRequest $request, array $callOptions = []): BatchUpdateIngressRulesResponse
-    {
+    public function batchUpdateIngressRules(
+        BatchUpdateIngressRulesRequest $request,
+        array $callOptions = []
+    ): BatchUpdateIngressRulesResponse {
         return $this->startApiCall('BatchUpdateIngressRules', $request, $callOptions)->wait();
     }
 

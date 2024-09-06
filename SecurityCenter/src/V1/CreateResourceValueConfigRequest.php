@@ -20,13 +20,13 @@ class CreateResourceValueConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The resource value config being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ResourceValueConfig resource_value_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_value_config = null;
+    protected $resource_value_config = null;
 
     /**
      * Constructor.

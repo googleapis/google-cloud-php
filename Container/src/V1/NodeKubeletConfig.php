@@ -27,7 +27,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpu_manager_policy = 1;</code>
      */
-    private $cpu_manager_policy = '';
+    protected $cpu_manager_policy = '';
     /**
      * Enable CPU CFS quota enforcement for containers that specify CPU limits.
      * This option is enabled by default which makes kubelet use CFS quota
@@ -40,7 +40,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cpu_cfs_quota = 2;</code>
      */
-    private $cpu_cfs_quota = null;
+    protected $cpu_cfs_quota = null;
     /**
      * Set the CPU CFS quota period value 'cpu.cfs_period_us'.
      * The string must be a sequence of decimal numbers, each with optional
@@ -50,7 +50,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cpu_cfs_quota_period = 3;</code>
      */
-    private $cpu_cfs_quota_period = '';
+    protected $cpu_cfs_quota_period = '';
     /**
      * Set the Pod PID limits. See
      * https://kubernetes.io/docs/concepts/policy/pid-limiting/#pod-pid-limits
@@ -59,13 +59,13 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 pod_pids_limit = 4;</code>
      */
-    private $pod_pids_limit = 0;
+    protected $pod_pids_limit = 0;
     /**
      * Enable or disable Kubelet read only port.
      *
      * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 7;</code>
      */
-    private $insecure_kubelet_readonly_port_enabled = null;
+    protected $insecure_kubelet_readonly_port_enabled = null;
 
     /**
      * Constructor.
@@ -194,7 +194,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue cpu_cfs_quota = 2;</code>
      * @return bool|null
      */
-    public function getCpuCfsQuotaValue()
+    public function getCpuCfsQuotaUnwrapped()
     {
         return $this->readWrapperValue("cpu_cfs_quota");
     }
@@ -237,7 +237,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setCpuCfsQuotaValue($var)
+    public function setCpuCfsQuotaUnwrapped($var)
     {
         $this->writeWrapperValue("cpu_cfs_quota", $var);
         return $this;}

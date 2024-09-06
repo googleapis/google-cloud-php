@@ -21,19 +21,19 @@ class UsableSubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string range_name = 1;</code>
      */
-    private $range_name = '';
+    protected $range_name = '';
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 2;</code>
      */
-    private $ip_cidr_range = '';
+    protected $ip_cidr_range = '';
     /**
      * This field is to determine the status of the secondary range programmably.
      *
      * Generated from protobuf field <code>.google.container.v1.UsableSubnetworkSecondaryRange.Status status = 3;</code>
      */
-    private $status = 0;
+    protected $status = 0;
 
     /**
      * Constructor.

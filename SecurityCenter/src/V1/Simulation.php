@@ -21,13 +21,13 @@ class Simulation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Time simulation was created
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Resource value configurations' metadata used in this simulation. Maximum of
      * 100.
@@ -40,7 +40,7 @@ class Simulation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudProvider cloud_provider = 4;</code>
      */
-    private $cloud_provider = 0;
+    protected $cloud_provider = 0;
 
     /**
      * Constructor.

@@ -24,7 +24,7 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string attached_resource = 1;</code>
      */
-    private $attached_resource = null;
+    protected $attached_resource = null;
     /**
      * The effective tags inherited from the
      * [attached_resource][google.cloud.asset.v1.EffectiveTagDetails.attached_resource].

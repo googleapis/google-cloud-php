@@ -21,7 +21,7 @@ class FetchCertificateAuthorityCsrResponse extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string pem_csr = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pem_csr = '';
+    protected $pem_csr = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class MaintenanceExclusionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.MaintenanceExclusionOptions.Scope scope = 1;</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
 
     /**
      * Constructor.

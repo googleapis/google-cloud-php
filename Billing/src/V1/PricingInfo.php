@@ -25,27 +25,27 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp effective_time = 1;</code>
      */
-    private $effective_time = null;
+    protected $effective_time = null;
     /**
      * An optional human readable summary of the pricing information, has a
      * maximum length of 256 characters.
      *
      * Generated from protobuf field <code>string summary = 2;</code>
      */
-    private $summary = '';
+    protected $summary = '';
     /**
      * Expresses the pricing formula. See `PricingExpression` for an example.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.PricingExpression pricing_expression = 3;</code>
      */
-    private $pricing_expression = null;
+    protected $pricing_expression = null;
     /**
      * Aggregation Info. This can be left unspecified if the pricing expression
      * doesn't require aggregation.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.AggregationInfo aggregation_info = 4;</code>
      */
-    private $aggregation_info = null;
+    protected $aggregation_info = null;
     /**
      * Conversion rate used for currency conversion, from USD to the currency
      * specified in the request. This includes any surcharge collected for billing
@@ -55,7 +55,7 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double currency_conversion_rate = 5;</code>
      */
-    private $currency_conversion_rate = 0.0;
+    protected $currency_conversion_rate = 0.0;
 
     /**
      * Constructor.

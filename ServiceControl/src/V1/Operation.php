@@ -27,13 +27,13 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Fully qualified name of the operation. Reserved for future use.
      *
      * Generated from protobuf field <code>string operation_name = 2;</code>
      */
-    private $operation_name = '';
+    protected $operation_name = '';
     /**
      * Identity of the consumer who is using the service.
      * This field should be filled in for the operations initiated by a
@@ -49,13 +49,13 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string consumer_id = 3;</code>
      */
-    private $consumer_id = '';
+    protected $consumer_id = '';
     /**
      * Required. Start time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * End time of the operation.
      * Required when the operation is used in
@@ -65,7 +65,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Labels describing the operation. Only the following labels are allowed:
      * - Labels describing monitored resources as defined in
@@ -111,7 +111,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.Operation.Importance importance = 11;</code>
      */
-    private $importance = 0;
+    protected $importance = 0;
     /**
      * Unimplemented.
      *

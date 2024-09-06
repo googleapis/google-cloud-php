@@ -26,7 +26,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 1;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Size of the disk attached to each node, specified in GB.
      * The smallest allowed disk size is 10GB.
@@ -34,7 +34,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 2;</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * The set of Google API scopes to be made available on all of the
      * node VMs under the "default" service account.
@@ -59,7 +59,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 9;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * The metadata key/value pairs assigned to instances in the cluster.
      * Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes
@@ -101,7 +101,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_type = 5;</code>
      */
-    private $image_type = '';
+    protected $image_type = '';
     /**
      * The map of Kubernetes labels (key/value pairs) to be applied to each node.
      * These will added in addition to any default label(s) that
@@ -124,7 +124,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 7;</code>
      */
-    private $local_ssd_count = 0;
+    protected $local_ssd_count = 0;
     /**
      * The list of instance tags applied to all nodes. Tags are used to identify
      * valid sources or targets for network firewalls and are specified by
@@ -141,7 +141,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool preemptible = 10;</code>
      */
-    private $preemptible = false;
+    protected $preemptible = false;
     /**
      * A list of hardware accelerators to be attached to each node.
      * See https://cloud.google.com/compute/docs/gpus for more information about
@@ -157,7 +157,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 12;</code>
      */
-    private $disk_type = '';
+    protected $disk_type = '';
     /**
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are the
@@ -169,13 +169,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string min_cpu_platform = 13;</code>
      */
-    private $min_cpu_platform = '';
+    protected $min_cpu_platform = '';
     /**
      * The workload metadata configuration for this node.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
      */
-    private $workload_metadata_config = null;
+    protected $workload_metadata_config = null;
     /**
      * List of kubernetes taints to be applied to each node.
      * For more information, including usage and the valid values, see:
@@ -189,7 +189,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.SandboxConfig sandbox_config = 17;</code>
      */
-    private $sandbox_config = null;
+    protected $sandbox_config = null;
     /**
      * Setting this field will assign instances of this
      * pool to run on the specified node group. This is useful for running
@@ -198,7 +198,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_group = 18;</code>
      */
-    private $node_group = '';
+    protected $node_group = '';
     /**
      * The optional reservation affinity. Setting this field will apply
      * the specified [Zonal Compute
@@ -207,25 +207,25 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ReservationAffinity reservation_affinity = 19;</code>
      */
-    private $reservation_affinity = null;
+    protected $reservation_affinity = null;
     /**
      * Shielded Instance options.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 20;</code>
      */
-    private $shielded_instance_config = null;
+    protected $shielded_instance_config = null;
     /**
      * Parameters that can be configured on Linux nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
      */
-    private $linux_node_config = null;
+    protected $linux_node_config = null;
     /**
      * Node kubelet configs.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
      */
-    private $kubelet_config = null;
+    protected $kubelet_config = null;
     /**
      * The Customer Managed Encryption Key used to encrypt the boot disk attached
      * to each node in the node pool. This should be of the form
@@ -236,45 +236,45 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string boot_disk_kms_key = 23;</code>
      */
-    private $boot_disk_kms_key = '';
+    protected $boot_disk_kms_key = '';
     /**
      * Google Container File System (image streaming) configs.
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
      */
-    private $gcfs_config = null;
+    protected $gcfs_config = null;
     /**
      * Advanced features for the Compute Engine VM.
      *
      * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
      */
-    private $advanced_machine_features = null;
+    protected $advanced_machine_features = null;
     /**
      * Enable or disable gvnic in the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
      */
-    private $gvnic = null;
+    protected $gvnic = null;
     /**
      * Spot flag for enabling Spot VM, which is a rebrand of
      * the existing preemptible flag.
      *
      * Generated from protobuf field <code>bool spot = 32;</code>
      */
-    private $spot = false;
+    protected $spot = false;
     /**
      * Confidential nodes config.
      * All the nodes in the node pool will be Confidential VM once enabled.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
      */
-    private $confidential_nodes = null;
+    protected $confidential_nodes = null;
     /**
      * Enable or disable NCCL fast socket for the node pool.
      *
      * Generated from protobuf field <code>optional .google.container.v1.FastSocket fast_socket = 36;</code>
      */
-    private $fast_socket = null;
+    protected $fast_socket = null;
     /**
      * The resource labels for the node pool to use to annotate any related
      * Google Compute Engine resources.
@@ -287,50 +287,50 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Parameters that can be configured on Windows nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.WindowsNodeConfig windows_node_config = 39;</code>
      */
-    private $windows_node_config = null;
+    protected $windows_node_config = null;
     /**
      * Parameters for using raw-block Local NVMe SSDs.
      *
      * Generated from protobuf field <code>.google.container.v1.LocalNvmeSsdBlockConfig local_nvme_ssd_block_config = 40;</code>
      */
-    private $local_nvme_ssd_block_config = null;
+    protected $local_nvme_ssd_block_config = null;
     /**
      * Parameters for the node ephemeral storage using Local SSDs.
      * If unspecified, ephemeral storage is backed by the boot disk.
      *
      * Generated from protobuf field <code>.google.container.v1.EphemeralStorageLocalSsdConfig ephemeral_storage_local_ssd_config = 41;</code>
      */
-    private $ephemeral_storage_local_ssd_config = null;
+    protected $ephemeral_storage_local_ssd_config = null;
     /**
      * Parameters for node pools to be backed by shared sole tenant node groups.
      *
      * Generated from protobuf field <code>.google.container.v1.SoleTenantConfig sole_tenant_config = 42;</code>
      */
-    private $sole_tenant_config = null;
+    protected $sole_tenant_config = null;
     /**
      * Parameters for containerd customization.
      *
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 43;</code>
      */
-    private $containerd_config = null;
+    protected $containerd_config = null;
     /**
      * A map of resource manager tag keys and values to be attached to the nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
      */
-    private $resource_manager_tags = null;
+    protected $resource_manager_tags = null;
     /**
      * Optional. Reserved for future use.
      *
      * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_confidential_storage = false;
+    protected $enable_confidential_storage = false;
     /**
      * List of secondary boot disks attached to the nodes.
      *
@@ -342,7 +342,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
      */
-    private $secondary_boot_disk_update_strategy = null;
+    protected $secondary_boot_disk_update_strategy = null;
 
     /**
      * Constructor.

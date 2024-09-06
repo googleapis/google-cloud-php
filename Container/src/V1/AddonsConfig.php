@@ -22,7 +22,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.HttpLoadBalancing http_load_balancing = 1;</code>
      */
-    private $http_load_balancing = null;
+    protected $http_load_balancing = null;
     /**
      * Configuration for the horizontal pod autoscaling feature, which
      * increases or decreases the number of replica pods a replication controller
@@ -30,7 +30,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.HorizontalPodAutoscaling horizontal_pod_autoscaling = 2;</code>
      */
-    private $horizontal_pod_autoscaling = null;
+    protected $horizontal_pod_autoscaling = null;
     /**
      * Configuration for the Kubernetes Dashboard.
      * This addon is deprecated, and will be disabled in 1.15. It is recommended
@@ -49,63 +49,63 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicyConfig network_policy_config = 4;</code>
      */
-    private $network_policy_config = null;
+    protected $network_policy_config = null;
     /**
      * Configuration for the Cloud Run addon, which allows the user to use a
      * managed Knative service.
      *
      * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
      */
-    private $cloud_run_config = null;
+    protected $cloud_run_config = null;
     /**
      * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
      *
      * Generated from protobuf field <code>.google.container.v1.DnsCacheConfig dns_cache_config = 8;</code>
      */
-    private $dns_cache_config = null;
+    protected $dns_cache_config = null;
     /**
      * Configuration for the ConfigConnector add-on, a Kubernetes
      * extension to manage hosted GCP services through the Kubernetes API
      *
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
      */
-    private $config_connector_config = null;
+    protected $config_connector_config = null;
     /**
      * Configuration for the Compute Engine Persistent Disk CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcePersistentDiskCsiDriverConfig gce_persistent_disk_csi_driver_config = 11;</code>
      */
-    private $gce_persistent_disk_csi_driver_config = null;
+    protected $gce_persistent_disk_csi_driver_config = null;
     /**
      * Configuration for the GCP Filestore CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
      */
-    private $gcp_filestore_csi_driver_config = null;
+    protected $gcp_filestore_csi_driver_config = null;
     /**
      * Configuration for the Backup for GKE agent addon.
      *
      * Generated from protobuf field <code>.google.container.v1.GkeBackupAgentConfig gke_backup_agent_config = 16;</code>
      */
-    private $gke_backup_agent_config = null;
+    protected $gke_backup_agent_config = null;
     /**
      * Configuration for the Cloud Storage Fuse CSI driver.
      *
      * Generated from protobuf field <code>.google.container.v1.GcsFuseCsiDriverConfig gcs_fuse_csi_driver_config = 17;</code>
      */
-    private $gcs_fuse_csi_driver_config = null;
+    protected $gcs_fuse_csi_driver_config = null;
     /**
      * Optional. Configuration for the StatefulHA add-on.
      *
      * Generated from protobuf field <code>.google.container.v1.StatefulHAConfig stateful_ha_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stateful_ha_config = null;
+    protected $stateful_ha_config = null;
     /**
      * Optional. Configuration for Ray Operator addon.
      *
      * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ray_operator_config = null;
+    protected $ray_operator_config = null;
 
     /**
      * Constructor.

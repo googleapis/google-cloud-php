@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
 use Google\Cloud\ApiHub\V1\ListVersionsRequest;
-use Google\Cloud\ApiHub\V1\Version;
 
 /**
  * List API versions of an API resource in the API hub.
@@ -50,7 +49,6 @@ function list_versions_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $apiHubClient->listVersions($request);
 
-        /** @var Version $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

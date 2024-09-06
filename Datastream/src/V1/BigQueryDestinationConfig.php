@@ -23,7 +23,7 @@ class BigQueryDestinationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration data_freshness = 300;</code>
      */
-    private $data_freshness = null;
+    protected $data_freshness = null;
     protected $dataset_config;
 
     /**

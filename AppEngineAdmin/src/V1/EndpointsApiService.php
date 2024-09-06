@@ -26,7 +26,7 @@ class EndpointsApiService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Endpoints service configuration ID as specified by the Service Management
      * API. For example "2016-09-19r1".
@@ -41,21 +41,21 @@ class EndpointsApiService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_id = 2;</code>
      */
-    private $config_id = '';
+    protected $config_id = '';
     /**
      * Endpoints rollout strategy. If `FIXED`, `config_id` must be specified. If
      * `MANAGED`, `config_id` must be omitted.
      *
      * Generated from protobuf field <code>.google.appengine.v1.EndpointsApiService.RolloutStrategy rollout_strategy = 3;</code>
      */
-    private $rollout_strategy = 0;
+    protected $rollout_strategy = 0;
     /**
      * Enable or disable trace sampling. By default, this is set to false for
      * enabled.
      *
      * Generated from protobuf field <code>bool disable_trace_sampling = 4;</code>
      */
-    private $disable_trace_sampling = false;
+    protected $disable_trace_sampling = false;
 
     /**
      * Constructor.

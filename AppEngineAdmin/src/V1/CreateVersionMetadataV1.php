@@ -22,7 +22,7 @@ class CreateVersionMetadataV1 extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_build_id = 1;</code>
      */
-    private $cloud_build_id = '';
+    protected $cloud_build_id = '';
 
     /**
      * Constructor.

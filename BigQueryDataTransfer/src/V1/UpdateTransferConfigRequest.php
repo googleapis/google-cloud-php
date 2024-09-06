@@ -11,6 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A request to update a transfer configuration. To update the user id of the
  * transfer configuration, authorization info needs to be provided.
+ * When using a cross project service account for updating a transfer config,
+ * you must enable cross project service account usage. For more information,
+ * see [Disable attachment of service accounts to resources in other
+ * projects](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_cross_project_service_accounts).
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest</code>
  */
