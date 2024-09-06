@@ -22,7 +22,7 @@ class AptSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.AptSettings.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * List of packages to exclude from update. These packages will be excluded
      *

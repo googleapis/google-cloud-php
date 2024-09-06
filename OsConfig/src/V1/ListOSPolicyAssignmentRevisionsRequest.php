@@ -20,13 +20,13 @@ class ListOSPolicyAssignmentRevisionsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The maximum number of revisions to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A pagination token returned from a previous call to
      * `ListOSPolicyAssignmentRevisions` that indicates where this listing should
@@ -34,7 +34,7 @@ class ListOSPolicyAssignmentRevisionsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $name Required. The name of the OS policy assignment to list revisions for. Please see

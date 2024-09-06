@@ -24,7 +24,7 @@ class PatchInstanceFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all = 1;</code>
      */
-    private $all = false;
+    protected $all = false;
     /**
      * Targets VM instances matching ANY of these GroupLabels. This allows
      * targeting of disparate groups of VM instances.

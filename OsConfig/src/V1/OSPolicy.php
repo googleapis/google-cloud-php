@@ -25,20 +25,20 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Policy description.
      * Length of the description is limited to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Policy mode
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Mode mode = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * Required. List of resource groups for the policy.
      * For a particular VM, resource groups are evaluated in the order specified
@@ -59,7 +59,7 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_no_resource_group_match = 5;</code>
      */
-    private $allow_no_resource_group_match = false;
+    protected $allow_no_resource_group_match = false;
 
     /**
      * Constructor.

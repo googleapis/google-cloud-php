@@ -23,13 +23,13 @@ class YumSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool security = 1;</code>
      */
-    private $security = false;
+    protected $security = false;
     /**
      * Will cause patch to run `yum update-minimal` instead.
      *
      * Generated from protobuf field <code>bool minimal = 2;</code>
      */
-    private $minimal = false;
+    protected $minimal = false;
     /**
      * List of packages to exclude from update. These packages are excluded by
      * using the yum `--exclude` flag.

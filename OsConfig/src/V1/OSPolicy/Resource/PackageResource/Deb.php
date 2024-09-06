@@ -20,7 +20,7 @@ class Deb extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.File source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * Whether dependencies should also be installed.
      * - install when false: `dpkg -i package`
@@ -29,7 +29,7 @@ class Deb extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool pull_deps = 2;</code>
      */
-    private $pull_deps = false;
+    protected $pull_deps = false;
 
     /**
      * Constructor.

@@ -25,19 +25,19 @@ class ZypperRepository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The display name of the repository.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The location of the repository directory.
      *
      * Generated from protobuf field <code>string base_url = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $base_url = '';
+    protected $base_url = '';
     /**
      * URIs of GPG keys.
      *

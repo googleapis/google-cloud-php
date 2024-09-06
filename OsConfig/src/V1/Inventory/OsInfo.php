@@ -20,7 +20,7 @@ class OsInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hostname = 9;</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * The operating system long name.
      * For example 'Debian GNU/Linux 9' or 'Microsoft Window Server 2019
@@ -28,44 +28,44 @@ class OsInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string long_name = 2;</code>
      */
-    private $long_name = '';
+    protected $long_name = '';
     /**
      * The operating system short name.
      * For example, 'windows' or 'debian'.
      *
      * Generated from protobuf field <code>string short_name = 3;</code>
      */
-    private $short_name = '';
+    protected $short_name = '';
     /**
      * The version of the operating system.
      *
      * Generated from protobuf field <code>string version = 4;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * The system architecture of the operating system.
      *
      * Generated from protobuf field <code>string architecture = 5;</code>
      */
-    private $architecture = '';
+    protected $architecture = '';
     /**
      * The kernel version of the operating system.
      *
      * Generated from protobuf field <code>string kernel_version = 6;</code>
      */
-    private $kernel_version = '';
+    protected $kernel_version = '';
     /**
      * The kernel release of the operating system.
      *
      * Generated from protobuf field <code>string kernel_release = 7;</code>
      */
-    private $kernel_release = '';
+    protected $kernel_release = '';
     /**
      * The current version of the OS Config agent running on the VM.
      *
      * Generated from protobuf field <code>string osconfig_agent_version = 8;</code>
      */
-    private $osconfig_agent_version = '';
+    protected $osconfig_agent_version = '';
 
     /**
      * Constructor.

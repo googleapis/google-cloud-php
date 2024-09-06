@@ -22,19 +22,19 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.RepositoryResource.AptRepository.ArchiveType archive_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $archive_type = 0;
+    protected $archive_type = 0;
     /**
      * Required. URI for this repository.
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Required. Distribution of this repository.
      *
      * Generated from protobuf field <code>string distribution = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $distribution = '';
+    protected $distribution = '';
     /**
      * Required. List of components for this repository. Must contain at
      * least one item.
@@ -48,7 +48,7 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gpg_key = 5;</code>
      */
-    private $gpg_key = '';
+    protected $gpg_key = '';
 
     /**
      * Constructor.
