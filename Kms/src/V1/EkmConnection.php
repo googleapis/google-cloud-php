@@ -29,14 +29,14 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time at which the
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * A list of
      * [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
@@ -54,7 +54,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Describes who can perform control plane operations on the EKM. If
      * unset, this defaults to
@@ -62,7 +62,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.EkmConnection.KeyManagementMode key_management_mode = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_management_mode = 0;
+    protected $key_management_mode = 0;
     /**
      * Optional. Identifies the EKM Crypto Space that this
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] maps to. Note: This
@@ -72,7 +72,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crypto_space_path = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $crypto_space_path = '';
+    protected $crypto_space_path = '';
 
     /**
      * Constructor.

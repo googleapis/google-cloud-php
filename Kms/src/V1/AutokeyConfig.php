@@ -21,7 +21,7 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Name of the key project, e.g. `projects/{PROJECT_ID}` or
      * `projects/{PROJECT_NUMBER}`, where Cloud KMS Autokey will provision a new
@@ -37,7 +37,7 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_project = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_project = '';
+    protected $key_project = '';
 
     /**
      * Constructor.

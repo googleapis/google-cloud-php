@@ -63,6 +63,4 @@ class AttestationFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AttestationFormat::class, \Google\Cloud\Kms\V1\KeyOperationAttestation_AttestationFormat::class);
 
