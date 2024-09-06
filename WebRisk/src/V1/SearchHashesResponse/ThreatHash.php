@@ -28,14 +28,14 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes hash = 2;</code>
      */
-    private $hash = '';
+    protected $hash = '';
     /**
      * The cache lifetime for the returned match. Clients must not cache this
      * response past this timestamp to avoid false positives.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.
@@ -155,6 +155,4 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ThreatHash::class, \Google\Cloud\WebRisk\V1\SearchHashesResponse_ThreatHash::class);
 
