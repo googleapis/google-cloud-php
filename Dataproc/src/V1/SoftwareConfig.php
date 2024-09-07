@@ -26,7 +26,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_version = '';
+    protected $image_version = '';
     /**
      * Optional. The properties to set on daemon config files.
      * Property keys are specified in `prefix:property` format, for example

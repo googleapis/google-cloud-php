@@ -29,7 +29,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 1;</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Price of the product.
      * Google Merchant Center property
@@ -38,7 +38,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float price = 2;</code>
      */
-    private $price = 0.0;
+    protected $price = 0.0;
     /**
      * Price of the product without any discount. If zero, by default set to be
      * the [price][google.cloud.retail.v2.PriceInfo.price]. If set,
@@ -48,7 +48,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float original_price = 3;</code>
      */
-    private $original_price = 0.0;
+    protected $original_price = 0.0;
     /**
      * The costs associated with the sale of a particular product. Used for gross
      * profit reporting.
@@ -59,7 +59,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float cost = 4;</code>
      */
-    private $cost = 0.0;
+    protected $cost = 0.0;
     /**
      * The timestamp when the [price][google.cloud.retail.v2.PriceInfo.price]
      * starts to be effective. This can be set as a future timestamp, and the
@@ -76,7 +76,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp price_effective_time = 5;</code>
      */
-    private $price_effective_time = null;
+    protected $price_effective_time = null;
     /**
      * The timestamp when the [price][google.cloud.retail.v2.PriceInfo.price]
      * stops to be effective. The [price][google.cloud.retail.v2.PriceInfo.price]
@@ -92,7 +92,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp price_expire_time = 6;</code>
      */
-    private $price_expire_time = null;
+    protected $price_expire_time = null;
     /**
      * Output only. The price range of all the child
      * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -107,7 +107,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo.PriceRange price_range = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $price_range = null;
+    protected $price_range = null;
 
     /**
      * Constructor.

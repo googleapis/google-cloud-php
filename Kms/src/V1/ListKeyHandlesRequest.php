@@ -23,7 +23,7 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Filter to apply when listing
      * [KeyHandles][google.cloud.kms.v1.KeyHandle], e.g.
@@ -31,7 +31,7 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. Name of the resource project and location from which to list

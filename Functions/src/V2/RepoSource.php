@@ -21,13 +21,13 @@ class RepoSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Name of the Cloud Source Repository.
      *
      * Generated from protobuf field <code>string repo_name = 2;</code>
      */
-    private $repo_name = '';
+    protected $repo_name = '';
     /**
      * Directory, relative to the source root, in which to run the build.
      * This must be a relative path. If a step's `dir` is specified and is an
@@ -36,14 +36,14 @@ class RepoSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dir = 6;</code>
      */
-    private $dir = '';
+    protected $dir = '';
     /**
      * Only trigger a build if the revision regex does NOT match the revision
      * regex.
      *
      * Generated from protobuf field <code>bool invert_regex = 7;</code>
      */
-    private $invert_regex = false;
+    protected $invert_regex = false;
     protected $revision;
 
     /**

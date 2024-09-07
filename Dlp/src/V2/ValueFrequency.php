@@ -20,13 +20,13 @@ class ValueFrequency extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 1;</code>
      */
-    private $value = null;
+    protected $value = null;
     /**
      * How many times the value is contained in the field.
      *
      * Generated from protobuf field <code>int64 count = 2;</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

@@ -99,6 +99,4 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ThreatJustification::class, \Google\Cloud\WebRisk\V1\ThreatInfo_ThreatJustification::class);
 

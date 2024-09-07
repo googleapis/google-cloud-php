@@ -22,7 +22,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.FixedOrPercent disruption_budget = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $disruption_budget = null;
+    protected $disruption_budget = null;
     /**
      * Required. This determines the minimum duration of time to wait after the
      * configuration changes are applied through the current rollout. A
@@ -32,7 +32,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_wait_duration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_wait_duration = null;
+    protected $min_wait_duration = null;
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class TrainProcessorVersionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 1;</code>
      */
-    private $common_metadata = null;
+    protected $common_metadata = null;
     /**
      * The training dataset validation information.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionMetadata.DatasetValidation training_dataset_validation = 2;</code>
      */
-    private $training_dataset_validation = null;
+    protected $training_dataset_validation = null;
     /**
      * The test dataset validation information.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionMetadata.DatasetValidation test_dataset_validation = 3;</code>
      */
-    private $test_dataset_validation = null;
+    protected $test_dataset_validation = null;
 
     /**
      * Constructor.

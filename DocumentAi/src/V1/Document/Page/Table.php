@@ -21,7 +21,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * Header rows of the table.
      *

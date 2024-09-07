@@ -22,33 +22,33 @@ class Style extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      */
-    private $text_anchor = null;
+    protected $text_anchor = null;
     /**
      * Text color.
      *
      * Generated from protobuf field <code>.google.type.Color color = 2;</code>
      */
-    private $color = null;
+    protected $color = null;
     /**
      * Text background color.
      *
      * Generated from protobuf field <code>.google.type.Color background_color = 3;</code>
      */
-    private $background_color = null;
+    protected $background_color = null;
     /**
      * [Font weight](https://www.w3schools.com/cssref/pr_font_weight.asp).
      * Possible values are `normal`, `bold`, `bolder`, and `lighter`.
      *
      * Generated from protobuf field <code>string font_weight = 4;</code>
      */
-    private $font_weight = '';
+    protected $font_weight = '';
     /**
      * [Text style](https://www.w3schools.com/cssref/pr_font_font-style.asp).
      * Possible values are `normal`, `italic`, and `oblique`.
      *
      * Generated from protobuf field <code>string text_style = 5;</code>
      */
-    private $text_style = '';
+    protected $text_style = '';
     /**
      * [Text
      * decoration](https://www.w3schools.com/cssref/pr_text_text-decoration.asp).
@@ -57,20 +57,20 @@ class Style extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text_decoration = 6;</code>
      */
-    private $text_decoration = '';
+    protected $text_decoration = '';
     /**
      * Font size.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Style.FontSize font_size = 7;</code>
      */
-    private $font_size = null;
+    protected $font_size = null;
     /**
      * Font family such as `Arial`, `Times New Roman`.
      * https://www.w3schools.com/cssref/pr_font_font-family.asp
      *
      * Generated from protobuf field <code>string font_family = 8;</code>
      */
-    private $font_family = '';
+    protected $font_family = '';
 
     /**
      * Constructor.

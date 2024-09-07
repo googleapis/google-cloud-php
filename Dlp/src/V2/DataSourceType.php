@@ -21,7 +21,7 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_source = '';
+    protected $data_source = '';
 
     /**
      * Constructor.

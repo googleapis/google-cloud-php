@@ -20,9 +20,9 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization):
      * + Projects scope:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Organizations scope:
-     *   `organizations/{org_id}/locations/{location_id}`
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -30,13 +30,13 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The DiscoveryConfig to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig discovery_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $discovery_config = null;
+    protected $discovery_config = null;
     /**
      * The config ID can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -45,7 +45,7 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_id = 3;</code>
      */
-    private $config_id = '';
+    protected $config_id = '';
 
     /**
      * @param string                               $parent          Required. Parent resource name.
@@ -54,9 +54,9 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *                                                              (project or organization):
      *
      *                                                              + Projects scope:
-     *                                                              `projects/{project_id}/locations/{location_id}`
+     *                                                              `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *                                                              + Organizations scope:
-     *                                                              `organizations/{org_id}/locations/{location_id}`
+     *                                                              `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      *
      *                                                              The following example `parent` string specifies a parent project with the
      *                                                              identifier `example-project`, and specifies the `europe-west3` location
@@ -88,9 +88,9 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on the scope of the request
      *           (project or organization):
      *           + Projects scope:
-     *             `projects/{project_id}/locations/{location_id}`
+     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Organizations scope:
-     *             `organizations/{org_id}/locations/{location_id}`
+     *             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -114,9 +114,9 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization):
      * + Projects scope:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Organizations scope:
-     *   `organizations/{org_id}/locations/{location_id}`
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -135,9 +135,9 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization):
      * + Projects scope:
-     *   `projects/{project_id}/locations/{location_id}`
+     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Organizations scope:
-     *   `organizations/{org_id}/locations/{location_id}`
+     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:

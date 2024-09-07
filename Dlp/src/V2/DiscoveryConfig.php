@@ -27,19 +27,19 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Display name (max 100 chars)
      *
      * Generated from protobuf field <code>string display_name = 11;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Only set when the parent is an org.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig.OrgConfig org_config = 2;</code>
      */
-    private $org_config = null;
+    protected $org_config = null;
     /**
      * Detection logic for profile generation.
      * Not all template features are used by Discovery. FindingLimits,
@@ -84,25 +84,25 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of a DiscoveryConfig.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The timestamp of the last time this config was executed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_run_time = null;
+    protected $last_run_time = null;
     /**
      * Required. A status for this configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig.Status status = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $status = 0;
+    protected $status = 0;
 
     /**
      * Constructor.

@@ -20,37 +20,22 @@ class GcsData extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Cloud Storage bucket name. Must meet
-     * [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements).
+     * [Bucket Name Requirements](/storage/docs/naming#requirements).
      *
      * Generated from protobuf field <code>string bucket_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket_name = '';
+    protected $bucket_name = '';
     /**
      * Root path to transfer objects.
      * Must be an empty string or full path name that ends with a '/'. This field
      * is treated as an object prefix. As such, it should generally not begin with
      * a '/'.
      * The root path value must meet
-     * [Object Name Requirements](https://cloud.google.com/storage/docs/naming#objectnames).
+     * [Object Name Requirements](/storage/docs/naming#objectnames).
      *
      * Generated from protobuf field <code>string path = 3;</code>
      */
-    private $path = '';
-    /**
-     * Preview. Enables the transfer of managed folders between Cloud Storage
-     * buckets. Set this option on the gcs_data_source.
-     * If set to true:
-     * - Managed folders in the source bucket are transferred to the
-     *   destination bucket.
-     * - Managed folders in the destination bucket are overwritten. Other
-     *   OVERWRITE options are not supported.
-     * See
-     * [Transfer Cloud Storage managed
-     * folders](https://cloud.google.com/storage-transfer/docs/managed-folders).
-     *
-     * Generated from protobuf field <code>bool managed_folder_transfer_enabled = 4;</code>
-     */
-    private $managed_folder_transfer_enabled = false;
+    protected $path = '';
 
     /**
      * Constructor.
@@ -60,25 +45,14 @@ class GcsData extends \Google\Protobuf\Internal\Message
      *
      *     @type string $bucket_name
      *           Required. Cloud Storage bucket name. Must meet
-     *           [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements).
+     *           [Bucket Name Requirements](/storage/docs/naming#requirements).
      *     @type string $path
      *           Root path to transfer objects.
      *           Must be an empty string or full path name that ends with a '/'. This field
      *           is treated as an object prefix. As such, it should generally not begin with
      *           a '/'.
      *           The root path value must meet
-     *           [Object Name Requirements](https://cloud.google.com/storage/docs/naming#objectnames).
-     *     @type bool $managed_folder_transfer_enabled
-     *           Preview. Enables the transfer of managed folders between Cloud Storage
-     *           buckets. Set this option on the gcs_data_source.
-     *           If set to true:
-     *           - Managed folders in the source bucket are transferred to the
-     *             destination bucket.
-     *           - Managed folders in the destination bucket are overwritten. Other
-     *             OVERWRITE options are not supported.
-     *           See
-     *           [Transfer Cloud Storage managed
-     *           folders](https://cloud.google.com/storage-transfer/docs/managed-folders).
+     *           [Object Name Requirements](/storage/docs/naming#objectnames).
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +62,7 @@ class GcsData extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Cloud Storage bucket name. Must meet
-     * [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements).
+     * [Bucket Name Requirements](/storage/docs/naming#requirements).
      *
      * Generated from protobuf field <code>string bucket_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,7 +74,7 @@ class GcsData extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Cloud Storage bucket name. Must meet
-     * [Bucket Name Requirements](https://cloud.google.com/storage/docs/naming#requirements).
+     * [Bucket Name Requirements](/storage/docs/naming#requirements).
      *
      * Generated from protobuf field <code>string bucket_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -120,7 +94,7 @@ class GcsData extends \Google\Protobuf\Internal\Message
      * is treated as an object prefix. As such, it should generally not begin with
      * a '/'.
      * The root path value must meet
-     * [Object Name Requirements](https://cloud.google.com/storage/docs/naming#objectnames).
+     * [Object Name Requirements](/storage/docs/naming#objectnames).
      *
      * Generated from protobuf field <code>string path = 3;</code>
      * @return string
@@ -136,7 +110,7 @@ class GcsData extends \Google\Protobuf\Internal\Message
      * is treated as an object prefix. As such, it should generally not begin with
      * a '/'.
      * The root path value must meet
-     * [Object Name Requirements](https://cloud.google.com/storage/docs/naming#objectnames).
+     * [Object Name Requirements](/storage/docs/naming#objectnames).
      *
      * Generated from protobuf field <code>string path = 3;</code>
      * @param string $var
@@ -146,50 +120,6 @@ class GcsData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->path = $var;
-
-        return $this;
-    }
-
-    /**
-     * Preview. Enables the transfer of managed folders between Cloud Storage
-     * buckets. Set this option on the gcs_data_source.
-     * If set to true:
-     * - Managed folders in the source bucket are transferred to the
-     *   destination bucket.
-     * - Managed folders in the destination bucket are overwritten. Other
-     *   OVERWRITE options are not supported.
-     * See
-     * [Transfer Cloud Storage managed
-     * folders](https://cloud.google.com/storage-transfer/docs/managed-folders).
-     *
-     * Generated from protobuf field <code>bool managed_folder_transfer_enabled = 4;</code>
-     * @return bool
-     */
-    public function getManagedFolderTransferEnabled()
-    {
-        return $this->managed_folder_transfer_enabled;
-    }
-
-    /**
-     * Preview. Enables the transfer of managed folders between Cloud Storage
-     * buckets. Set this option on the gcs_data_source.
-     * If set to true:
-     * - Managed folders in the source bucket are transferred to the
-     *   destination bucket.
-     * - Managed folders in the destination bucket are overwritten. Other
-     *   OVERWRITE options are not supported.
-     * See
-     * [Transfer Cloud Storage managed
-     * folders](https://cloud.google.com/storage-transfer/docs/managed-folders).
-     *
-     * Generated from protobuf field <code>bool managed_folder_transfer_enabled = 4;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setManagedFolderTransferEnabled($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->managed_folder_transfer_enabled = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -319,8 +319,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bindDeviceToGateway(BindDeviceToGatewayRequest $request, array $callOptions = []): BindDeviceToGatewayResponse
-    {
+    public function bindDeviceToGateway(
+        BindDeviceToGatewayRequest $request,
+        array $callOptions = []
+    ): BindDeviceToGatewayResponse {
         return $this->startApiCall('BindDeviceToGateway', $request, $callOptions)->wait();
     }
 
@@ -527,8 +529,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeviceConfigVersions(ListDeviceConfigVersionsRequest $request, array $callOptions = []): ListDeviceConfigVersionsResponse
-    {
+    public function listDeviceConfigVersions(
+        ListDeviceConfigVersionsRequest $request,
+        array $callOptions = []
+    ): ListDeviceConfigVersionsResponse {
         return $this->startApiCall('ListDeviceConfigVersions', $request, $callOptions)->wait();
     }
 
@@ -553,8 +557,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeviceRegistries(ListDeviceRegistriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDeviceRegistries(
+        ListDeviceRegistriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDeviceRegistries', $request, $callOptions);
     }
 
@@ -580,8 +586,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDeviceStates(ListDeviceStatesRequest $request, array $callOptions = []): ListDeviceStatesResponse
-    {
+    public function listDeviceStates(
+        ListDeviceStatesRequest $request,
+        array $callOptions = []
+    ): ListDeviceStatesResponse {
         return $this->startApiCall('ListDeviceStates', $request, $callOptions)->wait();
     }
 
@@ -635,8 +643,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function modifyCloudToDeviceConfig(ModifyCloudToDeviceConfigRequest $request, array $callOptions = []): DeviceConfig
-    {
+    public function modifyCloudToDeviceConfig(
+        ModifyCloudToDeviceConfigRequest $request,
+        array $callOptions = []
+    ): DeviceConfig {
         return $this->startApiCall('ModifyCloudToDeviceConfig', $request, $callOptions)->wait();
     }
 
@@ -673,8 +683,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function sendCommandToDevice(SendCommandToDeviceRequest $request, array $callOptions = []): SendCommandToDeviceResponse
-    {
+    public function sendCommandToDevice(
+        SendCommandToDeviceRequest $request,
+        array $callOptions = []
+    ): SendCommandToDeviceResponse {
         return $this->startApiCall('SendCommandToDevice', $request, $callOptions)->wait();
     }
 
@@ -728,8 +740,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -755,8 +769,10 @@ final class DeviceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function unbindDeviceFromGateway(UnbindDeviceFromGatewayRequest $request, array $callOptions = []): UnbindDeviceFromGatewayResponse
-    {
+    public function unbindDeviceFromGateway(
+        UnbindDeviceFromGatewayRequest $request,
+        array $callOptions = []
+    ): UnbindDeviceFromGatewayResponse {
         return $this->startApiCall('UnbindDeviceFromGateway', $request, $callOptions)->wait();
     }
 

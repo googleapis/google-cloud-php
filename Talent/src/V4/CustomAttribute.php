@@ -54,7 +54,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>
      */
-    private $filterable = false;
+    protected $filterable = false;
     /**
      * If the `keyword_searchable` flag is true, the keywords in custom fields are
      * searchable by keyword match.
@@ -63,7 +63,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool keyword_searchable = 4;</code>
      */
-    private $keyword_searchable = false;
+    protected $keyword_searchable = false;
 
     /**
      * Constructor.

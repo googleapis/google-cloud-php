@@ -66,6 +66,4 @@ class MessageSeverity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MessageSeverity::class, \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage_MessageSeverity::class);
 

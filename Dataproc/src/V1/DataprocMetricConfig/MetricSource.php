@@ -99,6 +99,4 @@ class MetricSource
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricSource::class, \Google\Cloud\Dataproc\V1\DataprocMetricConfig_MetricSource::class);
 

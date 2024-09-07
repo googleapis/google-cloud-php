@@ -20,14 +20,14 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. Optional custom container image for the job runtime environment.
      * If not specified, a default container image will be used.
      *
      * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $container_image = '';
+    protected $container_image = '';
     /**
      * Optional. A mapping of property names to values, which are used to
      * configure workload execution.
@@ -40,20 +40,20 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RepositoryConfig repository_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $repository_config = null;
+    protected $repository_config = null;
     /**
      * Optional. Autotuning configuration of the workload.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutotuningConfig autotuning_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autotuning_config = null;
+    protected $autotuning_config = null;
     /**
      * Optional. Cohort identifier. Identifies families of the workloads having
      * the same shape, e.g. daily ETL jobs.
      *
      * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cohort = '';
+    protected $cohort = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value min_value = 1;</code>
      */
-    private $min_value = null;
+    protected $min_value = null;
     /**
      * Maximum value appearing in the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value max_value = 2;</code>
      */
-    private $max_value = null;
+    protected $max_value = null;
     /**
      * List of 99 values that partition the set of field values into 100 equal
      * sized buckets.
@@ -157,6 +157,4 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NumericalStatsResult::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_NumericalStatsResult::class);
 

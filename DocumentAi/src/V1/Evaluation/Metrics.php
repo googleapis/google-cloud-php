@@ -20,67 +20,67 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float precision = 1;</code>
      */
-    private $precision = 0.0;
+    protected $precision = 0.0;
     /**
      * The calculated recall.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      */
-    private $recall = 0.0;
+    protected $recall = 0.0;
     /**
      * The calculated f1 score.
      *
      * Generated from protobuf field <code>float f1_score = 3;</code>
      */
-    private $f1_score = 0.0;
+    protected $f1_score = 0.0;
     /**
      * The amount of occurrences in predicted documents.
      *
      * Generated from protobuf field <code>int32 predicted_occurrences_count = 4;</code>
      */
-    private $predicted_occurrences_count = 0;
+    protected $predicted_occurrences_count = 0;
     /**
      * The amount of occurrences in ground truth documents.
      *
      * Generated from protobuf field <code>int32 ground_truth_occurrences_count = 5;</code>
      */
-    private $ground_truth_occurrences_count = 0;
+    protected $ground_truth_occurrences_count = 0;
     /**
      * The amount of documents with a predicted occurrence.
      *
      * Generated from protobuf field <code>int32 predicted_document_count = 10;</code>
      */
-    private $predicted_document_count = 0;
+    protected $predicted_document_count = 0;
     /**
      * The amount of documents with a ground truth occurrence.
      *
      * Generated from protobuf field <code>int32 ground_truth_document_count = 11;</code>
      */
-    private $ground_truth_document_count = 0;
+    protected $ground_truth_document_count = 0;
     /**
      * The amount of true positives.
      *
      * Generated from protobuf field <code>int32 true_positives_count = 6;</code>
      */
-    private $true_positives_count = 0;
+    protected $true_positives_count = 0;
     /**
      * The amount of false positives.
      *
      * Generated from protobuf field <code>int32 false_positives_count = 7;</code>
      */
-    private $false_positives_count = 0;
+    protected $false_positives_count = 0;
     /**
      * The amount of false negatives.
      *
      * Generated from protobuf field <code>int32 false_negatives_count = 8;</code>
      */
-    private $false_negatives_count = 0;
+    protected $false_negatives_count = 0;
     /**
      * The amount of documents that had an occurrence of this label.
      *
      * Generated from protobuf field <code>int32 total_documents_count = 9;</code>
      */
-    private $total_documents_count = 0;
+    protected $total_documents_count = 0;
 
     /**
      * Constructor.

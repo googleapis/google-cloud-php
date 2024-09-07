@@ -26,7 +26,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. A copy of the "primary"
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that will be used
@@ -42,21 +42,21 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $primary = null;
+    protected $primary = null;
     /**
      * Immutable. The immutable purpose of this
      * [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose purpose = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $purpose = 0;
+    protected $purpose = 0;
     /**
      * Output only. The time at which this
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * At [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time],
      * the Key Management Service will automatically:
@@ -74,7 +74,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 7;</code>
      */
-    private $next_rotation_time = null;
+    protected $next_rotation_time = null;
     /**
      * A template describing settings for new
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] instances. The
@@ -85,7 +85,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersionTemplate version_template = 11;</code>
      */
-    private $version_template = null;
+    protected $version_template = null;
     /**
      * Labels with user-defined metadata. For more information, see
      * [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
@@ -98,7 +98,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool import_only = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $import_only = false;
+    protected $import_only = false;
     /**
      * Immutable. The period of time that versions of this key spend in the
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
@@ -108,7 +108,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $destroy_scheduled_duration = null;
+    protected $destroy_scheduled_duration = null;
     /**
      * Immutable. The resource name of the backend environment where the key
      * material for all [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
@@ -123,7 +123,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crypto_key_backend = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $crypto_key_backend = '';
+    protected $crypto_key_backend = '';
     /**
      * Optional. The policy used for Key Access Justifications Policy Enforcement.
      * If this field is present and this key is enrolled in Key Access
@@ -136,7 +136,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_access_justifications_policy = null;
+    protected $key_access_justifications_policy = null;
     protected $rotation_schedule;
 
     /**

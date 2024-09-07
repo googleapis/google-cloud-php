@@ -35,7 +35,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The location filters that the service applied to the specified query. If
      * any filters are lat-lng based, the
@@ -51,14 +51,14 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
     /**
      * Additional information for the API invocation, such as the request
      * tracking id.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ResponseMetadata metadata = 7;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * If query broadening is enabled, we may append additional results from the
      * broadened query. This number indicates how many of the jobs returned in the
@@ -70,13 +70,13 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 broadened_query_jobs_count = 8;</code>
      */
-    private $broadened_query_jobs_count = 0;
+    protected $broadened_query_jobs_count = 0;
     /**
      * The spell checking result, and correction.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SpellingCorrection spell_correction = 9;</code>
      */
-    private $spell_correction = null;
+    protected $spell_correction = null;
 
     /**
      * Constructor.

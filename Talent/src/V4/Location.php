@@ -25,7 +25,7 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Location.LocationType location_type = 1;</code>
      */
-    private $location_type = 0;
+    protected $location_type = 0;
     /**
      * Postal address of the location that includes human readable information,
      * such as postal delivery and payments addresses. Given a postal address,
@@ -34,13 +34,13 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.PostalAddress postal_address = 2;</code>
      */
-    private $postal_address = null;
+    protected $postal_address = null;
     /**
      * An object representing a latitude/longitude pair.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
      */
-    private $lat_lng = null;
+    protected $lat_lng = null;
     /**
      * Radius in miles of the job location. This value is derived from the
      * location bounding box in which a circle with the specified radius
@@ -50,7 +50,7 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double radius_miles = 4;</code>
      */
-    private $radius_miles = 0.0;
+    protected $radius_miles = 0.0;
 
     /**
      * Constructor.

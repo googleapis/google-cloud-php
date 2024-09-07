@@ -25,7 +25,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileLocation location = 1;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * The project that will run the scan. The DLP service
      * account that exists within this project must have access to all resources
@@ -33,7 +33,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 5;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Detection logic for profile generation.
      * Not all template features are used by profiles. FindingLimits,

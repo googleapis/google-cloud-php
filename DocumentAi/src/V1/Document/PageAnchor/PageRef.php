@@ -25,14 +25,14 @@ class PageRef extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 page = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $page = 0;
+    protected $page = 0;
     /**
      * Optional. The type of the layout element that is being referenced if
      * any.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.PageAnchor.PageRef.LayoutType layout_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $layout_type = 0;
+    protected $layout_type = 0;
     /**
      * Optional. Deprecated.  Use
      * [PageRef.bounding_poly][google.cloud.documentai.v1.Document.PageAnchor.PageRef.bounding_poly]
@@ -49,14 +49,14 @@ class PageRef extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * Optional. Confidence of detected page element, if applicable. Range
      * `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

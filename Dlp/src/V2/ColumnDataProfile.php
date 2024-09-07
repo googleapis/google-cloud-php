@@ -20,44 +20,44 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Success or error status from the most recent profile generation attempt.
      * May be empty if the profile is still being generated.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProfileStatus profile_status = 17;</code>
      */
-    private $profile_status = null;
+    protected $profile_status = null;
     /**
      * State of a profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ColumnDataProfile.State state = 18;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The last time the profile was generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp profile_last_generated = 3;</code>
      */
-    private $profile_last_generated = null;
+    protected $profile_last_generated = null;
     /**
      * The resource name of the table data profile.
      *
      * Generated from protobuf field <code>string table_data_profile = 4;</code>
      */
-    private $table_data_profile = '';
+    protected $table_data_profile = '';
     /**
      * The resource name of the resource this column is within.
      *
      * Generated from protobuf field <code>string table_full_resource = 5;</code>
      */
-    private $table_full_resource = '';
+    protected $table_full_resource = '';
     /**
      * The Google Cloud project ID that owns the profiled resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 19;</code>
      */
-    private $dataset_project_id = '';
+    protected $dataset_project_id = '';
     /**
      * The BigQuery location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
@@ -65,37 +65,37 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_location = 20;</code>
      */
-    private $dataset_location = '';
+    protected $dataset_location = '';
     /**
      * The BigQuery dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 21;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * The BigQuery table ID.
      *
      * Generated from protobuf field <code>string table_id = 22;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
     /**
      * The name of the column.
      *
      * Generated from protobuf field <code>string column = 6;</code>
      */
-    private $column = '';
+    protected $column = '';
     /**
      * The sensitivity of this column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 7;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
     /**
      * The data risk level for this column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataRiskLevel data_risk_level = 8;</code>
      */
-    private $data_risk_level = null;
+    protected $data_risk_level = null;
     /**
      * If it's been determined this column can be identified as a single type,
      * this will be set. Otherwise the column either has unidentifiable content
@@ -103,7 +103,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoTypeSummary column_info_type = 9;</code>
      */
-    private $column_info_type = null;
+    protected $column_info_type = null;
     /**
      * Other types found within this column. List will be unordered.
      *
@@ -115,13 +115,13 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.NullPercentageLevel estimated_null_percentage = 23;</code>
      */
-    private $estimated_null_percentage = 0;
+    protected $estimated_null_percentage = 0;
     /**
      * Approximate uniqueness of the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.UniquenessScoreLevel estimated_uniqueness_score = 24;</code>
      */
-    private $estimated_uniqueness_score = 0;
+    protected $estimated_uniqueness_score = 0;
     /**
      * The likelihood that this column contains free-form text.
      * A value close to 1 may indicate the column is likely to contain
@@ -130,19 +130,19 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double free_text_score = 13;</code>
      */
-    private $free_text_score = 0.0;
+    protected $free_text_score = 0.0;
     /**
      * The data type of a given column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ColumnDataProfile.ColumnDataType column_type = 14;</code>
      */
-    private $column_type = 0;
+    protected $column_type = 0;
     /**
      * Indicates if a policy tag has been applied to the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ColumnDataProfile.ColumnPolicyState policy_state = 15;</code>
      */
-    private $policy_state = 0;
+    protected $policy_state = 0;
 
     /**
      * Constructor.

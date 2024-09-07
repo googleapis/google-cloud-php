@@ -21,7 +21,7 @@ class Submission extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Output only. ThreatTypes found to be associated with the submitted URI
      * after reviewing it. This might be empty if the URI was not added to any

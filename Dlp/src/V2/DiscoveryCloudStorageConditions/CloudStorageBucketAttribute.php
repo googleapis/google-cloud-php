@@ -71,6 +71,4 @@ class CloudStorageBucketAttribute
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudStorageBucketAttribute::class, \Google\Cloud\Dlp\V2\DiscoveryCloudStorageConditions_CloudStorageBucketAttribute::class);
 

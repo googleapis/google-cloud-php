@@ -21,7 +21,7 @@ class CloudStorageFileSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    private $url = '';
+    protected $url = '';
 
     /**
      * Constructor.

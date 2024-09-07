@@ -21,7 +21,7 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status details = 1;</code>
      */
-    private $details = null;
+    protected $details = null;
     /**
      * The times the error occurred. List includes the oldest timestamp and the
      * last 9 timestamps.
@@ -34,7 +34,7 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Error.ErrorExtraInfo extra_info = 4;</code>
      */
-    private $extra_info = 0;
+    protected $extra_info = 0;
 
     /**
      * Constructor.

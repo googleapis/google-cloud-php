@@ -23,7 +23,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $continue_on_failure = false;
+    protected $continue_on_failure = false;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the Pig
      * command: `name=[value]`).
@@ -52,7 +52,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     protected $queries;
 
     /**

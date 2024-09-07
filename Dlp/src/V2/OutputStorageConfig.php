@@ -28,7 +28,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      */
-    private $output_schema = 0;
+    protected $output_schema = 0;
     protected $type;
 
     /**

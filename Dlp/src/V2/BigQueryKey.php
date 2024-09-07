@@ -20,7 +20,7 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table_reference = 1;</code>
      */
-    private $table_reference = null;
+    protected $table_reference = null;
     /**
      * Row number inferred at the time the table was scanned. This value is
      * nondeterministic, cannot be queried, and may be null for inspection
@@ -30,7 +30,7 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_number = 2;</code>
      */
-    private $row_number = 0;
+    protected $row_number = 0;
 
     /**
      * Constructor.

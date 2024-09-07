@@ -20,7 +20,7 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_uri = 1;</code>
      */
-    private $gcs_uri = '';
+    protected $gcs_uri = '';
     /**
      * Specifies which fields to include in the output documents.
      * Only supports top level document and pages field so it must be in the
@@ -28,13 +28,13 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
     /**
      * Specifies the sharding config for the output document.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.ShardingConfig sharding_config = 3;</code>
      */
-    private $sharding_config = null;
+    protected $sharding_config = null;
 
     /**
      * Constructor.

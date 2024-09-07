@@ -21,49 +21,49 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Project ID that was profiled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The last time the profile was generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp profile_last_generated = 3;</code>
      */
-    private $profile_last_generated = null;
+    protected $profile_last_generated = null;
     /**
      * The sensitivity score of this project.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 4;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
     /**
      * The data risk level of this project.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataRiskLevel data_risk_level = 5;</code>
      */
-    private $data_risk_level = null;
+    protected $data_risk_level = null;
     /**
      * Success or error status of the last attempt to profile the project.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProfileStatus profile_status = 7;</code>
      */
-    private $profile_status = null;
+    protected $profile_status = null;
     /**
      * The number of table data profiles generated for this project.
      *
      * Generated from protobuf field <code>int64 table_data_profile_count = 9;</code>
      */
-    private $table_data_profile_count = 0;
+    protected $table_data_profile_count = 0;
     /**
      * The number of file store data profiles generated for this project.
      *
      * Generated from protobuf field <code>int64 file_store_data_profile_count = 10;</code>
      */
-    private $file_store_data_profile_count = 0;
+    protected $file_store_data_profile_count = 0;
 
     /**
      * Constructor.

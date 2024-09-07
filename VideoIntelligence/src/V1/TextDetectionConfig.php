@@ -31,7 +31,7 @@ class TextDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 2;</code>
      */
-    private $model = '';
+    protected $model = '';
 
     /**
      * Constructor.

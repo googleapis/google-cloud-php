@@ -82,6 +82,4 @@ class OutputSchema
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OutputSchema::class, \Google\Cloud\Dlp\V2\OutputStorageConfig_OutputSchema::class);
 

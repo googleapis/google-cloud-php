@@ -31,13 +31,13 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User specified display name for the data transfer.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Data source ID. This cannot be changed once data transfer is created. The
      * full list of available data source IDs can be returned through an API call:
@@ -45,7 +45,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      */
-    private $data_source_id = '';
+    protected $data_source_id = '';
     /**
      * Parameters specific to each data source. For more information see the
      * bq tab in the 'Setting up a data transfer' section for each data source.
@@ -54,7 +54,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * Data transfer schedule.
      * If the data source does not support a custom schedule, this should be
@@ -71,13 +71,13 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schedule = 7;</code>
      */
-    private $schedule = '';
+    protected $schedule = '';
     /**
      * Options customizing the data transfer schedule.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.ScheduleOptions schedule_options = 24;</code>
      */
-    private $schedule_options = null;
+    protected $schedule_options = null;
     /**
      * The number of days to look back to automatically refresh the data.
      * For example, if `data_refresh_window_days = 10`, then every day
@@ -88,44 +88,44 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 data_refresh_window_days = 12;</code>
      */
-    private $data_refresh_window_days = 0;
+    protected $data_refresh_window_days = 0;
     /**
      * Is this config disabled. When set to true, no runs will be scheduled for
      * this transfer config.
      *
      * Generated from protobuf field <code>bool disabled = 13;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Output only. Data transfer modification time. Ignored by server on input.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Next time when data transfer will run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_run_time = null;
+    protected $next_run_time = null;
     /**
      * Output only. State of the most recently updated transfer run.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Deprecated. Unique ID of the user on whose behalf transfer is done.
      *
      * Generated from protobuf field <code>int64 user_id = 11;</code>
      */
-    private $user_id = 0;
+    protected $user_id = 0;
     /**
      * Output only. Region in which BigQuery dataset is located.
      *
      * Generated from protobuf field <code>string dataset_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dataset_region = '';
+    protected $dataset_region = '';
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
@@ -134,14 +134,14 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      */
-    private $notification_pubsub_topic = '';
+    protected $notification_pubsub_topic = '';
     /**
      * Email notifications will be sent according to these preferences
      * to the email address of the user who owns this transfer config.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 18;</code>
      */
-    private $email_preferences = null;
+    protected $email_preferences = null;
     /**
      * Output only. Information about the user whose credentials are used to
      * transfer data. Populated only for `transferConfigs.get` requests. In case
@@ -149,7 +149,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.bigquery.datatransfer.v1.UserInfo owner_info = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $owner_info = null;
+    protected $owner_info = null;
     /**
      * The encryption configuration part. Currently, it is only used for the
      * optional KMS key name. The BigQuery service account of your project must be
@@ -159,7 +159,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EncryptionConfiguration encryption_configuration = 28;</code>
      */
-    private $encryption_configuration = null;
+    protected $encryption_configuration = null;
     protected $destination;
 
     /**

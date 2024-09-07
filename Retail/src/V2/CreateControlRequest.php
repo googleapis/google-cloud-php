@@ -21,13 +21,13 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Control to create.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Control control = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $control = null;
+    protected $control = null;
     /**
      * Required. The ID to use for the Control, which will become the final
      * component of the Control's resource name.
@@ -36,7 +36,7 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string control_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $control_id = '';
+    protected $control_id = '';
 
     /**
      * @param string                          $parent    Required. Full resource name of parent catalog. Format:

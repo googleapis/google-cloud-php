@@ -20,25 +20,25 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource type that was profiled.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 36;</code>
      */
-    private $data_source_type = null;
+    protected $data_source_type = null;
     /**
      * The resource name of the project data profile for this table.
      *
      * Generated from protobuf field <code>string project_data_profile = 2;</code>
      */
-    private $project_data_profile = '';
+    protected $project_data_profile = '';
     /**
      * The Google Cloud project ID that owns the resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      */
-    private $dataset_project_id = '';
+    protected $dataset_project_id = '';
     /**
      * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
@@ -46,51 +46,51 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_location = 29;</code>
      */
-    private $dataset_location = '';
+    protected $dataset_location = '';
     /**
      * If the resource is BigQuery, the  dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * If the resource is BigQuery, the BigQuery table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
     /**
      * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>
      */
-    private $full_resource = '';
+    protected $full_resource = '';
     /**
      * Success or error status from the most recent profile generation attempt.
      * May be empty if the profile is still being generated.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ProfileStatus profile_status = 21;</code>
      */
-    private $profile_status = null;
+    protected $profile_status = null;
     /**
      * State of a profile.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableDataProfile.State state = 22;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The sensitivity score of this table.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 5;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
     /**
      * The data risk level of this table.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataRiskLevel data_risk_level = 6;</code>
      */
-    private $data_risk_level = null;
+    protected $data_risk_level = null;
     /**
      * The infoTypes predicted from this table's data.
      *
@@ -108,62 +108,62 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileConfigSnapshot config_snapshot = 7;</code>
      */
-    private $config_snapshot = null;
+    protected $config_snapshot = null;
     /**
      * The time when this table was last modified
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified_time = 8;</code>
      */
-    private $last_modified_time = null;
+    protected $last_modified_time = null;
     /**
      * Optional. The time when this table expires.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 9;</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     /**
      * The number of columns profiled in the table.
      *
      * Generated from protobuf field <code>int64 scanned_column_count = 10;</code>
      */
-    private $scanned_column_count = 0;
+    protected $scanned_column_count = 0;
     /**
      * The number of columns skipped in the table because of an error.
      *
      * Generated from protobuf field <code>int64 failed_column_count = 11;</code>
      */
-    private $failed_column_count = 0;
+    protected $failed_column_count = 0;
     /**
      * The size of the table when the profile was generated.
      *
      * Generated from protobuf field <code>int64 table_size_bytes = 12;</code>
      */
-    private $table_size_bytes = 0;
+    protected $table_size_bytes = 0;
     /**
      * Number of rows in the table when the profile was generated.
      * This will not be populated for BigLake tables.
      *
      * Generated from protobuf field <code>int64 row_count = 13;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * How the table is encrypted.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.EncryptionStatus encryption_status = 14;</code>
      */
-    private $encryption_status = 0;
+    protected $encryption_status = 0;
     /**
      * How broadly a resource has been shared.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ResourceVisibility resource_visibility = 15;</code>
      */
-    private $resource_visibility = 0;
+    protected $resource_visibility = 0;
     /**
      * The last time the profile was generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp profile_last_generated = 16;</code>
      */
-    private $profile_last_generated = null;
+    protected $profile_last_generated = null;
     /**
      * The labels applied to the resource at the time the profile was generated.
      *
@@ -175,7 +175,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 23;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

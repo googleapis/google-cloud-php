@@ -27,7 +27,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $product = '';
+    protected $product = '';
     /**
      * Required. A list of place IDs to have their inventory deleted.
      * At most 3000 place IDs are allowed per request.
@@ -42,7 +42,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp remove_time = 5;</code>
      */
-    private $remove_time = null;
+    protected $remove_time = null;
     /**
      * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      * found, the local inventory removal request will still be processed and
@@ -53,7 +53,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param string $product Required. Full resource name of [Product][google.cloud.retail.v2.Product],

@@ -66,6 +66,4 @@ class DetailLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetailLevel::class, \Google\Cloud\Dlp\V2\DataProfileAction_PubSubNotification_DetailLevel::class);
 

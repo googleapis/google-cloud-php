@@ -21,20 +21,20 @@ class SessionStateHistory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Session.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Details about the state at this point in the session
      * history.
      *
      * Generated from protobuf field <code>string state_message = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. The time when the session entered the historical state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_start_time = null;
+    protected $state_start_time = null;
 
     /**
      * Constructor.
@@ -151,6 +151,4 @@ class SessionStateHistory extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SessionStateHistory::class, \Google\Cloud\Dataproc\V1\Session_SessionStateHistory::class);
 

@@ -21,13 +21,13 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Function to be created.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Function function = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $function = null;
+    protected $function = null;
     /**
      * The ID to use for the function, which will become the final component of
      * the function's resource name.
@@ -36,7 +36,7 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string function_id = 3;</code>
      */
-    private $function_id = '';
+    protected $function_id = '';
 
     /**
      * @param string                                $parent     Required. The project and location in which the function should be created,

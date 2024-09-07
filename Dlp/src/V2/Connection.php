@@ -22,13 +22,13 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The connection's state in its lifecycle.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ConnectionState state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Set if status == ERROR, to provide additional details. Will
      * store the last 10 errors sorted with the most recent first.

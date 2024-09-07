@@ -23,7 +23,7 @@ class TransferManifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

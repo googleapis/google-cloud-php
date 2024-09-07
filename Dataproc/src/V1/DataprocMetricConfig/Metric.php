@@ -23,7 +23,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig.MetricSource metric_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric_source = 0;
+    protected $metric_source = 0;
     /**
      * Optional. Specify one or more [Custom metrics]
      * (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics)
@@ -203,6 +203,4 @@ class Metric extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Metric::class, \Google\Cloud\Dataproc\V1\DataprocMetricConfig_Metric::class);
 

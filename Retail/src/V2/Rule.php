@@ -25,7 +25,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Condition condition = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $condition = null;
+    protected $condition = null;
     protected $action;
 
     /**

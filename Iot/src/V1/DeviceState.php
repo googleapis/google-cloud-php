@@ -21,13 +21,13 @@ class DeviceState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 1;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The device state data.
      *
      * Generated from protobuf field <code>bytes binary_data = 2;</code>
      */
-    private $binary_data = '';
+    protected $binary_data = '';
 
     /**
      * Constructor.

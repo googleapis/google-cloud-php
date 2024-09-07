@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface resumePatchDeploymentAsync(ResumePatchDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updatePatchDeploymentAsync(UpdatePatchDeploymentRequest $request, array $optionalArgs = [])
  */
-class OsConfigServiceClient
+final class OsConfigServiceClient
 {
     use GapicClientTrait;
     use ResourceHelperTrait;
@@ -101,9 +101,7 @@ class OsConfigServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -319,8 +317,10 @@ class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPatchDeployment(CreatePatchDeploymentRequest $request, array $callOptions = []): PatchDeployment
-    {
+    public function createPatchDeployment(
+        CreatePatchDeploymentRequest $request,
+        array $callOptions = []
+    ): PatchDeployment {
         return $this->startApiCall('CreatePatchDeployment', $request, $callOptions)->wait();
     }
 
@@ -449,8 +449,10 @@ class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPatchDeployments(ListPatchDeploymentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPatchDeployments(
+        ListPatchDeploymentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPatchDeployments', $request, $callOptions);
     }
 
@@ -476,8 +478,10 @@ class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPatchJobInstanceDetails(ListPatchJobInstanceDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPatchJobInstanceDetails(
+        ListPatchJobInstanceDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPatchJobInstanceDetails', $request, $callOptions);
     }
 
@@ -557,8 +561,10 @@ class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resumePatchDeployment(ResumePatchDeploymentRequest $request, array $callOptions = []): PatchDeployment
-    {
+    public function resumePatchDeployment(
+        ResumePatchDeploymentRequest $request,
+        array $callOptions = []
+    ): PatchDeployment {
         return $this->startApiCall('ResumePatchDeployment', $request, $callOptions)->wait();
     }
 
@@ -584,8 +590,10 @@ class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePatchDeployment(UpdatePatchDeploymentRequest $request, array $callOptions = []): PatchDeployment
-    {
+    public function updatePatchDeployment(
+        UpdatePatchDeploymentRequest $request,
+        array $callOptions = []
+    ): PatchDeployment {
         return $this->startApiCall('UpdatePatchDeployment', $request, $callOptions)->wait();
     }
 }

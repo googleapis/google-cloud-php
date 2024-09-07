@@ -20,51 +20,51 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. A session UUID (Unique Universal Identifier). The service
      * generates this value when it creates the session.
      *
      * Generated from protobuf field <code>string uuid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     /**
      * Output only. The time when the session was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Runtime information about session execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RuntimeInfo runtime_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $runtime_info = null;
+    protected $runtime_info = null;
     /**
      * Output only. A state of the session.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Session.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Session state details, such as the failure
      * description if the state is `FAILED`.
      *
      * Generated from protobuf field <code>string state_message = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * Output only. The time when the session entered the current state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_time = null;
+    protected $state_time = null;
     /**
      * Output only. The email address of the user who created the session.
      *
      * Generated from protobuf field <code>string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Optional. The labels to associate with the session.
      * Label **keys** must contain 1 to 63 characters, and must conform to
@@ -82,19 +82,19 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RuntimeConfig runtime_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $runtime_config = null;
+    protected $runtime_config = null;
     /**
      * Optional. Environment configuration for the session execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EnvironmentConfig environment_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $environment_config = null;
+    protected $environment_config = null;
     /**
      * Optional. The email address of the user who owns the session.
      *
      * Generated from protobuf field <code>string user = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user = '';
+    protected $user = '';
     /**
      * Output only. Historical state information for the session.
      *
@@ -112,7 +112,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session_template = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $session_template = '';
+    protected $session_template = '';
     protected $session_config;
 
     /**

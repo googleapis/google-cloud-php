@@ -21,19 +21,19 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Required. The cluster name.
      *
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * Optional. The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
@@ -41,7 +41,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tarball_gcs_dir = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tarball_gcs_dir = '';
+    protected $tarball_gcs_dir = '';
     /**
      * Optional. (Optional) The access type to the diagnostic tarball. If not
      * specified, falls back to default access of the bucket
@@ -55,7 +55,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Interval diagnosis_interval = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $diagnosis_interval = null;
+    protected $diagnosis_interval = null;
     /**
      * Optional. Specifies a list of jobs on which diagnosis is to be performed.
      * Format: projects/{project}/regions/{region}/jobs/{job}

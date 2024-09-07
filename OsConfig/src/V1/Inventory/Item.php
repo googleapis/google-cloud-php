@@ -20,31 +20,31 @@ class Item extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The origin of this inventory item.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.Item.OriginType origin_type = 2;</code>
      */
-    private $origin_type = 0;
+    protected $origin_type = 0;
     /**
      * When this inventory item was first detected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * When this inventory item was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The specific type of inventory, correlating to its specific details.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.Item.Type type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     protected $details;
 
     /**

@@ -25,86 +25,79 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The display name of the processor version.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The schema of the processor version. Describes the output.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 12;</code>
      */
-    private $document_schema = null;
+    protected $document_schema = null;
     /**
      * Output only. The state of the processor version.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The time the processor version was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The most recently invoked evaluation for the processor version.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.EvaluationReference latest_evaluation = 8;</code>
      */
-    private $latest_evaluation = null;
+    protected $latest_evaluation = null;
     /**
      * The KMS key name used for encryption.
      *
      * Generated from protobuf field <code>string kms_key_name = 9;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * The KMS key version with which data is encrypted.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 10;</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
     /**
      * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *
      * Generated from protobuf field <code>bool google_managed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $google_managed = false;
+    protected $google_managed = false;
     /**
      * If set, information about the eventual deprecation of this version.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13;</code>
      */
-    private $deprecation_info = null;
+    protected $deprecation_info = null;
     /**
      * Output only. The model type of this processor version.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.ModelType model_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $model_type = 0;
+    protected $model_type = 0;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = false;
-    /**
-     * Output only. Information about Generative AI model-based processor
-     * versions.
-     *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo gen_ai_model_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    private $gen_ai_model_info = null;
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -140,9 +133,6 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
-     *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo $gen_ai_model_info
-     *           Output only. Information about Generative AI model-based processor
-     *           versions.
      * }
      */
     public function __construct($data = NULL) {
@@ -528,44 +518,6 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. Information about Generative AI model-based processor
-     * versions.
-     *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo gen_ai_model_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo|null
-     */
-    public function getGenAiModelInfo()
-    {
-        return $this->gen_ai_model_info;
-    }
-
-    public function hasGenAiModelInfo()
-    {
-        return isset($this->gen_ai_model_info);
-    }
-
-    public function clearGenAiModelInfo()
-    {
-        unset($this->gen_ai_model_info);
-    }
-
-    /**
-     * Output only. Information about Generative AI model-based processor
-     * versions.
-     *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo gen_ai_model_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo $var
-     * @return $this
-     */
-    public function setGenAiModelInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo::class);
-        $this->gen_ai_model_info = $var;
 
         return $this;
     }

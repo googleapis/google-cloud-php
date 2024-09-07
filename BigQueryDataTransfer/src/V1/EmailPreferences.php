@@ -21,7 +21,7 @@ class EmailPreferences extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_failure_email = 1;</code>
      */
-    private $enable_failure_email = false;
+    protected $enable_failure_email = false;
 
     /**
      * Constructor.

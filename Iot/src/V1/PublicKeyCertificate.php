@@ -20,19 +20,19 @@ class PublicKeyCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.PublicKeyCertificateFormat format = 1;</code>
      */
-    private $format = 0;
+    protected $format = 0;
     /**
      * The certificate data.
      *
      * Generated from protobuf field <code>string certificate = 2;</code>
      */
-    private $certificate = '';
+    protected $certificate = '';
     /**
      * [Output only] The certificate details. Used only for X.509 certificates.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.X509CertificateDetails x509_details = 3;</code>
      */
-    private $x509_details = null;
+    protected $x509_details = null;
 
     /**
      * Constructor.

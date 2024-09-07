@@ -22,7 +22,7 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 milli_dcu_seconds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $milli_dcu_seconds = 0;
+    protected $milli_dcu_seconds = 0;
     /**
      * Optional. Shuffle storage usage in (`GB` x `seconds`) (see
      * [Dataproc Serverless pricing]
@@ -30,7 +30,7 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 shuffle_storage_gb_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $shuffle_storage_gb_seconds = 0;
+    protected $shuffle_storage_gb_seconds = 0;
     /**
      * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
      * [Dataproc Serverless pricing]
@@ -38,13 +38,13 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $milli_accelerator_seconds = 0;
+    protected $milli_accelerator_seconds = 0;
     /**
      * Optional. Accelerator type being used, if any
      *
      * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $accelerator_type = '';
+    protected $accelerator_type = '';
 
     /**
      * Constructor.

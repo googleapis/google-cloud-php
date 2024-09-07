@@ -21,59 +21,59 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig.RebootConfig reboot_config = 1;</code>
      */
-    private $reboot_config = 0;
+    protected $reboot_config = 0;
     /**
      * Apt update settings. Use this setting to override the default `apt` patch
      * rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.AptSettings apt = 3;</code>
      */
-    private $apt = null;
+    protected $apt = null;
     /**
      * Yum update settings. Use this setting to override the default `yum` patch
      * rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.YumSettings yum = 4;</code>
      */
-    private $yum = null;
+    protected $yum = null;
     /**
      * Goo update settings. Use this setting to override the default `goo` patch
      * rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.GooSettings goo = 5;</code>
      */
-    private $goo = null;
+    protected $goo = null;
     /**
      * Zypper update settings. Use this setting to override the default `zypper`
      * patch rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ZypperSettings zypper = 6;</code>
      */
-    private $zypper = null;
+    protected $zypper = null;
     /**
      * Windows update settings. Use this override the default windows patch rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.WindowsUpdateSettings windows_update = 7;</code>
      */
-    private $windows_update = null;
+    protected $windows_update = null;
     /**
      * The `ExecStep` to run before the patch update.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStep pre_step = 8;</code>
      */
-    private $pre_step = null;
+    protected $pre_step = null;
     /**
      * The `ExecStep` to run after the patch update.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStep post_step = 9;</code>
      */
-    private $post_step = null;
+    protected $post_step = null;
     /**
      * Allows the patch job to run on Managed instance groups (MIGs).
      *
      * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
      */
-    private $mig_instances_allowed = false;
+    protected $mig_instances_allowed = false;
 
     /**
      * Constructor.

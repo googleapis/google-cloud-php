@@ -20,7 +20,7 @@ class FileExtensionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_extension = 1;</code>
      */
-    private $file_extension = '';
+    protected $file_extension = '';
 
     /**
      * Constructor.

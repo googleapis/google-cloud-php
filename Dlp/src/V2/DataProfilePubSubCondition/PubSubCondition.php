@@ -106,6 +106,4 @@ class PubSubCondition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PubSubCondition::class, \Google\Cloud\Dlp\V2\DataProfilePubSubCondition_PubSubCondition::class);
 

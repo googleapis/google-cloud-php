@@ -21,7 +21,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string place_id = 1;</code>
      */
-    private $place_id = '';
+    protected $place_id = '';
     /**
      * Product price and cost information.
      * Google Merchant Center property
@@ -29,7 +29,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 2;</code>
      */
-    private $price_info = null;
+    protected $price_info = null;
     /**
      * Additional local inventory attributes, for example, store name, promotion
      * tags, etc.

@@ -21,21 +21,21 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 1;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Create timestamp of the version. Read-only, determined by the system
      * when the version is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Stored info type version state. Read-only, updated by the system
      * during dictionary creation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Errors that occurred when creating this storedInfoType version, or
      * anomalies detected in the storedInfoType data that render it unusable. Only
@@ -57,7 +57,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
      */
-    private $stats = null;
+    protected $stats = null;
 
     /**
      * Constructor.

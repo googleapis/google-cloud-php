@@ -20,13 +20,13 @@ class HumanReviewStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.HumanReviewStatus.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * A message providing more details about the human review state.
      *
      * Generated from protobuf field <code>string state_message = 2;</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
     /**
      * The name of the operation triggered by the processed document. This field
      * is populated only when the
@@ -37,7 +37,7 @@ class HumanReviewStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string human_review_operation = 3;</code>
      */
-    private $human_review_operation = '';
+    protected $human_review_operation = '';
 
     /**
      * Constructor.

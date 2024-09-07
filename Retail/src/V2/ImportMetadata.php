@@ -21,26 +21,26 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Operation last update time. If the operation is done, this is also the
      * finish time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Count of entries that were processed successfully.
      *
      * Generated from protobuf field <code>int64 success_count = 3;</code>
      */
-    private $success_count = 0;
+    protected $success_count = 0;
     /**
      * Count of entries that encountered errors while processing.
      *
      * Generated from protobuf field <code>int64 failure_count = 4;</code>
      */
-    private $failure_count = 0;
+    protected $failure_count = 0;
     /**
      * Deprecated. This field is never set.
      *
@@ -57,7 +57,7 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 6;</code>
      */
-    private $notification_pubsub_topic = '';
+    protected $notification_pubsub_topic = '';
 
     /**
      * Constructor.

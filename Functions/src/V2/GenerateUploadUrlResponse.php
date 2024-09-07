@@ -22,7 +22,7 @@ class GenerateUploadUrlResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string upload_url = 1;</code>
      */
-    private $upload_url = '';
+    protected $upload_url = '';
     /**
      * The location of the source code in the upload bucket.
      * Once the archive is uploaded using the `upload_url` use this field to
@@ -33,7 +33,7 @@ class GenerateUploadUrlResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.StorageSource storage_source = 2;</code>
      */
-    private $storage_source = null;
+    protected $storage_source = null;
 
     /**
      * Constructor.

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an agent pool.
+ * Represents an On-Premises Agent pool.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.AgentPool</code>
  */
@@ -21,26 +21,26 @@ class AgentPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Specifies the client-specified AgentPool description.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Specifies the state of the AgentPool.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AgentPool.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Specifies the bandwidth limit details. If this field is unspecified, the
      * default value is set as 'No Limit'.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AgentPool.BandwidthLimit bandwidth_limit = 5;</code>
      */
-    private $bandwidth_limit = null;
+    protected $bandwidth_limit = null;
 
     /**
      * Constructor.

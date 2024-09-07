@@ -67,6 +67,4 @@ class Scenario
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Scenario::class, \Google\Cloud\Dataproc\V1\AutotuningConfig_Scenario::class);
 

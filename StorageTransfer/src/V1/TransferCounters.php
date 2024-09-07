@@ -22,7 +22,7 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 objects_found_from_source = 1;</code>
      */
-    private $objects_found_from_source = 0;
+    protected $objects_found_from_source = 0;
     /**
      * Bytes found in the data source that are scheduled to be transferred,
      * excluding any that are filtered based on object conditions or skipped due
@@ -30,95 +30,95 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 bytes_found_from_source = 2;</code>
      */
-    private $bytes_found_from_source = 0;
+    protected $bytes_found_from_source = 0;
     /**
      * Objects found only in the data sink that are scheduled to be deleted.
      *
      * Generated from protobuf field <code>int64 objects_found_only_from_sink = 3;</code>
      */
-    private $objects_found_only_from_sink = 0;
+    protected $objects_found_only_from_sink = 0;
     /**
      * Bytes found only in the data sink that are scheduled to be deleted.
      *
      * Generated from protobuf field <code>int64 bytes_found_only_from_sink = 4;</code>
      */
-    private $bytes_found_only_from_sink = 0;
+    protected $bytes_found_only_from_sink = 0;
     /**
      * Objects in the data source that are not transferred because they already
      * exist in the data sink.
      *
      * Generated from protobuf field <code>int64 objects_from_source_skipped_by_sync = 5;</code>
      */
-    private $objects_from_source_skipped_by_sync = 0;
+    protected $objects_from_source_skipped_by_sync = 0;
     /**
      * Bytes in the data source that are not transferred because they already
      * exist in the data sink.
      *
      * Generated from protobuf field <code>int64 bytes_from_source_skipped_by_sync = 6;</code>
      */
-    private $bytes_from_source_skipped_by_sync = 0;
+    protected $bytes_from_source_skipped_by_sync = 0;
     /**
      * Objects that are copied to the data sink.
      *
      * Generated from protobuf field <code>int64 objects_copied_to_sink = 7;</code>
      */
-    private $objects_copied_to_sink = 0;
+    protected $objects_copied_to_sink = 0;
     /**
      * Bytes that are copied to the data sink.
      *
      * Generated from protobuf field <code>int64 bytes_copied_to_sink = 8;</code>
      */
-    private $bytes_copied_to_sink = 0;
+    protected $bytes_copied_to_sink = 0;
     /**
      * Objects that are deleted from the data source.
      *
      * Generated from protobuf field <code>int64 objects_deleted_from_source = 9;</code>
      */
-    private $objects_deleted_from_source = 0;
+    protected $objects_deleted_from_source = 0;
     /**
      * Bytes that are deleted from the data source.
      *
      * Generated from protobuf field <code>int64 bytes_deleted_from_source = 10;</code>
      */
-    private $bytes_deleted_from_source = 0;
+    protected $bytes_deleted_from_source = 0;
     /**
      * Objects that are deleted from the data sink.
      *
      * Generated from protobuf field <code>int64 objects_deleted_from_sink = 11;</code>
      */
-    private $objects_deleted_from_sink = 0;
+    protected $objects_deleted_from_sink = 0;
     /**
      * Bytes that are deleted from the data sink.
      *
      * Generated from protobuf field <code>int64 bytes_deleted_from_sink = 12;</code>
      */
-    private $bytes_deleted_from_sink = 0;
+    protected $bytes_deleted_from_sink = 0;
     /**
      * Objects in the data source that failed to be transferred or that failed
      * to be deleted after being transferred.
      *
      * Generated from protobuf field <code>int64 objects_from_source_failed = 13;</code>
      */
-    private $objects_from_source_failed = 0;
+    protected $objects_from_source_failed = 0;
     /**
      * Bytes in the data source that failed to be transferred or that failed to
      * be deleted after being transferred.
      *
      * Generated from protobuf field <code>int64 bytes_from_source_failed = 14;</code>
      */
-    private $bytes_from_source_failed = 0;
+    protected $bytes_from_source_failed = 0;
     /**
      * Objects that failed to be deleted from the data sink.
      *
      * Generated from protobuf field <code>int64 objects_failed_to_delete_from_sink = 15;</code>
      */
-    private $objects_failed_to_delete_from_sink = 0;
+    protected $objects_failed_to_delete_from_sink = 0;
     /**
      * Bytes that failed to be deleted from the data sink.
      *
      * Generated from protobuf field <code>int64 bytes_failed_to_delete_from_sink = 16;</code>
      */
-    private $bytes_failed_to_delete_from_sink = 0;
+    protected $bytes_failed_to_delete_from_sink = 0;
     /**
      * For transfers involving PosixFilesystem only.
      * Number of directories found while listing. For example, if the root
@@ -128,7 +128,7 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 directories_found_from_source = 17;</code>
      */
-    private $directories_found_from_source = 0;
+    protected $directories_found_from_source = 0;
     /**
      * For transfers involving PosixFilesystem only.
      * Number of listing failures for each directory found at the source.
@@ -138,26 +138,26 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 directories_failed_to_list_from_source = 18;</code>
      */
-    private $directories_failed_to_list_from_source = 0;
+    protected $directories_failed_to_list_from_source = 0;
     /**
      * For transfers involving PosixFilesystem only.
      * Number of successful listings for each directory found at the source.
      *
      * Generated from protobuf field <code>int64 directories_successfully_listed_from_source = 19;</code>
      */
-    private $directories_successfully_listed_from_source = 0;
+    protected $directories_successfully_listed_from_source = 0;
     /**
      * Number of successfully cleaned up intermediate objects.
      *
      * Generated from protobuf field <code>int64 intermediate_objects_cleaned_up = 22;</code>
      */
-    private $intermediate_objects_cleaned_up = 0;
+    protected $intermediate_objects_cleaned_up = 0;
     /**
      * Number of intermediate objects failed cleaned up.
      *
      * Generated from protobuf field <code>int64 intermediate_objects_failed_cleaned_up = 23;</code>
      */
-    private $intermediate_objects_failed_cleaned_up = 0;
+    protected $intermediate_objects_failed_cleaned_up = 0;
 
     /**
      * Constructor.

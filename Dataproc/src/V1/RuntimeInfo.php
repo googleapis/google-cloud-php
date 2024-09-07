@@ -28,13 +28,13 @@ class RuntimeInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $output_uri = '';
+    protected $output_uri = '';
     /**
      * Output only. A URI pointing to the location of the diagnostics tarball.
      *
      * Generated from protobuf field <code>string diagnostic_output_uri = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $diagnostic_output_uri = '';
+    protected $diagnostic_output_uri = '';
     /**
      * Output only. Approximate workload resource usage, calculated when
      * the workload completes (see [Dataproc Serverless pricing]
@@ -49,13 +49,13 @@ class RuntimeInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.UsageMetrics approximate_usage = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $approximate_usage = null;
+    protected $approximate_usage = null;
     /**
      * Output only. Snapshot of current workload resource usage.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.UsageSnapshot current_usage = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_usage = null;
+    protected $current_usage = null;
 
     /**
      * Constructor.

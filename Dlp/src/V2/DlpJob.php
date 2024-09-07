@@ -20,50 +20,50 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * State of a job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Time when the job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time when the job started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Time when the job finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Time when the job was last modified by the system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
      */
-    private $last_modified = null;
+    protected $last_modified = null;
     /**
      * If created by a job trigger, the resource name of the trigger that
      * instantiated the job.
      *
      * Generated from protobuf field <code>string job_trigger_name = 10;</code>
      */
-    private $job_trigger_name = '';
+    protected $job_trigger_name = '';
     /**
      * A stream of errors encountered running the job.
      *
