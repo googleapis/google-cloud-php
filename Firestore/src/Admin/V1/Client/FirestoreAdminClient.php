@@ -350,6 +350,25 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a operation
+     * resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $operation
+     *
+     * @return string The formatted operation resource.
+     */
+    public static function operationName(string $project, string $database, string $operation): string
+    {
+        return self::getPathTemplate('operation')->render([
+            'project' => $project,
+            'database' => $database,
+            'operation' => $operation,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -375,6 +394,7 @@ final class FirestoreAdminClient
      * - field: projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}
      * - index: projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}
      * - location: projects/{project}/locations/{location}
+     * - operation: projects/{project}/databases/{database}/operations/{operation}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

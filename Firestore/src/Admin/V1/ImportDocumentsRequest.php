@@ -24,8 +24,8 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Which collection ids to import. Unspecified means all collections included
-     * in the import. Each collection id in this list must be unique.
+     * Which collection IDs to import. Unspecified means all collections included
+     * in the import. Each collection ID in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
      */
@@ -76,8 +76,8 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Database to import into. Should be of the form:
      *           `projects/{project_id}/databases/{database_id}`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
-     *           Which collection ids to import. Unspecified means all collections included
-     *           in the import. Each collection id in this list must be unique.
+     *           Which collection IDs to import. Unspecified means all collections included
+     *           in the import. Each collection ID in this list must be unique.
      *     @type string $input_uri_prefix
      *           Location of the exported files.
      *           This must match the output_uri_prefix of an ExportDocumentsResponse from
@@ -126,8 +126,8 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids to import. Unspecified means all collections included
-     * in the import. Each collection id in this list must be unique.
+     * Which collection IDs to import. Unspecified means all collections included
+     * in the import. Each collection ID in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -138,8 +138,8 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which collection ids to import. Unspecified means all collections included
-     * in the import. Each collection id in this list must be unique.
+     * Which collection IDs to import. Unspecified means all collections included
+     * in the import. Each collection ID in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
