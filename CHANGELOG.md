@@ -1,5 +1,565 @@
 # Changelog
 
+## 0.258.0
+
+<details><summary>google/cloud-access-approval 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.5.0</summary>
+
+
+
+### Features
+
+* Add more configurability to feature_group.proto ([#7643](https://github.com/googleapis/google-cloud-php/issues/7643)) ([8e71db0](https://github.com/googleapis/google-cloud-php/commit/8e71db0d102546c21bcef49a49c3410dadace708))
+* Add ragSource to feature_view.proto ([8e71db0](https://github.com/googleapis/google-cloud-php/commit/8e71db0d102546c21bcef49a49c3410dadace708))
+* Add sync watermark to feature_view_sync.proto ([8e71db0](https://github.com/googleapis/google-cloud-php/commit/8e71db0d102546c21bcef49a49c3410dadace708))
+
+
+### Documentation
+
+* Fix typo in feature_online_store_admin_service.proto ([8e71db0](https://github.com/googleapis/google-cloud-php/commit/8e71db0d102546c21bcef49a49c3410dadace708))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apihub 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* Remove gRPC support for client libraries ([#7641](https://github.com/googleapis/google-cloud-php/issues/7641)) ([8aec19a](https://github.com/googleapis/google-cloud-php/commit/8aec19a6a0e682ba1c3d4b007330567aa20b3d8e))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.4.0</summary>
+
+
+
+### Features
+
+* Add CHAT_SPACE link type support for GA launch ([#7649](https://github.com/googleapis/google-cloud-php/issues/7649)) ([2ccb24f](https://github.com/googleapis/google-cloud-php/commit/2ccb24fbce4d9e30e7a50d753a1e682d6e48765a))
+
+</details>
+
+<details><summary>google/cloud-asset 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-batch 1.1.0</summary>
+
+
+
+### Features
+
+* **v1:** Promote block_project_ssh_keys support to batch v1 API ([#7638](https://github.com/googleapis/google-cloud-php/issues/7638)) ([4fcae28](https://github.com/googleapis/google-cloud-php/commit/4fcae2897ebccd954b4a9f41bdeb50f44d39e1a8))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Documentation
+
+* Add a note to the CreateTransferConfigRequest and UpdateTransferConfigRequest to disable restricting service account usage ([#7640](https://github.com/googleapis/google-cloud-php/issues/7640)) ([40b2fdd](https://github.com/googleapis/google-cloud-php/commit/40b2fddda3815ab59bbe0c9f58c349d1842a130b))
+
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **Bigtable:** Prevent race condition ([#7644](https://github.com/googleapis/google-cloud-php/issues/7644)) ([f94f1d4](https://github.com/googleapis/google-cloud-php/commit/f94f1d46c6dc647ef2341c33c83f04cf6a960e60))
+
+</details>
+
+<details><summary>google/cloud-billing 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.8.3</summary>
+
+
+
+### Bug Fixes
+
+* Add back compatibility for Protobuf v4 ([#7648](https://github.com/googleapis/google-cloud-php/issues/7648)) ([24e6efd](https://github.com/googleapis/google-cloud-php/commit/24e6efd1a4a2c1e2a08970c0224b4709b9cf183d))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Features
+
+* Add optional parameters (tarball-access) in DiagnoseClusterRequest ([#7637](https://github.com/googleapis/google-cloud-php/issues/7637)) ([12c4eb8](https://github.com/googleapis/google-cloud-php/commit/12c4eb82b9d9b368d04b26b4f32955553fba461a))
+
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.1.0</summary>
+
+
+
+### Features
+
+* Promot user event purge to v1 ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+* Promote search tuning service to v1 ([#7639](https://github.com/googleapis/google-cloud-php/issues/7639)) ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+* Return index status in document ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+* Return joined status in user event ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+* Return structured document info in answers ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+* Support batch documents purge with GCS input ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+* Support batch get documents metadata by uri patterns ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([1d18490](https://github.com/googleapis/google-cloud-php/commit/1d1849088f82ea976efd66422fab7d72c768c924))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-dms 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.46.0</summary>
+
+
+
+### Features
+
+* Add Database.CmekConfig and Database.cmek_config (information about CMEK enablement) ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+* Add Database.delete_time (the time a database was deleted, if it ever was) ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+* Add Database.previous_id (if a database was deleted, what ID it was using beforehand) ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+* Add Database.SourceInfo and Database.source_info (information about database provenance, specifically for restored databases) ([#7653](https://github.com/googleapis/google-cloud-php/issues/7653)) ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+* Allow specifying an encryption_config when restoring a database ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+
+
+### Documentation
+
+* Clarify restore details ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+* Fix assorted capitalization issues with the word "ID" ([a55ef54](https://github.com/googleapis/google-cloud-php/commit/a55ef5463d022dadd853ee418fca558a541a422d))
+
+</details>
+
+<details><summary>google/cloud-functions 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iap 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.1.5</summary>
+
+
+
+### Documentation
+
+* Update comment link for ListTasks filter ([#7650](https://github.com/googleapis/google-cloud-php/issues/7650)) ([563ef0c](https://github.com/googleapis/google-cloud-php/commit/563ef0ca9552a020939669bc1fac44820c7be51e))
+
+</details>
+
+<details><summary>google/cloud-memcache 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-oslogin 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-profiler 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommender 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-settings 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-retail 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-control 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-management 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-usage 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-shell 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-talent 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.0.0-RC1</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655))
+
+### Chores
+
+* Create V2 release candidates for some components ([#7655](https://github.com/googleapis/google-cloud-php/issues/7655)) ([3eccacb](https://github.com/googleapis/google-cloud-php/commit/3eccacbfe38d4322529a2d1e74340cdb337103d6))
+
+</details>
+
 ## 0.257.0
 
 <details><summary>google/cloud-ai-platform 1.4.0</summary>
