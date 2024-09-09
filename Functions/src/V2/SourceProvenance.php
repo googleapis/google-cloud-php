@@ -30,6 +30,13 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.functions.v2.RepoSource resolved_repo_source = 2;</code>
      */
     protected $resolved_repo_source = null;
+    /**
+     * A copy of the build's `source.git_uri`, if exists, with any commits
+     * resolved.
+     *
+     * Generated from protobuf field <code>string git_uri = 3;</code>
+     */
+    protected $git_uri = '';
 
     /**
      * Constructor.
@@ -43,6 +50,9 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Functions\V2\RepoSource $resolved_repo_source
      *           A copy of the build's `source.repo_source`, if exists, with any
      *           revisions resolved.
+     *     @type string $git_uri
+     *           A copy of the build's `source.git_uri`, if exists, with any commits
+     *           resolved.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +132,34 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Functions\V2\RepoSource::class);
         $this->resolved_repo_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * A copy of the build's `source.git_uri`, if exists, with any commits
+     * resolved.
+     *
+     * Generated from protobuf field <code>string git_uri = 3;</code>
+     * @return string
+     */
+    public function getGitUri()
+    {
+        return $this->git_uri;
+    }
+
+    /**
+     * A copy of the build's `source.git_uri`, if exists, with any commits
+     * resolved.
+     *
+     * Generated from protobuf field <code>string git_uri = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGitUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->git_uri = $var;
 
         return $this;
     }

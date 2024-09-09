@@ -32,6 +32,14 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 2;</code>
      */
     protected $refresh_frequency = 0;
+    /**
+     * Governs when to update data profiles when the inspection rules
+     * defined by the `InspectTemplate` change.
+     * If not set, changing the template will not cause a data profile to update.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 3;</code>
+     */
+    protected $inspect_template_modified_cadence = null;
 
     /**
      * Constructor.
@@ -46,6 +54,10 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
      *           reprofiling. If you set this field, profiles are refreshed at this
      *           frequency regardless of whether the underlying tables have changed.
      *           Defaults to never.
+     *     @type \Google\Cloud\Dlp\V2\DiscoveryInspectTemplateModifiedCadence $inspect_template_modified_cadence
+     *           Governs when to update data profiles when the inspection rules
+     *           defined by the `InspectTemplate` change.
+     *           If not set, changing the template will not cause a data profile to update.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +129,46 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DataProfileUpdateFrequency::class);
         $this->refresh_frequency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Governs when to update data profiles when the inspection rules
+     * defined by the `InspectTemplate` change.
+     * If not set, changing the template will not cause a data profile to update.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\DiscoveryInspectTemplateModifiedCadence|null
+     */
+    public function getInspectTemplateModifiedCadence()
+    {
+        return $this->inspect_template_modified_cadence;
+    }
+
+    public function hasInspectTemplateModifiedCadence()
+    {
+        return isset($this->inspect_template_modified_cadence);
+    }
+
+    public function clearInspectTemplateModifiedCadence()
+    {
+        unset($this->inspect_template_modified_cadence);
+    }
+
+    /**
+     * Governs when to update data profiles when the inspection rules
+     * defined by the `InspectTemplate` change.
+     * If not set, changing the template will not cause a data profile to update.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\DiscoveryInspectTemplateModifiedCadence $var
+     * @return $this
+     */
+    public function setInspectTemplateModifiedCadence($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DiscoveryInspectTemplateModifiedCadence::class);
+        $this->inspect_template_modified_cadence = $var;
 
         return $this;
     }

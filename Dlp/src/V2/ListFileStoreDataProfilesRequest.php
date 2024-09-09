@@ -70,6 +70,10 @@ class ListFileStoreDataProfilesRequest extends \Google\Protobuf\Internal\Message
      * * Supported fields/values:
      *     - `project_id` - The Google Cloud project ID.
      *     - `file_store_path` - The path like "gs://bucket".
+     *     - `data_source_type` - The profile's data source type, like
+     *     "google/storage/bucket".
+     *     - `data_storage_location` - The location where the file store's data is
+     *     stored, like "us-central1".
      *     - `sensitivity_level` - HIGH|MODERATE|LOW
      *     - `data_risk_level` - HIGH|MODERATE|LOW
      *     - `resource_visibility`: PUBLIC|RESTRICTED
@@ -147,6 +151,10 @@ class ListFileStoreDataProfilesRequest extends \Google\Protobuf\Internal\Message
      *           * Supported fields/values:
      *               - `project_id` - The Google Cloud project ID.
      *               - `file_store_path` - The path like "gs://bucket".
+     *               - `data_source_type` - The profile's data source type, like
+     *               "google/storage/bucket".
+     *               - `data_storage_location` - The location where the file store's data is
+     *               stored, like "us-central1".
      *               - `sensitivity_level` - HIGH|MODERATE|LOW
      *               - `data_risk_level` - HIGH|MODERATE|LOW
      *               - `resource_visibility`: PUBLIC|RESTRICTED
@@ -320,6 +328,10 @@ class ListFileStoreDataProfilesRequest extends \Google\Protobuf\Internal\Message
      * * Supported fields/values:
      *     - `project_id` - The Google Cloud project ID.
      *     - `file_store_path` - The path like "gs://bucket".
+     *     - `data_source_type` - The profile's data source type, like
+     *     "google/storage/bucket".
+     *     - `data_storage_location` - The location where the file store's data is
+     *     stored, like "us-central1".
      *     - `sensitivity_level` - HIGH|MODERATE|LOW
      *     - `data_risk_level` - HIGH|MODERATE|LOW
      *     - `resource_visibility`: PUBLIC|RESTRICTED
@@ -351,6 +363,10 @@ class ListFileStoreDataProfilesRequest extends \Google\Protobuf\Internal\Message
      * * Supported fields/values:
      *     - `project_id` - The Google Cloud project ID.
      *     - `file_store_path` - The path like "gs://bucket".
+     *     - `data_source_type` - The profile's data source type, like
+     *     "google/storage/bucket".
+     *     - `data_storage_location` - The location where the file store's data is
+     *     stored, like "us-central1".
      *     - `sensitivity_level` - HIGH|MODERATE|LOW
      *     - `data_risk_level` - HIGH|MODERATE|LOW
      *     - `resource_visibility`: PUBLIC|RESTRICTED

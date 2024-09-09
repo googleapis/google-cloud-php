@@ -50,13 +50,15 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
     private $errors;
     /**
      * A sample of file types scanned in this cluster. Empty if no files were
-     * scanned.
+     * scanned. File extensions can be derived from the file name or the file
+     * content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_scanned = 7;</code>
      */
     private $file_extensions_scanned;
     /**
      * A sample of file types seen in this cluster. Empty if no files were seen.
+     * File extensions can be derived from the file name or the file content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_seen = 8;</code>
      */
@@ -91,9 +93,11 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *           truncated to 10 per cluster.
      *     @type array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $file_extensions_scanned
      *           A sample of file types scanned in this cluster. Empty if no files were
-     *           scanned.
+     *           scanned. File extensions can be derived from the file name or the file
+     *           content.
      *     @type array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $file_extensions_seen
      *           A sample of file types seen in this cluster. Empty if no files were seen.
+     *           File extensions can be derived from the file name or the file content.
      *     @type bool $no_files_exist
      *           True if no files exist in this cluster. If the bucket had more files than
      *           could be listed, this will be false even if no files for this cluster
@@ -273,7 +277,8 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * A sample of file types scanned in this cluster. Empty if no files were
-     * scanned.
+     * scanned. File extensions can be derived from the file name or the file
+     * content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_scanned = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -285,7 +290,8 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * A sample of file types scanned in this cluster. Empty if no files were
-     * scanned.
+     * scanned. File extensions can be derived from the file name or the file
+     * content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_scanned = 7;</code>
      * @param array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -301,6 +307,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * A sample of file types seen in this cluster. Empty if no files were seen.
+     * File extensions can be derived from the file name or the file content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_seen = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -312,6 +319,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * A sample of file types seen in this cluster. Empty if no files were seen.
+     * File extensions can be derived from the file name or the file content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_seen = 8;</code>
      * @param array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $var

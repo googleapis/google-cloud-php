@@ -18,7 +18,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * `projects/{project_id}/locations/{location_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -60,7 +60,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. Parent resource name.
      *
      *                       The format of this value is as follows:
-     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *                       `projects/{project_id}/locations/{location_id}`
      *
      *                       The following example `parent` string specifies a parent project with the
      *                       identifier `example-project`, and specifies the `europe-west3` location
@@ -88,7 +88,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent resource name.
      *           The format of this value is as follows:
-     *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     *           `projects/{project_id}/locations/{location_id}`
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -119,7 +119,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * `projects/{project_id}/locations/{location_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -136,7 +136,7 @@ class ListDiscoveryConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value is as follows:
-     * `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
+     * `projects/{project_id}/locations/{location_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
