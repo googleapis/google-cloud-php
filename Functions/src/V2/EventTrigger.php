@@ -82,6 +82,17 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string channel = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $channel = '';
+    /**
+     * Optional. The hostname of the service that 1st Gen function should be
+     * observed.
+     * If no string is provided, the default service implementing the API will
+     * be used. For example, `storage.googleapis.com` is the default for all
+     * event types in the `google.storage` namespace.
+     * The field is only applicable to 1st Gen functions.
+     *
+     * Generated from protobuf field <code>string service = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service = '';
 
     /**
      * Constructor.
@@ -123,6 +134,13 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the channel associated with the trigger in
      *           `projects/{project}/locations/{location}/channels/{channel}` format.
      *           You must provide a channel to receive events from Eventarc SaaS partners.
+     *     @type string $service
+     *           Optional. The hostname of the service that 1st Gen function should be
+     *           observed.
+     *           If no string is provided, the default service implementing the API will
+     *           be used. For example, `storage.googleapis.com` is the default for all
+     *           event types in the `google.storage` namespace.
+     *           The field is only applicable to 1st Gen functions.
      * }
      */
     public function __construct($data = NULL) {
@@ -370,6 +388,42 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The hostname of the service that 1st Gen function should be
+     * observed.
+     * If no string is provided, the default service implementing the API will
+     * be used. For example, `storage.googleapis.com` is the default for all
+     * event types in the `google.storage` namespace.
+     * The field is only applicable to 1st Gen functions.
+     *
+     * Generated from protobuf field <code>string service = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * Optional. The hostname of the service that 1st Gen function should be
+     * observed.
+     * If no string is provided, the default service implementing the API will
+     * be used. For example, `storage.googleapis.com` is the default for all
+     * event types in the `google.storage` namespace.
+     * The field is only applicable to 1st Gen functions.
+     *
+     * Generated from protobuf field <code>string service = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service = $var;
 
         return $this;
     }

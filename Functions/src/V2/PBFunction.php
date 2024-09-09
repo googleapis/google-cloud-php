@@ -95,6 +95,19 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
      */
     protected $kms_key_name = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. The create timestamp of a Cloud Function. This is only
+     * applicable to 2nd Gen functions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
 
     /**
      * Constructor.
@@ -133,6 +146,11 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *           encrypt/decrypt function resources.
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The create timestamp of a Cloud Function. This is only
+     *           applicable to 2nd Gen functions.
      * }
      */
     public function __construct($data = NULL) {
@@ -502,6 +520,70 @@ class PBFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The create timestamp of a Cloud Function. This is only
+     * applicable to 2nd Gen functions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The create timestamp of a Cloud Function. This is only
+     * applicable to 2nd Gen functions.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

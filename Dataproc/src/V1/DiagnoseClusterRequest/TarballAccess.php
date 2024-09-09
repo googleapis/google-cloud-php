@@ -61,6 +61,4 @@ class TarballAccess
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TarballAccess::class, \Google\Cloud\Dataproc\V1\DiagnoseClusterRequest_TarballAccess::class);
 

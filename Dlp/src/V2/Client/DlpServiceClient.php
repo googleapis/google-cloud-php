@@ -485,6 +485,28 @@ final class DlpServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_connection resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted organization_location_connection resource.
+     */
+    public static function organizationLocationConnectionName(
+        string $organization,
+        string $location,
+        string $connection
+    ): string {
+        return self::getPathTemplate('organizationLocationConnection')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'connection' => $connection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_deidentify_template resource.
      *
      * @param string $organization
@@ -761,6 +783,25 @@ final class DlpServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted project_location_connection resource.
+     */
+    public static function projectLocationConnectionName(string $project, string $location, string $connection): string
+    {
+        return self::getPathTemplate('projectLocationConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_deidentify_template resource.
      *
      * @param string $project
@@ -1003,6 +1044,7 @@ final class DlpServiceClient
      * - organizationInspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationColumnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - organizationLocationConnection: organizations/{organization}/locations/{location}/connections/{connection}
      * - organizationLocationDeidentifyTemplate: organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - organizationLocationFileStoreDataProfile: organizations/{organization}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
      * - organizationLocationInspectTemplate: organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}
@@ -1017,6 +1059,7 @@ final class DlpServiceClient
      * - projectInspectTemplate: projects/{project}/inspectTemplates/{inspect_template}
      * - projectJobTrigger: projects/{project}/jobTriggers/{job_trigger}
      * - projectLocationColumnDataProfile: projects/{project}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - projectLocationConnection: projects/{project}/locations/{location}/connections/{connection}
      * - projectLocationDeidentifyTemplate: projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - projectLocationDlpJob: projects/{project}/locations/{location}/dlpJobs/{dlp_job}
      * - projectLocationFileStoreDataProfile: projects/{project}/locations/{location}/fileStoreDataProfiles/{file_store_data_profile}
@@ -2125,7 +2168,8 @@ final class DlpServiceClient
     }
 
     /**
-     * Lists Connections in a parent.
+     * Lists Connections in a parent. Use SearchConnections to see all connections
+     * within an organization.
      *
      * The async variant is {@see DlpServiceClient::listConnectionsAsync()} .
      *

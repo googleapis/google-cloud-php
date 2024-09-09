@@ -48,7 +48,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tarball_access = 0;
+    protected $tarball_access = 0;
     /**
      * Optional. Time interval in which diagnosis should be carried out on the
      * cluster.
