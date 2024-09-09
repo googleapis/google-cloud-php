@@ -32,7 +32,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the attack path simulation result that contains the
      * details regarding this attack exposure score.
-     * Example: organizations/123/simulations/456/attackExposureResults/789
+     * Example: `organizations/123/simulations/456/attackExposureResults/789`
      *
      * Generated from protobuf field <code>string attack_exposure_result = 3;</code>
      */
@@ -81,7 +81,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
      *     @type string $attack_exposure_result
      *           The resource name of the attack path simulation result that contains the
      *           details regarding this attack exposure score.
-     *           Example: organizations/123/simulations/456/attackExposureResults/789
+     *           Example: `organizations/123/simulations/456/attackExposureResults/789`
      *     @type int $state
      *           Output only. What state this AttackExposure is in. This captures whether or
      *           not an attack exposure has been calculated or not.
@@ -170,7 +170,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the attack path simulation result that contains the
      * details regarding this attack exposure score.
-     * Example: organizations/123/simulations/456/attackExposureResults/789
+     * Example: `organizations/123/simulations/456/attackExposureResults/789`
      *
      * Generated from protobuf field <code>string attack_exposure_result = 3;</code>
      * @return string
@@ -183,7 +183,7 @@ class AttackExposure extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the attack path simulation result that contains the
      * details regarding this attack exposure score.
-     * Example: organizations/123/simulations/456/attackExposureResults/789
+     * Example: `organizations/123/simulations/456/attackExposureResults/789`
      *
      * Generated from protobuf field <code>string attack_exposure_result = 3;</code>
      * @param string $var
