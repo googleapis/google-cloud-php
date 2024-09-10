@@ -48,9 +48,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * have
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool cancel_requested = 6;</code>
      */
@@ -73,6 +74,25 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Stage stages = 9;</code>
      */
     private $stages;
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 10;</code>
+     */
+    protected $source_token = '';
+    /**
+     * The build name of the function for create and update operations.
+     *
+     * Generated from protobuf field <code>string build_name = 13;</code>
+     */
+    protected $build_name = '';
+    /**
+     * The operation type.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.OperationType operation_type = 11;</code>
+     */
+    protected $operation_type = 0;
 
     /**
      * Constructor.
@@ -93,15 +113,23 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $cancel_requested
      *           Identifies whether the user has requested cancellation
      *           of the operation. Operations that have successfully been cancelled
-     *           have [Operation.error][] value with a
-     *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     *           `Code.CANCELLED`.
+     *           have
+     *           [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     *           value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
      *           API version used to start the operation.
      *     @type \Google\Protobuf\Any $request_resource
      *           The original request that started the operation.
      *     @type array<\Google\Cloud\Functions\V2\Stage>|\Google\Protobuf\Internal\RepeatedField $stages
      *           Mechanism for reporting in-progress stages
+     *     @type string $source_token
+     *           An identifier for Firebase function sources. Disclaimer: This field is only
+     *           supported for Firebase function deployments.
+     *     @type string $build_name
+     *           The build name of the function for create and update operations.
+     *     @type int $operation_type
+     *           The operation type.
      * }
      */
     public function __construct($data = NULL) {
@@ -262,9 +290,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * have
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool cancel_requested = 6;</code>
      * @return bool
@@ -277,9 +306,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * have
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool cancel_requested = 6;</code>
      * @param bool $var
@@ -377,6 +407,86 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Functions\V2\Stage::class);
         $this->stages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 10;</code>
+     * @return string
+     */
+    public function getSourceToken()
+    {
+        return $this->source_token;
+    }
+
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The build name of the function for create and update operations.
+     *
+     * Generated from protobuf field <code>string build_name = 13;</code>
+     * @return string
+     */
+    public function getBuildName()
+    {
+        return $this->build_name;
+    }
+
+    /**
+     * The build name of the function for create and update operations.
+     *
+     * Generated from protobuf field <code>string build_name = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBuildName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->build_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The operation type.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.OperationType operation_type = 11;</code>
+     * @return int
+     */
+    public function getOperationType()
+    {
+        return $this->operation_type;
+    }
+
+    /**
+     * The operation type.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v2.OperationType operation_type = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOperationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Functions\V2\OperationType::class);
+        $this->operation_type = $var;
 
         return $this;
     }

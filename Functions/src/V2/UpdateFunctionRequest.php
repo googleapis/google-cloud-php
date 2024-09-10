@@ -23,8 +23,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     protected $function = null;
     /**
      * The list of fields to be updated.
-     * If no field mask is provided, all provided fields in the request will be
-     * updated.
+     * If no field mask is provided, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -33,8 +32,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param \Google\Cloud\Functions\V2\PBFunction $function   Required. New version of the function.
      * @param \Google\Protobuf\FieldMask            $updateMask The list of fields to be updated.
-     *                                                          If no field mask is provided, all provided fields in the request will be
-     *                                                          updated.
+     *                                                          If no field mask is provided, all fields will be updated.
      *
      * @return \Google\Cloud\Functions\V2\UpdateFunctionRequest
      *
@@ -57,8 +55,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      *           Required. New version of the function.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to be updated.
-     *           If no field mask is provided, all provided fields in the request will be
-     *           updated.
+     *           If no field mask is provided, all fields will be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,8 +101,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of fields to be updated.
-     * If no field mask is provided, all provided fields in the request will be
-     * updated.
+     * If no field mask is provided, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -127,8 +123,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of fields to be updated.
-     * If no field mask is provided, all provided fields in the request will be
-     * updated.
+     * If no field mask is provided, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

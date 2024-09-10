@@ -69,6 +69,12 @@ class Cve extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool zero_day = 8;</code>
      */
     protected $zero_day = false;
+    /**
+     * Date the first publicly available exploit or PoC was released.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp exploit_release_date = 9;</code>
+     */
+    protected $exploit_release_date = null;
 
     /**
      * Constructor.
@@ -95,6 +101,8 @@ class Cve extends \Google\Protobuf\Internal\Message
      *     @type bool $zero_day
      *           Whether or not the vulnerability was zero day when the finding was
      *           published.
+     *     @type \Google\Protobuf\Timestamp $exploit_release_date
+     *           Date the first publicly available exploit or PoC was released.
      * }
      */
     public function __construct($data = NULL) {
@@ -322,6 +330,42 @@ class Cve extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->zero_day = $var;
+
+        return $this;
+    }
+
+    /**
+     * Date the first publicly available exploit or PoC was released.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp exploit_release_date = 9;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExploitReleaseDate()
+    {
+        return $this->exploit_release_date;
+    }
+
+    public function hasExploitReleaseDate()
+    {
+        return isset($this->exploit_release_date);
+    }
+
+    public function clearExploitReleaseDate()
+    {
+        unset($this->exploit_release_date);
+    }
+
+    /**
+     * Date the first publicly available exploit or PoC was released.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp exploit_release_date = 9;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExploitReleaseDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->exploit_release_date = $var;
 
         return $this;
     }

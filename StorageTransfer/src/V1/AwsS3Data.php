@@ -58,24 +58,39 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      */
     protected $role_arn = '';
     /**
+     * Optional. The CloudFront distribution domain name pointing to this bucket,
+     * to use when fetching.
+     * See
+     * [Transfer from S3 via
+     * CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront)
+     * for more information.
+     * Format: `https://{id}.cloudfront.net` or any valid custom domain. Must
+     * begin with `https://`.
+     *
+     * Generated from protobuf field <code>string cloudfront_domain = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cloudfront_domain = '';
+    /**
      * Optional. The Resource name of a secret in Secret Manager.
-     * The Azure SAS token must be stored in Secret Manager in JSON format:
-     * <pre>{
-     *  "sas_token" : "<var>SAS_TOKEN</var>"
-     * }</pre>
+     * AWS credentials must be stored in Secret Manager in JSON format:
+     * {
+     *  "access_key_id": "ACCESS_KEY_ID",
+     *  "secret_access_key": "SECRET_ACCESS_KEY"
+     * }
      * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
      * be granted `roles/secretmanager.secretAccessor` for the resource.
-     * See [Configure access to a source: Microsoft Azure Blob Storage]
-     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * See [Configure access to a source: Amazon S3]
+     * (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager)
      * for more information.
-     * If `credentials_secret` is specified, do not specify [azure_credentials][].
-     * This feature is in
-     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * If `credentials_secret` is specified, do not specify
+     * [role_arn][google.storagetransfer.v1.AwsS3Data.role_arn] or
+     * [aws_access_key][google.storagetransfer.v1.AwsS3Data.aws_access_key].
      * Format: `projects/{project_number}/secrets/{secret_name}`
      *
      * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $credentials_secret = '';
+    protected $private_network;
 
     /**
      * Constructor.
@@ -108,21 +123,34 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *           the provided role using the
      *           [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] for
      *           this project.
+     *     @type string $cloudfront_domain
+     *           Optional. The CloudFront distribution domain name pointing to this bucket,
+     *           to use when fetching.
+     *           See
+     *           [Transfer from S3 via
+     *           CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront)
+     *           for more information.
+     *           Format: `https://{id}.cloudfront.net` or any valid custom domain. Must
+     *           begin with `https://`.
      *     @type string $credentials_secret
      *           Optional. The Resource name of a secret in Secret Manager.
-     *           The Azure SAS token must be stored in Secret Manager in JSON format:
-     *           <pre>{
-     *            "sas_token" : "<var>SAS_TOKEN</var>"
-     *           }</pre>
+     *           AWS credentials must be stored in Secret Manager in JSON format:
+     *           {
+     *            "access_key_id": "ACCESS_KEY_ID",
+     *            "secret_access_key": "SECRET_ACCESS_KEY"
+     *           }
      *           [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
      *           be granted `roles/secretmanager.secretAccessor` for the resource.
-     *           See [Configure access to a source: Microsoft Azure Blob Storage]
-     *           (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     *           See [Configure access to a source: Amazon S3]
+     *           (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager)
      *           for more information.
-     *           If `credentials_secret` is specified, do not specify [azure_credentials][].
-     *           This feature is in
-     *           [preview](https://cloud.google.com/terms/service-terms#1).
+     *           If `credentials_secret` is specified, do not specify
+     *           [role_arn][google.storagetransfer.v1.AwsS3Data.role_arn] or
+     *           [aws_access_key][google.storagetransfer.v1.AwsS3Data.aws_access_key].
      *           Format: `projects/{project_number}/secrets/{secret_name}`
+     *     @type bool $managed_private_network
+     *           Egress bytes over a Google-managed private network.
+     *           This network is shared between other users of Storage Transfer Service.
      * }
      */
     public function __construct($data = NULL) {
@@ -279,19 +307,60 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The CloudFront distribution domain name pointing to this bucket,
+     * to use when fetching.
+     * See
+     * [Transfer from S3 via
+     * CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront)
+     * for more information.
+     * Format: `https://{id}.cloudfront.net` or any valid custom domain. Must
+     * begin with `https://`.
+     *
+     * Generated from protobuf field <code>string cloudfront_domain = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCloudfrontDomain()
+    {
+        return $this->cloudfront_domain;
+    }
+
+    /**
+     * Optional. The CloudFront distribution domain name pointing to this bucket,
+     * to use when fetching.
+     * See
+     * [Transfer from S3 via
+     * CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront)
+     * for more information.
+     * Format: `https://{id}.cloudfront.net` or any valid custom domain. Must
+     * begin with `https://`.
+     *
+     * Generated from protobuf field <code>string cloudfront_domain = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudfrontDomain($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloudfront_domain = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The Resource name of a secret in Secret Manager.
-     * The Azure SAS token must be stored in Secret Manager in JSON format:
-     * <pre>{
-     *  "sas_token" : "<var>SAS_TOKEN</var>"
-     * }</pre>
+     * AWS credentials must be stored in Secret Manager in JSON format:
+     * {
+     *  "access_key_id": "ACCESS_KEY_ID",
+     *  "secret_access_key": "SECRET_ACCESS_KEY"
+     * }
      * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
      * be granted `roles/secretmanager.secretAccessor` for the resource.
-     * See [Configure access to a source: Microsoft Azure Blob Storage]
-     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * See [Configure access to a source: Amazon S3]
+     * (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager)
      * for more information.
-     * If `credentials_secret` is specified, do not specify [azure_credentials][].
-     * This feature is in
-     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * If `credentials_secret` is specified, do not specify
+     * [role_arn][google.storagetransfer.v1.AwsS3Data.role_arn] or
+     * [aws_access_key][google.storagetransfer.v1.AwsS3Data.aws_access_key].
      * Format: `projects/{project_number}/secrets/{secret_name}`
      *
      * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -304,18 +373,19 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Resource name of a secret in Secret Manager.
-     * The Azure SAS token must be stored in Secret Manager in JSON format:
-     * <pre>{
-     *  "sas_token" : "<var>SAS_TOKEN</var>"
-     * }</pre>
+     * AWS credentials must be stored in Secret Manager in JSON format:
+     * {
+     *  "access_key_id": "ACCESS_KEY_ID",
+     *  "secret_access_key": "SECRET_ACCESS_KEY"
+     * }
      * [GoogleServiceAccount][google.storagetransfer.v1.GoogleServiceAccount] must
      * be granted `roles/secretmanager.secretAccessor` for the resource.
-     * See [Configure access to a source: Microsoft Azure Blob Storage]
-     * (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager)
+     * See [Configure access to a source: Amazon S3]
+     * (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager)
      * for more information.
-     * If `credentials_secret` is specified, do not specify [azure_credentials][].
-     * This feature is in
-     * [preview](https://cloud.google.com/terms/service-terms#1).
+     * If `credentials_secret` is specified, do not specify
+     * [role_arn][google.storagetransfer.v1.AwsS3Data.role_arn] or
+     * [aws_access_key][google.storagetransfer.v1.AwsS3Data.aws_access_key].
      * Format: `projects/{project_number}/secrets/{secret_name}`
      *
      * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -328,6 +398,47 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
         $this->credentials_secret = $var;
 
         return $this;
+    }
+
+    /**
+     * Egress bytes over a Google-managed private network.
+     * This network is shared between other users of Storage Transfer Service.
+     *
+     * Generated from protobuf field <code>bool managed_private_network = 8;</code>
+     * @return bool
+     */
+    public function getManagedPrivateNetwork()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasManagedPrivateNetwork()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Egress bytes over a Google-managed private network.
+     * This network is shared between other users of Storage Transfer Service.
+     *
+     * Generated from protobuf field <code>bool managed_private_network = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setManagedPrivateNetwork($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrivateNetwork()
+    {
+        return $this->whichOneof("private_network");
     }
 
 }

@@ -27,10 +27,10 @@ class TimeCreated
      */
     const TIME_CREATED_SKIP = 1;
     /**
-     * Preserves the source object's `timeCreated` metadata in the `customTime`
-     * field in the destination object.  Note that any value stored in the
-     * source object's `customTime` field will not be propagated to the
-     * destination object.
+     * Preserves the source object's `timeCreated` or `lastModified` metadata in
+     * the `customTime` field in the destination object.  Note that any value
+     * stored in the source object's `customTime` field will not be propagated
+     * to the destination object.
      *
      * Generated from protobuf enum <code>TIME_CREATED_PRESERVE_AS_CUSTOM_TIME = 2;</code>
      */
