@@ -80,6 +80,11 @@ class ResumableStream implements \IteratorAggregate
     private $callOptions;
 
     /**
+     * @var callable
+     */
+    private $delayFunction;
+
+    /**
      * Constructs a resumable stream.
      *
      * @param GapicClient $gapicClient The GAPIC client to use in order to send requests.
@@ -116,6 +121,17 @@ class ResumableStream implements \IteratorAggregate
         $this->callOptions['retrySettings'] = [
             'retriesEnabled' => false
         ];
+
+        $this->delayFunction = function (int $delayFactor) {
+            $initialDelayMillis = 100;
+            $initialDelayMultiplier = 1.3;
+            $maxDelayMillis = 600000;
+
+            $delayMultiplier = $initialDelayMultiplier ** $delayFactor;
+            $delayMs = min($initialDelayMillis * $delayMultiplier, $maxDelayMillis);
+            $delay = 1000 * $delayMs; // convert ms to µs
+            usleep((int) $delay);
+        };
     }
 
     /**
@@ -127,6 +143,7 @@ class ResumableStream implements \IteratorAggregate
     public function readAll()
     {
         $attempt = 0;
+        $delayFactor = 0;
         do {
             $ex = null;
             list($this->request, $this->callOptions) =
@@ -139,6 +156,7 @@ class ResumableStream implements \IteratorAggregate
                 $headers = $this->callOptions['headers'] ?? [];
                 if ($attempt > 0) {
                     $headers['bigtable-attempt'] = [(string) $attempt];
+                    ($this->delayFunction)($delayFactor);
                 }
                 $attempt++;
 
@@ -150,8 +168,10 @@ class ResumableStream implements \IteratorAggregate
                 try {
                     foreach ($stream->readAll() as $item) {
                         yield $item;
+                        $delayFactor = 0; // reset delay factor on successful read.
                     }
                 } catch (\Exception $ex) {
+                    $delayFactor++;
                 }
             }
         } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $attempt <= $this->retries);
