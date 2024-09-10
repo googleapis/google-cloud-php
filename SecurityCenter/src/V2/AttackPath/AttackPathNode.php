@@ -19,14 +19,14 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * The name of the resource at this point in the attack path.
      * The format of the name follows the Cloud Asset Inventory [resource
      * name
-     * format]("https://cloud.google.com/asset-inventory/docs/resource-name-format")
+     * format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
     protected $resource = '';
     /**
      * The [supported resource
-     * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types")
+     * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      */
@@ -66,10 +66,10 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      *           The name of the resource at this point in the attack path.
      *           The format of the name follows the Cloud Asset Inventory [resource
      *           name
-     *           format]("https://cloud.google.com/asset-inventory/docs/resource-name-format")
+     *           format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *     @type string $resource_type
      *           The [supported resource
-     *           type](https://cloud.google.com/asset-inventory/docs/supported-asset-types")
+     *           type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *     @type string $display_name
      *           Human-readable name of this resource.
      *     @type array<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\PathNodeAssociatedFinding>|\Google\Protobuf\Internal\RepeatedField $associated_findings
@@ -89,7 +89,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * The name of the resource at this point in the attack path.
      * The format of the name follows the Cloud Asset Inventory [resource
      * name
-     * format]("https://cloud.google.com/asset-inventory/docs/resource-name-format")
+     * format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @return string
@@ -103,7 +103,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * The name of the resource at this point in the attack path.
      * The format of the name follows the Cloud Asset Inventory [resource
      * name
-     * format]("https://cloud.google.com/asset-inventory/docs/resource-name-format")
+     * format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
@@ -119,7 +119,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
 
     /**
      * The [supported resource
-     * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types")
+     * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      * @return string
@@ -131,7 +131,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
 
     /**
      * The [supported resource
-     * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types")
+     * type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      * @param string $var
