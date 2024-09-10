@@ -29,6 +29,15 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $next_page_token = '';
+    /**
+     * Output only. List of jobs with
+     * [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+     * parameters that could not be decrypted. A response to a `jobs.get` request
+     * may indicate the reason for the decryption failure for a specific job.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -42,6 +51,11 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      *           Optional. This token is included in the response if there are more results
      *           to fetch. To fetch additional results, provide this value as the
      *           `page_token` in a subsequent <code>ListJobsRequest</code>.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Output only. List of jobs with
+     *           [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+     *           parameters that could not be decrypted. A response to a `jobs.get` request
+     *           may indicate the reason for the decryption failure for a specific job.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +115,38 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of jobs with
+     * [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+     * parameters that could not be decrypted. A response to a `jobs.get` request
+     * may indicate the reason for the decryption failure for a specific job.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Output only. List of jobs with
+     * [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+     * parameters that could not be decrypted. A response to a `jobs.get` request
+     * may indicate the reason for the decryption failure for a specific job.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }
