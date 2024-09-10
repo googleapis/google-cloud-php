@@ -33,7 +33,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
-     * <b>For BigQuery</b>
+     * **For BigQuery**
      * If this value is not specified and the table was modified between the
      * given start and end times, the entire table will be scanned. If this
      * value is specified, then rows are filtered based on the given start and
@@ -45,12 +45,10 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      * you can use any of the following pseudo-columns as your timestamp field.
      * When used with Cloud DLP, these pseudo-column names are case sensitive.
-     * <ul>
-     * <li><code>_PARTITIONTIME</code></li>
-     * <li><code>_PARTITIONDATE</code></li>
-     * <li><code>_PARTITION_LOAD_TIME</code></li>
-     * </ul>
-     * <b>For Datastore</b>
+     * - `_PARTITIONTIME`
+     * - `_PARTITIONDATE`
+     * - `_PARTITION_LOAD_TIME`
+     * **For Datastore**
      * If this value is specified, then entities are filtered based on the given
      * start and end times. If an entity does not contain the provided timestamp
      * property or contains empty or invalid values, then it is included.
@@ -97,7 +95,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\FieldId $timestamp_field
      *           Specification of the field containing the timestamp of scanned items.
      *           Used for data sources like Datastore and BigQuery.
-     *           <b>For BigQuery</b>
+     *           **For BigQuery**
      *           If this value is not specified and the table was modified between the
      *           given start and end times, the entire table will be scanned. If this
      *           value is specified, then rows are filtered based on the given start and
@@ -109,12 +107,10 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *           time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      *           you can use any of the following pseudo-columns as your timestamp field.
      *           When used with Cloud DLP, these pseudo-column names are case sensitive.
-     *           <ul>
-     *           <li><code>_PARTITIONTIME</code></li>
-     *           <li><code>_PARTITIONDATE</code></li>
-     *           <li><code>_PARTITION_LOAD_TIME</code></li>
-     *           </ul>
-     *           <b>For Datastore</b>
+     *           - `_PARTITIONTIME`
+     *           - `_PARTITIONDATE`
+     *           - `_PARTITION_LOAD_TIME`
+     *           **For Datastore**
      *           If this value is specified, then entities are filtered based on the given
      *           start and end times. If an entity does not contain the provided timestamp
      *           property or contains empty or invalid values, then it is included.
@@ -223,7 +219,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
-     * <b>For BigQuery</b>
+     * **For BigQuery**
      * If this value is not specified and the table was modified between the
      * given start and end times, the entire table will be scanned. If this
      * value is specified, then rows are filtered based on the given start and
@@ -235,12 +231,10 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      * you can use any of the following pseudo-columns as your timestamp field.
      * When used with Cloud DLP, these pseudo-column names are case sensitive.
-     * <ul>
-     * <li><code>_PARTITIONTIME</code></li>
-     * <li><code>_PARTITIONDATE</code></li>
-     * <li><code>_PARTITION_LOAD_TIME</code></li>
-     * </ul>
-     * <b>For Datastore</b>
+     * - `_PARTITIONTIME`
+     * - `_PARTITIONDATE`
+     * - `_PARTITION_LOAD_TIME`
+     * **For Datastore**
      * If this value is specified, then entities are filtered based on the given
      * start and end times. If an entity does not contain the provided timestamp
      * property or contains empty or invalid values, then it is included.
@@ -271,7 +265,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
-     * <b>For BigQuery</b>
+     * **For BigQuery**
      * If this value is not specified and the table was modified between the
      * given start and end times, the entire table will be scanned. If this
      * value is specified, then rows are filtered based on the given start and
@@ -283,12 +277,10 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      * you can use any of the following pseudo-columns as your timestamp field.
      * When used with Cloud DLP, these pseudo-column names are case sensitive.
-     * <ul>
-     * <li><code>_PARTITIONTIME</code></li>
-     * <li><code>_PARTITIONDATE</code></li>
-     * <li><code>_PARTITION_LOAD_TIME</code></li>
-     * </ul>
-     * <b>For Datastore</b>
+     * - `_PARTITIONTIME`
+     * - `_PARTITIONDATE`
+     * - `_PARTITION_LOAD_TIME`
+     * **For Datastore**
      * If this value is specified, then entities are filtered based on the given
      * start and end times. If an entity does not contain the provided timestamp
      * property or contains empty or invalid values, then it is included.

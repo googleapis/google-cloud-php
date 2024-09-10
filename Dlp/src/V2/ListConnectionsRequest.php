@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Parent name, for example:
-     * `projects/project-id/locations/global`.
+     * Required. Resource name of the organization or project, for
+     * example, `organizations/433245324/locations/europe` or
+     * `projects/project-id/locations/asia`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,9 +44,10 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
-     * @param string $parent Required. Parent name, for example:
-     *                       `projects/project-id/locations/global`. Please see
-     *                       {@see DlpServiceClient::locationName()} for help formatting this field.
+     * @param string $parent Required. Resource name of the organization or project, for
+     *                       example, `organizations/433245324/locations/europe` or
+     *                       `projects/project-id/locations/asia`. Please see
+     *                       {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dlp\V2\ListConnectionsRequest
      *
@@ -64,8 +66,9 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Parent name, for example:
-     *           `projects/project-id/locations/global`.
+     *           Required. Resource name of the organization or project, for
+     *           example, `organizations/433245324/locations/europe` or
+     *           `projects/project-id/locations/asia`.
      *     @type int $page_size
      *           Optional. Number of results per page, max 1000.
      *     @type string $page_token
@@ -81,8 +84,9 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent name, for example:
-     * `projects/project-id/locations/global`.
+     * Required. Resource name of the organization or project, for
+     * example, `organizations/433245324/locations/europe` or
+     * `projects/project-id/locations/asia`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,8 +97,9 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent name, for example:
-     * `projects/project-id/locations/global`.
+     * Required. Resource name of the organization or project, for
+     * example, `organizations/433245324/locations/europe` or
+     * `projects/project-id/locations/asia`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
