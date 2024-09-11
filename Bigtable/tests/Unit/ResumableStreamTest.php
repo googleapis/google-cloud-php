@@ -47,6 +47,8 @@ class ResumableStreamTest extends TestCase
         $count = 0;
         $stream->readAll()
             ->will(function () use (&$count, $generator1, $generator2) {
+                // Simlate a call to readRows where the server throws 2 exceptions, reads a row
+                // successfuly, throws another exception, and reads one more row successfully.
                 return match ($count++) {
                     0 => throw new \Exception('This is retryable!', self::RETRYABLE_CODE),
                     1 => throw new \Exception('This is also retryable!', self::RETRYABLE_CODE),
@@ -54,13 +56,6 @@ class ResumableStreamTest extends TestCase
                     3 => $generator2(),
                 };
             });
-        $delayFunction = function ($delayFactor) use (&$count) {
-            $this->assertEquals(match ($count) {
-                1 => 1, // initial delay
-                2 => 2, // increment by 1
-                3 => 1, // the delay is reset by the successful call
-            }, $delayFactor);
-        };
         $bigtable = $this->prophesize(BigtableClient::class);
         $bigtable->readRows(Argument::type(ReadRowsRequest::class), Argument::type('array'))
             ->shouldBeCalledTimes(4)
@@ -69,22 +64,23 @@ class ResumableStreamTest extends TestCase
             $bigtable->reveal(),
             'readRows',
             $this->prophesize(ReadRowsRequest::class)->reveal(),
-            function ($request, $callOptions) {
-                return [$request, $callOptions];
-            },
-            function ($exception) {
-                return $exception && $exception->getCode() === self::RETRYABLE_CODE;
-            }
+            fn ($request, $callOptions) => [$request, $callOptions],
+            fn ($exception) => $exception && $exception->getCode() === self::RETRYABLE_CODE
         );
 
+        $retries = 0;
+        $delayFunction = function ($delayFactor) use (&$retries) {
+            $this->assertEquals(match (++$retries) {
+                1 => 1, // initial delay
+                2 => 2, // increment by 1
+                3 => 1, // the delay is reset by the successful call
+            }, $delayFactor);
+        };
         $refl = new \ReflectionObject($resumableStream);
         $refl->getProperty('delayFunction')->setValue($resumableStream, $delayFunction);
 
-        $rowCount = 0;
-        foreach ($resumableStream->readAll() as $item) {
-            $rowCount++;
-            $this->assertInstanceOf(ReadRowsResponse::class, $item);
-        }
-        $this->assertEquals(2, $rowCount);
+        $rows = iterator_to_array($resumableStream->readAll());
+        $this->assertEquals(2, count($rows));
+        $this->assertEquals(3, $retries);
     }
 }

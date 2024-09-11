@@ -122,12 +122,12 @@ class ResumableStream implements \IteratorAggregate
             'retriesEnabled' => false
         ];
 
-        $this->delayFunction = function (int $delayFactor) {
+        $this->delayFunction = function (int $backoffCount) {
             $initialDelayMillis = 100;
             $initialDelayMultiplier = 1.3;
             $maxDelayMillis = 600000;
 
-            $delayMultiplier = $initialDelayMultiplier ** $delayFactor;
+            $delayMultiplier = $initialDelayMultiplier ** $backoffCount;
             $delayMs = min($initialDelayMillis * $delayMultiplier, $maxDelayMillis);
             $delay = 1000 * $delayMs; // convert ms to µs
             usleep((int) $delay);
