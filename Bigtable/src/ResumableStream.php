@@ -125,7 +125,7 @@ class ResumableStream implements \IteratorAggregate
         $this->delayFunction = function (int $backoffCount) {
             $initialDelayMillis = 100;
             $initialDelayMultiplier = 1.3;
-            $maxDelayMillis = 600000;
+            $maxDelayMillis = 60000;
 
             $delayMultiplier = $initialDelayMultiplier ** $backoffCount;
             $delayMs = min($initialDelayMillis * $delayMultiplier, $maxDelayMillis);
