@@ -76,8 +76,9 @@ class ResumableStreamTest extends TestCase
                 3 => 1, // the delay is reset by the successful call
             }, $delayFactor);
         };
-        $refl = new \ReflectionObject($resumableStream);
-        $refl->getProperty('delayFunction')->setValue($resumableStream, $delayFunction);
+        $prop = (new \ReflectionObject($resumableStream))->getProperty('delayFunction');
+        $prop->setAccessible(true);
+        $prop->setValue($resumableStream, $delayFunction);
 
         $rows = iterator_to_array($resumableStream->readAll());
         $this->assertEquals(2, count($rows));
