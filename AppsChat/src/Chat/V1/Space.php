@@ -124,6 +124,12 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
+     * Output only. Timestamp of the last message in the space.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_active_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_active_time = null;
+    /**
      * Output only. For direct message (DM) spaces with a Chat app, whether the
      * space was created by a Google Workspace administrator. Administrators can
      * install and set up a direct message with a Chat app on behalf of users in
@@ -133,6 +139,14 @@ class Space extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool admin_installed = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $admin_installed = false;
+    /**
+     * Output only. The count of joined memberships grouped by member type.
+     * Populated when the `space_type` is `SPACE`, `DIRECT_MESSAGE` or
+     * `GROUP_CHAT`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.MembershipCount membership_count = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $membership_count = null;
     /**
      * Optional. Specifies the [access
      * setting](https://support.google.com/chat/answer/11971020) of the space.
@@ -211,12 +225,18 @@ class Space extends \Google\Protobuf\Internal\Message
      *           the space was created in the source in order to preserve the original
      *           creation time.
      *           Only populated in the output when `spaceType` is `GROUP_CHAT` or `SPACE`.
+     *     @type \Google\Protobuf\Timestamp $last_active_time
+     *           Output only. Timestamp of the last message in the space.
      *     @type bool $admin_installed
      *           Output only. For direct message (DM) spaces with a Chat app, whether the
      *           space was created by a Google Workspace administrator. Administrators can
      *           install and set up a direct message with a Chat app on behalf of users in
      *           their organization.
      *           To support admin install, your Chat app must feature direct messaging.
+     *     @type \Google\Apps\Chat\V1\Space\MembershipCount $membership_count
+     *           Output only. The count of joined memberships grouped by member type.
+     *           Populated when the `space_type` is `SPACE`, `DIRECT_MESSAGE` or
+     *           `GROUP_CHAT`.
      *     @type \Google\Apps\Chat\V1\Space\AccessSettings $access_settings
      *           Optional. Specifies the [access
      *           setting](https://support.google.com/chat/answer/11971020) of the space.
@@ -637,6 +657,42 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Timestamp of the last message in the space.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_active_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastActiveTime()
+    {
+        return $this->last_active_time;
+    }
+
+    public function hasLastActiveTime()
+    {
+        return isset($this->last_active_time);
+    }
+
+    public function clearLastActiveTime()
+    {
+        unset($this->last_active_time);
+    }
+
+    /**
+     * Output only. Timestamp of the last message in the space.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_active_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastActiveTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_active_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. For direct message (DM) spaces with a Chat app, whether the
      * space was created by a Google Workspace administrator. Administrators can
      * install and set up a direct message with a Chat app on behalf of users in
@@ -666,6 +722,46 @@ class Space extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->admin_installed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The count of joined memberships grouped by member type.
+     * Populated when the `space_type` is `SPACE`, `DIRECT_MESSAGE` or
+     * `GROUP_CHAT`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.MembershipCount membership_count = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Apps\Chat\V1\Space\MembershipCount|null
+     */
+    public function getMembershipCount()
+    {
+        return $this->membership_count;
+    }
+
+    public function hasMembershipCount()
+    {
+        return isset($this->membership_count);
+    }
+
+    public function clearMembershipCount()
+    {
+        unset($this->membership_count);
+    }
+
+    /**
+     * Output only. The count of joined memberships grouped by member type.
+     * Populated when the `space_type` is `SPACE`, `DIRECT_MESSAGE` or
+     * `GROUP_CHAT`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.MembershipCount membership_count = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Chat\V1\Space\MembershipCount $var
+     * @return $this
+     */
+    public function setMembershipCount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\MembershipCount::class);
+        $this->membership_count = $var;
 
         return $this;
     }

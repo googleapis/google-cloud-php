@@ -103,6 +103,4 @@ class MembershipCount extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MembershipCount::class, \Google\Apps\Chat\V1\Space_MembershipCount::class);
 

@@ -72,6 +72,20 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     protected $update_mask = null;
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.spaces` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Some `FieldMask` values are not supported using admin access. For details,
+     * see the description of `update_mask`.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     */
+    protected $use_admin_access = false;
 
     /**
      * @param \Google\Apps\Chat\V1\Space $space      Required. Space with fields to be updated. `Space.name` must be
@@ -195,6 +209,16 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           `permission_settings.reply_messages`
      *            (Warning: mutually exclusive with all other non-permission settings field
      *           paths). `permission_settings` is not supported with admin access.
+     *     @type bool $use_admin_access
+     *           When `true`, the method runs using the user's Google Workspace
+     *           administrator privileges.
+     *           The calling user must be a Google Workspace administrator with the
+     *           [manage chat and spaces conversations
+     *           privilege](https://support.google.com/a/answer/13369245).
+     *           Requires the `chat.admin.spaces` [OAuth 2.0
+     *           scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *           Some `FieldMask` values are not supported using admin access. For details,
+     *           see the description of `update_mask`.
      * }
      */
     public function __construct($data = NULL) {
@@ -360,6 +384,48 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.spaces` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Some `FieldMask` values are not supported using admin access. For details,
+     * see the description of `update_mask`.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * @return bool
+     */
+    public function getUseAdminAccess()
+    {
+        return $this->use_admin_access;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.spaces` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Some `FieldMask` values are not supported using admin access. For details,
+     * see the description of `update_mask`.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseAdminAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_admin_access = $var;
 
         return $this;
     }
