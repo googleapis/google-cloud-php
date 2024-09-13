@@ -88,6 +88,10 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *           Optional. Job is a SparkSql job.
      *     @type \Google\Cloud\Dataproc\V1\PrestoJob $presto_job
      *           Optional. Job is a Presto job.
+     *     @type \Google\Cloud\Dataproc\V1\TrinoJob $trino_job
+     *           Optional. Job is a Trino job.
+     *     @type \Google\Cloud\Dataproc\V1\FlinkJob $flink_job
+     *           Optional. Job is a Flink job.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this job.
      *           Label keys must be between 1 and 63 characters long, and must conform to
@@ -394,6 +398,68 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\PrestoJob::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Job is a Trino job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.TrinoJob trino_job = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\TrinoJob|null
+     */
+    public function getTrinoJob()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasTrinoJob()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Optional. Job is a Trino job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.TrinoJob trino_job = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\TrinoJob $var
+     * @return $this
+     */
+    public function setTrinoJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\TrinoJob::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Job is a Flink job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FlinkJob flink_job = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\FlinkJob|null
+     */
+    public function getFlinkJob()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasFlinkJob()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Optional. Job is a Flink job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FlinkJob flink_job = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\FlinkJob $var
+     * @return $this
+     */
+    public function setFlinkJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\FlinkJob::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }
