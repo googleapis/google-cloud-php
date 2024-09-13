@@ -55,12 +55,18 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     protected $subnetwork_uri = '';
     /**
-     * Optional. If true, all instances in the cluster will only have internal IP
-     * addresses. By default, clusters are not restricted to internal IP
-     * addresses, and will have ephemeral external IP addresses assigned to each
-     * instance. This `internal_ip_only` restriction can only be enabled for
-     * subnetwork enabled networks, and all off-cluster dependencies must be
-     * configured to be accessible without external IP addresses.
+     * Optional. This setting applies to subnetwork-enabled networks. It is set to
+     * `true` by default in clusters created with image versions 2.2.x.
+     * When set to `true`:
+     * * All cluster VMs have internal IP addresses.
+     * * [Google Private Access]
+     * (https://cloud.google.com/vpc/docs/private-google-access)
+     * must be enabled to access Dataproc and other Google Cloud APIs.
+     * * Off-cluster dependencies must be configured to be accessible
+     * without external IP addresses.
+     * When set to `false`:
+     * * Cluster VMs are not restricted to internal IP addresses.
+     * * Ephemeral external IP addresses are assigned to each cluster VM.
      *
      * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -103,8 +109,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $service_account_scopes;
     /**
-     * The Compute Engine tags to add to all instances (see [Tagging
-     * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine network tags to add to all instances (see [Tagging
+     * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      */
@@ -178,12 +184,18 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * `projects/[project_id]/regions/[region]/subnetworks/sub0`
      *           * `sub0`
      *     @type bool $internal_ip_only
-     *           Optional. If true, all instances in the cluster will only have internal IP
-     *           addresses. By default, clusters are not restricted to internal IP
-     *           addresses, and will have ephemeral external IP addresses assigned to each
-     *           instance. This `internal_ip_only` restriction can only be enabled for
-     *           subnetwork enabled networks, and all off-cluster dependencies must be
-     *           configured to be accessible without external IP addresses.
+     *           Optional. This setting applies to subnetwork-enabled networks. It is set to
+     *           `true` by default in clusters created with image versions 2.2.x.
+     *           When set to `true`:
+     *           * All cluster VMs have internal IP addresses.
+     *           * [Google Private Access]
+     *           (https://cloud.google.com/vpc/docs/private-google-access)
+     *           must be enabled to access Dataproc and other Google Cloud APIs.
+     *           * Off-cluster dependencies must be configured to be accessible
+     *           without external IP addresses.
+     *           When set to `false`:
+     *           * Cluster VMs are not restricted to internal IP addresses.
+     *           * Ephemeral external IP addresses are assigned to each cluster VM.
      *     @type int $private_ipv6_google_access
      *           Optional. The type of IPv6 access for a cluster.
      *     @type string $service_account
@@ -210,8 +222,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/bigtable.data
      *           * https://www.googleapis.com/auth/devstorage.full_control
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
-     *           The Compute Engine tags to add to all instances (see [Tagging
-     *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     *           The Compute Engine network tags to add to all instances (see [Tagging
+     *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Optional. The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance
@@ -353,12 +365,18 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, all instances in the cluster will only have internal IP
-     * addresses. By default, clusters are not restricted to internal IP
-     * addresses, and will have ephemeral external IP addresses assigned to each
-     * instance. This `internal_ip_only` restriction can only be enabled for
-     * subnetwork enabled networks, and all off-cluster dependencies must be
-     * configured to be accessible without external IP addresses.
+     * Optional. This setting applies to subnetwork-enabled networks. It is set to
+     * `true` by default in clusters created with image versions 2.2.x.
+     * When set to `true`:
+     * * All cluster VMs have internal IP addresses.
+     * * [Google Private Access]
+     * (https://cloud.google.com/vpc/docs/private-google-access)
+     * must be enabled to access Dataproc and other Google Cloud APIs.
+     * * Off-cluster dependencies must be configured to be accessible
+     * without external IP addresses.
+     * When set to `false`:
+     * * Cluster VMs are not restricted to internal IP addresses.
+     * * Ephemeral external IP addresses are assigned to each cluster VM.
      *
      * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -379,12 +397,18 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, all instances in the cluster will only have internal IP
-     * addresses. By default, clusters are not restricted to internal IP
-     * addresses, and will have ephemeral external IP addresses assigned to each
-     * instance. This `internal_ip_only` restriction can only be enabled for
-     * subnetwork enabled networks, and all off-cluster dependencies must be
-     * configured to be accessible without external IP addresses.
+     * Optional. This setting applies to subnetwork-enabled networks. It is set to
+     * `true` by default in clusters created with image versions 2.2.x.
+     * When set to `true`:
+     * * All cluster VMs have internal IP addresses.
+     * * [Google Private Access]
+     * (https://cloud.google.com/vpc/docs/private-google-access)
+     * must be enabled to access Dataproc and other Google Cloud APIs.
+     * * Off-cluster dependencies must be configured to be accessible
+     * without external IP addresses.
+     * When set to `false`:
+     * * Cluster VMs are not restricted to internal IP addresses.
+     * * Ephemeral external IP addresses are assigned to each cluster VM.
      *
      * Generated from protobuf field <code>optional bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -515,8 +539,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine tags to add to all instances (see [Tagging
-     * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine network tags to add to all instances (see [Tagging
+     * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -527,8 +551,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Compute Engine tags to add to all instances (see [Tagging
-     * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * The Compute Engine network tags to add to all instances (see [Tagging
+     * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

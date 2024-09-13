@@ -30,7 +30,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      */
     protected $root_principal_password_uri = '';
     /**
-     * Optional. The uri of the KMS key used to encrypt various sensitive
+     * Optional. The URI of the KMS key used to encrypt sensitive
      * files.
      *
      * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -141,7 +141,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The Cloud Storage URI of a KMS encrypted file containing the root
      *           principal password.
      *     @type string $kms_key_uri
-     *           Optional. The uri of the KMS key used to encrypt various sensitive
+     *           Optional. The URI of the KMS key used to encrypt sensitive
      *           files.
      *     @type string $keystore_uri
      *           Optional. The Cloud Storage URI of the keystore file used for SSL
@@ -250,7 +250,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The uri of the KMS key used to encrypt various sensitive
+     * Optional. The URI of the KMS key used to encrypt sensitive
      * files.
      *
      * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -262,7 +262,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The uri of the KMS key used to encrypt various sensitive
+     * Optional. The URI of the KMS key used to encrypt sensitive
      * files.
      *
      * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

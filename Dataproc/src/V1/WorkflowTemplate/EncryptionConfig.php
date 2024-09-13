@@ -43,7 +43,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * * [PrestoJob](https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob)
      *   scriptVariables and queryList.queries
      *
-     * Generated from protobuf field <code>string kms_key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = '';
 
@@ -115,7 +115,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * * [PrestoJob](https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob)
      *   scriptVariables and queryList.queries
      *
-     * Generated from protobuf field <code>string kms_key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKey()
@@ -151,7 +151,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * * [PrestoJob](https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob)
      *   scriptVariables and queryList.queries
      *
-     * Generated from protobuf field <code>string kms_key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -33,7 +33,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
     private $script_variables;
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
@@ -74,7 +74,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      *           command: `name=[value]`).
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure Pig.
-     *           Properties that conflict with values set by the Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API might be
      *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      *           /etc/pig/conf/pig.properties, and classes in user code.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
@@ -211,7 +211,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
@@ -225,7 +225,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *

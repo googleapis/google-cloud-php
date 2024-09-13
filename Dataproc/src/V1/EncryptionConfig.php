@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class EncryptionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The Cloud KMS key name to use for PD disk encryption for all
-     * instances in the cluster.
+     * Optional. The Cloud KMS key resource name to use for persistent disk
+     * encryption for all instances in the cluster. See [Use CMEK with cluster
+     * data]
+     * (https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data)
+     * for more information.
      *
      * Generated from protobuf field <code>string gce_pd_kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,7 +51,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * * [PrestoJob](https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob)
      *   scriptVariables and queryList.queries
      *
-     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = '';
 
@@ -59,8 +62,11 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gce_pd_kms_key_name
-     *           Optional. The Cloud KMS key name to use for PD disk encryption for all
-     *           instances in the cluster.
+     *           Optional. The Cloud KMS key resource name to use for persistent disk
+     *           encryption for all instances in the cluster. See [Use CMEK with cluster
+     *           data]
+     *           (https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data)
+     *           for more information.
      *     @type string $kms_key
      *           Optional. The Cloud KMS key resource name to use for cluster persistent
      *           disk and job argument encryption. See [Use CMEK with cluster data]
@@ -94,8 +100,11 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud KMS key name to use for PD disk encryption for all
-     * instances in the cluster.
+     * Optional. The Cloud KMS key resource name to use for persistent disk
+     * encryption for all instances in the cluster. See [Use CMEK with cluster
+     * data]
+     * (https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data)
+     * for more information.
      *
      * Generated from protobuf field <code>string gce_pd_kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -106,8 +115,11 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud KMS key name to use for PD disk encryption for all
-     * instances in the cluster.
+     * Optional. The Cloud KMS key resource name to use for persistent disk
+     * encryption for all instances in the cluster. See [Use CMEK with cluster
+     * data]
+     * (https://cloud.google.com//dataproc/docs/concepts/configuring-clusters/customer-managed-encryption#use_cmek_with_cluster_data)
+     * for more information.
      *
      * Generated from protobuf field <code>string gce_pd_kms_key_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -147,7 +159,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * * [PrestoJob](https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob)
      *   scriptVariables and queryList.queries
      *
-     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKey()
@@ -181,7 +193,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * * [PrestoJob](https://cloud.google.com/dataproc/docs/reference/rest/v1/PrestoJob)
      *   scriptVariables and queryList.queries
      *
-     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
