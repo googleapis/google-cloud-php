@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsConfigMapRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsSecretRequest;
@@ -79,6 +80,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface checkUpgradeAsync(CheckUpgradeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createUserWorkloadsConfigMapAsync(CreateUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createUserWorkloadsSecretAsync(CreateUserWorkloadsSecretRequest $request, array $optionalArgs = [])
@@ -366,6 +368,34 @@ final class EnvironmentsClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Check if an upgrade operation on the environment will succeed.
+     *
+     * In case of problems detailed info can be found in the returned Operation.
+     *
+     * The async variant is {@see EnvironmentsClient::checkUpgradeAsync()} .
+     *
+     * @example samples/V1/EnvironmentsClient/check_upgrade.php
+     *
+     * @param CheckUpgradeRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function checkUpgrade(CheckUpgradeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CheckUpgrade', $request, $callOptions)->wait();
     }
 
     /**
