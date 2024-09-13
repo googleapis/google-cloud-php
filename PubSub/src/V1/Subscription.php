@@ -95,7 +95,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * backlog, from the moment a message is published. If `retain_acked_messages`
      * is true, then this also configures the retention of acknowledged messages,
      * and thus configures how far back in time a `Seek` can be done. Defaults to
-     * 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * 7 days. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -308,7 +308,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           backlog, from the moment a message is published. If `retain_acked_messages`
      *           is true, then this also configures the retention of acknowledged messages,
      *           and thus configures how far back in time a `Seek` can be done. Defaults to
-     *           7 days. Cannot be more than 7 days or less than 10 minutes.
+     *           7 days. Cannot be more than 31 days or less than 10 minutes.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
@@ -659,7 +659,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * backlog, from the moment a message is published. If `retain_acked_messages`
      * is true, then this also configures the retention of acknowledged messages,
      * and thus configures how far back in time a `Seek` can be done. Defaults to
-     * 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * 7 days. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -684,7 +684,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * backlog, from the moment a message is published. If `retain_acked_messages`
      * is true, then this also configures the retention of acknowledged messages,
      * and thus configures how far back in time a `Seek` can be done. Defaults to
-     * 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * 7 days. Cannot be more than 31 days or less than 10 minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
