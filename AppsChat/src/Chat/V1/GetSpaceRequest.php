@@ -22,6 +22,18 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.spaces` or `chat.admin.spaces.readonly` [OAuth 2.0
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     */
+    protected $use_admin_access = false;
 
     /**
      * @param string $name Required. Resource name of the space, in the form `spaces/{space}`.
@@ -48,6 +60,14 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of the space, in the form `spaces/{space}`.
      *           Format: `spaces/{space}`
+     *     @type bool $use_admin_access
+     *           When `true`, the method runs using the user's Google Workspace
+     *           administrator privileges.
+     *           The calling user must be a Google Workspace administrator with the
+     *           [manage chat and spaces conversations
+     *           privilege](https://support.google.com/a/answer/13369245).
+     *           Requires the `chat.admin.spaces` or `chat.admin.spaces.readonly` [OAuth 2.0
+     *           scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      * }
      */
     public function __construct($data = NULL) {
@@ -79,6 +99,44 @@ class GetSpaceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.spaces` or `chat.admin.spaces.readonly` [OAuth 2.0
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * @return bool
+     */
+    public function getUseAdminAccess()
+    {
+        return $this->use_admin_access;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.spaces` or `chat.admin.spaces.readonly` [OAuth 2.0
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseAdminAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_admin_access = $var;
 
         return $this;
     }

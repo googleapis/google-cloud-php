@@ -31,6 +31,19 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Deleting app memberships in a space isn't supported using admin access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     */
+    protected $use_admin_access = false;
 
     /**
      * @param string $name Required. Resource name of the membership to delete. Chat apps can delete
@@ -77,6 +90,15 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      *           When deleting an app membership, requires the `chat.memberships.app` scope
      *           and `spaces/{space}/members/app` format.
      *           Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`.
+     *     @type bool $use_admin_access
+     *           When `true`, the method runs using the user's Google Workspace
+     *           administrator privileges.
+     *           The calling user must be a Google Workspace administrator with the
+     *           [manage chat and spaces conversations
+     *           privilege](https://support.google.com/a/answer/13369245).
+     *           Requires the `chat.admin.memberships` [OAuth 2.0
+     *           scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *           Deleting app memberships in a space isn't supported using admin access.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +148,46 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Deleting app memberships in a space isn't supported using admin access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * @return bool
+     */
+    public function getUseAdminAccess()
+    {
+        return $this->use_admin_access;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Deleting app memberships in a space isn't supported using admin access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseAdminAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_admin_access = $var;
 
         return $this;
     }
