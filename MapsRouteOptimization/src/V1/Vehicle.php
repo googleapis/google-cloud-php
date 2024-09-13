@@ -32,6 +32,13 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      */
     protected $travel_mode = 0;
     /**
+     * A set of conditions to satisfy that affect the way routes are calculated
+     * for the given vehicle.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.RouteModifiers route_modifiers = 2;</code>
+     */
+    protected $route_modifiers = null;
+    /**
      * Geographic location where the vehicle starts before picking up any
      * shipments. If not specified, the vehicle starts at its first pickup.
      * If the shipment model has duration and distance matrices, `start_location`
@@ -280,6 +287,9 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *     @type int $travel_mode
      *           The travel mode which affects the roads usable by the vehicle and its
      *           speed. See also `travel_duration_multiple`.
+     *     @type \Google\Maps\RouteOptimization\V1\RouteModifiers $route_modifiers
+     *           A set of conditions to satisfy that affect the way routes are calculated
+     *           for the given vehicle.
      *     @type \Google\Type\LatLng $start_location
      *           Geographic location where the vehicle starts before picking up any
      *           shipments. If not specified, the vehicle starts at its first pickup.
@@ -483,6 +493,44 @@ class Vehicle extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Maps\RouteOptimization\V1\Vehicle\TravelMode::class);
         $this->travel_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * A set of conditions to satisfy that affect the way routes are calculated
+     * for the given vehicle.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.RouteModifiers route_modifiers = 2;</code>
+     * @return \Google\Maps\RouteOptimization\V1\RouteModifiers|null
+     */
+    public function getRouteModifiers()
+    {
+        return $this->route_modifiers;
+    }
+
+    public function hasRouteModifiers()
+    {
+        return isset($this->route_modifiers);
+    }
+
+    public function clearRouteModifiers()
+    {
+        unset($this->route_modifiers);
+    }
+
+    /**
+     * A set of conditions to satisfy that affect the way routes are calculated
+     * for the given vehicle.
+     *
+     * Generated from protobuf field <code>.google.maps.routeoptimization.v1.RouteModifiers route_modifiers = 2;</code>
+     * @param \Google\Maps\RouteOptimization\V1\RouteModifiers $var
+     * @return $this
+     */
+    public function setRouteModifiers($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Maps\RouteOptimization\V1\RouteModifiers::class);
+        $this->route_modifiers = $var;
 
         return $this;
     }
