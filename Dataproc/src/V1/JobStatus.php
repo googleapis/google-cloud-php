@@ -23,7 +23,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Optional. Output only. Job state details, such as an error
-     * description if the state is <code>ERROR</code>.
+     * description if the state is `ERROR`.
      *
      * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,7 +52,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *           Output only. A state message specifying the overall job state.
      *     @type string $details
      *           Optional. Output only. Job state details, such as an error
-     *           description if the state is <code>ERROR</code>.
+     *           description if the state is `ERROR`.
      *     @type \Google\Protobuf\Timestamp $state_start_time
      *           Output only. The time when this state was entered.
      *     @type int $substate
@@ -93,7 +93,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Output only. Job state details, such as an error
-     * description if the state is <code>ERROR</code>.
+     * description if the state is `ERROR`.
      *
      * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -105,7 +105,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Output only. Job state details, such as an error
-     * description if the state is <code>ERROR</code>.
+     * description if the state is `ERROR`.
      *
      * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

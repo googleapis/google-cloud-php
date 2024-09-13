@@ -49,7 +49,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
     private $archive_uris;
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
@@ -85,7 +85,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      *           .jar, .tar, .tar.gz, .tgz, and .zip.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure SparkR.
-     *           Properties that conflict with values set by the Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API might be
      *           overwritten. Can include properties set in
      *           /etc/spark/conf/spark-defaults.conf and classes in user code.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
@@ -215,7 +215,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
@@ -229,7 +229,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *

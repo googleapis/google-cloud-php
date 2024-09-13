@@ -22,7 +22,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The arguments to pass to the driver. Do not
      * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
-     * job properties, since a collision may occur that causes an incorrect job
+     * job properties, since a collision might occur that causes an incorrect job
      * submission.
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -53,7 +53,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     private $archive_uris;
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      * classes in user code.
      *
@@ -86,7 +86,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the driver. Do not
      *           include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
-     *           job properties, since a collision may occur that causes an incorrect job
+     *           job properties, since a collision might occur that causes an incorrect job
      *           submission.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. Jar file URIs to add to the CLASSPATHs of the
@@ -101,7 +101,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      *           .jar, .tar, .tar.gz, .tgz, or .zip.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure Hadoop.
-     *           Properties that conflict with values set by the Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API might be
      *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      *           classes in user code.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
@@ -188,7 +188,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The arguments to pass to the driver. Do not
      * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
-     * job properties, since a collision may occur that causes an incorrect job
+     * job properties, since a collision might occur that causes an incorrect job
      * submission.
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -202,7 +202,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The arguments to pass to the driver. Do not
      * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
-     * job properties, since a collision may occur that causes an incorrect job
+     * job properties, since a collision might occur that causes an incorrect job
      * submission.
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -307,7 +307,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      * classes in user code.
      *
@@ -321,7 +321,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure Hadoop.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site` and
      * classes in user code.
      *

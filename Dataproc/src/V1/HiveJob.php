@@ -33,7 +33,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     private $script_variables;
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
@@ -69,7 +69,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      *           Hive command: `SET name="value";`).
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names and values, used to configure Hive.
-     *           Properties that conflict with values set by the Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API might be
      *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      *           /etc/hive/conf/hive-site.xml, and classes in user code.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
@@ -205,7 +205,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
@@ -219,7 +219,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *

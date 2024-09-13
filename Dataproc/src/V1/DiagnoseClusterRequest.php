@@ -35,7 +35,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      */
     protected $cluster_name = '';
     /**
-     * Optional. The output Cloud Storage directory for the diagnostic
+     * Optional. (Optional) The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
      * staging bucket will be used.
      *
@@ -103,7 +103,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_name
      *           Required. The cluster name.
      *     @type string $tarball_gcs_dir
-     *           Optional. The output Cloud Storage directory for the diagnostic
+     *           Optional. (Optional) The output Cloud Storage directory for the diagnostic
      *           tarball. If not specified, a task-specific directory in the cluster's
      *           staging bucket will be used.
      *     @type int $tarball_access
@@ -206,7 +206,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The output Cloud Storage directory for the diagnostic
+     * Optional. (Optional) The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
      * staging bucket will be used.
      *
@@ -219,7 +219,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The output Cloud Storage directory for the diagnostic
+     * Optional. (Optional) The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
      * staging bucket will be used.
      *
