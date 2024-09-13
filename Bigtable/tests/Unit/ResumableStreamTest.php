@@ -57,7 +57,10 @@ class ResumableStreamTest extends TestCase
                     0 => throw new \Exception('This is the 1st retryable', self::RETRYABLE_CODE),
                     1 => throw new \Exception('This is the 2nd retryable', self::RETRYABLE_CODE),
                     2 => $generator1(),
-                    3 => throw new \Exception('The 4th exception should retry because attempts reset', self::RETRYABLE_CODE),
+                    3 => throw new \Exception(
+                        'The 4th exception should retry because attempts reset',
+                        self::RETRYABLE_CODE
+                    ),
                     4 => $generator2(),
                 };
             });
