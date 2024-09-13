@@ -132,7 +132,9 @@ class ResumableStream implements \IteratorAggregate
 
             $delayMultiplier = $initialDelayMultiplier ** $attempt;
             $delayMs = min($initialDelayMillis * $delayMultiplier, $maxDelayMillis);
-            $delay = 1000 * $delayMs; // convert ms to µs
+            $actualDelayMs = mt_rand(0, $delayMs); // add jitter
+            $delay = 1000 * $actualDelayMs; // convert ms to µs
+
             usleep((int) $delay);
         };
     }
