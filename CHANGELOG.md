@@ -1,5 +1,227 @@
 # Changelog
 
+## 0.259.0
+
+<details><summary>google/cloud-ai-platform 1.6.0</summary>
+
+
+
+### Features
+
+* Add OFF to HarmBlockThreshold ([#7654](https://github.com/googleapis/google-cloud-php/issues/7654)) ([c8ba2f0](https://github.com/googleapis/google-cloud-php/commit/c8ba2f0383ba2bcbc0d46074df1f2ef723867e85))
+
+</details>
+
+<details><summary>google/apps-chat 0.5.0</summary>
+
+
+
+### Features
+
+* If you're a domain administrator or a delegated administrator, you can now include the `useAdminAccess` parameter ([#7668](https://github.com/googleapis/google-cloud-php/issues/7668)) ([75b7c43](https://github.com/googleapis/google-cloud-php/commit/75b7c434f9a9f90ffed459a78688224705d2cf9b))
+
+
+### Documentation
+
+* A comment for field `filter` in message `.google.chat.v1.ListMembershipsRequest` is updated to support `!=` operator ([75b7c43](https://github.com/googleapis/google-cloud-php/commit/75b7c434f9a9f90ffed459a78688224705d2cf9b))
+
+</details>
+
+<details><summary>google/cloud-asset 2.0.1</summary>
+
+
+
+### Documentation
+
+* [Asset] Comments are clarified for certain fields in messages `QueryAssetsResponse` and `ResourceSearchResult` ([#7666](https://github.com/googleapis/google-cloud-php/issues/7666)) ([2bd2f09](https://github.com/googleapis/google-cloud-php/commit/2bd2f093e7fc2798d6646c2f8627c47a864f3d05))
+
+</details>
+
+<details><summary>google/cloud-automl 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.3.0</summary>
+
+
+
+### Features
+
+* Add support for Cloud Bigtable Row Affinity in App Profiles ([#7665](https://github.com/googleapis/google-cloud-php/issues/7665)) ([29e9127](https://github.com/googleapis/google-cloud-php/commit/29e91278a8007b5e3e1ff9d50bcaee792e44829b))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.2.0</summary>
+
+
+
+### Features
+
+* A new value `ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER` is added to enum `.google.cloud.cloudcontrolspartner.v1beta.PartnerPermissions.Permission` ([cae527e](https://github.com/googleapis/google-cloud-php/commit/cae527ef89efdb26617ed3801861ccd74e1a0da5))
+* Field behavior for field `customer_onboarding_state` in message `.google.cloud.cloudcontrolspartner.v1beta.Customer` is changed ([cae527e](https://github.com/googleapis/google-cloud-php/commit/cae527ef89efdb26617ed3801861ccd74e1a0da5))
+* Field behavior for field `is_onboarded` in message `.google.cloud.cloudcontrolspartner.v1beta.Customer` is changed ([cae527e](https://github.com/googleapis/google-cloud-php/commit/cae527ef89efdb26617ed3801861ccd74e1a0da5))
+
+
+### Bug Fixes
+
+* Field behavior for field `display_name` in message `.google.cloud.cloudcontrolspartner.v1beta.Customer` is changed ([#7670](https://github.com/googleapis/google-cloud-php/issues/7670)) ([cae527e](https://github.com/googleapis/google-cloud-php/commit/cae527ef89efdb26617ed3801861ccd74e1a0da5))
+
+
+### Documentation
+
+* A comment for field `display_name` in message `.google.cloud.cloudcontrolspartner.v1beta.Customer` is changed ([cae527e](https://github.com/googleapis/google-cloud-php/commit/cae527ef89efdb26617ed3801861ccd74e1a0da5))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.0.0</summary>
+
+
+
+### Features
+
+* [Dataproc] add resource reference for KMS keys and fix comments ([#7671](https://github.com/googleapis/google-cloud-php/issues/7671)) ([15a849d](https://github.com/googleapis/google-cloud-php/commit/15a849dd60e824337e45e695ae2148413f240e73))
+* [Dataproc] add support for new Dataproc features ([#7662](https://github.com/googleapis/google-cloud-php/issues/7662)) ([1f45743](https://github.com/googleapis/google-cloud-php/commit/1f45743a91e95a8e23b4b23602f30c3123612e05))
+* Add support for new Dataproc features ([#7661](https://github.com/googleapis/google-cloud-php/issues/7661)) ([7dcbaeb](https://github.com/googleapis/google-cloud-php/commit/7dcbaeb2265c74308d3e3d8c73129f6777c940ee))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-functions 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.2.0</summary>
+
+
+
+### Features
+
+* A new field `cost_per_kilometer_below_soft_max` is added to message `.google.maps.routeoptimization.v1.DistanceLimit` ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A new field `route_modifiers` is added to message `.google.maps.routeoptimization.v1.Vehicle` ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A new message `RouteModifiers` is added ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* Minor fields and documentation update ([#7669](https://github.com/googleapis/google-cloud-php/issues/7669)) ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+
+
+### Documentation
+
+* A comment for enum value `CODE_UNSPECIFIED` in enum `Code` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for enum value `DEFAULT_SOLVE` in enum `SolvingMode` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for enum value `RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD` in enum `Level` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for field `code` in message `.google.maps.routeoptimization.v1.OptimizeToursValidationError` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for field `reasons` in message `.google.maps.routeoptimization.v1.SkippedShipment` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for field `validation_errors` in message `.google.maps.routeoptimization.v1.OptimizeToursResponse` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for message `OptimizeToursValidationError` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for message `TimeWindow` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+* A comment for method `BatchOptimizeTours` in service `RouteOptimization` is changed ([d08872a](https://github.com/googleapis/google-cloud-php/commit/d08872a7da11992b95c9c111ccc29b5489797096))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.0</summary>
+
+
+
+### Features
+
+* A new field `airflow_metadata_retention_config` is added to message `.google.cloud.orchestration.airflow.service.v1.DataRetentionConfig` ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+* A new field `satisfies_pzi` is added to message `.google.cloud.orchestration.airflow.service.v1.Environment` ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+* A new message `AirflowMetadataRetentionPolicyConfig` is added ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+* A new message `CheckUpgradeRequest` is added ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+* A new method `CheckUpgrade` is added to service `Environments` ([#7667](https://github.com/googleapis/google-cloud-php/issues/7667)) ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+
+
+### Documentation
+
+* A comment for field `maintenance_window` in message `.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig` is changed ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+* A comment for field `storage_mode` in message `.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig` is changed ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+* A comment for message `WorkloadsConfig` is changed ([7ac0592](https://github.com/googleapis/google-cloud-php/commit/7ac059223adfdfa2f29083267a2531c44dae734f))
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.5.2</summary>
+
+
+
+### Documentation
+
+* [PubSub] update documentation for 31 day subscription message retention ([#7663](https://github.com/googleapis/google-cloud-php/issues/7663)) ([8065ad6](https://github.com/googleapis/google-cloud-php/commit/8065ad67af7d4b7852e42de25938ef828dfc36a5))
+
+</details>
+
+<details><summary>google/cloud-retail 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-talent 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.0.0</summary>
+
+
+
+</details>
+
 ## 0.258.0
 
 <details><summary>google/cloud-access-approval 2.0.1</summary>
