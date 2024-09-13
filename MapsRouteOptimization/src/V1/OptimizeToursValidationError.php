@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes an error encountered when validating an `OptimizeToursRequest`.
+ * Describes an error or warning encountered when validating an
+ * `OptimizeToursRequest`.
  *
  * Generated from protobuf message <code>google.maps.routeoptimization.v1.OptimizeToursValidationError</code>
  */
@@ -89,8 +90,8 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *     * TIME_WINDOW_SOFT_END_TIME_WITHOUT_COST_AFTER_SOFT_END_TIME = 2811;
      *     * TIME_WINDOW_OVERLAPPING_ADJACENT_OR_EARLIER_THAN_PREVIOUS = 2812;
      *     * TIME_WINDOW_START_TIME_AFTER_SOFT_START_TIME = 2813;
-     *     * TIME_WINDOW_SOFT_START_TIME_AFTER_END_TIME = 2814;
-     *     * TIME_WINDOW_START_TIME_AFTER_SOFT_END_TIME = 2815;
+     *     * TIME_WINDOW_SOFT_START_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2819;
+     *     * TIME_WINDOW_SOFT_END_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2820;
      *     * TIME_WINDOW_SOFT_END_TIME_AFTER_END_TIME = 2816;
      *     * TIME_WINDOW_COST_BEFORE_SOFT_START_TIME_SET_AND_MULTIPLE_WINDOWS
      *       = 2817;
@@ -202,6 +203,13 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *     * VISIT_REQUEST_DURATION_NEGATIVE_OR_NAN = 4404;
      *     * VISIT_REQUEST_DURATION_EXCEEDS_GLOBAL_DURATION = 4405;
      * * PRECEDENCE_ERROR = 46;
+     *     * PRECEDENCE_RULE_MISSING_FIRST_INDEX = 4600;
+     *     * PRECEDENCE_RULE_MISSING_SECOND_INDEX = 4601;
+     *     * PRECEDENCE_RULE_FIRST_INDEX_OUT_OF_BOUNDS = 4602;
+     *     * PRECEDENCE_RULE_SECOND_INDEX_OUT_OF_BOUNDS = 4603;
+     *     * PRECEDENCE_RULE_DUPLICATE_INDEX = 4604;
+     *     * PRECEDENCE_RULE_INEXISTENT_FIRST_VISIT_REQUEST = 4605;
+     *     * PRECEDENCE_RULE_INEXISTENT_SECOND_VISIT_REQUEST = 4606;
      * * BREAK_ERROR = 48;
      *     * BREAK_RULE_EMPTY = 4800;
      *     * BREAK_REQUEST_UNSPECIFIED_DURATION = 4801;
@@ -247,6 +255,12 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      * * DURATION_SECONDS_MATRIX_ERROR = 56;
      *     * DURATION_SECONDS_MATRIX_DURATION_NEGATIVE_OR_NAN = 5600;
      *     * DURATION_SECONDS_MATRIX_DURATION_EXCEEDS_GLOBAL_DURATION = 5601;
+     * * WARNING = 9;
+     *     * WARNING_INJECTED_FIRST_SOLUTION = 90;
+     *         * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_SHIPMENTS_REMOVED
+     *           = 9000;
+     *         * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_AFTER_GETTING_TRAVEL_TIMES
+     *           = 9001;
      *
      * Generated from protobuf field <code>int32 code = 1;</code>
      */
@@ -370,8 +384,8 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *               * TIME_WINDOW_SOFT_END_TIME_WITHOUT_COST_AFTER_SOFT_END_TIME = 2811;
      *               * TIME_WINDOW_OVERLAPPING_ADJACENT_OR_EARLIER_THAN_PREVIOUS = 2812;
      *               * TIME_WINDOW_START_TIME_AFTER_SOFT_START_TIME = 2813;
-     *               * TIME_WINDOW_SOFT_START_TIME_AFTER_END_TIME = 2814;
-     *               * TIME_WINDOW_START_TIME_AFTER_SOFT_END_TIME = 2815;
+     *               * TIME_WINDOW_SOFT_START_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2819;
+     *               * TIME_WINDOW_SOFT_END_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2820;
      *               * TIME_WINDOW_SOFT_END_TIME_AFTER_END_TIME = 2816;
      *               * TIME_WINDOW_COST_BEFORE_SOFT_START_TIME_SET_AND_MULTIPLE_WINDOWS
      *                 = 2817;
@@ -483,6 +497,13 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *               * VISIT_REQUEST_DURATION_NEGATIVE_OR_NAN = 4404;
      *               * VISIT_REQUEST_DURATION_EXCEEDS_GLOBAL_DURATION = 4405;
      *           * PRECEDENCE_ERROR = 46;
+     *               * PRECEDENCE_RULE_MISSING_FIRST_INDEX = 4600;
+     *               * PRECEDENCE_RULE_MISSING_SECOND_INDEX = 4601;
+     *               * PRECEDENCE_RULE_FIRST_INDEX_OUT_OF_BOUNDS = 4602;
+     *               * PRECEDENCE_RULE_SECOND_INDEX_OUT_OF_BOUNDS = 4603;
+     *               * PRECEDENCE_RULE_DUPLICATE_INDEX = 4604;
+     *               * PRECEDENCE_RULE_INEXISTENT_FIRST_VISIT_REQUEST = 4605;
+     *               * PRECEDENCE_RULE_INEXISTENT_SECOND_VISIT_REQUEST = 4606;
      *           * BREAK_ERROR = 48;
      *               * BREAK_RULE_EMPTY = 4800;
      *               * BREAK_REQUEST_UNSPECIFIED_DURATION = 4801;
@@ -528,6 +549,12 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *           * DURATION_SECONDS_MATRIX_ERROR = 56;
      *               * DURATION_SECONDS_MATRIX_DURATION_NEGATIVE_OR_NAN = 5600;
      *               * DURATION_SECONDS_MATRIX_DURATION_EXCEEDS_GLOBAL_DURATION = 5601;
+     *           * WARNING = 9;
+     *               * WARNING_INJECTED_FIRST_SOLUTION = 90;
+     *                   * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_SHIPMENTS_REMOVED
+     *                     = 9000;
+     *                   * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_AFTER_GETTING_TRAVEL_TIMES
+     *                     = 9001;
      *     @type string $display_name
      *           The error display name.
      *     @type array<\Google\Maps\RouteOptimization\V1\OptimizeToursValidationError\FieldReference>|\Google\Protobuf\Internal\RepeatedField $fields
@@ -631,8 +658,8 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *     * TIME_WINDOW_SOFT_END_TIME_WITHOUT_COST_AFTER_SOFT_END_TIME = 2811;
      *     * TIME_WINDOW_OVERLAPPING_ADJACENT_OR_EARLIER_THAN_PREVIOUS = 2812;
      *     * TIME_WINDOW_START_TIME_AFTER_SOFT_START_TIME = 2813;
-     *     * TIME_WINDOW_SOFT_START_TIME_AFTER_END_TIME = 2814;
-     *     * TIME_WINDOW_START_TIME_AFTER_SOFT_END_TIME = 2815;
+     *     * TIME_WINDOW_SOFT_START_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2819;
+     *     * TIME_WINDOW_SOFT_END_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2820;
      *     * TIME_WINDOW_SOFT_END_TIME_AFTER_END_TIME = 2816;
      *     * TIME_WINDOW_COST_BEFORE_SOFT_START_TIME_SET_AND_MULTIPLE_WINDOWS
      *       = 2817;
@@ -744,6 +771,13 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *     * VISIT_REQUEST_DURATION_NEGATIVE_OR_NAN = 4404;
      *     * VISIT_REQUEST_DURATION_EXCEEDS_GLOBAL_DURATION = 4405;
      * * PRECEDENCE_ERROR = 46;
+     *     * PRECEDENCE_RULE_MISSING_FIRST_INDEX = 4600;
+     *     * PRECEDENCE_RULE_MISSING_SECOND_INDEX = 4601;
+     *     * PRECEDENCE_RULE_FIRST_INDEX_OUT_OF_BOUNDS = 4602;
+     *     * PRECEDENCE_RULE_SECOND_INDEX_OUT_OF_BOUNDS = 4603;
+     *     * PRECEDENCE_RULE_DUPLICATE_INDEX = 4604;
+     *     * PRECEDENCE_RULE_INEXISTENT_FIRST_VISIT_REQUEST = 4605;
+     *     * PRECEDENCE_RULE_INEXISTENT_SECOND_VISIT_REQUEST = 4606;
      * * BREAK_ERROR = 48;
      *     * BREAK_RULE_EMPTY = 4800;
      *     * BREAK_REQUEST_UNSPECIFIED_DURATION = 4801;
@@ -789,6 +823,12 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      * * DURATION_SECONDS_MATRIX_ERROR = 56;
      *     * DURATION_SECONDS_MATRIX_DURATION_NEGATIVE_OR_NAN = 5600;
      *     * DURATION_SECONDS_MATRIX_DURATION_EXCEEDS_GLOBAL_DURATION = 5601;
+     * * WARNING = 9;
+     *     * WARNING_INJECTED_FIRST_SOLUTION = 90;
+     *         * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_SHIPMENTS_REMOVED
+     *           = 9000;
+     *         * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_AFTER_GETTING_TRAVEL_TIMES
+     *           = 9001;
      *
      * Generated from protobuf field <code>int32 code = 1;</code>
      * @return int
@@ -872,8 +912,8 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *     * TIME_WINDOW_SOFT_END_TIME_WITHOUT_COST_AFTER_SOFT_END_TIME = 2811;
      *     * TIME_WINDOW_OVERLAPPING_ADJACENT_OR_EARLIER_THAN_PREVIOUS = 2812;
      *     * TIME_WINDOW_START_TIME_AFTER_SOFT_START_TIME = 2813;
-     *     * TIME_WINDOW_SOFT_START_TIME_AFTER_END_TIME = 2814;
-     *     * TIME_WINDOW_START_TIME_AFTER_SOFT_END_TIME = 2815;
+     *     * TIME_WINDOW_SOFT_START_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2819;
+     *     * TIME_WINDOW_SOFT_END_TIME_OUTSIDE_GLOBAL_TIME_WINDOW = 2820;
      *     * TIME_WINDOW_SOFT_END_TIME_AFTER_END_TIME = 2816;
      *     * TIME_WINDOW_COST_BEFORE_SOFT_START_TIME_SET_AND_MULTIPLE_WINDOWS
      *       = 2817;
@@ -985,6 +1025,13 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *     * VISIT_REQUEST_DURATION_NEGATIVE_OR_NAN = 4404;
      *     * VISIT_REQUEST_DURATION_EXCEEDS_GLOBAL_DURATION = 4405;
      * * PRECEDENCE_ERROR = 46;
+     *     * PRECEDENCE_RULE_MISSING_FIRST_INDEX = 4600;
+     *     * PRECEDENCE_RULE_MISSING_SECOND_INDEX = 4601;
+     *     * PRECEDENCE_RULE_FIRST_INDEX_OUT_OF_BOUNDS = 4602;
+     *     * PRECEDENCE_RULE_SECOND_INDEX_OUT_OF_BOUNDS = 4603;
+     *     * PRECEDENCE_RULE_DUPLICATE_INDEX = 4604;
+     *     * PRECEDENCE_RULE_INEXISTENT_FIRST_VISIT_REQUEST = 4605;
+     *     * PRECEDENCE_RULE_INEXISTENT_SECOND_VISIT_REQUEST = 4606;
      * * BREAK_ERROR = 48;
      *     * BREAK_RULE_EMPTY = 4800;
      *     * BREAK_REQUEST_UNSPECIFIED_DURATION = 4801;
@@ -1030,6 +1077,12 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      * * DURATION_SECONDS_MATRIX_ERROR = 56;
      *     * DURATION_SECONDS_MATRIX_DURATION_NEGATIVE_OR_NAN = 5600;
      *     * DURATION_SECONDS_MATRIX_DURATION_EXCEEDS_GLOBAL_DURATION = 5601;
+     * * WARNING = 9;
+     *     * WARNING_INJECTED_FIRST_SOLUTION = 90;
+     *         * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_SHIPMENTS_REMOVED
+     *           = 9000;
+     *         * WARNING_INJECTED_FIRST_SOLUTION_INFEASIBLE_AFTER_GETTING_TRAVEL_TIMES
+     *           = 9001;
      *
      * Generated from protobuf field <code>int32 code = 1;</code>
      * @param int $var
