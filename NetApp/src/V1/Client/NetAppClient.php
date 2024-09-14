@@ -86,6 +86,7 @@ use Google\Cloud\NetApp\V1\RevertVolumeRequest;
 use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
+use Google\Cloud\NetApp\V1\SwitchActiveReplicaZoneRequest;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
@@ -154,6 +155,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface reverseReplicationDirectionAsync(ReverseReplicationDirectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface stopReplicationAsync(StopReplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface switchActiveReplicaZoneAsync(SwitchActiveReplicaZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateActiveDirectoryAsync(UpdateActiveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
@@ -1666,6 +1668,35 @@ final class NetAppClient
     public function stopReplication(StopReplicationRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StopReplication', $request, $callOptions)->wait();
+    }
+
+    /**
+     * This operation will switch the active/replica zone for a regional
+     * storagePool.
+     *
+     * The async variant is {@see NetAppClient::switchActiveReplicaZoneAsync()} .
+     *
+     * @example samples/V1/NetAppClient/switch_active_replica_zone.php
+     *
+     * @param SwitchActiveReplicaZoneRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function switchActiveReplicaZone(
+        SwitchActiveReplicaZoneRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('SwitchActiveReplicaZone', $request, $callOptions)->wait();
     }
 
     /**
