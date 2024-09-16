@@ -80,6 +80,11 @@ class ResumableStream implements \IteratorAggregate
     private $callOptions;
 
     /**
+     * @var callable
+     */
+    private $delayFunction;
+
+    /**
      * Constructs a resumable stream.
      *
      * @param GapicClient $gapicClient The GAPIC client to use in order to send requests.
@@ -116,6 +121,22 @@ class ResumableStream implements \IteratorAggregate
         $this->callOptions['retrySettings'] = [
             'retriesEnabled' => false
         ];
+
+        $this->delayFunction = function (int $attempt) {
+            // Values here are taken from the Java Bigtable client, and are
+            // different than those set by default in the readRows configuration
+            // @see https://github.com/googleapis/java-bigtable/blob/c618969216c90c42dee6ee48db81e90af4fb102b/google-cloud-bigtable/src/main/java/com/google/cloud/bigtable/data/v2/stub/EnhancedBigtableStubSettings.java#L162-L164
+            $initialDelayMillis = 10;
+            $initialDelayMultiplier = 2;
+            $maxDelayMillis = 60000;
+
+            $delayMultiplier = $initialDelayMultiplier ** $attempt;
+            $delayMs = min($initialDelayMillis * $delayMultiplier, $maxDelayMillis);
+            $actualDelayMs = mt_rand(0, $delayMs); // add jitter
+            $delay = 1000 * $actualDelayMs; // convert ms to µs
+
+            usleep((int) $delay);
+        };
     }
 
     /**
@@ -126,7 +147,8 @@ class ResumableStream implements \IteratorAggregate
      */
     public function readAll()
     {
-        $attempt = 0;
+        // Reset $currentAttempts on successful row read, but keep total attempts for the header.
+        $currentAttempt = $totalAttempt = 0;
         do {
             $ex = null;
             list($this->request, $this->callOptions) =
@@ -137,10 +159,10 @@ class ResumableStream implements \IteratorAggregate
             if ($completed !== true) {
                 // Send in "bigtable-attempt" header on retry request
                 $headers = $this->callOptions['headers'] ?? [];
-                if ($attempt > 0) {
-                    $headers['bigtable-attempt'] = [(string) $attempt];
+                if ($totalAttempt > 0) {
+                    $headers['bigtable-attempt'] = [(string) $totalAttempt];
+                    ($this->delayFunction)($currentAttempt);
                 }
-                $attempt++;
 
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
@@ -150,11 +172,14 @@ class ResumableStream implements \IteratorAggregate
                 try {
                     foreach ($stream->readAll() as $item) {
                         yield $item;
+                        $currentAttempt = 0; // reset delay and attempt on successful read.
                     }
                 } catch (\Exception $ex) {
+                    $totalAttempt++;
+                    $currentAttempt++;
                 }
             }
-        } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $attempt <= $this->retries);
+        } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $currentAttempt <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }
