@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Schema is used to define the format of input/output data. Represents a select
  * subset of an [OpenAPI 3.0 schema
- * object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be
- * added in the future as needed.
+ * object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may
+ * be added in the future as needed.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Schema</code>
  */
@@ -92,6 +92,14 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $property_ordering;
     /**
      * Optional. Required properties of Type.OBJECT.
      *
@@ -187,6 +195,10 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. SCHEMA FIELDS FOR TYPE OBJECT
      *           Properties of Type.OBJECT.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $property_ordering
+     *           Optional. The order of the properties.
+     *           Not a standard field in open api spec. Only used to support the order of
+     *           the properties.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required
      *           Optional. Required properties of Type.OBJECT.
      *     @type int|string $min_properties
@@ -534,6 +546,36 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->properties = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPropertyOrdering()
+    {
+        return $this->property_ordering;
+    }
+
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPropertyOrdering($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->property_ordering = $arr;
 
         return $this;
     }
