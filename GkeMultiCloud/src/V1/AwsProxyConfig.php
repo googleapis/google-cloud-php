@@ -20,7 +20,7 @@ class AwsProxyConfig extends \Google\Protobuf\Internal\Message
      * configuration.
      * The secret must be a JSON encoded proxy configuration
      * as described in
-     * https://cloud.google.com/anthos/clusters/docs/multi-cloud/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
      *
      * Generated from protobuf field <code>string secret_arn = 1;</code>
      */
@@ -44,7 +44,7 @@ class AwsProxyConfig extends \Google\Protobuf\Internal\Message
      *           configuration.
      *           The secret must be a JSON encoded proxy configuration
      *           as described in
-     *           https://cloud.google.com/anthos/clusters/docs/multi-cloud/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
+     *           https://cloud.google.com/kubernetes-engine/multi-cloud/docs/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
      *     @type string $secret_version
      *           The version string of the AWS Secret Manager secret that contains the
      *           HTTP(S) proxy configuration.
@@ -60,7 +60,7 @@ class AwsProxyConfig extends \Google\Protobuf\Internal\Message
      * configuration.
      * The secret must be a JSON encoded proxy configuration
      * as described in
-     * https://cloud.google.com/anthos/clusters/docs/multi-cloud/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
      *
      * Generated from protobuf field <code>string secret_arn = 1;</code>
      * @return string
@@ -75,7 +75,7 @@ class AwsProxyConfig extends \Google\Protobuf\Internal\Message
      * configuration.
      * The secret must be a JSON encoded proxy configuration
      * as described in
-     * https://cloud.google.com/anthos/clusters/docs/multi-cloud/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/aws/how-to/use-a-proxy#create_a_proxy_configuration_file
      *
      * Generated from protobuf field <code>string secret_arn = 1;</code>
      * @param string $var
