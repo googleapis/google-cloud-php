@@ -30,6 +30,8 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $candidates_token_count = 0;
     /**
+     * Total token count for prompt and response candidates.
+     *
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
      */
     protected $total_token_count = 0;
@@ -47,6 +49,7 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $candidates_token_count
      *           Number of tokens in the response(s).
      *     @type int $total_token_count
+     *           Total token count for prompt and response candidates.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +114,8 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Total token count for prompt and response candidates.
+     *
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
      * @return int
      */
@@ -120,6 +125,8 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Total token count for prompt and response candidates.
+     *
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
      * @param int $var
      * @return $this
