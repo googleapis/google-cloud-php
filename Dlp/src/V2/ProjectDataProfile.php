@@ -23,7 +23,7 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Project ID that was profiled.
+     * Project ID or account that was profiled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
@@ -74,7 +74,7 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the profile.
      *     @type string $project_id
-     *           Project ID that was profiled.
+     *           Project ID or account that was profiled.
      *     @type \Google\Protobuf\Timestamp $profile_last_generated
      *           The last time the profile was generated.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
@@ -121,7 +121,7 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID that was profiled.
+     * Project ID or account that was profiled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @return string
@@ -132,7 +132,7 @@ class ProjectDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID that was profiled.
+     * Project ID or account that was profiled.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @param string $var
