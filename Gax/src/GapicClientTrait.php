@@ -515,7 +515,7 @@ trait GapicClientTrait
         Message $request = null,
         array $optionalArgs = []
     ) {
-        $methodDescriptors =$this->validateCallConfig($methodName);
+        $methodDescriptors = $this->validateCallConfig($methodName);
         $callType = $methodDescriptors['callType'];
 
         // Prepare request-based headers, merge with user-provided headers,
