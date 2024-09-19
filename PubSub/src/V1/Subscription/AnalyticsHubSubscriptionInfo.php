@@ -23,7 +23,7 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string listing = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $listing = '';
+    private $listing = '';
     /**
      * Optional. The name of the associated Analytics Hub subscription resource.
      * Pattern:
@@ -31,7 +31,7 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $subscription = '';
+    private $subscription = '';
 
     /**
      * Constructor.
@@ -116,6 +116,4 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnalyticsHubSubscriptionInfo::class, \Google\Cloud\PubSub\V1\Subscription_AnalyticsHubSubscriptionInfo::class);
 
