@@ -1,0 +1,38 @@
+name: System Tests
+on:
+  pull_request:
+jobs:
+  # Run system tests on the release PR
+  system-tests:
+    name: Run System Test Suite
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup PHP
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: "8.1"
+      - name: Install dependencies and define env vars
+        run: composer  --no-interaction --no-ansi --no-progress update
+        env:
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: "${{ runner.temp }}/service-account.json"
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: "${{ runner.temp }}/service-account.whitelist.json"
+          GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH: "${{ runner.temp }}/service-account.firestore.json"
+          ASSET_TEST_BUCKET: php_asset_test_bucket
+      - uses: mobiledevops/secret-to-file-action@v1
+        with:
+          base64-encoded-secret: ${{ secrets.GOOGLE_CLOUD_PHP_TESTS_KEY }}
+          filename: ${{ env.GOOGLE_CLOUD_PHP_TESTS_KEY_PATH }}
+      - uses: mobiledevops/secret-to-file-action@v1
+        with:
+          base64-encoded-secret: ${{ secrets.GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY }}
+          filename: ${{ env.GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH }}
+      - uses: mobiledevops/secret-to-file-action@v1
+        with:
+          base64-encoded-secret: ${{ secrets.GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY }}
+          filename: ${{ env.GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH }}
+      - name: Run System Tests
+        run: vendor/bin/phpunit -d memory_limit=512M -c phpunit-system.xml.dist --verbose
