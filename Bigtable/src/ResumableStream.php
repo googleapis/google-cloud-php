@@ -163,7 +163,6 @@ class ResumableStream implements \IteratorAggregate
                     $headers['bigtable-attempt'] = [(string) $totalAttempt];
                     ($this->delayFunction)($currentAttempt);
                 }
-
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
                     [$this->request, ['headers' => $headers] + $this->callOptions]
@@ -176,6 +175,9 @@ class ResumableStream implements \IteratorAggregate
                     }
                 } catch (\Exception $ex) {
                 }
+                // It's possible for the retry function to retry even when `$ex` is null
+                // (see Table::mutateRowsWithEntries). For this reason, we increment the attemts
+                // outside the try/catch block.
                 $totalAttempt++;
                 $currentAttempt++;
             }
