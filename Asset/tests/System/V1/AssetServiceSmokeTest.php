@@ -16,7 +16,8 @@
  */
 namespace Google\Cloud\Asset\Tests\System\V1;
 
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\ExportAssetsRequest;
 use Google\Cloud\Asset\V1\GcsDestination;
 use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
@@ -46,8 +47,12 @@ class AssetServiceSmokeTest extends SystemTestCase
         $outputConfig = new OutputConfig([
             'gcs_destination' => $gcsDestination
         ]);
+        $request = new ExportAssetsRequest([
+            'parent' => "projects/$projectId",
+            'output_config' => $outputConfig
+        ]);
 
-        $resp = $client->exportAssets("projects/$projectId", $outputConfig);
+        $resp = $client->exportAssets($request);
         $resp->pollUntilComplete();
 
         $this->assertTrue($resp->operationSucceeded());

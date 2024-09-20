@@ -23,9 +23,12 @@ namespace Google\Cloud\Bigtable\Tests\System;
  */
 class SampleRowKeysTest extends BigtableTestCase
 {
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
         $insertRows = [
             'rk1' => [
                 'cf1' => [

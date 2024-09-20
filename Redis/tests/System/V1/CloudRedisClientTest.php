@@ -37,14 +37,17 @@ class CloudRedisClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
 
         return [
             [self::$grpcClient]
         ];
     }
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

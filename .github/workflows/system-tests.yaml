@@ -1,0 +1,35 @@
+name: System Tests
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  # Run system tests on the release PR
+  system-tests:
+    name: Run System Test Suite
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]' || github.event_name == 'workflow_dispatch'
+    env:
+      ASSET_TEST_BUCKET: cloud-php-testdata
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup PHP
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: "8.1"
+          extensions: grpc
+          ini-values: grpc.grpc_verbosity=error
+      - name: Save secrets to file
+        run: |
+          echo "${{ secrets.GOOGLE_CLOUD_PHP_TESTS_KEY }}" | base64 -d  > ${{ runner.temp }}/service-account.json
+          echo "${{ secrets.GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY }}" | base64 -d > ${{ runner.temp }}/service-account.whitelist.json
+          echo "${{ secrets.GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY }}" | base64 -d > ${{ runner.temp }}/service-account.firestore.json
+      - name: Install dependencies
+        run: composer  --no-interaction --no-ansi --no-progress update
+      - name: Run System Tests
+        run: vendor/bin/phpunit -c phpunit-system.xml.dist --testdox --colors=always
+        env:
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.json
+          # GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.whitelist.json
+          # GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.firestore.json

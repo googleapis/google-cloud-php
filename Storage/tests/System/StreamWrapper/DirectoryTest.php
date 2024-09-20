@@ -36,23 +36,28 @@ class DirectoryTest extends StreamWrapperTestCase
         'bar/',
     ];
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         // create file in folder
         foreach (self::$createObjects as $name) {
             self::$bucket->upload('somedata', ['name' => $name]);
         }
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         foreach (self::$createObjects as $name) {
             self::$bucket->object($name)->delete();
         }
 
-        parent::tearDownAfterClass();
+        parent::tearDownTestFixtures();
     }
 
     public function testMkDir()

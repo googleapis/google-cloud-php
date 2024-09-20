@@ -27,9 +27,12 @@ class UrlStatTest extends StreamWrapperTestCase
     protected static $fileUrl;
     protected static $dirUrl;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
         self::$fileUrl = self::generateUrl(self::$object->name());
         self::$dirUrl = self::generateUrl('some_folder/');
         mkdir(self::$dirUrl);

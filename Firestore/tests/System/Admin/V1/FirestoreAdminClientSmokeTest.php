@@ -36,12 +36,18 @@ class FirestoreAdminClientSmokeTest extends SystemTestCase
     private static $projectId;
     private static $hasSetup = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetup) {
             return;
         }
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        if (!$keyFilePath) {
+            self::markTestSkipped('Set the GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH env var to run system tests');
+        }
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
         self::$projectId = $keyFileData['project_id'];
         self::$adminClient = new FirestoreAdminClient([
