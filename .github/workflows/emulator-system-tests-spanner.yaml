@@ -4,11 +4,11 @@ on:
       - main
     paths:
       - 'Spanner/**'
-      - '.github/workflows/spanner-emulator-system-tests.yaml'
+      - '.github/workflows/emulator-system-tests-spanner.yaml'
   pull_request:
     paths:
       - 'Spanner/**'
-      - '.github/workflows/spanner-emulator-system-tests.yaml'
+      - '.github/workflows/emulator-system-tests-spanner.yaml'
 name: Run Spanner System Tests With Emulator
 permissions:
   contents: read
