@@ -175,11 +175,11 @@ class ResumableStream implements \IteratorAggregate
                         $currentAttempt = 0; // reset delay and attempt on successful read.
                     }
                 } catch (\Exception $ex) {
-                    $totalAttempt++;
-                    $currentAttempt++;
                 }
+                $totalAttempt++;
+                $currentAttempt++;
             }
-        } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $currentAttempt <= $this->retries);
+        } while (($this->retryFunction)($ex) && $currentAttempt <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }
