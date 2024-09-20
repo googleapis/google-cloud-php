@@ -179,6 +179,7 @@
         "google/cloud-networkservices": "0.2.0",
         "google/cloud-notebooks": "1.0.0",
         "google/cloud-optimization": "1.0.0",
+        "google/cloud-oracledatabase": "0.0.0",
         "google/cloud-orchestration-airflow": "2.1.0",
         "google/cloud-org-policy": "1.0.0",
         "google/cloud-osconfig": "2.0.0",
@@ -370,6 +371,7 @@
             "GPBMetadata\\Google\\Cloud\\Networkservices\\": "NetworkServices/metadata",
             "GPBMetadata\\Google\\Cloud\\Notebooks\\": "Notebooks/metadata",
             "GPBMetadata\\Google\\Cloud\\Optimization\\": "Optimization/metadata",
+            "GPBMetadata\\Google\\Cloud\\Oracledatabase\\": "OracleDatabase/metadata",
             "GPBMetadata\\Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/metadata",
             "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": [
                 "OrgPolicy/metadata",
@@ -597,6 +599,7 @@
             "Google\\Cloud\\NetworkServices\\": "NetworkServices/src",
             "Google\\Cloud\\Notebooks\\": "Notebooks/src",
             "Google\\Cloud\\Optimization\\": "Optimization/src",
+            "Google\\Cloud\\OracleDatabase\\": "OracleDatabase/src",
             "Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/src",
             "Google\\Cloud\\OrgPolicy\\": [
                 "OrgPolicy/src",
