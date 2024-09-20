@@ -676,20 +676,22 @@ class SmartRetriesTest extends TestCase
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
-        )->shouldBeCalledTimes(1)
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->serverStream->reveal());
+
         $entries = $this->generateEntries(2, 3);
+
+        // ensure the bigtable-attempt header is sent in for the next retry.
         $this->bigtableClient->mutateRows(
             Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
-            Argument::type('array')
-        )->shouldBeCalled()
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
+            Argument::withEntry('headers', ['bigtable-attempt' => ['1']] + $this->options['headers'])
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->serverStream->reveal());
+
         $mutations = $this->generateMutations(0, 5);
         $this->table->mutateRows($mutations);
     }
