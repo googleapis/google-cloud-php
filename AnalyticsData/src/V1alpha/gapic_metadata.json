@@ -30,6 +30,11 @@
                                 "getAudienceList"
                             ]
                         },
+                        "GetPropertyQuotasSnapshot": {
+                            "methods": [
+                                "getPropertyQuotasSnapshot"
+                            ]
+                        },
                         "GetRecurringAudienceList": {
                             "methods": [
                                 "getRecurringAudienceList"

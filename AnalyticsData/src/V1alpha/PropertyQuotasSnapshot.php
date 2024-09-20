@@ -20,25 +20,25 @@ class PropertyQuotasSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Property Quota for core property tokens
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.PropertyQuota core_property_quota = 1;</code>
      */
-    protected $core_property_quota = null;
+    private $core_property_quota = null;
     /**
      * Property Quota for realtime property tokens
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.PropertyQuota realtime_property_quota = 2;</code>
      */
-    protected $realtime_property_quota = null;
+    private $realtime_property_quota = null;
     /**
      * Property Quota for funnel property tokens
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.PropertyQuota funnel_property_quota = 3;</code>
      */
-    protected $funnel_property_quota = null;
+    private $funnel_property_quota = null;
 
     /**
      * Constructor.
