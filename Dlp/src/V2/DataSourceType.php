@@ -17,7 +17,11 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. An identifying string to the type of resource being profiled.
-     * Current values: google/bigquery/table, google/project
+     * Current values:
+     * * google/bigquery/table
+     * * google/project
+     * * google/sql/table
+     * * google/gcs/bucket
      *
      * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -31,7 +35,11 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
      *
      *     @type string $data_source
      *           Output only. An identifying string to the type of resource being profiled.
-     *           Current values: google/bigquery/table, google/project
+     *           Current values:
+     *           * google/bigquery/table
+     *           * google/project
+     *           * google/sql/table
+     *           * google/gcs/bucket
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +49,11 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. An identifying string to the type of resource being profiled.
-     * Current values: google/bigquery/table, google/project
+     * Current values:
+     * * google/bigquery/table
+     * * google/project
+     * * google/sql/table
+     * * google/gcs/bucket
      *
      * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -53,7 +65,11 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. An identifying string to the type of resource being profiled.
-     * Current values: google/bigquery/table, google/project
+     * Current values:
+     * * google/bigquery/table
+     * * google/project
+     * * google/sql/table
+     * * google/gcs/bucket
      *
      * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
