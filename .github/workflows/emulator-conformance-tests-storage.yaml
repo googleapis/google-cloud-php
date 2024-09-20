@@ -4,11 +4,11 @@ on:
       - main
     paths:
       - 'Storage/**'
-      - '.github/workflows/storage-emulator-retry-conformance-tests.yaml'
+      - '.github/workflows/emulator-conformance-tests-storage.yaml'
   pull_request:
     paths:
       - 'Storage/**'
-      - '.github/workflows/storage-emulator-retry-conformance-tests.yaml'
+      - '.github/workflows/emulator-conformance-tests-storage.yaml'
 name: Run Storage Retry Conformance Tests With Emulator
 jobs:
   test:

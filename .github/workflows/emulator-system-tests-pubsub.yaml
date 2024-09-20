@@ -1,17 +1,17 @@
-name: Run Datastore System Tests With Emulator
 on:
   push:
     branches:
       - main
     paths:
-      - 'Datastore/**'
-      - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - 'PubSub/**'
+      - '.github/workflows/emulator-system-tests-pubsub.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
-      - 'Datastore/**'
-      - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - 'PubSub/**'
+      - '.github/workflows/emulator-system-tests-pubsub.yaml'
       - '.github/emulator/**'
+name: Run PubSub System Tests With Emulator
 permissions:
   contents: read
 jobs:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: ./.github/emulator/start-emulator.sh datastore 419.0.0-emulators
+      - run: ./.github/emulator/start-emulator.sh pubsub 413.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,14 +32,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config minimum-stability dev -d Datastore/
-          composer config repositories.local path "../Core" -d Datastore
-          composer require "google/cloud-core:*" -d Datastore/
+          composer config minimum-stability dev -d PubSub/
+          composer config repositories.local path "../Core" -d PubSub
+          composer require "google/cloud-core:*" -d PubSub/
 
       - name: Run system tests
         run: |
-          Datastore/vendor/bin/phpunit -c Datastore/phpunit-system.xml.dist
+          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
         env:
-          DATASTORE_EMULATOR_HOST: localhost:8085
+          PUBSUB_EMULATOR_HOST: localhost:8085
+          PROJECT_ID: my-project-id
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
           GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'

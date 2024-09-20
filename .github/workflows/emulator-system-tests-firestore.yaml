@@ -4,12 +4,12 @@ on:
       - main
     paths:
       - 'Firestore/**'
-      - '.github/workflows/firestore-emulator-system-tests.yaml'
+      - '.github/workflows/emulator-system-tests-firestore.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
       - 'Firestore/**'
-      - '.github/workflows/firestore-emulator-system-tests.yaml'
+      - '.github/workflows/emulator-system-tests-firestore.yaml'
       - '.github/emulator/**'
 name: Run Firestore System Tests With Emulator
 permissions:
