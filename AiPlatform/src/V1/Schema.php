@@ -158,6 +158,13 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Value example = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $example = null;
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $any_of;
 
     /**
      * Constructor.
@@ -221,6 +228,9 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $example
      *           Optional. Example of the object. Will only populated when the object is the
      *           root.
+     *     @type array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
+     *           Optional. The value should be validated against any (one or more) of the
+     *           subschemas in the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -828,6 +838,34 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->example = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnyOf()
+    {
+        return $this->any_of;
+    }
+
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnyOf($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->any_of = $arr;
 
         return $this;
     }
