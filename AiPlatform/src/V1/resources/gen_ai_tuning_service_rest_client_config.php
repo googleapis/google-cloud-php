@@ -69,6 +69,18 @@ return [
                     ],
                 ],
             ],
+            'RebaseTunedModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/tuningJobs:rebaseTunedModel',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [
