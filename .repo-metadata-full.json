@@ -966,6 +966,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudoptimization"
     },
+    "OracleDatabase": {
+        "language": "php",
+        "distribution_name": "google/cloud-oracledatabase",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-oracledatabase/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "oracledatabase"
+    },
     "OrchestrationAirflow": {
         "language": "php",
         "distribution_name": "google/cloud-orchestration-airflow",

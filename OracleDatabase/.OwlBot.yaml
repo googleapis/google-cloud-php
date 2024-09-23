@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/oracledatabase/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/OracleDatabase/$1/$2
+api-name: OracleDatabase
