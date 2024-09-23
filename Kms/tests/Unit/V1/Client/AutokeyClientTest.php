@@ -292,13 +292,21 @@ class AutokeyClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $nextPageToken = '';
+        $keyHandlesElement = new KeyHandle();
+        $keyHandles = [$keyHandlesElement];
         $expectedResponse = new ListKeyHandlesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setKeyHandles($keyHandles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $request = (new ListKeyHandlesRequest())->setParent($formattedParent);
         $response = $gapicClient->listKeyHandles($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getKeyHandles()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
