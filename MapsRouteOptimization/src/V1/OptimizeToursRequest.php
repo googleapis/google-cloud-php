@@ -196,7 +196,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      */
     protected $populate_polylines = false;
     /**
-     * If true, polylines will be populated in response
+     * If true, polylines and route tokens will be populated in response
      * [ShipmentRoute.transitions][google.maps.routeoptimization.v1.ShipmentRoute.transitions].
      *
      * Generated from protobuf field <code>bool populate_transition_polylines = 13;</code>
@@ -390,7 +390,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $populate_polylines
      *           If true, polylines will be populated in response `ShipmentRoute`s.
      *     @type bool $populate_transition_polylines
-     *           If true, polylines will be populated in response
+     *           If true, polylines and route tokens will be populated in response
      *           [ShipmentRoute.transitions][google.maps.routeoptimization.v1.ShipmentRoute.transitions].
      *     @type bool $allow_large_deadline_despite_interruption_risk
      *           If this is set, then the request can have a deadline
@@ -967,7 +967,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, polylines will be populated in response
+     * If true, polylines and route tokens will be populated in response
      * [ShipmentRoute.transitions][google.maps.routeoptimization.v1.ShipmentRoute.transitions].
      *
      * Generated from protobuf field <code>bool populate_transition_polylines = 13;</code>
@@ -979,7 +979,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, polylines will be populated in response
+     * If true, polylines and route tokens will be populated in response
      * [ShipmentRoute.transitions][google.maps.routeoptimization.v1.ShipmentRoute.transitions].
      *
      * Generated from protobuf field <code>bool populate_transition_polylines = 13;</code>
