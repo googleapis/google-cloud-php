@@ -168,6 +168,12 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $binary_authorization = null;
+    /**
+     * Optional. Security Posture configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SecurityPostureConfig security_posture_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $security_posture_config = null;
 
     /**
      * Constructor.
@@ -240,6 +246,8 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization $binary_authorization
      *           Optional. Binary Authorization configuration for this cluster.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\SecurityPostureConfig $security_posture_config
+     *           Optional. Security Posture configuration for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -957,6 +965,42 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\BinaryAuthorization::class);
         $this->binary_authorization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Security Posture configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SecurityPostureConfig security_posture_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\SecurityPostureConfig|null
+     */
+    public function getSecurityPostureConfig()
+    {
+        return $this->security_posture_config;
+    }
+
+    public function hasSecurityPostureConfig()
+    {
+        return isset($this->security_posture_config);
+    }
+
+    public function clearSecurityPostureConfig()
+    {
+        unset($this->security_posture_config);
+    }
+
+    /**
+     * Optional. Security Posture configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.SecurityPostureConfig security_posture_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\SecurityPostureConfig $var
+     * @return $this
+     */
+    public function setSecurityPostureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\SecurityPostureConfig::class);
+        $this->security_posture_config = $var;
 
         return $this;
     }

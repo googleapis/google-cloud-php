@@ -20,10 +20,13 @@ namespace Google\Cloud\Bigtable\Tests\Conformance;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
-use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -48,8 +51,13 @@ class ReadRowsTest extends TestCase
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator($readRowsResponses)
         );
+        $request = new ReadRowsRequest();
+        $client = $this->prophesize(BigtableClient::class);
+        $client->readRows($request, Argument::type('array'))
+            ->willReturn($this->serverStream->reveal());
         $chunkFormatter = new ChunkFormatter(
-            $this->serverStream->reveal()
+            $client->reveal(),
+            $request
         );
         $rows = [];
         $errorCount = 0;
@@ -73,7 +81,7 @@ class ReadRowsTest extends TestCase
             $responses = [];
             foreach ($test['chunks_base64'] as $chunk) {
                 $chunk = base64_decode($chunk);
-                $cellChunk = new ReadRowsResponse_CellChunk();
+                $cellChunk = new CellChunk();
                 $cellChunk->mergeFromString($chunk);
                 $response =  new ReadRowsResponse();
                 $response->setChunks([$cellChunk]);

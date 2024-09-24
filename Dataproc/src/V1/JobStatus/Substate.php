@@ -27,7 +27,7 @@ class Substate
      */
     const SUBMITTED = 1;
     /**
-     * The Job has been received and is awaiting execution (it may be waiting
+     * The Job has been received and is awaiting execution (it might be waiting
      * for a condition to be met). See the "details" field for the reason for
      * the delay.
      * Applies to RUNNING state.
@@ -36,7 +36,7 @@ class Substate
      */
     const QUEUED = 2;
     /**
-     * The agent-reported status is out of date, which may be caused by a
+     * The agent-reported status is out of date, which can be caused by a
      * loss of communication between the agent and Dataproc. If the
      * agent does not send a timely update, the job will fail.
      * Applies to RUNNING state.

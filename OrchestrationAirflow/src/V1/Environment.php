@@ -74,6 +74,12 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
+    /**
      * Optional. Storage configuration for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.StorageConfig storage_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -111,6 +117,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           * Both keys and values are additionally constrained to be <= 128 bytes in
      *           size.
      *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\StorageConfig $storage_config
      *           Optional. Storage configuration for this environment.
@@ -375,6 +383,32 @@ class Environment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

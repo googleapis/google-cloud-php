@@ -41,7 +41,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * Optional. A mapping of property names to values, used to configure Flink.
      * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
-     *  /etc/flink/conf/flink-defaults.conf and classes in user code.
+     * `/etc/flink/conf/flink-defaults.conf` and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -80,7 +80,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      *           Optional. A mapping of property names to values, used to configure Flink.
      *           Properties that conflict with values set by the Dataproc API might be
      *           overwritten. Can include properties set in
-     *            /etc/flink/conf/flink-defaults.conf and classes in user code.
+     *           `/etc/flink/conf/flink-defaults.conf` and classes in user code.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
      *           Optional. The runtime log config for job execution.
      * }
@@ -246,7 +246,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * Optional. A mapping of property names to values, used to configure Flink.
      * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
-     *  /etc/flink/conf/flink-defaults.conf and classes in user code.
+     * `/etc/flink/conf/flink-defaults.conf` and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -260,7 +260,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * Optional. A mapping of property names to values, used to configure Flink.
      * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
-     *  /etc/flink/conf/flink-defaults.conf and classes in user code.
+     * `/etc/flink/conf/flink-defaults.conf` and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

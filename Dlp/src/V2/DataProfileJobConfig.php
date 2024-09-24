@@ -35,6 +35,12 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      */
     protected $project_id = '';
     /**
+     * Must be set only when scanning other clouds.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation other_cloud_starting_location = 8;</code>
+     */
+    protected $other_cloud_starting_location = null;
+    /**
      * Detection logic for profile generation.
      * Not all template features are used by profiles. FindingLimits,
      * include_quote and exclude_info_types have no impact on
@@ -71,6 +77,8 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           The project that will run the scan. The DLP service
      *           account that exists within this project must have access to all resources
      *           that are profiled, and the Cloud DLP API must be enabled.
+     *     @type \Google\Cloud\Dlp\V2\OtherCloudDiscoveryStartingLocation $other_cloud_starting_location
+     *           Must be set only when scanning other clouds.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inspect_templates
      *           Detection logic for profile generation.
      *           Not all template features are used by profiles. FindingLimits,
@@ -156,6 +164,42 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Must be set only when scanning other clouds.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation other_cloud_starting_location = 8;</code>
+     * @return \Google\Cloud\Dlp\V2\OtherCloudDiscoveryStartingLocation|null
+     */
+    public function getOtherCloudStartingLocation()
+    {
+        return $this->other_cloud_starting_location;
+    }
+
+    public function hasOtherCloudStartingLocation()
+    {
+        return isset($this->other_cloud_starting_location);
+    }
+
+    public function clearOtherCloudStartingLocation()
+    {
+        unset($this->other_cloud_starting_location);
+    }
+
+    /**
+     * Must be set only when scanning other clouds.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.OtherCloudDiscoveryStartingLocation other_cloud_starting_location = 8;</code>
+     * @param \Google\Cloud\Dlp\V2\OtherCloudDiscoveryStartingLocation $var
+     * @return $this
+     */
+    public function setOtherCloudStartingLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\OtherCloudDiscoveryStartingLocation::class);
+        $this->other_cloud_starting_location = $var;
 
         return $this;
     }

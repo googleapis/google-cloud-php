@@ -51,8 +51,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * and type
      * ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      * To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
-     * To filter by type, set `member.type` to `HUMAN` or `BOT`. Developer
-     * Preview: You can also filter for `member.type` using the `!=` operator.
+     * To filter by type, set `member.type` to `HUMAN` or `BOT`. You can also
+     * filter for `member.type` using the `!=` operator.
      * To filter by both role and type, use the `AND` operator. To filter by
      * either role or type, use the `OR` operator.
      * Either `member.type = "HUMAN"` or `member.type != "BOT"` is required
@@ -99,6 +99,20 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool show_invited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $show_invited = false;
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires either the `chat.admin.memberships.readonly` or
+     * `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Listing app memberships in a space isn't supported when using admin access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 8;</code>
+     */
+    protected $use_admin_access = false;
 
     /**
      * @param string $parent Required. The resource name of the space for which to fetch a membership
@@ -147,8 +161,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *           and type
      *           ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      *           To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
-     *           To filter by type, set `member.type` to `HUMAN` or `BOT`. Developer
-     *           Preview: You can also filter for `member.type` using the `!=` operator.
+     *           To filter by type, set `member.type` to `HUMAN` or `BOT`. You can also
+     *           filter for `member.type` using the `!=` operator.
      *           To filter by both role and type, use the `AND` operator. To filter by
      *           either role or type, use the `OR` operator.
      *           Either `member.type = "HUMAN"` or `member.type != "BOT"` is required
@@ -183,6 +197,16 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *           that don't match the filter criteria aren't returned.
      *           Currently requires [user
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *     @type bool $use_admin_access
+     *           When `true`, the method runs using the user's Google Workspace
+     *           administrator privileges.
+     *           The calling user must be a Google Workspace administrator with the
+     *           [manage chat and spaces conversations
+     *           privilege](https://support.google.com/a/answer/13369245).
+     *           Requires either the `chat.admin.memberships.readonly` or
+     *           `chat.admin.memberships` [OAuth 2.0
+     *           scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *           Listing app memberships in a space isn't supported when using admin access.
      * }
      */
     public function __construct($data = NULL) {
@@ -297,8 +321,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * and type
      * ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      * To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
-     * To filter by type, set `member.type` to `HUMAN` or `BOT`. Developer
-     * Preview: You can also filter for `member.type` using the `!=` operator.
+     * To filter by type, set `member.type` to `HUMAN` or `BOT`. You can also
+     * filter for `member.type` using the `!=` operator.
      * To filter by both role and type, use the `AND` operator. To filter by
      * either role or type, use the `OR` operator.
      * Either `member.type = "HUMAN"` or `member.type != "BOT"` is required
@@ -333,8 +357,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * and type
      * ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      * To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
-     * To filter by type, set `member.type` to `HUMAN` or `BOT`. Developer
-     * Preview: You can also filter for `member.type` using the `!=` operator.
+     * To filter by type, set `member.type` to `HUMAN` or `BOT`. You can also
+     * filter for `member.type` using the `!=` operator.
      * To filter by both role and type, use the `AND` operator. To filter by
      * either role or type, use the `OR` operator.
      * Either `member.type = "HUMAN"` or `member.type != "BOT"` is required
@@ -438,6 +462,48 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->show_invited = $var;
+
+        return $this;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires either the `chat.admin.memberships.readonly` or
+     * `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Listing app memberships in a space isn't supported when using admin access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 8;</code>
+     * @return bool
+     */
+    public function getUseAdminAccess()
+    {
+        return $this->use_admin_access;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires either the `chat.admin.memberships.readonly` or
+     * `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Listing app memberships in a space isn't supported when using admin access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseAdminAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_admin_access = $var;
 
         return $this;
     }

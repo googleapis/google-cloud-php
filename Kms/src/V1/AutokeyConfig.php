@@ -38,6 +38,12 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string key_project = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $key_project = '';
+    /**
+     * Output only. The state for the AutokeyConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $state = 0;
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *           Cloud KMS Service Agent for this key project must be granted the
      *           `cloudkms.admin` role (or pertinent permissions). A request with an empty
      *           key project field will clear the configuration.
+     *     @type int $state
+     *           Output only. The state for the AutokeyConfig.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,6 +145,32 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->key_project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The state for the AutokeyConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. The state for the AutokeyConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\AutokeyConfig\State::class);
+        $this->state = $var;
 
         return $this;
     }

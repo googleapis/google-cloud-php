@@ -106,6 +106,13 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $dag_timeout = null;
+    /**
+     * Optional. Encryption settings for encrypting workflow template job
+     * arguments.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate.EncryptionConfig encryption_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_config = null;
 
     /**
      * Constructor.
@@ -165,6 +172,9 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *           [managed
      *           cluster](/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
      *           the cluster is deleted.
+     *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplate\EncryptionConfig $encryption_config
+     *           Optional. Encryption settings for encrypting workflow template job
+     *           arguments.
      * }
      */
     public function __construct($data = NULL) {
@@ -530,6 +540,44 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->dag_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Encryption settings for encrypting workflow template job
+     * arguments.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate.EncryptionConfig encryption_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate\EncryptionConfig|null
+     */
+    public function getEncryptionConfig()
+    {
+        return $this->encryption_config;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Optional. Encryption settings for encrypting workflow template job
+     * arguments.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate.EncryptionConfig encryption_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate\EncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\WorkflowTemplate\EncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

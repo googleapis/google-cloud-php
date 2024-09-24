@@ -252,6 +252,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces',
             ],
+            'SearchSpaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces:search',
+            ],
             'SetUpSpace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/spaces:setup',

@@ -59,6 +59,7 @@ use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 use Google\Apps\Chat\V1\SpaceEvent;
@@ -107,6 +108,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
@@ -1263,6 +1265,36 @@ final class ChatServiceClient
     public function listSpaces(ListSpacesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSpaces', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of spaces in a Google Workspace organization based on an
+     * administrator's search. Requires [user
+     * authentication with administrator
+     * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges).
+     * In the request, set `use_admin_access` to `true`.
+     *
+     * The async variant is {@see ChatServiceClient::searchSpacesAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/search_spaces.php
+     *
+     * @param SearchSpacesRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchSpaces(SearchSpacesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchSpaces', $request, $callOptions);
     }
 
     /**

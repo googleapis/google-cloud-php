@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The profile for a file store.
  * * Cloud Storage: maps 1:1 with a bucket.
+ * * Amazon S3: maps 1:1 with a bucket.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.FileStoreDataProfile</code>
  */
@@ -36,6 +37,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     protected $project_data_profile = '';
     /**
      * The Google Cloud project ID that owns the resource.
+     * For Amazon S3 buckets, this is the AWS Account Id.
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      */
@@ -44,6 +46,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * The location of the file store.
      * * Cloud Storage:
      * https://cloud.google.com/storage/docs/locations#available-locations
+     * * Amazon S3:
+     * https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *
      * Generated from protobuf field <code>string file_store_location = 5;</code>
      */
@@ -69,6 +73,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
+     * * Amazon S3: `s3://{bucket}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      */
@@ -76,6 +81,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * Example format of an S3 bucket full resource name:
+     * `//cloudasset.googleapis.com/organizations/{org_id}/otherCloudConnections/aws/arn:aws:s3:::{bucket_name}`
      *
      * Generated from protobuf field <code>string full_resource = 24;</code>
      */
@@ -184,10 +191,13 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           The resource name of the project data profile for this file store.
      *     @type string $project_id
      *           The Google Cloud project ID that owns the resource.
+     *           For Amazon S3 buckets, this is the AWS Account Id.
      *     @type string $file_store_location
      *           The location of the file store.
      *           * Cloud Storage:
      *           https://cloud.google.com/storage/docs/locations#available-locations
+     *           * Amazon S3:
+     *           https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_storage_locations
      *           For resources that have multiple storage locations, these are those
      *           regions. For Cloud Storage this is the list of regions chosen for
@@ -201,9 +211,12 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $file_store_path
      *           The file store path.
      *           * Cloud Storage: `gs://{bucket}`
+     *           * Amazon S3: `s3://{bucket}`
      *     @type string $full_resource
      *           The resource name of the resource profiled.
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
+     *           Example format of an S3 bucket full resource name:
+     *           `//cloudasset.googleapis.com/organizations/{org_id}/otherCloudConnections/aws/arn:aws:s3:::{bucket_name}`
      *     @type \Google\Cloud\Dlp\V2\DataProfileConfigSnapshot $config_snapshot
      *           The snapshot of the configurations used to generate the profile.
      *     @type \Google\Cloud\Dlp\V2\ProfileStatus $profile_status
@@ -334,6 +347,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * The Google Cloud project ID that owns the resource.
+     * For Amazon S3 buckets, this is the AWS Account Id.
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      * @return string
@@ -345,6 +359,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * The Google Cloud project ID that owns the resource.
+     * For Amazon S3 buckets, this is the AWS Account Id.
      *
      * Generated from protobuf field <code>string project_id = 4;</code>
      * @param string $var
@@ -362,6 +377,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * The location of the file store.
      * * Cloud Storage:
      * https://cloud.google.com/storage/docs/locations#available-locations
+     * * Amazon S3:
+     * https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *
      * Generated from protobuf field <code>string file_store_location = 5;</code>
      * @return string
@@ -375,6 +392,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * The location of the file store.
      * * Cloud Storage:
      * https://cloud.google.com/storage/docs/locations#available-locations
+     * * Amazon S3:
+     * https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *
      * Generated from protobuf field <code>string file_store_location = 5;</code>
      * @param string $var
@@ -455,6 +474,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
+     * * Amazon S3: `s3://{bucket}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      * @return string
@@ -467,6 +487,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The file store path.
      * * Cloud Storage: `gs://{bucket}`
+     * * Amazon S3: `s3://{bucket}`
      *
      * Generated from protobuf field <code>string file_store_path = 6;</code>
      * @param string $var
@@ -483,6 +504,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * Example format of an S3 bucket full resource name:
+     * `//cloudasset.googleapis.com/organizations/{org_id}/otherCloudConnections/aws/arn:aws:s3:::{bucket_name}`
      *
      * Generated from protobuf field <code>string full_resource = 24;</code>
      * @return string
@@ -495,6 +518,8 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * Example format of an S3 bucket full resource name:
+     * `//cloudasset.googleapis.com/organizations/{org_id}/otherCloudConnections/aws/arn:aws:s3:::{bucket_name}`
      *
      * Generated from protobuf field <code>string full_resource = 24;</code>
      * @param string $var

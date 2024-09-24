@@ -43,7 +43,6 @@ use Google\Cloud\Kms\V1\CreateKeyHandleRequest;
 use Google\Cloud\Kms\V1\GetKeyHandleRequest;
 use Google\Cloud\Kms\V1\KeyHandle;
 use Google\Cloud\Kms\V1\ListKeyHandlesRequest;
-use Google\Cloud\Kms\V1\ListKeyHandlesResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -52,7 +51,8 @@ use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Provides interfaces for using Cloud KMS Autokey to provision new
+ * Service Description: Provides interfaces for using [Cloud KMS
+ * Autokey](https://cloud.google.com/kms/help/autokey) to provision new
  * [CryptoKeys][google.cloud.kms.v1.CryptoKey], ready for Customer Managed
  * Encryption Key (CMEK) use, on-demand. To support certain client tooling, this
  * feature is modeled around a [KeyHandle][google.cloud.kms.v1.KeyHandle]
@@ -418,13 +418,13 @@ final class AutokeyClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return ListKeyHandlesResponse
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listKeyHandles(ListKeyHandlesRequest $request, array $callOptions = []): ListKeyHandlesResponse
+    public function listKeyHandles(ListKeyHandlesRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListKeyHandles', $request, $callOptions)->wait();
+        return $this->startApiCall('ListKeyHandles', $request, $callOptions);
     }
 
     /**

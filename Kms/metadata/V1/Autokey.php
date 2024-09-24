@@ -21,7 +21,7 @@ class Autokey
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ó
+‚
 !google/cloud/kms/v1/autokey.protogoogle.cloud.kms.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto"®
 CreateKeyHandleRequest9
 parent (	B)‡A˙A#
@@ -39,13 +39,17 @@ key_handle (2.google.cloud.kms.v1.KeyHandleB‡A"N
 resource_type_selector (	B‡A:~ÍA{
 !cloudkms.googleapis.com/KeyHandle?projects/{project}/locations/{location}/keyHandles/{key_handle}*
 keyHandles2	keyHandle"
-CreateKeyHandleMetadata"g
+CreateKeyHandleMetadata"ò
 ListKeyHandlesRequest9
 parent (	B)‡A˙A#
-!locations.googleapis.com/Location
-filter (	B‡A"M
+!locations.googleapis.com/Location
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A"f
 ListKeyHandlesResponse3
-key_handles (2.google.cloud.kms.v1.KeyHandle2¥
+key_handles (2.google.cloud.kms.v1.KeyHandle
+next_page_token (	2¥
 AutokeyÎ
 CreateKeyHandle+.google.cloud.kms.v1.CreateKeyHandleRequest.google.longrunning.Operation"ã A$
 	KeyHandleCreateKeyHandleMetadata⁄Aparent,key_handle,key_handle_idÇ”‰ì<"./v1/{parent=projects/*/locations/*}/keyHandles:

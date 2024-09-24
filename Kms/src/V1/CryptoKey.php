@@ -104,7 +104,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state before transitioning to
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
-     * If not specified at creation time, the default duration is 24 hours.
+     * If not specified at creation time, the default duration is 30 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -209,7 +209,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      *           state before transitioning to
      *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
-     *           If not specified at creation time, the default duration is 24 hours.
+     *           If not specified at creation time, the default duration is 30 days.
      *     @type string $crypto_key_backend
      *           Immutable. The resource name of the backend environment where the key
      *           material for all [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
@@ -603,7 +603,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state before transitioning to
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
-     * If not specified at creation time, the default duration is 24 hours.
+     * If not specified at creation time, the default duration is 30 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Duration|null
@@ -628,7 +628,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state before transitioning to
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
-     * If not specified at creation time, the default duration is 24 hours.
+     * If not specified at creation time, the default duration is 30 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Protobuf\Duration $var
