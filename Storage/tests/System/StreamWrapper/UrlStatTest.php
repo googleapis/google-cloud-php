@@ -61,7 +61,7 @@ class UrlStatTest extends StreamWrapperTestCase
     {
         $fd = fopen(self::$fileUrl, 'r');
         $stat = fstat($fd);
-        $this->assertEquals(33206, $stat['mode']);
+        $this->assertEquals(33060, $stat['mode']);
     }
 
     public function testIsWritable()

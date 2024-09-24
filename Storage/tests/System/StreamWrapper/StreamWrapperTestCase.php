@@ -40,7 +40,6 @@ class StreamWrapperTestCase extends StorageTestCase
     public static function tearDownTestFixtures(): void
     {
         self::$client->unregisterStreamWrapper();
-        parent::tearDownTestFixtures();
     }
 
     protected static function generateUrl($file, Bucket $bucket = null)

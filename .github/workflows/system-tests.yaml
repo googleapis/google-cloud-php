@@ -23,13 +23,9 @@ jobs:
       - name: Save secrets to file
         run: |
           echo "${{ secrets.GOOGLE_CLOUD_PHP_TESTS_KEY }}" | base64 -d  > ${{ runner.temp }}/service-account.json
-          echo "${{ secrets.GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY }}" | base64 -d > ${{ runner.temp }}/service-account.whitelist.json
-          echo "${{ secrets.GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY }}" | base64 -d > ${{ runner.temp }}/service-account.firestore.json
       - name: Install dependencies
         run: composer  --no-interaction --no-ansi --no-progress update
       - name: Run System Tests
         run: vendor/bin/phpunit -c phpunit-system.xml.dist --testdox --colors=always
         env:
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.json
-          # GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.whitelist.json
-          # GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.firestore.json

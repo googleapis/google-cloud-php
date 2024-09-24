@@ -55,6 +55,6 @@ class AssetServiceSmokeTest extends SystemTestCase
         $resp = $client->exportAssets($request);
         $resp->pollUntilComplete();
 
-        $this->assertTrue($resp->operationSucceeded());
+        $this->assertTrue($resp->operationSucceeded(), $resp->getError());
     }
 }
