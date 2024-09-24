@@ -68,6 +68,7 @@
     },
     "replace": {
         "google/access-context-manager": "1.0.0",
+        "google/ads-marketingplatform-admin": "0.0.0",
         "google/analytics-admin": "0.24.0",
         "google/analytics-data": "0.19.0",
         "google/apps-chat": "0.5.0",
@@ -456,6 +457,7 @@
             "GPBMetadata\\Google\\Maps\\Fleetengine\\": "MapsFleetEngine/metadata",
             "GPBMetadata\\Google\\Maps\\Fleetengine\\Delivery\\": "MapsFleetEngineDelivery/metadata",
             "GPBMetadata\\Google\\Maps\\Routeoptimization\\": "MapsRouteOptimization/metadata",
+            "GPBMetadata\\Google\\Marketingplatform\\Admin\\": "AdsMarketingPlatformAdmin/metadata",
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
@@ -480,6 +482,7 @@
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
             "GPBMetadata\\Google\\Type\\": "CommonProtos/metadata/Type",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
+            "Google\\Ads\\MarketingPlatform\\Admin\\": "AdsMarketingPlatformAdmin/src",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
