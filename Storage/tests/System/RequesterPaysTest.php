@@ -57,7 +57,7 @@ class RequesterPaysTest extends StorageTestCase
 
         $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
         if (!$requesterKeyFilePath) {
-            self::markTestSkipped('Set the GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH environment variable to run this test');
+            self::markTestSkipped('Set GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH to run this test');
         }
         $ownerKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$requesterKeyFile = json_decode(file_get_contents($requesterKeyFilePath), true);
