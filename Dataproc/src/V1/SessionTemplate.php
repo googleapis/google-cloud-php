@@ -92,6 +92,8 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the template was created.
      *     @type \Google\Cloud\Dataproc\V1\JupyterConfig $jupyter_session
      *           Optional. Jupyter session config.
+     *     @type \Google\Cloud\Dataproc\V1\SparkConnectConfig $spark_connect_session
+     *           Optional. Spark Connect session config.
      *     @type string $creator
      *           Output only. The email address of the user who created the template.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -233,6 +235,37 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\JupyterConfig::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Spark Connect session config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\SparkConnectConfig|null
+     */
+    public function getSparkConnectSession()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasSparkConnectSession()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Optional. Spark Connect session config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\SparkConnectConfig $var
+     * @return $this
+     */
+    public function setSparkConnectSession($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkConnectConfig::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }
