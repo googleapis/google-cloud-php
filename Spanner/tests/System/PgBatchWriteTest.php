@@ -28,6 +28,8 @@ class PgBatchWriteTest extends SpannerPgTestCase
     const TABLE_NAME = 'BatchWrites';
     public static function setUpBeforeClass(): void
     {
+        // The BatchWrite tests are skipped for the GSQL dialect when running
+        // against the emulator.
         self::skipEmulatorTests();
         parent::setUpBeforeClass();
 
