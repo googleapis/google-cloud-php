@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class FileStripeLevel
 {
     /**
-     * Default file striping
+     * If not set, FileStripeLevel will default to FILE_STRIPE_LEVEL_BALANCED
      *
      * Generated from protobuf enum <code>FILE_STRIPE_LEVEL_UNSPECIFIED = 0;</code>
      */

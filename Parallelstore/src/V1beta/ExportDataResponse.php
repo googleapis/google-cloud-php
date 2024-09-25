@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ExportDataResponse is the response returned from ExportData rpc
+ * The response to a request to export data from Parallelstore.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ExportDataResponse</code>
  */
