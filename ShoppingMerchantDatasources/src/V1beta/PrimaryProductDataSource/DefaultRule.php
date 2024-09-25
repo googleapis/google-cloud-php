@@ -121,6 +121,4 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DefaultRule::class, \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource_DefaultRule::class);
 

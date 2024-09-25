@@ -24,8 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START merchantapi_v1beta_generated_DataSourcesService_DeleteDataSource_sync]
 use Google\ApiCore\ApiException;
-use Google\Shopping\Merchant\Datasources\V1beta\Client\DataSourcesServiceClient;
-use Google\Shopping\Merchant\Datasources\V1beta\DeleteDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
+use Google\Shopping\Merchant\DataSources\V1beta\DeleteDataSourceRequest;
 
 /**
  * Deletes a data source from your Merchant Center account.

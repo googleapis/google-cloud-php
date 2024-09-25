@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Shopping\Merchant\Datasources\V1beta\Client;
+namespace Google\Shopping\Merchant\DataSources\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -35,13 +35,13 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Shopping\Merchant\Datasources\V1beta\CreateDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\DataSource;
-use Google\Shopping\Merchant\Datasources\V1beta\DeleteDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\FetchDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\GetDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\ListDataSourcesRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\UpdateDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\CreateDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\DataSource;
+use Google\Shopping\Merchant\DataSources\V1beta\DeleteDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\FetchDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\ListDataSourcesRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\UpdateDataSourceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

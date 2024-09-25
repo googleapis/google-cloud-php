@@ -48,7 +48,9 @@ class FileUploadsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FileUploadsServiceClient */
@@ -83,15 +85,17 @@ class FileUploadsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->fileUploadName('[ACCOUNT]', '[DATASOURCE]', '[FILEUPLOAD]');
-        $request = (new GetFileUploadRequest())
-            ->setName($formattedName);
+        $request = (new GetFileUploadRequest())->setName($formattedName);
         $response = $gapicClient->getFileUpload($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.datasources.v1beta.FileUploadsService/GetFileUpload', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.datasources.v1beta.FileUploadsService/GetFileUpload',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -108,17 +112,19 @@ class FileUploadsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->fileUploadName('[ACCOUNT]', '[DATASOURCE]', '[FILEUPLOAD]');
-        $request = (new GetFileUploadRequest())
-            ->setName($formattedName);
+        $request = (new GetFileUploadRequest())->setName($formattedName);
         try {
             $gapicClient->getFileUpload($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -155,15 +161,17 @@ class FileUploadsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->fileUploadName('[ACCOUNT]', '[DATASOURCE]', '[FILEUPLOAD]');
-        $request = (new GetFileUploadRequest())
-            ->setName($formattedName);
+        $request = (new GetFileUploadRequest())->setName($formattedName);
         $response = $gapicClient->getFileUploadAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.datasources.v1beta.FileUploadsService/GetFileUpload', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.datasources.v1beta.FileUploadsService/GetFileUpload',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

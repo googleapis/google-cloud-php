@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START merchantapi_v1beta_generated_DataSourcesService_GetDataSource_sync]
 use Google\ApiCore\ApiException;
-use Google\Shopping\Merchant\Datasources\V1beta\Client\DataSourcesServiceClient;
-use Google\Shopping\Merchant\Datasources\V1beta\DataSource;
-use Google\Shopping\Merchant\Datasources\V1beta\GetDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
+use Google\Shopping\Merchant\DataSources\V1beta\DataSource;
+use Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
 
 /**
  * Retrieves the data source configuration for the given account.

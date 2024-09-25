@@ -3,7 +3,7 @@
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
     "protoPackage": "google.shopping.merchant.datasources.v1beta",
-    "libraryPackage": "Google\\Shopping\\Merchant\\Datasources\\V1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\DataSources\\V1beta",
     "services": {
         "DataSourcesService": {
             "clients": {
@@ -38,6 +38,20 @@
                         "UpdateDataSource": {
                             "methods": [
                                 "updateDataSource"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FileUploadsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FileUploadsServiceGapicClient",
+                    "rpcs": {
+                        "GetFileUpload": {
+                            "methods": [
+                                "getFileUpload"
                             ]
                         }
                     }

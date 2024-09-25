@@ -25,7 +25,7 @@ return [
         'google.shopping.merchant.datasources.v1beta.DataSourcesService' => [
             'CreateDataSource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Shopping\Merchant\Datasources\V1beta\DataSource',
+                'responseType' => 'Google\Shopping\Merchant\DataSources\V1beta\DataSource',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -61,7 +61,7 @@ return [
             ],
             'GetDataSource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Shopping\Merchant\Datasources\V1beta\DataSource',
+                'responseType' => 'Google\Shopping\Merchant\DataSources\V1beta\DataSource',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -81,7 +81,7 @@ return [
                     'resourcesGetMethod' => 'getDataSources',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Shopping\Merchant\Datasources\V1beta\ListDataSourcesResponse',
+                'responseType' => 'Google\Shopping\Merchant\DataSources\V1beta\ListDataSourcesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -93,7 +93,7 @@ return [
             ],
             'UpdateDataSource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Shopping\Merchant\Datasources\V1beta\DataSource',
+                'responseType' => 'Google\Shopping\Merchant\DataSources\V1beta\DataSource',
                 'headerParams' => [
                     [
                         'keyName' => 'data_source.name',

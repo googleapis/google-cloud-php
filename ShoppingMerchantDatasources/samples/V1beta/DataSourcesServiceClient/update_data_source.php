@@ -25,11 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START merchantapi_v1beta_generated_DataSourcesService_UpdateDataSource_sync]
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
-use Google\Shopping\Merchant\Datasources\V1beta\Client\DataSourcesServiceClient;
-use Google\Shopping\Merchant\Datasources\V1beta\DataSource;
-use Google\Shopping\Merchant\Datasources\V1beta\PrimaryProductDataSource;
-use Google\Shopping\Merchant\Datasources\V1beta\PrimaryProductDataSource\Channel;
-use Google\Shopping\Merchant\Datasources\V1beta\UpdateDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
+use Google\Shopping\Merchant\DataSources\V1beta\DataSource;
+use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource;
+use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Channel;
+use Google\Shopping\Merchant\DataSources\V1beta\UpdateDataSourceRequest;
 
 /**
  * Updates the existing data source configuration. The fields that are

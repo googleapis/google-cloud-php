@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Shopping\Merchant\Datasources\Tests\Unit\V1beta\Client;
+namespace Google\Shopping\Merchant\DataSources\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -29,17 +29,17 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
-use Google\Shopping\Merchant\Datasources\V1beta\Client\DataSourcesServiceClient;
-use Google\Shopping\Merchant\Datasources\V1beta\CreateDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\DataSource;
-use Google\Shopping\Merchant\Datasources\V1beta\DeleteDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\FetchDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\GetDataSourceRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\ListDataSourcesRequest;
-use Google\Shopping\Merchant\Datasources\V1beta\ListDataSourcesResponse;
-use Google\Shopping\Merchant\Datasources\V1beta\PrimaryProductDataSource;
-use Google\Shopping\Merchant\Datasources\V1beta\PrimaryProductDataSource\Channel;
-use Google\Shopping\Merchant\Datasources\V1beta\UpdateDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
+use Google\Shopping\Merchant\DataSources\V1beta\CreateDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\DataSource;
+use Google\Shopping\Merchant\DataSources\V1beta\DeleteDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\FetchDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\GetDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\ListDataSourcesRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\ListDataSourcesResponse;
+use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource;
+use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Channel;
+use Google\Shopping\Merchant\DataSources\V1beta\UpdateDataSourceRequest;
 use stdClass;
 
 /**

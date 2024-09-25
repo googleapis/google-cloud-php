@@ -255,6 +255,4 @@ class Issue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Issue::class, \Google\Shopping\Merchant\DataSources\V1beta\FileUpload_Issue::class);
 

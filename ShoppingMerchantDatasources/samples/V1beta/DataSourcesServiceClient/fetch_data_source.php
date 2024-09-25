@@ -24,8 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START merchantapi_v1beta_generated_DataSourcesService_FetchDataSource_sync]
 use Google\ApiCore\ApiException;
-use Google\Shopping\Merchant\Datasources\V1beta\Client\DataSourcesServiceClient;
-use Google\Shopping\Merchant\Datasources\V1beta\FetchDataSourceRequest;
+use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
+use Google\Shopping\Merchant\DataSources\V1beta\FetchDataSourceRequest;
 
 /**
  * Performs the data fetch immediately (even outside fetch schedule) on a
