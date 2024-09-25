@@ -1,0 +1,208 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.backupdr.v1",
+    "libraryPackage": "Google\\Cloud\\BackupDR\\V1",
+    "services": {
+        "BackupDR": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BackupDRGapicClient",
+                    "rpcs": {
+                        "AbandonBackup": {
+                            "methods": [
+                                "abandonBackup"
+                            ]
+                        },
+                        "CreateBackupPlan": {
+                            "methods": [
+                                "createBackupPlan"
+                            ]
+                        },
+                        "CreateBackupPlanAssociation": {
+                            "methods": [
+                                "createBackupPlanAssociation"
+                            ]
+                        },
+                        "CreateBackupVault": {
+                            "methods": [
+                                "createBackupVault"
+                            ]
+                        },
+                        "CreateManagementServer": {
+                            "methods": [
+                                "createManagementServer"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteBackupPlan": {
+                            "methods": [
+                                "deleteBackupPlan"
+                            ]
+                        },
+                        "DeleteBackupPlanAssociation": {
+                            "methods": [
+                                "deleteBackupPlanAssociation"
+                            ]
+                        },
+                        "DeleteBackupVault": {
+                            "methods": [
+                                "deleteBackupVault"
+                            ]
+                        },
+                        "DeleteManagementServer": {
+                            "methods": [
+                                "deleteManagementServer"
+                            ]
+                        },
+                        "FetchAccessToken": {
+                            "methods": [
+                                "fetchAccessToken"
+                            ]
+                        },
+                        "FetchUsableBackupVaults": {
+                            "methods": [
+                                "fetchUsableBackupVaults"
+                            ]
+                        },
+                        "FinalizeBackup": {
+                            "methods": [
+                                "finalizeBackup"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupPlan": {
+                            "methods": [
+                                "getBackupPlan"
+                            ]
+                        },
+                        "GetBackupPlanAssociation": {
+                            "methods": [
+                                "getBackupPlanAssociation"
+                            ]
+                        },
+                        "GetBackupVault": {
+                            "methods": [
+                                "getBackupVault"
+                            ]
+                        },
+                        "GetDataSource": {
+                            "methods": [
+                                "getDataSource"
+                            ]
+                        },
+                        "GetManagementServer": {
+                            "methods": [
+                                "getManagementServer"
+                            ]
+                        },
+                        "InitiateBackup": {
+                            "methods": [
+                                "initiateBackup"
+                            ]
+                        },
+                        "ListBackupPlanAssociations": {
+                            "methods": [
+                                "listBackupPlanAssociations"
+                            ]
+                        },
+                        "ListBackupPlans": {
+                            "methods": [
+                                "listBackupPlans"
+                            ]
+                        },
+                        "ListBackupVaults": {
+                            "methods": [
+                                "listBackupVaults"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListDataSources": {
+                            "methods": [
+                                "listDataSources"
+                            ]
+                        },
+                        "ListManagementServers": {
+                            "methods": [
+                                "listManagementServers"
+                            ]
+                        },
+                        "RemoveDataSource": {
+                            "methods": [
+                                "removeDataSource"
+                            ]
+                        },
+                        "RestoreBackup": {
+                            "methods": [
+                                "restoreBackup"
+                            ]
+                        },
+                        "SetInternalStatus": {
+                            "methods": [
+                                "setInternalStatus"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "TriggerBackup": {
+                            "methods": [
+                                "triggerBackup"
+                            ]
+                        },
+                        "UpdateBackup": {
+                            "methods": [
+                                "updateBackup"
+                            ]
+                        },
+                        "UpdateBackupVault": {
+                            "methods": [
+                                "updateBackupVault"
+                            ]
+                        },
+                        "UpdateDataSource": {
+                            "methods": [
+                                "updateDataSource"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
