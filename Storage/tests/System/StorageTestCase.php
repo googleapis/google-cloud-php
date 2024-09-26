@@ -71,6 +71,19 @@ class StorageTestCase extends SystemTestCase
         self::$hasSetUp = true;
     }
 
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
+    {
+        if (!self::$hasSetUp) {
+            return;
+        }
+
+        self::$object->delete();
+        self::$bucket->delete();
+    }
+
     protected static function getProjectId($keyFilePath)
     {
         $data = json_decode(file_get_contents($keyFilePath), true);

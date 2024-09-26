@@ -48,6 +48,7 @@ class DirectoryTest extends StreamWrapperTestCase
             self::$bucket->upload('somedata', ['name' => $name]);
         }
     }
+
     /**
      * @afterClass
      */
