@@ -1,0 +1,198 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gdchardwaremanagement.v1alpha",
+    "libraryPackage": "Google\\Cloud\\GdcHardwareManagement\\V1alpha",
+    "services": {
+        "GDCHardwareManagement": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GDCHardwareManagementGapicClient",
+                    "rpcs": {
+                        "CreateComment": {
+                            "methods": [
+                                "createComment"
+                            ]
+                        },
+                        "CreateHardware": {
+                            "methods": [
+                                "createHardware"
+                            ]
+                        },
+                        "CreateHardwareGroup": {
+                            "methods": [
+                                "createHardwareGroup"
+                            ]
+                        },
+                        "CreateOrder": {
+                            "methods": [
+                                "createOrder"
+                            ]
+                        },
+                        "CreateSite": {
+                            "methods": [
+                                "createSite"
+                            ]
+                        },
+                        "CreateZone": {
+                            "methods": [
+                                "createZone"
+                            ]
+                        },
+                        "DeleteHardware": {
+                            "methods": [
+                                "deleteHardware"
+                            ]
+                        },
+                        "DeleteHardwareGroup": {
+                            "methods": [
+                                "deleteHardwareGroup"
+                            ]
+                        },
+                        "DeleteOrder": {
+                            "methods": [
+                                "deleteOrder"
+                            ]
+                        },
+                        "DeleteZone": {
+                            "methods": [
+                                "deleteZone"
+                            ]
+                        },
+                        "GetChangeLogEntry": {
+                            "methods": [
+                                "getChangeLogEntry"
+                            ]
+                        },
+                        "GetComment": {
+                            "methods": [
+                                "getComment"
+                            ]
+                        },
+                        "GetHardware": {
+                            "methods": [
+                                "getHardware"
+                            ]
+                        },
+                        "GetHardwareGroup": {
+                            "methods": [
+                                "getHardwareGroup"
+                            ]
+                        },
+                        "GetOrder": {
+                            "methods": [
+                                "getOrder"
+                            ]
+                        },
+                        "GetSite": {
+                            "methods": [
+                                "getSite"
+                            ]
+                        },
+                        "GetSku": {
+                            "methods": [
+                                "getSku"
+                            ]
+                        },
+                        "GetZone": {
+                            "methods": [
+                                "getZone"
+                            ]
+                        },
+                        "ListChangeLogEntries": {
+                            "methods": [
+                                "listChangeLogEntries"
+                            ]
+                        },
+                        "ListComments": {
+                            "methods": [
+                                "listComments"
+                            ]
+                        },
+                        "ListHardware": {
+                            "methods": [
+                                "listHardware"
+                            ]
+                        },
+                        "ListHardwareGroups": {
+                            "methods": [
+                                "listHardwareGroups"
+                            ]
+                        },
+                        "ListOrders": {
+                            "methods": [
+                                "listOrders"
+                            ]
+                        },
+                        "ListSites": {
+                            "methods": [
+                                "listSites"
+                            ]
+                        },
+                        "ListSkus": {
+                            "methods": [
+                                "listSkus"
+                            ]
+                        },
+                        "ListZones": {
+                            "methods": [
+                                "listZones"
+                            ]
+                        },
+                        "RecordActionOnComment": {
+                            "methods": [
+                                "recordActionOnComment"
+                            ]
+                        },
+                        "SignalZoneState": {
+                            "methods": [
+                                "signalZoneState"
+                            ]
+                        },
+                        "SubmitOrder": {
+                            "methods": [
+                                "submitOrder"
+                            ]
+                        },
+                        "UpdateHardware": {
+                            "methods": [
+                                "updateHardware"
+                            ]
+                        },
+                        "UpdateHardwareGroup": {
+                            "methods": [
+                                "updateHardwareGroup"
+                            ]
+                        },
+                        "UpdateOrder": {
+                            "methods": [
+                                "updateOrder"
+                            ]
+                        },
+                        "UpdateSite": {
+                            "methods": [
+                                "updateSite"
+                            ]
+                        },
+                        "UpdateZone": {
+                            "methods": [
+                                "updateZone"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,10 +1,10 @@
-# Google Cloud API Hub for PHP
+# Google Cloud Gdc Hardware Management for PHP
 
-> Idiomatic PHP client for [Google Cloud API Hub](https://cloud.google.com/apigee).
+> Idiomatic PHP client for [Google Cloud Gdc Hardware Management](https://cloud.google.com/distributed-cloud/edge/latest).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-apihub/v/stable)](https://packagist.org/packages/google/cloud-apihub) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-apihub.svg)](https://packagist.org/packages/google/cloud-apihub)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-gdchardwaremanagement/v/stable)](https://packagist.org/packages/google/cloud-gdchardwaremanagement) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gdchardwaremanagement.svg)](https://packagist.org/packages/google/cloud-gdchardwaremanagement)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/cloud-apihub/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-gdchardwaremanagement/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/cloud-apihub
+$ composer require google/cloud-gdchardwaremanagement
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
@@ -34,7 +34,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
-See the [samples directory](https://github.com/googleapis/google-cloud-php-apihub/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/google-cloud-php-gdchardwaremanagement/tree/main/samples) for a canonical list of samples.
 
 ### Version
 
@@ -42,4 +42,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/apigee/docs/apihub/what-is-api-hub).
+1. Understand the [official documentation](https://cloud.google.com/distributed-cloud/edge/latest/docs).

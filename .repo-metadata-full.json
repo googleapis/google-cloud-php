@@ -710,6 +710,14 @@
         "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
         "api_shortname": "gsuiteaddons"
     },
+    "GdcHardwareManagement": {
+        "language": "php",
+        "distribution_name": "google/cloud-gdchardwaremanagement",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gdchardwaremanagement/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "gdchardwaremanagement"
+    },
     "GeoCommonProtos": {
         "distribution_name": "google/geo-common-protos",
         "release_level": "preview",

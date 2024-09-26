@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/gdchardwaremanagement/(v1alpha)/.*-php/(.*)
+      dest: /owl-bot-staging/GdcHardwareManagement/$1/$2
+api-name: GdcHardwareManagement

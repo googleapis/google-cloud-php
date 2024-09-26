@@ -1,19 +1,19 @@
 {
-    "name": "google/cloud-apihub",
-    "description": "Google Cloud API Hub Client for PHP",
+    "name": "google/cloud-gdchardwaremanagement",
+    "description": "Google Cloud Gdc Hardware Management Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\ApiHub\\": "src",
-            "GPBMetadata\\Google\\Cloud\\Apihub\\": "metadata"
+            "Google\\Cloud\\GdcHardwareManagement\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Gdchardwaremanagement\\": "metadata"
         }
     },
     "extra": {
         "component": {
-            "id": "cloud-apihub",
-            "path": "ApiHub",
-            "target": "googleapis/google-cloud-php-apihub"
+            "id": "cloud-gdchardwaremanagement",
+            "path": "GdcHardwareManagement",
+            "target": "googleapis/google-cloud-php-gdchardwaremanagement"
         }
     },
     "require": {
