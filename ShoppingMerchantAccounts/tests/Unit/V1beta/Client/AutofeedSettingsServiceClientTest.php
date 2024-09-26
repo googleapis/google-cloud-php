@@ -26,11 +26,12 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
-use Google\Shopping\Merchant\Accounts\V1beta\Client\ShippingSettingsServiceClient;
-use Google\Shopping\Merchant\Accounts\V1beta\GetShippingSettingsRequest;
-use Google\Shopping\Merchant\Accounts\V1beta\InsertShippingSettingsRequest;
-use Google\Shopping\Merchant\Accounts\V1beta\ShippingSettings;
+use Google\Shopping\Merchant\Accounts\V1beta\AutofeedSettings;
+use Google\Shopping\Merchant\Accounts\V1beta\Client\AutofeedSettingsServiceClient;
+use Google\Shopping\Merchant\Accounts\V1beta\GetAutofeedSettingsRequest;
+use Google\Shopping\Merchant\Accounts\V1beta\UpdateAutofeedSettingsRequest;
 use stdClass;
 
 /**
@@ -38,7 +39,7 @@ use stdClass;
  *
  * @group gapic
  */
-class ShippingSettingsServiceClientTest extends GeneratedTest
+class AutofeedSettingsServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -49,20 +50,22 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
-    /** @return ShippingSettingsServiceClient */
+    /** @return AutofeedSettingsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new ShippingSettingsServiceClient($options);
+        return new AutofeedSettingsServiceClient($options);
     }
 
     /** @test */
-    public function getShippingSettingsTest()
+    public function getAutofeedSettingsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -71,29 +74,33 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $etag = 'etag3123477';
-        $expectedResponse = new ShippingSettings();
+        $enableProducts = true;
+        $eligible = false;
+        $expectedResponse = new AutofeedSettings();
         $expectedResponse->setName($name2);
-        $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableProducts($enableProducts);
+        $expectedResponse->setEligible($eligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->shippingSettingsName('[ACCOUNT]');
-        $request = (new GetShippingSettingsRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->getShippingSettings($request);
+        $formattedName = $gapicClient->autofeedSettingsName('[ACCOUNT]');
+        $request = (new GetAutofeedSettingsRequest())->setName($formattedName);
+        $response = $gapicClient->getAutofeedSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/GetShippingSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/GetAutofeedSettings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getShippingSettingsExceptionTest()
+    public function getAutofeedSettingsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -103,19 +110,21 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->shippingSettingsName('[ACCOUNT]');
-        $request = (new GetShippingSettingsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->autofeedSettingsName('[ACCOUNT]');
+        $request = (new GetAutofeedSettingsRequest())->setName($formattedName);
         try {
-            $gapicClient->getShippingSettings($request);
+            $gapicClient->getAutofeedSettings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -128,7 +137,7 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function insertShippingSettingsTest()
+    public function updateAutofeedSettingsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -137,35 +146,40 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $etag = 'etag3123477';
-        $expectedResponse = new ShippingSettings();
+        $enableProducts = true;
+        $eligible = false;
+        $expectedResponse = new AutofeedSettings();
         $expectedResponse->setName($name);
-        $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableProducts($enableProducts);
+        $expectedResponse->setEligible($eligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
-        $shippingSetting = new ShippingSettings();
-        $shippingSettingEtag = 'shippingSettingEtag-383675145';
-        $shippingSetting->setEtag($shippingSettingEtag);
-        $request = (new InsertShippingSettingsRequest())
-            ->setParent($parent)
-            ->setShippingSetting($shippingSetting);
-        $response = $gapicClient->insertShippingSettings($request);
+        $autofeedSettings = new AutofeedSettings();
+        $autofeedSettingsEnableProducts = false;
+        $autofeedSettings->setEnableProducts($autofeedSettingsEnableProducts);
+        $updateMask = new FieldMask();
+        $request = (new UpdateAutofeedSettingsRequest())
+            ->setAutofeedSettings($autofeedSettings)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateAutofeedSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/InsertShippingSettings', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualRequestObject->getShippingSetting();
-        $this->assertProtobufEquals($shippingSetting, $actualValue);
+        $this->assertSame(
+            '/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/UpdateAutofeedSettings',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getAutofeedSettings();
+        $this->assertProtobufEquals($autofeedSettings, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function insertShippingSettingsExceptionTest()
+    public function updateAutofeedSettingsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -175,23 +189,26 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
-        $shippingSetting = new ShippingSettings();
-        $shippingSettingEtag = 'shippingSettingEtag-383675145';
-        $shippingSetting->setEtag($shippingSettingEtag);
-        $request = (new InsertShippingSettingsRequest())
-            ->setParent($parent)
-            ->setShippingSetting($shippingSetting);
+        $autofeedSettings = new AutofeedSettings();
+        $autofeedSettingsEnableProducts = false;
+        $autofeedSettings->setEnableProducts($autofeedSettingsEnableProducts);
+        $updateMask = new FieldMask();
+        $request = (new UpdateAutofeedSettingsRequest())
+            ->setAutofeedSettings($autofeedSettings)
+            ->setUpdateMask($updateMask);
         try {
-            $gapicClient->insertShippingSettings($request);
+            $gapicClient->updateAutofeedSettings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -204,7 +221,7 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getShippingSettingsAsyncTest()
+    public function getAutofeedSettingsAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -213,22 +230,26 @@ class ShippingSettingsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $etag = 'etag3123477';
-        $expectedResponse = new ShippingSettings();
+        $enableProducts = true;
+        $eligible = false;
+        $expectedResponse = new AutofeedSettings();
         $expectedResponse->setName($name2);
-        $expectedResponse->setEtag($etag);
+        $expectedResponse->setEnableProducts($enableProducts);
+        $expectedResponse->setEligible($eligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->shippingSettingsName('[ACCOUNT]');
-        $request = (new GetShippingSettingsRequest())
-            ->setName($formattedName);
-        $response = $gapicClient->getShippingSettingsAsync($request)->wait();
+        $formattedName = $gapicClient->autofeedSettingsName('[ACCOUNT]');
+        $request = (new GetAutofeedSettingsRequest())->setName($formattedName);
+        $response = $gapicClient->getAutofeedSettingsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.shopping.merchant.accounts.v1beta.ShippingSettingsService/GetShippingSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/GetAutofeedSettings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

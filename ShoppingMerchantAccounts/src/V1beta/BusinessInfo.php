@@ -46,6 +46,14 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.shopping.merchant.accounts.v1beta.CustomerService customer_service = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $customer_service = null;
+    /**
+     * Optional. The 10-digit [Korean business registration
+     * number](https://support.google.com/merchants/answer/9037766) separated with
+     * dashes in the format: XXX-XX-XXXXX.
+     *
+     * Generated from protobuf field <code>optional string korean_business_registration_number = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $korean_business_registration_number = null;
 
     /**
      * Constructor.
@@ -64,6 +72,10 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
      *           Output only. The phone verification state of the business.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\CustomerService $customer_service
      *           Optional. The customer service of the business.
+     *     @type string $korean_business_registration_number
+     *           Optional. The 10-digit [Korean business registration
+     *           number](https://support.google.com/merchants/answer/9037766) separated with
+     *           dashes in the format: XXX-XX-XXXXX.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +251,46 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1beta\CustomerService::class);
         $this->customer_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The 10-digit [Korean business registration
+     * number](https://support.google.com/merchants/answer/9037766) separated with
+     * dashes in the format: XXX-XX-XXXXX.
+     *
+     * Generated from protobuf field <code>optional string korean_business_registration_number = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getKoreanBusinessRegistrationNumber()
+    {
+        return isset($this->korean_business_registration_number) ? $this->korean_business_registration_number : '';
+    }
+
+    public function hasKoreanBusinessRegistrationNumber()
+    {
+        return isset($this->korean_business_registration_number);
+    }
+
+    public function clearKoreanBusinessRegistrationNumber()
+    {
+        unset($this->korean_business_registration_number);
+    }
+
+    /**
+     * Optional. The 10-digit [Korean business registration
+     * number](https://support.google.com/merchants/answer/9037766) separated with
+     * dashes in the format: XXX-XX-XXXXX.
+     *
+     * Generated from protobuf field <code>optional string korean_business_registration_number = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKoreanBusinessRegistrationNumber($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->korean_business_registration_number = $var;
 
         return $this;
     }
