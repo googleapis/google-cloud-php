@@ -32,9 +32,14 @@ class ManageAclTest extends StorageTestCase
         $this->assertAcl(self::$bucket->acl(), $kind);
     }
 
+    /**
+     * This test is marked flakey because it often throws a RateLimitExceeded
+     * error
+     *
+     * @group flakey
+     */
     public function testManageDefaultObjectAcl()
     {
-        $this->markTestSkipped('Skipping flakey test due to exceed rate limits.');
         $kind = 'storage#objectAccessControl';
         $this->assertAcl(self::$bucket->defaultAcl(), $kind);
     }

@@ -26,6 +26,6 @@ jobs:
       - name: Install dependencies
         run: composer  --no-interaction --no-ansi --no-progress update
       - name: Run System Tests
-        run: vendor/bin/phpunit -c phpunit-system.xml.dist --testdox --colors=always
+        run: vendor/bin/phpunit -c phpunit-system.xml.dist --colors=always  --exclude-group=flakey
         env:
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: ${{ runner.temp }}/service-account.json
