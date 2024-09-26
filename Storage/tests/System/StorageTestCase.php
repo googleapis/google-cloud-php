@@ -38,17 +38,12 @@ class StorageTestCase extends SystemTestCase
     protected static $pubsubClient;
     protected static $object;
     protected static $mainBucketName;
-    private static $hasSetUp = false;
 
     /**
      * @beforeClass
      */
     public static function setUpTestFixtures(): void
     {
-        if (self::$hasSetUp) {
-            return;
-        }
-
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'transport' => 'rest'
@@ -67,8 +62,6 @@ class StorageTestCase extends SystemTestCase
             ['location' => 'us-west1']
         );
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
-
-        self::$hasSetUp = true;
     }
 
     /**
@@ -76,11 +69,9 @@ class StorageTestCase extends SystemTestCase
      */
     public static function tearDownTestFixtures(): void
     {
-        if (!self::$hasSetUp) {
-            return;
+        foreach (self::$bucket->objects() as $object) {
+            $object->delete();
         }
-
-        self::$object->delete();
         self::$bucket->delete();
     }
 
