@@ -1,18 +1,18 @@
 {
     "name": "google/shopping-merchant-datasources",
-    "description": "Google Shopping Merchant Datasources Client for PHP",
+    "description": "Google Shopping Merchant DataSources Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Shopping\\Merchant\\Datasources\\": "src",
+            "Google\\Shopping\\Merchant\\DataSources\\": "src",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Datasources\\": "metadata"
         }
     },
     "extra": {
         "component": {
             "id": "shopping-merchant-datasources",
-            "path": "ShoppingMerchantDatasources",
+            "path": "ShoppingMerchantDataSources",
             "target": "googleapis/php-shopping-merchant-datasources"
         }
     },

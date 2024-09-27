@@ -1,6 +1,6 @@
-# Google Shopping Merchant Datasources for PHP
+# Google Shopping Merchant DataSources for PHP
 
-> Idiomatic PHP client for [Google Shopping Merchant Datasources](https://developers.google.com/merchant/api).
+> Idiomatic PHP client for [Google Shopping Merchant DataSources](https://developers.google.com/merchant/api).
 
 [![Latest Stable Version](https://poser.pugx.org/google/shopping-merchant-datasources/v/stable)](https://packagist.org/packages/google/shopping-merchant-datasources) [![Packagist](https://img.shields.io/packagist/dm/google/shopping-merchant-datasources.svg)](https://packagist.org/packages/google/shopping-merchant-datasources)
 
