@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message representing the request exporting data from Cloud Storage to
- * parallelstore.
+ * Export data from Parallelstore to Cloud Storage.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ExportDataRequest</code>
  */
@@ -41,9 +40,12 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User-specified Service Account (SA) credentials to be used when
      * performing the transfer.
-     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * Use one of the following formats:
+     * * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      * If unspecified, the Parallelstore service agent is used:
-     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -78,9 +80,12 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *     @type string $service_account
      *           Optional. User-specified Service Account (SA) credentials to be used when
      *           performing the transfer.
-     *           Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     *           Use one of the following formats:
+     *           * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     *           * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     *           * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      *           If unspecified, the Parallelstore service agent is used:
-     *           service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     *           `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      * }
      */
     public function __construct($data = NULL) {
@@ -225,9 +230,12 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User-specified Service Account (SA) credentials to be used when
      * performing the transfer.
-     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * Use one of the following formats:
+     * * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      * If unspecified, the Parallelstore service agent is used:
-     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -240,9 +248,12 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User-specified Service Account (SA) credentials to be used when
      * performing the transfer.
-     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * Use one of the following formats:
+     * * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      * If unspecified, the Parallelstore service agent is used:
-     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

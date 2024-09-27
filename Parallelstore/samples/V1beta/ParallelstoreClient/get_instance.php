@@ -29,7 +29,7 @@ use Google\Cloud\Parallelstore\V1beta\GetInstanceRequest;
 use Google\Cloud\Parallelstore\V1beta\Instance;
 
 /**
- * Gets details of a single Instance.
+ * Gets details of a single instance.
  *
  * @param string $formattedName The instance resource name, in the format
  *                              `projects/{project_id}/locations/{location}/instances/{instance_id}`. Please see

@@ -422,7 +422,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Deletes a single Instance.
+     * Deletes a single instance.
      *
      * The async variant is {@see ParallelstoreClient::deleteInstanceAsync()} .
      *
@@ -450,7 +450,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * ExportData copies data from Parallelstore to Cloud Storage
+     * Copies data from Parallelstore to Cloud Storage.
      *
      * The async variant is {@see ParallelstoreClient::exportDataAsync()} .
      *
@@ -478,7 +478,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Gets details of a single Instance.
+     * Gets details of a single instance.
      *
      * The async variant is {@see ParallelstoreClient::getInstanceAsync()} .
      *
@@ -506,7 +506,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * ImportData copies data from Cloud Storage to Parallelstore.
+     * Copies data from Cloud Storage to Parallelstore.
      *
      * The async variant is {@see ParallelstoreClient::importDataAsync()} .
      *
@@ -534,7 +534,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Lists Instances in a given project and location.
+     * Lists all instances in a given project and location.
      *
      * The async variant is {@see ParallelstoreClient::listInstancesAsync()} .
      *
@@ -562,7 +562,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Updates the parameters of a single Instance.
+     * Updates the parameters of a single instance.
      *
      * The async variant is {@see ParallelstoreClient::updateInstanceAsync()} .
      *
