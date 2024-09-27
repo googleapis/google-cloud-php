@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Rule to apply.
+ * Deploy Policy rule.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.PolicyRule</code>
  */
@@ -23,7 +23,7 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Deploy\V1\RestrictRollout $restrict_rollouts
+     *     @type \Google\Cloud\Deploy\V1\RolloutRestriction $rollout_restriction
      *           Rollout restrictions.
      * }
      */
@@ -35,30 +35,30 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * Rollout restrictions.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RestrictRollout restrict_rollouts = 1;</code>
-     * @return \Google\Cloud\Deploy\V1\RestrictRollout|null
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutRestriction rollout_restriction = 2;</code>
+     * @return \Google\Cloud\Deploy\V1\RolloutRestriction|null
      */
-    public function getRestrictRollouts()
+    public function getRolloutRestriction()
     {
-        return $this->readOneof(1);
+        return $this->readOneof(2);
     }
 
-    public function hasRestrictRollouts()
+    public function hasRolloutRestriction()
     {
-        return $this->hasOneof(1);
+        return $this->hasOneof(2);
     }
 
     /**
      * Rollout restrictions.
      *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RestrictRollout restrict_rollouts = 1;</code>
-     * @param \Google\Cloud\Deploy\V1\RestrictRollout $var
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutRestriction rollout_restriction = 2;</code>
+     * @param \Google\Cloud\Deploy\V1\RolloutRestriction $var
      * @return $this
      */
-    public function setRestrictRollouts($var)
+    public function setRolloutRestriction($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\RestrictRollout::class);
-        $this->writeOneof(1, $var);
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\RolloutRestriction::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }
