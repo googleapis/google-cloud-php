@@ -35,8 +35,8 @@ use Google\Rpc\Status;
  * Creates a new ManagementServer in a given project and location.
  *
  * @param string $formattedParent    The management server project and location in the format
- *                                   'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
- *                                   locations map to Google Cloud regions, for example **us-central1**. Please see
+ *                                   `projects/{project_id}/locations/{location}`. In Cloud Backup and DR
+ *                                   locations map to GCP regions, for example **us-central1**. Please see
  *                                   {@see BackupDRClient::locationName()} for help formatting this field.
  * @param string $managementServerId The name of the management server to create. The name must be
  *                                   unique for the specified project and location.

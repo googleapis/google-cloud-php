@@ -33,11 +33,10 @@ use Google\Cloud\BackupDR\V1\ManagementServer;
  * Lists ManagementServers in a given project and location.
  *
  * @param string $formattedParent The project and location for which to retrieve management servers
- *                                information, in the format 'projects/{project_id}/locations/{location}'. In
- *                                Cloud BackupDR, locations map to Google Cloud regions, for example
- *                                **us-central1**. To retrieve management servers for all locations, use "-"
- *                                for the
- *                                '{location}' value. Please see
+ *                                information, in the format `projects/{project_id}/locations/{location}`. In
+ *                                Cloud BackupDR, locations map to GCP regions, for example **us-central1**.
+ *                                To retrieve management servers for all locations, use "-" for the
+ *                                `{location}` value. Please see
  *                                {@see BackupDRClient::locationName()} for help formatting this field.
  */
 function list_management_servers_sample(string $formattedParent): void
