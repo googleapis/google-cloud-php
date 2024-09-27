@@ -48,9 +48,11 @@ class CloudRedisClientTest extends TestCase
      */
     public static function setUpTestFixtures()
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        if (!$keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {
+            self::markTestSkipped('Set the GOOGLE_CLOUD_PHP_TESTS_KEY_PATH environment variable');
+        }
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
-        $projectId = $keyFileData['project_id'];
+        $projectId = $keyFileData['project_id'] ?? '';
 
         self::$client = new CloudRedisClient([
             'credentials' => $keyFilePath,
