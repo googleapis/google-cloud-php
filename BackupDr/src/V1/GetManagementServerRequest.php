@@ -17,7 +17,7 @@ class GetManagementServerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the management server resource name, in the format
-     * 'projects/{project_id}/locations/{location}/managementServers/{resource_name}'
+     * `projects/{project_id}/locations/{location}/managementServers/{resource_name}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetManagementServerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the management server resource name, in the format
-     *                     'projects/{project_id}/locations/{location}/managementServers/{resource_name}'
+     *                     `projects/{project_id}/locations/{location}/managementServers/{resource_name}`
      *                     Please see {@see BackupDRClient::managementServerName()} for help formatting this field.
      *
      * @return \Google\Cloud\BackupDR\V1\GetManagementServerRequest
@@ -46,7 +46,7 @@ class GetManagementServerRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the management server resource name, in the format
-     *           'projects/{project_id}/locations/{location}/managementServers/{resource_name}'
+     *           `projects/{project_id}/locations/{location}/managementServers/{resource_name}`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetManagementServerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the management server resource name, in the format
-     * 'projects/{project_id}/locations/{location}/managementServers/{resource_name}'
+     * `projects/{project_id}/locations/{location}/managementServers/{resource_name}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetManagementServerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the management server resource name, in the format
-     * 'projects/{project_id}/locations/{location}/managementServers/{resource_name}'
+     * `projects/{project_id}/locations/{location}/managementServers/{resource_name}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

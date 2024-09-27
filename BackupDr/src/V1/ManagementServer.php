@@ -92,7 +92,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The OAuth 2.0 client id is required to make API calls to the
      * BackupDR instance API of this ManagementServer. This is the value that
-     * should be provided in the 'aud' field of the OIDC ID Token (see openid
+     * should be provided in the ‘aud’ field of the OIDC ID Token (see openid
      * specification
      * https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
      *
@@ -164,7 +164,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      *     @type string $oauth2_client_id
      *           Output only. The OAuth 2.0 client id is required to make API calls to the
      *           BackupDR instance API of this ManagementServer. This is the value that
-     *           should be provided in the 'aud' field of the OIDC ID Token (see openid
+     *           should be provided in the ‘aud’ field of the OIDC ID Token (see openid
      *           specification
      *           https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
      *     @type \Google\Cloud\BackupDR\V1\WorkforceIdentityBasedOAuth2ClientID $workforce_identity_based_oauth2_client_id
@@ -528,7 +528,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The OAuth 2.0 client id is required to make API calls to the
      * BackupDR instance API of this ManagementServer. This is the value that
-     * should be provided in the 'aud' field of the OIDC ID Token (see openid
+     * should be provided in the ‘aud’ field of the OIDC ID Token (see openid
      * specification
      * https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
      *
@@ -543,7 +543,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The OAuth 2.0 client id is required to make API calls to the
      * BackupDR instance API of this ManagementServer. This is the value that
-     * should be provided in the 'aud' field of the OIDC ID Token (see openid
+     * should be provided in the ‘aud’ field of the OIDC ID Token (see openid
      * specification
      * https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
      *

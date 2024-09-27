@@ -34,47 +34,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\BackupDR\V1\AbandonBackupRequest;
-use Google\Cloud\BackupDR\V1\Backup;
-use Google\Cloud\BackupDR\V1\BackupPlan;
-use Google\Cloud\BackupDR\V1\BackupPlanAssociation;
-use Google\Cloud\BackupDR\V1\BackupVault;
-use Google\Cloud\BackupDR\V1\CreateBackupPlanAssociationRequest;
-use Google\Cloud\BackupDR\V1\CreateBackupPlanRequest;
-use Google\Cloud\BackupDR\V1\CreateBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
-use Google\Cloud\BackupDR\V1\DataSource;
-use Google\Cloud\BackupDR\V1\DeleteBackupPlanAssociationRequest;
-use Google\Cloud\BackupDR\V1\DeleteBackupPlanRequest;
-use Google\Cloud\BackupDR\V1\DeleteBackupRequest;
-use Google\Cloud\BackupDR\V1\DeleteBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\DeleteManagementServerRequest;
-use Google\Cloud\BackupDR\V1\FetchAccessTokenRequest;
-use Google\Cloud\BackupDR\V1\FetchAccessTokenResponse;
-use Google\Cloud\BackupDR\V1\FetchUsableBackupVaultsRequest;
-use Google\Cloud\BackupDR\V1\FinalizeBackupRequest;
-use Google\Cloud\BackupDR\V1\GetBackupPlanAssociationRequest;
-use Google\Cloud\BackupDR\V1\GetBackupPlanRequest;
-use Google\Cloud\BackupDR\V1\GetBackupRequest;
-use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
-use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
-use Google\Cloud\BackupDR\V1\InitiateBackupRequest;
-use Google\Cloud\BackupDR\V1\InitiateBackupResponse;
-use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
-use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
-use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
-use Google\Cloud\BackupDR\V1\ListBackupsRequest;
-use Google\Cloud\BackupDR\V1\ListDataSourcesRequest;
 use Google\Cloud\BackupDR\V1\ListManagementServersRequest;
 use Google\Cloud\BackupDR\V1\ManagementServer;
-use Google\Cloud\BackupDR\V1\RemoveDataSourceRequest;
-use Google\Cloud\BackupDR\V1\RestoreBackupRequest;
-use Google\Cloud\BackupDR\V1\SetInternalStatusRequest;
-use Google\Cloud\BackupDR\V1\TriggerBackupRequest;
-use Google\Cloud\BackupDR\V1\UpdateBackupRequest;
-use Google\Cloud\BackupDR\V1\UpdateBackupVaultRequest;
-use Google\Cloud\BackupDR\V1\UpdateDataSourceRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -98,44 +62,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface abandonBackupAsync(AbandonBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupPlanAssociationAsync(CreateBackupPlanAssociationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createManagementServerAsync(CreateManagementServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPlanAssociationAsync(DeleteBackupPlanAssociationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteManagementServerAsync(DeleteManagementServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchAccessTokenAsync(FetchAccessTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchUsableBackupVaultsAsync(FetchUsableBackupVaultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface finalizeBackupAsync(FinalizeBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPlanAssociationAsync(GetBackupPlanAssociationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface initiateBackupAsync(InitiateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listManagementServersAsync(ListManagementServersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeDataSourceAsync(RemoveDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreBackupAsync(RestoreBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setInternalStatusAsync(SetInternalStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface triggerBackupAsync(TriggerBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class BackupDRClient
 {
@@ -236,119 +171,6 @@ final class BackupDRClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a backup
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $backupvault
-     * @param string $datasource
-     * @param string $backup
-     *
-     * @return string The formatted backup resource.
-     */
-    public static function backupName(
-        string $project,
-        string $location,
-        string $backupvault,
-        string $datasource,
-        string $backup
-    ): string {
-        return self::getPathTemplate('backup')->render([
-            'project' => $project,
-            'location' => $location,
-            'backupvault' => $backupvault,
-            'datasource' => $datasource,
-            'backup' => $backup,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a backup_plan
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $backupPlan
-     *
-     * @return string The formatted backup_plan resource.
-     */
-    public static function backupPlanName(string $project, string $location, string $backupPlan): string
-    {
-        return self::getPathTemplate('backupPlan')->render([
-            'project' => $project,
-            'location' => $location,
-            'backup_plan' => $backupPlan,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * backup_plan_association resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $backupPlanAssociation
-     *
-     * @return string The formatted backup_plan_association resource.
-     */
-    public static function backupPlanAssociationName(
-        string $project,
-        string $location,
-        string $backupPlanAssociation
-    ): string {
-        return self::getPathTemplate('backupPlanAssociation')->render([
-            'project' => $project,
-            'location' => $location,
-            'backup_plan_association' => $backupPlanAssociation,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a backup_vault
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $backupvault
-     *
-     * @return string The formatted backup_vault resource.
-     */
-    public static function backupVaultName(string $project, string $location, string $backupvault): string
-    {
-        return self::getPathTemplate('backupVault')->render([
-            'project' => $project,
-            'location' => $location,
-            'backupvault' => $backupvault,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a data_source
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $backupvault
-     * @param string $datasource
-     *
-     * @return string The formatted data_source resource.
-     */
-    public static function dataSourceName(
-        string $project,
-        string $location,
-        string $backupvault,
-        string $datasource
-    ): string {
-        return self::getPathTemplate('dataSource')->render([
-            'project' => $project,
-            'location' => $location,
-            'backupvault' => $backupvault,
-            'datasource' => $datasource,
-        ]);
-    }
-
-    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -388,11 +210,6 @@ final class BackupDRClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - backup: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup}
-     * - backupPlan: projects/{project}/locations/{location}/backupPlans/{backup_plan}
-     * - backupPlanAssociation: projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}
-     * - backupVault: projects/{project}/locations/{location}/backupVaults/{backupvault}
-     * - dataSource: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      * - location: projects/{project}/locations/{location}
      * - managementServer: projects/{project}/locations/{location}/managementServers/{managementserver}
      *
@@ -487,113 +304,6 @@ final class BackupDRClient
     }
 
     /**
-     * Internal only.
-     * Abandons a backup.
-     *
-     * The async variant is {@see BackupDRClient::abandonBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/abandon_backup.php
-     *
-     * @param AbandonBackupRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function abandonBackup(AbandonBackupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('AbandonBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Create a BackupPlan
-     *
-     * The async variant is {@see BackupDRClient::createBackupPlanAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/create_backup_plan.php
-     *
-     * @param CreateBackupPlanRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function createBackupPlan(CreateBackupPlanRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('CreateBackupPlan', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Create a BackupPlanAssociation
-     *
-     * The async variant is {@see BackupDRClient::createBackupPlanAssociationAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/create_backup_plan_association.php
-     *
-     * @param CreateBackupPlanAssociationRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function createBackupPlanAssociation(
-        CreateBackupPlanAssociationRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('CreateBackupPlanAssociation', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Creates a new BackupVault in a given project and location.
-     *
-     * The async variant is {@see BackupDRClient::createBackupVaultAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/create_backup_vault.php
-     *
-     * @param CreateBackupVaultRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function createBackupVault(CreateBackupVaultRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('CreateBackupVault', $request, $callOptions)->wait();
-    }
-
-    /**
      * Creates a new ManagementServer in a given project and location.
      *
      * The async variant is {@see BackupDRClient::createManagementServerAsync()} .
@@ -619,112 +329,6 @@ final class BackupDRClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateManagementServer', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes a Backup.
-     *
-     * The async variant is {@see BackupDRClient::deleteBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/delete_backup.php
-     *
-     * @param DeleteBackupRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes a single BackupPlan.
-     *
-     * The async variant is {@see BackupDRClient::deleteBackupPlanAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/delete_backup_plan.php
-     *
-     * @param DeleteBackupPlanRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteBackupPlan(DeleteBackupPlanRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('DeleteBackupPlan', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes a single BackupPlanAssociation.
-     *
-     * The async variant is {@see BackupDRClient::deleteBackupPlanAssociationAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/delete_backup_plan_association.php
-     *
-     * @param DeleteBackupPlanAssociationRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteBackupPlanAssociation(
-        DeleteBackupPlanAssociationRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('DeleteBackupPlanAssociation', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes a BackupVault.
-     *
-     * The async variant is {@see BackupDRClient::deleteBackupVaultAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/delete_backup_vault.php
-     *
-     * @param DeleteBackupVaultRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteBackupVault(DeleteBackupVaultRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('DeleteBackupVault', $request, $callOptions)->wait();
     }
 
     /**
@@ -756,224 +360,6 @@ final class BackupDRClient
     }
 
     /**
-     * Internal only.
-     * Fetch access token for a given data source.
-     *
-     * The async variant is {@see BackupDRClient::fetchAccessTokenAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/fetch_access_token.php
-     *
-     * @param FetchAccessTokenRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return FetchAccessTokenResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function fetchAccessToken(
-        FetchAccessTokenRequest $request,
-        array $callOptions = []
-    ): FetchAccessTokenResponse {
-        return $this->startApiCall('FetchAccessToken', $request, $callOptions)->wait();
-    }
-
-    /**
-     * FetchUsableBackupVaults lists usable BackupVaults in a given project and
-     * location. Usable BackupVault are the ones that user has
-     * backupdr.backupVaults.get permission.
-     *
-     * The async variant is {@see BackupDRClient::fetchUsableBackupVaultsAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/fetch_usable_backup_vaults.php
-     *
-     * @param FetchUsableBackupVaultsRequest $request     A request to house fields associated with the call.
-     * @param array                          $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function fetchUsableBackupVaults(
-        FetchUsableBackupVaultsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('FetchUsableBackupVaults', $request, $callOptions);
-    }
-
-    /**
-     * Internal only.
-     * Finalize a backup that was started by a call to InitiateBackup.
-     *
-     * The async variant is {@see BackupDRClient::finalizeBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/finalize_backup.php
-     *
-     * @param FinalizeBackupRequest $request     A request to house fields associated with the call.
-     * @param array                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function finalizeBackup(FinalizeBackupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('FinalizeBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a Backup.
-     *
-     * The async variant is {@see BackupDRClient::getBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/get_backup.php
-     *
-     * @param GetBackupRequest $request     A request to house fields associated with the call.
-     * @param array            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Backup
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
-    {
-        return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a single BackupPlan.
-     *
-     * The async variant is {@see BackupDRClient::getBackupPlanAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/get_backup_plan.php
-     *
-     * @param GetBackupPlanRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return BackupPlan
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getBackupPlan(GetBackupPlanRequest $request, array $callOptions = []): BackupPlan
-    {
-        return $this->startApiCall('GetBackupPlan', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a single BackupPlanAssociation.
-     *
-     * The async variant is {@see BackupDRClient::getBackupPlanAssociationAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/get_backup_plan_association.php
-     *
-     * @param GetBackupPlanAssociationRequest $request     A request to house fields associated with the call.
-     * @param array                           $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return BackupPlanAssociation
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getBackupPlanAssociation(
-        GetBackupPlanAssociationRequest $request,
-        array $callOptions = []
-    ): BackupPlanAssociation {
-        return $this->startApiCall('GetBackupPlanAssociation', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a BackupVault.
-     *
-     * The async variant is {@see BackupDRClient::getBackupVaultAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/get_backup_vault.php
-     *
-     * @param GetBackupVaultRequest $request     A request to house fields associated with the call.
-     * @param array                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return BackupVault
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getBackupVault(GetBackupVaultRequest $request, array $callOptions = []): BackupVault
-    {
-        return $this->startApiCall('GetBackupVault', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a DataSource.
-     *
-     * The async variant is {@see BackupDRClient::getDataSourceAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/get_data_source.php
-     *
-     * @param GetDataSourceRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return DataSource
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getDataSource(GetDataSourceRequest $request, array $callOptions = []): DataSource
-    {
-        return $this->startApiCall('GetDataSource', $request, $callOptions)->wait();
-    }
-
-    /**
      * Gets details of a single ManagementServer.
      *
      * The async variant is {@see BackupDRClient::getManagementServerAsync()} .
@@ -997,165 +383,6 @@ final class BackupDRClient
     public function getManagementServer(GetManagementServerRequest $request, array $callOptions = []): ManagementServer
     {
         return $this->startApiCall('GetManagementServer', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Internal only.
-     * Initiates a backup.
-     *
-     * The async variant is {@see BackupDRClient::initiateBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/initiate_backup.php
-     *
-     * @param InitiateBackupRequest $request     A request to house fields associated with the call.
-     * @param array                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return InitiateBackupResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function initiateBackup(InitiateBackupRequest $request, array $callOptions = []): InitiateBackupResponse
-    {
-        return $this->startApiCall('InitiateBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Lists BackupPlanAssociations in a given project and location.
-     *
-     * The async variant is {@see BackupDRClient::listBackupPlanAssociationsAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/list_backup_plan_associations.php
-     *
-     * @param ListBackupPlanAssociationsRequest $request     A request to house fields associated with the call.
-     * @param array                             $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listBackupPlanAssociations(
-        ListBackupPlanAssociationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('ListBackupPlanAssociations', $request, $callOptions);
-    }
-
-    /**
-     * Lists BackupPlans in a given project and location.
-     *
-     * The async variant is {@see BackupDRClient::listBackupPlansAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/list_backup_plans.php
-     *
-     * @param ListBackupPlansRequest $request     A request to house fields associated with the call.
-     * @param array                  $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listBackupPlans(ListBackupPlansRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListBackupPlans', $request, $callOptions);
-    }
-
-    /**
-     * Lists BackupVaults in a given project and location.
-     *
-     * The async variant is {@see BackupDRClient::listBackupVaultsAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/list_backup_vaults.php
-     *
-     * @param ListBackupVaultsRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listBackupVaults(ListBackupVaultsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListBackupVaults', $request, $callOptions);
-    }
-
-    /**
-     * Lists Backups in a given project and location.
-     *
-     * The async variant is {@see BackupDRClient::listBackupsAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/list_backups.php
-     *
-     * @param ListBackupsRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listBackups(ListBackupsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListBackups', $request, $callOptions);
-    }
-
-    /**
-     * Lists DataSources in a given project and location.
-     *
-     * The async variant is {@see BackupDRClient::listDataSourcesAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/list_data_sources.php
-     *
-     * @param ListDataSourcesRequest $request     A request to house fields associated with the call.
-     * @param array                  $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listDataSources(ListDataSourcesRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListDataSources', $request, $callOptions);
     }
 
     /**
@@ -1187,16 +414,14 @@ final class BackupDRClient
     }
 
     /**
-     * Deletes a DataSource. This is a custom method instead of a standard delete
-     * method because external clients will not delete DataSources except for
-     * BackupDR backup appliances.
+     * Gets information about a location.
      *
-     * The async variant is {@see BackupDRClient::removeDataSourceAsync()} .
+     * The async variant is {@see BackupDRClient::getLocationAsync()} .
      *
-     * @example samples/V1/BackupDRClient/remove_data_source.php
+     * @example samples/V1/BackupDRClient/get_location.php
      *
-     * @param RemoveDataSourceRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -1205,23 +430,23 @@ final class BackupDRClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return Location
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeDataSource(RemoveDataSourceRequest $request, array $callOptions = []): OperationResponse
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
     {
-        return $this->startApiCall('RemoveDataSource', $request, $callOptions)->wait();
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
     }
 
     /**
-     * Restore from a Backup
+     * Lists information about the supported locations for this service.
      *
-     * The async variant is {@see BackupDRClient::restoreBackupAsync()} .
+     * The async variant is {@see BackupDRClient::listLocationsAsync()} .
      *
-     * @example samples/V1/BackupDRClient/restore_backup.php
+     * @example samples/V1/BackupDRClient/list_locations.php
      *
-     * @param RestoreBackupRequest $request     A request to house fields associated with the call.
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
      *
@@ -1231,174 +456,13 @@ final class BackupDRClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreBackup(RestoreBackupRequest $request, array $callOptions = []): OperationResponse
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('RestoreBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Sets the internal status of a DataSource.
-     *
-     * The async variant is {@see BackupDRClient::setInternalStatusAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/set_internal_status.php
-     *
-     * @param SetInternalStatusRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function setInternalStatus(SetInternalStatusRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('SetInternalStatus', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns the caller's permissions on a BackupVault resource.
-     *
-     * A caller is not required to have Google IAM permission to make this
-     * request.
-     *
-     * The async variant is {@see BackupDRClient::testIamPermissionsAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/test_iam_permissions.php
-     *
-     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
-     * @param array                     $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return TestIamPermissionsResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
-        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Triggers a new Backup.
-     *
-     * The async variant is {@see BackupDRClient::triggerBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/trigger_backup.php
-     *
-     * @param TriggerBackupRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function triggerBackup(TriggerBackupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('TriggerBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Updates the settings of a Backup.
-     *
-     * The async variant is {@see BackupDRClient::updateBackupAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/update_backup.php
-     *
-     * @param UpdateBackupRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function updateBackup(UpdateBackupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('UpdateBackup', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Updates the settings of a BackupVault.
-     *
-     * The async variant is {@see BackupDRClient::updateBackupVaultAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/update_backup_vault.php
-     *
-     * @param UpdateBackupVaultRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function updateBackupVault(UpdateBackupVaultRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('UpdateBackupVault', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Updates the settings of a DataSource.
-     *
-     * The async variant is {@see BackupDRClient::updateDataSourceAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/update_data_source.php
-     *
-     * @param UpdateDataSourceRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function updateDataSource(UpdateDataSourceRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('UpdateDataSource', $request, $callOptions)->wait();
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 
     /**
@@ -1459,40 +523,20 @@ final class BackupDRClient
     }
 
     /**
-     * Gets information about a location.
-     *
-     * The async variant is {@see BackupDRClient::getLocationAsync()} .
-     *
-     * @example samples/V1/BackupDRClient/get_location.php
-     *
-     * @param GetLocationRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Location
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
-    {
-        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
-    }
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
 
-    /**
-     * Lists information about the supported locations for this service.
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
      *
-     * The async variant is {@see BackupDRClient::listLocationsAsync()} .
+     * The async variant is {@see BackupDRClient::testIamPermissionsAsync()} .
      *
-     * @example samples/V1/BackupDRClient/list_locations.php
+     * @example samples/V1/BackupDRClient/test_iam_permissions.php
      *
-     * @param ListLocationsRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -1501,12 +545,14 @@ final class BackupDRClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return PagedListResponse
+     * @return TestIamPermissionsResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListLocations', $request, $callOptions);
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
