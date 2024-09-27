@@ -33,6 +33,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\TermsOfServiceAgreementState;
  *
  * @param string $formattedName The resource name of the terms of service version.
  *                              Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`
+ *                              The identifier format is: `{TermsOfServiceKind}-{country}`
  *                              Please see {@see TermsOfServiceAgreementStateServiceClient::termsOfServiceAgreementStateName()} for help formatting this field.
  */
 function get_terms_of_service_agreement_state_sample(string $formattedName): void

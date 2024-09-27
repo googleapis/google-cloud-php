@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ImportDataResponse is the response returned from ImportData rpc.
+ * The response to a request to import data to Parallelstore.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ImportDataResponse</code>
  */

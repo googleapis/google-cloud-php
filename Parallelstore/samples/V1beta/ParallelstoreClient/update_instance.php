@@ -32,10 +32,11 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Updates the parameters of a single Instance.
+ * Updates the parameters of a single instance.
  *
- * @param int $instanceCapacityGib Immutable. Storage capacity of Parallelstore instance in
- *                                 Gibibytes (GiB).
+ * @param int $instanceCapacityGib Immutable. The instance's storage capacity in Gibibytes (GiB).
+ *                                 Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
+ *                                 12000, 16000, 20000, ...
  */
 function update_instance_sample(int $instanceCapacityGib): void
 {

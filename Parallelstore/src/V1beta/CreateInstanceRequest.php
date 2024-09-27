@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [CreateInstance][google.cloud.parallelstore.v1beta.Parallelstore.CreateInstance]
+ * Create a new Parallelstore instance.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.CreateInstanceRequest</code>
  */
@@ -19,14 +18,13 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The instance's project and location, in the format
      * `projects/{project}/locations/{location}`.
-     * Locations map to Google Cloud zones, for example **us-west1-b**.
+     * Locations map to Google Cloud zones; for example, `us-west1-b`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. The logical name of the Parallelstore instance in the user
-     * project with the following restrictions:
+     * Required. The name of the Parallelstore instance.
      * * Must contain only lowercase letters, numbers, and hyphens.
      * * Must start with a letter.
      * * Must be between 1-63 characters.
@@ -62,11 +60,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                      $parent     Required. The instance's project and location, in the format
      *                                                                `projects/{project}/locations/{location}`.
-     *                                                                Locations map to Google Cloud zones, for example **us-west1-b**. Please see
+     *                                                                Locations map to Google Cloud zones; for example, `us-west1-b`. Please see
      *                                                                {@see ParallelstoreClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Parallelstore\V1beta\Instance $instance   Required. The instance to create.
-     * @param string                                      $instanceId Required. The logical name of the Parallelstore instance in the user
-     *                                                                project with the following restrictions:
+     * @param string                                      $instanceId Required. The name of the Parallelstore instance.
      *
      *                                                                * Must contain only lowercase letters, numbers, and hyphens.
      *                                                                * Must start with a letter.
@@ -95,10 +92,9 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The instance's project and location, in the format
      *           `projects/{project}/locations/{location}`.
-     *           Locations map to Google Cloud zones, for example **us-west1-b**.
+     *           Locations map to Google Cloud zones; for example, `us-west1-b`.
      *     @type string $instance_id
-     *           Required. The logical name of the Parallelstore instance in the user
-     *           project with the following restrictions:
+     *           Required. The name of the Parallelstore instance.
      *           * Must contain only lowercase letters, numbers, and hyphens.
      *           * Must start with a letter.
      *           * Must be between 1-63 characters.
@@ -128,7 +124,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The instance's project and location, in the format
      * `projects/{project}/locations/{location}`.
-     * Locations map to Google Cloud zones, for example **us-west1-b**.
+     * Locations map to Google Cloud zones; for example, `us-west1-b`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -141,7 +137,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The instance's project and location, in the format
      * `projects/{project}/locations/{location}`.
-     * Locations map to Google Cloud zones, for example **us-west1-b**.
+     * Locations map to Google Cloud zones; for example, `us-west1-b`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -156,8 +152,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The logical name of the Parallelstore instance in the user
-     * project with the following restrictions:
+     * Required. The name of the Parallelstore instance.
      * * Must contain only lowercase letters, numbers, and hyphens.
      * * Must start with a letter.
      * * Must be between 1-63 characters.
@@ -173,8 +168,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The logical name of the Parallelstore instance in the user
-     * project with the following restrictions:
+     * Required. The name of the Parallelstore instance.
      * * Must contain only lowercase letters, numbers, and hyphens.
      * * Must start with a letter.
      * * Must be between 1-63 characters.

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The merchant account's [shipping
- * setting]((https://support.google.com/merchants/answer/6069284).
+ * setting](https://support.google.com/merchants/answer/6069284).
  *
  * Generated from protobuf message <code>google.shopping.merchant.accounts.v1beta.ShippingSettings</code>
  */

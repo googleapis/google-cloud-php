@@ -30,7 +30,7 @@ use Google\Cloud\Parallelstore\V1beta\DeleteInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a single Instance.
+ * Deletes a single instance.
  *
  * @param string $formattedName Name of the resource
  *                              Please see {@see ParallelstoreClient::instanceName()} for help formatting this field.

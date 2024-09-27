@@ -751,6 +751,11 @@
                                 "listTuningJobs"
                             ]
                         },
+                        "RebaseTunedModel": {
+                            "methods": [
+                                "rebaseTunedModel"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
