@@ -29,7 +29,10 @@ class AddressTest extends SystemTestCase
     protected static $projectId;
     protected static $name;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::$projectId = getenv('PROJECT_ID');
         if (self::$projectId === false) {
@@ -38,8 +41,10 @@ class AddressTest extends SystemTestCase
         self::$addressesClient = new AddressesClient();
         self::$name = "gapicphp" . strval(rand(100000, 999999));
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::$addressesClient->close();
     }

@@ -26,10 +26,13 @@ use Google\Rpc\Code;
 class PgBatchWriteTest extends SpannerPgTestCase
 {
     const TABLE_NAME = 'BatchWrites';
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::skipEmulatorTests();
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE Singers (

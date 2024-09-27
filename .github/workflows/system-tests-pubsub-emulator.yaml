@@ -3,15 +3,15 @@ on:
     branches:
       - main
     paths:
-      - 'Bigtable/**'
-      - '.github/workflows/bigtable-emulator-system-tests.yaml'
+      - 'PubSub/**'
+      - '.github/workflows/system-tests-pubsub-emulator.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
-      - 'Bigtable/**'
-      - '.github/workflows/bigtable-emulator-system-tests.yaml'
+      - 'PubSub/**'
+      - '.github/workflows/system-tests-pubsub-emulator.yaml'
       - '.github/emulator/**'
-name: Run Bigtable System Tests With Emulator
+name: Run PubSub System Tests With Emulator
 permissions:
   contents: read
 jobs:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: ./.github/emulator/start-emulator.sh bigtable 419.0.0-emulators
+      - run: ./.github/emulator/start-emulator.sh pubsub 413.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,14 +32,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config minimum-stability dev -d Bigtable/
-          composer config repositories.local path "../Core" -d Bigtable
-          composer require "google/cloud-core:*" -d Bigtable/
+          composer config minimum-stability dev -d PubSub/
+          composer config repositories.local path "../Core" -d PubSub
+          composer require "google/cloud-core:*" -d PubSub/
 
       - name: Run system tests
         run: |
-          Bigtable/vendor/bin/phpunit -c Bigtable/phpunit-system.xml.dist --group bigtable
+          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
         env:
-          BIGTABLE_EMULATOR_HOST: localhost:8085
+          PUBSUB_EMULATOR_HOST: localhost:8085
+          PROJECT_ID: my-project-id
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
           GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'

@@ -31,7 +31,7 @@ trait DatabaseRoleTrait
 
     public function dbProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
         return [
             [self::$restrictiveDbRole, 'PERMISSION_DENIED'],
             [self::$dbRole, null]
@@ -40,7 +40,7 @@ trait DatabaseRoleTrait
 
     public function insertDbProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
         return [
             [
                 self::getDbWithRestrictiveRole(),
@@ -64,7 +64,7 @@ trait DatabaseRoleTrait
 
     public function readDbProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
         return [
             [self::getDbWithReaderRole(), null],
             [self::getDbWithRestrictiveRole(), 'PERMISSION_DENIED']

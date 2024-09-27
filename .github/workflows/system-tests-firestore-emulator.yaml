@@ -1,17 +1,17 @@
-name: Run Datastore System Tests With Emulator
 on:
   push:
     branches:
       - main
     paths:
-      - 'Datastore/**'
-      - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - 'Firestore/**'
+      - '.github/workflows/system-tests-firestore-emulator.yaml'
       - '.github/emulator/**'
   pull_request:
     paths:
-      - 'Datastore/**'
-      - '.github/workflows/datastore-emulator-system-tests.yaml'
+      - 'Firestore/**'
+      - '.github/workflows/system-tests-firestore-emulator.yaml'
       - '.github/emulator/**'
+name: Run Firestore System Tests With Emulator
 permissions:
   contents: read
 jobs:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: ./.github/emulator/start-emulator.sh datastore 419.0.0-emulators
+      - run: ./.github/emulator/start-emulator.sh firestore 453.0.0-emulators
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,14 +32,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config minimum-stability dev -d Datastore/
-          composer config repositories.local path "../Core" -d Datastore
-          composer require "google/cloud-core:*" -d Datastore/
+          composer config minimum-stability dev -d Firestore/
+          composer config repositories.local path "../Core" -d Firestore
+          composer require "google/cloud-core:*" -d Firestore/
 
       - name: Run system tests
         run: |
-          Datastore/vendor/bin/phpunit -c Datastore/phpunit-system.xml.dist
+          Firestore/vendor/bin/phpunit -c Firestore/phpunit-system.xml.dist --exclude-group gapic
         env:
-          DATASTORE_EMULATOR_HOST: localhost:8085
+          FIRESTORE_EMULATOR_HOST: localhost:8085
           GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
           GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'

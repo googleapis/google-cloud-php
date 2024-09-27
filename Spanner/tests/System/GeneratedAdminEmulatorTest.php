@@ -32,7 +32,10 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
 {
     private static $projectId;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::$projectId = 'emulator-project';
     }
