@@ -204,6 +204,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. Information about the associated Analytics Hub subscription.
+     * Only set if the subscritpion is created by Analytics Hub.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $analytics_hub_subscription_info = null;
 
     /**
      * @param string                             $name               Required. The name of the subscription. It must have the format
@@ -373,6 +380,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. An output-only field indicating whether or not the
      *           subscription can receive messages.
+     *     @type \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $analytics_hub_subscription_info
+     *           Output only. Information about the associated Analytics Hub subscription.
+     *           Only set if the subscritpion is created by Analytics Hub.
      * }
      */
     public function __construct($data = NULL) {
@@ -1082,6 +1092,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\Subscription\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the associated Analytics Hub subscription.
+     * Only set if the subscritpion is created by Analytics Hub.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo|null
+     */
+    public function getAnalyticsHubSubscriptionInfo()
+    {
+        return $this->analytics_hub_subscription_info;
+    }
+
+    public function hasAnalyticsHubSubscriptionInfo()
+    {
+        return isset($this->analytics_hub_subscription_info);
+    }
+
+    public function clearAnalyticsHubSubscriptionInfo()
+    {
+        unset($this->analytics_hub_subscription_info);
+    }
+
+    /**
+     * Output only. Information about the associated Analytics Hub subscription.
+     * Only set if the subscritpion is created by Analytics Hub.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $var
+     * @return $this
+     */
+    public function setAnalyticsHubSubscriptionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo::class);
+        $this->analytics_hub_subscription_info = $var;
 
         return $this;
     }

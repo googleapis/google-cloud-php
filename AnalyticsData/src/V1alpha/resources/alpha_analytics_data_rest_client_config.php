@@ -70,6 +70,17 @@ return [
                     ],
                 ],
             ],
+            'GetPropertyQuotasSnapshot' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/propertyQuotasSnapshot}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRecurringAudienceList' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/recurringAudienceLists/*}',

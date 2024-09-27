@@ -38,14 +38,14 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * A list of
+     * Optional. A list of
      * [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
      * the EKM can be reached. There should be one ServiceResolver per EKM
      * replica. Currently, only a single
      * [ServiceResolver][google.cloud.kms.v1.EkmConnection.ServiceResolver] is
      * supported.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_resolvers;
     /**
@@ -88,7 +88,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which the
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection] was created.
      *     @type array<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>|\Google\Protobuf\Internal\RepeatedField $service_resolvers
-     *           A list of
+     *           Optional. A list of
      *           [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
      *           the EKM can be reached. There should be one ServiceResolver per EKM
      *           replica. Currently, only a single
@@ -183,14 +183,14 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of
+     * Optional. A list of
      * [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
      * the EKM can be reached. There should be one ServiceResolver per EKM
      * replica. Currently, only a single
      * [ServiceResolver][google.cloud.kms.v1.EkmConnection.ServiceResolver] is
      * supported.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getServiceResolvers()
@@ -199,14 +199,14 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of
+     * Optional. A list of
      * [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
      * the EKM can be reached. There should be one ServiceResolver per EKM
      * replica. Currently, only a single
      * [ServiceResolver][google.cloud.kms.v1.EkmConnection.ServiceResolver] is
      * supported.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

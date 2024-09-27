@@ -47,6 +47,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $serve_nodes = 0;
     /**
+     * Immutable. The node scaling factor of this cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.NodeScalingFactor node_scaling_factor = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $node_scaling_factor = 0;
+    /**
      * Immutable. The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
      *
@@ -80,6 +86,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type int $serve_nodes
      *           The number of nodes allocated to this cluster. More nodes enable higher
      *           throughput and more consistent performance.
+     *     @type int $node_scaling_factor
+     *           Immutable. The node scaling factor of this cluster.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig $cluster_config
      *           Configuration for this cluster.
      *     @type int $default_storage_type
@@ -204,6 +212,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->serve_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The node scaling factor of this cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.NodeScalingFactor node_scaling_factor = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getNodeScalingFactor()
+    {
+        return $this->node_scaling_factor;
+    }
+
+    /**
+     * Immutable. The node scaling factor of this cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.NodeScalingFactor node_scaling_factor = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNodeScalingFactor($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Cluster\NodeScalingFactor::class);
+        $this->node_scaling_factor = $var;
 
         return $this;
     }

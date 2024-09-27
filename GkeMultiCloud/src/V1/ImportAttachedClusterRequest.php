@@ -49,7 +49,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
     protected $platform_version = '';
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -108,7 +108,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *           [GetAttachedServerConfig][google.cloud.gkemulticloud.v1.AttachedClusters.GetAttachedServerConfig].
      *     @type string $distribution
      *           Required. The Kubernetes distribution of the underlying attached cluster.
-     *           Supported values: ["eks", "aks"].
+     *           Supported values: ["eks", "aks", "generic"].
      *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedProxyConfig $proxy_config
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      * }
@@ -240,7 +240,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -252,7 +252,7 @@ class ImportAttachedClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Kubernetes distribution of the underlying attached cluster.
-     * Supported values: ["eks", "aks"].
+     * Supported values: ["eks", "aks", "generic"].
      *
      * Generated from protobuf field <code>string distribution = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

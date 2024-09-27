@@ -40,6 +40,12 @@ class Candidate extends \Google\Protobuf\Internal\Message
      */
     protected $avg_logprobs = 0.0;
     /**
+     * Output only. Log-likelihood scores for the response tokens and top tokens
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.LogprobsResult logprobs_result = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $logprobs_result = null;
+    /**
      * Output only. The reason why the model stopped generating tokens.
      * If empty, the model has not stopped generating the tokens.
      *
@@ -87,6 +93,8 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *           Output only. Confidence score of the candidate.
      *     @type float $avg_logprobs
      *           Output only. Average log probability score of the candidate.
+     *     @type \Google\Cloud\AIPlatform\V1\LogprobsResult $logprobs_result
+     *           Output only. Log-likelihood scores for the response tokens and top tokens
      *     @type int $finish_reason
      *           Output only. The reason why the model stopped generating tokens.
      *           If empty, the model has not stopped generating the tokens.
@@ -217,6 +225,42 @@ class Candidate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->avg_logprobs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Log-likelihood scores for the response tokens and top tokens
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.LogprobsResult logprobs_result = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\LogprobsResult|null
+     */
+    public function getLogprobsResult()
+    {
+        return $this->logprobs_result;
+    }
+
+    public function hasLogprobsResult()
+    {
+        return isset($this->logprobs_result);
+    }
+
+    public function clearLogprobsResult()
+    {
+        unset($this->logprobs_result);
+    }
+
+    /**
+     * Output only. Log-likelihood scores for the response tokens and top tokens
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.LogprobsResult logprobs_result = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\LogprobsResult $var
+     * @return $this
+     */
+    public function setLogprobsResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\LogprobsResult::class);
+        $this->logprobs_result = $var;
 
         return $this;
     }

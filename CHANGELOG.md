@@ -1,5 +1,166 @@
 # Changelog
 
+## 0.260.0
+
+<details><summary>google/cloud-ai-platform 1.7.0</summary>
+
+
+
+### Features
+
+* A new field `generation_config` is added to message `.google.cloud.aiplatform.v1.CountTokensRequest` ([#7676](https://github.com/googleapis/google-cloud-php/issues/7676)) ([5edf09f](https://github.com/googleapis/google-cloud-php/commit/5edf09f0206267d8d4a07c8d405dd802f41520e6))
+* A new field `labels` is added to message `.google.cloud.aiplatform.v1.GenerateContentRequest` ([5edf09f](https://github.com/googleapis/google-cloud-php/commit/5edf09f0206267d8d4a07c8d405dd802f41520e6))
+* A new field `logprbs` is added to message `.google.cloud.aiplatform.v1.GenerationConfig` ([fc33366](https://github.com/googleapis/google-cloud-php/commit/fc33366874f10567d9ec032a6b926fcee5966f74))
+* A new field `logprobs_result` is added to message `.google.cloud.aiplatform.v1.Candidate` ([fc33366](https://github.com/googleapis/google-cloud-php/commit/fc33366874f10567d9ec032a6b926fcee5966f74))
+* A new field `model_version` is added to message `.google.cloud.aiplatform.v1.GenerateContentResponse` ([fc33366](https://github.com/googleapis/google-cloud-php/commit/fc33366874f10567d9ec032a6b926fcee5966f74))
+* A new field `response_logprbs` is added to message `.google.cloud.aiplatform.v1.GenerationConfig` ([#7680](https://github.com/googleapis/google-cloud-php/issues/7680)) ([fc33366](https://github.com/googleapis/google-cloud-php/commit/fc33366874f10567d9ec032a6b926fcee5966f74))
+* Add TunedModelRef and RebaseTunedModel Api for Vertex GenAiTuningService ([#7692](https://github.com/googleapis/google-cloud-php/issues/7692)) ([d49e04c](https://github.com/googleapis/google-cloud-php/commit/d49e04c05522859e725fbaa0407b262684002512))
+
+
+### Documentation
+
+* Limit comment `SupervisedTuningSpec` for 1p tuning ([d49e04c](https://github.com/googleapis/google-cloud-php/commit/d49e04c05522859e725fbaa0407b262684002512))
+
+</details>
+
+<details><summary>google/analytics-data 0.19.0</summary>
+
+
+
+### Features
+
+* Add `GetPropertyQuotasSnapshot` method to the Data API v1alpha ([#7684](https://github.com/googleapis/google-cloud-php/issues/7684)) ([c337a90](https://github.com/googleapis/google-cloud-php/commit/c337a909d38ba56bd337f3d649504f2e5bdb5e3e))
+* Add `PropertyQuotasSnapshot` type to the Data API v1alpha ([c337a90](https://github.com/googleapis/google-cloud-php/commit/c337a909d38ba56bd337f3d649504f2e5bdb5e3e))
+
+
+### Documentation
+
+* Update the documentation for the `CreateReportTask` method ([c337a90](https://github.com/googleapis/google-cloud-php/commit/c337a909d38ba56bd337f3d649504f2e5bdb5e3e))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.4.0</summary>
+
+
+
+### Features
+
+* Add exponential backoff to ResumableStream ([#7664](https://github.com/googleapis/google-cloud-php/issues/7664)) ([c252123](https://github.com/googleapis/google-cloud-php/commit/c25212315d474cf0eebbdc577a90afca21959654))
+* Add support for Cloud Bigtable Node Scaling Factor for CBT Clusters ([#7693](https://github.com/googleapis/google-cloud-php/issues/7693)) ([96c41ea](https://github.com/googleapis/google-cloud-php/commit/96c41eab2004ae2bce729c259b106e1c37680131))
+
+
+### Bug Fixes
+
+* Ensure attempts increment without exception ([#7688](https://github.com/googleapis/google-cloud-php/issues/7688)) ([d1f547f](https://github.com/googleapis/google-cloud-php/commit/d1f547f9c95ae1cc635e9c6315097b3193687eb7))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.14.0</summary>
+
+
+
+### Features
+
+* Created new boolean fields in conversation model for zone isolation and zone separation compliance status ([#7685](https://github.com/googleapis/google-cloud-php/issues/7685)) ([55bcd8c](https://github.com/googleapis/google-cloud-php/commit/55bcd8c44bd565a0c53e58d82ff79dc3d0b378e6))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.1.0</summary>
+
+
+
+### Features
+
+* Action for publishing data profiles to SecOps (formelly known as Chronicle) ([#7683](https://github.com/googleapis/google-cloud-php/issues/7683)) ([3635c21](https://github.com/googleapis/google-cloud-php/commit/3635c211fab48f97a83e19bc38bfbd2d95a163b7))
+* Action for publishing data profiles to Security Command Center ([3635c21](https://github.com/googleapis/google-cloud-php/commit/3635c211fab48f97a83e19bc38bfbd2d95a163b7))
+* Discovery configs for AWS S3 buckets ([3635c21](https://github.com/googleapis/google-cloud-php/commit/3635c211fab48f97a83e19bc38bfbd2d95a163b7))
+
+
+### Documentation
+
+* Small improvements and clarifications ([3635c21](https://github.com/googleapis/google-cloud-php/commit/3635c211fab48f97a83e19bc38bfbd2d95a163b7))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.1.0</summary>
+
+
+
+### Features
+
+* An optional field `kubelet_config` in message `.google.cloud.gkemulticloud.v1.AwsNodePool` is added ([e38b3a1](https://github.com/googleapis/google-cloud-php/commit/e38b3a10663641a0472e9dfbd3a346cbc0570bb1))
+* An optional field `security_posture_config` in message `.google.cloud.gkemulticloud.v1.AttachedCluster` is added ([#7675](https://github.com/googleapis/google-cloud-php/issues/7675)) ([e38b3a1](https://github.com/googleapis/google-cloud-php/commit/e38b3a10663641a0472e9dfbd3a346cbc0570bb1))
+
+</details>
+
+<details><summary>google/cloud-kms 2.1.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Pagination feature is introduced for method `ListKeyHandles` in service `Autokey` ([#7681](https://github.com/googleapis/google-cloud-php/issues/7681))
+
+### Features
+
+* Adding a state field for AutokeyConfig ([0538022](https://github.com/googleapis/google-cloud-php/commit/0538022d46547bff3660b8023b8252584df9771c))
+
+
+### Bug Fixes
+
+* Pagination feature is introduced for method `ListKeyHandles` in service `Autokey` ([#7681](https://github.com/googleapis/google-cloud-php/issues/7681)) ([0538022](https://github.com/googleapis/google-cloud-php/commit/0538022d46547bff3660b8023b8252584df9771c))
+
+
+### Documentation
+
+* A comment for field `destroy_scheduled_duration` in message `.google.cloud.kms.v1.CryptoKey` is updated for the default duration ([0538022](https://github.com/googleapis/google-cloud-php/commit/0538022d46547bff3660b8023b8252584df9771c))
+* Field service_resolvers in message .google.cloud.kms.v1.EkmConnection is Explicitly is marked as to have field behavior of Optional ([0538022](https://github.com/googleapis/google-cloud-php/commit/0538022d46547bff3660b8023b8252584df9771c))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.1.0</summary>
+
+
+
+### Features
+
+* A new field 'allow_auto_tiering' in message 'google.cloud.netapp.v1.StoragePool' is added ([a7eb08e](https://github.com/googleapis/google-cloud-php/commit/a7eb08e05b9fe006a10b42ba65b3f0ef8d27ff90))
+* A new field 'cold_tier_size_gib' in message 'google.cloud.netapp.v1.Volume' is added ([a7eb08e](https://github.com/googleapis/google-cloud-php/commit/a7eb08e05b9fe006a10b42ba65b3f0ef8d27ff90))
+* A new message 'google.cloud.netapp.v1.SwitchActiveReplicaZoneRequest' is added ([a7eb08e](https://github.com/googleapis/google-cloud-php/commit/a7eb08e05b9fe006a10b42ba65b3f0ef8d27ff90))
+* **api:** A new rpc 'SwitchActiveReplicaZone' is added to service 'google.cloud.netapp.v1.NetApp' ([#7673](https://github.com/googleapis/google-cloud-php/issues/7673)) ([a7eb08e](https://github.com/googleapis/google-cloud-php/commit/a7eb08e05b9fe006a10b42ba65b3f0ef8d27ff90))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.1.0</summary>
+
+
+
+### Features
+
+* Add the OracleDatabase component ([#7687](https://github.com/googleapis/google-cloud-php/issues/7687)) ([833c58c](https://github.com/googleapis/google-cloud-php/commit/833c58cdeabcabc8a5dd397b728768e7c2fda27a))
+
+</details>
+
+<details><summary>google/cloud-org-policy 1.1.0</summary>
+
+
+
+### Features
+
+* Support adding constraints to new method types REMOVE_GRANTS and GOVERN_TAGS ([#7678](https://github.com/googleapis/google-cloud-php/issues/7678)) ([6e6d3ee](https://github.com/googleapis/google-cloud-php/commit/6e6d3ee5fbf8a5e518a730ce688b8a910a43047d))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.6.0</summary>
+
+
+
+### Features
+
+* Return listing information for subscriptions created via Analytics Hub ([#7682](https://github.com/googleapis/google-cloud-php/issues/7682)) ([21a154b](https://github.com/googleapis/google-cloud-php/commit/21a154bc73ea8f04b12250f1f48b2b17c4329c43))
+
+</details>
+
 ## 0.259.0
 
 <details><summary>google/cloud-ai-platform 1.6.0</summary>
