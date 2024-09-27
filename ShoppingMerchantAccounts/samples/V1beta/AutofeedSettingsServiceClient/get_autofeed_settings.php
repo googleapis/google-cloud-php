@@ -22,36 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START merchantapi_v1beta_generated_TermsOfServiceService_RetrieveLatestTermsOfService_sync]
+// [START merchantapi_v1beta_generated_AutofeedSettingsService_GetAutofeedSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Shopping\Merchant\Accounts\V1beta\Client\TermsOfServiceServiceClient;
-use Google\Shopping\Merchant\Accounts\V1beta\RetrieveLatestTermsOfServiceRequest;
-use Google\Shopping\Merchant\Accounts\V1beta\TermsOfService;
-use Google\Shopping\Merchant\Accounts\V1beta\TermsOfServiceKind;
+use Google\Shopping\Merchant\Accounts\V1beta\AutofeedSettings;
+use Google\Shopping\Merchant\Accounts\V1beta\Client\AutofeedSettingsServiceClient;
+use Google\Shopping\Merchant\Accounts\V1beta\GetAutofeedSettingsRequest;
 
 /**
- * Retrieves the latest version of the `TermsOfService` for a given `kind` and
- * `region_code`.
+ * Retrieves the autofeed settings of an account.
  *
- * @param string $regionCode Region code as defined by [CLDR](https://cldr.unicode.org/). This
- *                           is either a country when the ToS applies specifically to that country or
- *                           001 when it applies globally.
- * @param int    $kind       The Kind this terms of service version applies to.
+ * @param string $formattedName The resource name of the autofeed settings.
+ *                              Format: `accounts/{account}/autofeedSettings`
+ *                              Please see {@see AutofeedSettingsServiceClient::autofeedSettingsName()} for help formatting this field.
  */
-function retrieve_latest_terms_of_service_sample(string $regionCode, int $kind): void
+function get_autofeed_settings_sample(string $formattedName): void
 {
     // Create a client.
-    $termsOfServiceServiceClient = new TermsOfServiceServiceClient();
+    $autofeedSettingsServiceClient = new AutofeedSettingsServiceClient();
 
     // Prepare the request message.
-    $request = (new RetrieveLatestTermsOfServiceRequest())
-        ->setRegionCode($regionCode)
-        ->setKind($kind);
+    $request = (new GetAutofeedSettingsRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var TermsOfService $response */
-        $response = $termsOfServiceServiceClient->retrieveLatestTermsOfService($request);
+        /** @var AutofeedSettings $response */
+        $response = $autofeedSettingsServiceClient->getAutofeedSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -69,9 +65,8 @@ function retrieve_latest_terms_of_service_sample(string $regionCode, int $kind):
  */
 function callSample(): void
 {
-    $regionCode = '[REGION_CODE]';
-    $kind = TermsOfServiceKind::TERMS_OF_SERVICE_KIND_UNSPECIFIED;
+    $formattedName = AutofeedSettingsServiceClient::autofeedSettingsName('[ACCOUNT]');
 
-    retrieve_latest_terms_of_service_sample($regionCode, $kind);
+    get_autofeed_settings_sample($formattedName);
 }
-// [END merchantapi_v1beta_generated_TermsOfServiceService_RetrieveLatestTermsOfService_sync]
+// [END merchantapi_v1beta_generated_AutofeedSettingsService_GetAutofeedSettings_sync]

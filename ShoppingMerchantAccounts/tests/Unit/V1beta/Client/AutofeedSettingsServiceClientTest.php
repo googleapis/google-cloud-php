@@ -28,10 +28,10 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
-use Google\Shopping\Merchant\Accounts\V1beta\BusinessInfo;
-use Google\Shopping\Merchant\Accounts\V1beta\Client\BusinessInfoServiceClient;
-use Google\Shopping\Merchant\Accounts\V1beta\GetBusinessInfoRequest;
-use Google\Shopping\Merchant\Accounts\V1beta\UpdateBusinessInfoRequest;
+use Google\Shopping\Merchant\Accounts\V1beta\AutofeedSettings;
+use Google\Shopping\Merchant\Accounts\V1beta\Client\AutofeedSettingsServiceClient;
+use Google\Shopping\Merchant\Accounts\V1beta\GetAutofeedSettingsRequest;
+use Google\Shopping\Merchant\Accounts\V1beta\UpdateAutofeedSettingsRequest;
 use stdClass;
 
 /**
@@ -39,7 +39,7 @@ use stdClass;
  *
  * @group gapic
  */
-class BusinessInfoServiceClientTest extends GeneratedTest
+class AutofeedSettingsServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -55,17 +55,17 @@ class BusinessInfoServiceClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return BusinessInfoServiceClient */
+    /** @return AutofeedSettingsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new BusinessInfoServiceClient($options);
+        return new AutofeedSettingsServiceClient($options);
     }
 
     /** @test */
-    public function getBusinessInfoTest()
+    public function getAutofeedSettingsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -74,22 +74,24 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $koreanBusinessRegistrationNumber = 'koreanBusinessRegistrationNumber-1016868885';
-        $expectedResponse = new BusinessInfo();
+        $enableProducts = true;
+        $eligible = false;
+        $expectedResponse = new AutofeedSettings();
         $expectedResponse->setName($name2);
-        $expectedResponse->setKoreanBusinessRegistrationNumber($koreanBusinessRegistrationNumber);
+        $expectedResponse->setEnableProducts($enableProducts);
+        $expectedResponse->setEligible($eligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->businessInfoName('[ACCOUNT]');
-        $request = (new GetBusinessInfoRequest())->setName($formattedName);
-        $response = $gapicClient->getBusinessInfo($request);
+        $formattedName = $gapicClient->autofeedSettingsName('[ACCOUNT]');
+        $request = (new GetAutofeedSettingsRequest())->setName($formattedName);
+        $response = $gapicClient->getAutofeedSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.accounts.v1beta.BusinessInfoService/GetBusinessInfo',
+            '/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/GetAutofeedSettings',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();
@@ -98,7 +100,7 @@ class BusinessInfoServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getBusinessInfoExceptionTest()
+    public function getAutofeedSettingsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -119,10 +121,10 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->businessInfoName('[ACCOUNT]');
-        $request = (new GetBusinessInfoRequest())->setName($formattedName);
+        $formattedName = $gapicClient->autofeedSettingsName('[ACCOUNT]');
+        $request = (new GetAutofeedSettingsRequest())->setName($formattedName);
         try {
-            $gapicClient->getBusinessInfo($request);
+            $gapicClient->getAutofeedSettings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -135,7 +137,7 @@ class BusinessInfoServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateBusinessInfoTest()
+    public function updateAutofeedSettingsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -144,34 +146,40 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $koreanBusinessRegistrationNumber = 'koreanBusinessRegistrationNumber-1016868885';
-        $expectedResponse = new BusinessInfo();
+        $enableProducts = true;
+        $eligible = false;
+        $expectedResponse = new AutofeedSettings();
         $expectedResponse->setName($name);
-        $expectedResponse->setKoreanBusinessRegistrationNumber($koreanBusinessRegistrationNumber);
+        $expectedResponse->setEnableProducts($enableProducts);
+        $expectedResponse->setEligible($eligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $businessInfo = new BusinessInfo();
+        $autofeedSettings = new AutofeedSettings();
+        $autofeedSettingsEnableProducts = false;
+        $autofeedSettings->setEnableProducts($autofeedSettingsEnableProducts);
         $updateMask = new FieldMask();
-        $request = (new UpdateBusinessInfoRequest())->setBusinessInfo($businessInfo)->setUpdateMask($updateMask);
-        $response = $gapicClient->updateBusinessInfo($request);
+        $request = (new UpdateAutofeedSettingsRequest())
+            ->setAutofeedSettings($autofeedSettings)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateAutofeedSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.accounts.v1beta.BusinessInfoService/UpdateBusinessInfo',
+            '/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/UpdateAutofeedSettings',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getBusinessInfo();
-        $this->assertProtobufEquals($businessInfo, $actualValue);
+        $actualValue = $actualRequestObject->getAutofeedSettings();
+        $this->assertProtobufEquals($autofeedSettings, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function updateBusinessInfoExceptionTest()
+    public function updateAutofeedSettingsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -192,11 +200,15 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $businessInfo = new BusinessInfo();
+        $autofeedSettings = new AutofeedSettings();
+        $autofeedSettingsEnableProducts = false;
+        $autofeedSettings->setEnableProducts($autofeedSettingsEnableProducts);
         $updateMask = new FieldMask();
-        $request = (new UpdateBusinessInfoRequest())->setBusinessInfo($businessInfo)->setUpdateMask($updateMask);
+        $request = (new UpdateAutofeedSettingsRequest())
+            ->setAutofeedSettings($autofeedSettings)
+            ->setUpdateMask($updateMask);
         try {
-            $gapicClient->updateBusinessInfo($request);
+            $gapicClient->updateAutofeedSettings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -209,7 +221,7 @@ class BusinessInfoServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getBusinessInfoAsyncTest()
+    public function getAutofeedSettingsAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -218,22 +230,24 @@ class BusinessInfoServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $koreanBusinessRegistrationNumber = 'koreanBusinessRegistrationNumber-1016868885';
-        $expectedResponse = new BusinessInfo();
+        $enableProducts = true;
+        $eligible = false;
+        $expectedResponse = new AutofeedSettings();
         $expectedResponse->setName($name2);
-        $expectedResponse->setKoreanBusinessRegistrationNumber($koreanBusinessRegistrationNumber);
+        $expectedResponse->setEnableProducts($enableProducts);
+        $expectedResponse->setEligible($eligible);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->businessInfoName('[ACCOUNT]');
-        $request = (new GetBusinessInfoRequest())->setName($formattedName);
-        $response = $gapicClient->getBusinessInfoAsync($request)->wait();
+        $formattedName = $gapicClient->autofeedSettingsName('[ACCOUNT]');
+        $request = (new GetAutofeedSettingsRequest())->setName($formattedName);
+        $response = $gapicClient->getAutofeedSettingsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.shopping.merchant.accounts.v1beta.BusinessInfoService/GetBusinessInfo',
+            '/google.shopping.merchant.accounts.v1beta.AutofeedSettingsService/GetAutofeedSettings',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();

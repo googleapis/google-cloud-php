@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class RetrieveLatestTermsOfServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Region code as defined by [CLDR](https://cldr.unicode.org/). This is either
-     * a country when the ToS applies specifically to that country or 001 when it
-     * applies globally.
+     * Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This
+     * is either a country when the ToS applies specifically to that country or
+     * 001 when it applies globally.
      *
-     * Generated from protobuf field <code>string region_code = 1;</code>
+     * Generated from protobuf field <code>string region_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $region_code = '';
     /**
-     * The Kind this terms of service version applies to.
+     * Required. The Kind this terms of service version applies to.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.TermsOfServiceKind kind = 2;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.TermsOfServiceKind kind = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $kind = 0;
 
@@ -37,11 +37,11 @@ class RetrieveLatestTermsOfServiceRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $region_code
-     *           Region code as defined by [CLDR](https://cldr.unicode.org/). This is either
-     *           a country when the ToS applies specifically to that country or 001 when it
-     *           applies globally.
+     *           Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This
+     *           is either a country when the ToS applies specifically to that country or
+     *           001 when it applies globally.
      *     @type int $kind
-     *           The Kind this terms of service version applies to.
+     *           Required. The Kind this terms of service version applies to.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,11 +50,11 @@ class RetrieveLatestTermsOfServiceRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Region code as defined by [CLDR](https://cldr.unicode.org/). This is either
-     * a country when the ToS applies specifically to that country or 001 when it
-     * applies globally.
+     * Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This
+     * is either a country when the ToS applies specifically to that country or
+     * 001 when it applies globally.
      *
-     * Generated from protobuf field <code>string region_code = 1;</code>
+     * Generated from protobuf field <code>string region_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegionCode()
@@ -63,11 +63,11 @@ class RetrieveLatestTermsOfServiceRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Region code as defined by [CLDR](https://cldr.unicode.org/). This is either
-     * a country when the ToS applies specifically to that country or 001 when it
-     * applies globally.
+     * Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This
+     * is either a country when the ToS applies specifically to that country or
+     * 001 when it applies globally.
      *
-     * Generated from protobuf field <code>string region_code = 1;</code>
+     * Generated from protobuf field <code>string region_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -80,9 +80,9 @@ class RetrieveLatestTermsOfServiceRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The Kind this terms of service version applies to.
+     * Required. The Kind this terms of service version applies to.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.TermsOfServiceKind kind = 2;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.TermsOfServiceKind kind = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getKind()
@@ -91,9 +91,9 @@ class RetrieveLatestTermsOfServiceRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The Kind this terms of service version applies to.
+     * Required. The Kind this terms of service version applies to.
      *
-     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.TermsOfServiceKind kind = 2;</code>
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.TermsOfServiceKind kind = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
