@@ -18,7 +18,10 @@
 namespace Google\Cloud\Redis\Tests\System\V1;
 
 use Google\Auth\CredentialsLoader;
-use Google\Cloud\Redis\V1\CloudRedisClient;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
+use Google\Cloud\Redis\V1\CreateInstanceRequest;
+use Google\Cloud\Redis\V1\DeleteInstanceRequest;
+use Google\Cloud\Redis\V1\ListInstancesRequest;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\OperationMetadata;
@@ -31,28 +34,11 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudRedisClientTest extends TestCase
 {
-    protected static $grpcClient;
-    protected static $projectId;
-    private static $hasSetUp = false;
+    protected $grpcClient;
+    protected $projectId;
 
-    public function clientProvider()
+    public function setUp(): void
     {
-        self::setUpTestFixtures();
-
-        return [
-            [self::$grpcClient]
-        ];
-    }
-
-    /**
-     * @beforeClass
-     */
-    public static function setUpTestFixtures(): void
-    {
-        if (self::$hasSetUp) {
-            return;
-        }
-
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
 
@@ -62,13 +48,13 @@ class CloudRedisClientTest extends TestCase
         ]);
 
         self::$projectId = $keyFileData['project_id'];
-
-        self::$hasSetUp = true;
     }
 
     private function deleteInstance(CloudRedisClient $client, $instanceToDelete)
     {
-        $operationResponse = $client->deleteInstance($instanceToDelete);
+        $operationResponse = $client->deleteInstance(
+            DeleteInstanceRequest::build($instanceToDelete)
+        );
         while (!$operationResponse->isDone()) {
             // get the $any object to ensure this does not fail
             $any = $operationResponse->getMetadata();
@@ -96,7 +82,9 @@ class CloudRedisClientTest extends TestCase
         $instance = new Instance();
         $instance->setTier($tier);
         $instance->setMemorySizeGb($memorySizeGb);
-        $operationResponse = $client->createInstance($parent, $instanceId, $instance);
+        $operationResponse = $client->createInstance(
+            CreateInstanceRequest::build($parent, $instanceId, $instance)
+        );
 
         while (!$operationResponse->isDone()) {
             // get the $any object to ensure this does not fail
@@ -115,14 +103,16 @@ class CloudRedisClientTest extends TestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testCreateListDeleteOperations(CloudRedisClient $client)
+    public function testCreateListDeleteOperations()
     {
+        $client = self::$grpcClient;
         $locationId = 'us-central1';
         $instanceId = 'my-redis-test-instance';
         $parent = $client::locationName(self::$projectId, $locationId);
         $instanceName = $client::instanceName(self::$projectId, $locationId, $instanceId);
+        $request = ListInstancesRequest::build($parent);
 
-        $instances = $client->listInstances($parent);
+        $instances = $client->listInstances($request);
         foreach ($instances->iterateAllElements() as $instance) {
             if ($instance->getName() === $instanceName) {
                 // Instance exists - lets delete it
@@ -133,12 +123,12 @@ class CloudRedisClientTest extends TestCase
         $createdInstanceName = $this->createRedisInstance($client, $parent, $instanceId);
         $this->assertSame($instanceName, $createdInstanceName);
 
-        $instances = iterator_to_array($client->listInstances($parent)->iterateAllElements());
+        $instances = iterator_to_array($client->listInstances($request)->iterateAllElements());
         $this->assertSame(1, count($instances));
 
         $this->deleteInstance($client, $createdInstanceName);
 
-        $instances = iterator_to_array($client->listInstances($parent)->iterateAllElements());
+        $instances = iterator_to_array($client->listInstances($request)->iterateAllElements());
         $this->assertSame(0, count($instances));
     }
 }

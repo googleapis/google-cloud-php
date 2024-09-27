@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Timestamp;
 use GuzzleHttp\Client;
 
@@ -269,11 +270,14 @@ class SignedUrlTest extends StorageTestCase
 
     private function getFile($url, array $options = [])
     {
-        $res = $this->guzzle->request('GET', $url, $options + [
-            'http_errors' => false,
-        ]);
+        $exponentialBackoff = new ExponentialBackoff();
+        return $exponentialBackoff->execute(function () use ($url, $options) {
+            $res = $this->guzzle->request('GET', $url, $options + [
+                'http_errors' => false,
+            ]);
 
-        return (string) $res->getBody();
+            return (string) $res->getBody();
+        });
     }
 
     private function deleteFile($url, array $headers = [])
