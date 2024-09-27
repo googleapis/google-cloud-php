@@ -13,7 +13,7 @@
         "component": {
             "id": "ads-marketingplatform-admin",
             "path": "AdsMarketingPlatformAdmin",
-            "target": "gooogleapis/php-ads-marketingplatform-admin"
+            "target": "googleapis/php-ads-marketingplatform-admin"
         }
     },
     "require": {
