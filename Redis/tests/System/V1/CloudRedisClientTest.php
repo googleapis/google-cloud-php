@@ -34,22 +34,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudRedisClientTest extends TestCase
 {
-    protected $grpcClient;
-    protected $projectId;
-
-    public function setUp(): void
-    {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
-
-        self::$grpcClient = new CloudRedisClient([
-            'credentials' => $keyFilePath,
-            'transport' => 'grpc'
-        ]);
-
-        self::$projectId = $keyFileData['project_id'];
-    }
-
     private function deleteInstance(CloudRedisClient $client, $instanceToDelete)
     {
         $operationResponse = $client->deleteInstance(
@@ -100,16 +84,22 @@ class CloudRedisClientTest extends TestCase
         return $result->getName();
     }
 
-    /**
-     * @dataProvider clientProvider
-     */
     public function testCreateListDeleteOperations()
     {
-        $client = self::$grpcClient;
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $projectId = $keyFileData['project_id'];
+
+        $client = new CloudRedisClient([
+            'credentials' => $keyFilePath,
+            'transport' => 'grpc'
+        ]);
+
         $locationId = 'us-central1';
         $instanceId = 'my-redis-test-instance';
-        $parent = $client::locationName(self::$projectId, $locationId);
-        $instanceName = $client::instanceName(self::$projectId, $locationId, $instanceId);
+
+        $parent = $client::locationName($projectId, $locationId);
+        $instanceName = $client::instanceName($projectId, $locationId, $instanceId);
         $request = ListInstancesRequest::build($parent);
 
         $instances = $client->listInstances($request);
