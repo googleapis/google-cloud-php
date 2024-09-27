@@ -1,4 +1,4 @@
-name: Backward Compatibility
+name: Backwards Compatibility
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
