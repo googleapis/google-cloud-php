@@ -1,5 +1,355 @@
 # Changelog
 
+## 0.261.0
+
+<details><summary>google/ads-marketingplatform-admin 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AdsMarketingPlatformAdmin ([#7697](https://github.com/googleapis/google-cloud-php/issues/7697)) ([abe3c50](https://github.com/googleapis/google-cloud-php/commit/abe3c509a2609294e18787d3d6410ed5cc75c468))
+
+</details>
+
+<details><summary>google/cloud-asset 2.1.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-osconfig to v2 ([#7674](https://github.com/googleapis/google-cloud-php/issues/7674)) ([0b5de87](https://github.com/googleapis/google-cloud-php/commit/0b5de872b016c66791188695f8bff1e525bca439))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.3.0</summary>
+
+
+
+### Features
+
+* Add backupplan proto ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* Add backupplanassociation proto ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* Add backupvault_ba proto ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* Add backupvault_gce proto ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* Client library for the backupvault api is added ([#7704](https://github.com/googleapis/google-cloud-php/issues/7704)) ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+
+
+### Documentation
+
+* A comment for field `management_servers` in message `.google.cloud.backupdr.v1.ListManagementServersResponse` is changed ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* A comment for field `name` in message `.google.cloud.backupdr.v1.GetManagementServerRequest` is changed ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* A comment for field `oauth2_client_id` in message `.google.cloud.backupdr.v1.ManagementServer` is changed ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* A comment for field `parent` in message `.google.cloud.backupdr.v1.CreateManagementServerRequest` is changed ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* A comment for field `parent` in message `.google.cloud.backupdr.v1.ListManagementServersRequest` is changed ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+* A comment for field `requested_cancellation` in message `.google.cloud.backupdr.v1.OperationMetadata` is changed ([1ed4b42](https://github.com/googleapis/google-cloud-php/commit/1ed4b42d5d794c397de81879485920673cac1e86))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.31.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.5.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-compute 1.19.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-container 2.1.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-core 1.60.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.1.0</summary>
+
+
+
+### Features
+
+* Add support for Spark Connect sessions in Dataproc Serverless for Spark ([#7700](https://github.com/googleapis/google-cloud-php/issues/7700)) ([c2d140b](https://github.com/googleapis/google-cloud-php/commit/c2d140b25f3545a7a8df2cf164318840b6dc1da3))
+
+
+### Documentation
+
+* Update docs for `filter` field in `ListSessionsRequest` ([c2d140b](https://github.com/googleapis/google-cloud-php/commit/c2d140b25f3545a7a8df2cf164318840b6dc1da3))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.30.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.9.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.2.0</summary>
+
+
+
+### Features
+
+* Added support for deploy policies ([#7711](https://github.com/googleapis/google-cloud-php/issues/7711)) ([9f98803](https://github.com/googleapis/google-cloud-php/commit/9f9880384f6118f55bf60c09599ddc2e7afc367d))
+
+
+### Documentation
+
+* Minor documentation updates ([9f98803](https://github.com/googleapis/google-cloud-php/commit/9f9880384f6118f55bf60c09599ddc2e7afc367d))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.15.0</summary>
+
+
+
+### Features
+
+* Add ALAW encoding value to Audio encoding enum ([cd47348](https://github.com/googleapis/google-cloud-php/commit/cd47348b86fd241d1b58ddeb8007a95a680290bb))
+* Created new boolean fields in conversation dataset for zone isolation and zone separation compliance status ([#7701](https://github.com/googleapis/google-cloud-php/issues/7701)) ([cd47348](https://github.com/googleapis/google-cloud-php/commit/cd47348b86fd241d1b58ddeb8007a95a680290bb))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.47.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 1.0.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-kms to v2 ([#7672](https://github.com/googleapis/google-cloud-php/issues/7672)) ([77a919a](https://github.com/googleapis/google-cloud-php/commit/77a919a11d49cbb6341ff676619deea55c429953))
+
+</details>
+
+<details><summary>google/cloud-language 0.34.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-logging 1.31.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.3.0</summary>
+
+
+
+### Features
+
+* A new field `route_token` is added to message `.google.maps.routeoptimization.v1.ShipmentRoute.Transition` ([b5ce71d](https://github.com/googleapis/google-cloud-php/commit/b5ce71d508b32ae01a2602c2fb9f09a017be7f53))
+* Add support for generating route tokens ([#7694](https://github.com/googleapis/google-cloud-php/issues/7694)) ([b5ce71d](https://github.com/googleapis/google-cloud-php/commit/b5ce71d508b32ae01a2602c2fb9f09a017be7f53))
+
+
+### Documentation
+
+* A comment for field `code` in message `.google.maps.routeoptimization.v1.OptimizeToursValidationError` is changed ([b5ce71d](https://github.com/googleapis/google-cloud-php/commit/b5ce71d508b32ae01a2602c2fb9f09a017be7f53))
+* A comment for field `populate_transition_polylines` in message `.google.maps.routeoptimization.v1.OptimizeToursRequest` is changed ([b5ce71d](https://github.com/googleapis/google-cloud-php/commit/b5ce71d508b32ae01a2602c2fb9f09a017be7f53))
+* A comment for method `BatchOptimizeTours` in service `RouteOptimization` is changed ([b5ce71d](https://github.com/googleapis/google-cloud-php/commit/b5ce71d508b32ae01a2602c2fb9f09a017be7f53))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.6.0</summary>
+
+
+
+### Features
+
+* Add UPGRADING state to Parallelstore state ([9ed8a41](https://github.com/googleapis/google-cloud-php/commit/9ed8a41a6f4bc6a63fbfea9709089d3bf7333ee1))
+
+
+### Documentation
+
+* Cleanup of Parallelstore API descriptions ([#7703](https://github.com/googleapis/google-cloud-php/issues/7703)) ([9ed8a41](https://github.com/googleapis/google-cloud-php/commit/9ed8a41a6f4bc6a63fbfea9709089d3bf7333ee1))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.7.0</summary>
+
+
+
+### Features
+
+* Add ingestion Cloud Storage fields and Platform Logging fields to Topic ([#7699](https://github.com/googleapis/google-cloud-php/issues/7699)) ([e3a138c](https://github.com/googleapis/google-cloud-php/commit/e3a138c9f90b3439a9577ad0e9e308a392e78f96))
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-redis 2.1.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* An existing field `account_aggregation` is removed from message `.google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest`
+* Changed field behavior for an existing field `service` in message `.google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest`
+* Changed field behavior for an existing field `region_code` in message `.google.shopping.merchant.accounts.v1beta.RetrieveLatestTermsOfServiceRequest`
+* Changed field behavior for an existing field `kind` in message `.google.shopping.merchant.accounts.v1beta.RetrieveLatestTermsOfServiceRequest`
+* The type of an existing field `time_zone` is changed from `message` to `string` in message `.google.shopping.merchant.accounts.v1beta.ListAccountIssuesRequest` ([#7705](https://github.com/googleapis/google-cloud-php/issues/7705))
+
+### Features
+
+* A new field `account_aggregation` is added to message `.google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest` ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new field `korean_business_registration_number` is added to message `.google.shopping.merchant.accounts.v1beta.BusinessInfo` ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new message `AccountAggregation` is added ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new message `AutofeedSettings` is added ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new message `GetAutofeedSettingsRequest` is added ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new message `UpdateAutofeedSettingsRequest` is added ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new resource_definition `merchantapi.googleapis.com/AutofeedSettings` is added ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* A new service `AutofeedSettingsService` is added ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+
+
+### Bug Fixes
+
+* An existing field `account_aggregation` is removed from message `.google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest` ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* Changed field behavior for an existing field `kind` in message `.google.shopping.merchant.accounts.v1beta.RetrieveLatestTermsOfServiceRequest` ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* Changed field behavior for an existing field `region_code` in message `.google.shopping.merchant.accounts.v1beta.RetrieveLatestTermsOfServiceRequest` ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* Changed field behavior for an existing field `service` in message `.google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest` ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+* The type of an existing field `time_zone` is changed from `message` to `string` in message `.google.shopping.merchant.accounts.v1beta.ListAccountIssuesRequest` ([#7705](https://github.com/googleapis/google-cloud-php/issues/7705)) ([409b76d](https://github.com/googleapis/google-cloud-php/commit/409b76da676000a1e33bfe5de25f8ee330462acc))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.2.0</summary>
+
+
+
+### Features
+
+* Add FileUploads service ([#7702](https://github.com/googleapis/google-cloud-php/issues/7702)) ([51c6ec1](https://github.com/googleapis/google-cloud-php/commit/51c6ec1db6e1baf90a08f40b0afea7c1776001b2))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.85.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-storage 1.43.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.15.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-translate 1.19.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
+<details><summary>google/cloud-vision 1.10.0</summary>
+
+
+
+### Features
+
+* **tests:** Organize workflows, add system tests ([#7695](https://github.com/googleapis/google-cloud-php/issues/7695)) ([e13bf25](https://github.com/googleapis/google-cloud-php/commit/e13bf258cbf198959a25f5776661c30f346680a9))
+
+</details>
+
 ## 0.260.0
 
 <details><summary>google/cloud-ai-platform 1.7.0</summary>
