@@ -25,22 +25,23 @@ class TypeAnnotationCode
     const TYPE_ANNOTATION_CODE_UNSPECIFIED = 0;
     /**
      * PostgreSQL compatible NUMERIC type. This annotation needs to be applied to
-     * [Type][google.spanner.v1.Type] instances having [NUMERIC][google.spanner.v1.TypeCode.NUMERIC]
-     * type code to specify that values of this type should be treated as
-     * PostgreSQL NUMERIC values. Currently this annotation is always needed for
-     * [NUMERIC][google.spanner.v1.TypeCode.NUMERIC] when a client interacts with PostgreSQL-enabled
-     * Spanner databases.
+     * [Type][google.spanner.v1.Type] instances having
+     * [NUMERIC][google.spanner.v1.TypeCode.NUMERIC] type code to specify that
+     * values of this type should be treated as PostgreSQL NUMERIC values.
+     * Currently this annotation is always needed for
+     * [NUMERIC][google.spanner.v1.TypeCode.NUMERIC] when a client interacts with
+     * PostgreSQL-enabled Spanner databases.
      *
      * Generated from protobuf enum <code>PG_NUMERIC = 2;</code>
      */
     const PG_NUMERIC = 2;
     /**
      * PostgreSQL compatible JSONB type. This annotation needs to be applied to
-     * [Type][google.spanner.v1.Type] instances having [JSON][google.spanner.v1.TypeCode.JSON]
-     * type code to specify that values of this type should be treated as
-     * PostgreSQL JSONB values. Currently this annotation is always needed for
-     * [JSON][google.spanner.v1.TypeCode.JSON] when a client interacts with PostgreSQL-enabled
-     * Spanner databases.
+     * [Type][google.spanner.v1.Type] instances having
+     * [JSON][google.spanner.v1.TypeCode.JSON] type code to specify that values of
+     * this type should be treated as PostgreSQL JSONB values. Currently this
+     * annotation is always needed for [JSON][google.spanner.v1.TypeCode.JSON]
+     * when a client interacts with PostgreSQL-enabled Spanner databases.
      *
      * Generated from protobuf enum <code>PG_JSONB = 3;</code>
      */
