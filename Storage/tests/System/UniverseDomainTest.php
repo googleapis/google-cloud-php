@@ -90,4 +90,19 @@ class UniverseDomainTest extends SystemTestCase
 
         $this->assertCount(2, $foundObjects);
     }
+    /**
+     * Test uploading and retrieving objects to a bucket using universe domain credentials.
+     *
+     * @depends testCreateBucketWithUniverseDomain
+     */
+    public function testDeleteBucketWithUniverseDomain()
+    {
+        foreach (self::$bucket->objects() as $object) {
+            $object->delete();
+        }
+        self::$bucket->delete();
+        $this->assertFalse(self::$bucket->exists());
+        $buckets = self::$client->buckets(['prefix' => self::$bucket->name()]);
+        $this->assertCount(0, iterator_to_array($buckets));
+    }
 }
