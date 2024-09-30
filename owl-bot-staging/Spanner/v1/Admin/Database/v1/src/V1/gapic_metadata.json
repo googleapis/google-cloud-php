@@ -1,0 +1,143 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.spanner.admin.database.v1",
+    "libraryPackage": "Google\\Cloud\\Spanner\\Admin\\Database\\V1",
+    "services": {
+        "DatabaseAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DatabaseAdminGapicClient",
+                    "rpcs": {
+                        "CopyBackup": {
+                            "methods": [
+                                "copyBackup"
+                            ]
+                        },
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
+                        "CreateBackupSchedule": {
+                            "methods": [
+                                "createBackupSchedule"
+                            ]
+                        },
+                        "CreateDatabase": {
+                            "methods": [
+                                "createDatabase"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteBackupSchedule": {
+                            "methods": [
+                                "deleteBackupSchedule"
+                            ]
+                        },
+                        "DropDatabase": {
+                            "methods": [
+                                "dropDatabase"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupSchedule": {
+                            "methods": [
+                                "getBackupSchedule"
+                            ]
+                        },
+                        "GetDatabase": {
+                            "methods": [
+                                "getDatabase"
+                            ]
+                        },
+                        "GetDatabaseDdl": {
+                            "methods": [
+                                "getDatabaseDdl"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "ListBackupOperations": {
+                            "methods": [
+                                "listBackupOperations"
+                            ]
+                        },
+                        "ListBackupSchedules": {
+                            "methods": [
+                                "listBackupSchedules"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListDatabaseOperations": {
+                            "methods": [
+                                "listDatabaseOperations"
+                            ]
+                        },
+                        "ListDatabaseRoles": {
+                            "methods": [
+                                "listDatabaseRoles"
+                            ]
+                        },
+                        "ListDatabases": {
+                            "methods": [
+                                "listDatabases"
+                            ]
+                        },
+                        "RestoreDatabase": {
+                            "methods": [
+                                "restoreDatabase"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateBackup": {
+                            "methods": [
+                                "updateBackup"
+                            ]
+                        },
+                        "UpdateBackupSchedule": {
+                            "methods": [
+                                "updateBackupSchedule"
+                            ]
+                        },
+                        "UpdateDatabase": {
+                            "methods": [
+                                "updateDatabase"
+                            ]
+                        },
+                        "UpdateDatabaseDdl": {
+                            "methods": [
+                                "updateDatabaseDdl"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
