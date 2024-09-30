@@ -32,7 +32,7 @@ class UniverseDomainTest extends SystemTestCase
     public static function setUpTestFixtures(): void
     {
         if (!$keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_KEY_PATH')) {
-            self::markTestSkipped('Set TEST_UNIVERSE_DOMAIN_CREDENTIAL to run system tests');
+            self::markTestSkipped('Set GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_KEY_PATH to run system tests');
         }
 
         $credentials = json_decode(file_get_contents($keyFilePath), true);
