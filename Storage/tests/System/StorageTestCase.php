@@ -35,6 +35,7 @@ class StorageTestCase extends SystemTestCase
     protected static $bucket;
     protected static $client;
     protected static $unauthenticatedClient;
+    protected static $universeDomainClient;
     protected static $pubsubClient;
     protected static $object;
     protected static $mainBucketName;
@@ -52,6 +53,11 @@ class StorageTestCase extends SystemTestCase
         self::$client = new StorageClient($config);
         self::$unauthenticatedClient = new StorageClient([
             'credentialsFetcher' => new AnonymousCredentials()
+        ]);
+        self::$universeDomainClient = new StorageClient([
+            'keyFilePath' => getenv('TEST_UNIVERSE_DOMAIN_CREDENTIAL'),
+            'projectId' => getenv('TEST_UNIVERSE_PROJECT_ID'),
+            'universeDomain' => getenv('TEST_UNIVERSE_DOMAIN')
         ]);
         self::$pubsubClient = new PubSubClient($config);
 
