@@ -54,11 +54,6 @@ class StorageTestCase extends SystemTestCase
         self::$unauthenticatedClient = new StorageClient([
             'credentialsFetcher' => new AnonymousCredentials()
         ]);
-        self::$universeDomainClient = new StorageClient([
-            'keyFilePath' => getenv('TEST_UNIVERSE_DOMAIN_CREDENTIAL'),
-            'projectId' => getenv('TEST_UNIVERSE_PROJECT_ID'),
-            'universeDomain' => getenv('TEST_UNIVERSE_DOMAIN')
-        ]);
         self::$pubsubClient = new PubSubClient($config);
 
         self::$mainBucketName = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
