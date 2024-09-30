@@ -79,6 +79,14 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     protected $schedule_options = null;
     /**
+     * Options customizing different types of data transfer schedule.
+     * This field replaces "schedule" and "schedule_options" fields.
+     * ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.ScheduleOptionsV2 schedule_options_v2 = 31;</code>
+     */
+    protected $schedule_options_v2 = null;
+    /**
      * The number of days to look back to automatically refresh the data.
      * For example, if `data_refresh_window_days = 10`, then every day
      * BigQuery reingests data for [today-10, today-1], rather than ingesting data
@@ -160,6 +168,13 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EncryptionConfiguration encryption_configuration = 28;</code>
      */
     protected $encryption_configuration = null;
+    /**
+     * Output only. Error code with detailed information about reason of the
+     * latest config failure.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $error = null;
     protected $destination;
 
     /**
@@ -204,6 +219,10 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           data source; refer to the documentation for your data source.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptions $schedule_options
      *           Options customizing the data transfer schedule.
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptionsV2 $schedule_options_v2
+     *           Options customizing different types of data transfer schedule.
+     *           This field replaces "schedule" and "schedule_options" fields.
+     *           ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule.
      *     @type int $data_refresh_window_days
      *           The number of days to look back to automatically refresh the data.
      *           For example, if `data_refresh_window_days = 10`, then every day
@@ -242,6 +261,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           granted permissions to use the key. Read methods will return the key name
      *           applied in effect. Write methods will apply the key if it is present, or
      *           otherwise try to apply project default keys if it is absent.
+     *     @type \Google\Rpc\Status $error
+     *           Output only. Error code with detailed information about reason of the
+     *           latest config failure.
      * }
      */
     public function __construct($data = NULL) {
@@ -496,6 +518,46 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptions::class);
         $this->schedule_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Options customizing different types of data transfer schedule.
+     * This field replaces "schedule" and "schedule_options" fields.
+     * ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.ScheduleOptionsV2 schedule_options_v2 = 31;</code>
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptionsV2|null
+     */
+    public function getScheduleOptionsV2()
+    {
+        return $this->schedule_options_v2;
+    }
+
+    public function hasScheduleOptionsV2()
+    {
+        return isset($this->schedule_options_v2);
+    }
+
+    public function clearScheduleOptionsV2()
+    {
+        unset($this->schedule_options_v2);
+    }
+
+    /**
+     * Options customizing different types of data transfer schedule.
+     * This field replaces "schedule" and "schedule_options" fields.
+     * ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.ScheduleOptionsV2 schedule_options_v2 = 31;</code>
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptionsV2 $var
+     * @return $this
+     */
+    public function setScheduleOptionsV2($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptionsV2::class);
+        $this->schedule_options_v2 = $var;
 
         return $this;
     }
@@ -864,6 +926,44 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataTransfer\V1\EncryptionConfiguration::class);
         $this->encryption_configuration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Error code with detailed information about reason of the
+     * latest config failure.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Rpc\Status|null
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    public function hasError()
+    {
+        return isset($this->error);
+    }
+
+    public function clearError()
+    {
+        unset($this->error);
+    }
+
+    /**
+     * Output only. Error code with detailed information about reason of the
+     * latest config failure.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Rpc\Status $var
+     * @return $this
+     */
+    public function setError($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
+        $this->error = $var;
 
         return $this;
     }
