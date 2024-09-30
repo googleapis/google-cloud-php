@@ -109,7 +109,7 @@ class CloudRedisClientTest extends TestCase
         // Ensure delete op succeeded
         $instances = self::$client->listInstances(ListInstancesRequest::build(self::$parent));
         $this->assertSame(0, count(array_map(
-            fn ($instance) => $instance->getName() === $instanceName,
+            fn ($instance) => $instance->getName() === self::$instanceName,
             iterator_to_array($instances->iterateAllElements())
         )));
     }
