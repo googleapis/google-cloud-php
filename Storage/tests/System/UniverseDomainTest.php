@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Storage\Bucket;
+
 class UniverseDomainTest extends StorageTestCase
 {
     private static $universeDomainBucket;
