@@ -34,7 +34,8 @@ use Google\Shopping\Merchant\Accounts\V1beta\ListAccountsRequest;
  * constraints of the request such as page size or filters.
  * This is not just listing the sub-accounts of an MCA, but all accounts the
  * calling user has access to including other MCAs, linked accounts,
- * standalone accounts and so on.
+ * standalone accounts and so on. If no filter is provided, then it returns
+ * accounts the user is directly added to.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
