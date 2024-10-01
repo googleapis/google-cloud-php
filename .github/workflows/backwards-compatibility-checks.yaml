@@ -72,11 +72,11 @@ jobs:
       - name: "Print the action item"
         run: |
           if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
-            if [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "true" ]]; then
+            if [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "false" ]]; then
               echo "Action item: Change the conventional commit to use 'feat'"
               exit 1
             fi
-          elif [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "false" ]]; then
+          elif [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "true" ]]; then
             echo "Action item: No features found, do not use 'feat' for the conventional commit"
             exit 1
           fi
