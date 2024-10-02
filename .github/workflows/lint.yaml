@@ -24,9 +24,9 @@ jobs:
 
   style2:
     name: PHP CS Fixer
-    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@exclude-patterns
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml
     with:
-      config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php@exclude-patterns
+      config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php
       exclude-patterns: |
         [
           "#.*/src/V[0-9]+#",
