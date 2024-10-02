@@ -23,21 +23,21 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The encrypted data originally returned in
      * [RawEncryptResponse.ciphertext][google.cloud.kms.v1.RawEncryptResponse.ciphertext].
      *
      * Generated from protobuf field <code>bytes ciphertext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ciphertext = '';
+    protected $ciphertext = '';
     /**
      * Optional. Optional data that must match the data originally supplied in
      * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data = '';
+    protected $additional_authenticated_data = '';
     /**
      * Required. The initialization vector (IV) used during encryption, which must
      * match the data originally provided in
@@ -45,7 +45,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes initialization_vector = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $initialization_vector = '';
+    protected $initialization_vector = '';
     /**
      * The length of the authentication tag that is appended to the end of
      * the ciphertext. If unspecified (0), the default value for the key's
@@ -53,7 +53,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 tag_length = 5;</code>
      */
-    private $tag_length = 0;
+    protected $tag_length = 0;
     /**
      * Optional. An optional CRC32C checksum of the
      * [RawDecryptRequest.ciphertext][google.cloud.kms.v1.RawDecryptRequest.ciphertext].
@@ -72,7 +72,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ciphertext_crc32c = null;
+    protected $ciphertext_crc32c = null;
     /**
      * Optional. An optional CRC32C checksum of the
      * [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
@@ -94,7 +94,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data_crc32c = null;
+    protected $additional_authenticated_data_crc32c = null;
     /**
      * Optional. An optional CRC32C checksum of the
      * [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
@@ -114,7 +114,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $initialization_vector_crc32c = null;
+    protected $initialization_vector_crc32c = null;
 
     /**
      * Constructor.
@@ -397,7 +397,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getCiphertextCrc32CValue()
+    public function getCiphertextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("ciphertext_crc32c");
     }
@@ -452,7 +452,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setCiphertextCrc32CValue($var)
+    public function setCiphertextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("ciphertext_crc32c", $var);
         return $this;}
@@ -518,7 +518,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getAdditionalAuthenticatedDataCrc32CValue()
+    public function getAdditionalAuthenticatedDataCrc32CUnwrapped()
     {
         return $this->readWrapperValue("additional_authenticated_data_crc32c");
     }
@@ -579,7 +579,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setAdditionalAuthenticatedDataCrc32CValue($var)
+    public function setAdditionalAuthenticatedDataCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("additional_authenticated_data_crc32c", $var);
         return $this;}
@@ -641,7 +641,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getInitializationVectorCrc32CValue()
+    public function getInitializationVectorCrc32CUnwrapped()
     {
         return $this->readWrapperValue("initialization_vector_crc32c");
     }
@@ -698,7 +698,7 @@ class RawDecryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setInitializationVectorCrc32CValue($var)
+    public function setInitializationVectorCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("initialization_vector_crc32c", $var);
         return $this;}

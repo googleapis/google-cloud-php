@@ -37,7 +37,10 @@ class DatastoreTestCase extends TestCase
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -81,7 +84,7 @@ class DatastoreTestCase extends TestCase
 
     public function defaultDbClientProvider()
     {
-        self::setUpBeforeClass();
+        self::setUpTestFixtures();
 
         return [
             'restClient' => [self::$restClient],

@@ -243,6 +243,12 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $zone = '';
+    /**
+     * Output only. Size of the volume cold tier data in GiB.
+     *
+     * Generated from protobuf field <code>int64 cold_tier_size_gib = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $cold_tier_size_gib = 0;
 
     /**
      * Constructor.
@@ -334,6 +340,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           Output only. Specifies the replica zone for regional volume.
      *     @type string $zone
      *           Output only. Specifies the active zone for regional volume.
+     *     @type int|string $cold_tier_size_gib
+     *           Output only. Size of the volume cold tier data in GiB.
      * }
      */
     public function __construct($data = NULL) {
@@ -1357,6 +1365,32 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Size of the volume cold tier data in GiB.
+     *
+     * Generated from protobuf field <code>int64 cold_tier_size_gib = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getColdTierSizeGib()
+    {
+        return $this->cold_tier_size_gib;
+    }
+
+    /**
+     * Output only. Size of the volume cold tier data in GiB.
+     *
+     * Generated from protobuf field <code>int64 cold_tier_size_gib = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setColdTierSizeGib($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->cold_tier_size_gib = $var;
 
         return $this;
     }

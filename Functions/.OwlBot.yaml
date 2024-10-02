@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/functions/(v1|v2)/.*-php/(.*)
+    - source: /google/cloud/functions/(v2)/.*-php/(.*)
       dest: /owl-bot-staging/Functions/$1/$2
 api-name: Functions

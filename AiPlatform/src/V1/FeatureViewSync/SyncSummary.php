@@ -28,6 +28,13 @@ class SyncSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 total_slot = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $total_slot = 0;
+    /**
+     * Lower bound of the system time watermark for the sync job. This is only
+     * set for continuously syncing feature views.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp system_watermark_time = 5;</code>
+     */
+    protected $system_watermark_time = null;
 
     /**
      * Constructor.
@@ -39,6 +46,9 @@ class SyncSummary extends \Google\Protobuf\Internal\Message
      *           Output only. Total number of rows synced.
      *     @type int|string $total_slot
      *           Output only. BigQuery slot milliseconds consumed for the sync job.
+     *     @type \Google\Protobuf\Timestamp $system_watermark_time
+     *           Lower bound of the system time watermark for the sync job. This is only
+     *           set for continuously syncing feature views.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +104,44 @@ class SyncSummary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->total_slot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Lower bound of the system time watermark for the sync job. This is only
+     * set for continuously syncing feature views.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp system_watermark_time = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSystemWatermarkTime()
+    {
+        return $this->system_watermark_time;
+    }
+
+    public function hasSystemWatermarkTime()
+    {
+        return isset($this->system_watermark_time);
+    }
+
+    public function clearSystemWatermarkTime()
+    {
+        unset($this->system_watermark_time);
+    }
+
+    /**
+     * Lower bound of the system time watermark for the sync job. This is only
+     * set for continuously syncing feature views.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp system_watermark_time = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSystemWatermarkTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->system_watermark_time = $var;
 
         return $this;
     }

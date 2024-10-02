@@ -22,46 +22,46 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User-provided description of a function.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Describes the Build step of the function that builds a container from the
      * given source.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig build_config = 3;</code>
      */
-    private $build_config = null;
+    protected $build_config = null;
     /**
      * Describes the Service being deployed. Currently deploys services to Cloud
      * Run (fully managed).
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.ServiceConfig service_config = 4;</code>
      */
-    private $service_config = null;
+    protected $service_config = null;
     /**
      * An Eventarc trigger managed by Google Cloud Functions that fires events in
      * response to a condition in another service.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.EventTrigger event_trigger = 5;</code>
      */
-    private $event_trigger = null;
+    protected $event_trigger = null;
     /**
      * Output only. State of the function.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Function.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The last update timestamp of a Cloud Function.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Labels associated with this Cloud Function.
      *
@@ -79,13 +79,13 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 10;</code>
      */
-    private $environment = 0;
+    protected $environment = 0;
     /**
      * Output only. The deployed url for the function.
      *
      * Generated from protobuf field <code>string url = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * [Preview] Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt function resources.
@@ -94,20 +94,20 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. The create timestamp of a Cloud Function. This is only
      * applicable to 2nd Gen functions.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

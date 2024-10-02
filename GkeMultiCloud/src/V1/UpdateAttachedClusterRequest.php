@@ -44,6 +44,7 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `platform_version`.
      *  *   `proxy_config.kubernetes_secret.name`.
      *  *   `proxy_config.kubernetes_secret.namespace`.
+     *  *   `security_posture_config.vulnerability_mode`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -68,6 +69,7 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                                        *   `platform_version`.
      *                                                                        *   `proxy_config.kubernetes_secret.name`.
      *                                                                        *   `proxy_config.kubernetes_secret.namespace`.
+     *                                                                        *   `security_posture_config.vulnerability_mode`
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAttachedClusterRequest
      *
@@ -107,6 +109,7 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *            *   `platform_version`.
      *            *   `proxy_config.kubernetes_secret.name`.
      *            *   `proxy_config.kubernetes_secret.namespace`.
+     *            *   `security_posture_config.vulnerability_mode`
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +198,7 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `platform_version`.
      *  *   `proxy_config.kubernetes_secret.name`.
      *  *   `proxy_config.kubernetes_secret.namespace`.
+     *  *   `security_posture_config.vulnerability_mode`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -229,6 +233,7 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *  *   `platform_version`.
      *  *   `proxy_config.kubernetes_secret.name`.
      *  *   `proxy_config.kubernetes_secret.namespace`.
+     *  *   `security_posture_config.vulnerability_mode`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

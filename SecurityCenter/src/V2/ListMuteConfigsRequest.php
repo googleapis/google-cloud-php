@@ -19,11 +19,11 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns the collection of mute configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]",
-     * "organizations/[organization_id]/locations/[location_id]",
-     * "folders/[folder_id]/locations/[location_id]",
-     * "projects/[project_id]/locations/[location_id]".
+     * is `organizations/[organization_id]", "folders/[folder_id]`,
+     * `projects/[project_id]`,
+     * `organizations/[organization_id]/locations/[location_id]`,
+     * `folders/[folder_id]/locations/[location_id]`,
+     * `projects/[project_id]/locations/[location_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -49,11 +49,11 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns the collection of mute configs. Its format
-     *                       is "organizations/[organization_id]", "folders/[folder_id]",
-     *                       "projects/[project_id]",
-     *                       "organizations/[organization_id]/locations/[location_id]",
-     *                       "folders/[folder_id]/locations/[location_id]",
-     *                       "projects/[project_id]/locations/[location_id]". Please see
+     *                       is `organizations/[organization_id]", "folders/[folder_id]`,
+     *                       `projects/[project_id]`,
+     *                       `organizations/[organization_id]/locations/[location_id]`,
+     *                       `folders/[folder_id]/locations/[location_id]`,
+     *                       `projects/[project_id]/locations/[location_id]`. Please see
      *                       {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\ListMuteConfigsRequest
@@ -74,11 +74,11 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns the collection of mute configs. Its format
-     *           is "organizations/[organization_id]", "folders/[folder_id]",
-     *           "projects/[project_id]",
-     *           "organizations/[organization_id]/locations/[location_id]",
-     *           "folders/[folder_id]/locations/[location_id]",
-     *           "projects/[project_id]/locations/[location_id]".
+     *           is `organizations/[organization_id]", "folders/[folder_id]`,
+     *           `projects/[project_id]`,
+     *           `organizations/[organization_id]/locations/[location_id]`,
+     *           `folders/[folder_id]/locations/[location_id]`,
+     *           `projects/[project_id]/locations/[location_id]`.
      *     @type int $page_size
      *           The maximum number of configs to return. The service may return fewer than
      *           this value.
@@ -98,11 +98,11 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns the collection of mute configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]",
-     * "organizations/[organization_id]/locations/[location_id]",
-     * "folders/[folder_id]/locations/[location_id]",
-     * "projects/[project_id]/locations/[location_id]".
+     * is `organizations/[organization_id]", "folders/[folder_id]`,
+     * `projects/[project_id]`,
+     * `organizations/[organization_id]/locations/[location_id]`,
+     * `folders/[folder_id]/locations/[location_id]`,
+     * `projects/[project_id]/locations/[location_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -114,11 +114,11 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns the collection of mute configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]",
-     * "organizations/[organization_id]/locations/[location_id]",
-     * "folders/[folder_id]/locations/[location_id]",
-     * "projects/[project_id]/locations/[location_id]".
+     * is `organizations/[organization_id]", "folders/[folder_id]`,
+     * `projects/[project_id]`,
+     * `organizations/[organization_id]/locations/[location_id]`,
+     * `folders/[folder_id]/locations/[location_id]`,
+     * `projects/[project_id]/locations/[location_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

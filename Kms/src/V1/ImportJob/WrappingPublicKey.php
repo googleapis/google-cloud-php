@@ -26,7 +26,7 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      */
-    private $pem = '';
+    protected $pem = '';
 
     /**
      * Constructor.
@@ -83,6 +83,4 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WrappingPublicKey::class, \Google\Cloud\Kms\V1\ImportJob_WrappingPublicKey::class);
 

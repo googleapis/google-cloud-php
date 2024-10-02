@@ -22,7 +22,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobEvent.JobEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. The [job name(s)][google.cloud.talent.v4.Job.name] associated
      * with this event. For example, if this is an

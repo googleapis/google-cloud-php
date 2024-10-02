@@ -15,6 +15,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "accesscontextmanager"
     },
+    "AdsMarketingPlatformAdmin": {
+        "language": "php",
+        "distribution_name": "google/ads-marketingplatform-admin",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/ads-marketingplatform-admin/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "marketingplatformadmin"
+    },
     "AdvisoryNotifications": {
         "language": "php",
         "distribution_name": "google/cloud-advisorynotifications",
@@ -790,14 +798,6 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "ids"
     },
-    "Iot": {
-        "language": "php",
-        "distribution_name": "google/cloud-iot",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-iot/latest",
-        "library_type": "GAPIC_AUTO",
-        "api_shortname": "cloudiot"
-    },
     "Kms": {
         "language": "php",
         "distribution_name": "google/cloud-kms",
@@ -973,6 +973,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-optimization/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudoptimization"
+    },
+    "OracleDatabase": {
+        "language": "php",
+        "distribution_name": "google/cloud-oracledatabase",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-oracledatabase/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "oracledatabase"
     },
     "OrchestrationAirflow": {
         "language": "php",
@@ -1294,7 +1302,7 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },
-    "ShoppingMerchantDatasources": {
+    "ShoppingMerchantDataSources": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-datasources",
         "release_level": "preview",

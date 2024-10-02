@@ -81,6 +81,4 @@ class NodeState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NodeState::class, \Google\Cloud\Dataproc\V1\WorkflowNode_NodeState::class);
 

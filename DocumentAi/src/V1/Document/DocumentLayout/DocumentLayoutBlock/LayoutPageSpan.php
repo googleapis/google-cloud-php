@@ -20,13 +20,13 @@ class LayoutPageSpan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_start = 1;</code>
      */
-    private $page_start = 0;
+    protected $page_start = 0;
     /**
      * Page where block ends in the document.
      *
      * Generated from protobuf field <code>int32 page_end = 2;</code>
      */
-    private $page_end = 0;
+    protected $page_end = 0;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Entity entity = 1;</code>
      */
-    private $entity = null;
+    protected $entity = null;
     /**
      * All logo tracks where the recognized logo appears. Each track corresponds
      * to one logo instance appearing in consecutive frames.

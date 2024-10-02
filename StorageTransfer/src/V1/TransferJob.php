@@ -39,38 +39,38 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A description provided by the user for the job. Its max length is 1024
      * bytes when Unicode-encoded.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The ID of the Google Cloud project that owns the job.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Transfer specification.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferSpec transfer_spec = 4;</code>
      */
-    private $transfer_spec = null;
+    protected $transfer_spec = null;
     /**
      * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * Logging configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 14;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Specifies schedule for the transfer job.
      * This is an optional field. When the field is not set, the job never
@@ -79,14 +79,14 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.Schedule schedule = 5;</code>
      */
-    private $schedule = null;
+    protected $schedule = null;
     /**
      * Specifies the event stream for the transfer job for event-driven transfers.
      * When EventStream is specified, the Schedule fields are ignored.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.EventStream event_stream = 15;</code>
      */
-    private $event_stream = null;
+    protected $event_stream = null;
     /**
      * Status of the job. This value MUST be specified for
      * `CreateTransferJobRequests`.
@@ -99,32 +99,32 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob.Status status = 6;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Output only. The time that the transfer job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_time = null;
+    protected $creation_time = null;
     /**
      * Output only. The time that the transfer job was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_modification_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modification_time = null;
+    protected $last_modification_time = null;
     /**
      * Output only. The time that the transfer job was deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp deletion_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deletion_time = null;
+    protected $deletion_time = null;
     /**
      * The name of the most recently started TransferOperation of this JobConfig.
      * Present if a TransferOperation has been created for this JobConfig.
      *
      * Generated from protobuf field <code>string latest_operation_name = 12;</code>
      */
-    private $latest_operation_name = '';
+    protected $latest_operation_name = '';
 
     /**
      * Constructor.

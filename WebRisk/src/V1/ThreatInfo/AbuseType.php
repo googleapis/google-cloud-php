@@ -66,6 +66,4 @@ class AbuseType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AbuseType::class, \Google\Cloud\WebRisk\V1\ThreatInfo_AbuseType::class);
 

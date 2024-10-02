@@ -24,13 +24,13 @@ class PartitionId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * If not empty, the ID of the namespace to which the entities belong.
      *
      * Generated from protobuf field <code>string namespace_id = 4;</code>
      */
-    private $namespace_id = '';
+    protected $namespace_id = '';
 
     /**
      * Constructor.

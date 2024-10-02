@@ -23,7 +23,27 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
+    /**
+     * Optional. Optional limit on the number of
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] to include in the response. The
+     * service may return fewer than this value. Further
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
+     * including the
+     * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
+     * in a subsequent request.  If unspecified, at most
+     * 100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     *
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $page_size = 0;
+    /**
+     * Optional. Optional pagination token, returned earlier via
+     * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token].
+     *
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $page_token = '';
     /**
      * Optional. Filter to apply when listing
      * [KeyHandles][google.cloud.kms.v1.KeyHandle], e.g.
@@ -31,7 +51,7 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. Name of the resource project and location from which to list
@@ -59,6 +79,18 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      *           Required. Name of the resource project and location from which to list
      *           [KeyHandles][google.cloud.kms.v1.KeyHandle], e.g.
      *           `projects/{PROJECT_ID}/locations/{LOCATION}`.
+     *     @type int $page_size
+     *           Optional. Optional limit on the number of
+     *           [KeyHandles][google.cloud.kms.v1.KeyHandle] to include in the response. The
+     *           service may return fewer than this value. Further
+     *           [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
+     *           including the
+     *           [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
+     *           in a subsequent request.  If unspecified, at most
+     *           100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     *     @type string $page_token
+     *           Optional. Optional pagination token, returned earlier via
+     *           [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token].
      *     @type string $filter
      *           Optional. Filter to apply when listing
      *           [KeyHandles][google.cloud.kms.v1.KeyHandle], e.g.
@@ -96,6 +128,74 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional limit on the number of
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] to include in the response. The
+     * service may return fewer than this value. Further
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
+     * including the
+     * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
+     * in a subsequent request.  If unspecified, at most
+     * 100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     *
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
+
+    /**
+     * Optional. Optional limit on the number of
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] to include in the response. The
+     * service may return fewer than this value. Further
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
+     * including the
+     * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
+     * in a subsequent request.  If unspecified, at most
+     * 100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     *
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional pagination token, returned earlier via
+     * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token].
+     *
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPageToken()
+    {
+        return $this->page_token;
+    }
+
+    /**
+     * Optional. Optional pagination token, returned earlier via
+     * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token].
+     *
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->page_token = $var;
 
         return $this;
     }

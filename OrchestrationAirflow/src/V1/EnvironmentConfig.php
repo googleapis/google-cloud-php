@@ -97,8 +97,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * The maintenance window period must encompass at least 12 hours per week.
      * This may be split into multiple chunks, each with a size of
      * at least 4 hours.
-     * If this value is omitted, the default value for maintenance window will be
-     * applied. The default value is Saturday and Sunday 00-06 GMT.
+     * If this value is omitted, the default value for maintenance window is
+     * applied. By default, maintenance windows are from 00:00:00 to 04:00:00
+     * (GMT) on Friday, Saturday, and Sunday every week.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.MaintenanceWindow maintenance_window = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -221,8 +222,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           The maintenance window period must encompass at least 12 hours per week.
      *           This may be split into multiple chunks, each with a size of
      *           at least 4 hours.
-     *           If this value is omitted, the default value for maintenance window will be
-     *           applied. The default value is Saturday and Sunday 00-06 GMT.
+     *           If this value is omitted, the default value for maintenance window is
+     *           applied. By default, maintenance windows are from 00:00:00 to 04:00:00
+     *           (GMT) on Friday, Saturday, and Sunday every week.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig $workloads_config
      *           Optional. The workloads configuration settings for the GKE cluster
      *           associated with the Cloud Composer environment. The GKE cluster runs
@@ -631,8 +633,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * The maintenance window period must encompass at least 12 hours per week.
      * This may be split into multiple chunks, each with a size of
      * at least 4 hours.
-     * If this value is omitted, the default value for maintenance window will be
-     * applied. The default value is Saturday and Sunday 00-06 GMT.
+     * If this value is omitted, the default value for maintenance window is
+     * applied. By default, maintenance windows are from 00:00:00 to 04:00:00
+     * (GMT) on Friday, Saturday, and Sunday every week.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.MaintenanceWindow maintenance_window = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\MaintenanceWindow|null
@@ -662,8 +665,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * The maintenance window period must encompass at least 12 hours per week.
      * This may be split into multiple chunks, each with a size of
      * at least 4 hours.
-     * If this value is omitted, the default value for maintenance window will be
-     * applied. The default value is Saturday and Sunday 00-06 GMT.
+     * If this value is omitted, the default value for maintenance window is
+     * applied. By default, maintenance windows are from 00:00:00 to 04:00:00
+     * (GMT) on Friday, Saturday, and Sunday every week.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.MaintenanceWindow maintenance_window = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\MaintenanceWindow $var

@@ -24,7 +24,7 @@ class MacVerifyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * This field indicates whether or not the verification operation for
      * [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac] over
@@ -33,7 +33,7 @@ class MacVerifyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool success = 2;</code>
      */
-    private $success = false;
+    protected $success = false;
     /**
      * Integrity verification field. A flag indicating whether
      * [MacVerifyRequest.data_crc32c][google.cloud.kms.v1.MacVerifyRequest.data_crc32c]
@@ -52,7 +52,7 @@ class MacVerifyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_data_crc32c = 3;</code>
      */
-    private $verified_data_crc32c = false;
+    protected $verified_data_crc32c = false;
     /**
      * Integrity verification field. A flag indicating whether
      * [MacVerifyRequest.mac_crc32c][google.cloud.kms.v1.MacVerifyRequest.mac_crc32c]
@@ -71,7 +71,7 @@ class MacVerifyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_mac_crc32c = 4;</code>
      */
-    private $verified_mac_crc32c = false;
+    protected $verified_mac_crc32c = false;
     /**
      * Integrity verification field. This value is used for the integrity
      * verification of [MacVerifyResponse.success]. If the value of this field
@@ -80,7 +80,7 @@ class MacVerifyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_success_integrity = 5;</code>
      */
-    private $verified_success_integrity = false;
+    protected $verified_success_integrity = false;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for
@@ -88,7 +88,7 @@ class MacVerifyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 6;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.

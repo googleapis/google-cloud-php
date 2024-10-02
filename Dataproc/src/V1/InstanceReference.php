@@ -20,25 +20,25 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_name = 1;</code>
      */
-    private $instance_name = '';
+    protected $instance_name = '';
     /**
      * The unique identifier of the Compute Engine instance.
      *
      * Generated from protobuf field <code>string instance_id = 2;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * The public RSA key used for sharing data with this instance.
      *
      * Generated from protobuf field <code>string public_key = 3;</code>
      */
-    private $public_key = '';
+    protected $public_key = '';
     /**
      * The public ECIES key used for sharing data with this instance.
      *
      * Generated from protobuf field <code>string public_ecies_key = 4;</code>
      */
-    private $public_ecies_key = '';
+    protected $public_ecies_key = '';
 
     /**
      * Constructor.

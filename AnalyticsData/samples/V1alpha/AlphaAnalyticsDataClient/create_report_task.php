@@ -36,6 +36,12 @@ use Google\Rpc\Status;
  * asynchronous request to form a customized report of your Google Analytics
  * event data.
  *
+ * A report task will be retained and available for querying for 72 hours
+ * after it has been created.
+ *
+ * A report task created by one user can be listed and queried by all users
+ * who have access to the property.
+ *
  * @param string $formattedParent The parent resource where this report task will be created.
  *                                Format: `properties/{propertyId}`
  *                                Please see {@see AlphaAnalyticsDataClient::propertyName()} for help formatting this field.

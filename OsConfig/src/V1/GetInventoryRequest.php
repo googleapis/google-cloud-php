@@ -25,14 +25,14 @@ class GetInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Inventory view indicating what information should be included in the
      * inventory resource. If unspecified, the default view is BASIC.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.InventoryView view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. API resource name for inventory resource.

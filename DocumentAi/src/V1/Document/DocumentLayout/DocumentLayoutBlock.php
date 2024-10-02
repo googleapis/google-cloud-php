@@ -21,13 +21,13 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string block_id = 1;</code>
      */
-    private $block_id = '';
+    protected $block_id = '';
     /**
      * Page span of the block.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutPageSpan page_span = 5;</code>
      */
-    private $page_span = null;
+    protected $page_span = null;
     protected $block;
 
     /**

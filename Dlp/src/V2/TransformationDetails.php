@@ -23,14 +23,14 @@ class TransformationDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_name = 1;</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * The top level name of the container where the transformation is located
      * (this will be the source file name or table name).
      *
      * Generated from protobuf field <code>string container_name = 2;</code>
      */
-    private $container_name = '';
+    protected $container_name = '';
     /**
      * Description of transformation. This would only contain more than one
      * element if there were multiple matching transformations and which one to
@@ -48,7 +48,7 @@ class TransformationDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationResultStatus status_details = 4;</code>
      */
-    private $status_details = null;
+    protected $status_details = null;
     /**
      * The number of bytes that were transformed. If transformation was
      * unsuccessful or did not take place because there was no content to
@@ -56,13 +56,13 @@ class TransformationDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 transformed_bytes = 5;</code>
      */
-    private $transformed_bytes = 0;
+    protected $transformed_bytes = 0;
     /**
      * The precise location of the transformed content in the original container.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationLocation transformation_location = 6;</code>
      */
-    private $transformation_location = null;
+    protected $transformation_location = null;
 
     /**
      * Constructor.

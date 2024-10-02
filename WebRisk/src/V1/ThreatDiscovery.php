@@ -20,7 +20,7 @@ class ThreatDiscovery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatDiscovery.Platform platform = 1;</code>
      */
-    private $platform = 0;
+    protected $platform = 0;
     /**
      * CLDR region code of the countries/regions the URI poses a threat ordered
      * from most impact to least impact. Example: "US" for United States.

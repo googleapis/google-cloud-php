@@ -23,7 +23,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The digest of the data to sign. The digest must be produced with
      * the same digest algorithm as specified by the key version's
@@ -34,7 +34,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.Digest digest = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $digest = null;
+    protected $digest = null;
     /**
      * Optional. An optional CRC32C checksum of the
      * [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest].
@@ -58,7 +58,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value digest_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $digest_crc32c = null;
+    protected $digest_crc32c = null;
     /**
      * Optional. The data to sign.
      * It can't be supplied if
@@ -67,7 +67,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data = '';
+    protected $data = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data].
@@ -91,7 +91,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_crc32c = null;
+    protected $data_crc32c = null;
 
     /**
      * @param string                      $name   Required. The resource name of the
@@ -327,7 +327,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value digest_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getDigestCrc32CValue()
+    public function getDigestCrc32CUnwrapped()
     {
         return $this->readWrapperValue("digest_crc32c");
     }
@@ -392,7 +392,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setDigestCrc32CValue($var)
+    public function setDigestCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("digest_crc32c", $var);
         return $this;}
@@ -494,7 +494,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getDataCrc32CValue()
+    public function getDataCrc32CUnwrapped()
     {
         return $this->readWrapperValue("data_crc32c");
     }
@@ -559,7 +559,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setDataCrc32CValue($var)
+    public function setDataCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("data_crc32c", $var);
         return $this;}

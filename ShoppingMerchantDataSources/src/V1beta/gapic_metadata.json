@@ -1,0 +1,62 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.datasources.v1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\DataSources\\V1beta",
+    "services": {
+        "DataSourcesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataSourcesServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataSource": {
+                            "methods": [
+                                "createDataSource"
+                            ]
+                        },
+                        "DeleteDataSource": {
+                            "methods": [
+                                "deleteDataSource"
+                            ]
+                        },
+                        "FetchDataSource": {
+                            "methods": [
+                                "fetchDataSource"
+                            ]
+                        },
+                        "GetDataSource": {
+                            "methods": [
+                                "getDataSource"
+                            ]
+                        },
+                        "ListDataSources": {
+                            "methods": [
+                                "listDataSources"
+                            ]
+                        },
+                        "UpdateDataSource": {
+                            "methods": [
+                                "updateDataSource"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FileUploadsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FileUploadsServiceGapicClient",
+                    "rpcs": {
+                        "GetFileUpload": {
+                            "methods": [
+                                "getFileUpload"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

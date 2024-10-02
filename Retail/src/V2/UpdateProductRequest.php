@@ -29,7 +29,7 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product = null;
+    protected $product = null;
     /**
      * Indicates which fields in the provided
      * [Product][google.cloud.retail.v2.Product] to update. The immutable and
@@ -44,7 +44,7 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      * found, a new [Product][google.cloud.retail.v2.Product] will be created. In
@@ -52,7 +52,7 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\Retail\V2\Product $product    Required. The product to update/create.

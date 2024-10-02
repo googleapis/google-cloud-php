@@ -17,7 +17,7 @@ class PathNodeAssociatedFinding extends \Google\Protobuf\Internal\Message
 {
     /**
      * Canonical name of the associated findings. Example:
-     * organizations/123/sources/456/findings/789
+     * `organizations/123/sources/456/findings/789`
      *
      * Generated from protobuf field <code>string canonical_finding = 1;</code>
      */
@@ -43,7 +43,7 @@ class PathNodeAssociatedFinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $canonical_finding
      *           Canonical name of the associated findings. Example:
-     *           organizations/123/sources/456/findings/789
+     *           `organizations/123/sources/456/findings/789`
      *     @type string $finding_category
      *           The additional taxonomy group within findings from a given source.
      *     @type string $name
@@ -57,7 +57,7 @@ class PathNodeAssociatedFinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Canonical name of the associated findings. Example:
-     * organizations/123/sources/456/findings/789
+     * `organizations/123/sources/456/findings/789`
      *
      * Generated from protobuf field <code>string canonical_finding = 1;</code>
      * @return string
@@ -69,7 +69,7 @@ class PathNodeAssociatedFinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Canonical name of the associated findings. Example:
-     * organizations/123/sources/456/findings/789
+     * `organizations/123/sources/456/findings/789`
      *
      * Generated from protobuf field <code>string canonical_finding = 1;</code>
      * @param string $var

@@ -28,7 +28,11 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
      */
     protected $content = '';
     /**
-     * Relevance score.
+     * The relevance of the chunk for a given query. Values range from
+     * 0.0 (completely irrelevant) to 1.0 (completely relevant).
+     * This value is for informational purpose only. It may change for
+     * the same query and chunk at any time due to a model retraining or
+     * change in implementation.
      *
      * Generated from protobuf field <code>optional float relevance_score = 3;</code>
      */
@@ -45,7 +49,11 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
      *     @type string $content
      *           Chunk textual content.
      *     @type float $relevance_score
-     *           Relevance score.
+     *           The relevance of the chunk for a given query. Values range from
+     *           0.0 (completely irrelevant) to 1.0 (completely relevant).
+     *           This value is for informational purpose only. It may change for
+     *           the same query and chunk at any time due to a model retraining or
+     *           change in implementation.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,7 +114,11 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relevance score.
+     * The relevance of the chunk for a given query. Values range from
+     * 0.0 (completely irrelevant) to 1.0 (completely relevant).
+     * This value is for informational purpose only. It may change for
+     * the same query and chunk at any time due to a model retraining or
+     * change in implementation.
      *
      * Generated from protobuf field <code>optional float relevance_score = 3;</code>
      * @return float
@@ -127,7 +139,11 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relevance score.
+     * The relevance of the chunk for a given query. Values range from
+     * 0.0 (completely irrelevant) to 1.0 (completely relevant).
+     * This value is for informational purpose only. It may change for
+     * the same query and chunk at any time due to a model retraining or
+     * change in implementation.
      *
      * Generated from protobuf field <code>optional float relevance_score = 3;</code>
      * @param float $var

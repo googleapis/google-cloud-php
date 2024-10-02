@@ -43,6 +43,12 @@ class HarmCategory
      * Generated from protobuf enum <code>HARM_CATEGORY_SEXUALLY_EXPLICIT = 4;</code>
      */
     const HARM_CATEGORY_SEXUALLY_EXPLICIT = 4;
+    /**
+     * The harm category is civic integrity.
+     *
+     * Generated from protobuf enum <code>HARM_CATEGORY_CIVIC_INTEGRITY = 5;</code>
+     */
+    const HARM_CATEGORY_CIVIC_INTEGRITY = 5;
 
     private static $valueToName = [
         self::HARM_CATEGORY_UNSPECIFIED => 'HARM_CATEGORY_UNSPECIFIED',
@@ -50,6 +56,7 @@ class HarmCategory
         self::HARM_CATEGORY_DANGEROUS_CONTENT => 'HARM_CATEGORY_DANGEROUS_CONTENT',
         self::HARM_CATEGORY_HARASSMENT => 'HARM_CATEGORY_HARASSMENT',
         self::HARM_CATEGORY_SEXUALLY_EXPLICIT => 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+        self::HARM_CATEGORY_CIVIC_INTEGRITY => 'HARM_CATEGORY_CIVIC_INTEGRITY',
     ];
 
     public static function name($value)

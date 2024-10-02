@@ -20,14 +20,14 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job_name = '';
+    protected $job_name = '';
     /**
      * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The job to update. `transferJob` is expected to specify one or
      * more of five fields:
@@ -44,7 +44,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_job = null;
+    protected $transfer_job = null;
     /**
      * The field mask of the fields in `transferJob` that are to be updated in
      * this request.  Fields in `transferJob` that can be updated are:
@@ -60,7 +60,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_transfer_job_field_mask = 4;</code>
      */
-    private $update_transfer_job_field_mask = null;
+    protected $update_transfer_job_field_mask = null;
 
     /**
      * Constructor.

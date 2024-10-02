@@ -78,6 +78,4 @@ class ExportDataOutputInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExportDataOutputInfo::class, \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata_ExportDataOutputInfo::class);
 

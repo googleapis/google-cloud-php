@@ -10,8 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines a conditioned behavior to employ during serving.
- * Must be attached to a [ServingConfig][] to be considered at serving time.
- * Permitted actions dependent on `SolutionType`.
+ * Must be attached to a
+ * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] to be
+ * considered at serving time. Permitted actions dependent on `SolutionType`.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.Control</code>
  */
@@ -33,8 +34,9 @@ class Control extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Output only. List of all [ServingConfig][] ids this control is attached to.
-     * May take up to 10 minutes to update after changes.
+     * Output only. List of all
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -93,8 +95,9 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Must be UTF-8 encoded string. Length limit is 128 characters.
      *           Otherwise an INVALID ARGUMENT error is thrown.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $associated_serving_config_ids
-     *           Output only. List of all [ServingConfig][] ids this control is attached to.
-     *           May take up to 10 minutes to update after changes.
+     *           Output only. List of all
+     *           [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     *           control is attached to. May take up to 10 minutes to update after changes.
      *     @type int $solution_type
      *           Required. Immutable. What solution the control belongs to.
      *           Must be compatible with vertical of resource.
@@ -304,8 +307,9 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of all [ServingConfig][] ids this control is attached to.
-     * May take up to 10 minutes to update after changes.
+     * Output only. List of all
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -316,8 +320,9 @@ class Control extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of all [ServingConfig][] ids this control is attached to.
-     * May take up to 10 minutes to update after changes.
+     * Output only. List of all
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
+     * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -23,7 +23,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The data to encrypt. Must be no larger than 64KiB.
      * The maximum size depends on the key version's
@@ -36,7 +36,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes plaintext = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $plaintext = '';
+    protected $plaintext = '';
     /**
      * Optional. Optional data that, if specified, must also be provided during
      * decryption through
@@ -54,7 +54,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes additional_authenticated_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data = '';
+    protected $additional_authenticated_data = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [RawEncryptRequest.plaintext][google.cloud.kms.v1.RawEncryptRequest.plaintext].
@@ -73,7 +73,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $plaintext_crc32c = null;
+    protected $plaintext_crc32c = null;
     /**
      * Optional. An optional CRC32C checksum of the
      * [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
@@ -95,7 +95,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $additional_authenticated_data_crc32c = null;
+    protected $additional_authenticated_data_crc32c = null;
     /**
      * Optional. A customer-supplied initialization vector that will be used for
      * encryption. If it is not provided for AES-CBC and AES-CTR, one will be
@@ -104,7 +104,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes initialization_vector = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $initialization_vector = '';
+    protected $initialization_vector = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [RawEncryptRequest.initialization_vector][google.cloud.kms.v1.RawEncryptRequest.initialization_vector].
@@ -125,7 +125,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $initialization_vector_crc32c = null;
+    protected $initialization_vector_crc32c = null;
 
     /**
      * Constructor.
@@ -397,7 +397,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getPlaintextCrc32CValue()
+    public function getPlaintextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("plaintext_crc32c");
     }
@@ -452,7 +452,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setPlaintextCrc32CValue($var)
+    public function setPlaintextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("plaintext_crc32c", $var);
         return $this;}
@@ -518,7 +518,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getAdditionalAuthenticatedDataCrc32CValue()
+    public function getAdditionalAuthenticatedDataCrc32CUnwrapped()
     {
         return $this->readWrapperValue("additional_authenticated_data_crc32c");
     }
@@ -579,7 +579,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setAdditionalAuthenticatedDataCrc32CValue($var)
+    public function setAdditionalAuthenticatedDataCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("additional_authenticated_data_crc32c", $var);
         return $this;}
@@ -675,7 +675,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value initialization_vector_crc32c = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getInitializationVectorCrc32CValue()
+    public function getInitializationVectorCrc32CUnwrapped()
     {
         return $this->readWrapperValue("initialization_vector_crc32c");
     }
@@ -734,7 +734,7 @@ class RawEncryptRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setInitializationVectorCrc32CValue($var)
+    public function setInitializationVectorCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("initialization_vector_crc32c", $var);
         return $this;}

@@ -22,7 +22,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      */
-    private $plaintext = '';
+    protected $plaintext = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [DecryptResponse.plaintext][google.cloud.kms.v1.DecryptResponse.plaintext].
@@ -44,13 +44,13 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      */
-    private $plaintext_crc32c = null;
+    protected $plaintext_crc32c = null;
     /**
      * Whether the Decryption was performed using the primary key version.
      *
      * Generated from protobuf field <code>bool used_primary = 3;</code>
      */
-    private $used_primary = false;
+    protected $used_primary = false;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
@@ -58,7 +58,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.
@@ -189,7 +189,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return int|string|null
      */
-    public function getPlaintextCrc32CValue()
+    public function getPlaintextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("plaintext_crc32c");
     }
@@ -250,7 +250,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setPlaintextCrc32CValue($var)
+    public function setPlaintextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("plaintext_crc32c", $var);
         return $this;}

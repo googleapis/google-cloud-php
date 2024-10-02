@@ -30,7 +30,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      */
-    private $attribution_token = '';
+    protected $attribution_token = '';
     /**
      * Deprecated. Matched recent searches of this user. The maximum number of
      * recent searches is 10. This field is a restricted feature. If you want to

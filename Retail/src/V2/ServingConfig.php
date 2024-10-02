@@ -22,7 +22,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The human readable serving config display name. Used in Retail
      * UI.
@@ -31,7 +31,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The id of the model in the same [Catalog][google.cloud.retail.v2.Catalog]
      * to use at serving time. Currently only RecommendationModels are supported:
@@ -44,7 +44,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_id = 3;</code>
      */
-    private $model_id = '';
+    protected $model_id = '';
     /**
      * How much price ranking we want in serving results.
      * Price reranking causes product items with a similar
@@ -64,7 +64,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string price_reranking_level = 4;</code>
      */
-    private $price_reranking_level = '';
+    protected $price_reranking_level = '';
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
      * The ids refer to the ids of [Control][google.cloud.retail.v2.Control]
@@ -89,7 +89,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 6;</code>
      */
-    private $dynamic_facet_spec = null;
+    protected $dynamic_facet_spec = null;
     /**
      * Condition boost specifications. If a product matches multiple conditions
      * in the specifications, boost scores from these specifications are all
@@ -210,7 +210,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string diversity_level = 8;</code>
      */
-    private $diversity_level = '';
+    protected $diversity_level = '';
     /**
      * What kind of diversity to use - data driven or rule based. If unset, the
      * server behavior defaults to
@@ -218,7 +218,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig.DiversityType diversity_type = 20;</code>
      */
-    private $diversity_type = 0;
+    protected $diversity_type = 0;
     /**
      * Whether to add additional category filters on the `similar-items` model.
      * If not specified, we enable it by default.
@@ -235,14 +235,14 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string enable_category_filter_level = 16;</code>
      */
-    private $enable_category_filter_level = '';
+    protected $enable_category_filter_level = '';
     /**
      * When the flag is enabled, the products in the denylist will not be filtered
      * out in the recommendation filtering results.
      *
      * Generated from protobuf field <code>bool ignore_recs_denylist = 24;</code>
      */
-    private $ignore_recs_denylist = false;
+    protected $ignore_recs_denylist = false;
     /**
      * The specification for personalization spec.
      * Can only be set if
@@ -259,7 +259,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.PersonalizationSpec personalization_spec = 21;</code>
      */
-    private $personalization_spec = null;
+    protected $personalization_spec = null;
     /**
      * Required. Immutable. Specifies the solution types that a serving config can
      * be associated with. Currently we support setting only one type of solution.

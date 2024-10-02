@@ -22,7 +22,7 @@ class PurgeUserEventsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 purged_events_count = 1;</code>
      */
-    private $purged_events_count = 0;
+    protected $purged_events_count = 0;
 
     /**
      * Constructor.

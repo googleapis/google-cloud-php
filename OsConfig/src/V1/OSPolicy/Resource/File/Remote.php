@@ -21,13 +21,13 @@ class Remote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * SHA256 checksum of the remote file.
      *
      * Generated from protobuf field <code>string sha256_checksum = 2;</code>
      */
-    private $sha256_checksum = '';
+    protected $sha256_checksum = '';
 
     /**
      * Constructor.

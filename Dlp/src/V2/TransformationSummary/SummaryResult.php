@@ -21,20 +21,20 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 count = 1;</code>
      */
-    private $count = 0;
+    protected $count = 0;
     /**
      * Outcome of the transformation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationSummary.TransformationResultCode code = 2;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * A place for warnings or errors to show up if a transformation didn't
      * work as expected.
      *
      * Generated from protobuf field <code>string details = 3;</code>
      */
-    private $details = '';
+    protected $details = '';
 
     /**
      * Constructor.
@@ -138,6 +138,4 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SummaryResult::class, \Google\Cloud\Dlp\V2\TransformationSummary_SummaryResult::class);
 

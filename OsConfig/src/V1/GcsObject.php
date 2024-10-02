@@ -20,20 +20,20 @@ class GcsObject extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * Required. Name of the Cloud Storage object.
      *
      * Generated from protobuf field <code>string object = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $object = '';
+    protected $object = '';
     /**
      * Required. Generation number of the Cloud Storage object. This is used to
      * ensure that the ExecStep specified by this PatchJob does not change.
      *
      * Generated from protobuf field <code>int64 generation_number = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $generation_number = 0;
+    protected $generation_number = 0;
 
     /**
      * Constructor.

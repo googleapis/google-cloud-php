@@ -57,7 +57,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Set only if values should be bucketized into intervals. Must be set
      * for facets with numerical values. Must not be set for facet with text
@@ -120,7 +120,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool case_insensitive = 10;</code>
      */
-    private $case_insensitive = false;
+    protected $case_insensitive = false;
     /**
      * The order in which
      * [SearchResponse.Facet.values][google.cloud.retail.v2.SearchResponse.Facet.values]
@@ -143,7 +143,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * The query that is used to compute facet for the given facet key.
      * When provided, it overrides the default behavior of facet
@@ -168,14 +168,14 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 5;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Returns the min and max value for each numerical facet intervals.
      * Ignored for textual facets.
      *
      * Generated from protobuf field <code>bool return_min_max = 11;</code>
      */
-    private $return_min_max = false;
+    protected $return_min_max = false;
 
     /**
      * Constructor.

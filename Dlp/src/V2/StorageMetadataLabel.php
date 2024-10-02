@@ -20,7 +20,7 @@ class StorageMetadataLabel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

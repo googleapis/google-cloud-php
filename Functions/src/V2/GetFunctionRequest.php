@@ -20,7 +20,7 @@ class GetFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The version of the 1st gen function whose details should
      * be obtained. The version of a 1st gen function is an integer that starts
@@ -31,7 +31,7 @@ class GetFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $revision = '';
+    protected $revision = '';
 
     /**
      * @param string $name Required. The name of the function which details should be obtained. Please see

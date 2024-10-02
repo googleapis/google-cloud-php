@@ -49,7 +49,8 @@ use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Provides interfaces for managing Cloud KMS Autokey folder-level
+ * Service Description: Provides interfaces for managing [Cloud KMS
+ * Autokey](https://cloud.google.com/kms/help/autokey) folder-level
  * configurations. A configuration is inherited by all descendent projects. A
  * configuration at one folder overrides any other configurations in its
  * ancestry. Setting a configuration on a folder is a prerequisite for Cloud KMS
@@ -298,8 +299,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function showEffectiveAutokeyConfig(ShowEffectiveAutokeyConfigRequest $request, array $callOptions = []): ShowEffectiveAutokeyConfigResponse
-    {
+    public function showEffectiveAutokeyConfig(
+        ShowEffectiveAutokeyConfigRequest $request,
+        array $callOptions = []
+    ): ShowEffectiveAutokeyConfigResponse {
         return $this->startApiCall('ShowEffectiveAutokeyConfig', $request, $callOptions)->wait();
     }
 
@@ -471,8 +474,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

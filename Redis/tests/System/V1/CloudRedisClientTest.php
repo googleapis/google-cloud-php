@@ -18,7 +18,10 @@
 namespace Google\Cloud\Redis\Tests\System\V1;
 
 use Google\Auth\CredentialsLoader;
-use Google\Cloud\Redis\V1\CloudRedisClient;
+use Google\Cloud\Redis\V1\Client\CloudRedisClient;
+use Google\Cloud\Redis\V1\CreateInstanceRequest;
+use Google\Cloud\Redis\V1\DeleteInstanceRequest;
+use Google\Cloud\Redis\V1\ListInstancesRequest;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\OperationMetadata;
@@ -31,111 +34,83 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudRedisClientTest extends TestCase
 {
-    protected static $grpcClient;
-    protected static $projectId;
-    private static $hasSetUp = false;
+    const LOCATION_ID = 'us-central1';
+    const TIER = Tier::BASIC;
+    const MEMORY_SIZE_GB = 1;
 
-    public function clientProvider()
+    private static CloudRedisClient $client;
+    private static string $parent;
+    private static string $instanceId;
+    private static string $instanceName;
+
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures()
     {
-        self::setUpBeforeClass();
-
-        return [
-            [self::$grpcClient]
-        ];
-    }
-
-    public static function setUpBeforeClass(): void
-    {
-        if (self::$hasSetUp) {
-            return;
+        if (!$keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {
+            self::markTestSkipped('Set the GOOGLE_CLOUD_PHP_TESTS_KEY_PATH environment variable');
         }
-
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        $projectId = $keyFileData['project_id'] ?? '';
 
-        self::$grpcClient = new CloudRedisClient([
+        self::$client = new CloudRedisClient([
             'credentials' => $keyFilePath,
             'transport' => 'grpc'
         ]);
 
-        self::$projectId = $keyFileData['project_id'];
-
-        self::$hasSetUp = true;
+        self::$parent = self::$client::locationName($projectId, self::LOCATION_ID);
+        self::$instanceId = uniqid('redis-test-instance-');
+        self::$instanceName = self::$client::instanceName($projectId, self::LOCATION_ID, self::$instanceId);
     }
 
-    private function deleteInstance(CloudRedisClient $client, $instanceToDelete)
+    public function testCreateOperations()
     {
-        $operationResponse = $client->deleteInstance($instanceToDelete);
-        while (!$operationResponse->isDone()) {
-            // get the $any object to ensure this does not fail
-            $any = $operationResponse->getMetadata();
-            $this->assertInstanceOf(OperationMetadata::class, $any);
-            sleep(5);
-            $operationResponse->reload();
-        }
+        // Create the listance
+        $instance = (new Instance())
+            ->setTier(self::TIER)
+            ->setMemorySizeGb(self::MEMORY_SIZE_GB);
+        $createOp = self::$client->createInstance(
+            CreateInstanceRequest::build(self::$parent, self::$instanceId, $instance)
+        );
+        $createOp->pollUntilComplete();
 
-        $this->assertTrue($operationResponse->operationSucceeded());
-        // get the $result object to ensure this does not fail
-        $result = $operationResponse->getResult();
-        $this->assertInstanceOf(GPBEmpty::class, $result);
-    }
-
-    /**
-     * @param CloudRedisClient $client
-     * @param string $parent
-     * @param string $instanceId
-     * @return string Name
-     */
-    private function createRedisInstance(CloudRedisClient $client, $parent, $instanceId)
-    {
-        $tier = Tier::BASIC;
-        $memorySizeGb = 1;
-        $instance = new Instance();
-        $instance->setTier($tier);
-        $instance->setMemorySizeGb($memorySizeGb);
-        $operationResponse = $client->createInstance($parent, $instanceId, $instance);
-
-        while (!$operationResponse->isDone()) {
-            // get the $any object to ensure this does not fail
-            $any = $operationResponse->getMetadata();
-            $this->assertInstanceOf(OperationMetadata::class, $any);
-            sleep(5);
-            $operationResponse->reload();
-        }
-
-        $this->assertTrue($operationResponse->operationSucceeded());
-        $result = $operationResponse->getResult();
-        $this->assertInstanceOf(Instance::class, $result);
-        return $result->getName();
+        $this->assertTrue($createOp->operationSucceeded());
+        $instance = $createOp->getResult();
+        $this->assertInstanceOf(Instance::class, $instance);
+        $this->assertSame(self::$instanceName, $instance->getName());
     }
 
     /**
-     * @dataProvider clientProvider
+     * @depends testCreateOperations
      */
-    public function testCreateListDeleteOperations(CloudRedisClient $client)
+    public function testListOperation()
     {
-        $locationId = 'us-central1';
-        $instanceId = 'my-redis-test-instance';
-        $parent = $client::locationName(self::$projectId, $locationId);
-        $instanceName = $client::instanceName(self::$projectId, $locationId, $instanceId);
+        // List the instance
+        $instances = self::$client->listInstances(ListInstancesRequest::build(self::$parent));
+        $this->assertSame(1, count(array_map(
+            fn ($instance) => $instance->getName() === self::$instanceName,
+            iterator_to_array($instances->iterateAllElements())
+        )));
+    }
 
-        $instances = $client->listInstances($parent);
-        foreach ($instances->iterateAllElements() as $instance) {
-            if ($instance->getName() === $instanceName) {
-                // Instance exists - lets delete it
-                $this->deleteInstance($client, $instance->getName());
-            }
-        }
+    /**
+     * @depends testCreateOperations
+     */
+    public function testDeleteOperation()
+    {
+        // Delete Operation
+        $deleteOp = self::$client->deleteInstance(
+            DeleteInstanceRequest::build(self::$instanceName)
+        );
+        $deleteOp->pollUntilComplete();
+        $this->assertTrue($deleteOp->operationSucceeded());
 
-        $createdInstanceName = $this->createRedisInstance($client, $parent, $instanceId);
-        $this->assertSame($instanceName, $createdInstanceName);
-
-        $instances = iterator_to_array($client->listInstances($parent)->iterateAllElements());
-        $this->assertSame(1, count($instances));
-
-        $this->deleteInstance($client, $createdInstanceName);
-
-        $instances = iterator_to_array($client->listInstances($parent)->iterateAllElements());
-        $this->assertSame(0, count($instances));
+        // Ensure delete op succeeded
+        $instances = self::$client->listInstances(ListInstancesRequest::build(self::$parent));
+        $this->assertSame(0, count(array_map(
+            fn ($instance) => $instance->getName() === $instanceName,
+            iterator_to_array($instances->iterateAllElements())
+        )));
     }
 }

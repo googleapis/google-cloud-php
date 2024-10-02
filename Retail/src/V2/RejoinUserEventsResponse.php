@@ -20,7 +20,7 @@ class RejoinUserEventsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 rejoined_user_events_count = 1;</code>
      */
-    private $rejoined_user_events_count = 0;
+    protected $rejoined_user_events_count = 0;
 
     /**
      * Constructor.

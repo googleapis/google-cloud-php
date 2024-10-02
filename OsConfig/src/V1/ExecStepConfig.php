@@ -30,7 +30,7 @@ class ExecStepConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStepConfig.Interpreter interpreter = 4;</code>
      */
-    private $interpreter = 0;
+    protected $interpreter = 0;
     protected $executable;
 
     /**

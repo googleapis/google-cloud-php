@@ -22,19 +22,19 @@ class WindowsApplication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The version of the product or application in string format.
      *
      * Generated from protobuf field <code>string display_version = 2;</code>
      */
-    private $display_version = '';
+    protected $display_version = '';
     /**
      * The name of the manufacturer for the product or application.
      *
      * Generated from protobuf field <code>string publisher = 3;</code>
      */
-    private $publisher = '';
+    protected $publisher = '';
     /**
      * The last time this product received service. The value of this property
      * is replaced each time a patch is applied or removed from the product or
@@ -42,13 +42,13 @@ class WindowsApplication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date install_date = 4;</code>
      */
-    private $install_date = null;
+    protected $install_date = null;
     /**
      * The internet address for technical support.
      *
      * Generated from protobuf field <code>string help_link = 5;</code>
      */
-    private $help_link = '';
+    protected $help_link = '';
 
     /**
      * Constructor.

@@ -26,13 +26,13 @@ class Inventory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Base level operating system information for the VM.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.OsInfo os_info = 1;</code>
      */
-    private $os_info = null;
+    protected $os_info = null;
     /**
      * Inventory items related to the VM keyed by an opaque unique identifier for
      * each inventory item.  The identifier is unique to each distinct and
@@ -47,7 +47,7 @@ class Inventory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

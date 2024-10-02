@@ -35,7 +35,8 @@ class Level
     const RELAX_VISIT_TIMES_AFTER_THRESHOLD = 1;
     /**
      * Same as `RELAX_VISIT_TIMES_AFTER_THRESHOLD`, but the visit sequence
-     * is also relaxed: visits remain simply bound to their vehicle.
+     * is also relaxed: visits can only be performed by this vehicle, but
+     * can potentially become unperformed.
      *
      * Generated from protobuf enum <code>RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD = 2;</code>
      */

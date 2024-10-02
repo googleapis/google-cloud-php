@@ -59,6 +59,4 @@ class Kernel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Kernel::class, \Google\Cloud\Dataproc\V1\JupyterConfig_Kernel::class);
 

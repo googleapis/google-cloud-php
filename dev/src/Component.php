@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use RuntimeException;
+use DateTime;
 
 /**
  * @internal
@@ -27,7 +28,7 @@ use RuntimeException;
 class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
-    private const ROOT_DIR = __DIR__ . '/../../';
+    public const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
     private string $packageName;
@@ -262,29 +263,25 @@ class Component
         return array_map(fn($pkg) => $pkg->getName(), $this->getComponentPackages());
     }
 
+    public function getCreatedAt(): DateTime
+    {
+        exec(sprintf(
+            'git log --reverse --pretty=format:"%%cd" %s/ | head -1',
+            $this->name,
+        ), $output);
+
+        return new DateTime($output[0]);
+    }
+
     private function getPackagePaths(): array
     {
         $result = (new Finder())->directories()->in($this->path . '/src/')->name(self::VERSION_REGEX);
         $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
         $paths = array_reverse(array_values($paths));
-        usort($paths, [$this, 'versionCompare']);
+        usort($paths, 'version_compare');
         if (empty($paths)) {
             $paths = [''];
         }
-        return $paths;
-    }
-
-    private static function versionCompare(string $v1, string $v2)
-    {
-        // First, sort by API number (e.g. V1 vs V2)
-        $sort = substr($v1, strrpos($v1, 'V')) <=> substr($v2, strrpos($v2, 'V'));
-        if ($sort === 0) {
-            // If same API version, sort by if one is in a subdirectory
-            return strpos($v1, '/') <=> strpos($v2, '/');
-        }
-        // Else, sort by release level (e.g. beta vs alpha vs GA)
-        $v1Sort = strpos($v1, 'beta') ? 0 : (strpos($v1, 'alpha') ? -1 : 1);
-        $v2Sort = strpos($v2, 'beta') ? 0 : (strpos($v2, 'alpha') ? -1 : 1);
-        return $v2Sort <=> $v1Sort;
+        return array_reverse($paths);
     }
 }

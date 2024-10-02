@@ -31,11 +31,13 @@ use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetPropertyQuotasSnapshotRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
+use Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
 use Google\Analytics\Data\V1alpha\QueryReportTaskRequest;
@@ -78,6 +80,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
@@ -213,6 +216,23 @@ final class AlphaAnalyticsDataClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * property_quotas_snapshot resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted property_quotas_snapshot resource.
+     *
+     * @experimental
+     */
+    public static function propertyQuotasSnapshotName(string $property): string
+    {
+        return self::getPathTemplate('propertyQuotasSnapshot')->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * recurring_audience_list resource.
      *
      * @param string $property
@@ -255,6 +275,7 @@ final class AlphaAnalyticsDataClient
      * Template: Pattern
      * - audienceList: properties/{property}/audienceLists/{audience_list}
      * - property: properties/{property}
+     * - propertyQuotasSnapshot: properties/{property}/propertyQuotasSnapshot
      * - recurringAudienceList: properties/{property}/recurringAudienceLists/{recurring_audience_list}
      * - reportTask: properties/{property}/reportTasks/{report_task}
      *
@@ -456,6 +477,12 @@ final class AlphaAnalyticsDataClient
      * asynchronous request to form a customized report of your Google Analytics
      * event data.
      *
+     * A report task will be retained and available for querying for 72 hours
+     * after it has been created.
+     *
+     * A report task created by one user can be listed and queried by all users
+     * who have access to the property.
+     *
      * The async variant is {@see AlphaAnalyticsDataClient::createReportTaskAsync()} .
      *
      * @example samples/V1alpha/AlphaAnalyticsDataClient/create_report_task.php
@@ -518,6 +545,36 @@ final class AlphaAnalyticsDataClient
     public function getAudienceList(GetAudienceListRequest $request, array $callOptions = []): AudienceList
     {
         return $this->startApiCall('GetAudienceList', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get all property quotas organized by quota category for a given property.
+     * This will charge 1 property quota from the category with the most quota.
+     *
+     * The async variant is
+     * {@see AlphaAnalyticsDataClient::getPropertyQuotasSnapshotAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/get_property_quotas_snapshot.php
+     *
+     * @param GetPropertyQuotasSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PropertyQuotasSnapshot
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getPropertyQuotasSnapshot(GetPropertyQuotasSnapshotRequest $request, array $callOptions = []): PropertyQuotasSnapshot
+    {
+        return $this->startApiCall('GetPropertyQuotasSnapshot', $request, $callOptions)->wait();
     }
 
     /**

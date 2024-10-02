@@ -22,7 +22,7 @@ class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.SpellCorrectionSpec.Mode mode = 1;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
 
     /**
      * Constructor.

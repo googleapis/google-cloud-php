@@ -33,6 +33,13 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string promotion_ids = 4;</code>
      */
     private $promotion_ids;
+    /**
+     * Output only. Whether the referenced Document can be found in the data
+     * store.
+     *
+     * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $joined = false;
     protected $document_descriptor;
 
     /**
@@ -60,6 +67,9 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
      *           The promotion IDs associated with this Document.
      *           Currently, this field is restricted to at most one ID.
+     *     @type bool $joined
+     *           Output only. Whether the referenced Document can be found in the data
+     *           store.
      * }
      */
     public function __construct($data = NULL) {
@@ -236,6 +246,34 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->promotion_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the referenced Document can be found in the data
+     * store.
+     *
+     * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getJoined()
+    {
+        return $this->joined;
+    }
+
+    /**
+     * Output only. Whether the referenced Document can be found in the data
+     * store.
+     *
+     * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setJoined($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->joined = $var;
 
         return $this;
     }

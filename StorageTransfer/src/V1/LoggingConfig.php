@@ -41,7 +41,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_onprem_gcs_transfer_logs = 3;</code>
      */
-    private $enable_onprem_gcs_transfer_logs = false;
+    protected $enable_onprem_gcs_transfer_logs = false;
 
     /**
      * Constructor.

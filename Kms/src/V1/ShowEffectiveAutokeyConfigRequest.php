@@ -23,7 +23,7 @@ class ShowEffectiveAutokeyConfigRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string $parent Required. Name of the resource project to the show effective Cloud KMS

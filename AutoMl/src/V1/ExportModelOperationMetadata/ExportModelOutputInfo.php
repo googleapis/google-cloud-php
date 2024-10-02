@@ -23,7 +23,7 @@ class ExportModelOutputInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_output_directory = 1;</code>
      */
-    private $gcs_output_directory = '';
+    protected $gcs_output_directory = '';
 
     /**
      * Constructor.
@@ -71,6 +71,4 @@ class ExportModelOutputInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExportModelOutputInfo::class, \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata_ExportModelOutputInfo::class);
 

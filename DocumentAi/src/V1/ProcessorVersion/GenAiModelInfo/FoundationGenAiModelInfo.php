@@ -20,14 +20,14 @@ class FoundationGenAiModelInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool finetuning_allowed = 1;</code>
      */
-    private $finetuning_allowed = false;
+    protected $finetuning_allowed = false;
     /**
      * The minimum number of labeled documents in the training dataset
      * required for finetuning.
      *
      * Generated from protobuf field <code>int32 min_train_labeled_documents = 2;</code>
      */
-    private $min_train_labeled_documents = 0;
+    protected $min_train_labeled_documents = 0;
 
     /**
      * Constructor.

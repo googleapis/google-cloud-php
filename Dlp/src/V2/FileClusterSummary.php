@@ -20,7 +20,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FileClusterType file_cluster_type = 1;</code>
      */
-    private $file_cluster_type = null;
+    protected $file_cluster_type = null;
     /**
      * InfoTypes detected in this cluster.
      *
@@ -33,14 +33,14 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 3;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
     /**
      * The data risk level of this cluster. RISK_LOW if nothing has been
      * scanned.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataRiskLevel data_risk_level = 4;</code>
      */
-    private $data_risk_level = null;
+    protected $data_risk_level = null;
     /**
      * A list of errors detected while scanning this cluster. The list is
      * truncated to 10 per cluster.
@@ -70,7 +70,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_files_exist = 9;</code>
      */
-    private $no_files_exist = false;
+    protected $no_files_exist = false;
 
     /**
      * Constructor.

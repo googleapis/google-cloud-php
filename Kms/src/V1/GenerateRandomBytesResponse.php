@@ -21,7 +21,7 @@ class GenerateRandomBytesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 1;</code>
      */
-    private $data = '';
+    protected $data = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [GenerateRandomBytesResponse.data][google.cloud.kms.v1.GenerateRandomBytesResponse.data].
@@ -39,7 +39,7 @@ class GenerateRandomBytesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3;</code>
      */
-    private $data_crc32c = null;
+    protected $data_crc32c = null;
 
     /**
      * Constructor.
@@ -149,7 +149,7 @@ class GenerateRandomBytesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3;</code>
      * @return int|string|null
      */
-    public function getDataCrc32CValue()
+    public function getDataCrc32CUnwrapped()
     {
         return $this->readWrapperValue("data_crc32c");
     }
@@ -202,7 +202,7 @@ class GenerateRandomBytesResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setDataCrc32CValue($var)
+    public function setDataCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("data_crc32c", $var);
         return $this;}

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting list of Instances
+ * List instances request.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ListInstancesRequest</code>
  */
@@ -18,17 +18,15 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location for which to retrieve instance
      * information, in the format `projects/{project_id}/locations/{location}`.
-     * For Parallelstore locations map to Google Cloud zones, for example
-     * **us-central1-a**.
-     * To retrieve instance information for all locations, use "-" for the
-     * `{location}` value.
+     * To retrieve instance information for all locations, use "-" as the value of
+     * `{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * requested. If unspecified, the server will pick an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,13 +38,13 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,10 +53,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The project and location for which to retrieve instance
      *                       information, in the format `projects/{project_id}/locations/{location}`.
-     *                       For Parallelstore locations map to Google Cloud zones, for example
-     *                       **us-central1-a**.
-     *                       To retrieve instance information for all locations, use "-" for the
-     *                       `{location}` value. Please see
+     *
+     *                       To retrieve instance information for all locations, use "-" as the value of
+     *                       `{location}`. Please see
      *                       {@see ParallelstoreClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Parallelstore\V1beta\ListInstancesRequest
@@ -80,19 +77,17 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The project and location for which to retrieve instance
      *           information, in the format `projects/{project_id}/locations/{location}`.
-     *           For Parallelstore locations map to Google Cloud zones, for example
-     *           **us-central1-a**.
-     *           To retrieve instance information for all locations, use "-" for the
-     *           `{location}` value.
+     *           To retrieve instance information for all locations, use "-" as the value of
+     *           `{location}`.
      *     @type int $page_size
      *           Optional. Requested page size. Server may return fewer items than
-     *           requested. If unspecified, server will pick an appropriate default.
+     *           requested. If unspecified, the server will pick an appropriate default.
      *     @type string $page_token
      *           Optional. A token identifying a page of results the server should return.
      *     @type string $filter
-     *           Optional. Filtering results
+     *           Optional. Filtering results.
      *     @type string $order_by
-     *           Optional. Hint for how to order the results
+     *           Optional. Hint for how to order the results.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,10 +98,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location for which to retrieve instance
      * information, in the format `projects/{project_id}/locations/{location}`.
-     * For Parallelstore locations map to Google Cloud zones, for example
-     * **us-central1-a**.
-     * To retrieve instance information for all locations, use "-" for the
-     * `{location}` value.
+     * To retrieve instance information for all locations, use "-" as the value of
+     * `{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -119,10 +112,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location for which to retrieve instance
      * information, in the format `projects/{project_id}/locations/{location}`.
-     * For Parallelstore locations map to Google Cloud zones, for example
-     * **us-central1-a**.
-     * To retrieve instance information for all locations, use "-" for the
-     * `{location}` value.
+     * To retrieve instance information for all locations, use "-" as the value of
+     * `{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -138,7 +129,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * requested. If unspecified, the server will pick an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -150,7 +141,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * requested. If unspecified, the server will pick an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -191,7 +182,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -202,7 +193,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filtering results
+     * Optional. Filtering results.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -217,7 +208,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -228,7 +219,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

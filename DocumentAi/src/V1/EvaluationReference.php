@@ -20,25 +20,25 @@ class EvaluationReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation = 1;</code>
      */
-    private $operation = '';
+    protected $operation = '';
     /**
      * The resource name of the evaluation.
      *
      * Generated from protobuf field <code>string evaluation = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $evaluation = '';
+    protected $evaluation = '';
     /**
      * An aggregate of the statistics for the evaluation with fuzzy matching on.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Evaluation.Metrics aggregate_metrics = 4;</code>
      */
-    private $aggregate_metrics = null;
+    protected $aggregate_metrics = null;
     /**
      * An aggregate of the statistics for the evaluation with fuzzy matching off.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Evaluation.Metrics aggregate_metrics_exact = 5;</code>
      */
-    private $aggregate_metrics_exact = null;
+    protected $aggregate_metrics_exact = null;
 
     /**
      * Constructor.

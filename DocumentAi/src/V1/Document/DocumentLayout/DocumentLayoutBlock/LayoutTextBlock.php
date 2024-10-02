@@ -20,7 +20,7 @@ class LayoutTextBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Type of the text in the block. Available options are: `paragraph`,
      * `subtitle`, `heading-1`, `heading-2`, `heading-3`, `heading-4`,
@@ -28,7 +28,7 @@ class LayoutTextBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * A text block could further have child blocks.
      * Repeated blocks support further hierarchies and nested blocks.

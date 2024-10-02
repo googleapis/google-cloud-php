@@ -37,7 +37,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
     /**
      * Contains the spell corrected query, if found. If the spell correction type
      * is AUTOMATIC, then the search results are based on corrected_query.
@@ -45,7 +45,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      */
-    private $corrected_query = '';
+    protected $corrected_query = '';
     /**
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.retail.v2.UserEvent] logs resulting from this
@@ -53,7 +53,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribution_token = 5;</code>
      */
-    private $attribution_token = '';
+    protected $attribution_token = '';
     /**
      * A token that can be sent as
      * [SearchRequest.page_token][google.cloud.retail.v2.SearchRequest.page_token]
@@ -62,13 +62,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 6;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Query expansion information for the returned results.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchResponse.QueryExpansionInfo query_expansion_info = 7;</code>
      */
-    private $query_expansion_info = null;
+    protected $query_expansion_info = null;
     /**
      * The URI of a customer-defined redirect page. If redirect action is
      * triggered, no search is performed, and only
@@ -78,7 +78,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      */
-    private $redirect_uri = '';
+    protected $redirect_uri = '';
     /**
      * The fully qualified resource name of applied
      * [controls](https://cloud.google.com/retail/docs/serving-control-rules).

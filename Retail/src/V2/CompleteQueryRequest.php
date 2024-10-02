@@ -22,14 +22,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $catalog = '';
+    protected $catalog = '';
     /**
      * Required. The query used to generate suggestions.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Required field. A unique identifier for tracking visitors. For example,
      * this could be implemented with an HTTP cookie, which should be able to
@@ -40,7 +40,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string visitor_id = 7;</code>
      */
-    private $visitor_id = '';
+    protected $visitor_id = '';
     /**
      * Note that this field applies for `user-data` dataset only. For requests
      * with `cloud-retail` dataset, setting this field has no effect.
@@ -68,7 +68,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string device_type = 4;</code>
      */
-    private $device_type = '';
+    protected $device_type = '';
     /**
      * Determines which dataset to use for fetching completion. "user-data" will
      * use the imported dataset through
@@ -83,7 +83,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Completion max suggestions. If left unset or set to 0, then will fallback
      * to the configured value
@@ -93,14 +93,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_suggestions = 5;</code>
      */
-    private $max_suggestions = 0;
+    protected $max_suggestions = 0;
     /**
      * If true, attribute suggestions are enabled and provided in response.
      * This field is only available for "cloud-retail" dataset.
      *
      * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
      */
-    private $enable_attribute_suggestions = false;
+    protected $enable_attribute_suggestions = false;
     /**
      * The entity for customers who run multiple entities, domains, sites, or
      * regions, for example, `Google US`, `Google Ads`, `Waymo`,
@@ -111,7 +111,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity = 10;</code>
      */
-    private $entity = '';
+    protected $entity = '';
 
     /**
      * Constructor.

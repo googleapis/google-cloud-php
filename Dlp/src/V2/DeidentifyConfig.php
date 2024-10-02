@@ -21,7 +21,7 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling transformation_error_handling = 3;</code>
      */
-    private $transformation_error_handling = null;
+    protected $transformation_error_handling = null;
     protected $transformation;
 
     /**

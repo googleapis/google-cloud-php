@@ -25,19 +25,19 @@ class BigQueryRegex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id_regex = 1;</code>
      */
-    private $project_id_regex = '';
+    protected $project_id_regex = '';
     /**
      * If unset, this property matches all datasets.
      *
      * Generated from protobuf field <code>string dataset_id_regex = 2;</code>
      */
-    private $dataset_id_regex = '';
+    protected $dataset_id_regex = '';
     /**
      * If unset, this property matches all tables.
      *
      * Generated from protobuf field <code>string table_id_regex = 3;</code>
      */
-    private $table_id_regex = '';
+    protected $table_id_regex = '';
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class NodeGroupOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_group_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_group_id = '';
+    protected $node_group_id = '';
     /**
      * Output only. Cluster UUID associated with the node group operation.
      *
      * Generated from protobuf field <code>string cluster_uuid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_uuid = '';
+    protected $cluster_uuid = '';
     /**
      * Output only. Current operation status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The previous operation status.
      *
@@ -44,13 +44,13 @@ class NodeGroupOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupOperationMetadata.NodeGroupOperationType operation_type = 5;</code>
      */
-    private $operation_type = 0;
+    protected $operation_type = 0;
     /**
      * Output only. Short description of operation.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Labels associated with the operation.
      *

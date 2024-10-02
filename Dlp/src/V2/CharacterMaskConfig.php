@@ -28,7 +28,7 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string masking_character = 1;</code>
      */
-    private $masking_character = '';
+    protected $masking_character = '';
     /**
      * Number of characters to mask. If not set, all matching chars will be
      * masked. Skipped characters do not count towards this tally.
@@ -47,7 +47,7 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 number_to_mask = 2;</code>
      */
-    private $number_to_mask = 0;
+    protected $number_to_mask = 0;
     /**
      * Mask characters in reverse order. For example, if `masking_character` is
      * `0`, `number_to_mask` is `14`, and `reverse_order` is `false`, then the
@@ -57,7 +57,7 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reverse_order = 3;</code>
      */
-    private $reverse_order = false;
+    protected $reverse_order = false;
     /**
      * When masking a string, items in this list will be skipped when replacing
      * characters. For example, if the input string is `555-555-5555` and you

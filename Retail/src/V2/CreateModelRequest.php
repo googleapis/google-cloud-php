@@ -21,21 +21,21 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The payload of the [Model][google.cloud.retail.v2.Model]  to
      * create.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Model model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = null;
+    protected $model = null;
     /**
      * Optional. Whether to run a dry run to validate the request (without
      * actually creating the model).
      *
      * Generated from protobuf field <code>bool dry_run = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dry_run = false;
+    protected $dry_run = false;
 
     /**
      * @param string                        $parent Required. The parent resource under which to create the model. Format:

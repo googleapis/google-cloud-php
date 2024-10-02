@@ -27,24 +27,26 @@ use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Accounts\V1beta\Client\TermsOfServiceServiceClient;
 use Google\Shopping\Merchant\Accounts\V1beta\RetrieveLatestTermsOfServiceRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\TermsOfService;
+use Google\Shopping\Merchant\Accounts\V1beta\TermsOfServiceKind;
 
 /**
  * Retrieves the latest version of the `TermsOfService` for a given `kind` and
  * `region_code`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $regionCode Region code as defined by [CLDR](https://cldr.unicode.org/). This
+ *                           is either a country when the ToS applies specifically to that country or
+ *                           001 when it applies globally.
+ * @param int    $kind       The Kind this terms of service version applies to.
  */
-function retrieve_latest_terms_of_service_sample(): void
+function retrieve_latest_terms_of_service_sample(string $regionCode, int $kind): void
 {
     // Create a client.
     $termsOfServiceServiceClient = new TermsOfServiceServiceClient();
 
     // Prepare the request message.
-    $request = new RetrieveLatestTermsOfServiceRequest();
+    $request = (new RetrieveLatestTermsOfServiceRequest())
+        ->setRegionCode($regionCode)
+        ->setKind($kind);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +56,22 @@ function retrieve_latest_terms_of_service_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $regionCode = '[REGION_CODE]';
+    $kind = TermsOfServiceKind::TERMS_OF_SERVICE_KIND_UNSPECIFIED;
+
+    retrieve_latest_terms_of_service_sample($regionCode, $kind);
 }
 // [END merchantapi_v1beta_generated_TermsOfServiceService_RetrieveLatestTermsOfService_sync]

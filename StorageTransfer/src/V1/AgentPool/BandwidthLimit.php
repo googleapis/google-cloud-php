@@ -21,7 +21,7 @@ class BandwidthLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit_mbps = 1;</code>
      */
-    private $limit_mbps = 0;
+    protected $limit_mbps = 0;
 
     /**
      * Constructor.

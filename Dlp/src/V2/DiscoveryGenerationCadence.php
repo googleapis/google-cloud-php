@@ -23,13 +23,13 @@ class DiscoveryGenerationCadence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoverySchemaModifiedCadence schema_modified_cadence = 1;</code>
      */
-    private $schema_modified_cadence = null;
+    protected $schema_modified_cadence = null;
     /**
      * Governs when to update data profiles when a table is modified.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryTableModifiedCadence table_modified_cadence = 2;</code>
      */
-    private $table_modified_cadence = null;
+    protected $table_modified_cadence = null;
     /**
      * Governs when to update data profiles when the inspection rules
      * defined by the `InspectTemplate` change.
@@ -37,14 +37,14 @@ class DiscoveryGenerationCadence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 3;</code>
      */
-    private $inspect_template_modified_cadence = null;
+    protected $inspect_template_modified_cadence = null;
     /**
      * Frequency at which profiles should be updated, regardless of whether the
      * underlying resource has changed. Defaults to never.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 4;</code>
      */
-    private $refresh_frequency = 0;
+    protected $refresh_frequency = 0;
 
     /**
      * Constructor.

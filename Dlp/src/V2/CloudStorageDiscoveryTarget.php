@@ -21,14 +21,14 @@ class CloudStorageDiscoveryTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryCloudStorageFilter filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * Optional. In addition to matching the filter, these conditions must be true
      * before a profile is generated.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryFileStoreConditions conditions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $conditions = null;
+    protected $conditions = null;
     protected $cadence;
 
     /**

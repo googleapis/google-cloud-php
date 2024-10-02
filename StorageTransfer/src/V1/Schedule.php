@@ -32,7 +32,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date schedule_start_date = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $schedule_start_date = null;
+    protected $schedule_start_date = null;
     /**
      * The last day a transfer runs. Date boundaries are determined relative to
      * UTC time. A job runs once per 24 hours within the following guidelines:
@@ -48,7 +48,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date schedule_end_date = 2;</code>
      */
-    private $schedule_end_date = null;
+    protected $schedule_end_date = null;
     /**
      * The time in UTC that a transfer job is scheduled to run. Transfers may
      * start later than this time.
@@ -64,7 +64,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay start_time_of_day = 3;</code>
      */
-    private $start_time_of_day = null;
+    protected $start_time_of_day = null;
     /**
      * The time in UTC that no further transfer operations are scheduled. Combined
      * with
@@ -83,7 +83,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay end_time_of_day = 4;</code>
      */
-    private $end_time_of_day = null;
+    protected $end_time_of_day = null;
     /**
      * Interval between the start of each scheduled TransferOperation. If
      * unspecified, the default value is 24 hours. This value may not be less than
@@ -91,7 +91,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration repeat_interval = 5;</code>
      */
-    private $repeat_interval = null;
+    protected $repeat_interval = null;
 
     /**
      * Constructor.

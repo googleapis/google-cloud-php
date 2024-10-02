@@ -539,6 +539,18 @@ return [
                     ],
                 ],
             ],
+            'SwitchActiveReplicaZone' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}:switch',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateActiveDirectory' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{active_directory.name=projects/*/locations/*/activeDirectories/*}',

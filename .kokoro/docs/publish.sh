@@ -22,7 +22,7 @@ if [ "$STAGING_BUCKET" != "" ]; then
     echo "Using staging bucket ${STAGING_BUCKET}..."
 fi
 VERBOSITY="";
-if [ "$GCLOUD_DEBUG" -eq 1 ]; then
+if [ "$GCLOUD_DEBUG" = "1" ]; then
     echo "Setting verbosity to VERBOSE...";
     VERBOSITY=" -v";
 fi

@@ -20,25 +20,25 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Output only. Most recent job status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus status = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. Operation type.
      *
      * Generated from protobuf field <code>string operation_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $operation_type = '';
+    protected $operation_type = '';
     /**
      * Output only. Job submission time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
 
     /**
      * Constructor.
