@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 jobs:
-  style:
+  style_phpcs:
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
@@ -22,7 +22,7 @@ jobs:
     - name: Run PHPCS Code Style Checker
       run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
 
-  style2:
+  style_csfixer:
     name: PHP CS Fixer
     uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@exclude-patterns
     with:
