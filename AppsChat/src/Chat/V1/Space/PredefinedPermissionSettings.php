@@ -64,6 +64,4 @@ class PredefinedPermissionSettings
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PredefinedPermissionSettings::class, \Google\Apps\Chat\V1\Space_PredefinedPermissionSettings::class);
 

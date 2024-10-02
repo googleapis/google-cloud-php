@@ -99,6 +99,4 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PermissionSetting::class, \Google\Apps\Chat\V1\Space_PermissionSetting::class);
 

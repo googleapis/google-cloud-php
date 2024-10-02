@@ -29,40 +29,25 @@ use Google\Apps\Chat\V1\CreateMembershipRequest;
 use Google\Apps\Chat\V1\Membership;
 
 /**
- * Creates a human membership or app membership for the calling app. Creating
- * memberships for other apps isn't supported. For an example, see
- * [Invite or add a user or a Google Chat app to a
- * space](https://developers.google.com/workspace/chat/create-members).
+ * Creates a membership for the calling Chat app, a user, or a Google Group.
+ * Creating memberships for other Chat apps isn't supported.
  * When creating a membership, if the specified member has their auto-accept
  * policy turned off, then they're invited, and must accept the space
  * invitation before joining. Otherwise, creating a membership adds the member
- * directly to the specified space. Requires [user
+ * directly to the specified space.
+ * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
- * To specify the member to add, set the `membership.member.name` for the
- * human or app member, or set the `membership.group_member.name` for the
- * group member.
+ * For example usage, see:
  *
- * - To add the calling app to a space or a direct message between two human
- * users, use `users/app`. Unable to add other
- * apps to the space.
+ * - [Invite or add a user to a
+ * space](https://developers.google.com/workspace/chat/create-members#create-user-membership).
  *
- * - To add a human user, use `users/{user}`, where `{user}` can be the email
- * address for the user. For users in the same Workspace organization `{user}`
- * can also be the `id` for the person from the People API, or the `id` for
- * the user in the Directory API. For example, if the People API Person
- * profile ID for `user&#64;example.com` is `123456789`, you can add the user to
- * the space by setting the `membership.member.name` to
- * `users/user&#64;example.com` or `users/123456789`.
+ * - [Invite or add a Google Group to a
+ * space](https://developers.google.com/workspace/chat/create-members#create-group-membership).
  *
- * - To add or invite a Google group in a named space, use
- * `groups/{group}`, where `{group}` is the `id` for the group from the Cloud
- * Identity Groups API. For example, you can use [Cloud Identity Groups lookup
- * API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
- * to retrieve the ID `123456789` for group email `group&#64;example.com`, then
- * you can add or invite the group to a named space by setting the
- * `membership.group_member.name` to `groups/123456789`. Group email is not
- * supported, and Google groups can only be added as members in named spaces.
+ * - [Add the Chat app to a
+ * space](https://developers.google.com/workspace/chat/create-members#create-membership-calling-api).
  *
  * @param string $formattedParent The resource name of the space for which to create the
  *                                membership.
