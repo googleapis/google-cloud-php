@@ -17,52 +17,92 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\StorageClient;
 
-class UniverseDomainTest extends StorageTestCase
+class UniverseDomainTest extends SystemTestCase
 {
-    private static $universeDomainBucket;
-    private static $bucketName;
+    private static $bucket;
+    private static $client;
+
     /**
-     *  Test creating a bucket with universe domain credentials
+     * @beforeClass
      */
-    public function testCreateBucketWithUniverseDomain()
+    public static function setUpTestFixtures(): void
     {
-        self::$bucketName = uniqid(self::TESTING_PREFIX);
-        self::$universeDomainBucket = self::createBucket(
-            self::$universeDomainClient,
-            self::$bucketName,
-            [
-                'location' => getenv('TEST_UNIVERSE_LOCATION')
-            ]
-        );
-        $this->assertEquals(self::$bucketName, self::$universeDomainBucket->info()['name']);
+        if (!$keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_KEY_PATH')) {
+            self::markTestSkipped('Set GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_KEY_PATH to run system tests');
+        }
+
+        $credentials = json_decode(file_get_contents($keyFilePath), true);
+        if (!isset($credentials['universe_domain'])) {
+            throw new \Exception('The provided key file does not contain universe domain credentials');
+        }
+
+        self::$client = new StorageClient([
+            'keyFilePath' => $keyFilePath,
+            'projectId' => $credentials['project_id'] ?? null,
+            'universeDomain' => $credentials['universe_domain'] ?? null
+        ]);
     }
 
     /**
-     *  Test uploading and retrieving objects to a bucket using universe domain credentials.
+     * Test creating a bucket with universe domain credentials
+     */
+    public function testCreateBucketWithUniverseDomain()
+    {
+        if (!$location = getenv('GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_LOCATION')) {
+            $this->markTestSkipped('Set GOOGLE_CLOUD_PHP_TESTS_UNIVERSE_DOMAIN_LOCATION to run system tests');
+        }
+        $bucketName = uniqid(StorageTestCase::TESTING_PREFIX);
+        self::$bucket = self::createBucket(
+            self::$client,
+            $bucketName,
+            ['location' => $location]
+        );
+        $this->assertEquals($bucketName, self::$bucket->info()['name']);
+    }
+
+    /**
+     * Test uploading and retrieving objects to a bucket using universe domain credentials.
+     *
+     * @depends testCreateBucketWithUniverseDomain
      */
     public function testListsObjectsWithUniverseDomain()
     {
         $foundObjects = [];
         $objectsToCreate = [
-            uniqid(self::TESTING_PREFIX),
-            uniqid(self::TESTING_PREFIX)
+            uniqid(StorageTestCase::TESTING_PREFIX),
+            uniqid(StorageTestCase::TESTING_PREFIX)
         ];
 
         foreach ($objectsToCreate as $objectToCreate) {
-            self::$universeDomainBucket->upload('data', ['name' => $objectToCreate]);
+            self::$bucket->upload('data', ['name' => $objectToCreate]);
         }
 
-        $objects = self::$universeDomainBucket->objects(['prefix' => self::TESTING_PREFIX]);
+        $objects = self::$bucket->objects(['prefix' => StorageTestCase::TESTING_PREFIX]);
 
-        foreach ($objects as $object) {
-            foreach ($objectsToCreate as $key => $objectToCreate) {
-                if ($object->name() === $objectToCreate) {
-                    $foundObjects[$key] = $object->name();
-                }
-            }
+        $foundObjects = array_filter(
+            iterator_to_array($objects),
+            fn ($object) => in_array($object->name(), $objectsToCreate)
+        );
+
+        $this->assertCount(2, $foundObjects);
+    }
+    /**
+     * Test uploading and retrieving objects to a bucket using universe domain credentials.
+     *
+     * @depends testCreateBucketWithUniverseDomain
+     */
+    public function testDeleteBucketWithUniverseDomain()
+    {
+        foreach (self::$bucket->objects() as $object) {
+            $object->delete();
         }
-        $this->assertEquals($objectsToCreate, $foundObjects);
+        self::$bucket->delete();
+        $this->assertFalse(self::$bucket->exists());
+        $buckets = self::$client->buckets(['prefix' => self::$bucket->name()]);
+        $this->assertCount(0, iterator_to_array($buckets));
     }
 }
