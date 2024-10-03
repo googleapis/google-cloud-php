@@ -9,7 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The supplemental data source for local and online products.
+ * The supplemental data source for local and online products. Supplemental API
+ * data sources must not have `feedLabel` and `contentLanguage` fields set. You
+ * can only use supplemental data sources to update existing products. For
+ * information about creating a supplemental data source, see [Create a
+ * supplemental data source and link it to the primary data
+ * source](/merchant/api/guides/data-sources/overview#create-supplemental-data-source).
  *
  * Generated from protobuf message <code>google.shopping.merchant.datasources.v1beta.SupplementalProductDataSource</code>
  */
