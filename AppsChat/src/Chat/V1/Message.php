@@ -74,8 +74,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * You can also [&#64;mention a Google Chat
      * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      * or everyone in the space.
-     * To learn about creating text messages, see [Send a text
-     * message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * To learn about creating text messages, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      *
      * Generated from protobuf field <code>string text = 4;</code>
      */
@@ -120,8 +120,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * Only Chat apps can create cards. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the messages can't contain cards.
-     * To learn about cards and how to create them, see [Send card
-     * messages](https://developers.google.com/workspace/chat/create-messages#create).
+     * To learn how to create a message that contains cards, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22;</code>
@@ -222,14 +222,15 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Input for creating a message, otherwise output only. The user
      * that can view the message. When set, the message is private and only
-     * visible to the specified user and the Chat app. Link previews and
-     * attachments aren't supported for private messages.
-     * Only Chat apps can send private messages. If your Chat app [authenticates
-     * as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * to send a message, the message can't be private and must omit this field.
-     * For details, see [Send private messages to Google Chat
-     * users](https://developers.google.com/workspace/chat/private-messages).
+     * visible to the specified user and the Chat app. To include this field in
+     * your request, you must call the Chat API using [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and omit the following:
+     * * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     * * [Accessory
+     * widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     * For details, see [Send a message
+     * privately](https://developers.google.com/workspace/chat/create-messages#private).
      *
      * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -313,8 +314,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *           You can also [&#64;mention a Google Chat
      *           user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      *           or everyone in the space.
-     *           To learn about creating text messages, see [Send a text
-     *           message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     *           To learn about creating text messages, see [Send a
+     *           message](https://developers.google.com/workspace/chat/create-messages).
      *     @type string $formatted_text
      *           Output only. Contains the message `text` with markups added to communicate
      *           formatting. This field might not capture all formatting visible in the UI,
@@ -346,8 +347,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Only Chat apps can create cards. If your Chat app [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      *           the messages can't contain cards.
-     *           To learn about cards and how to create them, see [Send card
-     *           messages](https://developers.google.com/workspace/chat/create-messages#create).
+     *           To learn how to create a message that contains cards, see [Send a
+     *           message](https://developers.google.com/workspace/chat/create-messages).
      *           [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *     @type array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
      *           Output only. Annotations associated with the `text` in this message.
@@ -396,14 +397,15 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\User $private_message_viewer
      *           Immutable. Input for creating a message, otherwise output only. The user
      *           that can view the message. When set, the message is private and only
-     *           visible to the specified user and the Chat app. Link previews and
-     *           attachments aren't supported for private messages.
-     *           Only Chat apps can send private messages. If your Chat app [authenticates
-     *           as a
-     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     *           to send a message, the message can't be private and must omit this field.
-     *           For details, see [Send private messages to Google Chat
-     *           users](https://developers.google.com/workspace/chat/private-messages).
+     *           visible to the specified user and the Chat app. To include this field in
+     *           your request, you must call the Chat API using [app
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *           and omit the following:
+     *           * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     *           * [Accessory
+     *           widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     *           For details, see [Send a message
+     *           privately](https://developers.google.com/workspace/chat/create-messages#private).
      *     @type \Google\Apps\Chat\V1\DeletionMetadata $deletion_metadata
      *           Output only. Information about a deleted message. A message is deleted when
      *           `delete_time` is set.
@@ -649,8 +651,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * You can also [&#64;mention a Google Chat
      * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      * or everyone in the space.
-     * To learn about creating text messages, see [Send a text
-     * message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * To learn about creating text messages, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      *
      * Generated from protobuf field <code>string text = 4;</code>
      * @return string
@@ -667,8 +669,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * You can also [&#64;mention a Google Chat
      * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
      * or everyone in the space.
-     * To learn about creating text messages, see [Send a text
-     * message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * To learn about creating text messages, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      *
      * Generated from protobuf field <code>string text = 4;</code>
      * @param string $var
@@ -786,8 +788,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * Only Chat apps can create cards. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the messages can't contain cards.
-     * To learn about cards and how to create them, see [Send card
-     * messages](https://developers.google.com/workspace/chat/create-messages#create).
+     * To learn how to create a message that contains cards, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22;</code>
@@ -804,8 +806,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * Only Chat apps can create cards. If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the messages can't contain cards.
-     * To learn about cards and how to create them, see [Send card
-     * messages](https://developers.google.com/workspace/chat/create-messages#create).
+     * To learn how to create a message that contains cards, see [Send a
+     * message](https://developers.google.com/workspace/chat/create-messages).
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22;</code>
@@ -1225,14 +1227,15 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Input for creating a message, otherwise output only. The user
      * that can view the message. When set, the message is private and only
-     * visible to the specified user and the Chat app. Link previews and
-     * attachments aren't supported for private messages.
-     * Only Chat apps can send private messages. If your Chat app [authenticates
-     * as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * to send a message, the message can't be private and must omit this field.
-     * For details, see [Send private messages to Google Chat
-     * users](https://developers.google.com/workspace/chat/private-messages).
+     * visible to the specified user and the Chat app. To include this field in
+     * your request, you must call the Chat API using [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and omit the following:
+     * * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     * * [Accessory
+     * widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     * For details, see [Send a message
+     * privately](https://developers.google.com/workspace/chat/create-messages#private).
      *
      * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Apps\Chat\V1\User|null
@@ -1255,14 +1258,15 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Input for creating a message, otherwise output only. The user
      * that can view the message. When set, the message is private and only
-     * visible to the specified user and the Chat app. Link previews and
-     * attachments aren't supported for private messages.
-     * Only Chat apps can send private messages. If your Chat app [authenticates
-     * as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
-     * to send a message, the message can't be private and must omit this field.
-     * For details, see [Send private messages to Google Chat
-     * users](https://developers.google.com/workspace/chat/private-messages).
+     * visible to the specified user and the Chat app. To include this field in
+     * your request, you must call the Chat API using [app
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * and omit the following:
+     * * [Attachments](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments)
+     * * [Accessory
+     * widgets](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#Message.AccessoryWidget)
+     * For details, see [Send a message
+     * privately](https://developers.google.com/workspace/chat/create-messages#private).
      *
      * Generated from protobuf field <code>.google.chat.v1.User private_message_viewer = 36 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Apps\Chat\V1\User $var
