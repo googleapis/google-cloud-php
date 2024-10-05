@@ -27,6 +27,19 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets autoscaling_targets = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $autoscaling_targets = null;
+    /**
+     * Optional. Optional asymmetric autoscaling options.
+     * Replicas matching the replica selection criteria will be autoscaled
+     * independently from other replicas. The autoscaler will scale the replicas
+     * based on the utilization of replicas identified by the replica selection.
+     * Replica selections should not overlap with each other.
+     * Other replicas (those do not match any replica selection) will be
+     * autoscaled together and will have the same compute capacity allocated to
+     * them.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption asymmetric_autoscaling_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $asymmetric_autoscaling_options;
 
     /**
      * Constructor.
@@ -38,6 +51,15 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      *           Required. Autoscaling limits for an instance.
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig\AutoscalingTargets $autoscaling_targets
      *           Required. The autoscaling targets for an instance.
+     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig\AsymmetricAutoscalingOption>|\Google\Protobuf\Internal\RepeatedField $asymmetric_autoscaling_options
+     *           Optional. Optional asymmetric autoscaling options.
+     *           Replicas matching the replica selection criteria will be autoscaled
+     *           independently from other replicas. The autoscaler will scale the replicas
+     *           based on the utilization of replicas identified by the replica selection.
+     *           Replica selections should not overlap with each other.
+     *           Other replicas (those do not match any replica selection) will be
+     *           autoscaled together and will have the same compute capacity allocated to
+     *           them.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +135,46 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig\AutoscalingTargets::class);
         $this->autoscaling_targets = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional asymmetric autoscaling options.
+     * Replicas matching the replica selection criteria will be autoscaled
+     * independently from other replicas. The autoscaler will scale the replicas
+     * based on the utilization of replicas identified by the replica selection.
+     * Replica selections should not overlap with each other.
+     * Other replicas (those do not match any replica selection) will be
+     * autoscaled together and will have the same compute capacity allocated to
+     * them.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption asymmetric_autoscaling_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAsymmetricAutoscalingOptions()
+    {
+        return $this->asymmetric_autoscaling_options;
+    }
+
+    /**
+     * Optional. Optional asymmetric autoscaling options.
+     * Replicas matching the replica selection criteria will be autoscaled
+     * independently from other replicas. The autoscaler will scale the replicas
+     * based on the utilization of replicas identified by the replica selection.
+     * Replica selections should not overlap with each other.
+     * Other replicas (those do not match any replica selection) will be
+     * autoscaled together and will have the same compute capacity allocated to
+     * them.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption asymmetric_autoscaling_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig\AsymmetricAutoscalingOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAsymmetricAutoscalingOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig\AsymmetricAutoscalingOption::class);
+        $this->asymmetric_autoscaling_options = $arr;
 
         return $this;
     }
