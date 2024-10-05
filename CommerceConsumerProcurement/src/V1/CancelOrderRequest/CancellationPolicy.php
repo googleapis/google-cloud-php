@@ -65,6 +65,4 @@ class CancellationPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CancellationPolicy::class, \Google\Cloud\Commerce\Consumer\Procurement\V1\CancelOrderRequest_CancellationPolicy::class);
 

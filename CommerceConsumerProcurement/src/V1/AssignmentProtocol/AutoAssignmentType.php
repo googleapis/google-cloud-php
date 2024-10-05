@@ -83,6 +83,4 @@ class AutoAssignmentType extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoAssignmentType::class, \Google\Cloud\Commerce\Consumer\Procurement\V1\AssignmentProtocol_AutoAssignmentType::class);
 

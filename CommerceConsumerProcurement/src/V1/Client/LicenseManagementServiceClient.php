@@ -85,9 +85,7 @@ final class LicenseManagementServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -102,7 +100,8 @@ final class LicenseManagementServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/license_management_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/license_management_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -269,8 +268,10 @@ final class LicenseManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enumerateLicensedUsers(EnumerateLicensedUsersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function enumerateLicensedUsers(
+        EnumerateLicensedUsersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('EnumerateLicensedUsers', $request, $callOptions);
     }
 

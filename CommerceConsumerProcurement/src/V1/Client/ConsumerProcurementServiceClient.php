@@ -34,8 +34,10 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Commerce\Consumer\Procurement\V1\CancelOrderRequest;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\GetOrderRequest;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\ListOrdersRequest;
+use Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\Order;
 use Google\Cloud\Commerce\Consumer\Procurement\V1\PlaceOrderRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -62,8 +64,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface cancelOrderAsync(CancelOrderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getOrderAsync(GetOrderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listOrdersAsync(ListOrdersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface modifyOrderAsync(ModifyOrderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface placeOrderAsync(PlaceOrderRequest $request, array $optionalArgs = [])
  */
 final class ConsumerProcurementServiceClient
@@ -332,6 +336,35 @@ final class ConsumerProcurementServiceClient
     }
 
     /**
+     * Cancels an existing
+     * [Order][google.cloud.commerce.consumer.procurement.v1.Order]. Every product
+     * procured in the Order will be cancelled.
+     *
+     * The async variant is {@see ConsumerProcurementServiceClient::cancelOrderAsync()}
+     * .
+     *
+     * @example samples/V1/ConsumerProcurementServiceClient/cancel_order.php
+     *
+     * @param CancelOrderRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelOrder(CancelOrderRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CancelOrder', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the requested
      * [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
      *
@@ -385,6 +418,34 @@ final class ConsumerProcurementServiceClient
     public function listOrders(ListOrdersRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListOrders', $request, $callOptions);
+    }
+
+    /**
+     * Modifies an existing
+     * [Order][google.cloud.commerce.consumer.procurement.v1.Order] resource.
+     *
+     * The async variant is {@see ConsumerProcurementServiceClient::modifyOrderAsync()}
+     * .
+     *
+     * @example samples/V1/ConsumerProcurementServiceClient/modify_order.php
+     *
+     * @param ModifyOrderRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function modifyOrder(ModifyOrderRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ModifyOrder', $request, $callOptions)->wait();
     }
 
     /**

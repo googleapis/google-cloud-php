@@ -58,7 +58,9 @@ class LicenseManagementServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return LicenseManagementServiceClient */
@@ -84,16 +86,17 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $usernames = [];
-        $request = (new AssignRequest())
-            ->setParent($parent)
-            ->setUsernames($usernames);
+        $request = (new AssignRequest())->setParent($parent)->setUsernames($usernames);
         $response = $gapicClient->assign($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/Assign', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/Assign',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getUsernames();
@@ -112,19 +115,20 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $usernames = [];
-        $request = (new AssignRequest())
-            ->setParent($parent)
-            ->setUsernames($usernames);
+        $request = (new AssignRequest())->setParent($parent)->setUsernames($usernames);
         try {
             $gapicClient->assign($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -149,17 +153,14 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $licensedUsersElement = new LicensedUser();
-        $licensedUsers = [
-            $licensedUsersElement,
-        ];
+        $licensedUsers = [$licensedUsersElement];
         $expectedResponse = new EnumerateLicensedUsersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLicensedUsers($licensedUsers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new EnumerateLicensedUsersRequest())
-            ->setParent($parent);
+        $request = (new EnumerateLicensedUsersRequest())->setParent($parent);
         $response = $gapicClient->enumerateLicensedUsers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -169,7 +170,10 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/EnumerateLicensedUsers', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/EnumerateLicensedUsers',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -186,17 +190,19 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new EnumerateLicensedUsersRequest())
-            ->setParent($parent);
+        $request = (new EnumerateLicensedUsersRequest())->setParent($parent);
         try {
             $gapicClient->enumerateLicensedUsers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -229,15 +235,17 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetLicensePoolRequest())
-            ->setName($name);
+        $request = (new GetLicensePoolRequest())->setName($name);
         $response = $gapicClient->getLicensePool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/GetLicensePool', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/GetLicensePool',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -254,17 +262,19 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetLicensePoolRequest())
-            ->setName($name);
+        $request = (new GetLicensePoolRequest())->setName($name);
         try {
             $gapicClient->getLicensePool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -292,16 +302,17 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $usernames = [];
-        $request = (new UnassignRequest())
-            ->setParent($parent)
-            ->setUsernames($usernames);
+        $request = (new UnassignRequest())->setParent($parent)->setUsernames($usernames);
         $response = $gapicClient->unassign($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/Unassign', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/Unassign',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getUsernames();
@@ -320,19 +331,20 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $usernames = [];
-        $request = (new UnassignRequest())
-            ->setParent($parent)
-            ->setUsernames($usernames);
+        $request = (new UnassignRequest())->setParent($parent)->setUsernames($usernames);
         try {
             $gapicClient->unassign($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -368,16 +380,17 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $licensePoolLicenseAssignmentProtocol = new AssignmentProtocol();
         $licensePool->setLicenseAssignmentProtocol($licensePoolLicenseAssignmentProtocol);
         $updateMask = new FieldMask();
-        $request = (new UpdateLicensePoolRequest())
-            ->setLicensePool($licensePool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateLicensePoolRequest())->setLicensePool($licensePool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateLicensePool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/UpdateLicensePool', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/UpdateLicensePool',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getLicensePool();
         $this->assertProtobufEquals($licensePool, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
@@ -396,21 +409,22 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $licensePool = new LicensePool();
         $licensePoolLicenseAssignmentProtocol = new AssignmentProtocol();
         $licensePool->setLicenseAssignmentProtocol($licensePoolLicenseAssignmentProtocol);
         $updateMask = new FieldMask();
-        $request = (new UpdateLicensePoolRequest())
-            ->setLicensePool($licensePool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateLicensePoolRequest())->setLicensePool($licensePool)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateLicensePool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -438,16 +452,17 @@ class LicenseManagementServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $usernames = [];
-        $request = (new AssignRequest())
-            ->setParent($parent)
-            ->setUsernames($usernames);
+        $request = (new AssignRequest())->setParent($parent)->setUsernames($usernames);
         $response = $gapicClient->assignAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/Assign', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.commerce.consumer.procurement.v1.LicenseManagementService/Assign',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getUsernames();
