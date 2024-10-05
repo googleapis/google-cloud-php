@@ -76,7 +76,3 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DocumentsTarget::class, \Google\Cloud\Firestore\V1\Target_DocumentsTarget::class);
-

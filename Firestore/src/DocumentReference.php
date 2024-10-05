@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 
 /**
  * Represents a reference to a Firestore document.
@@ -39,10 +42,14 @@ class DocumentReference
     use DebugInfoTrait;
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    private $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var ValueMapper
@@ -60,20 +67,22 @@ class DocumentReference
     private $name;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param CollectionReference $parent The collection in which this document is contained.
      * @param string $name The fully-qualified document name.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         CollectionReference $parent,
         $name
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;
@@ -169,14 +178,14 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
      *        Note that unlike {@see \Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options Configuration Options.
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
     public function create(array $fields = [], array $options = [])
@@ -204,7 +213,7 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      * @codingStandardsIgnoreEnd
      *
      * @param array $fields An array containing fields, where keys are the field
@@ -219,7 +228,7 @@ class DocumentReference
      *           `false`.
      * }
      * @codingStandardsIgnoreStart
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
     public function set(array $fields, array $options = [])
@@ -285,12 +294,12 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @param array[] $data A list of arrays of form
      *        `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @throws \InvalidArgumentException If data is given in an invalid format
      *         or is empty.
      * @throws \InvalidArgumentException If any field paths are empty.
@@ -315,10 +324,10 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @param array $options Configuration Options
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
     public function delete(array $options = [])
@@ -339,15 +348,21 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BatchGetDocuments BatchGetDocuments
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration Options
+     * @param array $options Configuration options.
      * @return DocumentSnapshot
      */
     public function snapshot(array $options = [])
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $this, $options);
+        return $this->createSnapshot(
+            $this->requestHandler,
+            $this->serializer,
+            $this->valueMapper,
+            $this,
+            $options
+        );
     }
 
     /**
@@ -364,7 +379,8 @@ class DocumentReference
     public function collection($collectionId)
     {
         return new CollectionReference(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->childPath($this->name, $collectionId)
         );
@@ -379,30 +395,41 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.ListCollectionIds ListCollectionIds
+     * https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.ListCollectionIds ListCollectionIds
      * @codingStandardsIgnoreEnd
      *
      * @param array $options Configuration options.
      * @return ItemIterator<CollectionReference>
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
-     *     specified.
      */
     public function collections(array $options = [])
     {
-        $options = $this->formatReadTimeOption($options);
-
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += ['parent' => $this->name];
+        $request = $this->serializer->decodeMessage(new ListCollectionIdsRequest(), $data);
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
                     return new CollectionReference(
-                        $this->connection,
+                        $this->requestHandler,
+                        $this->serializer,
                         $this->valueMapper,
                         $this->childPath($this->name, $collectionId)
                     );
                 },
-                [$this->connection, 'listCollectionIds'],
-                $options + ['parent' => $this->name],
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
+
+                    return $this->requestHandler->sendRequest(
+                        V1FirestoreClient::class,
+                        'listCollectionIds',
+                        $request,
+                        $optionalArgs
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'collectionIds',
                     'resultLimit' => $resultLimit
@@ -414,15 +441,13 @@ class DocumentReference
     /**
      * Create a Batch Writer for single-use mutations in this class.
      *
-     * @return WriteBatch
+     * @return BulkWriter
      */
     protected function batchFactory()
     {
-        if (!class_exists(WriteBatch::class)) {
-            class_alias(BulkWriter::class, WriteBatch::class);
-        }
         return new BulkWriter(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->databaseFromName($this->name)
         );

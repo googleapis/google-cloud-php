@@ -89,7 +89,3 @@ class Sum extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Sum::class, \Google\Cloud\Firestore\V1\StructuredAggregationQuery_Aggregation_Sum::class);
-

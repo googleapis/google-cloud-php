@@ -50,7 +50,7 @@
                 "fieldTransforms": [
                   {
                     "fieldPath": "a.c",
-                    "setToServerValue": "REQUEST_TIME"
+                    "setToServerValue": "1"
                   }
                 ]
               }
