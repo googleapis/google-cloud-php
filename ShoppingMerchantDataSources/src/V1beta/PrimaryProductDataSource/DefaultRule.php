@@ -24,8 +24,10 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      * The list must not be empty.
      * To link the data source to the default rule, you need to add a
      * new reference to this list (in sequential order).
-     * To unlink the data source from the default rule, you need to
-     * remove the given reference from this list.
+     * To unlink the data source from the default rule, you need to remove the
+     * given reference from this list. To create attribute rules that are
+     * different from the default rule, see [Set up your attribute
+     * rules](//support.google.com/merchants/answer/14994083).
      * Changing the order of this list will result in changing the priority of
      * data sources in the default rule.
      * For example, providing the following list: [`1001`, `self`] will
@@ -51,8 +53,10 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      *           The list must not be empty.
      *           To link the data source to the default rule, you need to add a
      *           new reference to this list (in sequential order).
-     *           To unlink the data source from the default rule, you need to
-     *           remove the given reference from this list.
+     *           To unlink the data source from the default rule, you need to remove the
+     *           given reference from this list. To create attribute rules that are
+     *           different from the default rule, see [Set up your attribute
+     *           rules](//support.google.com/merchants/answer/14994083).
      *           Changing the order of this list will result in changing the priority of
      *           data sources in the default rule.
      *           For example, providing the following list: [`1001`, `self`] will
@@ -74,8 +78,10 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      * The list must not be empty.
      * To link the data source to the default rule, you need to add a
      * new reference to this list (in sequential order).
-     * To unlink the data source from the default rule, you need to
-     * remove the given reference from this list.
+     * To unlink the data source from the default rule, you need to remove the
+     * given reference from this list. To create attribute rules that are
+     * different from the default rule, see [Set up your attribute
+     * rules](//support.google.com/merchants/answer/14994083).
      * Changing the order of this list will result in changing the priority of
      * data sources in the default rule.
      * For example, providing the following list: [`1001`, `self`] will
@@ -99,8 +105,10 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      * The list must not be empty.
      * To link the data source to the default rule, you need to add a
      * new reference to this list (in sequential order).
-     * To unlink the data source from the default rule, you need to
-     * remove the given reference from this list.
+     * To unlink the data source from the default rule, you need to remove the
+     * given reference from this list. To create attribute rules that are
+     * different from the default rule, see [Set up your attribute
+     * rules](//support.google.com/merchants/answer/14994083).
      * Changing the order of this list will result in changing the priority of
      * data sources in the default rule.
      * For example, providing the following list: [`1001`, `self`] will
