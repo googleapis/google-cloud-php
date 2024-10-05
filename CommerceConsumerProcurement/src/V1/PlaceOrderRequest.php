@@ -39,7 +39,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique identifier for this request.
      * The server will ignore subsequent requests that provide a duplicate request
-     * ID for at least 120 minutes after the first request.
+     * ID for at least 24 hours after the first request.
      * The request ID must be a valid
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      *
@@ -64,7 +64,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
      *     @type string $request_id
      *           Optional. A unique identifier for this request.
      *           The server will ignore subsequent requests that provide a duplicate request
-     *           ID for at least 120 minutes after the first request.
+     *           ID for at least 24 hours after the first request.
      *           The request ID must be a valid
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      * }
@@ -159,7 +159,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique identifier for this request.
      * The server will ignore subsequent requests that provide a duplicate request
-     * ID for at least 120 minutes after the first request.
+     * ID for at least 24 hours after the first request.
      * The request ID must be a valid
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      *
@@ -174,7 +174,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique identifier for this request.
      * The server will ignore subsequent requests that provide a duplicate request
-     * ID for at least 120 minutes after the first request.
+     * ID for at least 24 hours after the first request.
      * The request ID must be a valid
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      *

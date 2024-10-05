@@ -22,33 +22,22 @@
 
 return [
     'interfaces' => [
-        'google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService' => [
-            'CancelOrder' => [
+        'google.cloud.commerce.consumer.procurement.v1.LicenseManagementService' => [
+            'Assign' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*}:cancel',
+                'uriTemplate' => '/v1/{parent=billingAccounts/*/orders/*/licensePool}:assign',
                 'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
             ],
-            'GetOrder' => [
+            'EnumerateLicensedUsers' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListOrders' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=billingAccounts/*}/orders',
+                'uriTemplate' => '/v1/{parent=billingAccounts/*/orders/*/licensePool}:enumerateLicensedUsers',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -57,10 +46,9 @@ return [
                     ],
                 ],
             ],
-            'ModifyOrder' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*}:modify',
-                'body' => '*',
+            'GetLicensePool' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*/licensePool}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -69,9 +57,9 @@ return [
                     ],
                 ],
             ],
-            'PlaceOrder' => [
+            'Unassign' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=billingAccounts/*}/orders:place',
+                'uriTemplate' => '/v1/{parent=billingAccounts/*/orders/*/licensePool}:unassign',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -79,6 +67,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateLicensePool' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{license_pool.name=billingAccounts/*/orders/*/licensePool/*}',
+                'body' => 'license_pool',
+                'placeholders' => [
+                    'license_pool.name' => [
+                        'getters' => [
+                            'getLicensePool',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
