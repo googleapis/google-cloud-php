@@ -37,7 +37,7 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *           authorization policy. If False, binary authorization will be disabled.
      *     @type string $policy
      *           Optional. The path to a binary authorization policy.
-     *           Format: projects/{project}/platforms/cloudRun/{policy-name}
+     *           Format: `projects/{project}/platforms/cloudRun/{policy-name}`
      *     @type string $breakglass_justification
      *           Optional. If present, indicates to use Breakglass using this justification.
      *           If use_default is False, then it must be empty.
@@ -85,9 +85,9 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The path to a binary authorization policy.
-     * Format: projects/{project}/platforms/cloudRun/{policy-name}
+     * Format: `projects/{project}/platforms/cloudRun/{policy-name}`
      *
-     * Generated from protobuf field <code>string policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string policy = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getPolicy()
@@ -102,9 +102,9 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The path to a binary authorization policy.
-     * Format: projects/{project}/platforms/cloudRun/{policy-name}
+     * Format: `projects/{project}/platforms/cloudRun/{policy-name}`
      *
-     * Generated from protobuf field <code>string policy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string policy = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

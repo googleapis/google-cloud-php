@@ -18,8 +18,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
 {
     /**
      * VPC Access connector name.
-     * Format: projects/{project}/locations/{location}/connectors/{connector},
-     * where {project} can be project id or number.
+     * Format: `projects/{project}/locations/{location}/connectors/{connector}`,
+     * where `{project}` can be project id or number.
      * For more information on sending traffic to a VPC network via a connector,
      * visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *
@@ -49,8 +49,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      *
      *     @type string $connector
      *           VPC Access connector name.
-     *           Format: projects/{project}/locations/{location}/connectors/{connector},
-     *           where {project} can be project id or number.
+     *           Format: `projects/{project}/locations/{location}/connectors/{connector}`,
+     *           where `{project}` can be project id or number.
      *           For more information on sending traffic to a VPC network via a connector,
      *           visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *     @type int $egress
@@ -68,8 +68,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
 
     /**
      * VPC Access connector name.
-     * Format: projects/{project}/locations/{location}/connectors/{connector},
-     * where {project} can be project id or number.
+     * Format: `projects/{project}/locations/{location}/connectors/{connector}`,
+     * where `{project}` can be project id or number.
      * For more information on sending traffic to a VPC network via a connector,
      * visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *
@@ -83,8 +83,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
 
     /**
      * VPC Access connector name.
-     * Format: projects/{project}/locations/{location}/connectors/{connector},
-     * where {project} can be project id or number.
+     * Format: `projects/{project}/locations/{location}/connectors/{connector}`,
+     * where `{project}` can be project id or number.
      * For more information on sending traffic to a VPC network via a connector,
      * visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      *
