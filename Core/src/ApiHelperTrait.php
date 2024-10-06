@@ -20,7 +20,6 @@ namespace Google\Cloud\Core;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\NullValue;
-use Google\Cloud\Core\Duration;
 
 /**
  * @internal
@@ -176,7 +175,7 @@ trait ApiHelperTrait
      */
     private function formatTimestampForApi($value)
     {
-        list ($dt, $nanos) = $this->parseTimeString($value);
+        list($dt, $nanos) = $this->parseTimeString($value);
 
         return [
             'seconds' => (int) $dt->format('U'),
@@ -239,11 +238,11 @@ trait ApiHelperTrait
      *
      * @return array The modified array
      */
-    private function convertDataToProtos(array $input, array $map) : array
+    private function convertDataToProtos(array $input, array $map): array
     {
         foreach ($map as $key => $className) {
             if (isset($input[$key])) {
-                $input[$key] = $this->serializer->decodeMessage(new $className, $input[$key]);
+                $input[$key] = $this->serializer->decodeMessage(new $className(), $input[$key]);
             }
         }
 
@@ -256,7 +255,7 @@ trait ApiHelperTrait
      * We strictly treat the parameters allowed by `CallOptions` in GAX as the optional params
      * and everything else that is passed is passed to the Proto message constructor.
      */
-    private function splitOptionalArgs(array $input, array $extraAllowedKeys = []) : array
+    private function splitOptionalArgs(array $input, array $extraAllowedKeys = []): array
     {
         $callOptionFields = array_keys((new CallOptions([]))->toArray());
         $keys = array_merge($callOptionFields, $extraAllowedKeys);

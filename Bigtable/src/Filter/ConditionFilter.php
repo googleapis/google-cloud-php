@@ -123,7 +123,7 @@ class ConditionFilter implements FilterInterface
                 )
             );
         }
-        $condition = (new Condition)
+        $condition = (new Condition())
             ->setPredicateFilter($this->predicateFilter);
         if ($this->trueFilter) {
             $condition->setTrueFilter($this->trueFilter);
@@ -131,7 +131,7 @@ class ConditionFilter implements FilterInterface
         if ($this->falseFilter) {
             $condition->setFalseFilter($this->falseFilter);
         }
-        return (new RowFilter)
+        return (new RowFilter())
             ->setCondition($condition);
     }
 }

@@ -17,15 +17,12 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\WhitelistTrait;
 use \Google\Protobuf\Internal\Message;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @internal
@@ -76,7 +73,7 @@ class RequestHandler
             );
         }
         //@codeCoverageIgnoreEnd
-        
+
         // Initialize the client classes and store them in memory
         $this->clients = [];
         foreach ($clientClasses as $className) {
