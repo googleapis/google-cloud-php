@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class GoogleSearchRetrieval extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Specifies the dynamic retrieval configuration for the given source.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DynamicRetrievalConfig dynamic_retrieval_config = 2;</code>
+     */
+    protected $dynamic_retrieval_config = null;
 
     /**
      * Constructor.
@@ -22,11 +28,49 @@ class GoogleSearchRetrieval extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AIPlatform\V1\DynamicRetrievalConfig $dynamic_retrieval_config
+     *           Specifies the dynamic retrieval configuration for the given source.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Tool::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies the dynamic retrieval configuration for the given source.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DynamicRetrievalConfig dynamic_retrieval_config = 2;</code>
+     * @return \Google\Cloud\AIPlatform\V1\DynamicRetrievalConfig|null
+     */
+    public function getDynamicRetrievalConfig()
+    {
+        return $this->dynamic_retrieval_config;
+    }
+
+    public function hasDynamicRetrievalConfig()
+    {
+        return isset($this->dynamic_retrieval_config);
+    }
+
+    public function clearDynamicRetrievalConfig()
+    {
+        unset($this->dynamic_retrieval_config);
+    }
+
+    /**
+     * Specifies the dynamic retrieval configuration for the given source.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DynamicRetrievalConfig dynamic_retrieval_config = 2;</code>
+     * @param \Google\Cloud\AIPlatform\V1\DynamicRetrievalConfig $var
+     * @return $this
+     */
+    public function setDynamicRetrievalConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\DynamicRetrievalConfig::class);
+        $this->dynamic_retrieval_config = $var;
+
+        return $this;
     }
 
 }

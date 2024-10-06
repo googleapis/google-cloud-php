@@ -21,8 +21,12 @@ use Google\Cloud\Storage\Acl;
 use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
+ * These tests are marked flakey because they often throw RateLimitExceeded and
+ * ServiceException.
+ *
  * @group storage
  * @group storage-acl
+ * @group flakey
  */
 class ManageAclTest extends StorageTestCase
 {
@@ -32,12 +36,6 @@ class ManageAclTest extends StorageTestCase
         $this->assertAcl(self::$bucket->acl(), $kind);
     }
 
-    /**
-     * This test is marked flakey because it often throws a RateLimitExceeded
-     * error
-     *
-     * @group flakey
-     */
     public function testManageDefaultObjectAcl()
     {
         $kind = 'storage#objectAccessControl';
