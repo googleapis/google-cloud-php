@@ -101,10 +101,10 @@ class ClassNode
             if ($ref1 && $ref2) {
                 if (false !== stripos($line, $ref1)
                     && false !== stripos($lines[$i+1], $ref2)) {
-                    return $proto . '#' . ($i + 1);
+                    return $proto . '#L' . ($i + 1);
                 }
             } elseif (false !== stripos($line, $ref)) {
-                return $proto . '#' . ($i + 1);
+                return $proto . '#L' . ($i + 1);
             }
         }
 

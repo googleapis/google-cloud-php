@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\DocFx;
 
 use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
 use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
+use Google\Cloud\Dev\Component;
 
 /**
  * @internal
