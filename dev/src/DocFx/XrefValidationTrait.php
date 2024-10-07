@@ -114,4 +114,35 @@ trait XrefValidationTrait
 
         return $brokenRefs;
     }
+
+    private function classnameToProtobufPath(string $ref, string $text): string
+    {
+        // remove leading and trailing slashes and parentheses
+        $ref = trim(trim($ref, '\\'), '()');
+        // convert methods to snake case
+        if (strpos($ref, '::set') !== false || strpos($ref, '::get') !== false) {
+            $parts = explode('::', $ref);
+            $ref = $parts[0] . '.' . strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', substr($parts[1], 3)));
+        }
+
+        // convert namespace separators and function calls to dots
+        $ref = str_replace(['\\', '::'], '.', $ref);
+
+        // lowercase the namespace
+        $parts = explode('.', $ref);
+        foreach ($parts as $i => $part) {
+            if (preg_match(Component::VERSION_REGEX, $part) || $part === 'Master') {
+                for ($j = 0; $j <= $i; $j++) {
+                    $parts[$j] = strtolower($parts[$j]);
+                }
+                $ref = implode('.', $parts);
+                break;
+            }
+        }
+
+        // convert namespace to lowercase
+        $ref = false === strpos($ref, '.') ? strtolower($ref) : $ref;
+
+        return sprintf('[%s][%s]', $text, $ref);
+    }
 }
