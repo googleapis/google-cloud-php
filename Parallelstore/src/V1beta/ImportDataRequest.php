@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message representing the request importing data from parallelstore to Cloud
- * Storage.
+ * Import data from Cloud Storage into a Parallelstore instance.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ImportDataRequest</code>
  */
@@ -39,11 +38,14 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      */
     protected $request_id = '';
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Optional. User-specified service account credentials to be used when
      * performing the transfer.
-     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * Use one of the following formats:
+     * * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      * If unspecified, the Parallelstore service agent is used:
-     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -58,7 +60,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket $source_gcs_bucket
-     *           Cloud Storage source.
+     *           The Cloud Storage source bucket and, optionally, path inside the bucket.
      *     @type \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $destination_parallelstore
      *           Parallelstore destination.
      *     @type string $name
@@ -76,11 +78,14 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type string $service_account
-     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           Optional. User-specified service account credentials to be used when
      *           performing the transfer.
-     *           Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     *           Use one of the following formats:
+     *           * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     *           * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     *           * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      *           If unspecified, the Parallelstore service agent is used:
-     *           service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     *           `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +94,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage source.
+     * The Cloud Storage source bucket and, optionally, path inside the bucket.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceGcsBucket source_gcs_bucket = 2;</code>
      * @return \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket|null
@@ -105,7 +110,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Storage source.
+     * The Cloud Storage source bucket and, optionally, path inside the bucket.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceGcsBucket source_gcs_bucket = 2;</code>
      * @param \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket $var
@@ -223,11 +228,14 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Optional. User-specified service account credentials to be used when
      * performing the transfer.
-     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * Use one of the following formats:
+     * * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      * If unspecified, the Parallelstore service agent is used:
-     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -238,11 +246,14 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Optional. User-specified service account credentials to be used when
      * performing the transfer.
-     * Format: `projects/{project_id}/serviceAccounts/{service_account}`
+     * Use one of the following formats:
+     * * {EMAIL_ADDRESS_OR_UNIQUE_ID}
+     * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
+     * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}
      * If unspecified, the Parallelstore service agent is used:
-     * service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com)
+     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

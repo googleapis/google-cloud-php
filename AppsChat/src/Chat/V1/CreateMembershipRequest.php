@@ -44,6 +44,21 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.chat.v1.Membership membership = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $membership = null;
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Creating app memberships or creating memberships for users outside the
+     * administrator's Google Workspace organization isn't supported using admin
+     * access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 5;</code>
+     */
+    protected $use_admin_access = false;
 
     /**
      * @param string                          $parent     Required. The resource name of the space for which to create the
@@ -106,6 +121,17 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *           `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
      *           membership relation for itself, it must use the `chat.memberships.app`
      *           scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     *     @type bool $use_admin_access
+     *           When `true`, the method runs using the user's Google Workspace
+     *           administrator privileges.
+     *           The calling user must be a Google Workspace administrator with the
+     *           [manage chat and spaces conversations
+     *           privilege](https://support.google.com/a/answer/13369245).
+     *           Requires the `chat.admin.memberships` [OAuth 2.0
+     *           scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     *           Creating app memberships or creating memberships for users outside the
+     *           administrator's Google Workspace organization isn't supported using admin
+     *           access.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,6 +231,50 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Membership::class);
         $this->membership = $var;
+
+        return $this;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Creating app memberships or creating memberships for users outside the
+     * administrator's Google Workspace organization isn't supported using admin
+     * access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 5;</code>
+     * @return bool
+     */
+    public function getUseAdminAccess()
+    {
+        return $this->use_admin_access;
+    }
+
+    /**
+     * When `true`, the method runs using the user's Google Workspace
+     * administrator privileges.
+     * The calling user must be a Google Workspace administrator with the
+     * [manage chat and spaces conversations
+     * privilege](https://support.google.com/a/answer/13369245).
+     * Requires the `chat.admin.memberships` [OAuth 2.0
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     * Creating app memberships or creating memberships for users outside the
+     * administrator's Google Workspace organization isn't supported using admin
+     * access.
+     *
+     * Generated from protobuf field <code>bool use_admin_access = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseAdminAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_admin_access = $var;
 
         return $this;
     }

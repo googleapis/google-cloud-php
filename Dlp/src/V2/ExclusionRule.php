@@ -21,7 +21,7 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.MatchingType matching_type = 4;</code>
      */
-    private $matching_type = 0;
+    protected $matching_type = 0;
     protected $type;
 
     /**

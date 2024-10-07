@@ -112,6 +112,4 @@ class Confidence extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Confidence::class, \Google\Cloud\WebRisk\V1\ThreatInfo_Confidence::class);
 

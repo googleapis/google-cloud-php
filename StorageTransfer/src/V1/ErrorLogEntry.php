@@ -21,7 +21,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * A list of messages that carry the error details.
      *

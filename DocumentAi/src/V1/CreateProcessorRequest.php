@@ -25,7 +25,7 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The processor to be created, requires
      * [Processor.type][google.cloud.documentai.v1.Processor.type] and
@@ -36,7 +36,7 @@ class CreateProcessorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Processor processor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $processor = null;
+    protected $processor = null;
 
     /**
      * @param string                                $parent    Required. The parent (project and location) under which to create the

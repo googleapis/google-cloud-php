@@ -25,7 +25,7 @@ class ProjectBillingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The ID of the project that this `ProjectBillingInfo`
      * represents, such as `tokyo-rain-123`. This is a convenience field so that
@@ -33,14 +33,14 @@ class ProjectBillingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The resource name of the billing account associated with the project, if
      * any. For example, `billingAccounts/012345-567890-ABCDEF`.
      *
      * Generated from protobuf field <code>string billing_account_name = 3;</code>
      */
-    private $billing_account_name = '';
+    protected $billing_account_name = '';
     /**
      * Output only. True if the project is associated with an open billing
      * account, to which usage on the project is charged. False if the project is
@@ -49,7 +49,7 @@ class ProjectBillingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool billing_enabled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $billing_enabled = false;
+    protected $billing_enabled = false;
 
     /**
      * Constructor.

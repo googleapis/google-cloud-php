@@ -31,7 +31,7 @@ use Google\Cloud\Parallelstore\V1beta\ExportDataResponse;
 use Google\Rpc\Status;
 
 /**
- * ExportData copies data from Parallelstore to Cloud Storage
+ * Copies data from Parallelstore to Cloud Storage.
  *
  * @param string $formattedName Name of the resource. Please see
  *                              {@see ParallelstoreClient::instanceName()} for help formatting this field.

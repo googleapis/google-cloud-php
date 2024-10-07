@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\SecurityCenter\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -118,6 +117,7 @@ use Google\Cloud\SecurityCenter\V1\UpdateSourceRequest;
 use Google\Cloud\SecurityCenter\V1\ValidateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\ValidateEventThreatDetectionCustomModuleResponse;
 use Google\Cloud\SecurityCenter\V1\ValuedResource;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -221,9 +221,7 @@ final class SecurityCenterClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -269,10 +267,31 @@ final class SecurityCenterClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -335,8 +354,10 @@ final class SecurityCenterClient
      *
      * @return string The formatted effective_security_health_analytics_custom_module resource.
      */
-    public static function effectiveSecurityHealthAnalyticsCustomModuleName(string $organization, string $effectiveCustomModule): string
-    {
+    public static function effectiveSecurityHealthAnalyticsCustomModuleName(
+        string $organization,
+        string $effectiveCustomModule
+    ): string {
         return self::getPathTemplate('effectiveSecurityHealthAnalyticsCustomModule')->render([
             'organization' => $organization,
             'effective_custom_module' => $effectiveCustomModule,
@@ -386,8 +407,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted external_system resource.
      */
-    public static function externalSystemName(string $organization, string $source, string $finding, string $externalsystem): string
-    {
+    public static function externalSystemName(
+        string $organization,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('externalSystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -679,8 +704,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_finding_externalsystem resource.
      */
-    public static function folderSourceFindingExternalsystemName(string $folder, string $source, string $finding, string $externalsystem): string
-    {
+    public static function folderSourceFindingExternalsystemName(
+        string $folder,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('folderSourceFindingExternalsystem')->render([
             'folder' => $folder,
             'source' => $source,
@@ -834,8 +863,10 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_effective_custom_module resource.
      */
-    public static function organizationEffectiveCustomModuleName(string $organization, string $effectiveCustomModule): string
-    {
+    public static function organizationEffectiveCustomModuleName(
+        string $organization,
+        string $effectiveCustomModule
+    ): string {
         return self::getPathTemplate('organizationEffectiveCustomModule')->render([
             'organization' => $organization,
             'effective_custom_module' => $effectiveCustomModule,
@@ -901,8 +932,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_mute_config resource.
      */
-    public static function organizationLocationMuteConfigName(string $organization, string $location, string $muteConfig): string
-    {
+    public static function organizationLocationMuteConfigName(
+        string $organization,
+        string $location,
+        string $muteConfig
+    ): string {
         return self::getPathTemplate('organizationLocationMuteConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -1038,8 +1072,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_finding_externalsystem resource.
      */
-    public static function organizationSourceFindingExternalsystemName(string $organization, string $source, string $finding, string $externalsystem): string
-    {
+    public static function organizationSourceFindingExternalsystemName(
+        string $organization,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('organizationSourceFindingExternalsystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -1058,8 +1096,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_finding_securityMarks resource.
      */
-    public static function organizationSourceFindingSecurityMarksName(string $organization, string $source, string $finding): string
-    {
+    public static function organizationSourceFindingSecurityMarksName(
+        string $organization,
+        string $source,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceFindingSecurityMarks')->render([
             'organization' => $organization,
             'source' => $source,
@@ -1264,8 +1305,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_location_table_profile resource.
      */
-    public static function projectLocationTableProfileName(string $project, string $location, string $tableProfile): string
-    {
+    public static function projectLocationTableProfileName(
+        string $project,
+        string $location,
+        string $tableProfile
+    ): string {
         return self::getPathTemplate('projectLocationTableProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -1386,8 +1430,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_finding_externalsystem resource.
      */
-    public static function projectSourceFindingExternalsystemName(string $project, string $source, string $finding, string $externalsystem): string
-    {
+    public static function projectSourceFindingExternalsystemName(
+        string $project,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('projectSourceFindingExternalsystem')->render([
             'project' => $project,
             'source' => $source,
@@ -1406,8 +1454,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_finding_securityMarks resource.
      */
-    public static function projectSourceFindingSecurityMarksName(string $project, string $source, string $finding): string
-    {
+    public static function projectSourceFindingSecurityMarksName(
+        string $project,
+        string $source,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceFindingSecurityMarks')->render([
             'project' => $project,
             'source' => $source,
@@ -1779,8 +1830,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateResourceValueConfigs(BatchCreateResourceValueConfigsRequest $request, array $callOptions = []): BatchCreateResourceValueConfigsResponse
-    {
+    public function batchCreateResourceValueConfigs(
+        BatchCreateResourceValueConfigsRequest $request,
+        array $callOptions = []
+    ): BatchCreateResourceValueConfigsResponse {
         return $this->startApiCall('BatchCreateResourceValueConfigs', $request, $callOptions)->wait();
     }
 
@@ -1863,8 +1916,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createEventThreatDetectionCustomModule(CreateEventThreatDetectionCustomModuleRequest $request, array $callOptions = []): EventThreatDetectionCustomModule
-    {
+    public function createEventThreatDetectionCustomModule(
+        CreateEventThreatDetectionCustomModuleRequest $request,
+        array $callOptions = []
+    ): EventThreatDetectionCustomModule {
         return $this->startApiCall('CreateEventThreatDetectionCustomModule', $request, $callOptions)->wait();
     }
 
@@ -1943,8 +1998,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNotificationConfig(CreateNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function createNotificationConfig(
+        CreateNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('CreateNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -1973,8 +2030,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecurityHealthAnalyticsCustomModule(CreateSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): SecurityHealthAnalyticsCustomModule
-    {
+    public function createSecurityHealthAnalyticsCustomModule(
+        CreateSecurityHealthAnalyticsCustomModuleRequest $request,
+        array $callOptions = []
+    ): SecurityHealthAnalyticsCustomModule {
         return $this->startApiCall('CreateSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2050,8 +2109,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteEventThreatDetectionCustomModule(DeleteEventThreatDetectionCustomModuleRequest $request, array $callOptions = []): void
-    {
+    public function deleteEventThreatDetectionCustomModule(
+        DeleteEventThreatDetectionCustomModuleRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteEventThreatDetectionCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2151,8 +2212,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteSecurityHealthAnalyticsCustomModule(DeleteSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): void
-    {
+    public function deleteSecurityHealthAnalyticsCustomModule(
+        DeleteSecurityHealthAnalyticsCustomModuleRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2205,8 +2268,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveEventThreatDetectionCustomModule(GetEffectiveEventThreatDetectionCustomModuleRequest $request, array $callOptions = []): EffectiveEventThreatDetectionCustomModule
-    {
+    public function getEffectiveEventThreatDetectionCustomModule(
+        GetEffectiveEventThreatDetectionCustomModuleRequest $request,
+        array $callOptions = []
+    ): EffectiveEventThreatDetectionCustomModule {
         return $this->startApiCall('GetEffectiveEventThreatDetectionCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2233,8 +2298,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEffectiveSecurityHealthAnalyticsCustomModule(GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): EffectiveSecurityHealthAnalyticsCustomModule
-    {
+    public function getEffectiveSecurityHealthAnalyticsCustomModule(
+        GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $request,
+        array $callOptions = []
+    ): EffectiveSecurityHealthAnalyticsCustomModule {
         return $this->startApiCall('GetEffectiveSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2260,8 +2327,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEventThreatDetectionCustomModule(GetEventThreatDetectionCustomModuleRequest $request, array $callOptions = []): EventThreatDetectionCustomModule
-    {
+    public function getEventThreatDetectionCustomModule(
+        GetEventThreatDetectionCustomModuleRequest $request,
+        array $callOptions = []
+    ): EventThreatDetectionCustomModule {
         return $this->startApiCall('GetEventThreatDetectionCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2338,8 +2407,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationConfig(GetNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function getNotificationConfig(
+        GetNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('GetNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -2365,8 +2436,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOrganizationSettings(GetOrganizationSettingsRequest $request, array $callOptions = []): OrganizationSettings
-    {
+    public function getOrganizationSettings(
+        GetOrganizationSettingsRequest $request,
+        array $callOptions = []
+    ): OrganizationSettings {
         return $this->startApiCall('GetOrganizationSettings', $request, $callOptions)->wait();
     }
 
@@ -2392,8 +2465,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getResourceValueConfig(GetResourceValueConfigRequest $request, array $callOptions = []): ResourceValueConfig
-    {
+    public function getResourceValueConfig(
+        GetResourceValueConfigRequest $request,
+        array $callOptions = []
+    ): ResourceValueConfig {
         return $this->startApiCall('GetResourceValueConfig', $request, $callOptions)->wait();
     }
 
@@ -2419,8 +2494,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSecurityHealthAnalyticsCustomModule(GetSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): SecurityHealthAnalyticsCustomModule
-    {
+    public function getSecurityHealthAnalyticsCustomModule(
+        GetSecurityHealthAnalyticsCustomModuleRequest $request,
+        array $callOptions = []
+    ): SecurityHealthAnalyticsCustomModule {
         return $this->startApiCall('GetSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
@@ -2673,8 +2750,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDescendantEventThreatDetectionCustomModules(ListDescendantEventThreatDetectionCustomModulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDescendantEventThreatDetectionCustomModules(
+        ListDescendantEventThreatDetectionCustomModulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDescendantEventThreatDetectionCustomModules', $request, $callOptions);
     }
 
@@ -2702,8 +2781,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDescendantSecurityHealthAnalyticsCustomModules(ListDescendantSecurityHealthAnalyticsCustomModulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDescendantSecurityHealthAnalyticsCustomModules(
+        ListDescendantSecurityHealthAnalyticsCustomModulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDescendantSecurityHealthAnalyticsCustomModules', $request, $callOptions);
     }
 
@@ -2732,8 +2813,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEffectiveEventThreatDetectionCustomModules(ListEffectiveEventThreatDetectionCustomModulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEffectiveEventThreatDetectionCustomModules(
+        ListEffectiveEventThreatDetectionCustomModulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEffectiveEventThreatDetectionCustomModules', $request, $callOptions);
     }
 
@@ -2762,8 +2845,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEffectiveSecurityHealthAnalyticsCustomModules(ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEffectiveSecurityHealthAnalyticsCustomModules(
+        ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEffectiveSecurityHealthAnalyticsCustomModules', $request, $callOptions);
     }
 
@@ -2791,8 +2876,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEventThreatDetectionCustomModules(ListEventThreatDetectionCustomModulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEventThreatDetectionCustomModules(
+        ListEventThreatDetectionCustomModulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEventThreatDetectionCustomModules', $request, $callOptions);
     }
 
@@ -2873,8 +2960,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotificationConfigs(ListNotificationConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationConfigs(
+        ListNotificationConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationConfigs', $request, $callOptions);
     }
 
@@ -2900,8 +2989,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listResourceValueConfigs(ListResourceValueConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listResourceValueConfigs(
+        ListResourceValueConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListResourceValueConfigs', $request, $callOptions);
     }
 
@@ -2929,8 +3020,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSecurityHealthAnalyticsCustomModules(ListSecurityHealthAnalyticsCustomModulesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSecurityHealthAnalyticsCustomModules(
+        ListSecurityHealthAnalyticsCustomModulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSecurityHealthAnalyticsCustomModules', $request, $callOptions);
     }
 
@@ -3120,8 +3213,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function simulateSecurityHealthAnalyticsCustomModule(SimulateSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): SimulateSecurityHealthAnalyticsCustomModuleResponse
-    {
+    public function simulateSecurityHealthAnalyticsCustomModule(
+        SimulateSecurityHealthAnalyticsCustomModuleRequest $request,
+        array $callOptions = []
+    ): SimulateSecurityHealthAnalyticsCustomModuleResponse {
         return $this->startApiCall('SimulateSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
@@ -3146,8 +3241,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -3204,8 +3301,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateEventThreatDetectionCustomModule(UpdateEventThreatDetectionCustomModuleRequest $request, array $callOptions = []): EventThreatDetectionCustomModule
-    {
+    public function updateEventThreatDetectionCustomModule(
+        UpdateEventThreatDetectionCustomModuleRequest $request,
+        array $callOptions = []
+    ): EventThreatDetectionCustomModule {
         return $this->startApiCall('UpdateEventThreatDetectionCustomModule', $request, $callOptions)->wait();
     }
 
@@ -3312,8 +3411,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNotificationConfig(UpdateNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function updateNotificationConfig(
+        UpdateNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('UpdateNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -3339,8 +3440,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateOrganizationSettings(UpdateOrganizationSettingsRequest $request, array $callOptions = []): OrganizationSettings
-    {
+    public function updateOrganizationSettings(
+        UpdateOrganizationSettingsRequest $request,
+        array $callOptions = []
+    ): OrganizationSettings {
         return $this->startApiCall('UpdateOrganizationSettings', $request, $callOptions)->wait();
     }
 
@@ -3366,8 +3469,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateResourceValueConfig(UpdateResourceValueConfigRequest $request, array $callOptions = []): ResourceValueConfig
-    {
+    public function updateResourceValueConfig(
+        UpdateResourceValueConfigRequest $request,
+        array $callOptions = []
+    ): ResourceValueConfig {
         return $this->startApiCall('UpdateResourceValueConfig', $request, $callOptions)->wait();
     }
 
@@ -3397,8 +3502,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSecurityHealthAnalyticsCustomModule(UpdateSecurityHealthAnalyticsCustomModuleRequest $request, array $callOptions = []): SecurityHealthAnalyticsCustomModule
-    {
+    public function updateSecurityHealthAnalyticsCustomModule(
+        UpdateSecurityHealthAnalyticsCustomModuleRequest $request,
+        array $callOptions = []
+    ): SecurityHealthAnalyticsCustomModule {
         return $this->startApiCall('UpdateSecurityHealthAnalyticsCustomModule', $request, $callOptions)->wait();
     }
 
@@ -3476,8 +3583,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function validateEventThreatDetectionCustomModule(ValidateEventThreatDetectionCustomModuleRequest $request, array $callOptions = []): ValidateEventThreatDetectionCustomModuleResponse
-    {
+    public function validateEventThreatDetectionCustomModule(
+        ValidateEventThreatDetectionCustomModuleRequest $request,
+        array $callOptions = []
+    ): ValidateEventThreatDetectionCustomModuleResponse {
         return $this->startApiCall('ValidateEventThreatDetectionCustomModule', $request, $callOptions)->wait();
     }
 }

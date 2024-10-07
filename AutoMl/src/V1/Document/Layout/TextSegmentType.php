@@ -118,6 +118,4 @@ class TextSegmentType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TextSegmentType::class, \Google\Cloud\AutoMl\V1\Document_Layout_TextSegmentType::class);
 

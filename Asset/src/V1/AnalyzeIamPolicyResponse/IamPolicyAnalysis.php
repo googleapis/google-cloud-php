@@ -20,7 +20,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery analysis_query = 1;</code>
      */
-    private $analysis_query = null;
+    protected $analysis_query = null;
     /**
      * A list of
      * [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult]
@@ -36,7 +36,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      */
-    private $fully_explored = false;
+    protected $fully_explored = false;
     /**
      * A list of non-critical errors happened during the query handling.
      *
@@ -193,6 +193,4 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IamPolicyAnalysis::class, \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse_IamPolicyAnalysis::class);
 

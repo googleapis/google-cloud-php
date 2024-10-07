@@ -56,7 +56,7 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodeManagement management = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $management = null;
+    protected $management = null;
     /**
      * The name (project, location, cluster, node pool id) of the node pool to set
      * management properties. Specified in the format
@@ -64,7 +64,7 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

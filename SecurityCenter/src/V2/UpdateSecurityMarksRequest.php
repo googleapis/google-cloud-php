@@ -20,7 +20,7 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.SecurityMarks security_marks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_marks = null;
+    protected $security_marks = null;
     /**
      * The FieldMask to use when updating the security marks resource.
      * The field mask must not contain duplicate fields.
@@ -29,7 +29,7 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V2\SecurityMarks $securityMarks Required. The security marks resource to update.

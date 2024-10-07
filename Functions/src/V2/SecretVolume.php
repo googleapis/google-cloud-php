@@ -26,7 +26,7 @@ class SecretVolume extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mount_path = 1;</code>
      */
-    private $mount_path = '';
+    protected $mount_path = '';
     /**
      * Project identifier (preferably project number but can also be the project
      * ID) of the project that contains the secret. If not set, it is
@@ -34,13 +34,13 @@ class SecretVolume extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Name of the secret in secret manager (not the full resource name).
      *
      * Generated from protobuf field <code>string secret = 3;</code>
      */
-    private $secret = '';
+    protected $secret = '';
     /**
      * List of secret versions to mount for this secret. If empty, the `latest`
      * version of the secret will be made available in a file named after the

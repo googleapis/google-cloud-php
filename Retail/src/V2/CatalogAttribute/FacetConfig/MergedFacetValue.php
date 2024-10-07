@@ -33,7 +33,7 @@ class MergedFacetValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string merged_value = 2;</code>
      */
-    private $merged_value = '';
+    protected $merged_value = '';
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * cidr_blocks define up to 50 external networks that could access
      * Kubernetes master through HTTPS.
@@ -36,7 +36,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool gcp_public_cidrs_access_enabled = 3;</code>
      */
-    private $gcp_public_cidrs_access_enabled = null;
+    protected $gcp_public_cidrs_access_enabled = null;
 
     /**
      * Constructor.

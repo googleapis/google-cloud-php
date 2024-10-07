@@ -27,7 +27,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

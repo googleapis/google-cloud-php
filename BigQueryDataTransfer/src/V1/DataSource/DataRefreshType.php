@@ -63,6 +63,4 @@ class DataRefreshType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataRefreshType::class, \Google\Cloud\BigQuery\DataTransfer\V1\DataSource_DataRefreshType::class);
 

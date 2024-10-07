@@ -18,11 +18,11 @@ class AggregationInfo extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.billing.v1.AggregationInfo.AggregationLevel aggregation_level = 1;</code>
      */
-    private $aggregation_level = 0;
+    protected $aggregation_level = 0;
     /**
      * Generated from protobuf field <code>.google.cloud.billing.v1.AggregationInfo.AggregationInterval aggregation_interval = 2;</code>
      */
-    private $aggregation_interval = 0;
+    protected $aggregation_interval = 0;
     /**
      * The number of intervals to aggregate over.
      * Example: If aggregation_level is "DAILY" and aggregation_count is 14,
@@ -30,7 +30,7 @@ class AggregationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 aggregation_count = 3;</code>
      */
-    private $aggregation_count = 0;
+    protected $aggregation_count = 0;
 
     /**
      * Constructor.

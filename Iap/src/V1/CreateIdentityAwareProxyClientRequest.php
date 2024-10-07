@@ -23,13 +23,13 @@ class CreateIdentityAwareProxyClientRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Identity Aware Proxy Client to be created.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.IdentityAwareProxyClient identity_aware_proxy_client = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $identity_aware_proxy_client = null;
+    protected $identity_aware_proxy_client = null;
 
     /**
      * Constructor.

@@ -24,14 +24,14 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`
      *
      * Generated from protobuf field <code>string certificate_authority_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_authority_id = '';
+    protected $certificate_authority_id = '';
     /**
      * Required. A
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -39,7 +39,7 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority certificate_authority = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_authority = null;
+    protected $certificate_authority = null;
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -55,7 +55,7 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                                   $parent                 Required. The resource name of the

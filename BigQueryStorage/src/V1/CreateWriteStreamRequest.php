@@ -21,13 +21,13 @@ class CreateWriteStreamRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Stream to be created.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.WriteStream write_stream = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $write_stream = null;
+    protected $write_stream = null;
 
     /**
      * @param string                                        $parent      Required. Reference to the table to which the stream belongs, in the format

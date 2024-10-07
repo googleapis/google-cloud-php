@@ -21,7 +21,7 @@ class AwsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AwsMetadata.AwsOrganization organization = 1;</code>
      */
-    private $organization = null;
+    protected $organization = null;
     /**
      * A list of AWS organizational units associated with the resource, ordered
      * from lowest level (closest to the account) to highest level.
@@ -34,7 +34,7 @@ class AwsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AwsMetadata.AwsAccount account = 3;</code>
      */
-    private $account = null;
+    protected $account = null;
 
     /**
      * Constructor.

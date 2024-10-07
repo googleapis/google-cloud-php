@@ -22,7 +22,7 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * BCP-47 language code for localized infoType friendly
      * names. If omitted, or if localized strings are not available,
@@ -30,20 +30,20 @@ class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * filter to only return infoTypes supported by certain parts of the
      * API. Defaults to supported_by=INSPECT.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 3;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * @param string $parent The parent resource name.

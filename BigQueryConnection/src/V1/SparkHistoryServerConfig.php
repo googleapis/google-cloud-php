@@ -23,7 +23,7 @@ class SparkHistoryServerConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataproc_cluster = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $dataproc_cluster = '';
+    protected $dataproc_cluster = '';
 
     /**
      * Constructor.

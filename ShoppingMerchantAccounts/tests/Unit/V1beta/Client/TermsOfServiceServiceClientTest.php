@@ -33,6 +33,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\Client\TermsOfServiceServiceClient;
 use Google\Shopping\Merchant\Accounts\V1beta\GetTermsOfServiceRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\RetrieveLatestTermsOfServiceRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\TermsOfService;
+use Google\Shopping\Merchant\Accounts\V1beta\TermsOfServiceKind;
 use stdClass;
 
 /**
@@ -237,7 +238,10 @@ class TermsOfServiceServiceClientTest extends GeneratedTest
         $expectedResponse->setFileUri($fileUri);
         $expectedResponse->setExternal($external);
         $transport->addResponse($expectedResponse);
-        $request = new RetrieveLatestTermsOfServiceRequest();
+        // Mock request
+        $regionCode = 'regionCode-1566082984';
+        $kind = TermsOfServiceKind::TERMS_OF_SERVICE_KIND_UNSPECIFIED;
+        $request = (new RetrieveLatestTermsOfServiceRequest())->setRegionCode($regionCode)->setKind($kind);
         $response = $gapicClient->retrieveLatestTermsOfService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -248,6 +252,10 @@ class TermsOfServiceServiceClientTest extends GeneratedTest
             '/google.shopping.merchant.accounts.v1beta.TermsOfServiceService/RetrieveLatestTermsOfService',
             $actualFuncCall
         );
+        $actualValue = $actualRequestObject->getRegionCode();
+        $this->assertProtobufEquals($regionCode, $actualValue);
+        $actualValue = $actualRequestObject->getKind();
+        $this->assertProtobufEquals($kind, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -272,7 +280,10 @@ class TermsOfServiceServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new RetrieveLatestTermsOfServiceRequest();
+        // Mock request
+        $regionCode = 'regionCode-1566082984';
+        $kind = TermsOfServiceKind::TERMS_OF_SERVICE_KIND_UNSPECIFIED;
+        $request = (new RetrieveLatestTermsOfServiceRequest())->setRegionCode($regionCode)->setKind($kind);
         try {
             $gapicClient->retrieveLatestTermsOfService($request);
             // If the $gapicClient method call did not throw, fail the test

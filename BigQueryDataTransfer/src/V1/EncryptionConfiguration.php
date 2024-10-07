@@ -20,7 +20,7 @@ class EncryptionConfiguration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue kms_key_name = 1;</code>
      */
-    private $kms_key_name = null;
+    protected $kms_key_name = null;
 
     /**
      * Constructor.
@@ -66,7 +66,7 @@ class EncryptionConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue kms_key_name = 1;</code>
      * @return string|null
      */
-    public function getKmsKeyNameValue()
+    public function getKmsKeyNameUnwrapped()
     {
         return $this->readWrapperValue("kms_key_name");
     }
@@ -95,7 +95,7 @@ class EncryptionConfiguration extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setKmsKeyNameValue($var)
+    public function setKmsKeyNameUnwrapped($var)
     {
         $this->writeWrapperValue("kms_key_name", $var);
         return $this;}

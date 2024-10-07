@@ -28,7 +28,7 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath output_path = 1;</code>
      */
-    private $output_path = null;
+    protected $output_path = null;
     protected $source;
 
     /**

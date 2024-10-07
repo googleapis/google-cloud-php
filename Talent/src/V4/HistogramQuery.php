@@ -24,7 +24,7 @@ class HistogramQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string histogram_query = 1;</code>
      */
-    private $histogram_query = '';
+    protected $histogram_query = '';
 
     /**
      * Constructor.

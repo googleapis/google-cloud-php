@@ -38,9 +38,12 @@ class LargeReadTest extends SpannerTestCase
     private static $str = '';
     const NUM = 40000;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
 

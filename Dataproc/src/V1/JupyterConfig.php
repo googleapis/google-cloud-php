@@ -20,13 +20,13 @@ class JupyterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JupyterConfig.Kernel kernel = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kernel = 0;
+    protected $kernel = 0;
     /**
      * Optional. Display name, shown in the Jupyter kernelspec card.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

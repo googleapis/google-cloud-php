@@ -25,13 +25,13 @@ class TextChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      */
-    private $text_anchor = null;
+    protected $text_anchor = null;
     /**
      * The text that replaces the text identified in the `text_anchor`.
      *
      * Generated from protobuf field <code>string changed_text = 2;</code>
      */
-    private $changed_text = '';
+    protected $changed_text = '';
     /**
      * The history of this annotation.
      *

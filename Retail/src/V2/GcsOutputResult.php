@@ -20,7 +20,7 @@ class GcsOutputResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 1;</code>
      */
-    private $output_uri = '';
+    protected $output_uri = '';
 
     /**
      * Constructor.

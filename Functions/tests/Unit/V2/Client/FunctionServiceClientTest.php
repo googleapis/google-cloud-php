@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Functions\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
@@ -49,6 +48,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -72,7 +72,9 @@ class FunctionServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FunctionServiceClient */
@@ -126,9 +128,7 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $function = new PBFunction();
-        $request = (new CreateFunctionRequest())
-            ->setParent($formattedParent)
-            ->setFunction($function);
+        $request = (new CreateFunctionRequest())->setParent($formattedParent)->setFunction($function);
         $response = $gapicClient->createFunction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -186,19 +186,20 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $function = new PBFunction();
-        $request = (new CreateFunctionRequest())
-            ->setParent($formattedParent)
-            ->setFunction($function);
+        $request = (new CreateFunctionRequest())->setParent($formattedParent)->setFunction($function);
         $response = $gapicClient->createFunction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,8 +253,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $request = (new DeleteFunctionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFunctionRequest())->setName($formattedName);
         $response = $gapicClient->deleteFunction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -309,17 +309,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $request = (new DeleteFunctionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFunctionRequest())->setName($formattedName);
         $response = $gapicClient->deleteFunction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -357,8 +359,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $request = (new GenerateDownloadUrlRequest())
-            ->setName($formattedName);
+        $request = (new GenerateDownloadUrlRequest())->setName($formattedName);
         $response = $gapicClient->generateDownloadUrl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -382,17 +383,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $request = (new GenerateDownloadUrlRequest())
-            ->setName($formattedName);
+        $request = (new GenerateDownloadUrlRequest())->setName($formattedName);
         try {
             $gapicClient->generateDownloadUrl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -421,8 +424,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new GenerateUploadUrlRequest())
-            ->setParent($formattedParent);
+        $request = (new GenerateUploadUrlRequest())->setParent($formattedParent);
         $response = $gapicClient->generateUploadUrl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -446,17 +448,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new GenerateUploadUrlRequest())
-            ->setParent($formattedParent);
+        $request = (new GenerateUploadUrlRequest())->setParent($formattedParent);
         try {
             $gapicClient->generateUploadUrl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -493,8 +497,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $request = (new GetFunctionRequest())
-            ->setName($formattedName);
+        $request = (new GetFunctionRequest())->setName($formattedName);
         $response = $gapicClient->getFunction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -518,17 +521,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->functionName('[PROJECT]', '[LOCATION]', '[FUNCTION]');
-        $request = (new GetFunctionRequest())
-            ->setName($formattedName);
+        $request = (new GetFunctionRequest())->setName($formattedName);
         try {
             $gapicClient->getFunction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -553,17 +558,14 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $functionsElement = new PBFunction();
-        $functions = [
-            $functionsElement,
-        ];
+        $functions = [$functionsElement];
         $expectedResponse = new ListFunctionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFunctions($functions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFunctionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFunctionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listFunctions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -590,17 +592,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFunctionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFunctionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFunctions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -627,8 +631,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRuntimesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuntimesRequest())->setParent($formattedParent);
         $response = $gapicClient->listRuntimes($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -652,17 +655,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRuntimesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuntimesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRuntimes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -717,8 +722,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $function = new PBFunction();
-        $request = (new UpdateFunctionRequest())
-            ->setFunction($function);
+        $request = (new UpdateFunctionRequest())->setFunction($function);
         $response = $gapicClient->updateFunction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -774,17 +778,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $function = new PBFunction();
-        $request = (new UpdateFunctionRequest())
-            ->setFunction($function);
+        $request = (new UpdateFunctionRequest())->setFunction($function);
         $response = $gapicClient->updateFunction($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -818,9 +824,7 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -850,12 +854,15 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -888,8 +895,7 @@ class FunctionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -913,17 +919,19 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -955,9 +963,7 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -983,19 +989,20 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1023,9 +1030,7 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1051,19 +1056,20 @@ class FunctionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1119,9 +1125,7 @@ class FunctionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $function = new PBFunction();
-        $request = (new CreateFunctionRequest())
-            ->setParent($formattedParent)
-            ->setFunction($function);
+        $request = (new CreateFunctionRequest())->setParent($formattedParent)->setFunction($function);
         $response = $gapicClient->createFunctionAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

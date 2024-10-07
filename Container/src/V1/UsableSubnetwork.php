@@ -22,20 +22,20 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 1;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Network Name.
      * Example: projects/my-project/global/networks/my-network
      *
      * Generated from protobuf field <code>string network = 2;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The range of internal addresses that are owned by this subnetwork.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 3;</code>
      */
-    private $ip_cidr_range = '';
+    protected $ip_cidr_range = '';
     /**
      * Secondary IP ranges.
      *
@@ -50,7 +50,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string status_message = 5;</code>
      */
-    private $status_message = '';
+    protected $status_message = '';
 
     /**
      * Constructor.

@@ -39,6 +39,25 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool install_ops_agent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $install_ops_agent = false;
+    /**
+     * Optional. Set this field to `true` if you want Batch to block
+     * project-level SSH keys from accessing this job's VMs.  Alternatively, you
+     * can configure the job to specify a VM instance template that blocks
+     * project-level SSH keys. In either case, Batch blocks project-level SSH
+     * keys while creating the VMs for this job.
+     * Batch allows project-level SSH keys for a job's VMs only if all
+     * the following are true:
+     * + This field is undefined or set to `false`.
+     * + The job's VM instance template (if any) doesn't block project-level
+     *   SSH keys.
+     * Notably, you can override this behavior by manually updating a VM to
+     * block or allow project-level SSH keys. For more information about
+     * blocking project-level SSH keys, see the Compute Engine documentation:
+     * https://cloud.google.com/compute/docs/connect/restrict-ssh-keys#block-keys
+     *
+     * Generated from protobuf field <code>bool block_project_ssh_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $block_project_ssh_keys = false;
     protected $policy_template;
 
     /**
@@ -66,6 +85,21 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *     @type bool $install_ops_agent
      *           Optional. Set this field true if you want Batch to install Ops Agent on
      *           your behalf. Default is false.
+     *     @type bool $block_project_ssh_keys
+     *           Optional. Set this field to `true` if you want Batch to block
+     *           project-level SSH keys from accessing this job's VMs.  Alternatively, you
+     *           can configure the job to specify a VM instance template that blocks
+     *           project-level SSH keys. In either case, Batch blocks project-level SSH
+     *           keys while creating the VMs for this job.
+     *           Batch allows project-level SSH keys for a job's VMs only if all
+     *           the following are true:
+     *           + This field is undefined or set to `false`.
+     *           + The job's VM instance template (if any) doesn't block project-level
+     *             SSH keys.
+     *           Notably, you can override this behavior by manually updating a VM to
+     *           block or allow project-level SSH keys. For more information about
+     *           blocking project-level SSH keys, see the Compute Engine documentation:
+     *           https://cloud.google.com/compute/docs/connect/restrict-ssh-keys#block-keys
      * }
      */
     public function __construct($data = NULL) {
@@ -205,6 +239,58 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->install_ops_agent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set this field to `true` if you want Batch to block
+     * project-level SSH keys from accessing this job's VMs.  Alternatively, you
+     * can configure the job to specify a VM instance template that blocks
+     * project-level SSH keys. In either case, Batch blocks project-level SSH
+     * keys while creating the VMs for this job.
+     * Batch allows project-level SSH keys for a job's VMs only if all
+     * the following are true:
+     * + This field is undefined or set to `false`.
+     * + The job's VM instance template (if any) doesn't block project-level
+     *   SSH keys.
+     * Notably, you can override this behavior by manually updating a VM to
+     * block or allow project-level SSH keys. For more information about
+     * blocking project-level SSH keys, see the Compute Engine documentation:
+     * https://cloud.google.com/compute/docs/connect/restrict-ssh-keys#block-keys
+     *
+     * Generated from protobuf field <code>bool block_project_ssh_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getBlockProjectSshKeys()
+    {
+        return $this->block_project_ssh_keys;
+    }
+
+    /**
+     * Optional. Set this field to `true` if you want Batch to block
+     * project-level SSH keys from accessing this job's VMs.  Alternatively, you
+     * can configure the job to specify a VM instance template that blocks
+     * project-level SSH keys. In either case, Batch blocks project-level SSH
+     * keys while creating the VMs for this job.
+     * Batch allows project-level SSH keys for a job's VMs only if all
+     * the following are true:
+     * + This field is undefined or set to `false`.
+     * + The job's VM instance template (if any) doesn't block project-level
+     *   SSH keys.
+     * Notably, you can override this behavior by manually updating a VM to
+     * block or allow project-level SSH keys. For more information about
+     * blocking project-level SSH keys, see the Compute Engine documentation:
+     * https://cloud.google.com/compute/docs/connect/restrict-ssh-keys#block-keys
+     *
+     * Generated from protobuf field <code>bool block_project_ssh_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBlockProjectSshKeys($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->block_project_ssh_keys = $var;
 
         return $this;
     }

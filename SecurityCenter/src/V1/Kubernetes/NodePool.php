@@ -20,7 +20,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Nodes associated with the finding.
      *
@@ -99,6 +99,4 @@ class NodePool extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NodePool::class, \Google\Cloud\SecurityCenter\V1\Kubernetes_NodePool::class);
 

@@ -20,19 +20,19 @@ class Stream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time of the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update time of the stream.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Labels.
      *
@@ -44,25 +44,25 @@ class Stream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Source connection profile configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceConfig source_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_config = null;
+    protected $source_config = null;
     /**
      * Required. Destination connection profile configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.DestinationConfig destination_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination_config = null;
+    protected $destination_config = null;
     /**
      * The state of the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Stream.State state = 8;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Errors on the Stream.
      *
@@ -77,7 +77,7 @@ class Stream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string customer_managed_encryption_key = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $customer_managed_encryption_key = null;
+    protected $customer_managed_encryption_key = null;
     protected $backfill_strategy;
 
     /**

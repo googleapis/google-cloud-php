@@ -21,13 +21,13 @@ class GroupMembership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.GroupMembership.GroupType group_type = 1;</code>
      */
-    private $group_type = 0;
+    protected $group_type = 0;
     /**
      * ID of the group.
      *
      * Generated from protobuf field <code>string group_id = 2;</code>
      */
-    private $group_id = '';
+    protected $group_id = '';
 
     /**
      * Constructor.

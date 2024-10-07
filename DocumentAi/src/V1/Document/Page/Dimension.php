@@ -20,19 +20,19 @@ class Dimension extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float width = 1;</code>
      */
-    private $width = 0.0;
+    protected $width = 0.0;
     /**
      * Page height.
      *
      * Generated from protobuf field <code>float height = 2;</code>
      */
-    private $height = 0.0;
+    protected $height = 0.0;
     /**
      * Dimension unit.
      *
      * Generated from protobuf field <code>string unit = 3;</code>
      */
-    private $unit = '';
+    protected $unit = '';
 
     /**
      * Constructor.

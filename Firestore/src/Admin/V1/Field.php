@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents a single field in the database.
  * Fields are grouped by their "Collection Group", which represent all
- * collections in the database with the same id.
+ * collections in the database with the same ID.
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Field</code>
  */

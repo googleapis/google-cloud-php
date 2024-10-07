@@ -24,7 +24,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The resource name of the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -32,7 +32,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $issuer_certificate_authority = '';
+    protected $issuer_certificate_authority = '';
     /**
      * Required. Immutable. The desired lifetime of a certificate. Used to create
      * the "not_before_time" and "not_after_time" fields inside an X.509
@@ -41,7 +41,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $lifetime = null;
+    protected $lifetime = null;
     /**
      * Immutable. The resource name for a
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
@@ -54,7 +54,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string certificate_template = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $certificate_template = '';
+    protected $certificate_template = '';
     /**
      * Immutable. Specifies how the
      * [Certificate][google.cloud.security.privateca.v1.Certificate]'s identity
@@ -63,7 +63,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubjectRequestMode subject_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $subject_mode = 0;
+    protected $subject_mode = 0;
     /**
      * Output only. Details regarding the revocation of this
      * [Certificate][google.cloud.security.privateca.v1.Certificate]. This
@@ -72,19 +72,19 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Certificate.RevocationDetails revocation_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revocation_details = null;
+    protected $revocation_details = null;
     /**
      * Output only. The pem-encoded, signed X.509 certificate.
      *
      * Generated from protobuf field <code>string pem_certificate = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pem_certificate = '';
+    protected $pem_certificate = '';
     /**
      * Output only. A structured description of the issued X.509 certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateDescription certificate_description = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $certificate_description = null;
+    protected $certificate_description = null;
     /**
      * Output only. The chain that may be used to verify the X.509 certificate.
      * Expected to be in issuer-to-root order according to RFC 5246.
@@ -98,14 +98,14 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Labels with user-defined metadata.
      *

@@ -42,10 +42,10 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
      */
-    private $ingestion_product_type = '';
+    protected $ingestion_product_type = '';
     /**
      * Which field of [Merchant Center
-     * Product](https://cloud.google.com/bigquery-transfer/docs/merchant-center-products-schema) should be
+     * Product](/bigquery-transfer/docs/merchant-center-products-schema) should be
      * imported as [Product.id][google.cloud.retail.v2.Product.id]. Acceptable
      * values are:
      * * `offerId` (default): Import `offerId` as the product ID.
@@ -63,7 +63,7 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>
      */
-    private $merchant_center_product_id_field = '';
+    protected $merchant_center_product_id_field = '';
 
     /**
      * Constructor.
@@ -96,7 +96,7 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *           for more details.
      *     @type string $merchant_center_product_id_field
      *           Which field of [Merchant Center
-     *           Product](https://cloud.google.com/bigquery-transfer/docs/merchant-center-products-schema) should be
+     *           Product](/bigquery-transfer/docs/merchant-center-products-schema) should be
      *           imported as [Product.id][google.cloud.retail.v2.Product.id]. Acceptable
      *           values are:
      *           * `offerId` (default): Import `offerId` as the product ID.
@@ -188,7 +188,7 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Which field of [Merchant Center
-     * Product](https://cloud.google.com/bigquery-transfer/docs/merchant-center-products-schema) should be
+     * Product](/bigquery-transfer/docs/merchant-center-products-schema) should be
      * imported as [Product.id][google.cloud.retail.v2.Product.id]. Acceptable
      * values are:
      * * `offerId` (default): Import `offerId` as the product ID.
@@ -214,7 +214,7 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Which field of [Merchant Center
-     * Product](https://cloud.google.com/bigquery-transfer/docs/merchant-center-products-schema) should be
+     * Product](/bigquery-transfer/docs/merchant-center-products-schema) should be
      * imported as [Product.id][google.cloud.retail.v2.Product.id]. Acceptable
      * values are:
      * * `offerId` (default): Import `offerId` as the product ID.

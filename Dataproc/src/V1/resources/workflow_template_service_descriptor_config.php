@@ -171,6 +171,7 @@ return [
             ],
             'templateMap' => [
                 'clusterRegion' => 'projects/{project}/regions/{region}/clusters/{cluster}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
                 'nodeGroup' => 'projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}',
                 'projectLocationWorkflowTemplate' => 'projects/{project}/locations/{location}/workflowTemplates/{workflow_template}',

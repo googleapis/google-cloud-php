@@ -21,7 +21,7 @@ class UpdateInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo.BlueGreenInfo blue_green_info = 1;</code>
      */
-    private $blue_green_info = null;
+    protected $blue_green_info = null;
 
     /**
      * Constructor.
@@ -76,6 +76,4 @@ class UpdateInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UpdateInfo::class, \Google\Cloud\Container\V1\NodePool_UpdateInfo::class);
 

@@ -128,6 +128,4 @@ class LikelihoodAdjustment extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LikelihoodAdjustment::class, \Google\Cloud\Dlp\V2\CustomInfoType_DetectionRule_LikelihoodAdjustment::class);
 

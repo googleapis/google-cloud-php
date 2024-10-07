@@ -26,7 +26,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Likelihood to return for this CustomInfoType. This base value can be
      * altered by a detection rule if the finding meets the criteria specified by
@@ -34,7 +34,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood likelihood = 6;</code>
      */
-    private $likelihood = 0;
+    protected $likelihood = 0;
     /**
      * Set of detection rules to apply to all findings of this CustomInfoType.
      * Rules are applied in order that they are specified. Not supported for the
@@ -49,7 +49,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
      */
-    private $exclusion_type = 0;
+    protected $exclusion_type = 0;
     /**
      * Sensitivity for this CustomInfoType. If this CustomInfoType extends an
      * existing InfoType, the sensitivity here will take precedence over that of
@@ -59,7 +59,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 9;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
     protected $type;
 
     /**

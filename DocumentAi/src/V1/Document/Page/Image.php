@@ -20,7 +20,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes content = 1;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Encoding [media type (MIME
      * type)](https://www.iana.org/assignments/media-types/media-types.xhtml)
@@ -28,19 +28,19 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Width of the image in pixels.
      *
      * Generated from protobuf field <code>int32 width = 3;</code>
      */
-    private $width = 0;
+    protected $width = 0;
     /**
      * Height of the image in pixels.
      *
      * Generated from protobuf field <code>int32 height = 4;</code>
      */
-    private $height = 0;
+    protected $height = 0;
 
     /**
      * Constructor.

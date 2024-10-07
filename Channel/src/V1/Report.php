@@ -27,13 +27,13 @@ class Report extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A human-readable name for this report.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The list of columns included in the report. This defines the schema of
      * the report results.
@@ -47,7 +47,7 @@ class Report extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

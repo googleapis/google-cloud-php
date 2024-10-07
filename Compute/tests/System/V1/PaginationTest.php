@@ -34,7 +34,10 @@ class PaginationTest extends TestCase
     private static $projectId;
     private static $zone;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::$projectId = getenv('PROJECT_ID');
         if (self::$projectId === false) {
@@ -53,8 +56,10 @@ class PaginationTest extends TestCase
             self::fail('Atleast 4 instances are required for test run');
         }
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::$instancesClient->close();
         self::$zonesClient->close();

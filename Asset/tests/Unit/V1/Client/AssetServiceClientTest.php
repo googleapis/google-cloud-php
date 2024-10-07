@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Asset\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest;
@@ -80,6 +79,7 @@ use Google\Cloud\Asset\V1\SearchAllResourcesResponse;
 use Google\Cloud\Asset\V1\TimeWindow;
 use Google\Cloud\Asset\V1\UpdateFeedRequest;
 use Google\Cloud\Asset\V1\UpdateSavedQueryRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -104,7 +104,9 @@ class AssetServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AssetServiceClient */
@@ -133,8 +135,7 @@ class AssetServiceClientTest extends GeneratedTest
         $analysisQuery = new IamPolicyAnalysisQuery();
         $analysisQueryScope = 'analysisQueryScope-495018392';
         $analysisQuery->setScope($analysisQueryScope);
-        $request = (new AnalyzeIamPolicyRequest())
-            ->setAnalysisQuery($analysisQuery);
+        $request = (new AnalyzeIamPolicyRequest())->setAnalysisQuery($analysisQuery);
         $response = $gapicClient->analyzeIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -158,19 +159,21 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $analysisQuery = new IamPolicyAnalysisQuery();
         $analysisQueryScope = 'analysisQueryScope-495018392';
         $analysisQuery->setScope($analysisQueryScope);
-        $request = (new AnalyzeIamPolicyRequest())
-            ->setAnalysisQuery($analysisQuery);
+        $request = (new AnalyzeIamPolicyRequest())->setAnalysisQuery($analysisQuery);
         try {
             $gapicClient->analyzeIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -278,12 +281,15 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $analysisQuery = new IamPolicyAnalysisQuery();
@@ -357,12 +363,15 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedResource = $gapicClient->projectName('[PROJECT]');
@@ -394,9 +403,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $orgPolicyResultsElement = new OrgPolicyResult();
-        $orgPolicyResults = [
-            $orgPolicyResultsElement,
-        ];
+        $orgPolicyResults = [$orgPolicyResultsElement];
         $expectedResponse = new AnalyzeOrgPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOrgPolicyResults($orgPolicyResults);
@@ -404,9 +411,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock request
         $scope = 'scope109264468';
         $constraint = 'constraint-190376483';
-        $request = (new AnalyzeOrgPoliciesRequest())
-            ->setScope($scope)
-            ->setConstraint($constraint);
+        $request = (new AnalyzeOrgPoliciesRequest())->setScope($scope)->setConstraint($constraint);
         $response = $gapicClient->analyzeOrgPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -435,19 +440,20 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
         $constraint = 'constraint-190376483';
-        $request = (new AnalyzeOrgPoliciesRequest())
-            ->setScope($scope)
-            ->setConstraint($constraint);
+        $request = (new AnalyzeOrgPoliciesRequest())->setScope($scope)->setConstraint($constraint);
         try {
             $gapicClient->analyzeOrgPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -472,9 +478,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $governedAssetsElement = new GovernedAsset();
-        $governedAssets = [
-            $governedAssetsElement,
-        ];
+        $governedAssets = [$governedAssetsElement];
         $expectedResponse = new AnalyzeOrgPolicyGovernedAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGovernedAssets($governedAssets);
@@ -482,9 +486,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock request
         $scope = 'scope109264468';
         $constraint = 'constraint-190376483';
-        $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())
-            ->setScope($scope)
-            ->setConstraint($constraint);
+        $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())->setScope($scope)->setConstraint($constraint);
         $response = $gapicClient->analyzeOrgPolicyGovernedAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -513,19 +515,20 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
         $constraint = 'constraint-190376483';
-        $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())
-            ->setScope($scope)
-            ->setConstraint($constraint);
+        $request = (new AnalyzeOrgPolicyGovernedAssetsRequest())->setScope($scope)->setConstraint($constraint);
         try {
             $gapicClient->analyzeOrgPolicyGovernedAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -550,9 +553,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $governedContainersElement = new GovernedContainer();
-        $governedContainers = [
-            $governedContainersElement,
-        ];
+        $governedContainers = [$governedContainersElement];
         $expectedResponse = new AnalyzeOrgPolicyGovernedContainersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGovernedContainers($governedContainers);
@@ -560,9 +561,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock request
         $scope = 'scope109264468';
         $constraint = 'constraint-190376483';
-        $request = (new AnalyzeOrgPolicyGovernedContainersRequest())
-            ->setScope($scope)
-            ->setConstraint($constraint);
+        $request = (new AnalyzeOrgPolicyGovernedContainersRequest())->setScope($scope)->setConstraint($constraint);
         $response = $gapicClient->analyzeOrgPolicyGovernedContainers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -591,19 +590,20 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
         $constraint = 'constraint-190376483';
-        $request = (new AnalyzeOrgPolicyGovernedContainersRequest())
-            ->setScope($scope)
-            ->setConstraint($constraint);
+        $request = (new AnalyzeOrgPolicyGovernedContainersRequest())->setScope($scope)->setConstraint($constraint);
         try {
             $gapicClient->analyzeOrgPolicyGovernedContainers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -663,12 +663,15 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -705,9 +708,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock request
         $scope = 'scope109264468';
         $names = [];
-        $request = (new BatchGetEffectiveIamPoliciesRequest())
-            ->setScope($scope)
-            ->setNames($names);
+        $request = (new BatchGetEffectiveIamPoliciesRequest())->setScope($scope)->setNames($names);
         $response = $gapicClient->batchGetEffectiveIamPolicies($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -733,19 +734,20 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
         $names = [];
-        $request = (new BatchGetEffectiveIamPoliciesRequest())
-            ->setScope($scope)
-            ->setNames($names);
+        $request = (new BatchGetEffectiveIamPoliciesRequest())->setScope($scope)->setNames($names);
         try {
             $gapicClient->batchGetEffectiveIamPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -811,12 +813,15 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -897,12 +902,15 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -938,8 +946,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
-        $request = (new DeleteFeedRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFeedRequest())->setName($formattedName);
         $gapicClient->deleteFeed($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -962,17 +969,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
-        $request = (new DeleteFeedRequest())
-            ->setName($formattedName);
+        $request = (new DeleteFeedRequest())->setName($formattedName);
         try {
             $gapicClient->deleteFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -999,8 +1008,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
-        $request = (new DeleteSavedQueryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSavedQueryRequest())->setName($formattedName);
         $gapicClient->deleteSavedQuery($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1023,17 +1031,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
-        $request = (new DeleteSavedQueryRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSavedQueryRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1079,9 +1089,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $outputConfig = new OutputConfig();
-        $request = (new ExportAssetsRequest())
-            ->setParent($parent)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportAssetsRequest())->setParent($parent)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAssets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1139,19 +1147,20 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $outputConfig = new OutputConfig();
-        $request = (new ExportAssetsRequest())
-            ->setParent($parent)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportAssetsRequest())->setParent($parent)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAssets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1189,8 +1198,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
-        $request = (new GetFeedRequest())
-            ->setName($formattedName);
+        $request = (new GetFeedRequest())->setName($formattedName);
         $response = $gapicClient->getFeed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1214,17 +1222,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->feedName('[PROJECT]', '[FEED]');
-        $request = (new GetFeedRequest())
-            ->setName($formattedName);
+        $request = (new GetFeedRequest())->setName($formattedName);
         try {
             $gapicClient->getFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1259,8 +1269,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
-        $request = (new GetSavedQueryRequest())
-            ->setName($formattedName);
+        $request = (new GetSavedQueryRequest())->setName($formattedName);
         $response = $gapicClient->getSavedQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1284,17 +1293,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->savedQueryName('[PROJECT]', '[SAVED_QUERY]');
-        $request = (new GetSavedQueryRequest())
-            ->setName($formattedName);
+        $request = (new GetSavedQueryRequest())->setName($formattedName);
         try {
             $gapicClient->getSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1319,17 +1330,14 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $assetsElement = new Asset();
-        $assets = [
-            $assetsElement,
-        ];
+        $assets = [$assetsElement];
         $expectedResponse = new ListAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListAssetsRequest())
-            ->setParent($parent);
+        $request = (new ListAssetsRequest())->setParent($parent);
         $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1356,17 +1364,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListAssetsRequest())
-            ->setParent($parent);
+        $request = (new ListAssetsRequest())->setParent($parent);
         try {
             $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1393,8 +1403,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListFeedsRequest())
-            ->setParent($parent);
+        $request = (new ListFeedsRequest())->setParent($parent);
         $response = $gapicClient->listFeeds($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1418,17 +1427,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListFeedsRequest())
-            ->setParent($parent);
+        $request = (new ListFeedsRequest())->setParent($parent);
         try {
             $gapicClient->listFeeds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1453,17 +1464,14 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $savedQueriesElement = new SavedQuery();
-        $savedQueries = [
-            $savedQueriesElement,
-        ];
+        $savedQueries = [$savedQueriesElement];
         $expectedResponse = new ListSavedQueriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSavedQueries($savedQueries);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSavedQueriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSavedQueriesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSavedQueries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1490,17 +1498,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSavedQueriesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSavedQueriesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSavedQueries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1531,8 +1541,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new QueryAssetsRequest())
-            ->setParent($parent);
+        $request = (new QueryAssetsRequest())->setParent($parent);
         $response = $gapicClient->queryAssets($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1556,17 +1565,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new QueryAssetsRequest())
-            ->setParent($parent);
+        $request = (new QueryAssetsRequest())->setParent($parent);
         try {
             $gapicClient->queryAssets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1591,17 +1602,14 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $resultsElement = new IamPolicySearchResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new SearchAllIamPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
         $scope = 'scope109264468';
-        $request = (new SearchAllIamPoliciesRequest())
-            ->setScope($scope);
+        $request = (new SearchAllIamPoliciesRequest())->setScope($scope);
         $response = $gapicClient->searchAllIamPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1628,17 +1636,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
-        $request = (new SearchAllIamPoliciesRequest())
-            ->setScope($scope);
+        $request = (new SearchAllIamPoliciesRequest())->setScope($scope);
         try {
             $gapicClient->searchAllIamPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1663,17 +1673,14 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $resultsElement = new ResourceSearchResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new SearchAllResourcesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
         $scope = 'scope109264468';
-        $request = (new SearchAllResourcesRequest())
-            ->setScope($scope);
+        $request = (new SearchAllResourcesRequest())->setScope($scope);
         $response = $gapicClient->searchAllResources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1700,17 +1707,19 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
-        $request = (new SearchAllResourcesRequest())
-            ->setScope($scope);
+        $request = (new SearchAllResourcesRequest())->setScope($scope);
         try {
             $gapicClient->searchAllResources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1744,9 +1753,7 @@ class AssetServiceClientTest extends GeneratedTest
         $feedFeedOutputConfig = new FeedOutputConfig();
         $feed->setFeedOutputConfig($feedFeedOutputConfig);
         $updateMask = new FieldMask();
-        $request = (new UpdateFeedRequest())
-            ->setFeed($feed)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateFeedRequest())->setFeed($feed)->setUpdateMask($updateMask);
         $response = $gapicClient->updateFeed($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1772,12 +1779,15 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $feed = new Feed();
@@ -1786,9 +1796,7 @@ class AssetServiceClientTest extends GeneratedTest
         $feedFeedOutputConfig = new FeedOutputConfig();
         $feed->setFeedOutputConfig($feedFeedOutputConfig);
         $updateMask = new FieldMask();
-        $request = (new UpdateFeedRequest())
-            ->setFeed($feed)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateFeedRequest())->setFeed($feed)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateFeed($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1824,9 +1832,7 @@ class AssetServiceClientTest extends GeneratedTest
         // Mock request
         $savedQuery = new SavedQuery();
         $updateMask = new FieldMask();
-        $request = (new UpdateSavedQueryRequest())
-            ->setSavedQuery($savedQuery)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSavedQueryRequest())->setSavedQuery($savedQuery)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSavedQuery($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1852,19 +1858,20 @@ class AssetServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $savedQuery = new SavedQuery();
         $updateMask = new FieldMask();
-        $request = (new UpdateSavedQueryRequest())
-            ->setSavedQuery($savedQuery)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSavedQueryRequest())->setSavedQuery($savedQuery)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSavedQuery($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1895,8 +1902,7 @@ class AssetServiceClientTest extends GeneratedTest
         $analysisQuery = new IamPolicyAnalysisQuery();
         $analysisQueryScope = 'analysisQueryScope-495018392';
         $analysisQuery->setScope($analysisQueryScope);
-        $request = (new AnalyzeIamPolicyRequest())
-            ->setAnalysisQuery($analysisQuery);
+        $request = (new AnalyzeIamPolicyRequest())->setAnalysisQuery($analysisQuery);
         $response = $gapicClient->analyzeIamPolicyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

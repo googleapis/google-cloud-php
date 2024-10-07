@@ -28,7 +28,7 @@ class Options extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool expand_groups = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $expand_groups = false;
+    protected $expand_groups = false;
     /**
      * Optional. If true, the access section of result will expand any roles
      * appearing in IAM policy bindings to include their permissions.
@@ -40,7 +40,7 @@ class Options extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool expand_roles = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $expand_roles = false;
+    protected $expand_roles = false;
     /**
      * Optional. If true and
      * [IamPolicyAnalysisQuery.resource_selector][google.cloud.asset.v1.IamPolicyAnalysisQuery.resource_selector]
@@ -67,14 +67,14 @@ class Options extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool expand_resources = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $expand_resources = false;
+    protected $expand_resources = false;
     /**
      * Optional. If true, the result will output the relevant parent/child
      * relationships between resources. Default is false.
      *
      * Generated from protobuf field <code>bool output_resource_edges = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_resource_edges = false;
+    protected $output_resource_edges = false;
     /**
      * Optional. If true, the result will output the relevant membership
      * relationships between groups and other groups, and between groups and
@@ -82,7 +82,7 @@ class Options extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool output_group_edges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_group_edges = false;
+    protected $output_group_edges = false;
     /**
      * Optional. If true, the response will include access analysis from
      * identities to resources via service account impersonation. This is a very
@@ -117,7 +117,7 @@ class Options extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool analyze_service_account_impersonation = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $analyze_service_account_impersonation = false;
+    protected $analyze_service_account_impersonation = false;
 
     /**
      * Constructor.
@@ -503,6 +503,4 @@ class Options extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Options::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery_Options::class);
 

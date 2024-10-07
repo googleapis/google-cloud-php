@@ -35,13 +35,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Configuration of the storedInfoType to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The storedInfoType ID can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -50,13 +50,13 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stored_info_type_id = 3;</code>
      */
-    private $stored_info_type_id = '';
+    protected $stored_info_type_id = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * @param string                                    $parent Required. Parent resource name.

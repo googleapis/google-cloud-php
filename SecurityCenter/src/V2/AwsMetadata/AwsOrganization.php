@@ -24,7 +24,7 @@ class AwsOrganization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
 
     /**
      * Constructor.
@@ -75,6 +75,4 @@ class AwsOrganization extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AwsOrganization::class, \Google\Cloud\SecurityCenter\V2\AwsMetadata_AwsOrganization::class);
 

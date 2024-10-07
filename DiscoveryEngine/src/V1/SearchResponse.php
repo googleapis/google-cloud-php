@@ -43,7 +43,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      * this search, which enables accurate attribution of search model
-     * performance.
+     * performance. This also helps to identify a request during the customer
+     * support scenarios.
      *
      * Generated from protobuf field <code>string attribution_token = 4;</code>
      */
@@ -121,7 +122,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           A unique search token. This should be included in the
      *           [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      *           this search, which enables accurate attribution of search model
-     *           performance.
+     *           performance. This also helps to identify a request during the customer
+     *           support scenarios.
      *     @type string $redirect_uri
      *           The URI of a customer-defined redirect page. If redirect action is
      *           triggered, no search is performed, and only
@@ -247,7 +249,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      * this search, which enables accurate attribution of search model
-     * performance.
+     * performance. This also helps to identify a request during the customer
+     * support scenarios.
      *
      * Generated from protobuf field <code>string attribution_token = 4;</code>
      * @return string
@@ -261,7 +264,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      * this search, which enables accurate attribution of search model
-     * performance.
+     * performance. This also helps to identify a request during the customer
+     * support scenarios.
      *
      * Generated from protobuf field <code>string attribution_token = 4;</code>
      * @param string $var

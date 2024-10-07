@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\DocumentAI\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -67,6 +66,7 @@ use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -134,9 +134,7 @@ final class DocumentProcessorServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -153,7 +151,8 @@ final class DocumentProcessorServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/document_processor_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/document_processor_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -182,10 +181,31 @@ final class DocumentProcessorServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -200,8 +220,13 @@ final class DocumentProcessorServiceClient
      *
      * @return string The formatted evaluation resource.
      */
-    public static function evaluationName(string $project, string $location, string $processor, string $processorVersion, string $evaluation): string
-    {
+    public static function evaluationName(
+        string $project,
+        string $location,
+        string $processor,
+        string $processorVersion,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('evaluation')->render([
             'project' => $project,
             'location' => $location,
@@ -296,8 +321,12 @@ final class DocumentProcessorServiceClient
      *
      * @return string The formatted processor_version resource.
      */
-    public static function processorVersionName(string $project, string $location, string $processor, string $processorVersion): string
-    {
+    public static function processorVersionName(
+        string $project,
+        string $location,
+        string $processor,
+        string $processorVersion
+    ): string {
         return self::getPathTemplate('processorVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -519,8 +548,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteProcessorVersion(DeleteProcessorVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteProcessorVersion(
+        DeleteProcessorVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteProcessorVersion', $request, $callOptions)->wait();
     }
 
@@ -546,8 +577,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deployProcessorVersion(DeployProcessorVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deployProcessorVersion(
+        DeployProcessorVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeployProcessorVersion', $request, $callOptions)->wait();
     }
 
@@ -628,8 +661,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function evaluateProcessorVersion(EvaluateProcessorVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function evaluateProcessorVersion(
+        EvaluateProcessorVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('EvaluateProcessorVersion', $request, $callOptions)->wait();
     }
 
@@ -657,8 +692,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchProcessorTypes(FetchProcessorTypesRequest $request, array $callOptions = []): FetchProcessorTypesResponse
-    {
+    public function fetchProcessorTypes(
+        FetchProcessorTypesRequest $request,
+        array $callOptions = []
+    ): FetchProcessorTypesResponse {
         return $this->startApiCall('FetchProcessorTypes', $request, $callOptions)->wait();
     }
 
@@ -846,8 +883,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listProcessorVersions(ListProcessorVersionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listProcessorVersions(
+        ListProcessorVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListProcessorVersions', $request, $callOptions);
     }
 
@@ -959,8 +998,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setDefaultProcessorVersion(SetDefaultProcessorVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setDefaultProcessorVersion(
+        SetDefaultProcessorVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetDefaultProcessorVersion', $request, $callOptions)->wait();
     }
 
@@ -988,8 +1029,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function trainProcessorVersion(TrainProcessorVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function trainProcessorVersion(
+        TrainProcessorVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('TrainProcessorVersion', $request, $callOptions)->wait();
     }
 
@@ -1015,8 +1058,10 @@ final class DocumentProcessorServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeployProcessorVersion(UndeployProcessorVersionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function undeployProcessorVersion(
+        UndeployProcessorVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UndeployProcessorVersion', $request, $callOptions)->wait();
     }
 

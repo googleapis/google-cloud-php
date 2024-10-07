@@ -22,7 +22,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Requested page size. Server might return fewer results than
      * requested. If unspecified, server will pick a default size (25). The
@@ -30,7 +30,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token for a page of results other than the first page.
      * Obtained using
@@ -41,13 +41,13 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The level of granularity the ChannelPartnerLink will display.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLinkView view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * Constructor.

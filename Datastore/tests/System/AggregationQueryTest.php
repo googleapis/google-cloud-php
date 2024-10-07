@@ -42,9 +42,12 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
         ['arrayScore' => [10]]
     ];
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
         self::$kind = uniqid('testKind');
         $keys = self::$restClient->keys(self::$kind, ['number' => count(self::$data)]);
         $keys = self::$restClient->allocateIds($keys);
@@ -61,8 +64,10 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
             self::$localDeletionQueue->add($key);
         }
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::tearDownFixtures();
     }

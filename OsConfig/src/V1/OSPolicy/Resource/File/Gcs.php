@@ -20,19 +20,19 @@ class Gcs extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * Required. Name of the Cloud Storage object.
      *
      * Generated from protobuf field <code>string object = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $object = '';
+    protected $object = '';
     /**
      * Generation number of the Cloud Storage object.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
 
     /**
      * Constructor.

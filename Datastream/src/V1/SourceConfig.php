@@ -21,7 +21,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_connection_profile = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $source_connection_profile = '';
+    protected $source_connection_profile = '';
     protected $source_stream_config;
 
     /**

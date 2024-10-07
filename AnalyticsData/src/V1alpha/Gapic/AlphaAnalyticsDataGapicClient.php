@@ -36,6 +36,7 @@ use Google\Analytics\Data\V1alpha\Funnel;
 use Google\Analytics\Data\V1alpha\FunnelBreakdown;
 use Google\Analytics\Data\V1alpha\FunnelNextAction;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetPropertyQuotasSnapshotRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
@@ -44,6 +45,7 @@ use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsResponse;
 use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
 use Google\Analytics\Data\V1alpha\ListReportTasksResponse;
+use Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
 use Google\Analytics\Data\V1alpha\QueryReportTaskRequest;
@@ -155,6 +157,8 @@ class AlphaAnalyticsDataGapicClient
 
     private static $propertyNameTemplate;
 
+    private static $propertyQuotasSnapshotNameTemplate;
+
     private static $recurringAudienceListNameTemplate;
 
     private static $reportTaskNameTemplate;
@@ -212,6 +216,17 @@ class AlphaAnalyticsDataGapicClient
         return self::$propertyNameTemplate;
     }
 
+    private static function getPropertyQuotasSnapshotNameTemplate()
+    {
+        if (self::$propertyQuotasSnapshotNameTemplate == null) {
+            self::$propertyQuotasSnapshotNameTemplate = new PathTemplate(
+                'properties/{property}/propertyQuotasSnapshot'
+            );
+        }
+
+        return self::$propertyQuotasSnapshotNameTemplate;
+    }
+
     private static function getRecurringAudienceListNameTemplate()
     {
         if (self::$recurringAudienceListNameTemplate == null) {
@@ -240,6 +255,7 @@ class AlphaAnalyticsDataGapicClient
             self::$pathTemplateMap = [
                 'audienceList' => self::getAudienceListNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
+                'propertyQuotasSnapshot' => self::getPropertyQuotasSnapshotNameTemplate(),
                 'recurringAudienceList' => self::getRecurringAudienceListNameTemplate(),
                 'reportTask' => self::getReportTaskNameTemplate(),
             ];
@@ -280,6 +296,23 @@ class AlphaAnalyticsDataGapicClient
     public static function propertyName($property)
     {
         return self::getPropertyNameTemplate()->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * property_quotas_snapshot resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted property_quotas_snapshot resource.
+     *
+     * @experimental
+     */
+    public static function propertyQuotasSnapshotName($property)
+    {
+        return self::getPropertyQuotasSnapshotNameTemplate()->render([
             'property' => $property,
         ]);
     }
@@ -330,6 +363,7 @@ class AlphaAnalyticsDataGapicClient
      * Template: Pattern
      * - audienceList: properties/{property}/audienceLists/{audience_list}
      * - property: properties/{property}
+     * - propertyQuotasSnapshot: properties/{property}/propertyQuotasSnapshot
      * - recurringAudienceList: properties/{property}/recurringAudienceLists/{recurring_audience_list}
      * - reportTask: properties/{property}/reportTasks/{report_task}
      *
@@ -661,6 +695,12 @@ class AlphaAnalyticsDataGapicClient
      * asynchronous request to form a customized report of your Google Analytics
      * event data.
      *
+     * A report task will be retained and available for querying for 72 hours
+     * after it has been created.
+     *
+     * A report task created by one user can be listed and queried by all users
+     * who have access to the property.
+     *
      * Sample code:
      * ```
      * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
@@ -797,6 +837,58 @@ class AlphaAnalyticsDataGapicClient
         return $this->startCall(
             'GetAudienceList',
             AudienceList::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get all property quotas organized by quota category for a given property.
+     * This will charge 1 property quota from the category with the most quota.
+     *
+     * Sample code:
+     * ```
+     * $alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
+     * try {
+     *     $formattedName = $alphaAnalyticsDataClient->propertyQuotasSnapshotName('[PROPERTY]');
+     *     $response = $alphaAnalyticsDataClient->getPropertyQuotasSnapshot($formattedName);
+     * } finally {
+     *     $alphaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Quotas from this property will be listed in the response.
+     *                             Format: `properties/{property}/propertyQuotasSnapshot`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getPropertyQuotasSnapshot($name, array $optionalArgs = [])
+    {
+        $request = new GetPropertyQuotasSnapshotRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetPropertyQuotasSnapshot',
+            PropertyQuotasSnapshot::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1401,9 +1493,9 @@ class AlphaAnalyticsDataGapicClient
      *     Optional.
      *
      *     @type string $property
-     *           Optional. A Google Analytics GA4 property identifier whose events are
-     *           tracked. Specified in the URL path and not the body. To learn more, see
-     *           [where to find your Property
+     *           Optional. A Google Analytics property identifier whose events are tracked.
+     *           Specified in the URL path and not the body. To learn more, see [where to
+     *           find your Property
      *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      *           Within a batch request, this property should either be unspecified or
      *           consistent with the batch-level property.

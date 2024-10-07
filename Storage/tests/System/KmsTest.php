@@ -34,9 +34,12 @@ class KmsTest extends StorageTestCase
     private static $keyName1;
     private static $keyName2;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $encryption = new KeyManager(

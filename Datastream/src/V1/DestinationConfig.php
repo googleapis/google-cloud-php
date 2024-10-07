@@ -21,7 +21,7 @@ class DestinationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_connection_profile = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $destination_connection_profile = '';
+    protected $destination_connection_profile = '';
     protected $destination_stream_config;
 
     /**

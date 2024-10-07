@@ -20,14 +20,14 @@ class HumanReview extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string state = 1;</code>
      */
-    private $state = '';
+    protected $state = '';
     /**
      * A message providing more details about the current state of processing.
      * For example, the rejection reason when the state is `rejected`.
      *
      * Generated from protobuf field <code>string state_message = 2;</code>
      */
-    private $state_message = '';
+    protected $state_message = '';
 
     /**
      * Constructor.

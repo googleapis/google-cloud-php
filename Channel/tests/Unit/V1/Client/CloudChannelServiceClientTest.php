@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Channel\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Channel\V1\ActivateEntitlementRequest;
@@ -118,6 +117,7 @@ use Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest;
 use Google\Cloud\Channel\V1\UpdateChannelPartnerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\UpdateCustomerRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -144,7 +144,9 @@ class CloudChannelServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudChannelServiceClient */
@@ -195,8 +197,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new ActivateEntitlementRequest())
-            ->setName($name);
+        $request = (new ActivateEntitlementRequest())->setName($name);
         $response = $gapicClient->activateEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,17 +253,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new ActivateEntitlementRequest())
-            ->setName($name);
+        $request = (new ActivateEntitlementRequest())->setName($name);
         $response = $gapicClient->activateEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -316,8 +319,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new CancelEntitlementRequest())
-            ->setName($name);
+        $request = (new CancelEntitlementRequest())->setName($name);
         $response = $gapicClient->cancelEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -373,17 +375,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new CancelEntitlementRequest())
-            ->setName($name);
+        $request = (new CancelEntitlementRequest())->setName($name);
         $response = $gapicClient->cancelEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -446,9 +450,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $formattedOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
-        $request = (new ChangeOfferRequest())
-            ->setName($name)
-            ->setOffer($formattedOffer);
+        $request = (new ChangeOfferRequest())->setName($name)->setOffer($formattedOffer);
         $response = $gapicClient->changeOffer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -506,19 +508,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $formattedOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
-        $request = (new ChangeOfferRequest())
-            ->setName($name)
-            ->setOffer($formattedOffer);
+        $request = (new ChangeOfferRequest())->setName($name)->setOffer($formattedOffer);
         $response = $gapicClient->changeOffer($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -581,9 +584,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $parameters = [];
-        $request = (new ChangeParametersRequest())
-            ->setName($name)
-            ->setParameters($parameters);
+        $request = (new ChangeParametersRequest())->setName($name)->setParameters($parameters);
         $response = $gapicClient->changeParameters($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -641,19 +642,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $parameters = [];
-        $request = (new ChangeParametersRequest())
-            ->setName($name)
-            ->setParameters($parameters);
+        $request = (new ChangeParametersRequest())->setName($name)->setParameters($parameters);
         $response = $gapicClient->changeParameters($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -716,9 +718,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $renewalSettings = new RenewalSettings();
-        $request = (new ChangeRenewalSettingsRequest())
-            ->setName($name)
-            ->setRenewalSettings($renewalSettings);
+        $request = (new ChangeRenewalSettingsRequest())->setName($name)->setRenewalSettings($renewalSettings);
         $response = $gapicClient->changeRenewalSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -776,19 +776,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $renewalSettings = new RenewalSettings();
-        $request = (new ChangeRenewalSettingsRequest())
-            ->setName($name)
-            ->setRenewalSettings($renewalSettings);
+        $request = (new ChangeRenewalSettingsRequest())->setName($name)->setRenewalSettings($renewalSettings);
         $response = $gapicClient->changeRenewalSettings($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -825,16 +826,17 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $domain = 'domain-1326197564';
-        $request = (new CheckCloudIdentityAccountsExistRequest())
-            ->setParent($parent)
-            ->setDomain($domain);
+        $request = (new CheckCloudIdentityAccountsExistRequest())->setParent($parent)->setDomain($domain);
         $response = $gapicClient->checkCloudIdentityAccountsExist($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CheckCloudIdentityAccountsExist', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/CheckCloudIdentityAccountsExist',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getDomain();
@@ -853,19 +855,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $domain = 'domain-1326197564';
-        $request = (new CheckCloudIdentityAccountsExistRequest())
-            ->setParent($parent)
-            ->setDomain($domain);
+        $request = (new CheckCloudIdentityAccountsExistRequest())->setParent($parent)->setDomain($domain);
         try {
             $gapicClient->checkCloudIdentityAccountsExist($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -933,12 +936,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -996,7 +1002,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateChannelPartnerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/CreateChannelPartnerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getChannelPartnerRepricingConfig();
@@ -1015,12 +1024,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
@@ -1085,9 +1097,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customer->setOrgPostalAddress($customerOrgPostalAddress);
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
-        $request = (new CreateCustomerRequest())
-            ->setParent($parent)
-            ->setCustomer($customer);
+        $request = (new CreateCustomerRequest())->setParent($parent)->setCustomer($customer);
         $response = $gapicClient->createCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1113,12 +1123,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -1129,9 +1142,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customer->setOrgPostalAddress($customerOrgPostalAddress);
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
-        $request = (new CreateCustomerRequest())
-            ->setParent($parent)
-            ->setCustomer($customer);
+        $request = (new CreateCustomerRequest())->setParent($parent)->setCustomer($customer);
         try {
             $gapicClient->createCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1178,7 +1189,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/CreateCustomerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/CreateCustomerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getCustomerRepricingConfig();
@@ -1197,12 +1211,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
@@ -1273,9 +1290,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $entitlement = new Entitlement();
         $entitlementOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
         $entitlement->setOffer($entitlementOffer);
-        $request = (new CreateEntitlementRequest())
-            ->setParent($formattedParent)
-            ->setEntitlement($entitlement);
+        $request = (new CreateEntitlementRequest())->setParent($formattedParent)->setEntitlement($entitlement);
         $response = $gapicClient->createEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1333,21 +1348,22 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $entitlement = new Entitlement();
         $entitlementOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
         $entitlement->setOffer($entitlementOffer);
-        $request = (new CreateEntitlementRequest())
-            ->setParent($formattedParent)
-            ->setEntitlement($entitlement);
+        $request = (new CreateEntitlementRequest())->setParent($formattedParent)->setEntitlement($entitlement);
         $response = $gapicClient->createEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1382,15 +1398,21 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new DeleteChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CHANNEL_PARTNER]',
+            '[CHANNEL_PARTNER_REPRICING_CONFIG]'
+        );
+        $request = (new DeleteChannelPartnerRepricingConfigRequest())->setName($formattedName);
         $gapicClient->deleteChannelPartnerRepricingConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/DeleteChannelPartnerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/DeleteChannelPartnerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1407,17 +1429,23 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new DeleteChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CHANNEL_PARTNER]',
+            '[CHANNEL_PARTNER_REPRICING_CONFIG]'
+        );
+        $request = (new DeleteChannelPartnerRepricingConfigRequest())->setName($formattedName);
         try {
             $gapicClient->deleteChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1444,8 +1472,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new DeleteCustomerRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomerRequest())->setName($formattedName);
         $gapicClient->deleteCustomer($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1468,17 +1495,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new DeleteCustomerRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCustomerRequest())->setName($formattedName);
         try {
             $gapicClient->deleteCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1504,15 +1533,21 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new DeleteCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->customerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CUSTOMER]',
+            '[CUSTOMER_REPRICING_CONFIG]'
+        );
+        $request = (new DeleteCustomerRepricingConfigRequest())->setName($formattedName);
         $gapicClient->deleteCustomerRepricingConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/DeleteCustomerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/DeleteCustomerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1529,17 +1564,23 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new DeleteCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->customerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CUSTOMER]',
+            '[CUSTOMER_REPRICING_CONFIG]'
+        );
+        $request = (new DeleteCustomerRepricingConfigRequest())->setName($formattedName);
         try {
             $gapicClient->deleteCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1574,8 +1615,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetChannelPartnerLinkRequest())
-            ->setName($name);
+        $request = (new GetChannelPartnerLinkRequest())->setName($name);
         $response = $gapicClient->getChannelPartnerLink($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1599,17 +1639,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetChannelPartnerLinkRequest())
-            ->setName($name);
+        $request = (new GetChannelPartnerLinkRequest())->setName($name);
         try {
             $gapicClient->getChannelPartnerLink($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1637,16 +1679,22 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new GetChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CHANNEL_PARTNER]',
+            '[CHANNEL_PARTNER_REPRICING_CONFIG]'
+        );
+        $request = (new GetChannelPartnerRepricingConfigRequest())->setName($formattedName);
         $response = $gapicClient->getChannelPartnerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/GetChannelPartnerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/GetChannelPartnerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1663,17 +1711,23 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $request = (new GetChannelPartnerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CHANNEL_PARTNER]',
+            '[CHANNEL_PARTNER_REPRICING_CONFIG]'
+        );
+        $request = (new GetChannelPartnerRepricingConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1716,8 +1770,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new GetCustomerRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomerRequest())->setName($formattedName);
         $response = $gapicClient->getCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1741,17 +1794,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new GetCustomerRequest())
-            ->setName($formattedName);
+        $request = (new GetCustomerRequest())->setName($formattedName);
         try {
             $gapicClient->getCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1779,9 +1834,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new GetCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->customerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CUSTOMER]',
+            '[CUSTOMER_REPRICING_CONFIG]'
+        );
+        $request = (new GetCustomerRepricingConfigRequest())->setName($formattedName);
         $response = $gapicClient->getCustomerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1805,17 +1863,23 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $request = (new GetCustomerRepricingConfigRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->customerRepricingConfigName(
+            '[ACCOUNT]',
+            '[CUSTOMER]',
+            '[CUSTOMER_REPRICING_CONFIG]'
+        );
+        $request = (new GetCustomerRepricingConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1850,8 +1914,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new GetEntitlementRequest())
-            ->setName($formattedName);
+        $request = (new GetEntitlementRequest())->setName($formattedName);
         $response = $gapicClient->getEntitlement($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1875,17 +1938,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new GetEntitlementRequest())
-            ->setName($formattedName);
+        $request = (new GetEntitlementRequest())->setName($formattedName);
         try {
             $gapicClient->getEntitlement($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1961,12 +2026,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $domain = 'domain-1326197564';
@@ -2000,17 +2068,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $channelPartnerLinksElement = new ChannelPartnerLink();
-        $channelPartnerLinks = [
-            $channelPartnerLinksElement,
-        ];
+        $channelPartnerLinks = [$channelPartnerLinksElement];
         $expectedResponse = new ListChannelPartnerLinksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelPartnerLinks($channelPartnerLinks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListChannelPartnerLinksRequest())
-            ->setParent($parent);
+        $request = (new ListChannelPartnerLinksRequest())->setParent($parent);
         $response = $gapicClient->listChannelPartnerLinks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2037,17 +2102,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListChannelPartnerLinksRequest())
-            ->setParent($parent);
+        $request = (new ListChannelPartnerLinksRequest())->setParent($parent);
         try {
             $gapicClient->listChannelPartnerLinks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2072,17 +2139,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $channelPartnerRepricingConfigsElement = new ChannelPartnerRepricingConfig();
-        $channelPartnerRepricingConfigs = [
-            $channelPartnerRepricingConfigsElement,
-        ];
+        $channelPartnerRepricingConfigs = [$channelPartnerRepricingConfigsElement];
         $expectedResponse = new ListChannelPartnerRepricingConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelPartnerRepricingConfigs($channelPartnerRepricingConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $request = (new ListChannelPartnerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListChannelPartnerRepricingConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listChannelPartnerRepricingConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2092,7 +2156,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListChannelPartnerRepricingConfigs', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/ListChannelPartnerRepricingConfigs',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -2109,17 +2176,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $request = (new ListChannelPartnerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListChannelPartnerRepricingConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listChannelPartnerRepricingConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2144,17 +2213,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $customerRepricingConfigsElement = new CustomerRepricingConfig();
-        $customerRepricingConfigs = [
-            $customerRepricingConfigsElement,
-        ];
+        $customerRepricingConfigs = [$customerRepricingConfigsElement];
         $expectedResponse = new ListCustomerRepricingConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomerRepricingConfigs($customerRepricingConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListCustomerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomerRepricingConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCustomerRepricingConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2181,17 +2247,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListCustomerRepricingConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCustomerRepricingConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCustomerRepricingConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2216,17 +2284,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $customersElement = new Customer();
-        $customers = [
-            $customersElement,
-        ];
+        $customers = [$customersElement];
         $expectedResponse = new ListCustomersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCustomers($customers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListCustomersRequest())
-            ->setParent($parent);
+        $request = (new ListCustomersRequest())->setParent($parent);
         $response = $gapicClient->listCustomers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2253,17 +2318,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListCustomersRequest())
-            ->setParent($parent);
+        $request = (new ListCustomersRequest())->setParent($parent);
         try {
             $gapicClient->listCustomers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2288,17 +2355,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $entitlementChangesElement = new EntitlementChange();
-        $entitlementChanges = [
-            $entitlementChangesElement,
-        ];
+        $entitlementChanges = [$entitlementChangesElement];
         $expectedResponse = new ListEntitlementChangesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntitlementChanges($entitlementChanges);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new ListEntitlementChangesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntitlementChangesRequest())->setParent($formattedParent);
         $response = $gapicClient->listEntitlementChanges($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2325,17 +2389,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new ListEntitlementChangesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntitlementChangesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEntitlementChanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2360,17 +2426,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $entitlementsElement = new Entitlement();
-        $entitlements = [
-            $entitlementsElement,
-        ];
+        $entitlements = [$entitlementsElement];
         $expectedResponse = new ListEntitlementsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEntitlements($entitlements);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListEntitlementsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntitlementsRequest())->setParent($formattedParent);
         $response = $gapicClient->listEntitlements($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2397,17 +2460,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListEntitlementsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEntitlementsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEntitlements($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2432,17 +2497,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $offersElement = new Offer();
-        $offers = [
-            $offersElement,
-        ];
+        $offers = [$offersElement];
         $expectedResponse = new ListOffersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOffers($offers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListOffersRequest())
-            ->setParent($parent);
+        $request = (new ListOffersRequest())->setParent($parent);
         $response = $gapicClient->listOffers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2469,17 +2531,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListOffersRequest())
-            ->setParent($parent);
+        $request = (new ListOffersRequest())->setParent($parent);
         try {
             $gapicClient->listOffers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2504,17 +2568,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $productsElement = new Product();
-        $products = [
-            $productsElement,
-        ];
+        $products = [$productsElement];
         $expectedResponse = new ListProductsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
         // Mock request
         $account = 'account-1177318867';
-        $request = (new ListProductsRequest())
-            ->setAccount($account);
+        $request = (new ListProductsRequest())->setAccount($account);
         $response = $gapicClient->listProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2541,17 +2602,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $account = 'account-1177318867';
-        $request = (new ListProductsRequest())
-            ->setAccount($account);
+        $request = (new ListProductsRequest())->setAccount($account);
         try {
             $gapicClient->listProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2576,17 +2639,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $purchasableOffersElement = new PurchasableOffer();
-        $purchasableOffers = [
-            $purchasableOffersElement,
-        ];
+        $purchasableOffers = [$purchasableOffersElement];
         $expectedResponse = new ListPurchasableOffersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPurchasableOffers($purchasableOffers);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableOffersRequest())
-            ->setCustomer($formattedCustomer);
+        $request = (new ListPurchasableOffersRequest())->setCustomer($formattedCustomer);
         $response = $gapicClient->listPurchasableOffers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2613,17 +2673,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableOffersRequest())
-            ->setCustomer($formattedCustomer);
+        $request = (new ListPurchasableOffersRequest())->setCustomer($formattedCustomer);
         try {
             $gapicClient->listPurchasableOffers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2648,17 +2710,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $purchasableSkusElement = new PurchasableSku();
-        $purchasableSkus = [
-            $purchasableSkusElement,
-        ];
+        $purchasableSkus = [$purchasableSkusElement];
         $expectedResponse = new ListPurchasableSkusResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPurchasableSkus($purchasableSkus);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableSkusRequest())
-            ->setCustomer($formattedCustomer);
+        $request = (new ListPurchasableSkusRequest())->setCustomer($formattedCustomer);
         $response = $gapicClient->listPurchasableSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2685,17 +2744,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ListPurchasableSkusRequest())
-            ->setCustomer($formattedCustomer);
+        $request = (new ListPurchasableSkusRequest())->setCustomer($formattedCustomer);
         try {
             $gapicClient->listPurchasableSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2720,17 +2781,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $billableSkusElement = new BillableSku();
-        $billableSkus = [
-            $billableSkusElement,
-        ];
+        $billableSkus = [$billableSkusElement];
         $expectedResponse = new ListSkuGroupBillableSkusResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBillableSkus($billableSkus);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
-        $request = (new ListSkuGroupBillableSkusRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSkuGroupBillableSkusRequest())->setParent($formattedParent);
         $response = $gapicClient->listSkuGroupBillableSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2757,17 +2815,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
-        $request = (new ListSkuGroupBillableSkusRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSkuGroupBillableSkusRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSkuGroupBillableSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2792,17 +2852,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $skuGroupsElement = new SkuGroup();
-        $skuGroups = [
-            $skuGroupsElement,
-        ];
+        $skuGroups = [$skuGroupsElement];
         $expectedResponse = new ListSkuGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkuGroups($skuGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListSkuGroupsRequest())
-            ->setParent($parent);
+        $request = (new ListSkuGroupsRequest())->setParent($parent);
         $response = $gapicClient->listSkuGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2829,17 +2886,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListSkuGroupsRequest())
-            ->setParent($parent);
+        $request = (new ListSkuGroupsRequest())->setParent($parent);
         try {
             $gapicClient->listSkuGroups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2864,9 +2923,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $skusElement = new Sku();
-        $skus = [
-            $skusElement,
-        ];
+        $skus = [$skusElement];
         $expectedResponse = new ListSkusResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkus($skus);
@@ -2874,9 +2931,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->productName('[PRODUCT]');
         $account = 'account-1177318867';
-        $request = (new ListSkusRequest())
-            ->setParent($formattedParent)
-            ->setAccount($account);
+        $request = (new ListSkusRequest())->setParent($formattedParent)->setAccount($account);
         $response = $gapicClient->listSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2905,19 +2960,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->productName('[PRODUCT]');
         $account = 'account-1177318867';
-        $request = (new ListSkusRequest())
-            ->setParent($formattedParent)
-            ->setAccount($account);
+        $request = (new ListSkusRequest())->setParent($formattedParent)->setAccount($account);
         try {
             $gapicClient->listSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2943,9 +2999,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $topic = 'topic110546223';
         $nextPageToken = '';
         $serviceAccountsElement = 'serviceAccountsElement651196397';
-        $serviceAccounts = [
-            $serviceAccountsElement,
-        ];
+        $serviceAccounts = [$serviceAccountsElement];
         $expectedResponse = new ListSubscribersResponse();
         $expectedResponse->setTopic($topic);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -2953,8 +3007,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $account = 'account-1177318867';
-        $request = (new ListSubscribersRequest())
-            ->setAccount($account);
+        $request = (new ListSubscribersRequest())->setAccount($account);
         $response = $gapicClient->listSubscribers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2981,17 +3034,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $account = 'account-1177318867';
-        $request = (new ListSubscribersRequest())
-            ->setAccount($account);
+        $request = (new ListSubscribersRequest())->setAccount($account);
         try {
             $gapicClient->listSubscribers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3016,9 +3071,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $transferableOffersElement = new TransferableOffer();
-        $transferableOffers = [
-            $transferableOffersElement,
-        ];
+        $transferableOffers = [$transferableOffersElement];
         $expectedResponse = new ListTransferableOffersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferableOffers($transferableOffers);
@@ -3026,9 +3079,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $sku = 'sku113949';
-        $request = (new ListTransferableOffersRequest())
-            ->setParent($parent)
-            ->setSku($sku);
+        $request = (new ListTransferableOffersRequest())->setParent($parent)->setSku($sku);
         $response = $gapicClient->listTransferableOffers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3057,19 +3108,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $sku = 'sku113949';
-        $request = (new ListTransferableOffersRequest())
-            ->setParent($parent)
-            ->setSku($sku);
+        $request = (new ListTransferableOffersRequest())->setParent($parent)->setSku($sku);
         try {
             $gapicClient->listTransferableOffers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3094,17 +3146,14 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $transferableSkusElement = new TransferableSku();
-        $transferableSkus = [
-            $transferableSkusElement,
-        ];
+        $transferableSkus = [$transferableSkusElement];
         $expectedResponse = new ListTransferableSkusResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferableSkus($transferableSkus);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListTransferableSkusRequest())
-            ->setParent($parent);
+        $request = (new ListTransferableSkusRequest())->setParent($parent);
         $response = $gapicClient->listTransferableSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3131,17 +3180,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListTransferableSkusRequest())
-            ->setParent($parent);
+        $request = (new ListTransferableSkusRequest())->setParent($parent);
         try {
             $gapicClient->listTransferableSkus($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3172,8 +3223,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new LookupOfferRequest())
-            ->setEntitlement($formattedEntitlement);
+        $request = (new LookupOfferRequest())->setEntitlement($formattedEntitlement);
         $response = $gapicClient->lookupOffer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3197,17 +3247,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $request = (new LookupOfferRequest())
-            ->setEntitlement($formattedEntitlement);
+        $request = (new LookupOfferRequest())->setEntitlement($formattedEntitlement);
         try {
             $gapicClient->lookupOffer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3268,8 +3320,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ProvisionCloudIdentityRequest())
-            ->setCustomer($formattedCustomer);
+        $request = (new ProvisionCloudIdentityRequest())->setCustomer($formattedCustomer);
         $response = $gapicClient->provisionCloudIdentity($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3325,17 +3376,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $request = (new ProvisionCloudIdentityRequest())
-            ->setCustomer($formattedCustomer);
+        $request = (new ProvisionCloudIdentityRequest())->setCustomer($formattedCustomer);
         $response = $gapicClient->provisionCloudIdentity($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3372,9 +3425,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $skus = [];
-        $request = (new QueryEligibleBillingAccountsRequest())
-            ->setCustomer($formattedCustomer)
-            ->setSkus($skus);
+        $request = (new QueryEligibleBillingAccountsRequest())->setCustomer($formattedCustomer)->setSkus($skus);
         $response = $gapicClient->queryEligibleBillingAccounts($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3400,19 +3451,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $skus = [];
-        $request = (new QueryEligibleBillingAccountsRequest())
-            ->setCustomer($formattedCustomer)
-            ->setSkus($skus);
+        $request = (new QueryEligibleBillingAccountsRequest())->setCustomer($formattedCustomer)->setSkus($skus);
         try {
             $gapicClient->queryEligibleBillingAccounts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3442,9 +3494,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new RegisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = (new RegisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
         $response = $gapicClient->registerSubscriber($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3470,19 +3520,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new RegisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = (new RegisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
         try {
             $gapicClient->registerSubscriber($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3535,8 +3586,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new StartPaidServiceRequest())
-            ->setName($name);
+        $request = (new StartPaidServiceRequest())->setName($name);
         $response = $gapicClient->startPaidService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3592,17 +3642,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new StartPaidServiceRequest())
-            ->setName($name);
+        $request = (new StartPaidServiceRequest())->setName($name);
         $response = $gapicClient->startPaidService($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3664,8 +3716,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new SuspendEntitlementRequest())
-            ->setName($name);
+        $request = (new SuspendEntitlementRequest())->setName($name);
         $response = $gapicClient->suspendEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3721,17 +3772,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new SuspendEntitlementRequest())
-            ->setName($name);
+        $request = (new SuspendEntitlementRequest())->setName($name);
         $response = $gapicClient->suspendEntitlement($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3786,9 +3839,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $request = (new TransferEntitlementsRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = (new TransferEntitlementsRequest())->setParent($parent)->setEntitlements($entitlements);
         $response = $gapicClient->transferEntitlements($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3846,19 +3897,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $request = (new TransferEntitlementsRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = (new TransferEntitlementsRequest())->setParent($parent)->setEntitlements($entitlements);
         $response = $gapicClient->transferEntitlements($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3913,9 +3965,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $request = (new TransferEntitlementsToGoogleRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = (new TransferEntitlementsToGoogleRequest())->setParent($parent)->setEntitlements($entitlements);
         $response = $gapicClient->transferEntitlementsToGoogle($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3925,7 +3975,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/TransferEntitlementsToGoogle', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/TransferEntitlementsToGoogle',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualApiRequestObject->getEntitlements();
@@ -3973,19 +4026,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $request = (new TransferEntitlementsToGoogleRequest())
-            ->setParent($parent)
-            ->setEntitlements($entitlements);
+        $request = (new TransferEntitlementsToGoogleRequest())->setParent($parent)->setEntitlements($entitlements);
         $response = $gapicClient->transferEntitlementsToGoogle($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4024,9 +4078,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new UnregisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = (new UnregisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
         $response = $gapicClient->unregisterSubscriber($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4052,19 +4104,20 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new UnregisterSubscriberRequest())
-            ->setAccount($account)
-            ->setServiceAccount($serviceAccount);
+        $request = (new UnregisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
         try {
             $gapicClient->unregisterSubscriber($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4136,12 +4189,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
@@ -4191,15 +4247,19 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $request = (new UpdateChannelPartnerRepricingConfigRequest())
-            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $request = (new UpdateChannelPartnerRepricingConfigRequest())->setChannelPartnerRepricingConfig(
+            $channelPartnerRepricingConfig
+        );
         $response = $gapicClient->updateChannelPartnerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getChannelPartnerRepricingConfig();
         $this->assertProtobufEquals($channelPartnerRepricingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -4216,12 +4276,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
@@ -4233,8 +4296,9 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $request = (new UpdateChannelPartnerRepricingConfigRequest())
-            ->setChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $request = (new UpdateChannelPartnerRepricingConfigRequest())->setChannelPartnerRepricingConfig(
+            $channelPartnerRepricingConfig
+        );
         try {
             $gapicClient->updateChannelPartnerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4283,8 +4347,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customer->setOrgPostalAddress($customerOrgPostalAddress);
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
-        $request = (new UpdateCustomerRequest())
-            ->setCustomer($customer);
+        $request = (new UpdateCustomerRequest())->setCustomer($customer);
         $response = $gapicClient->updateCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4308,12 +4371,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $customer = new Customer();
@@ -4323,8 +4389,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customer->setOrgPostalAddress($customerOrgPostalAddress);
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
-        $request = (new UpdateCustomerRequest())
-            ->setCustomer($customer);
+        $request = (new UpdateCustomerRequest())->setCustomer($customer);
         try {
             $gapicClient->updateCustomer($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4361,15 +4426,17 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $request = (new UpdateCustomerRepricingConfigRequest())
-            ->setCustomerRepricingConfig($customerRepricingConfig);
+        $request = (new UpdateCustomerRepricingConfigRequest())->setCustomerRepricingConfig($customerRepricingConfig);
         $response = $gapicClient->updateCustomerRepricingConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UpdateCustomerRepricingConfig', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.channel.v1.CloudChannelService/UpdateCustomerRepricingConfig',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getCustomerRepricingConfig();
         $this->assertProtobufEquals($customerRepricingConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -4386,12 +4453,15 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $customerRepricingConfig = new CustomerRepricingConfig();
@@ -4403,8 +4473,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $request = (new UpdateCustomerRepricingConfigRequest())
-            ->setCustomerRepricingConfig($customerRepricingConfig);
+        $request = (new UpdateCustomerRepricingConfigRequest())->setCustomerRepricingConfig($customerRepricingConfig);
         try {
             $gapicClient->updateCustomerRepricingConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4457,8 +4526,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $request = (new ActivateEntitlementRequest())
-            ->setName($name);
+        $request = (new ActivateEntitlementRequest())->setName($name);
         $response = $gapicClient->activateEntitlementAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

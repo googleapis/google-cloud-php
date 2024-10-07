@@ -37,7 +37,7 @@ class EphemeralStorageLocalSsdConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 local_ssd_count = 1;</code>
      */
-    private $local_ssd_count = 0;
+    protected $local_ssd_count = 0;
 
     /**
      * Constructor.

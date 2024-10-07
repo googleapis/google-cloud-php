@@ -23,7 +23,7 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The new entitlements to create or transfer.
      *
@@ -38,7 +38,7 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string auth_token = 4;</code>
      */
-    private $auth_token = '';
+    protected $auth_token = '';
     /**
      * Optional. You can specify an optional unique request ID, and if you need to
      * retry your request, the server will know to ignore the request if it's
@@ -53,7 +53,7 @@ class TransferEntitlementsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

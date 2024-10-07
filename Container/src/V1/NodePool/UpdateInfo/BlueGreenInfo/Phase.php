@@ -94,6 +94,4 @@ class Phase
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Phase::class, \Google\Cloud\Container\V1\NodePool_UpdateInfo_BlueGreenInfo_Phase::class);
 

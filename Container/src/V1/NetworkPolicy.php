@@ -21,13 +21,13 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicy.Provider provider = 1;</code>
      */
-    private $provider = 0;
+    protected $provider = 0;
     /**
      * Whether network policy is enabled on the cluster.
      *
      * Generated from protobuf field <code>bool enabled = 2;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
 
     /**
      * Constructor.

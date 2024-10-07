@@ -21,7 +21,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Resource value level this expression represents
      * Only required when there is no Sensitive Data Protection mapping in the
@@ -29,7 +29,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourceValue resource_value = 2;</code>
      */
-    private $resource_value = 0;
+    protected $resource_value = 0;
     /**
      * Tag values combined with `AND` to check against.
      * Values in the form "tagValues/123"
@@ -47,7 +47,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 4;</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * Project or folder to scope this configuration to.
      * For example, "project/456" would apply this configuration only to resources
@@ -55,7 +55,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scope = 5;</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * List of resource labels to search for, evaluated with `AND`.
      * For example, "resource_labels_selector": {"key": "value", "env": "prod"}
@@ -71,25 +71,25 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Timestamp this resource value configuration was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp this resource value configuration was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Cloud provider this configuration applies to
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 10;</code>
      */
-    private $cloud_provider = 0;
+    protected $cloud_provider = 0;
     /**
      * A mapping of the sensitivity on Sensitive Data Protection finding to
      * resource values. This mapping can only be used in combination with a
@@ -98,7 +98,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.ResourceValueConfig.SensitiveDataProtectionMapping sensitive_data_protection_mapping = 11;</code>
      */
-    private $sensitive_data_protection_mapping = null;
+    protected $sensitive_data_protection_mapping = null;
 
     /**
      * Constructor.

@@ -30,13 +30,13 @@ class ReplacementAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string replacement_term = 3;</code>
      */
-    private $replacement_term = '';
+    protected $replacement_term = '';
     /**
      * Will be [deprecated = true] post migration;
      *
      * Generated from protobuf field <code>string term = 1;</code>
      */
-    private $term = '';
+    protected $term = '';
 
     /**
      * Constructor.

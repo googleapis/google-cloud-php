@@ -28,7 +28,10 @@ class VisionTestCase extends TestCase
     protected static $vision;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

@@ -79,6 +79,4 @@ class TagValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TagValue::class, \Google\Cloud\Dlp\V2\DataProfileAction_TagResources_TagValue::class);
 

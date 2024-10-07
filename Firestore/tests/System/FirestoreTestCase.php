@@ -37,7 +37,10 @@ class FirestoreTestCase extends SystemTestCase
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;
@@ -46,6 +49,9 @@ class FirestoreTestCase extends SystemTestCase
         self::$localDeletionQueue = new DeletionQueue(true);
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        if (false === $keyFilePath) {
+            self::markTestSkipped('Set the GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH env var to run the system tests');
+        }
         self::$client = new FirestoreClient([
             'keyFilePath' => $keyFilePath
         ]);

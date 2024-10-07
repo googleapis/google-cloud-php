@@ -23,14 +23,14 @@ class SecretManagerCredential extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required. The name of the Secret Manager resource that stores the password,
      * in the form `projects/project-id/secrets/secret-name/versions/version`.
      *
      * Generated from protobuf field <code>string password_secret_version_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $password_secret_version_name = '';
+    protected $password_secret_version_name = '';
 
     /**
      * Constructor.

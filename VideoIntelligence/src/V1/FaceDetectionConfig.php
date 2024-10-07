@@ -22,20 +22,20 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1;</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Whether bounding boxes are included in the face annotation output.
      *
      * Generated from protobuf field <code>bool include_bounding_boxes = 2;</code>
      */
-    private $include_bounding_boxes = false;
+    protected $include_bounding_boxes = false;
     /**
      * Whether to enable face attributes detection, such as glasses, dark_glasses,
      * mouth_open etc. Ignored if 'include_bounding_boxes' is set to false.
      *
      * Generated from protobuf field <code>bool include_attributes = 5;</code>
      */
-    private $include_attributes = false;
+    protected $include_attributes = false;
 
     /**
      * Constructor.

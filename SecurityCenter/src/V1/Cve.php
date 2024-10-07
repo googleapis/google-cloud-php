@@ -23,7 +23,7 @@ class Cve extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Additional information about the CVE.
      * e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
@@ -37,44 +37,44 @@ class Cve extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cvssv3 cvssv3 = 3;</code>
      */
-    private $cvssv3 = null;
+    protected $cvssv3 = null;
     /**
      * Whether upstream fix is available for the CVE.
      *
      * Generated from protobuf field <code>bool upstream_fix_available = 4;</code>
      */
-    private $upstream_fix_available = false;
+    protected $upstream_fix_available = false;
     /**
      * The potential impact of the vulnerability if it was to be exploited.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.RiskRating impact = 5;</code>
      */
-    private $impact = 0;
+    protected $impact = 0;
     /**
      * The exploitation activity of the vulnerability in the wild.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.ExploitationActivity exploitation_activity = 6;</code>
      */
-    private $exploitation_activity = 0;
+    protected $exploitation_activity = 0;
     /**
      * Whether or not the vulnerability has been observed in the wild.
      *
      * Generated from protobuf field <code>bool observed_in_the_wild = 7;</code>
      */
-    private $observed_in_the_wild = false;
+    protected $observed_in_the_wild = false;
     /**
      * Whether or not the vulnerability was zero day when the finding was
      * published.
      *
      * Generated from protobuf field <code>bool zero_day = 8;</code>
      */
-    private $zero_day = false;
+    protected $zero_day = false;
     /**
      * Date the first publicly available exploit or PoC was released.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp exploit_release_date = 9;</code>
      */
-    private $exploit_release_date = null;
+    protected $exploit_release_date = null;
 
     /**
      * Constructor.

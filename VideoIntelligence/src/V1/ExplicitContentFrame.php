@@ -21,13 +21,13 @@ class ExplicitContentFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 1;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
     /**
      * Likelihood of the pornography content..
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Likelihood pornography_likelihood = 2;</code>
      */
-    private $pornography_likelihood = 0;
+    protected $pornography_likelihood = 0;
 
     /**
      * Constructor.

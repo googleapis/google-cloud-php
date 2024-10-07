@@ -20,13 +20,13 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStepConfig linux_exec_step_config = 1;</code>
      */
-    private $linux_exec_step_config = null;
+    protected $linux_exec_step_config = null;
     /**
      * The ExecStepConfig for all Windows VMs targeted by the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStepConfig windows_exec_step_config = 2;</code>
      */
-    private $windows_exec_step_config = null;
+    protected $windows_exec_step_config = null;
 
     /**
      * Constructor.

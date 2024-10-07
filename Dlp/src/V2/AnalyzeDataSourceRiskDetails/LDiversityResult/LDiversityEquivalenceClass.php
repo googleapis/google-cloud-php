@@ -27,13 +27,13 @@ class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 equivalence_class_size = 2;</code>
      */
-    private $equivalence_class_size = 0;
+    protected $equivalence_class_size = 0;
     /**
      * Number of distinct sensitive values in this equivalence class.
      *
      * Generated from protobuf field <code>int64 num_distinct_sensitive_values = 3;</code>
      */
-    private $num_distinct_sensitive_values = 0;
+    protected $num_distinct_sensitive_values = 0;
     /**
      * Estimated frequencies of top sensitive values.
      *
@@ -171,6 +171,4 @@ class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LDiversityEquivalenceClass::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_LDiversityResult_LDiversityEquivalenceClass::class);
 

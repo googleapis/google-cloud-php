@@ -21,7 +21,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Nodes to which the instance-level parameter group is applied.
      *
@@ -35,7 +35,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool apply_all = 3;</code>
      */
-    private $apply_all = false;
+    protected $apply_all = false;
 
     /**
      * @param string   $name     Required. Resource name of the Memcached instance for which parameter group updates

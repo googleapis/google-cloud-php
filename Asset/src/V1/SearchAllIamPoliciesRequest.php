@@ -29,7 +29,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * Optional. The query statement. See [how to construct a
      * query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query)
@@ -74,7 +74,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * Optional. The page size for search result pagination. Page size is capped
      * at 500 even if a larger value is given. If set to zero or a negative value,
@@ -84,7 +84,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. If present, retrieve the next batch of results from the preceding
      * call to this method. `page_token` must be the value of `next_page_token`
@@ -93,7 +93,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. A list of asset types that the IAM policies are attached to. If
      * empty, it will search the IAM policies that are attached to all the asset
@@ -127,7 +127,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $scope Required. A scope can be a project, a folder, or an organization. The

@@ -27,7 +27,7 @@ class TransformationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deidentify_template = 1;</code>
      */
-    private $deidentify_template = '';
+    protected $deidentify_template = '';
     /**
      * Structured de-identify template.
      * If this template is specified, it will serve as the de-identify template
@@ -39,7 +39,7 @@ class TransformationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string structured_deidentify_template = 2;</code>
      */
-    private $structured_deidentify_template = '';
+    protected $structured_deidentify_template = '';
     /**
      * Image redact template.
      * If this template is specified, it will serve as the de-identify template
@@ -48,7 +48,7 @@ class TransformationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_redact_template = 4;</code>
      */
-    private $image_redact_template = '';
+    protected $image_redact_template = '';
 
     /**
      * Constructor.

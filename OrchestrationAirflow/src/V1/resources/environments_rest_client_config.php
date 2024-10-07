@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.orchestration.airflow.service.v1.Environments' => [
+            'CheckUpgrade' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{environment=projects/*/locations/*/environments/*}:checkUpgrade',
+                'body' => '*',
+                'placeholders' => [
+                    'environment' => [
+                        'getters' => [
+                            'getEnvironment',
+                        ],
+                    ],
+                ],
+            ],
             'CreateEnvironment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/environments',

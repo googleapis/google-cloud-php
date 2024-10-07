@@ -20,14 +20,14 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Function function = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $function = null;
+    protected $function = null;
     /**
      * The list of fields to be updated.
      * If no field mask is provided, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Functions\V2\PBFunction $function   Required. New version of the function.

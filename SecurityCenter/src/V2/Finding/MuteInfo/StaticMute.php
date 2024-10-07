@@ -23,13 +23,13 @@ class StaticMute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Finding.Mute state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * When the static mute was applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp apply_time = 2;</code>
      */
-    private $apply_time = null;
+    protected $apply_time = null;
 
     /**
      * Constructor.
@@ -115,6 +115,4 @@ class StaticMute extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StaticMute::class, \Google\Cloud\SecurityCenter\V2\Finding_MuteInfo_StaticMute::class);
 

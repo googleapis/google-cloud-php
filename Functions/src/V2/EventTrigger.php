@@ -22,7 +22,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trigger = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $trigger = '';
+    protected $trigger = '';
     /**
      * The region that the trigger will be in. The trigger will only receive
      * events originating in this region. It can be the same
@@ -31,7 +31,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trigger_region = 2;</code>
      */
-    private $trigger_region = '';
+    protected $trigger_region = '';
     /**
      * Required. The type of event to observe. For example:
      * `google.cloud.audit.log.v1.written` or
@@ -39,7 +39,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_type = '';
+    protected $event_type = '';
     /**
      * Criteria used to filter events.
      *
@@ -56,7 +56,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pubsub_topic = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $pubsub_topic = '';
+    protected $pubsub_topic = '';
     /**
      * Optional. The email of the trigger's service account. The service account
      * must have permission to invoke Cloud Run services, the permission is
@@ -66,14 +66,14 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * Optional. If unset, then defaults to ignoring failures (i.e. not retrying
      * them).
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.EventTrigger.RetryPolicy retry_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $retry_policy = 0;
+    protected $retry_policy = 0;
     /**
      * Optional. The name of the channel associated with the trigger in
      * `projects/{project}/locations/{location}/channels/{channel}` format.
@@ -81,7 +81,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string channel = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $channel = '';
+    protected $channel = '';
     /**
      * Optional. The hostname of the service that 1st Gen function should be
      * observed.
@@ -92,7 +92,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service = '';
+    protected $service = '';
 
     /**
      * Constructor.

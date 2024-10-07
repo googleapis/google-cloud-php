@@ -22,7 +22,7 @@ class MuteInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.MuteInfo.StaticMute static_mute = 1;</code>
      */
-    private $static_mute = null;
+    protected $static_mute = null;
     /**
      * The list of dynamic mute rules that currently match the finding.
      *
@@ -114,6 +114,4 @@ class MuteInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MuteInfo::class, \Google\Cloud\SecurityCenter\V1\Finding_MuteInfo::class);
 

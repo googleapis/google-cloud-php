@@ -200,6 +200,11 @@
                 "grpc": {
                     "libraryClient": "DocumentServiceGapicClient",
                     "rpcs": {
+                        "BatchGetDocumentsMetadata": {
+                            "methods": [
+                                "batchGetDocumentsMetadata"
+                            ]
+                        },
                         "CreateDocument": {
                             "methods": [
                                 "createDocument"
@@ -363,6 +368,25 @@
                 }
             }
         },
+        "SearchTuningService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchTuningServiceGapicClient",
+                    "rpcs": {
+                        "ListCustomModels": {
+                            "methods": [
+                                "listCustomModels"
+                            ]
+                        },
+                        "TrainCustomModel": {
+                            "methods": [
+                                "trainCustomModel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SiteSearchEngineService": {
             "clients": {
                 "grpc": {
@@ -445,6 +469,11 @@
                         "ImportUserEvents": {
                             "methods": [
                                 "importUserEvents"
+                            ]
+                        },
+                        "PurgeUserEvents": {
+                            "methods": [
+                                "purgeUserEvents"
                             ]
                         },
                         "WriteUserEvent": {

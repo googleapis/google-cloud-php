@@ -24,13 +24,13 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 3;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Optional. UTF-8 encoded text in reading order from the document.
      *
      * Generated from protobuf field <code>string text = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
@@ -74,13 +74,13 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ShardInfo shard_info = 9;</code>
      */
-    private $shard_info = null;
+    protected $shard_info = null;
     /**
      * Any error that occurred while processing this document.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 10;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Placeholder. Revision history of this document.
      *
@@ -92,13 +92,13 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout document_layout = 17;</code>
      */
-    private $document_layout = null;
+    protected $document_layout = null;
     /**
      * Document chunked based on chunking config.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument chunked_document = 18;</code>
      */
-    private $chunked_document = null;
+    protected $chunked_document = null;
     protected $source;
 
     /**

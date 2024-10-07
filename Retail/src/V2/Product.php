@@ -22,7 +22,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. [Product][google.cloud.retail.v2.Product] identifier, which is
      * the final component of [name][google.cloud.retail.v2.Product.name]. For
@@ -37,7 +37,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Immutable. The type of the product. Default to
      * [Catalog.product_level_config.ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
@@ -45,7 +45,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product.Type type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Variant group identifier. Must be an
      * [id][google.cloud.retail.v2.Product.id], with the same parent branch with
@@ -65,7 +65,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string primary_product_id = 4;</code>
      */
-    private $primary_product_id = '';
+    protected $primary_product_id = '';
     /**
      * The [id][google.cloud.retail.v2.Product.id] of the collection members when
      * [type][google.cloud.retail.v2.Product.type] is
@@ -99,7 +99,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gtin = 6;</code>
      */
-    private $gtin = '';
+    protected $gtin = '';
     /**
      * Product categories. This field is repeated for supporting one product
      * belonging to several parallel categories. Strongly recommended using the
@@ -142,7 +142,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The brands of the product.
      * A maximum of 30 brands are allowed unless overridden through the Google
@@ -166,7 +166,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 10;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Language of the title/description and other string attributes. Use language
      * tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
@@ -179,7 +179,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 11;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Highly encouraged. Extra product attributes to be included. For example,
      * for products, this could include the store name, vendor, style, color, etc.
@@ -231,13 +231,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 14;</code>
      */
-    private $price_info = null;
+    protected $price_info = null;
     /**
      * The rating of this product.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Rating rating = 15;</code>
      */
-    private $rating = null;
+    protected $rating = null;
     /**
      * The timestamp when this [Product][google.cloud.retail.v2.Product] becomes
      * available for
@@ -249,7 +249,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp available_time = 18;</code>
      */
-    private $available_time = null;
+    protected $available_time = null;
     /**
      * The online availability of the [Product][google.cloud.retail.v2.Product].
      * Default to
@@ -260,13 +260,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product.Availability availability = 19;</code>
      */
-    private $availability = 0;
+    protected $availability = 0;
     /**
      * The available quantity of the item.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value available_quantity = 20;</code>
      */
-    private $available_quantity = null;
+    protected $available_quantity = null;
     /**
      * Fulfillment information, such as the store IDs for in-store pickup or
      * region IDs for different shipping methods.
@@ -289,7 +289,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 22;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Product images for the product. We highly recommend putting the main
      * image first.
@@ -307,7 +307,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Audience audience = 24;</code>
      */
-    private $audience = null;
+    protected $audience = null;
     /**
      * The color of the product.
      * Corresponding properties: Google Merchant Center property
@@ -316,7 +316,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ColorInfo color_info = 25;</code>
      */
-    private $color_info = null;
+    protected $color_info = null;
     /**
      * The size of the product. To represent different size systems or size types,
      * consider using this format: [[[size_system:]size_type:]size_value].
@@ -397,7 +397,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 33;</code>
      */
-    private $publish_time = null;
+    protected $publish_time = null;
     /**
      * Indicates which fields in the [Product][google.cloud.retail.v2.Product]s
      * are returned in [SearchResponse][google.cloud.retail.v2.SearchResponse].
@@ -1782,7 +1782,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value available_quantity = 20;</code>
      * @return int|null
      */
-    public function getAvailableQuantityValue()
+    public function getAvailableQuantityUnwrapped()
     {
         return $this->readWrapperValue("available_quantity");
     }
@@ -1811,7 +1811,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setAvailableQuantityValue($var)
+    public function setAvailableQuantityUnwrapped($var)
     {
         $this->writeWrapperValue("available_quantity", $var);
         return $this;}

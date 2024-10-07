@@ -22,7 +22,7 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of processor versions to return.
      * If unspecified, at most `10` processor versions will be returned.
@@ -30,14 +30,14 @@ class ListProcessorVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * We will return the processor versions sorted by creation time. The page
      * token will point to the next processor version.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The parent (project, location and processor) to list all

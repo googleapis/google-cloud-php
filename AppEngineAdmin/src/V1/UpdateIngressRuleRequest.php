@@ -21,19 +21,19 @@ class UpdateIngressRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A FirewallRule containing the updated resource
      *
      * Generated from protobuf field <code>.google.appengine.v1.FirewallRule rule = 2;</code>
      */
-    private $rule = null;
+    protected $rule = null;
     /**
      * Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

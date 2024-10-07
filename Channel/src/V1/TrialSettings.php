@@ -22,7 +22,7 @@ class TrialSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool trial = 1;</code>
      */
-    private $trial = false;
+    protected $trial = false;
     /**
      * Date when the trial ends. The value is in milliseconds
      * using the UNIX Epoch format. See an example [Epoch
@@ -30,7 +30,7 @@ class TrialSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

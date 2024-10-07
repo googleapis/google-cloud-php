@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\OsConfig\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -51,6 +50,7 @@ use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
 use Google\Cloud\OsConfig\V1\UpdateOSPolicyAssignmentRequest;
 use Google\Cloud\OsConfig\V1\VulnerabilityReport;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -81,7 +81,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listVulnerabilityReportsAsync(ListVulnerabilityReportsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateOSPolicyAssignmentAsync(UpdateOSPolicyAssignmentRequest $request, array $optionalArgs = [])
  */
-class OsConfigZonalServiceClient
+final class OsConfigZonalServiceClient
 {
     use GapicClientTrait;
     use ResourceHelperTrait;
@@ -106,9 +106,7 @@ class OsConfigZonalServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -154,10 +152,31 @@ class OsConfigZonalServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -190,8 +209,12 @@ class OsConfigZonalServiceClient
      *
      * @return string The formatted instance_os_policy_assignment resource.
      */
-    public static function instanceOSPolicyAssignmentName(string $project, string $location, string $instance, string $assignment): string
-    {
+    public static function instanceOSPolicyAssignmentName(
+        string $project,
+        string $location,
+        string $instance,
+        string $assignment
+    ): string {
         return self::getPathTemplate('instanceOSPolicyAssignment')->render([
             'project' => $project,
             'location' => $location,
@@ -266,8 +289,12 @@ class OsConfigZonalServiceClient
      *
      * @return string The formatted os_policy_assignment_report resource.
      */
-    public static function oSPolicyAssignmentReportName(string $project, string $location, string $instance, string $assignment): string
-    {
+    public static function oSPolicyAssignmentReportName(
+        string $project,
+        string $location,
+        string $instance,
+        string $assignment
+    ): string {
         return self::getPathTemplate('oSPolicyAssignmentReport')->render([
             'project' => $project,
             'location' => $location,
@@ -467,8 +494,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createOSPolicyAssignment(CreateOSPolicyAssignmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createOSPolicyAssignment(
+        CreateOSPolicyAssignmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateOSPolicyAssignment', $request, $callOptions)->wait();
     }
 
@@ -505,8 +534,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteOSPolicyAssignment(DeleteOSPolicyAssignmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteOSPolicyAssignment(
+        DeleteOSPolicyAssignmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteOSPolicyAssignment', $request, $callOptions)->wait();
     }
 
@@ -563,8 +594,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOSPolicyAssignment(GetOSPolicyAssignmentRequest $request, array $callOptions = []): OSPolicyAssignment
-    {
+    public function getOSPolicyAssignment(
+        GetOSPolicyAssignmentRequest $request,
+        array $callOptions = []
+    ): OSPolicyAssignment {
         return $this->startApiCall('GetOSPolicyAssignment', $request, $callOptions)->wait();
     }
 
@@ -591,8 +624,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOSPolicyAssignmentReport(GetOSPolicyAssignmentReportRequest $request, array $callOptions = []): OSPolicyAssignmentReport
-    {
+    public function getOSPolicyAssignmentReport(
+        GetOSPolicyAssignmentReportRequest $request,
+        array $callOptions = []
+    ): OSPolicyAssignmentReport {
         return $this->startApiCall('GetOSPolicyAssignmentReport', $request, $callOptions)->wait();
     }
 
@@ -619,8 +654,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getVulnerabilityReport(GetVulnerabilityReportRequest $request, array $callOptions = []): VulnerabilityReport
-    {
+    public function getVulnerabilityReport(
+        GetVulnerabilityReportRequest $request,
+        array $callOptions = []
+    ): VulnerabilityReport {
         return $this->startApiCall('GetVulnerabilityReport', $request, $callOptions)->wait();
     }
 
@@ -673,8 +710,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOSPolicyAssignmentReports(ListOSPolicyAssignmentReportsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOSPolicyAssignmentReports(
+        ListOSPolicyAssignmentReportsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOSPolicyAssignmentReports', $request, $callOptions);
     }
 
@@ -700,8 +739,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOSPolicyAssignmentRevisions(ListOSPolicyAssignmentRevisionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOSPolicyAssignmentRevisions(
+        ListOSPolicyAssignmentRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOSPolicyAssignmentRevisions', $request, $callOptions);
     }
 
@@ -729,8 +770,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOSPolicyAssignments(ListOSPolicyAssignmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOSPolicyAssignments(
+        ListOSPolicyAssignmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOSPolicyAssignments', $request, $callOptions);
     }
 
@@ -756,8 +799,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listVulnerabilityReports(ListVulnerabilityReportsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listVulnerabilityReports(
+        ListVulnerabilityReportsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListVulnerabilityReports', $request, $callOptions);
     }
 
@@ -791,8 +836,10 @@ class OsConfigZonalServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateOSPolicyAssignment(UpdateOSPolicyAssignmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateOSPolicyAssignment(
+        UpdateOSPolicyAssignmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateOSPolicyAssignment', $request, $callOptions)->wait();
     }
 }

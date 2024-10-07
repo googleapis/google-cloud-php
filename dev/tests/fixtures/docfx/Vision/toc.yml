@@ -6,6 +6,9 @@
       name: Overview
       href: index.md
     -
+      name: Migrating
+      href: migrating.md
+    -
       name: V1
       uid: 'ns:Google\Cloud\Vision\V1'
       items:

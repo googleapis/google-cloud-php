@@ -21,13 +21,13 @@ class GkeNodePoolAcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 accelerator_count = 1;</code>
      */
-    private $accelerator_count = 0;
+    protected $accelerator_count = 0;
     /**
      * The accelerator type resource namename (see GPUs on Compute Engine).
      *
      * Generated from protobuf field <code>string accelerator_type = 2;</code>
      */
-    private $accelerator_type = '';
+    protected $accelerator_type = '';
     /**
      * Size of partitions to create on the GPU. Valid values are described in
      * the NVIDIA [mig user
@@ -35,7 +35,7 @@ class GkeNodePoolAcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gpu_partition_size = 3;</code>
      */
-    private $gpu_partition_size = '';
+    protected $gpu_partition_size = '';
 
     /**
      * Constructor.
@@ -142,6 +142,4 @@ class GkeNodePoolAcceleratorConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GkeNodePoolAcceleratorConfig::class, \Google\Cloud\Dataproc\V1\GkeNodePoolConfig_GkeNodePoolAcceleratorConfig::class);
 

@@ -23,14 +23,14 @@ class RemoveCatalogAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attributes_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $attributes_config = '';
+    protected $attributes_config = '';
     /**
      * Required. The attribute name key of the
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to remove.
      *
      * Generated from protobuf field <code>string key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

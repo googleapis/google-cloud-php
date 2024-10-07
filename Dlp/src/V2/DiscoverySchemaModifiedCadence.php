@@ -29,7 +29,7 @@ class DiscoverySchemaModifiedCadence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency frequency = 2;</code>
      */
-    private $frequency = 0;
+    protected $frequency = 0;
 
     /**
      * Constructor.

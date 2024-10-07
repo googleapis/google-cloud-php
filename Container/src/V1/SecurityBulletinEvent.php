@@ -23,13 +23,13 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type_affected = 1;</code>
      */
-    private $resource_type_affected = '';
+    protected $resource_type_affected = '';
     /**
      * The ID of the bulletin corresponding to the vulnerability.
      *
      * Generated from protobuf field <code>string bulletin_id = 2;</code>
      */
-    private $bulletin_id = '';
+    protected $bulletin_id = '';
     /**
      * The CVEs associated with this bulletin.
      *
@@ -41,20 +41,20 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string severity = 4;</code>
      */
-    private $severity = '';
+    protected $severity = '';
     /**
      * The URI link to the bulletin on the website for more information.
      *
      * Generated from protobuf field <code>string bulletin_uri = 5;</code>
      */
-    private $bulletin_uri = '';
+    protected $bulletin_uri = '';
     /**
      * A brief description of the bulletin. See the bulletin pointed to by the
      * bulletin_uri field for an expanded description.
      *
      * Generated from protobuf field <code>string brief_description = 6;</code>
      */
-    private $brief_description = '';
+    protected $brief_description = '';
     /**
      * The GKE minor versions affected by this vulnerability.
      *
@@ -76,14 +76,14 @@ class SecurityBulletinEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string suggested_upgrade_target = 9;</code>
      */
-    private $suggested_upgrade_target = '';
+    protected $suggested_upgrade_target = '';
     /**
      * If this field is specified, it means there are manual steps that the user
      * must take to make their clusters safe.
      *
      * Generated from protobuf field <code>bool manual_steps_required = 10;</code>
      */
-    private $manual_steps_required = false;
+    protected $manual_steps_required = false;
 
     /**
      * Constructor.

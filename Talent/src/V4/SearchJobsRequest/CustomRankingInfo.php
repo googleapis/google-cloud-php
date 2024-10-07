@@ -24,7 +24,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $importance_level = 0;
+    protected $importance_level = 0;
     /**
      * Required. Controls over how job documents get ranked on top of existing
      * relevance score (determined by API algorithm). A combination of the
@@ -47,7 +47,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ranking_expression = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ranking_expression = '';
+    protected $ranking_expression = '';
 
     /**
      * Constructor.

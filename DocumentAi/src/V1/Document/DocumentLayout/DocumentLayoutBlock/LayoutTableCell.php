@@ -27,13 +27,13 @@ class LayoutTableCell extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_span = 2;</code>
      */
-    private $row_span = 0;
+    protected $row_span = 0;
     /**
      * How many columns this cell spans.
      *
      * Generated from protobuf field <code>int32 col_span = 3;</code>
      */
-    private $col_span = 0;
+    protected $col_span = 0;
 
     /**
      * Constructor.

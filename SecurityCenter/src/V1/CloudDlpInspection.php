@@ -23,7 +23,7 @@ class CloudDlpInspection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string inspect_job = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $inspect_job = '';
+    protected $inspect_job = '';
     /**
      * The type of information (or
      * *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found,
@@ -31,20 +31,20 @@ class CloudDlpInspection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string info_type = 2;</code>
      */
-    private $info_type = '';
+    protected $info_type = '';
     /**
      * The number of times Cloud DLP found this infoType within this job
      * and resource.
      *
      * Generated from protobuf field <code>int64 info_type_count = 3;</code>
      */
-    private $info_type_count = 0;
+    protected $info_type_count = 0;
     /**
      * Whether Cloud DLP scanned the complete resource or a sampled subset.
      *
      * Generated from protobuf field <code>bool full_scan = 4;</code>
      */
-    private $full_scan = false;
+    protected $full_scan = false;
 
     /**
      * Constructor.

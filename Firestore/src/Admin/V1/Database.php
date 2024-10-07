@@ -44,6 +44,13 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
+     * Output only. The timestamp at which this database was deleted. Only set if
+     * the database has been deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $delete_time = null;
+    /**
      * The location of the database. Available locations are listed at
      * https://cloud.google.com/firestore/docs/locations.
      *
@@ -103,8 +110,8 @@ class Database extends \Google\Protobuf\Internal\Message
     private $app_engine_integration_mode = 0;
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in
-     * combination with the project id ("<key prefix>~<project id>") to construct
-     * the application id that is returned from the Cloud Datastore APIs in Google
+     * combination with the project ID ("<key prefix>~<project id>") to construct
+     * the application ID that is returned from the Cloud Datastore APIs in Google
      * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
@@ -118,6 +125,25 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DeleteProtectionState delete_protection_state = 22;</code>
      */
     private $delete_protection_state = 0;
+    /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.CmekConfig cmek_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cmek_config = null;
+    /**
+     * Output only. The database resource's prior database ID. This field is only
+     * populated for deleted databases.
+     *
+     * Generated from protobuf field <code>string previous_id = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $previous_id = '';
+    /**
+     * Output only. Information about the provenance of this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.SourceInfo source_info = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_info = null;
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -145,6 +171,9 @@ class Database extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp at which this database was most recently
      *           updated. Note this only includes updates to the database resource and not
      *           data contained by the database.
+     *     @type \Google\Protobuf\Timestamp $delete_time
+     *           Output only. The timestamp at which this database was deleted. Only set if
+     *           the database has been deleted.
      *     @type string $location_id
      *           The location of the database. Available locations are listed at
      *           https://cloud.google.com/firestore/docs/locations.
@@ -177,13 +206,20 @@ class Database extends \Google\Protobuf\Internal\Message
      *           The App Engine integration mode to use for this database.
      *     @type string $key_prefix
      *           Output only. The key_prefix for this database. This key_prefix is used, in
-     *           combination with the project id ("<key prefix>~<project id>") to construct
-     *           the application id that is returned from the Cloud Datastore APIs in Google
+     *           combination with the project ID ("<key prefix>~<project id>") to construct
+     *           the application ID that is returned from the Cloud Datastore APIs in Google
      *           App Engine first generation runtimes.
      *           This value may be empty in which case the appid to use for URL-encoded keys
      *           is the project_id (eg: foo instead of v~foo).
      *     @type int $delete_protection_state
      *           State of delete protection for the database.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig $cmek_config
+     *           Optional. Presence indicates CMEK is enabled for this database.
+     *     @type string $previous_id
+     *           Output only. The database resource's prior database ID. This field is only
+     *           populated for deleted databases.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo $source_info
+     *           Output only. Information about the provenance of this database.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
@@ -323,6 +359,44 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this database was deleted. Only set if
+     * the database has been deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDeleteTime()
+    {
+        return $this->delete_time;
+    }
+
+    public function hasDeleteTime()
+    {
+        return isset($this->delete_time);
+    }
+
+    public function clearDeleteTime()
+    {
+        unset($this->delete_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this database was deleted. Only set if
+     * the database has been deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDeleteTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->delete_time = $var;
 
         return $this;
     }
@@ -563,8 +637,8 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in
-     * combination with the project id ("<key prefix>~<project id>") to construct
-     * the application id that is returned from the Cloud Datastore APIs in Google
+     * combination with the project ID ("<key prefix>~<project id>") to construct
+     * the application ID that is returned from the Cloud Datastore APIs in Google
      * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
@@ -579,8 +653,8 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The key_prefix for this database. This key_prefix is used, in
-     * combination with the project id ("<key prefix>~<project id>") to construct
-     * the application id that is returned from the Cloud Datastore APIs in Google
+     * combination with the project ID ("<key prefix>~<project id>") to construct
+     * the application ID that is returned from the Cloud Datastore APIs in Google
      * App Engine first generation runtimes.
      * This value may be empty in which case the appid to use for URL-encoded keys
      * is the project_id (eg: foo instead of v~foo).
@@ -619,6 +693,106 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DeleteProtectionState::class);
         $this->delete_protection_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.CmekConfig cmek_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig|null
+     */
+    public function getCmekConfig()
+    {
+        return $this->cmek_config;
+    }
+
+    public function hasCmekConfig()
+    {
+        return isset($this->cmek_config);
+    }
+
+    public function clearCmekConfig()
+    {
+        unset($this->cmek_config);
+    }
+
+    /**
+     * Optional. Presence indicates CMEK is enabled for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.CmekConfig cmek_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig $var
+     * @return $this
+     */
+    public function setCmekConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Database\CmekConfig::class);
+        $this->cmek_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The database resource's prior database ID. This field is only
+     * populated for deleted databases.
+     *
+     * Generated from protobuf field <code>string previous_id = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPreviousId()
+    {
+        return $this->previous_id;
+    }
+
+    /**
+     * Output only. The database resource's prior database ID. This field is only
+     * populated for deleted databases.
+     *
+     * Generated from protobuf field <code>string previous_id = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreviousId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->previous_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the provenance of this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.SourceInfo source_info = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo|null
+     */
+    public function getSourceInfo()
+    {
+        return $this->source_info;
+    }
+
+    public function hasSourceInfo()
+    {
+        return isset($this->source_info);
+    }
+
+    public function clearSourceInfo()
+    {
+        unset($this->source_info);
+    }
+
+    /**
+     * Output only. Information about the provenance of this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.SourceInfo source_info = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo $var
+     * @return $this
+     */
+    public function setSourceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Database\SourceInfo::class);
+        $this->source_info = $var;
 
         return $this;
     }

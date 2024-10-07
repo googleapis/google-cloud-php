@@ -22,13 +22,13 @@ class VpcPeeringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vpc = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $vpc = '';
+    protected $vpc = '';
     /**
      * Required. A free subnet for peering. (CIDR of /29)
      *
      * Generated from protobuf field <code>string subnet = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subnet = '';
+    protected $subnet = '';
 
     /**
      * Constructor.

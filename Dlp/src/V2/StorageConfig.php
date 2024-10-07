@@ -20,7 +20,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
      */
-    private $timespan_config = null;
+    protected $timespan_config = null;
     protected $type;
 
     /**

@@ -22,14 +22,14 @@ class CustomerRepricingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The configuration for bill modifications made by a reseller
      * before sending it to customers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig repricing_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repricing_config = null;
+    protected $repricing_config = null;
     /**
      * Output only. Timestamp of an update to the repricing rule. If `update_time`
      * is after
@@ -38,7 +38,7 @@ class CustomerRepricingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

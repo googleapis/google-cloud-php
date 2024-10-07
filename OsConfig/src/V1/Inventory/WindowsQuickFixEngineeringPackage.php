@@ -23,25 +23,25 @@ class WindowsQuickFixEngineeringPackage extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string caption = 1;</code>
      */
-    private $caption = '';
+    protected $caption = '';
     /**
      * A textual description of the QFE update.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Unique identifier associated with a particular QFE update.
      *
      * Generated from protobuf field <code>string hot_fix_id = 3;</code>
      */
-    private $hot_fix_id = '';
+    protected $hot_fix_id = '';
     /**
      * Date that the QFE update was installed.  Mapped from installed_on field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp install_time = 5;</code>
      */
-    private $install_time = null;
+    protected $install_time = null;
 
     /**
      * Constructor.

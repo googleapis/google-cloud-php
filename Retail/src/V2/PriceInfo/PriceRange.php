@@ -27,7 +27,7 @@ class PriceRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Interval price = 1;</code>
      */
-    private $price = null;
+    protected $price = null;
     /**
      * The inclusive
      * [Product.pricing_info.original_price][google.cloud.retail.v2.PriceInfo.original_price]
@@ -37,7 +37,7 @@ class PriceRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Interval original_price = 2;</code>
      */
-    private $original_price = null;
+    protected $original_price = null;
 
     /**
      * Constructor.

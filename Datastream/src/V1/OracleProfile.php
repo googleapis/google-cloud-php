@@ -20,31 +20,31 @@ class OracleProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Port for the Oracle connection, default value is 1521.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Required. Username for the Oracle connection.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required. Password for the Oracle connection.
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Required. Database for the Oracle connection.
      *
      * Generated from protobuf field <code>string database_service = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database_service = '';
+    protected $database_service = '';
     /**
      * Connection string attributes
      *

@@ -52,6 +52,4 @@ class Tier
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Tier::class, \Google\Cloud\Container\V1\NetworkConfig_ClusterNetworkPerformanceConfig_Tier::class);
 

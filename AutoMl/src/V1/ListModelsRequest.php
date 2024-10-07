@@ -20,7 +20,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
@@ -32,13 +32,13 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Requested page size.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
@@ -47,7 +47,7 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Resource name of the project, from which to list the models. Please see

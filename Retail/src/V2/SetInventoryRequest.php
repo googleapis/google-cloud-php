@@ -68,7 +68,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product inventory = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $inventory = null;
+    protected $inventory = null;
     /**
      * Indicates which inventory fields in the provided
      * [Product][google.cloud.retail.v2.Product] to update.
@@ -78,7 +78,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask set_mask = 2;</code>
      */
-    private $set_mask = null;
+    protected $set_mask = null;
     /**
      * The time when the request is issued, used to prevent
      * out-of-order updates on inventory fields with the last update time
@@ -86,7 +86,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp set_time = 3;</code>
      */
-    private $set_time = null;
+    protected $set_time = null;
     /**
      * If set to true, and the [Product][google.cloud.retail.v2.Product] with name
      * [Product.name][google.cloud.retail.v2.Product.name] is not found, the
@@ -97,7 +97,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\Retail\V2\Product $inventory Required. The inventory information to update. The allowable fields to

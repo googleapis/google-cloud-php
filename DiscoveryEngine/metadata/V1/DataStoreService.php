@@ -25,15 +25,16 @@ class DataStoreService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚
-8google/cloud/discoveryengine/v1/data_store_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/discoveryengine/v1/data_store.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"á
+¨
+8google/cloud/discoveryengine/v1/data_store_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/discoveryengine/v1/data_store.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"‡
 CreateDataStoreRequestA
 parent (	B1àAúA+
 )discoveryengine.googleapis.com/CollectionC
 
 data_store (2*.google.cloud.discoveryengine.v1.DataStoreBàA
 data_store_id (	BàA#
-create_advanced_site_search ("U
+create_advanced_site_search ($
+skip_default_schema_creation ("U
 GetDataStoreRequest>
 name (	B0àAúA*
 (discoveryengine.googleapis.com/DataStore"{

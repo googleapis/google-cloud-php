@@ -21,7 +21,7 @@ class PrivateConnectivity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $private_connection = '';
+    protected $private_connection = '';
 
     /**
      * Constructor.

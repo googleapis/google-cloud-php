@@ -23,7 +23,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string main_r_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $main_r_file_uri = '';
+    protected $main_r_file_uri = '';
     /**
      * Optional. The arguments to pass to the driver.  Do not include arguments,
      * such as `--conf`, that can be set as job properties, since a collision may
@@ -49,7 +49,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
     private $archive_uris;
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
@@ -61,7 +61,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
 
     /**
      * Constructor.
@@ -85,7 +85,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      *           .jar, .tar, .tar.gz, .tgz, and .zip.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, used to configure SparkR.
-     *           Properties that conflict with values set by the Dataproc API may be
+     *           Properties that conflict with values set by the Dataproc API might be
      *           overwritten. Can include properties set in
      *           /etc/spark/conf/spark-defaults.conf and classes in user code.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
@@ -215,7 +215,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
@@ -229,7 +229,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A mapping of property names to values, used to configure SparkR.
-     * Properties that conflict with values set by the Dataproc API may be
+     * Properties that conflict with values set by the Dataproc API might be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *

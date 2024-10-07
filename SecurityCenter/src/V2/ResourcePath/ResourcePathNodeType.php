@@ -108,6 +108,4 @@ class ResourcePathNodeType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourcePathNodeType::class, \Google\Cloud\SecurityCenter\V2\ResourcePath_ResourcePathNodeType::class);
 

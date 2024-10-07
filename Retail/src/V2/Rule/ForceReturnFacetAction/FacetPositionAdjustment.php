@@ -23,14 +23,14 @@ class FacetPositionAdjustment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attribute_name = 1;</code>
      */
-    private $attribute_name = '';
+    protected $attribute_name = '';
     /**
      * This is the position in the request as explained above. It should be
      * strictly positive be at most 100.
      *
      * Generated from protobuf field <code>int32 position = 2;</code>
      */
-    private $position = 0;
+    protected $position = 0;
 
     /**
      * Constructor.

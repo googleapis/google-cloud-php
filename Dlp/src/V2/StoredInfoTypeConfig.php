@@ -22,13 +22,13 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Description of the StoredInfoType (max 256 characters).
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $type;
 
     /**

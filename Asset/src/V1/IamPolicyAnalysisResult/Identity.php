@@ -29,13 +29,13 @@ class Identity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The analysis state of this identity.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisState analysis_state = 2;</code>
      */
-    private $analysis_state = null;
+    protected $analysis_state = null;
 
     /**
      * Constructor.
@@ -145,6 +145,4 @@ class Identity extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Identity::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult_Identity::class);
 

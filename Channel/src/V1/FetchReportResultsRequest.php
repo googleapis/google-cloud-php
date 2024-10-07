@@ -25,7 +25,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string report_job = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $report_job = '';
+    protected $report_job = '';
     /**
      * Optional. Requested page size of the report. The server may return fewer
      * results than requested. If you don't specify a page size, the server uses a
@@ -35,7 +35,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token that specifies a page of results beyond the first page.
      * Obtained through
@@ -46,7 +46,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. List of keys specifying which report partitions to return.
      * If empty, returns all partitions.

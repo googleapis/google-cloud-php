@@ -38,7 +38,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
      */
-    private $entity_id = null;
+    protected $entity_id = null;
 
     /**
      * Constructor.
@@ -157,6 +157,4 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KAnonymityConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_KAnonymityConfig::class);
 

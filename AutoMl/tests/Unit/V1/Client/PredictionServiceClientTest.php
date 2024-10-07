@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\AutoMl\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
@@ -37,6 +36,7 @@ use Google\Cloud\AutoMl\V1\GcsDestination;
 use Google\Cloud\AutoMl\V1\GcsSource;
 use Google\Cloud\AutoMl\V1\PredictRequest;
 use Google\Cloud\AutoMl\V1\PredictResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -59,7 +59,9 @@ class PredictionServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PredictionServiceClient */
@@ -175,12 +177,15 @@ class PredictionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
@@ -234,9 +239,7 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $payload = new ExamplePayload();
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = (new PredictRequest())->setName($formattedName)->setPayload($payload);
         $response = $gapicClient->predict($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -262,19 +265,20 @@ class PredictionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $payload = new ExamplePayload();
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setPayload($payload);
+        $request = (new PredictRequest())->setName($formattedName)->setPayload($payload);
         try {
             $gapicClient->predict($request);
             // If the $gapicClient method call did not throw, fail the test

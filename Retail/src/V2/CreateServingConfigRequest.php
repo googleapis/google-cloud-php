@@ -21,13 +21,13 @@ class CreateServingConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ServingConfig to create.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig serving_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $serving_config = null;
+    protected $serving_config = null;
     /**
      * Required. The ID to use for the ServingConfig, which will become the final
      * component of the ServingConfig's resource name.
@@ -36,7 +36,7 @@ class CreateServingConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string serving_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $serving_config_id = '';
+    protected $serving_config_id = '';
 
     /**
      * @param string                                $parent          Required. Full resource name of parent. Format:

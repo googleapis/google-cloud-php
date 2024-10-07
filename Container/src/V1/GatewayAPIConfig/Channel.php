@@ -68,6 +68,4 @@ class Channel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Channel::class, \Google\Cloud\Container\V1\GatewayAPIConfig_Channel::class);
 

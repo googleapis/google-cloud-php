@@ -20,7 +20,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.LoggingComponentConfig component_config = 1;</code>
      */
-    private $component_config = null;
+    protected $component_config = null;
 
     /**
      * Constructor.

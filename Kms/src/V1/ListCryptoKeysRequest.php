@@ -22,7 +22,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Optional limit on the number of
      * [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the response.
@@ -34,20 +34,20 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Optional pagination token, returned earlier via
      * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The fields of the primary version to include in the response.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView version_view = 4;</code>
      */
-    private $version_view = 0;
+    protected $version_view = 0;
     /**
      * Optional. Only include resources that match the filter in the response. For
      * more information, see
@@ -56,7 +56,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. Specify how the results should be sorted. If not specified, the
      * results will be sorted in the default order. For more information, see
@@ -65,7 +65,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]

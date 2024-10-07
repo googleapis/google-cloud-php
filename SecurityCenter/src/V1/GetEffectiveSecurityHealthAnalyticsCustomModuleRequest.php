@@ -25,7 +25,7 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. Name of the effective custom module to get. Its format is

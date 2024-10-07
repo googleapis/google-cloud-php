@@ -96,6 +96,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.PscConfig psc_config = 9;</code>
      */
     protected $psc_config = null;
+    /**
+     * Specify what type of CA is used for the server certificate.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.CaMode server_ca_mode = 10;</code>
+     */
+    protected $server_ca_mode = null;
 
     /**
      * Constructor.
@@ -152,6 +158,8 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           `ssl_mode` and accepts only SSL connections.
      *     @type \Google\Cloud\Sql\V1\PscConfig $psc_config
      *           PSC settings for this instance.
+     *     @type int $server_ca_mode
+     *           Specify what type of CA is used for the server certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -566,6 +574,42 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\PscConfig::class);
         $this->psc_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify what type of CA is used for the server certificate.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.CaMode server_ca_mode = 10;</code>
+     * @return int
+     */
+    public function getServerCaMode()
+    {
+        return isset($this->server_ca_mode) ? $this->server_ca_mode : 0;
+    }
+
+    public function hasServerCaMode()
+    {
+        return isset($this->server_ca_mode);
+    }
+
+    public function clearServerCaMode()
+    {
+        unset($this->server_ca_mode);
+    }
+
+    /**
+     * Specify what type of CA is used for the server certificate.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.CaMode server_ca_mode = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServerCaMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\IpConfiguration\CaMode::class);
+        $this->server_ca_mode = $var;
 
         return $this;
     }

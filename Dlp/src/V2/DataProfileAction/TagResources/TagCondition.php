@@ -21,7 +21,7 @@ class TagCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.TagResources.TagValue tag = 1;</code>
      */
-    private $tag = null;
+    protected $tag = null;
     protected $type;
 
     /**
@@ -121,6 +121,4 @@ class TagCondition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TagCondition::class, \Google\Cloud\Dlp\V2\DataProfileAction_TagResources_TagCondition::class);
 

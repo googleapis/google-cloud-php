@@ -22,14 +22,14 @@ class AwsAccessRole extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string iam_role_id = 1;</code>
      */
-    private $iam_role_id = '';
+    protected $iam_role_id = '';
     /**
      * A unique Google-owned and Google-generated identity for the Connection.
      * This identity will be used to access the user's AWS IAM Role.
      *
      * Generated from protobuf field <code>string identity = 2;</code>
      */
-    private $identity = '';
+    protected $identity = '';
 
     /**
      * Constructor.

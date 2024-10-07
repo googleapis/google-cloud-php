@@ -24,7 +24,7 @@ class BatchGetServicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Names of the services to retrieve.
      * An example name would be:

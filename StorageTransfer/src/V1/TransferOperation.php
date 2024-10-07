@@ -20,55 +20,55 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The ID of the Google Cloud project that owns the operation.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Transfer specification.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferSpec transfer_spec = 3;</code>
      */
-    private $transfer_spec = null;
+    protected $transfer_spec = null;
     /**
      * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 10;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * Cloud Logging configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.LoggingConfig logging_config = 12;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Start time of this transfer execution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * End time of this transfer execution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Status of the transfer operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferOperation.Status status = 6;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Information about the progress of the transfer operation.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferCounters counters = 7;</code>
      */
-    private $counters = null;
+    protected $counters = null;
     /**
      * Summarizes errors encountered with sample error log entries.
      *
@@ -80,7 +80,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string transfer_job_name = 9;</code>
      */
-    private $transfer_job_name = '';
+    protected $transfer_job_name = '';
 
     /**
      * Constructor.

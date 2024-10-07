@@ -23,13 +23,13 @@ class DynamicMuteRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mute_config = 1;</code>
      */
-    private $mute_config = '';
+    protected $mute_config = '';
     /**
      * When the dynamic mute rule first matched the finding.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp match_time = 2;</code>
      */
-    private $match_time = null;
+    protected $match_time = null;
 
     /**
      * Constructor.
@@ -121,6 +121,4 @@ class DynamicMuteRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DynamicMuteRecord::class, \Google\Cloud\SecurityCenter\V1\Finding_MuteInfo_DynamicMuteRecord::class);
 

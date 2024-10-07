@@ -18,7 +18,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The version of software inside the cluster. It must be one of the
      * supported [Dataproc
-     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions),
+     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions),
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
      * version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
@@ -26,7 +26,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_version = '';
+    protected $image_version = '';
     /**
      * Optional. The properties to set on daemon config files.
      * Property keys are specified in `prefix:property` format, for example
@@ -63,7 +63,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *     @type string $image_version
      *           Optional. The version of software inside the cluster. It must be one of the
      *           supported [Dataproc
-     *           Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions),
+     *           Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions),
      *           such as "1.2" (including a subminor version, such as "1.2.29"), or the
      *           ["preview"
      *           version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
@@ -96,7 +96,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The version of software inside the cluster. It must be one of the
      * supported [Dataproc
-     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions),
+     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions),
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
      * version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
@@ -113,7 +113,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The version of software inside the cluster. It must be one of the
      * supported [Dataproc
-     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions),
+     * Versions](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions),
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
      * version](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).

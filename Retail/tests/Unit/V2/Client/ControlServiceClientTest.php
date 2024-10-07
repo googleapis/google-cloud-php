@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class ControlServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ControlServiceClient */
@@ -120,12 +122,15 @@ class ControlServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
@@ -165,8 +170,7 @@ class ControlServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new DeleteControlRequest())
-            ->setName($formattedName);
+        $request = (new DeleteControlRequest())->setName($formattedName);
         $gapicClient->deleteControl($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -189,17 +193,19 @@ class ControlServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new DeleteControlRequest())
-            ->setName($formattedName);
+        $request = (new DeleteControlRequest())->setName($formattedName);
         try {
             $gapicClient->deleteControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -230,8 +236,7 @@ class ControlServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new GetControlRequest())
-            ->setName($formattedName);
+        $request = (new GetControlRequest())->setName($formattedName);
         $response = $gapicClient->getControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -255,17 +260,19 @@ class ControlServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->controlName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[CONTROL]');
-        $request = (new GetControlRequest())
-            ->setName($formattedName);
+        $request = (new GetControlRequest())->setName($formattedName);
         try {
             $gapicClient->getControl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -290,17 +297,14 @@ class ControlServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $controlsElement = new Control();
-        $controls = [
-            $controlsElement,
-        ];
+        $controls = [$controlsElement];
         $expectedResponse = new ListControlsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setControls($controls);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new ListControlsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListControlsRequest())->setParent($formattedParent);
         $response = $gapicClient->listControls($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -327,17 +331,19 @@ class ControlServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
-        $request = (new ListControlsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListControlsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listControls($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -372,8 +378,7 @@ class ControlServiceClientTest extends GeneratedTest
         $control->setDisplayName($controlDisplayName);
         $controlSolutionTypes = [];
         $control->setSolutionTypes($controlSolutionTypes);
-        $request = (new UpdateControlRequest())
-            ->setControl($control);
+        $request = (new UpdateControlRequest())->setControl($control);
         $response = $gapicClient->updateControl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -397,12 +402,15 @@ class ControlServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $control = new Control();
@@ -410,8 +418,7 @@ class ControlServiceClientTest extends GeneratedTest
         $control->setDisplayName($controlDisplayName);
         $controlSolutionTypes = [];
         $control->setSolutionTypes($controlSolutionTypes);
-        $request = (new UpdateControlRequest())
-            ->setControl($control);
+        $request = (new UpdateControlRequest())->setControl($control);
         try {
             $gapicClient->updateControl($request);
             // If the $gapicClient method call did not throw, fail the test

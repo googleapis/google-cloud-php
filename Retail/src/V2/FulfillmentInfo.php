@@ -35,7 +35,7 @@ class FulfillmentInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The IDs for this [type][google.cloud.retail.v2.FulfillmentInfo.type], such
      * as the store IDs for

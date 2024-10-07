@@ -60,6 +60,4 @@ class Operator
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Operator::class, \Google\Cloud\Container\V1\SoleTenantConfig_NodeAffinity_Operator::class);
 

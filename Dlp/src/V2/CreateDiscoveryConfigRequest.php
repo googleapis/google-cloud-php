@@ -30,13 +30,13 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The DiscoveryConfig to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig discovery_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $discovery_config = null;
+    protected $discovery_config = null;
     /**
      * The config ID can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
@@ -45,7 +45,7 @@ class CreateDiscoveryConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string config_id = 3;</code>
      */
-    private $config_id = '';
+    protected $config_id = '';
 
     /**
      * @param string                               $parent          Required. Parent resource name.

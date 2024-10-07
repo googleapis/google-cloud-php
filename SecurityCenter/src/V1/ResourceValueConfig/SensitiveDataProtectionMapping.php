@@ -23,14 +23,14 @@ class SensitiveDataProtectionMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ResourceValue high_sensitivity_mapping = 1;</code>
      */
-    private $high_sensitivity_mapping = 0;
+    protected $high_sensitivity_mapping = 0;
     /**
      * Resource value mapping for medium-sensitivity Sensitive Data Protection
      * findings
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ResourceValue medium_sensitivity_mapping = 2;</code>
      */
-    private $medium_sensitivity_mapping = 0;
+    protected $medium_sensitivity_mapping = 0;
 
     /**
      * Constructor.
@@ -109,6 +109,4 @@ class SensitiveDataProtectionMapping extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SensitiveDataProtectionMapping::class, \Google\Cloud\SecurityCenter\V1\ResourceValueConfig_SensitiveDataProtectionMapping::class);
 

@@ -20,13 +20,13 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Human readable form of the infoType name.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Which parts of the API supports this InfoType.
      *
@@ -39,7 +39,7 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * A list of available versions for the infotype.
      *
@@ -57,7 +57,7 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.SensitivityScore sensitivity_score = 11;</code>
      */
-    private $sensitivity_score = null;
+    protected $sensitivity_score = null;
 
     /**
      * Constructor.

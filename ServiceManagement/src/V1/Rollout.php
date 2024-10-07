@@ -29,19 +29,19 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rollout_id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rollout_id = '';
+    protected $rollout_id = '';
     /**
      * Creation time of the rollout. Readonly.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The user who created the Rollout. Readonly.
      *
      * Generated from protobuf field <code>string created_by = 3;</code>
      */
-    private $created_by = '';
+    protected $created_by = '';
     /**
      * The status of this rollout. Readonly. In case of a failed rollout,
      * the system will automatically rollback to the current Rollout
@@ -49,13 +49,13 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.Rollout.RolloutStatus status = 4;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * The name of the service associated with this Rollout.
      *
      * Generated from protobuf field <code>string service_name = 8;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     protected $strategy;
 
     /**

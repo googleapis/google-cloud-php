@@ -30,7 +30,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string desired_node_version = 4;</code>
      */
-    private $desired_node_version = '';
+    protected $desired_node_version = '';
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
@@ -44,13 +44,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string desired_monitoring_service = 5;</code>
      */
-    private $desired_monitoring_service = '';
+    protected $desired_monitoring_service = '';
     /**
      * Configurations for the various addons available to run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig desired_addons_config = 6;</code>
      */
-    private $desired_addons_config = null;
+    protected $desired_addons_config = null;
     /**
      * The node pool to be upgraded. This field is mandatory if
      * "desired_node_version", "desired_image_family" or
@@ -59,51 +59,51 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string desired_node_pool_id = 7;</code>
      */
-    private $desired_node_pool_id = '';
+    protected $desired_node_pool_id = '';
     /**
      * The desired image type for the node pool.
      * NOTE: Set the "desired_node_pool" field as well.
      *
      * Generated from protobuf field <code>string desired_image_type = 8;</code>
      */
-    private $desired_image_type = '';
+    protected $desired_image_type = '';
     /**
      * Configuration of etcd encryption.
      *
      * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption desired_database_encryption = 46;</code>
      */
-    private $desired_database_encryption = null;
+    protected $desired_database_encryption = null;
     /**
      * Configuration for Workload Identity.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig desired_workload_identity_config = 47;</code>
      */
-    private $desired_workload_identity_config = null;
+    protected $desired_workload_identity_config = null;
     /**
      * Configuration for issuance of mTLS keys and certificates to Kubernetes
      * pods.
      *
      * Generated from protobuf field <code>.google.container.v1.MeshCertificates desired_mesh_certificates = 67;</code>
      */
-    private $desired_mesh_certificates = null;
+    protected $desired_mesh_certificates = null;
     /**
      * Configuration for Shielded Nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
      */
-    private $desired_shielded_nodes = null;
+    protected $desired_shielded_nodes = null;
     /**
      * The desired configuration for the fine-grained cost management feature.
      *
      * Generated from protobuf field <code>.google.container.v1.CostManagementConfig desired_cost_management_config = 49;</code>
      */
-    private $desired_cost_management_config = null;
+    protected $desired_cost_management_config = null;
     /**
      * DNSConfig contains clusterDNS config for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DNSConfig desired_dns_config = 53;</code>
      */
-    private $desired_dns_config = null;
+    protected $desired_dns_config = null;
     /**
      * Autoscaler configuration for the node pool specified in
      * desired_node_pool_id. If there is only one pool in the
@@ -112,7 +112,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling desired_node_pool_autoscaling = 9;</code>
      */
-    private $desired_node_pool_autoscaling = null;
+    protected $desired_node_pool_autoscaling = null;
     /**
      * The desired list of Google Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -129,19 +129,19 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
      */
-    private $desired_master_authorized_networks_config = null;
+    protected $desired_master_authorized_networks_config = null;
     /**
      * Cluster-level autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling desired_cluster_autoscaling = 15;</code>
      */
-    private $desired_cluster_autoscaling = null;
+    protected $desired_cluster_autoscaling = null;
     /**
      * The desired configuration options for the Binary Authorization feature.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization desired_binary_authorization = 16;</code>
      */
-    private $desired_binary_authorization = null;
+    protected $desired_binary_authorization = null;
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
@@ -155,19 +155,19 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string desired_logging_service = 19;</code>
      */
-    private $desired_logging_service = '';
+    protected $desired_logging_service = '';
     /**
      * The desired configuration for exporting resource usage.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig desired_resource_usage_export_config = 21;</code>
      */
-    private $desired_resource_usage_export_config = null;
+    protected $desired_resource_usage_export_config = null;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling desired_vertical_pod_autoscaling = 22;</code>
      */
-    private $desired_vertical_pod_autoscaling = null;
+    protected $desired_vertical_pod_autoscaling = null;
     /**
      * The desired private cluster configuration. master_global_access_config is
      * the only field that can be changed via this field.
@@ -178,86 +178,86 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
      */
-    private $desired_private_cluster_config = null;
+    protected $desired_private_cluster_config = null;
     /**
      * The desired config of Intra-node visibility.
      *
      * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
      */
-    private $desired_intra_node_visibility_config = null;
+    protected $desired_intra_node_visibility_config = null;
     /**
      * The desired status of whether to disable default sNAT for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus desired_default_snat_status = 28;</code>
      */
-    private $desired_default_snat_status = null;
+    protected $desired_default_snat_status = null;
     /**
      * The desired release channel configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel desired_release_channel = 31;</code>
      */
-    private $desired_release_channel = null;
+    protected $desired_release_channel = null;
     /**
      * The desired L4 Internal Load Balancer Subsetting configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ILBSubsettingConfig desired_l4ilb_subsetting_config = 39;</code>
      */
-    private $desired_l4ilb_subsetting_config = null;
+    protected $desired_l4ilb_subsetting_config = null;
     /**
      * The desired datapath provider for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DatapathProvider desired_datapath_provider = 50;</code>
      */
-    private $desired_datapath_provider = 0;
+    protected $desired_datapath_provider = 0;
     /**
      * The desired state of IPv6 connectivity to Google Services.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateIPv6GoogleAccess desired_private_ipv6_google_access = 51;</code>
      */
-    private $desired_private_ipv6_google_access = 0;
+    protected $desired_private_ipv6_google_access = 0;
     /**
      * The desired notification configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.NotificationConfig desired_notification_config = 55;</code>
      */
-    private $desired_notification_config = null;
+    protected $desired_notification_config = null;
     /**
      * The desired authenticator groups config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
      */
-    private $desired_authenticator_groups_config = null;
+    protected $desired_authenticator_groups_config = null;
     /**
      * The desired logging configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.LoggingConfig desired_logging_config = 64;</code>
      */
-    private $desired_logging_config = null;
+    protected $desired_logging_config = null;
     /**
      * The desired monitoring configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.MonitoringConfig desired_monitoring_config = 65;</code>
      */
-    private $desired_monitoring_config = null;
+    protected $desired_monitoring_config = null;
     /**
      * The desired Identity Service component configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
      */
-    private $desired_identity_service_config = null;
+    protected $desired_identity_service_config = null;
     /**
      * ServiceExternalIPsConfig specifies the config for the use of Services with
      * ExternalIPs field.
      *
      * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig desired_service_external_ips_config = 60;</code>
      */
-    private $desired_service_external_ips_config = null;
+    protected $desired_service_external_ips_config = null;
     /**
      * Enable/Disable private endpoint for the cluster's master.
      *
      * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
      */
-    private $desired_enable_private_endpoint = null;
+    protected $desired_enable_private_endpoint = null;
     /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
@@ -270,26 +270,26 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string desired_master_version = 100;</code>
      */
-    private $desired_master_version = '';
+    protected $desired_master_version = '';
     /**
      * The desired GCFS config for the cluster
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig desired_gcfs_config = 109;</code>
      */
-    private $desired_gcfs_config = null;
+    protected $desired_gcfs_config = null;
     /**
      * The desired network tags that apply to all auto-provisioned node pools
      * in autopilot clusters and node auto-provisioning enabled clusters.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
      */
-    private $desired_node_pool_auto_config_network_tags = null;
+    protected $desired_node_pool_auto_config_network_tags = null;
     /**
      * The desired config of Gateway API on this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
      */
-    private $desired_gateway_api_config = null;
+    protected $desired_gateway_api_config = null;
     /**
      * The current etag of the cluster.
      * If an etag is provided and does not match the current etag of the cluster,
@@ -297,19 +297,19 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 115;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * The desired node pool logging configuration defaults for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
      */
-    private $desired_node_pool_logging_config = null;
+    protected $desired_node_pool_logging_config = null;
     /**
      * The desired fleet configuration for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.Fleet desired_fleet = 117;</code>
      */
-    private $desired_fleet = null;
+    protected $desired_fleet = null;
     /**
      * The desired stack type of the cluster.
      * If a stack type is provided and does not match the current stack type of
@@ -317,14 +317,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.StackType desired_stack_type = 119;</code>
      */
-    private $desired_stack_type = 0;
+    protected $desired_stack_type = 0;
     /**
      * The additional pod ranges to be added to the cluster. These pod ranges
      * can be used by node pools to allocate pod IPs.
      *
      * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig additional_pod_ranges_config = 120;</code>
      */
-    private $additional_pod_ranges_config = null;
+    protected $additional_pod_ranges_config = null;
     /**
      * The additional pod ranges that are to be removed from the cluster.
      * The pod ranges specified here must have been specified earlier in the
@@ -332,87 +332,87 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.AdditionalPodRangesConfig removed_additional_pod_ranges_config = 121;</code>
      */
-    private $removed_additional_pod_ranges_config = null;
+    protected $removed_additional_pod_ranges_config = null;
     /**
      * Kubernetes open source beta apis enabled on the cluster. Only beta apis
      *
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 122;</code>
      */
-    private $enable_k8s_beta_apis = null;
+    protected $enable_k8s_beta_apis = null;
     /**
      * Enable/Disable Security Posture API features for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig desired_security_posture_config = 124;</code>
      */
-    private $desired_security_posture_config = null;
+    protected $desired_security_posture_config = null;
     /**
      * The desired network performance config.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig.ClusterNetworkPerformanceConfig desired_network_performance_config = 125;</code>
      */
-    private $desired_network_performance_config = null;
+    protected $desired_network_performance_config = null;
     /**
      * Enable/Disable FQDN Network Policy for the cluster.
      *
      * Generated from protobuf field <code>optional bool desired_enable_fqdn_network_policy = 126;</code>
      */
-    private $desired_enable_fqdn_network_policy = null;
+    protected $desired_enable_fqdn_network_policy = null;
     /**
      * The desired workload policy configuration for the autopilot cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig desired_autopilot_workload_policy_config = 128;</code>
      */
-    private $desired_autopilot_workload_policy_config = null;
+    protected $desired_autopilot_workload_policy_config = null;
     /**
      * Desired Beta APIs to be enabled for cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig desired_k8s_beta_apis = 131;</code>
      */
-    private $desired_k8s_beta_apis = null;
+    protected $desired_k8s_beta_apis = null;
     /**
      * The desired containerd config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig desired_containerd_config = 134;</code>
      */
-    private $desired_containerd_config = null;
+    protected $desired_containerd_config = null;
     /**
      * Enable/Disable Multi-Networking for the cluster
      *
      * Generated from protobuf field <code>optional bool desired_enable_multi_networking = 135;</code>
      */
-    private $desired_enable_multi_networking = null;
+    protected $desired_enable_multi_networking = null;
     /**
      * The desired resource manager tags that apply to all auto-provisioned node
      * pools in autopilot clusters and node auto-provisioning enabled clusters.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags desired_node_pool_auto_config_resource_manager_tags = 136;</code>
      */
-    private $desired_node_pool_auto_config_resource_manager_tags = null;
+    protected $desired_node_pool_auto_config_resource_manager_tags = null;
     /**
      * Specify the details of in-transit encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig desired_in_transit_encryption_config = 137;</code>
      */
-    private $desired_in_transit_encryption_config = null;
+    protected $desired_in_transit_encryption_config = null;
     /**
      * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
      *
      * Generated from protobuf field <code>optional bool desired_enable_cilium_clusterwide_network_policy = 138;</code>
      */
-    private $desired_enable_cilium_clusterwide_network_policy = null;
+    protected $desired_enable_cilium_clusterwide_network_policy = null;
     /**
      * The desired node kubelet config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_kubelet_config = 141;</code>
      */
-    private $desired_node_kubelet_config = null;
+    protected $desired_node_kubelet_config = null;
     /**
      * The desired node kubelet config for all auto-provisioned node pools
      * in autopilot clusters and node auto-provisioning enabled clusters.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_pool_auto_config_kubelet_config = 142;</code>
      */
-    private $desired_node_pool_auto_config_kubelet_config = null;
+    protected $desired_node_pool_auto_config_kubelet_config = null;
 
     /**
      * Constructor.

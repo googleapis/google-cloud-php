@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -330,8 +330,10 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCommitWriteStreams(BatchCommitWriteStreamsRequest $request, array $callOptions = []): BatchCommitWriteStreamsResponse
-    {
+    public function batchCommitWriteStreams(
+        BatchCommitWriteStreamsRequest $request,
+        array $callOptions = []
+    ): BatchCommitWriteStreamsResponse {
         return $this->startApiCall('BatchCommitWriteStreams', $request, $callOptions)->wait();
     }
 
@@ -388,8 +390,10 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function finalizeWriteStream(FinalizeWriteStreamRequest $request, array $callOptions = []): FinalizeWriteStreamResponse
-    {
+    public function finalizeWriteStream(
+        FinalizeWriteStreamRequest $request,
+        array $callOptions = []
+    ): FinalizeWriteStreamResponse {
         return $this->startApiCall('FinalizeWriteStream', $request, $callOptions)->wait();
     }
 

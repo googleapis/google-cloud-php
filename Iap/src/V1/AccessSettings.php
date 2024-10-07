@@ -20,31 +20,31 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.GcipSettings gcip_settings = 1;</code>
      */
-    private $gcip_settings = null;
+    protected $gcip_settings = null;
     /**
      * Configuration to allow cross-origin requests via IAP.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.CorsSettings cors_settings = 2;</code>
      */
-    private $cors_settings = null;
+    protected $cors_settings = null;
     /**
      * Settings to configure IAP's OAuth behavior.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3;</code>
      */
-    private $oauth_settings = null;
+    protected $oauth_settings = null;
     /**
      * Settings to configure reauthentication policies in IAP.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
      */
-    private $reauth_settings = null;
+    protected $reauth_settings = null;
     /**
      * Settings to configure and enable allowed domains.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.AllowedDomainsSettings allowed_domains_settings = 7;</code>
      */
-    private $allowed_domains_settings = null;
+    protected $allowed_domains_settings = null;
 
     /**
      * Constructor.

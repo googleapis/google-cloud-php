@@ -35,17 +35,16 @@ class StorageTestCase extends SystemTestCase
     protected static $bucket;
     protected static $client;
     protected static $unauthenticatedClient;
+    protected static $universeDomainClient;
     protected static $pubsubClient;
     protected static $object;
     protected static $mainBucketName;
-    private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        if (self::$hasSetUp) {
-            return;
-        }
-
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'transport' => 'rest'
@@ -54,6 +53,11 @@ class StorageTestCase extends SystemTestCase
         self::$client = new StorageClient($config);
         self::$unauthenticatedClient = new StorageClient([
             'credentialsFetcher' => new AnonymousCredentials()
+        ]);
+        self::$universeDomainClient = new StorageClient([
+            'keyFilePath' => getenv('TEST_UNIVERSE_DOMAIN_CREDENTIAL'),
+            'projectId' => getenv('TEST_UNIVERSE_PROJECT_ID'),
+            'universeDomain' => getenv('TEST_UNIVERSE_DOMAIN')
         ]);
         self::$pubsubClient = new PubSubClient($config);
 
@@ -64,8 +68,17 @@ class StorageTestCase extends SystemTestCase
             ['location' => 'us-west1']
         );
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
+    }
 
-        self::$hasSetUp = true;
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
+    {
+        foreach (self::$bucket->objects() as $object) {
+            $object->delete();
+        }
+        self::$bucket->delete();
     }
 
     protected static function getProjectId($keyFilePath)

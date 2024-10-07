@@ -59,6 +59,4 @@ class ProfileScoreBucket
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProfileScoreBucket::class, \Google\Cloud\Dlp\V2\DataProfilePubSubCondition_ProfileScoreBucket::class);
 

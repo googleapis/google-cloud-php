@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudSqlSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project ID that the Cloud SQL source is in with a length limit of 128
-     * characters. If not specified, inherits the project ID from the parent
+     * The project ID that contains the Cloud SQL source. Has a length limit of
+     * 128 characters. If not specified, inherits the project ID from the parent
      * request.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
@@ -70,8 +70,8 @@ class CloudSqlSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The project ID that the Cloud SQL source is in with a length limit of 128
-     *           characters. If not specified, inherits the project ID from the parent
+     *           The project ID that contains the Cloud SQL source. Has a length limit of
+     *           128 characters. If not specified, inherits the project ID from the parent
      *           request.
      *     @type string $instance_id
      *           Required. The Cloud SQL instance to copy the data from with a length limit
@@ -100,8 +100,8 @@ class CloudSqlSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID that the Cloud SQL source is in with a length limit of 128
-     * characters. If not specified, inherits the project ID from the parent
+     * The project ID that contains the Cloud SQL source. Has a length limit of
+     * 128 characters. If not specified, inherits the project ID from the parent
      * request.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
@@ -113,8 +113,8 @@ class CloudSqlSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID that the Cloud SQL source is in with a length limit of 128
-     * characters. If not specified, inherits the project ID from the parent
+     * The project ID that contains the Cloud SQL source. Has a length limit of
+     * 128 characters. If not specified, inherits the project ID from the parent
      * request.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>

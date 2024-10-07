@@ -21,20 +21,20 @@ class DetectedLandmark extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The 2D point of the detected landmark using the normalized image
      * coordindate system. The normalized coordinates have the range from 0 to 1.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedVertex point = 2;</code>
      */
-    private $point = null;
+    protected $point = null;
     /**
      * The confidence score of the detected landmark. Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 3;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

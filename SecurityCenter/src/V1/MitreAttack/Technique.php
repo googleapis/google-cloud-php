@@ -495,6 +495,4 @@ class Technique
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Technique::class, \Google\Cloud\SecurityCenter\V1\MitreAttack_Technique::class);
 

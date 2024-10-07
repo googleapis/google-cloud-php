@@ -28,13 +28,13 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription subscription = 2;</code>
      */
-    private $subscription = null;
+    protected $subscription = null;
     /**
      * The Azure resource group associated with the resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup resource_group = 3;</code>
      */
-    private $resource_group = null;
+    protected $resource_group = null;
 
     /**
      * Constructor.

@@ -21,14 +21,14 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool existing = 1;</code>
      */
-    private $existing = false;
+    protected $existing = false;
     /**
      * Returns true if the Cloud Identity account is associated with a customer
      * of the Channel Services partner.
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      */
-    private $owned = false;
+    protected $owned = false;
     /**
      * If owned = true, the name of the customer that owns the Cloud Identity
      * account.
@@ -37,13 +37,13 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer_name = 3;</code>
      */
-    private $customer_name = '';
+    protected $customer_name = '';
     /**
      * If existing = true, the Cloud Identity ID of the customer.
      *
      * Generated from protobuf field <code>string customer_cloud_identity_id = 4;</code>
      */
-    private $customer_cloud_identity_id = '';
+    protected $customer_cloud_identity_id = '';
 
     /**
      * Constructor.

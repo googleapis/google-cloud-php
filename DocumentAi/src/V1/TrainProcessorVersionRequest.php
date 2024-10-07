@@ -24,26 +24,26 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The processor version to be created.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion processor_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $processor_version = null;
+    protected $processor_version = null;
     /**
      * Optional. The schema the processor version will be trained with.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $document_schema = null;
+    protected $document_schema = null;
     /**
      * Optional. The input data used to train the
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $input_data = null;
+    protected $input_data = null;
     /**
      * Optional. The processor version to use as a base for training. This
      * processor version must be a child of `parent`. Format:
@@ -51,7 +51,7 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_processor_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $base_processor_version = '';
+    protected $base_processor_version = '';
     protected $processor_flags;
 
     /**

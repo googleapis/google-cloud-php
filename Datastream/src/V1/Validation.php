@@ -20,13 +20,13 @@ class Validation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Validation execution status.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Messages reflecting the validation results.
      *
@@ -38,7 +38,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 4;</code>
      */
-    private $code = '';
+    protected $code = '';
 
     /**
      * Constructor.

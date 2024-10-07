@@ -22,14 +22,14 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Events issued when end user interacts with customer's application
      * that uses Cloud Talent Solution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ClientEvent client_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $client_event = null;
+    protected $client_event = null;
 
     /**
      * @param string                              $parent      Required. Resource name of the tenant under which the event is created.

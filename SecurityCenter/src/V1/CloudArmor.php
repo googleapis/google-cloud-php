@@ -22,7 +22,7 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityPolicy security_policy = 1;</code>
      */
-    private $security_policy = null;
+    protected $security_policy = null;
     /**
      * Information about incoming requests evaluated by [Google Cloud Armor
      * security
@@ -30,7 +30,7 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Requests requests = 2;</code>
      */
-    private $requests = null;
+    protected $requests = null;
     /**
      * Information about potential Layer 7 DDoS attacks identified by [Google
      * Cloud Armor Adaptive
@@ -38,13 +38,13 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.AdaptiveProtection adaptive_protection = 3;</code>
      */
-    private $adaptive_protection = null;
+    protected $adaptive_protection = null;
     /**
      * Information about DDoS attack volume and classification.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Attack attack = 4;</code>
      */
-    private $attack = null;
+    protected $attack = null;
     /**
      * Distinguish between volumetric & protocol DDoS attack and
      * application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS
@@ -52,14 +52,14 @@ class CloudArmor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string threat_vector = 5;</code>
      */
-    private $threat_vector = '';
+    protected $threat_vector = '';
     /**
      * Duration of attack from the start until the current moment (updated every 5
      * minutes).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 6;</code>
      */
-    private $duration = null;
+    protected $duration = null;
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Expression that identifies findings that should be updated.
      * The expression is a list of zero or more restrictions combined
@@ -46,7 +46,7 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * This can be a mute configuration name or any identifier for mute/unmute
      * of findings based on the filter.
@@ -62,7 +62,7 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState mute_state = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mute_state = 0;
+    protected $mute_state = 0;
 
     /**
      * @param string $parent Required. The parent, at which bulk action needs to be applied. Its format

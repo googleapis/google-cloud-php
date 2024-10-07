@@ -23,85 +23,85 @@ class InstanceDetailsSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 pending_instance_count = 1;</code>
      */
-    private $pending_instance_count = 0;
+    protected $pending_instance_count = 0;
     /**
      * Number of instances that are inactive.
      *
      * Generated from protobuf field <code>int64 inactive_instance_count = 2;</code>
      */
-    private $inactive_instance_count = 0;
+    protected $inactive_instance_count = 0;
     /**
      * Number of instances notified about patch job.
      *
      * Generated from protobuf field <code>int64 notified_instance_count = 3;</code>
      */
-    private $notified_instance_count = 0;
+    protected $notified_instance_count = 0;
     /**
      * Number of instances that have started.
      *
      * Generated from protobuf field <code>int64 started_instance_count = 4;</code>
      */
-    private $started_instance_count = 0;
+    protected $started_instance_count = 0;
     /**
      * Number of instances that are downloading patches.
      *
      * Generated from protobuf field <code>int64 downloading_patches_instance_count = 5;</code>
      */
-    private $downloading_patches_instance_count = 0;
+    protected $downloading_patches_instance_count = 0;
     /**
      * Number of instances that are applying patches.
      *
      * Generated from protobuf field <code>int64 applying_patches_instance_count = 6;</code>
      */
-    private $applying_patches_instance_count = 0;
+    protected $applying_patches_instance_count = 0;
     /**
      * Number of instances rebooting.
      *
      * Generated from protobuf field <code>int64 rebooting_instance_count = 7;</code>
      */
-    private $rebooting_instance_count = 0;
+    protected $rebooting_instance_count = 0;
     /**
      * Number of instances that have completed successfully.
      *
      * Generated from protobuf field <code>int64 succeeded_instance_count = 8;</code>
      */
-    private $succeeded_instance_count = 0;
+    protected $succeeded_instance_count = 0;
     /**
      * Number of instances that require reboot.
      *
      * Generated from protobuf field <code>int64 succeeded_reboot_required_instance_count = 9;</code>
      */
-    private $succeeded_reboot_required_instance_count = 0;
+    protected $succeeded_reboot_required_instance_count = 0;
     /**
      * Number of instances that failed.
      *
      * Generated from protobuf field <code>int64 failed_instance_count = 10;</code>
      */
-    private $failed_instance_count = 0;
+    protected $failed_instance_count = 0;
     /**
      * Number of instances that have acked and will start shortly.
      *
      * Generated from protobuf field <code>int64 acked_instance_count = 11;</code>
      */
-    private $acked_instance_count = 0;
+    protected $acked_instance_count = 0;
     /**
      * Number of instances that exceeded the time out while applying the patch.
      *
      * Generated from protobuf field <code>int64 timed_out_instance_count = 12;</code>
      */
-    private $timed_out_instance_count = 0;
+    protected $timed_out_instance_count = 0;
     /**
      * Number of instances that are running the pre-patch step.
      *
      * Generated from protobuf field <code>int64 pre_patch_step_instance_count = 13;</code>
      */
-    private $pre_patch_step_instance_count = 0;
+    protected $pre_patch_step_instance_count = 0;
     /**
      * Number of instances that are running the post-patch step.
      *
      * Generated from protobuf field <code>int64 post_patch_step_instance_count = 14;</code>
      */
-    private $post_patch_step_instance_count = 0;
+    protected $post_patch_step_instance_count = 0;
     /**
      * Number of instances that do not appear to be running the agent. Check to
      * ensure that the agent is installed, running, and able to communicate with
@@ -109,7 +109,7 @@ class InstanceDetailsSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 no_agent_detected_instance_count = 15;</code>
      */
-    private $no_agent_detected_instance_count = 0;
+    protected $no_agent_detected_instance_count = 0;
 
     /**
      * Constructor.

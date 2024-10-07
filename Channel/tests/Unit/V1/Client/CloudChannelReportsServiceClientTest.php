@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Channel\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Channel\V1\Client\CloudChannelReportsServiceClient;
@@ -36,6 +35,7 @@ use Google\Cloud\Channel\V1\Report;
 use Google\Cloud\Channel\V1\Row;
 use Google\Cloud\Channel\V1\RunReportJobRequest;
 use Google\Cloud\Channel\V1\RunReportJobResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -58,7 +58,9 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudChannelReportsServiceClient */
@@ -81,17 +83,14 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $rowsElement = new Row();
-        $rows = [
-            $rowsElement,
-        ];
+        $rows = [$rowsElement];
         $expectedResponse = new FetchReportResultsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRows($rows);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedReportJob = $gapicClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
-        $request = (new FetchReportResultsRequest())
-            ->setReportJob($formattedReportJob);
+        $request = (new FetchReportResultsRequest())->setReportJob($formattedReportJob);
         $response = $gapicClient->fetchReportResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -118,17 +117,19 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedReportJob = $gapicClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
-        $request = (new FetchReportResultsRequest())
-            ->setReportJob($formattedReportJob);
+        $request = (new FetchReportResultsRequest())->setReportJob($formattedReportJob);
         try {
             $gapicClient->fetchReportResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -153,17 +154,14 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reportsElement = new Report();
-        $reports = [
-            $reportsElement,
-        ];
+        $reports = [$reportsElement];
         $expectedResponse = new ListReportsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReports($reports);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListReportsRequest())
-            ->setParent($parent);
+        $request = (new ListReportsRequest())->setParent($parent);
         $response = $gapicClient->listReports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -190,17 +188,19 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListReportsRequest())
-            ->setParent($parent);
+        $request = (new ListReportsRequest())->setParent($parent);
         try {
             $gapicClient->listReports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -245,8 +245,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->reportName('[ACCOUNT]', '[REPORT]');
-        $request = (new RunReportJobRequest())
-            ->setName($formattedName);
+        $request = (new RunReportJobRequest())->setName($formattedName);
         $response = $gapicClient->runReportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -302,17 +301,19 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportName('[ACCOUNT]', '[REPORT]');
-        $request = (new RunReportJobRequest())
-            ->setName($formattedName);
+        $request = (new RunReportJobRequest())->setName($formattedName);
         $response = $gapicClient->runReportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -346,17 +347,14 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $rowsElement = new Row();
-        $rows = [
-            $rowsElement,
-        ];
+        $rows = [$rowsElement];
         $expectedResponse = new FetchReportResultsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRows($rows);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedReportJob = $gapicClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
-        $request = (new FetchReportResultsRequest())
-            ->setReportJob($formattedReportJob);
+        $request = (new FetchReportResultsRequest())->setReportJob($formattedReportJob);
         $response = $gapicClient->fetchReportResultsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

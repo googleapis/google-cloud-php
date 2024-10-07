@@ -25,13 +25,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * An optional description of this cluster.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The number of nodes to create in this cluster. You must ensure that your
      * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
@@ -72,7 +72,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuth master_auth = 5;</code>
      */
-    private $master_auth = null;
+    protected $master_auth = null;
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
@@ -86,7 +86,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string logging_service = 6;</code>
      */
-    private $logging_service = '';
+    protected $logging_service = '';
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
@@ -100,7 +100,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string monitoring_service = 7;</code>
      */
-    private $monitoring_service = '';
+    protected $monitoring_service = '';
     /**
      * The name of the Google Compute Engine
      * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
@@ -109,7 +109,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 8;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The IP address range of the container pods in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
@@ -118,13 +118,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_ipv4_cidr = 9;</code>
      */
-    private $cluster_ipv4_cidr = '';
+    protected $cluster_ipv4_cidr = '';
     /**
      * Configurations for the various addons available to run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig addons_config = 10;</code>
      */
-    private $addons_config = null;
+    protected $addons_config = null;
     /**
      * The name of the Google Compute Engine
      * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
@@ -132,7 +132,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * The node pools associated with this cluster.
      * This field should not be set if "node_config" or "initial_node_count" are
@@ -165,7 +165,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_kubernetes_alpha = 14;</code>
      */
-    private $enable_kubernetes_alpha = false;
+    protected $enable_kubernetes_alpha = false;
     /**
      * The resource labels for the cluster to use to annotate any related
      * Google Compute Engine resources.
@@ -178,55 +178,55 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label_fingerprint = 16;</code>
      */
-    private $label_fingerprint = '';
+    protected $label_fingerprint = '';
     /**
      * Configuration for the legacy ABAC authorization mode.
      *
      * Generated from protobuf field <code>.google.container.v1.LegacyAbac legacy_abac = 18;</code>
      */
-    private $legacy_abac = null;
+    protected $legacy_abac = null;
     /**
      * Configuration options for the NetworkPolicy feature.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicy network_policy = 19;</code>
      */
-    private $network_policy = null;
+    protected $network_policy = null;
     /**
      * Configuration for cluster IP allocation.
      *
      * Generated from protobuf field <code>.google.container.v1.IPAllocationPolicy ip_allocation_policy = 20;</code>
      */
-    private $ip_allocation_policy = null;
+    protected $ip_allocation_policy = null;
     /**
      * The configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
      */
-    private $master_authorized_networks_config = null;
+    protected $master_authorized_networks_config = null;
     /**
      * Configure the maintenance policy for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.MaintenancePolicy maintenance_policy = 23;</code>
      */
-    private $maintenance_policy = null;
+    protected $maintenance_policy = null;
     /**
      * Configuration for Binary Authorization.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization binary_authorization = 24;</code>
      */
-    private $binary_authorization = null;
+    protected $binary_authorization = null;
     /**
      * Cluster-level autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling autoscaling = 26;</code>
      */
-    private $autoscaling = null;
+    protected $autoscaling = null;
     /**
      * Configuration for cluster networking.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
     /**
      * The default constraint on the maximum number of pods that can be run
      * simultaneously on a node in the node pool of this cluster. Only honored
@@ -234,44 +234,44 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint default_max_pods_constraint = 30;</code>
      */
-    private $default_max_pods_constraint = null;
+    protected $default_max_pods_constraint = null;
     /**
      * Configuration for exporting resource usages. Resource usage export is
      * disabled when this config is unspecified.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig resource_usage_export_config = 33;</code>
      */
-    private $resource_usage_export_config = null;
+    protected $resource_usage_export_config = null;
     /**
      * Configuration controlling RBAC group membership information.
      *
      * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig authenticator_groups_config = 34;</code>
      */
-    private $authenticator_groups_config = null;
+    protected $authenticator_groups_config = null;
     /**
      * Configuration for private cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
      */
-    private $private_cluster_config = null;
+    protected $private_cluster_config = null;
     /**
      * Configuration of etcd encryption.
      *
      * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption database_encryption = 38;</code>
      */
-    private $database_encryption = null;
+    protected $database_encryption = null;
     /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling vertical_pod_autoscaling = 39;</code>
      */
-    private $vertical_pod_autoscaling = null;
+    protected $vertical_pod_autoscaling = null;
     /**
      * Shielded Nodes configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedNodes shielded_nodes = 40;</code>
      */
-    private $shielded_nodes = null;
+    protected $shielded_nodes = null;
     /**
      * Release channel configuration. If left unspecified on cluster creation and
      * a version is specified, the cluster is enrolled in the most mature release
@@ -282,52 +282,52 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
      */
-    private $release_channel = null;
+    protected $release_channel = null;
     /**
      * Configuration for the use of Kubernetes Service Accounts in GCP IAM
      * policies.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
      */
-    private $workload_identity_config = null;
+    protected $workload_identity_config = null;
     /**
      * Configuration for issuance of mTLS keys and certificates to Kubernetes
      * pods.
      *
      * Generated from protobuf field <code>.google.container.v1.MeshCertificates mesh_certificates = 67;</code>
      */
-    private $mesh_certificates = null;
+    protected $mesh_certificates = null;
     /**
      * Configuration for the fine-grained cost management feature.
      *
      * Generated from protobuf field <code>.google.container.v1.CostManagementConfig cost_management_config = 45;</code>
      */
-    private $cost_management_config = null;
+    protected $cost_management_config = null;
     /**
      * Notification configuration of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NotificationConfig notification_config = 49;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * Configuration of Confidential Nodes.
      * All the nodes in the cluster will be Confidential VM once enabled.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
      */
-    private $confidential_nodes = null;
+    protected $confidential_nodes = null;
     /**
      * Configuration for Identity Service component.
      *
      * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig identity_service_config = 54;</code>
      */
-    private $identity_service_config = null;
+    protected $identity_service_config = null;
     /**
      * Output only. Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -346,7 +346,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * The initial Kubernetes version for this cluster.  Valid versions are those
      * found in validMasterVersions returned by getServerConfig.  The version can
@@ -362,13 +362,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string initial_cluster_version = 103;</code>
      */
-    private $initial_cluster_version = '';
+    protected $initial_cluster_version = '';
     /**
      * Output only. The current software version of the master endpoint.
      *
      * Generated from protobuf field <code>string current_master_version = 104 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_master_version = '';
+    protected $current_master_version = '';
     /**
      * Output only. Deprecated, use
      * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
@@ -386,13 +386,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string create_time = 106 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = '';
+    protected $create_time = '';
     /**
      * Output only. The current status of this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.Cluster.Status status = 107 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
@@ -410,7 +410,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_ipv4_cidr_size = 0;
+    protected $node_ipv4_cidr_size = 0;
     /**
      * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
@@ -420,7 +420,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string services_ipv4_cidr = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $services_ipv4_cidr = '';
+    protected $services_ipv4_cidr = '';
     /**
      * Output only. Deprecated. Use node_pools.instance_group_urls.
      *
@@ -442,7 +442,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string expire_time = 113 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = '';
+    protected $expire_time = '';
     /**
      * Output only. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
@@ -452,13 +452,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 114 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Enable the ability to use Cloud TPUs in this cluster.
      *
      * Generated from protobuf field <code>bool enable_tpu = 115;</code>
      */
-    private $enable_tpu = false;
+    protected $enable_tpu = false;
     /**
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
      * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
@@ -466,7 +466,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $tpu_ipv4_cidr_block = '';
+    protected $tpu_ipv4_cidr_block = '';
     /**
      * Which conditions caused the current cluster state.
      *
@@ -478,39 +478,39 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.Autopilot autopilot = 128;</code>
      */
-    private $autopilot = null;
+    protected $autopilot = null;
     /**
      * Output only. Unique id for the cluster.
      *
      * Generated from protobuf field <code>string id = 129 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Default NodePool settings for the entire cluster. These settings are
      * overridden if specified on the specific NodePool object.
      *
      * Generated from protobuf field <code>optional .google.container.v1.NodePoolDefaults node_pool_defaults = 131;</code>
      */
-    private $node_pool_defaults = null;
+    protected $node_pool_defaults = null;
     /**
      * Logging configuration for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.LoggingConfig logging_config = 132;</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Monitoring configuration for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.MonitoringConfig monitoring_config = 133;</code>
      */
-    private $monitoring_config = null;
+    protected $monitoring_config = null;
     /**
      * Node pool configs that apply to all auto-provisioned node pools
      * in autopilot clusters and node auto-provisioning enabled clusters.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoConfig node_pool_auto_config = 136;</code>
      */
-    private $node_pool_auto_config = null;
+    protected $node_pool_auto_config = null;
     /**
      * This checksum is computed by the server based on the value of cluster
      * fields, and may be sent on update requests to ensure the client has an
@@ -518,43 +518,43 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 139;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Fleet information for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.Fleet fleet = 140;</code>
      */
-    private $fleet = null;
+    protected $fleet = null;
     /**
      * Enable/Disable Security Posture API features for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
      */
-    private $security_posture_config = null;
+    protected $security_posture_config = null;
     /**
      * Beta APIs Config
      *
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
      */
-    private $enable_k8s_beta_apis = null;
+    protected $enable_k8s_beta_apis = null;
     /**
      * GKE Enterprise Configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
      */
-    private $enterprise_config = null;
+    protected $enterprise_config = null;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 152 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 153 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = null;
+    protected $satisfies_pzi = null;
 
     /**
      * Constructor.

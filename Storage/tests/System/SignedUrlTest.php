@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Timestamp;
 use GuzzleHttp\Client;
 
@@ -78,7 +79,7 @@ class SignedUrlTest extends StorageTestCase
     public function testSignedUrlV2($objectName, array $urlOpts = [])
     {
         $urlOpts += [
-            'version' => 'v2'
+            'force_ip_resolve' => 'v2'
         ];
 
         $obj = $this->createFile($objectName);
@@ -95,7 +96,7 @@ class SignedUrlTest extends StorageTestCase
     public function testSignedUrlV4($objectName, array $urlOpts = [])
     {
         $urlOpts += [
-            'version' => 'v4'
+            'force_ip_resolve' => 'v4'
         ];
 
         $obj = $this->createFile($objectName);
@@ -118,7 +119,7 @@ class SignedUrlTest extends StorageTestCase
         $url = $obj->signedUrl($ts, [
             'method' => 'DELETE',
             'contentType' => 'text/plain',
-            'version' => $version
+            'force_ip_resolve' => $version
         ]);
 
         try {
@@ -142,7 +143,7 @@ class SignedUrlTest extends StorageTestCase
     {
         $obj = self::$bucket->object(uniqid(self::TESTING_PREFIX) .'.txt');
         $url = $obj->beginSignedUploadSession([
-            'version' => $version
+            'force_ip_resolve' => $version
         ]);
 
         $this->guzzle->request('PUT', $url, [
@@ -166,7 +167,7 @@ class SignedUrlTest extends StorageTestCase
 
         $url = $obj->beginSignedUploadSession([
             'origin' => 'https://google.com',
-            'version' => $version,
+            'force_ip_resolve' => $version,
             'headers' => [
                 'x-goog-test' => 'hi'
             ]
@@ -181,7 +182,7 @@ class SignedUrlTest extends StorageTestCase
 
         $this->guzzle->request('PUT', $url, [
             'body' => self::CONTENT,
-            'version' => $version,
+            'force_ip_resolve' => $version,
             'headers' => [
                 'x-goog-test' => 'hi'
             ]
@@ -205,7 +206,7 @@ class SignedUrlTest extends StorageTestCase
         $url = $obj->signedUrl(time() + 2, [
             'responseDisposition' => $disposition,
             'responseType' => $contentType,
-            'version' => $version
+            'force_ip_resolve' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
@@ -225,7 +226,7 @@ class SignedUrlTest extends StorageTestCase
         $saveAs = 'foo bar';
         $url = $obj->signedUrl(time() + 2, [
             'saveAsName' => $saveAs,
-            'version' => $version
+            'force_ip_resolve' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
@@ -240,7 +241,7 @@ class SignedUrlTest extends StorageTestCase
     public function testBucketUrlSigning($version)
     {
         $url = self::$bucket->signedUrl(time() + 2, [
-            'version' => $version
+            'force_ip_resolve' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
@@ -269,11 +270,14 @@ class SignedUrlTest extends StorageTestCase
 
     private function getFile($url, array $options = [])
     {
-        $res = $this->guzzle->request('GET', $url, $options + [
-            'http_errors' => false
-        ]);
+        $exponentialBackoff = new ExponentialBackoff();
+        return $exponentialBackoff->execute(function () use ($url, $options) {
+            $res = $this->guzzle->request('GET', $url, $options + [
+                'http_errors' => false,
+            ]);
 
-        return (string) $res->getBody();
+            return (string) $res->getBody();
+        });
     }
 
     private function deleteFile($url, array $headers = [])

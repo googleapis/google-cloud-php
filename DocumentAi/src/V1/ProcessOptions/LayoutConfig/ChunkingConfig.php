@@ -21,13 +21,13 @@ class ChunkingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 chunk_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $chunk_size = 0;
+    protected $chunk_size = 0;
     /**
      * Optional. Whether or not to include ancestor headings when splitting.
      *
      * Generated from protobuf field <code>bool include_ancestor_headings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_ancestor_headings = false;
+    protected $include_ancestor_headings = false;
 
     /**
      * Constructor.
