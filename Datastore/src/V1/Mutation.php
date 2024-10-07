@@ -16,6 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Mutation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The strategy to use when a conflict is detected. Defaults to
+     * `SERVER_VALUE`.
+     * If this is set, then `conflict_detection_strategy` must also be set.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.Mutation.ConflictResolutionStrategy conflict_resolution_strategy = 10;</code>
+     */
+    private $conflict_resolution_strategy = 0;
+    /**
      * The properties to write in this mutation.
      * None of the properties in the mask may have a reserved name, except for
      * `__key__`.
@@ -27,6 +35,15 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 9;</code>
      */
     private $property_mask = null;
+    /**
+     * Optional. The transforms to perform on the entity.
+     * This field can be set only when the operation is `insert`, `update`,
+     * or `upsert`. If present, the transforms are be applied to the entity
+     * regardless of the property mask, in order, after the operation.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyTransform property_transforms = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $property_transforms;
     protected $operation;
     protected $conflict_detection_strategy;
 
@@ -56,6 +73,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           The update time of the entity that this mutation is being applied
      *           to. If this does not match the current update time on the server, the
      *           mutation conflicts.
+     *     @type int $conflict_resolution_strategy
+     *           The strategy to use when a conflict is detected. Defaults to
+     *           `SERVER_VALUE`.
+     *           If this is set, then `conflict_detection_strategy` must also be set.
      *     @type \Google\Cloud\Datastore\V1\PropertyMask $property_mask
      *           The properties to write in this mutation.
      *           None of the properties in the mask may have a reserved name, except for
@@ -64,6 +85,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           If the entity already exists, only properties referenced in the mask are
      *           updated, others are left untouched.
      *           Properties referenced in the mask but not in the entity are deleted.
+     *     @type array<\Google\Cloud\Datastore\V1\PropertyTransform>|\Google\Protobuf\Internal\RepeatedField $property_transforms
+     *           Optional. The transforms to perform on the entity.
+     *           This field can be set only when the operation is `insert`, `update`,
+     *           or `upsert`. If present, the transforms are be applied to the entity
+     *           regardless of the property mask, in order, after the operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,6 +300,36 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The strategy to use when a conflict is detected. Defaults to
+     * `SERVER_VALUE`.
+     * If this is set, then `conflict_detection_strategy` must also be set.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.Mutation.ConflictResolutionStrategy conflict_resolution_strategy = 10;</code>
+     * @return int
+     */
+    public function getConflictResolutionStrategy()
+    {
+        return $this->conflict_resolution_strategy;
+    }
+
+    /**
+     * The strategy to use when a conflict is detected. Defaults to
+     * `SERVER_VALUE`.
+     * If this is set, then `conflict_detection_strategy` must also be set.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.Mutation.ConflictResolutionStrategy conflict_resolution_strategy = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setConflictResolutionStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\Mutation\ConflictResolutionStrategy::class);
+        $this->conflict_resolution_strategy = $var;
+
+        return $this;
+    }
+
+    /**
      * The properties to write in this mutation.
      * None of the properties in the mask may have a reserved name, except for
      * `__key__`.
@@ -317,6 +373,38 @@ class Mutation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\PropertyMask::class);
         $this->property_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The transforms to perform on the entity.
+     * This field can be set only when the operation is `insert`, `update`,
+     * or `upsert`. If present, the transforms are be applied to the entity
+     * regardless of the property mask, in order, after the operation.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyTransform property_transforms = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPropertyTransforms()
+    {
+        return $this->property_transforms;
+    }
+
+    /**
+     * Optional. The transforms to perform on the entity.
+     * This field can be set only when the operation is `insert`, `update`,
+     * or `upsert`. If present, the transforms are be applied to the entity
+     * regardless of the property mask, in order, after the operation.
+     *
+     * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyTransform property_transforms = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Datastore\V1\PropertyTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPropertyTransforms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\PropertyTransform::class);
+        $this->property_transforms = $arr;
 
         return $this;
     }
