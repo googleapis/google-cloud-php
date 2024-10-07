@@ -25,7 +25,7 @@ class PropertyTransform extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $property = '';
+    private $property = '';
     protected $transform_type;
 
     /**
