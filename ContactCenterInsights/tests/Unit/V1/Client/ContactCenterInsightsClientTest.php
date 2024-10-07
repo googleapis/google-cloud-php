@@ -50,17 +50,25 @@ use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelResponse;
+use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataResponse;
+use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelResponse;
 use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetViewRequest;
+use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelResponse;
 use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\IngestConversationsResponse;
+use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest;
+use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecResponse;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
@@ -674,12 +682,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name = 'name3373707';
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
+        $metadataJson = 'metadataJson-2002268168';
         $turnCount = 428155597;
         $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
+        $expectedResponse->setMetadataJson($metadataJson);
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
@@ -1731,6 +1741,131 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function exportIssueModelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportIssueModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new ExportIssueModelResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/exportIssueModelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $request = (new ExportIssueModelRequest())->setName($formattedName);
+        $response = $gapicClient->exportIssueModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ExportIssueModel',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportIssueModelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function exportIssueModelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportIssueModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $request = (new ExportIssueModelRequest())->setName($formattedName);
+        $response = $gapicClient->exportIssueModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportIssueModelTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getAnalysisTest()
     {
         $transport = $this->createTransport();
@@ -1807,12 +1942,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
+        $metadataJson = 'metadataJson-2002268168';
         $turnCount = 428155597;
         $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name2);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
+        $expectedResponse->setMetadataJson($metadataJson);
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
@@ -1872,6 +2009,76 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getEncryptionSpecTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $kmsKey = 'kmsKey-591635343';
+        $expectedResponse = new EncryptionSpec();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKey($kmsKey);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->encryptionSpecName('[PROJECT]', '[LOCATION]');
+        $request = (new GetEncryptionSpecRequest())->setName($formattedName);
+        $response = $gapicClient->getEncryptionSpec($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetEncryptionSpec',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getEncryptionSpecExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->encryptionSpecName('[PROJECT]', '[LOCATION]');
+        $request = (new GetEncryptionSpecRequest())->setName($formattedName);
+        try {
+            $gapicClient->getEncryptionSpec($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getIssueTest()
     {
         $transport = $this->createTransport();
@@ -1882,9 +2089,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $displayDescription = 'displayDescription-1876039681';
         $expectedResponse = new Issue();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDisplayDescription($displayDescription);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
@@ -2225,6 +2434,131 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function importIssueModelTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importIssueModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new ImportIssueModelResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/importIssueModelTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ImportIssueModelRequest())->setParent($formattedParent);
+        $response = $gapicClient->importIssueModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ImportIssueModel',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importIssueModelTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function importIssueModelExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importIssueModelTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ImportIssueModelRequest())->setParent($formattedParent);
+        $response = $gapicClient->importIssueModel($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importIssueModelTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function ingestConversationsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2332,6 +2666,135 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/ingestConversationsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function initializeEncryptionSpecTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/initializeEncryptionSpecTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new InitializeEncryptionSpecResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/initializeEncryptionSpecTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $encryptionSpec = new EncryptionSpec();
+        $encryptionSpecKmsKey = 'encryptionSpecKmsKey627607756';
+        $encryptionSpec->setKmsKey($encryptionSpecKmsKey);
+        $request = (new InitializeEncryptionSpecRequest())->setEncryptionSpec($encryptionSpec);
+        $response = $gapicClient->initializeEncryptionSpec($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/InitializeEncryptionSpec',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getEncryptionSpec();
+        $this->assertProtobufEquals($encryptionSpec, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/initializeEncryptionSpecTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function initializeEncryptionSpecExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/initializeEncryptionSpecTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $encryptionSpec = new EncryptionSpec();
+        $encryptionSpecKmsKey = 'encryptionSpecKmsKey627607756';
+        $encryptionSpec->setKmsKey($encryptionSpecKmsKey);
+        $request = (new InitializeEncryptionSpecRequest())->setEncryptionSpec($encryptionSpec);
+        $response = $gapicClient->initializeEncryptionSpec($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/initializeEncryptionSpecTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2905,12 +3368,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name = 'name3373707';
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
+        $metadataJson = 'metadataJson-2002268168';
         $turnCount = 428155597;
         $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
+        $expectedResponse->setMetadataJson($metadataJson);
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
@@ -2980,9 +3445,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $displayDescription = 'displayDescription-1876039681';
         $expectedResponse = new Issue();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDisplayDescription($displayDescription);
         $transport->addResponse($expectedResponse);
         // Mock request
         $issue = new Issue();
@@ -3357,12 +3824,14 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $name = 'name3373707';
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
+        $metadataJson = 'metadataJson-2002268168';
         $turnCount = 428155597;
         $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
+        $expectedResponse->setMetadataJson($metadataJson);
         $expectedResponse->setTurnCount($turnCount);
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $anyResponse = new Any();

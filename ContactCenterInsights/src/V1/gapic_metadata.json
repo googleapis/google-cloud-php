@@ -95,6 +95,11 @@
                                 "exportInsightsData"
                             ]
                         },
+                        "ExportIssueModel": {
+                            "methods": [
+                                "exportIssueModel"
+                            ]
+                        },
                         "GetAnalysis": {
                             "methods": [
                                 "getAnalysis"
@@ -103,6 +108,11 @@
                         "GetConversation": {
                             "methods": [
                                 "getConversation"
+                            ]
+                        },
+                        "GetEncryptionSpec": {
+                            "methods": [
+                                "getEncryptionSpec"
                             ]
                         },
                         "GetIssue": {
@@ -130,9 +140,19 @@
                                 "getView"
                             ]
                         },
+                        "ImportIssueModel": {
+                            "methods": [
+                                "importIssueModel"
+                            ]
+                        },
                         "IngestConversations": {
                             "methods": [
                                 "ingestConversations"
+                            ]
+                        },
+                        "InitializeEncryptionSpec": {
+                            "methods": [
+                                "initializeEncryptionSpec"
                             ]
                         },
                         "ListAnalyses": {

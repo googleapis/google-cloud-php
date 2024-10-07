@@ -74,6 +74,14 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     protected $quality_metadata = null;
     /**
+     * Input only. JSON Metadata encoded as a string.
+     * This field is primarily used by Insights integrations with various telphony
+     * systems and must be in one of Insights' supported formats.
+     *
+     * Generated from protobuf field <code>string metadata_json = 25 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $metadata_json = '';
+    /**
      * Output only. The conversation transcript.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation.Transcript transcript = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -170,6 +178,10 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           conversation is allowed, with a maximum of 256 characters per entry.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata $quality_metadata
      *           Conversation metadata related to quality management.
+     *     @type string $metadata_json
+     *           Input only. JSON Metadata encoded as a string.
+     *           This field is primarily used by Insights integrations with various telphony
+     *           systems and must be in one of Insights' supported formats.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript $transcript
      *           Output only. The conversation transcript.
      *     @type int $medium
@@ -584,6 +596,36 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata::class);
         $this->quality_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. JSON Metadata encoded as a string.
+     * This field is primarily used by Insights integrations with various telphony
+     * systems and must be in one of Insights' supported formats.
+     *
+     * Generated from protobuf field <code>string metadata_json = 25 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return string
+     */
+    public function getMetadataJson()
+    {
+        return $this->metadata_json;
+    }
+
+    /**
+     * Input only. JSON Metadata encoded as a string.
+     * This field is primarily used by Insights integrations with various telphony
+     * systems and must be in one of Insights' supported formats.
+     *
+     * Generated from protobuf field <code>string metadata_json = 25 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataJson($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_json = $var;
 
         return $this;
     }

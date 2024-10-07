@@ -219,6 +219,18 @@ return [
                     ],
                 ],
             ],
+            'ExportIssueModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/issueModels/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAnalysis' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*/analyses/*}',
@@ -233,6 +245,17 @@ return [
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEncryptionSpec' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/encryptionSpec}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -296,6 +319,18 @@ return [
                     ],
                 ],
             ],
+            'ImportIssueModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/issueModels:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'IngestConversations' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations:ingest',
@@ -304,6 +339,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'InitializeEncryptionSpec' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{encryption_spec.name=projects/*/locations/*/encryptionSpec}:initialize',
+                'body' => '*',
+                'placeholders' => [
+                    'encryption_spec.name' => [
+                        'getters' => [
+                            'getEncryptionSpec',
+                            'getName',
                         ],
                     ],
                 ],

@@ -34,6 +34,12 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      */
     private $sentiments;
     /**
+     * Overall conversation-level silence during the call.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationLevelSilence silence = 11;</code>
+     */
+    protected $silence = null;
+    /**
      * All the matched intents in the call.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.contactcenterinsights.v1.Intent> intents = 6;</code>
@@ -64,6 +70,8 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      *           All the entities in the call.
      *     @type array<\Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment>|\Google\Protobuf\Internal\RepeatedField $sentiments
      *           Overall conversation-level sentiment for each channel of the call.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSilence $silence
+     *           Overall conversation-level silence during the call.
      *     @type array|\Google\Protobuf\Internal\MapField $intents
      *           All the matched intents in the call.
      *     @type array|\Google\Protobuf\Internal\MapField $phrase_matchers
@@ -151,6 +159,42 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment::class);
         $this->sentiments = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Overall conversation-level silence during the call.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationLevelSilence silence = 11;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSilence|null
+     */
+    public function getSilence()
+    {
+        return $this->silence;
+    }
+
+    public function hasSilence()
+    {
+        return isset($this->silence);
+    }
+
+    public function clearSilence()
+    {
+        unset($this->silence);
+    }
+
+    /**
+     * Overall conversation-level silence during the call.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationLevelSilence silence = 11;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSilence $var
+     * @return $this
+     */
+    public function setSilence($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSilence::class);
+        $this->silence = $var;
 
         return $this;
     }

@@ -54,15 +54,20 @@ use Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest;
+use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetViewRequest;
+use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
@@ -116,14 +121,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteViewAsync(DeleteViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deployIssueModelAsync(DeployIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportInsightsDataAsync(ExportInsightsDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface exportIssueModelAsync(ExportIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAnalysisAsync(GetAnalysisRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getEncryptionSpecAsync(GetEncryptionSpecRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIssueAsync(GetIssueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIssueModelAsync(GetIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPhraseMatcherAsync(GetPhraseMatcherRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getViewAsync(GetViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface importIssueModelAsync(ImportIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface ingestConversationsAsync(IngestConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface initializeEncryptionSpecAsync(InitializeEncryptionSpecRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAnalysesAsync(ListAnalysesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listIssueModelsAsync(ListIssueModelsRequest $request, array $optionalArgs = [])
@@ -300,6 +309,23 @@ final class ContactCenterInsightsClient
             'project' => $project,
             'location' => $location,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * encryption_spec resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted encryption_spec resource.
+     */
+    public static function encryptionSpecName(string $project, string $location): string
+    {
+        return self::getPathTemplate('encryptionSpec')->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -507,6 +533,7 @@ final class ContactCenterInsightsClient
      * - analysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
      * - conversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - conversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - encryptionSpec: projects/{project}/locations/{location}/encryptionSpec
      * - issue: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}
      * - issueModel: projects/{project}/locations/{location}/issueModels/{issue_model}
      * - location: projects/{project}/locations/{location}
@@ -750,6 +777,8 @@ final class ContactCenterInsightsClient
 
     /**
      * Creates a conversation.
+     * Note that this method does not support audio transcription or redaction.
+     * Use `conversations.upload` instead.
      *
      * The async variant is
      * {@see ContactCenterInsightsClient::createConversationAsync()} .
@@ -1060,6 +1089,33 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Exports an issue model to the provided destination.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::exportIssueModelAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/export_issue_model.php
+     *
+     * @param ExportIssueModelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportIssueModel(ExportIssueModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportIssueModel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets an analysis.
      *
      * The async variant is {@see ContactCenterInsightsClient::getAnalysisAsync()} .
@@ -1110,6 +1166,33 @@ final class ContactCenterInsightsClient
     public function getConversation(GetConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('GetConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets location-level encryption key specification.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::getEncryptionSpecAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_encryption_spec.php
+     *
+     * @param GetEncryptionSpecRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EncryptionSpec
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getEncryptionSpec(GetEncryptionSpecRequest $request, array $callOptions = []): EncryptionSpec
+    {
+        return $this->startApiCall('GetEncryptionSpec', $request, $callOptions)->wait();
     }
 
     /**
@@ -1244,6 +1327,33 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Imports an issue model from a Cloud Storage bucket.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::importIssueModelAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/import_issue_model.php
+     *
+     * @param ImportIssueModelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importIssueModel(ImportIssueModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ImportIssueModel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports conversations and processes them according to the user's
      * configuration.
      *
@@ -1269,6 +1379,39 @@ final class ContactCenterInsightsClient
     public function ingestConversations(IngestConversationsRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('IngestConversations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initializes a location-level encryption key specification.  An error will
+     * be thrown if the location has resources already created before the
+     * initialization. Once the encryption specification is initialized at a
+     * location, it is immutable and all newly created resources under the
+     * location will be encrypted with the existing specification.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::initializeEncryptionSpecAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/initialize_encryption_spec.php
+     *
+     * @param InitializeEncryptionSpecRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function initializeEncryptionSpec(
+        InitializeEncryptionSpecRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('InitializeEncryptionSpec', $request, $callOptions)->wait();
     }
 
     /**
@@ -1618,8 +1761,8 @@ final class ContactCenterInsightsClient
     }
 
     /**
-     * Create a longrunning conversation upload operation. This method differs
-     * from CreateConversation by allowing audio transcription and optional DLP
+     * Create a long-running conversation upload operation. This method differs
+     * from `CreateConversation` by allowing audio transcription and optional DLP
      * redaction.
      *
      * The async variant is
