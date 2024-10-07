@@ -32,7 +32,7 @@ use Google\Cloud\BackupDR\V1\ManagementServer;
  * Gets details of a single ManagementServer.
  *
  * @param string $formattedName Name of the management server resource name, in the format
- *                              `projects/{project_id}/locations/{location}/managementServers/{resource_name}`
+ *                              'projects/{project_id}/locations/{location}/managementServers/{resource_name}'
  *                              Please see {@see BackupDRClient::managementServerName()} for help formatting this field.
  */
 function get_management_server_sample(string $formattedName): void

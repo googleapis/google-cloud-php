@@ -18,7 +18,7 @@ class ListManagementServersResponse extends \Google\Protobuf\Internal\Message
     /**
      * The list of ManagementServer instances in the project for the specified
      * location.
-     * If the `{location}` value in the request is "-", the response contains a
+     * If the '{location}' value in the request is "-", the response contains a
      * list of instances from all locations. In case any location is unreachable,
      * the response will only return management servers in reachable locations and
      * the 'unreachable' field will be populated with a list of unreachable
@@ -49,7 +49,7 @@ class ListManagementServersResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\BackupDR\V1\ManagementServer>|\Google\Protobuf\Internal\RepeatedField $management_servers
      *           The list of ManagementServer instances in the project for the specified
      *           location.
-     *           If the `{location}` value in the request is "-", the response contains a
+     *           If the '{location}' value in the request is "-", the response contains a
      *           list of instances from all locations. In case any location is unreachable,
      *           the response will only return management servers in reachable locations and
      *           the 'unreachable' field will be populated with a list of unreachable
@@ -68,7 +68,7 @@ class ListManagementServersResponse extends \Google\Protobuf\Internal\Message
     /**
      * The list of ManagementServer instances in the project for the specified
      * location.
-     * If the `{location}` value in the request is "-", the response contains a
+     * If the '{location}' value in the request is "-", the response contains a
      * list of instances from all locations. In case any location is unreachable,
      * the response will only return management servers in reachable locations and
      * the 'unreachable' field will be populated with a list of unreachable
@@ -85,7 +85,7 @@ class ListManagementServersResponse extends \Google\Protobuf\Internal\Message
     /**
      * The list of ManagementServer instances in the project for the specified
      * location.
-     * If the `{location}` value in the request is "-", the response contains a
+     * If the '{location}' value in the request is "-", the response contains a
      * list of instances from all locations. In case any location is unreachable,
      * the response will only return management servers in reachable locations and
      * the 'unreachable' field will be populated with a list of unreachable
