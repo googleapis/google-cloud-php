@@ -53,7 +53,7 @@ class ListBrokenXrefsCommand extends Command
                 if (preg_match(self::BROKEN_REFS_REGEX, $line, $matches)) {
                     list(, $component, $file, $ref, $brokenText) = $matches;
                     $link = sprintf(
-                        '=HYPERLINK("https://github.com/googleapis/googleapis/blob/master/%s", "%s")',
+                        '"=HYPERLINK(""https://github.com/googleapis/googleapis/blob/master/%s"", ""%s"")"',
                         $file,
                         $file
                     );
