@@ -61,7 +61,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
     protected $cluster_ca_certificate = '';
     /**
      * Output only. Base64-encoded public certificate used by clients to
-     * authenticate to the cluster endpoint.
+     * authenticate to the cluster endpoint. Issued only if
+     * client_certificate_config is set.
      *
      * Generated from protobuf field <code>string client_certificate = 101 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -106,7 +107,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      *           trust for the cluster.
      *     @type string $client_certificate
      *           Output only. Base64-encoded public certificate used by clients to
-     *           authenticate to the cluster endpoint.
+     *           authenticate to the cluster endpoint. Issued only if
+     *           client_certificate_config is set.
      *     @type string $client_key
      *           Output only. Base64-encoded private key used by clients to authenticate
      *           to the cluster endpoint.
@@ -273,7 +275,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Base64-encoded public certificate used by clients to
-     * authenticate to the cluster endpoint.
+     * authenticate to the cluster endpoint. Issued only if
+     * client_certificate_config is set.
      *
      * Generated from protobuf field <code>string client_certificate = 101 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -285,7 +288,8 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Base64-encoded public certificate used by clients to
-     * authenticate to the cluster endpoint.
+     * authenticate to the cluster endpoint. Issued only if
+     * client_certificate_config is set.
      *
      * Generated from protobuf field <code>string client_certificate = 101 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

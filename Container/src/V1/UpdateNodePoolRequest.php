@@ -253,6 +253,13 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePool.QueuedProvisioning queued_provisioning = 42;</code>
      */
     protected $queued_provisioning = null;
+    /**
+     * List of Storage Pools where boot disks are provisioned.
+     * Existing Storage Pools will be replaced with storage-pools.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
+     */
+    private $storage_pools;
 
     /**
      * Constructor.
@@ -370,6 +377,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           config.
      *     @type \Google\Cloud\Container\V1\NodePool\QueuedProvisioning $queued_provisioning
      *           Specifies the configuration of queued provisioning.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_pools
+     *           List of Storage Pools where boot disks are provisioned.
+     *           Existing Storage Pools will be replaced with storage-pools.
      * }
      */
     public function __construct($data = NULL) {
@@ -1471,6 +1481,34 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\QueuedProvisioning::class);
         $this->queued_provisioning = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of Storage Pools where boot disks are provisioned.
+     * Existing Storage Pools will be replaced with storage-pools.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStoragePools()
+    {
+        return $this->storage_pools;
+    }
+
+    /**
+     * List of Storage Pools where boot disks are provisioned.
+     * Existing Storage Pools will be replaced with storage-pools.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStoragePools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->storage_pools = $arr;
 
         return $this;
     }

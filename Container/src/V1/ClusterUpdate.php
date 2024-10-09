@@ -126,8 +126,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     private $desired_locations;
     /**
      * The desired configuration options for master authorized networks feature.
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
+     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12 [deprecated = true];</code>
+     * @deprecated
      */
     protected $desired_master_authorized_networks_config = null;
     /**
@@ -175,8 +179,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
      * for modifying other fields within
      * [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.global_access
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25 [deprecated = true];</code>
+     * @deprecated
      */
     protected $desired_private_cluster_config = null;
     /**
@@ -254,10 +262,31 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     protected $desired_service_external_ips_config = null;
     /**
      * Enable/Disable private endpoint for the cluster's master.
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.enable_public_endpoint
+     * instead. Note that the value of enable_public_endpoint is reversed: if
+     * enable_private_endpoint is false, then enable_public_endpoint will be true.
      *
-     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71 [deprecated = true];</code>
+     * @deprecated
      */
     protected $desired_enable_private_endpoint = null;
+    /**
+     * Override the default setting of whether future created
+     * nodes have private IP addresses only, namely
+     * [NetworkConfig.default_enable_private_nodes][google.container.v1.NetworkConfig.default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool desired_default_enable_private_nodes = 72;</code>
+     */
+    protected $desired_default_enable_private_nodes = null;
+    /**
+     * [Control plane
+     * endpoints][google.container.v1.Cluster.control_plane_endpoints_config]
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEndpointsConfig desired_control_plane_endpoints_config = 73;</code>
+     */
+    protected $desired_control_plane_endpoints_config = null;
     /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
@@ -401,6 +430,18 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_enable_cilium_clusterwide_network_policy = null;
     /**
+     * Enable/Disable Secret Manager Config.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecretManagerConfig desired_secret_manager_config = 139;</code>
+     */
+    protected $desired_secret_manager_config = null;
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140;</code>
+     */
+    protected $desired_compliance_posture_config = null;
+    /**
      * The desired node kubelet config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_kubelet_config = 141;</code>
@@ -413,6 +454,19 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_pool_auto_config_kubelet_config = 142;</code>
      */
     protected $desired_node_pool_auto_config_kubelet_config = null;
+    /**
+     * The Custom keys configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.UserManagedKeysConfig user_managed_keys_config = 143;</code>
+     */
+    protected $user_managed_keys_config = null;
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     * RoleBindings that can be created.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig desired_rbac_binding_config = 144;</code>
+     */
+    protected $desired_rbac_binding_config = null;
 
     /**
      * Constructor.
@@ -477,6 +531,9 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           pools and will result in nodes being added and/or removed.
      *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $desired_master_authorized_networks_config
      *           The desired configuration options for master authorized networks feature.
+     *           Deprecated: Use
+     *           desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config
+     *           instead.
      *     @type \Google\Cloud\Container\V1\ClusterAutoscaling $desired_cluster_autoscaling
      *           Cluster-level autoscaling configuration.
      *     @type \Google\Cloud\Container\V1\BinaryAuthorization $desired_binary_authorization
@@ -502,6 +559,9 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
      *           for modifying other fields within
      *           [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
+     *           Deprecated: Use
+     *           desired_control_plane_endpoints_config.ip_endpoints_config.global_access
+     *           instead.
      *     @type \Google\Cloud\Container\V1\IntraNodeVisibilityConfig $desired_intra_node_visibility_config
      *           The desired config of Intra-node visibility.
      *     @type \Google\Cloud\Container\V1\DefaultSnatStatus $desired_default_snat_status
@@ -529,6 +589,18 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           ExternalIPs field.
      *     @type bool $desired_enable_private_endpoint
      *           Enable/Disable private endpoint for the cluster's master.
+     *           Deprecated: Use
+     *           desired_control_plane_endpoints_config.ip_endpoints_config.enable_public_endpoint
+     *           instead. Note that the value of enable_public_endpoint is reversed: if
+     *           enable_private_endpoint is false, then enable_public_endpoint will be true.
+     *     @type bool $desired_default_enable_private_nodes
+     *           Override the default setting of whether future created
+     *           nodes have private IP addresses only, namely
+     *           [NetworkConfig.default_enable_private_nodes][google.container.v1.NetworkConfig.default_enable_private_nodes]
+     *     @type \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig $desired_control_plane_endpoints_config
+     *           [Control plane
+     *           endpoints][google.container.v1.Cluster.control_plane_endpoints_config]
+     *           configuration.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -587,11 +659,20 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           Specify the details of in-transit encryption.
      *     @type bool $desired_enable_cilium_clusterwide_network_policy
      *           Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     *     @type \Google\Cloud\Container\V1\SecretManagerConfig $desired_secret_manager_config
+     *           Enable/Disable Secret Manager Config.
+     *     @type \Google\Cloud\Container\V1\CompliancePostureConfig $desired_compliance_posture_config
+     *           Enable/Disable Compliance Posture features for the cluster.
      *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $desired_node_kubelet_config
      *           The desired node kubelet config for the cluster.
      *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $desired_node_pool_auto_config_kubelet_config
      *           The desired node kubelet config for all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type \Google\Cloud\Container\V1\UserManagedKeysConfig $user_managed_keys_config
+     *           The Custom keys configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\RBACBindingConfig $desired_rbac_binding_config
+     *           RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     *           RoleBindings that can be created.
      * }
      */
     public function __construct($data = NULL) {
@@ -1077,34 +1158,46 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired configuration options for master authorized networks feature.
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
+     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig|null
+     * @deprecated
      */
     public function getDesiredMasterAuthorizedNetworksConfig()
     {
+        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         return $this->desired_master_authorized_networks_config;
     }
 
     public function hasDesiredMasterAuthorizedNetworksConfig()
     {
+        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->desired_master_authorized_networks_config);
     }
 
     public function clearDesiredMasterAuthorizedNetworksConfig()
     {
+        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         unset($this->desired_master_authorized_networks_config);
     }
 
     /**
      * The desired configuration options for master authorized networks feature.
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
+     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $var
      * @return $this
+     * @deprecated
      */
     public function setDesiredMasterAuthorizedNetworksConfig($var)
     {
+        @trigger_error('desired_master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig::class);
         $this->desired_master_authorized_networks_config = $var;
 
@@ -1304,22 +1397,29 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
      * for modifying other fields within
      * [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.global_access
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\PrivateClusterConfig|null
+     * @deprecated
      */
     public function getDesiredPrivateClusterConfig()
     {
+        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
         return $this->desired_private_cluster_config;
     }
 
     public function hasDesiredPrivateClusterConfig()
     {
+        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->desired_private_cluster_config);
     }
 
     public function clearDesiredPrivateClusterConfig()
     {
+        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
         unset($this->desired_private_cluster_config);
     }
 
@@ -1330,13 +1430,18 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * [ClusterUpdate.desired_enable_private_endpoint][google.container.v1.ClusterUpdate.desired_enable_private_endpoint]
      * for modifying other fields within
      * [PrivateClusterConfig][google.container.v1.PrivateClusterConfig].
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.global_access
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\PrivateClusterConfig $var
      * @return $this
+     * @deprecated
      */
     public function setDesiredPrivateClusterConfig($var)
     {
+        @trigger_error('desired_private_cluster_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivateClusterConfig::class);
         $this->desired_private_cluster_config = $var;
 
@@ -1759,36 +1864,130 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable/Disable private endpoint for the cluster's master.
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.enable_public_endpoint
+     * instead. Note that the value of enable_public_endpoint is reversed: if
+     * enable_private_endpoint is false, then enable_public_endpoint will be true.
      *
-     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getDesiredEnablePrivateEndpoint()
     {
+        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
         return isset($this->desired_enable_private_endpoint) ? $this->desired_enable_private_endpoint : false;
     }
 
     public function hasDesiredEnablePrivateEndpoint()
     {
+        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
         return isset($this->desired_enable_private_endpoint);
     }
 
     public function clearDesiredEnablePrivateEndpoint()
     {
+        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
         unset($this->desired_enable_private_endpoint);
     }
 
     /**
      * Enable/Disable private endpoint for the cluster's master.
+     * Deprecated: Use
+     * desired_control_plane_endpoints_config.ip_endpoints_config.enable_public_endpoint
+     * instead. Note that the value of enable_public_endpoint is reversed: if
+     * enable_private_endpoint is false, then enable_public_endpoint will be true.
      *
-     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDesiredEnablePrivateEndpoint($var)
     {
+        @trigger_error('desired_enable_private_endpoint is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->desired_enable_private_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Override the default setting of whether future created
+     * nodes have private IP addresses only, namely
+     * [NetworkConfig.default_enable_private_nodes][google.container.v1.NetworkConfig.default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool desired_default_enable_private_nodes = 72;</code>
+     * @return bool
+     */
+    public function getDesiredDefaultEnablePrivateNodes()
+    {
+        return isset($this->desired_default_enable_private_nodes) ? $this->desired_default_enable_private_nodes : false;
+    }
+
+    public function hasDesiredDefaultEnablePrivateNodes()
+    {
+        return isset($this->desired_default_enable_private_nodes);
+    }
+
+    public function clearDesiredDefaultEnablePrivateNodes()
+    {
+        unset($this->desired_default_enable_private_nodes);
+    }
+
+    /**
+     * Override the default setting of whether future created
+     * nodes have private IP addresses only, namely
+     * [NetworkConfig.default_enable_private_nodes][google.container.v1.NetworkConfig.default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool desired_default_enable_private_nodes = 72;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredDefaultEnablePrivateNodes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_default_enable_private_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Control plane
+     * endpoints][google.container.v1.Cluster.control_plane_endpoints_config]
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEndpointsConfig desired_control_plane_endpoints_config = 73;</code>
+     * @return \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig|null
+     */
+    public function getDesiredControlPlaneEndpointsConfig()
+    {
+        return $this->desired_control_plane_endpoints_config;
+    }
+
+    public function hasDesiredControlPlaneEndpointsConfig()
+    {
+        return isset($this->desired_control_plane_endpoints_config);
+    }
+
+    public function clearDesiredControlPlaneEndpointsConfig()
+    {
+        unset($this->desired_control_plane_endpoints_config);
+    }
+
+    /**
+     * [Control plane
+     * endpoints][google.container.v1.Cluster.control_plane_endpoints_config]
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEndpointsConfig desired_control_plane_endpoints_config = 73;</code>
+     * @param \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig $var
+     * @return $this
+     */
+    public function setDesiredControlPlaneEndpointsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig::class);
+        $this->desired_control_plane_endpoints_config = $var;
 
         return $this;
     }
@@ -2552,6 +2751,78 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable/Disable Secret Manager Config.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecretManagerConfig desired_secret_manager_config = 139;</code>
+     * @return \Google\Cloud\Container\V1\SecretManagerConfig|null
+     */
+    public function getDesiredSecretManagerConfig()
+    {
+        return $this->desired_secret_manager_config;
+    }
+
+    public function hasDesiredSecretManagerConfig()
+    {
+        return isset($this->desired_secret_manager_config);
+    }
+
+    public function clearDesiredSecretManagerConfig()
+    {
+        unset($this->desired_secret_manager_config);
+    }
+
+    /**
+     * Enable/Disable Secret Manager Config.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecretManagerConfig desired_secret_manager_config = 139;</code>
+     * @param \Google\Cloud\Container\V1\SecretManagerConfig $var
+     * @return $this
+     */
+    public function setDesiredSecretManagerConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecretManagerConfig::class);
+        $this->desired_secret_manager_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140;</code>
+     * @return \Google\Cloud\Container\V1\CompliancePostureConfig|null
+     */
+    public function getDesiredCompliancePostureConfig()
+    {
+        return $this->desired_compliance_posture_config;
+    }
+
+    public function hasDesiredCompliancePostureConfig()
+    {
+        return isset($this->desired_compliance_posture_config);
+    }
+
+    public function clearDesiredCompliancePostureConfig()
+    {
+        unset($this->desired_compliance_posture_config);
+    }
+
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140;</code>
+     * @param \Google\Cloud\Container\V1\CompliancePostureConfig $var
+     * @return $this
+     */
+    public function setDesiredCompliancePostureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CompliancePostureConfig::class);
+        $this->desired_compliance_posture_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired node kubelet config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig desired_node_kubelet_config = 141;</code>
@@ -2621,6 +2892,80 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
         $this->desired_node_pool_auto_config_kubelet_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Custom keys configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.UserManagedKeysConfig user_managed_keys_config = 143;</code>
+     * @return \Google\Cloud\Container\V1\UserManagedKeysConfig|null
+     */
+    public function getUserManagedKeysConfig()
+    {
+        return $this->user_managed_keys_config;
+    }
+
+    public function hasUserManagedKeysConfig()
+    {
+        return isset($this->user_managed_keys_config);
+    }
+
+    public function clearUserManagedKeysConfig()
+    {
+        unset($this->user_managed_keys_config);
+    }
+
+    /**
+     * The Custom keys configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.UserManagedKeysConfig user_managed_keys_config = 143;</code>
+     * @param \Google\Cloud\Container\V1\UserManagedKeysConfig $var
+     * @return $this
+     */
+    public function setUserManagedKeysConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\UserManagedKeysConfig::class);
+        $this->user_managed_keys_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     * RoleBindings that can be created.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig desired_rbac_binding_config = 144;</code>
+     * @return \Google\Cloud\Container\V1\RBACBindingConfig|null
+     */
+    public function getDesiredRbacBindingConfig()
+    {
+        return $this->desired_rbac_binding_config;
+    }
+
+    public function hasDesiredRbacBindingConfig()
+    {
+        return isset($this->desired_rbac_binding_config);
+    }
+
+    public function clearDesiredRbacBindingConfig()
+    {
+        unset($this->desired_rbac_binding_config);
+    }
+
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     * RoleBindings that can be created.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig desired_rbac_binding_config = 144;</code>
+     * @param \Google\Cloud\Container\V1\RBACBindingConfig $var
+     * @return $this
+     */
+    public function setDesiredRbacBindingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RBACBindingConfig::class);
+        $this->desired_rbac_binding_config = $var;
 
         return $this;
     }
