@@ -1,5 +1,159 @@
 # Changelog
 
+## 0.262.0
+
+<details><summary>google/cloud-ai-platform 1.8.0</summary>
+
+
+
+### Features
+
+* Add a dynamic retrieval API ([#7724](https://github.com/googleapis/google-cloud-php/issues/7724)) ([7674a3e](https://github.com/googleapis/google-cloud-php/commit/7674a3ea25e138f41ebfb4c3becceaf3221556b4))
+* Add continuous sync option in feature_view.proto ([7674a3e](https://github.com/googleapis/google-cloud-php/commit/7674a3ea25e138f41ebfb4c3becceaf3221556b4))
+* Add psc_automation_configs to DeployIndex v1 ([#7720](https://github.com/googleapis/google-cloud-php/issues/7720)) ([2c48383](https://github.com/googleapis/google-cloud-php/commit/2c483836197e47fbe9f2c9f284d56c0548d4946b))
+
+</details>
+
+<details><summary>google/apps-chat 0.6.0</summary>
+
+
+
+### Features
+
+* Add doc for import mode external users support ([0c917c4](https://github.com/googleapis/google-cloud-php/commit/0c917c4b62bbde18fcdb5e3d18c67cebcc4daddb))
+* Add doc for permission settings & announcement space support ([#7721](https://github.com/googleapis/google-cloud-php/issues/7721)) ([0c917c4](https://github.com/googleapis/google-cloud-php/commit/0c917c4b62bbde18fcdb5e3d18c67cebcc4daddb))
+
+
+### Documentation
+
+* Discoverable space docs improvement ([0c917c4](https://github.com/googleapis/google-cloud-php/commit/0c917c4b62bbde18fcdb5e3d18c67cebcc4daddb))
+* Memberships API dev docs improvement ([0c917c4](https://github.com/googleapis/google-cloud-php/commit/0c917c4b62bbde18fcdb5e3d18c67cebcc4daddb))
+* Messages API dev docs improvement ([0c917c4](https://github.com/googleapis/google-cloud-php/commit/0c917c4b62bbde18fcdb5e3d18c67cebcc4daddb))
+
+</details>
+
+<details><summary>google/cloud-batch 1.1.1</summary>
+
+
+
+### Documentation
+
+* Clarify Batch only supports global custom instance template now ([#7719](https://github.com/googleapis/google-cloud-php/issues/7719)) ([f3ffdb1](https://github.com/googleapis/google-cloud-php/commit/f3ffdb1a7b5439a861afa6b93bbbe05e8c662ce7))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.1.0</summary>
+
+
+
+### Features
+
+* Add scheduleOptionsV2 and Error fields for TransferConfig ([#7718](https://github.com/googleapis/google-cloud-php/issues/7718)) ([1cb914b](https://github.com/googleapis/google-cloud-php/commit/1cb914be9a7d3577acf2f69ff9405be1757e62e6))
+
+</details>
+
+<details><summary>google/cloud-channel 2.1.0</summary>
+
+
+
+### Features
+
+* Add support for importing team customer from a different reseller ([aa62991](https://github.com/googleapis/google-cloud-php/commit/aa62991dc2d9b7df26abbb19306564fabdffdee9))
+* Add support for primary_admin_email as customer_identity for ImportCustomer ([#7727](https://github.com/googleapis/google-cloud-php/issues/7727)) ([aa62991](https://github.com/googleapis/google-cloud-php/commit/aa62991dc2d9b7df26abbb19306564fabdffdee9))
+* Add support to look up team customer Cloud Identity information ([aa62991](https://github.com/googleapis/google-cloud-php/commit/aa62991dc2d9b7df26abbb19306564fabdffdee9))
+
+
+### Documentation
+
+* Clarify the expected value of the domain field for team type customers ([aa62991](https://github.com/googleapis/google-cloud-php/commit/aa62991dc2d9b7df26abbb19306564fabdffdee9))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.6.1</summary>
+
+
+
+### Documentation
+
+* Minor documentation formatting fix for Parallelstore ([#7722](https://github.com/googleapis/google-cloud-php/issues/7722)) ([72a9414](https://github.com/googleapis/google-cloud-php/commit/72a941468c6d3970fffef3da6ad9af05e5b3e2ab))
+
+</details>
+
+<details><summary>google/cloud-redis 2.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 1.2.0</summary>
+
+
+
+### Features
+
+* Add Builds API([#7725](https://github.com/googleapis/google-cloud-php/issues/7725)) ([3b7f251](https://github.com/googleapis/google-cloud-php/commit/3b7f251e0d73d9aa5c42a696a783f38087e3fbe1))
+* Add GPU configuration to Services ([3b7f251](https://github.com/googleapis/google-cloud-php/commit/3b7f251e0d73d9aa5c42a696a783f38087e3fbe1))
+* Add INGRESS_TRAFFIC_NONE to Services ([3b7f251](https://github.com/googleapis/google-cloud-php/commit/3b7f251e0d73d9aa5c42a696a783f38087e3fbe1))
+* Add Service Mesh configuration to Services ([3b7f251](https://github.com/googleapis/google-cloud-php/commit/3b7f251e0d73d9aa5c42a696a783f38087e3fbe1))
+* Add ServiceScaling to Services ([3b7f251](https://github.com/googleapis/google-cloud-php/commit/3b7f251e0d73d9aa5c42a696a783f38087e3fbe1))
+
+
+### Documentation
+
+* Fixed formatting of some documentation ([3b7f251](https://github.com/googleapis/google-cloud-php/commit/3b7f251e0d73d9aa5c42a696a783f38087e3fbe1))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 0.3.0</summary>
+
+
+
+### Features
+
+* Add 'force' parameter for accounts.delete method ([#7714](https://github.com/googleapis/google-cloud-php/issues/7714)) ([7bbcfd6](https://github.com/googleapis/google-cloud-php/commit/7bbcfd6d641eb2a1fd9c626e47620d09374db9b5))
+
+
+### Documentation
+
+* Updated descriptions for the DeleteAccount and ListAccounts RPCs ([7bbcfd6](https://github.com/googleapis/google-cloud-php/commit/7bbcfd6d641eb2a1fd9c626e47620d09374db9b5))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 0.2.1</summary>
+
+
+
+### Documentation
+
+* Adding some more information about supplemental data sources ([#7726](https://github.com/googleapis/google-cloud-php/issues/7726)) ([061fec1](https://github.com/googleapis/google-cloud-php/commit/061fec1d38d476d0d955acf7e2a5d09d8b1b1e2e))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.86.0</summary>
+
+
+
+### Features
+
+* Add INTERVAL API ([#7712](https://github.com/googleapis/google-cloud-php/issues/7712)) ([132254f](https://github.com/googleapis/google-cloud-php/commit/132254fa537dfece87f3b836c51ed5248c230db4))
+* Add new QueryMode enum values (WITH_STATS, WITH_PLAN_AND_STATS) ([132254f](https://github.com/googleapis/google-cloud-php/commit/132254fa537dfece87f3b836c51ed5248c230db4))
+* Define ReplicaComputeCapacity and AsymmetricAutoscalingOption ([#7723](https://github.com/googleapis/google-cloud-php/issues/7723)) ([0e366ef](https://github.com/googleapis/google-cloud-php/commit/0e366efa02e8d6100cf4a61e5b7fd731ad8157e4))
+
+
+### Documentation
+
+* A comment for field `node_count` in message `spanner.admin.instance.v1.Instance` is changed ([0e366ef](https://github.com/googleapis/google-cloud-php/commit/0e366efa02e8d6100cf4a61e5b7fd731ad8157e4))
+* A comment for field `processing_units` in message `spanner.admin.instance.v1.Instance` is changed ([0e366ef](https://github.com/googleapis/google-cloud-php/commit/0e366efa02e8d6100cf4a61e5b7fd731ad8157e4))
+* Update comment for PROFILE QueryMode ([132254f](https://github.com/googleapis/google-cloud-php/commit/132254fa537dfece87f3b836c51ed5248c230db4))
+
+</details>
+
+<details><summary>google/cloud-storage 1.43.1</summary>
+
+
+
+</details>
+
 ## 0.261.0
 
 <details><summary>google/ads-marketingplatform-admin 0.1.0</summary>

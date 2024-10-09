@@ -29,13 +29,18 @@ use Google\Apps\Chat\V1\CreateSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 
 /**
- * Creates a named space. Spaces grouped by topics aren't supported. For an
- * example, see [Create a
+ * Creates a space with no members. Can be used to create a named space.
+ * Spaces grouped by topics aren't supported. For an example, see
+ * [Create a
  * space](https://developers.google.com/workspace/chat/create-spaces).
  *
  * If you receive the error message `ALREADY_EXISTS` when creating
  * a space, try a different `displayName`. An existing space within
  * the Google Workspace organization might already use this display name.
+ *
+ * If you're a member of the [Developer Preview
+ * program](https://developers.google.com/workspace/preview), you can create a
+ * group chat in import mode using `spaceType.GROUP_CHAT`.
  *
  * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).

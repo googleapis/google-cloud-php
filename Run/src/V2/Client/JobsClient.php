@@ -268,6 +268,51 @@ final class JobsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * location_policy resource.
+     *
+     * @param string $location
+     *
+     * @return string The formatted location_policy resource.
+     */
+    public static function locationPolicyName(string $location): string
+    {
+        return self::getPathTemplate('locationPolicy')->render([
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName(string $project): string
+    {
+        return self::getPathTemplate('policy')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_policy resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_policy resource.
+     */
+    public static function projectPolicyName(string $project): string
+    {
+        return self::getPathTemplate('projectPolicy')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a secret
      * resource.
      *
@@ -312,6 +357,9 @@ final class JobsClient
      * - execution: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
+     * - locationPolicy: locations/{location}/policy
+     * - policy: projects/{project}/policy
+     * - projectPolicy: projects/{project}/policy
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      *
