@@ -38,6 +38,9 @@ class DocFxCommand extends Command
 {
     use XrefValidationTrait;
 
+    const BROKEN_REF_TEMPLATE = '[%s] Broken xref in <comment>%s</>: <options=bold>%s</>';
+    const EMPTY_REF = '<options=bold>empty</>';
+
     private string $componentName;
     private array $composerJson;
     private array $repoMetadataJson;
@@ -55,7 +58,7 @@ class DocFxCommand extends Command
         $this->setName('docfx')
             ->setDescription('Generate DocFX yaml from a phpdoc strucutre.xml')
             ->addOption('xml', '', InputOption::VALUE_REQUIRED, 'Path to phpdoc structure.xml')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs only for a single component.', '')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs for the specified component.', '')
             ->addOption('out', '', InputOption::VALUE_REQUIRED, 'Path where to store the generated output.', 'out')
             ->addOption('metadata-version', '', InputOption::VALUE_REQUIRED, 'version to write to docs.metadata using docuploader')
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
@@ -234,7 +237,6 @@ class DocFxCommand extends Command
     private function validate(ClassNode $class, OutputInterface $output): bool
     {
         $valid = true;
-        $emptyRef = '<options=bold>empty</>';
         $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
         $warnings = [];
         foreach (array_merge([$class], $class->getMethods(), $class->getConstants()) as $node) {
@@ -248,16 +250,25 @@ class DocFxCommand extends Command
                 $valid = false;
             }
             foreach ($this->getBrokenXrefs($node->getContent()) as [$brokenRef, $brokenRefText]) {
-                $brokenRef = $isGenerated ? $this->classnameToProtobufPath((string) $brokenRef, $brokenRefText) : $brokenRef;
-                $nodePath = $isGenerated
-                    ? $class->getProtoFileName($brokenRef) . ' (' . $node->getProtoPath($class->getName()) . ')'
-                    : $node->getFullname();
-                $warnings[] = sprintf(
-                    '[%s] Broken xref in <comment>%s</>: <options=bold>%s</>',
-                    $this->componentName,
-                    $nodePath,
-                    str_replace("\n", '', $brokenRef) ?: $emptyRef
-                );
+                if ($isGenerated) {
+                    $brokenRef = $this->classnameToProtobufPath((string) $brokenRef, $brokenRefText);
+                    foreach ($class->getProtoFileName($brokenRef) as $nodePath) {
+                        $warnings[] = sprintf(
+                            self::BROKEN_REF_TEMPLATE,
+                            $this->componentName,
+                            $nodePath, // . ' (' . $node->getProtoPath($class->getName()) . ')',
+                            str_replace("\n", '', $brokenRef) ?: self::EMPTY_REF
+                        );
+                    }
+                } else {
+                    $nodePath = $node->getFullname();
+                    $warnings[] = sprintf(
+                        self::BROKEN_REF_TEMPLATE,
+                        $this->componentName,
+                        $nodePath,
+                        str_replace("\n", '', $brokenRef) ?: self::EMPTY_REF
+                    );
+                }
                 // generated classes are allowed to have broken xrefs
                 if ($isGenerated) {
                     continue;

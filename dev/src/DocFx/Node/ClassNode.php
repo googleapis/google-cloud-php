@@ -68,7 +68,7 @@ class ClassNode
         return false;
     }
 
-    public function getProtoFileName(string $ref = null): string|null
+    public function getProtoFileName(string $ref = null): array
     {
         if (!$this->isProtobufMessageClass()
             && !$this->isProtobufEnumClass()
@@ -97,18 +97,20 @@ class ClassNode
         if (false !== strpos($ref, "\n")) {
             [$ref1, $ref2] = explode("\n", $ref);
         }
+        $matches = [];
         foreach ($lines as $i => $line) {
             if ($ref1 && $ref2) {
                 if (false !== stripos($line, $ref1)
                     && false !== stripos($lines[$i+1], $ref2)) {
-                    return $proto . '#L' . ($i + 1);
+                    $matches[] = $proto . '#L' . ($i + 1);
                 }
             } elseif (false !== stripos($line, $ref)) {
-                return $proto . '#L' . ($i + 1);
+                $matches[] = $proto . '#L' . ($i + 1);
             }
         }
 
-        return $proto;
+        // If no lone numbers were found, return the proto
+        return $matches ?: [$proto];
     }
 
     public function isGapicEnumClass(): bool

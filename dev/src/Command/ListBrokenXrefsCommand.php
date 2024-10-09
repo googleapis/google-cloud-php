@@ -31,22 +31,23 @@ use Google\Cloud\Dev\Component;
  */
 class ListBrokenXrefsCommand extends Command
 {
-    const BROKEN_REFS_REGEX = '/\[(\w+)\] Broken xref in (.*) \((.*)\): (.*)/';
+    const BROKEN_REFS_REGEX = '/\[(\w+)\] Broken xref in (.*): (.*)/';
     const MIN_REFS_PER_BUG = 10;
     const BUG_TEMPLATE=<<<EOF
     *** Bugspec go/bugged#bugspec
     *** Three asterisks at the beginning of a line indicate a comment.
     *** The first non-comment line is the bug title. The Bugspec parser requires a
     *** non-empty title, even for bug templates, which do not require titles.
-    Broken References in Proto Comments for %s
+    Broken Documentation Reference in Protos for %s
     *** Issue body
 
-    The following references are broken in the protobuf documentation, and need to be fixed:
+    The following proto files contain broken documentation references, and need to be fixed:
 
     %s
 
     *** Metadata
     COMPONENT=1634818
+    PARENT=360878680
     TYPE=BUG
     STATUS=NEW
     PRIORITY=P2
@@ -55,40 +56,47 @@ class ListBrokenXrefsCommand extends Command
     EOF;
     const BROKEN_REF_TEMPLATE=' - [%s](https://github.com/googleapis/googleapis/blob/%s/%s): `%s`';
     private $sha;
+    private $refCount = 0;
 
     protected function configure()
     {
         $this->setName('list-broken-xrefs')
             ->setDescription('List all the broken xrefs in the documentation using ".kokoro/docs/publish.sh"')
             ->addOption('write-bugs', null, InputOption::VALUE_REQUIRED, 'write the bug to the given directory')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'List broken xrefs for a single component', [])
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $bugDir = $input->getOption('write-bugs');
-        if ($bugDir) {
+        if ($bugDir = $input->getOption('write-bugs')) {
             $this->sha = $this->determineGoogleapisSha();
+            if (!is_dir($bugDir)) {
+                if (!mkdir($bugDir)) {
+                    throw new RuntimeException('bug directory doesn\'t exist and cannot be created');
+                }
+            }
         }
         $brokenReferences = [];
-        foreach (Component::getComponents() as $component) {
+        $fileCount = 0;
+        foreach (Component::getComponents($input->getOption('component')) as $component) {
             $input = new ArrayInput($f = [
                 'command' => 'docfx',
                 '--component' => $component->getName(),
             ]);
 
             $buffer = new BufferedOutput(OutputInterface::VERBOSITY_DEBUG);
-            $returnCode = $this->getApplication()->doRun($input, $buffer);
+            $this->getApplication()->doRun($input, $buffer);
             $componentBrokenRefs = [];
             foreach (explode("\n", $buffer->fetch()) as $line) {
                 if (preg_match(self::BROKEN_REFS_REGEX, $line, $matches)) {
-                    list(, $componentName, $file, $ref, $brokenText) = $matches;
+                    list(, $componentName, $file, $brokenText) = $matches;
                     if (false === strpos($file, '#L')) {
                         // If there are no line numbers, assume this is a PHP bug, and skip it
                         continue;
                     }
                     if ($bugDir) {
-                        $componentBrokenRefs[] = ['file' => $file, 'text' => $brokenText];
+                        $componentBrokenRefs[$file] = $brokenText;
                     } else {
                         $link = sprintf(
                             '"=HYPERLINK(""https://github.com/googleapis/googleapis/blob/master/%s"", ""%s"")"',
@@ -100,51 +108,54 @@ class ListBrokenXrefsCommand extends Command
                 }
             }
             if ($bugDir) {
-                if (count($componentBrokenRefs) > self::MIN_REFS_PER_BUG) {
-                    $file = $this->writeBuggerFile([$component->getName() => $componentBrokenRefs], $bugDir);
-                    $output->writeln(sprintf('Wrote %s references to %s', count($componentBrokenRefs), $file));
+                if (count($componentBrokenRefs) >= self::MIN_REFS_PER_BUG) {
+                    $fileCount++;
+                    $this->writeBuggerFile([$component->getName() => $componentBrokenRefs], $bugDir, $output);
                 } else {
                     if (count($componentBrokenRefs) > 0) {
                         $brokenReferences[$component->getName()] = $componentBrokenRefs;
                     }
-                    if (self::MIN_REFS_PER_BUG < $count = array_sum(array_map('count', $brokenReferences))) {
-                        $file = $this->writeBuggerFile($brokenReferences, $bugDir);
-                        $output->writeln(sprintf('Wrote %s references to %s', $count, $file));
+                    if (array_sum(array_map('count', $brokenReferences)) >= self::MIN_REFS_PER_BUG) {
+                        $fileCount++;
+                        $this->writeBuggerFile($brokenReferences, $bugDir, $output);
                         // reset broken references
                         $brokenReferences = [];
                     }
                 }
             }
         }
+        if ($bugDir && count($brokenReferences) > 0) {
+            $fileCount++;
+            $this->writeBuggerFile($brokenReferences, $bugDir, $output);
+        }
+
+        if ($bugDir) {
+            $output->writeln(sprintf('Wrote %s files and found %s broken references', $fileCount, $this->refCount));
+        }
 
         return 0;
     }
 
-    private function writeBuggerFile(array $brokenReferences, string $bugDir): string
+    private function writeBuggerFile(array $brokenReferences, string $bugDir, OutputInterface $output)
     {
         $components = array_keys($brokenReferences);
-        if (strlen($componentNames = implode(', ', $components)) > 80) {
-            $componentNames = substr($componentNames, 0, 78) . '...';
+        if (strlen($componentNames = implode(', ', $components)) > 75) {
+            $componentNames = trim(substr($componentNames, 0, 70)) . '...';
         }
         $references = array_merge(...array_values($brokenReferences));
+        ksort($references);
+        $lines = array_unique(array_map(
+            fn ($file, $text) =>  sprintf(self::BROKEN_REF_TEMPLATE, $file, $this->sha, $file, $text),
+            array_keys($references),
+            $references
+        ));
+
         $bugFile = sprintf('%s/broken-refs-%s.txt', $bugDir, implode('-', $components));
-        $bugText = sprintf(
-            self::BUG_TEMPLATE,
-            $componentNames,
-            implode("\n", array_map(
-                fn ($ref) =>  sprintf(
-                    self::BROKEN_REF_TEMPLATE,
-                    $ref['file'],
-                    $this->sha,
-                    $ref['file'],
-                    $ref['text']
-                ),
-                $references
-            ))
-        );
+        $bugText = sprintf(self::BUG_TEMPLATE, $componentNames, implode("\n", $lines));
         file_put_contents($bugFile, $bugText);
 
-        return $bugFile;
+        $output->writeln(sprintf('Wrote %s references to %s', count($lines), $bugFile));
+        $this->refCount += count($lines);
     }
 
     private function determineGoogleapisSha(): string
