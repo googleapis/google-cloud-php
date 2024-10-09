@@ -136,6 +136,40 @@
                 }
             }
         },
+        "GenerativeQuestionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GenerativeQuestionServiceGapicClient",
+                    "rpcs": {
+                        "BatchUpdateGenerativeQuestionConfigs": {
+                            "methods": [
+                                "batchUpdateGenerativeQuestionConfigs"
+                            ]
+                        },
+                        "GetGenerativeQuestionsFeatureConfig": {
+                            "methods": [
+                                "getGenerativeQuestionsFeatureConfig"
+                            ]
+                        },
+                        "ListGenerativeQuestionConfigs": {
+                            "methods": [
+                                "listGenerativeQuestionConfigs"
+                            ]
+                        },
+                        "UpdateGenerativeQuestionConfig": {
+                            "methods": [
+                                "updateGenerativeQuestionConfig"
+                            ]
+                        },
+                        "UpdateGenerativeQuestionsFeatureConfig": {
+                            "methods": [
+                                "updateGenerativeQuestionsFeatureConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ModelService": {
             "clients": {
                 "grpc": {

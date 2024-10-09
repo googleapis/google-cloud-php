@@ -320,6 +320,19 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string entity = 38;</code>
      */
     protected $entity = '';
+    /**
+     * Optional. This field specifies all conversational related parameters
+     * addition to traditional retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec conversational_search_spec = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $conversational_search_spec = null;
+    /**
+     * Optional. This field specifies tile navigation related parameters.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.TileNavigationSpec tile_navigation_spec = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tile_navigation_spec = null;
 
     /**
      * Constructor.
@@ -542,6 +555,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           If this is set, it should be exactly matched with
      *           [UserEvent.entity][google.cloud.retail.v2.UserEvent.entity] to get search
      *           results boosted by entity.
+     *     @type \Google\Cloud\Retail\V2\SearchRequest\ConversationalSearchSpec $conversational_search_spec
+     *           Optional. This field specifies all conversational related parameters
+     *           addition to traditional retail search.
+     *     @type \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec $tile_navigation_spec
+     *           Optional. This field specifies tile navigation related parameters.
      * }
      */
     public function __construct($data = NULL) {
@@ -1525,6 +1543,80 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->entity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field specifies all conversational related parameters
+     * addition to traditional retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec conversational_search_spec = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Retail\V2\SearchRequest\ConversationalSearchSpec|null
+     */
+    public function getConversationalSearchSpec()
+    {
+        return $this->conversational_search_spec;
+    }
+
+    public function hasConversationalSearchSpec()
+    {
+        return isset($this->conversational_search_spec);
+    }
+
+    public function clearConversationalSearchSpec()
+    {
+        unset($this->conversational_search_spec);
+    }
+
+    /**
+     * Optional. This field specifies all conversational related parameters
+     * addition to traditional retail search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec conversational_search_spec = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Retail\V2\SearchRequest\ConversationalSearchSpec $var
+     * @return $this
+     */
+    public function setConversationalSearchSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchRequest\ConversationalSearchSpec::class);
+        $this->conversational_search_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field specifies tile navigation related parameters.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.TileNavigationSpec tile_navigation_spec = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec|null
+     */
+    public function getTileNavigationSpec()
+    {
+        return $this->tile_navigation_spec;
+    }
+
+    public function hasTileNavigationSpec()
+    {
+        return isset($this->tile_navigation_spec);
+    }
+
+    public function clearTileNavigationSpec()
+    {
+        unset($this->tile_navigation_spec);
+    }
+
+    /**
+     * Optional. This field specifies tile navigation related parameters.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.TileNavigationSpec tile_navigation_spec = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec $var
+     * @return $this
+     */
+    public function setTileNavigationSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\SearchRequest\TileNavigationSpec::class);
+        $this->tile_navigation_spec = $var;
 
         return $this;
     }
