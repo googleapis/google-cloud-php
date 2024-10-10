@@ -276,7 +276,7 @@ class ComponentInfoCommand extends Command
     {
         $filters = [];
         foreach (array_filter(explode(',', $filterString)) as $filter) {
-            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>)(.+)$/', $filter, $matches)) {
+            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>|\^=)(.+)$/', $filter, $matches)) {
                 throw new \InvalidArgumentException(sprintf('Invalid filter: %s', $filter));
             }
             $filters[] = [$matches[1], $matches[3], $matches[2]];
@@ -303,6 +303,7 @@ class ComponentInfoCommand extends Command
                 '!=' => ($row[$field] !== $value),
                 '~=' => strpos($row[$field], $value) !== false,
                 '!~=' => strpos($row[$field], $value) === false,
+                '^=' => str_starts_with($row[$field], $value) !== false,
                 '>','<','>=','<=' => match($field) {
                     'downloads' => version_compare(
                         str_replace(',' , '', $row[$field]),

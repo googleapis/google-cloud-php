@@ -31,7 +31,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì%
+…%
 !google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Æ
 CreateServiceRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service2
@@ -60,7 +60,7 @@ page_token (	
 name (	B"‡A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	" 
+etag (	"Ä
 Service
 name (	
 description (	
@@ -84,7 +84,10 @@ generation (B‡A=
 template (2%.google.cloud.run.v2.RevisionTemplateB‡A8
 traffic (2".google.cloud.run.v2.TrafficTargetB‡A9
 scaling (2#.google.cloud.run.v2.ServiceScalingB‡A!
-default_uri_disabled (B‡A 
+invoker_iam_disabled (B‡A!
+default_uri_disabled (B‡A
+urls (	B‡A
+custom_audiences% (	 
 observed_generation (B‡A?
 terminal_condition (2.google.cloud.run.v2.ConditionB‡A7
 
@@ -94,8 +97,7 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 latest_created_revision" (	B#‡A˙A
 run.googleapis.com/RevisionG
 traffic_statuses# (2(.google.cloud.run.v2.TrafficTargetStatusB‡A
-uri$ (	B‡A
-custom_audiences% (	
+uri$ (	B‡A
 satisfies_pzs& (B‡A
 reconcilingb (B‡A
 etagc (	B‡A-

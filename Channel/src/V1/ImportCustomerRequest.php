@@ -70,6 +70,8 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
      *           Required. Customer domain.
      *     @type string $cloud_identity_id
      *           Required. Customer's Cloud Identity ID
+     *     @type string $primary_admin_email
+     *           Required. Customer's primary admin email.
      *     @type string $parent
      *           Required. The resource name of the reseller's account.
      *           Parent takes the format: accounts/{account_id} or
@@ -157,6 +159,37 @@ class ImportCustomerRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Required. Customer's primary admin email.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getPrimaryAdminEmail()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasPrimaryAdminEmail()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Required. Customer's primary admin email.
+     *
+     * Generated from protobuf field <code>string primary_admin_email = 8 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrimaryAdminEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
