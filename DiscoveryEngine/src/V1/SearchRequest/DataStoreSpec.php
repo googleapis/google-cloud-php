@@ -25,6 +25,14 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $data_store = '';
+    /**
+     * Optional. Filter specification to filter documents in the data store
+     * specified by data_store field. For more information on filtering, see
+     * [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * Constructor.
@@ -36,6 +44,10 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      *           Required. Full resource name of
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore], such as
      *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     *     @type string $filter
+     *           Optional. Filter specification to filter documents in the data store
+     *           specified by data_store field. For more information on filtering, see
+     *           [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +81,36 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_store = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter specification to filter documents in the data store
+     * specified by data_store field. For more information on filtering, see
+     * [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter specification to filter documents in the data store
+     * specified by data_store field. For more information on filtering, see
+     * [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

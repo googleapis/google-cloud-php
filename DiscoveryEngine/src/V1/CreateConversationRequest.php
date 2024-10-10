@@ -17,7 +17,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full resource name of parent data store. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +31,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                        $parent       Required. Full resource name of parent data store. Format:
-     *                                                                    `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     *                                                                    `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *                                                                    Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
      * @param \Google\Cloud\DiscoveryEngine\V1\Conversation $conversation Required. The conversation to create.
      *
@@ -54,7 +54,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Full resource name of parent data store. Format:
-     *           `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *     @type \Google\Cloud\DiscoveryEngine\V1\Conversation $conversation
      *           Required. The conversation to create.
      * }
@@ -66,7 +66,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of parent data store. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,7 +78,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of parent data store. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

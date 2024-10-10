@@ -32,7 +32,7 @@ use Google\Cloud\DiscoveryEngine\V1\Session;
  * Gets a Session.
  *
  * @param string $formattedName The resource name of the Session to get. Format:
- *                              `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`
+ *                              `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`
  *                              Please see {@see ConversationalSearchServiceClient::sessionName()} for help formatting this field.
  */
 function get_session_sample(string $formattedName): void

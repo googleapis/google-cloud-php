@@ -19,9 +19,9 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Conversation to get. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
      * Use
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
      * to activate auto session mode, which automatically creates a new
      * conversation inside a ConverseConversation session.
      *
@@ -36,7 +36,7 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
     protected $query = null;
     /**
      * The resource name of the Serving Config to use. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
      * If this is not set, the default serving config will be used.
      *
      * Generated from protobuf field <code>string serving_config = 3 [(.google.api.resource_reference) = {</code>
@@ -111,9 +111,9 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $name  Required. The resource name of the Conversation to get. Format:
-     *                                                          `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
+     *                                                          `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
      *                                                          Use
-     *                                                          `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
+     *                                                          `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
      *                                                          to activate auto session mode, which automatically creates a new
      *                                                          conversation inside a ConverseConversation session. Please see
      *                                                          {@see ConversationalSearchServiceClient::conversationName()} for help formatting this field.
@@ -138,16 +138,16 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the Conversation to get. Format:
-     *           `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
      *           Use
-     *           `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
      *           to activate auto session mode, which automatically creates a new
      *           conversation inside a ConverseConversation session.
      *     @type \Google\Cloud\DiscoveryEngine\V1\TextInput $query
      *           Required. Current user input.
      *     @type string $serving_config
      *           The resource name of the Serving Config to use. Format:
-     *           `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
      *           If this is not set, the default serving config will be used.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Conversation $conversation
      *           The conversation to be used by auto session only. The name field will be
@@ -200,9 +200,9 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Conversation to get. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
      * Use
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
      * to activate auto session mode, which automatically creates a new
      * conversation inside a ConverseConversation session.
      *
@@ -216,9 +216,9 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Conversation to get. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`.
      * Use
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-`
      * to activate auto session mode, which automatically creates a new
      * conversation inside a ConverseConversation session.
      *
@@ -272,7 +272,7 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the Serving Config to use. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
      * If this is not set, the default serving config will be used.
      *
      * Generated from protobuf field <code>string serving_config = 3 [(.google.api.resource_reference) = {</code>
@@ -285,7 +285,7 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the Serving Config to use. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}`
      * If this is not set, the default serving config will be used.
      *
      * Generated from protobuf field <code>string serving_config = 3 [(.google.api.resource_reference) = {</code>

@@ -34,9 +34,9 @@ use Google\Cloud\DiscoveryEngine\V1\ListControlsRequest;
  * [DataStore][google.cloud.discoveryengine.v1.DataStore].
  *
  * @param string $formattedParent The data store resource name. Format:
- *                                `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
+ *                                `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`
  *                                or
- *                                `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`. Please see
+ *                                `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`. Please see
  *                                {@see ControlServiceClient::dataStoreName()} for help formatting this field.
  */
 function list_controls_sample(string $formattedParent): void

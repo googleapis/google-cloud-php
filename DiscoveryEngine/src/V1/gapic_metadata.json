@@ -287,6 +287,16 @@
                             "methods": [
                                 "checkGrounding"
                             ]
+                        },
+                        "GenerateGroundedContent": {
+                            "methods": [
+                                "generateGroundedContent"
+                            ]
+                        },
+                        "StreamGenerateGroundedContent": {
+                            "methods": [
+                                "streamGenerateGroundedContent"
+                            ]
                         }
                     }
                 }

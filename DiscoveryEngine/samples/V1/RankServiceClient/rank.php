@@ -33,7 +33,7 @@ use Google\Cloud\DiscoveryEngine\V1\RankingRecord;
  * Ranks a list of text records based on the given input query.
  *
  * @param string $formattedRankingConfig The resource name of the rank service config, such as
- *                                       `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`. Please see
+ *                                       `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`. Please see
  *                                       {@see RankServiceClient::rankingConfigName()} for help formatting this field.
  */
 function rank_sample(string $formattedRankingConfig): void

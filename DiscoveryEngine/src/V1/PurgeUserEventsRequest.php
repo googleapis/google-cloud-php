@@ -18,7 +18,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the catalog under which the events are
      * created. The format is
-     * `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`
+     * `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -70,7 +70,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the catalog under which the events are
      *           created. The format is
-     *           `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`
+     *           `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`.
      *     @type string $filter
      *           Required. The filter string to specify the events to be deleted with a
      *           length limit of 5,000 characters. The eligible fields for filtering are:
@@ -110,7 +110,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the catalog under which the events are
      * created. The format is
-     * `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`
+     * `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -123,7 +123,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the catalog under which the events are
      * created. The format is
-     * `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`
+     * `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
