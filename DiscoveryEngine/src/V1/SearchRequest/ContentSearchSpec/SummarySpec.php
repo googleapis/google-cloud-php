@@ -87,6 +87,21 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      */
     protected $ignore_low_relevant_content = false;
     /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The
+     * default value is `false`.
+     * Google employs search-query classification to detect jail-breaking
+     * queries. No summary is returned if the search query is classified as a
+     * jail-breaking query. A user might add instructions to the query to
+     * change the tone, style, language, content of the answer, or ask the
+     * model to act as a different entity, e.g. "Reply in the tone of a
+     * competing company's CEO". If this field is set to `true`, we skip
+     * generating summaries for jail-breaking queries and return fallback
+     * messages instead.
+     *
+     * Generated from protobuf field <code>bool ignore_jail_breaking_query = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ignore_jail_breaking_query = false;
+    /**
      * If specified, the spec will be used to modify the prompt provided to
      * the LLM.
      *
@@ -176,6 +191,17 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           If this field is set to `false`, all search results are used regardless
      *           of relevance to generate answers. If set to `true`, only queries with
      *           high relevance search results will generate answers.
+     *     @type bool $ignore_jail_breaking_query
+     *           Optional. Specifies whether to filter out jail-breaking queries. The
+     *           default value is `false`.
+     *           Google employs search-query classification to detect jail-breaking
+     *           queries. No summary is returned if the search query is classified as a
+     *           jail-breaking query. A user might add instructions to the query to
+     *           change the tone, style, language, content of the answer, or ask the
+     *           model to act as a different entity, e.g. "Reply in the tone of a
+     *           competing company's CEO". If this field is set to `true`, we skip
+     *           generating summaries for jail-breaking queries and return fallback
+     *           messages instead.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $model_prompt_spec
      *           If specified, the spec will be used to modify the prompt provided to
      *           the LLM.
@@ -406,6 +432,50 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_low_relevant_content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The
+     * default value is `false`.
+     * Google employs search-query classification to detect jail-breaking
+     * queries. No summary is returned if the search query is classified as a
+     * jail-breaking query. A user might add instructions to the query to
+     * change the tone, style, language, content of the answer, or ask the
+     * model to act as a different entity, e.g. "Reply in the tone of a
+     * competing company's CEO". If this field is set to `true`, we skip
+     * generating summaries for jail-breaking queries and return fallback
+     * messages instead.
+     *
+     * Generated from protobuf field <code>bool ignore_jail_breaking_query = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIgnoreJailBreakingQuery()
+    {
+        return $this->ignore_jail_breaking_query;
+    }
+
+    /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The
+     * default value is `false`.
+     * Google employs search-query classification to detect jail-breaking
+     * queries. No summary is returned if the search query is classified as a
+     * jail-breaking query. A user might add instructions to the query to
+     * change the tone, style, language, content of the answer, or ask the
+     * model to act as a different entity, e.g. "Reply in the tone of a
+     * competing company's CEO". If this field is set to `true`, we skip
+     * generating summaries for jail-breaking queries and return fallback
+     * messages instead.
+     *
+     * Generated from protobuf field <code>bool ignore_jail_breaking_query = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIgnoreJailBreakingQuery($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ignore_jail_breaking_query = $var;
 
         return $this;
     }
