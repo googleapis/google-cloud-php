@@ -41,7 +41,8 @@ class ListBrokenXrefsCommand extends Command
     Broken Documentation Reference in Protos for %s
     *** Issue body
 
-    The following proto files contain broken documentation references, and need to be fixed:
+    The following proto files contain broken documentation references, and need to be fixed. Changes
+    should me made in the `google3/` source protos. See the parent bug (b/360878680) for guidance.
 
     %s
 
