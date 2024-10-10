@@ -47,7 +47,7 @@ class ListBrokenXrefsCommand extends Command
 
     *** Metadata
     COMPONENT=1634818
-    PARENT=360878680
+    PARENT+=360878680
     TYPE=BUG
     STATUS=NEW
     PRIORITY=P2
@@ -143,7 +143,14 @@ class ListBrokenXrefsCommand extends Command
             $componentNames = trim(substr($componentNames, 0, 70)) . '...';
         }
         $references = array_merge(...array_values($brokenReferences));
-        ksort($references);
+        uksort($references, function ($a, $b) {
+            [$fileA, $lineNumberA] = explode('#L', $a);
+            [$fileB, $lineNumberB] = explode('#L', $b);
+            if ($fileA === $fileB) {
+                return (int) $lineNumberA <=> (int) $lineNumberB;
+            }
+            return $fileA <=> $fileB;
+        });
         $lines = array_unique(array_map(
             fn ($file, $text) =>  sprintf(self::BROKEN_REF_TEMPLATE, $file, $this->sha, $file, $text),
             array_keys($references),
