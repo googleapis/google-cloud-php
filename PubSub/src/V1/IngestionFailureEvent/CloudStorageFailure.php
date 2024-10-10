@@ -20,21 +20,21 @@ class CloudStorageFailure extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $bucket = '';
+    private $bucket = '';
     /**
      * Optional. Name of the Cloud Storage object which contained the section
      * that couldn't be ingested.
      *
      * Generated from protobuf field <code>string object_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $object_name = '';
+    private $object_name = '';
     /**
      * Optional. Generation of the Cloud Storage object which contained the
      * section that couldn't be ingested.
      *
      * Generated from protobuf field <code>int64 object_generation = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $object_generation = 0;
+    private $object_generation = 0;
     protected $reason;
 
     /**
@@ -219,6 +219,4 @@ class CloudStorageFailure extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudStorageFailure::class, \Google\Cloud\PubSub\V1\IngestionFailureEvent_CloudStorageFailure::class);
 

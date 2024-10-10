@@ -22,13 +22,13 @@ class IngestionFailureEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $topic = '';
+    private $topic = '';
     /**
      * Required. Error details explaining why ingestion to Pub/Sub has failed.
      *
      * Generated from protobuf field <code>string error_message = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $error_message = '';
+    private $error_message = '';
     protected $failure;
 
     /**
