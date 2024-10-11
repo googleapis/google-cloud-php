@@ -25,10 +25,17 @@ class SummarizationModel
      * Generated from protobuf enum <code>BASELINE_MODEL = 1;</code>
      */
     const BASELINE_MODEL = 1;
+    /**
+     * The CCAI baseline model, V2.0.
+     *
+     * Generated from protobuf enum <code>BASELINE_MODEL_V2_0 = 2;</code>
+     */
+    const BASELINE_MODEL_V2_0 = 2;
 
     private static $valueToName = [
         self::SUMMARIZATION_MODEL_UNSPECIFIED => 'SUMMARIZATION_MODEL_UNSPECIFIED',
         self::BASELINE_MODEL => 'BASELINE_MODEL',
+        self::BASELINE_MODEL_V2_0 => 'BASELINE_MODEL_V2_0',
     ];
 
     public static function name($value)

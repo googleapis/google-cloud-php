@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,36 +22,44 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START contactcenterinsights_v1_generated_ContactCenterInsights_CreateConversation_sync]
+// [START contactcenterinsights_v1_generated_ContactCenterInsights_ImportIssueModel_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
-use Google\Cloud\ContactCenterInsights\V1\Conversation;
-use Google\Cloud\ContactCenterInsights\V1\CreateConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelResponse;
+use Google\Rpc\Status;
 
 /**
- * Creates a conversation.
- * Note that this method does not support audio transcription or redaction.
- * Use `conversations.upload` instead.
+ * Imports an issue model from a Cloud Storage bucket.
  *
- * @param string $formattedParent The parent resource of the conversation. Please see
+ * @param string $formattedParent The parent resource of the issue model. Please see
  *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
  */
-function create_conversation_sample(string $formattedParent): void
+function import_issue_model_sample(string $formattedParent): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $conversation = new Conversation();
-    $request = (new CreateConversationRequest())
-        ->setParent($formattedParent)
-        ->setConversation($conversation);
+    $request = (new ImportIssueModelRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Conversation $response */
-        $response = $contactCenterInsightsClient->createConversation($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var OperationResponse $response */
+        $response = $contactCenterInsightsClient->importIssueModel($request);
+        $response->pollUntilComplete();
+
+        if ($response->operationSucceeded()) {
+            /** @var ImportIssueModelResponse $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -70,6 +78,6 @@ function callSample(): void
 {
     $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
 
-    create_conversation_sample($formattedParent);
+    import_issue_model_sample($formattedParent);
 }
-// [END contactcenterinsights_v1_generated_ContactCenterInsights_CreateConversation_sync]
+// [END contactcenterinsights_v1_generated_ContactCenterInsights_ImportIssueModel_sync]

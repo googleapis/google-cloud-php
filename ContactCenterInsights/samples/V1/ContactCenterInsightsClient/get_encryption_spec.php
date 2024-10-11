@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,35 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START contactcenterinsights_v1_generated_ContactCenterInsights_CreateConversation_sync]
+// [START contactcenterinsights_v1_generated_ContactCenterInsights_GetEncryptionSpec_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
-use Google\Cloud\ContactCenterInsights\V1\Conversation;
-use Google\Cloud\ContactCenterInsights\V1\CreateConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
+use Google\Cloud\ContactCenterInsights\V1\GetEncryptionSpecRequest;
 
 /**
- * Creates a conversation.
- * Note that this method does not support audio transcription or redaction.
- * Use `conversations.upload` instead.
+ * Gets location-level encryption key specification.
  *
- * @param string $formattedParent The parent resource of the conversation. Please see
- *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+ * @param string $formattedName The name of the encryption spec resource to get. Please see
+ *                              {@see ContactCenterInsightsClient::encryptionSpecName()} for help formatting this field.
  */
-function create_conversation_sample(string $formattedParent): void
+function get_encryption_spec_sample(string $formattedName): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $conversation = new Conversation();
-    $request = (new CreateConversationRequest())
-        ->setParent($formattedParent)
-        ->setConversation($conversation);
+    $request = (new GetEncryptionSpecRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Conversation $response */
-        $response = $contactCenterInsightsClient->createConversation($request);
+        /** @var EncryptionSpec $response */
+        $response = $contactCenterInsightsClient->getEncryptionSpec($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -68,8 +64,8 @@ function create_conversation_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedName = ContactCenterInsightsClient::encryptionSpecName('[PROJECT]', '[LOCATION]');
 
-    create_conversation_sample($formattedParent);
+    get_encryption_spec_sample($formattedName);
 }
-// [END contactcenterinsights_v1_generated_ContactCenterInsights_CreateConversation_sync]
+// [END contactcenterinsights_v1_generated_ContactCenterInsights_GetEncryptionSpec_sync]

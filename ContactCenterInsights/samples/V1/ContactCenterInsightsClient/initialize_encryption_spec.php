@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,41 +22,47 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START contactcenterinsights_v1_generated_ContactCenterInsights_UploadConversation_sync]
+// [START contactcenterinsights_v1_generated_ContactCenterInsights_InitializeEncryptionSpec_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
-use Google\Cloud\ContactCenterInsights\V1\Conversation;
-use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
+use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest;
+use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecResponse;
 use Google\Rpc\Status;
 
 /**
- * Create a long-running conversation upload operation. This method differs
- * from `CreateConversation` by allowing audio transcription and optional DLP
- * redaction.
+ * Initializes a location-level encryption key specification.  An error will
+ * be thrown if the location has resources already created before the
+ * initialization. Once the encryption specification is initialized at a
+ * location, it is immutable and all newly created resources under the
+ * location will be encrypted with the existing specification.
  *
- * @param string $formattedParent The parent resource of the conversation. Please see
- *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.
+ * @param string $encryptionSpecKmsKey The name of customer-managed encryption key that is used to
+ *                                     secure a resource and its sub-resources. If empty, the resource is secured
+ *                                     by the default Google encryption key. Only the key in the same location as
+ *                                     this resource is allowed to be used for encryption. Format:
+ *                                     `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`
  */
-function upload_conversation_sample(string $formattedParent): void
+function initialize_encryption_spec_sample(string $encryptionSpecKmsKey): void
 {
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
     // Prepare the request message.
-    $conversation = new Conversation();
-    $request = (new UploadConversationRequest())
-        ->setParent($formattedParent)
-        ->setConversation($conversation);
+    $encryptionSpec = (new EncryptionSpec())
+        ->setKmsKey($encryptionSpecKmsKey);
+    $request = (new InitializeEncryptionSpecRequest())
+        ->setEncryptionSpec($encryptionSpec);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->uploadConversation($request);
+        $response = $contactCenterInsightsClient->initializeEncryptionSpec($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Conversation $result */
+            /** @var InitializeEncryptionSpecResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -80,8 +86,8 @@ function upload_conversation_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = ContactCenterInsightsClient::locationName('[PROJECT]', '[LOCATION]');
+    $encryptionSpecKmsKey = '[KMS_KEY]';
 
-    upload_conversation_sample($formattedParent);
+    initialize_encryption_spec_sample($encryptionSpecKmsKey);
 }
-// [END contactcenterinsights_v1_generated_ContactCenterInsights_UploadConversation_sync]
+// [END contactcenterinsights_v1_generated_ContactCenterInsights_InitializeEncryptionSpec_sync]
