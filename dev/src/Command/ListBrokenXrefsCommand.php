@@ -32,17 +32,17 @@ use Google\Cloud\Dev\Component;
 class ListBrokenXrefsCommand extends Command
 {
     const BROKEN_REFS_REGEX = '/\[(\w+)\] Broken xref in (.*): (.*)/';
-    const MIN_REFS_PER_BUG = 10;
+    const MIN_REFS_PER_BUG = 5;
     const BUG_TEMPLATE=<<<EOF
     *** Bugspec go/bugged#bugspec
     *** Three asterisks at the beginning of a line indicate a comment.
     *** The first non-comment line is the bug title. The Bugspec parser requires a
     *** non-empty title, even for bug templates, which do not require titles.
-    Broken Documentation Reference in Protos for %s
+    Fix broken proto references in %s
     *** Issue body
 
     The following proto files contain broken documentation references, and need to be fixed. Changes
-    should me made in the `google3/` source protos. See the parent bug (b/360878680) for guidance.
+    should be made in the `google3/` source protos. See the parent bug (b/360878680) for guidance.
 
     %s
 
