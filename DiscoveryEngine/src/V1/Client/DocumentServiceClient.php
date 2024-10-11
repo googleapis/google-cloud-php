@@ -217,6 +217,37 @@ final class DocumentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * fhir_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $fhirStore
+     * @param string $resourceType
+     * @param string $fhirResourceId
+     *
+     * @return string The formatted fhir_resource resource.
+     */
+    public static function fhirResourceName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $fhirStore,
+        string $resourceType,
+        string $fhirResourceId
+    ): string {
+        return self::getPathTemplate('fhirResource')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'fhir_store' => $fhirStore,
+            'resource_type' => $resourceType,
+            'fhir_resource_id' => $fhirResourceId,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a fhir_store
      * resource.
      *
@@ -355,6 +386,7 @@ final class DocumentServiceClient
      * Template: Pattern
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - fhirResource: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      * - fhirStore: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}

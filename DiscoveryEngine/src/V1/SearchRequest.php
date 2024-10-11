@@ -86,6 +86,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $offset = 0;
     /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     */
+    protected $one_box_page_size = 0;
+    /**
      * Specs defining dataStores to filter on in a search call and configurations
      * for those dataStores. This is only considered for engines with multiple
      * dataStores use case. For single dataStore within an engine, they should
@@ -344,6 +352,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token] is
      *           unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type int $one_box_page_size
+     *           The maximum number of results to return for OneBox.
+     *           This applies to each OneBox type individually.
+     *           Default number is 10.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
      *           Specs defining dataStores to filter on in a search call and configurations
      *           for those dataStores. This is only considered for engines with multiple
@@ -731,6 +743,36 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->offset = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     * @return int
+     */
+    public function getOneBoxPageSize()
+    {
+        return $this->one_box_page_size;
+    }
+
+    /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOneBoxPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->one_box_page_size = $var;
 
         return $this;
     }

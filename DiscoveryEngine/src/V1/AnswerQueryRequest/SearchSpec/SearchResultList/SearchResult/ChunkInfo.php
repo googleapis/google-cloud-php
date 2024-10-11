@@ -27,6 +27,12 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string content = 2;</code>
      */
     protected $content = '';
+    /**
+     * Metadata of the document from the current chunk.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo.DocumentMetadata document_metadata = 4;</code>
+     */
+    protected $document_metadata = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
      *           Chunk resource name.
      *     @type string $content
      *           Chunk textual content.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\ChunkInfo\DocumentMetadata $document_metadata
+     *           Metadata of the document from the current chunk.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,42 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->content = $var;
+
+        return $this;
+    }
+
+    /**
+     * Metadata of the document from the current chunk.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo.DocumentMetadata document_metadata = 4;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\ChunkInfo\DocumentMetadata|null
+     */
+    public function getDocumentMetadata()
+    {
+        return $this->document_metadata;
+    }
+
+    public function hasDocumentMetadata()
+    {
+        return isset($this->document_metadata);
+    }
+
+    public function clearDocumentMetadata()
+    {
+        unset($this->document_metadata);
+    }
+
+    /**
+     * Metadata of the document from the current chunk.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.ChunkInfo.DocumentMetadata document_metadata = 4;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\ChunkInfo\DocumentMetadata $var
+     * @return $this
+     */
+    public function setDocumentMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\ChunkInfo\DocumentMetadata::class);
+        $this->document_metadata = $var;
 
         return $this;
     }

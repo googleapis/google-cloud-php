@@ -96,9 +96,11 @@ class EngineServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $disableAnalytics = false;
         $expectedResponse = new Engine();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDisableAnalytics($disableAnalytics);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -354,9 +356,11 @@ class EngineServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $disableAnalytics = false;
         $expectedResponse = new Engine();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDisableAnalytics($disableAnalytics);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->engineName('[PROJECT]', '[LOCATION]', '[COLLECTION]', '[ENGINE]');
@@ -492,9 +496,11 @@ class EngineServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $disableAnalytics = false;
         $expectedResponse = new Engine();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDisableAnalytics($disableAnalytics);
         $transport->addResponse($expectedResponse);
         // Mock request
         $engine = new Engine();
@@ -579,9 +585,11 @@ class EngineServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $disableAnalytics = false;
         $expectedResponse = new Engine();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDisableAnalytics($disableAnalytics);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

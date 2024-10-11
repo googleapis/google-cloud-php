@@ -35,7 +35,7 @@ use Google\Cloud\DiscoveryEngine\V1\CreateConversationRequest;
  * create already exists, an ALREADY_EXISTS error is returned.
  *
  * @param string $formattedParent Full resource name of parent data store. Format:
- *                                `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+ *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
  *                                Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
  */
 function create_conversation_sample(string $formattedParent): void

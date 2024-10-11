@@ -26,7 +26,8 @@ class AnswerSkippedReason
      */
     const ADVERSARIAL_QUERY_IGNORED = 1;
     /**
-     * The non-answer seeking query ignored case.
+     * The non-answer seeking query ignored case
+     * Google skips the answer if the query is chit chat.
      *
      * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY_IGNORED = 2;</code>
      */
@@ -71,6 +72,13 @@ class AnswerSkippedReason
      * Generated from protobuf enum <code>CUSTOMER_POLICY_VIOLATION = 7;</code>
      */
     const CUSTOMER_POLICY_VIOLATION = 7;
+    /**
+     * The non-answer seeking query ignored case.
+     * Google skips the answer if the query doesn't have clear intent.
+     *
+     * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY_IGNORED_V2 = 8;</code>
+     */
+    const NON_ANSWER_SEEKING_QUERY_IGNORED_V2 = 8;
 
     private static $valueToName = [
         self::ANSWER_SKIPPED_REASON_UNSPECIFIED => 'ANSWER_SKIPPED_REASON_UNSPECIFIED',
@@ -81,6 +89,7 @@ class AnswerSkippedReason
         self::NO_RELEVANT_CONTENT => 'NO_RELEVANT_CONTENT',
         self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
         self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
+        self::NON_ANSWER_SEEKING_QUERY_IGNORED_V2 => 'NON_ANSWER_SEEKING_QUERY_IGNORED_V2',
     ];
 
     public static function name($value)
