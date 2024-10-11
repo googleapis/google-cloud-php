@@ -10,9 +10,44 @@
                 "grpc": {
                     "libraryClient": "BackupDRGapicClient",
                     "rpcs": {
+                        "CreateBackupPlan": {
+                            "methods": [
+                                "createBackupPlan"
+                            ]
+                        },
+                        "CreateBackupPlanAssociation": {
+                            "methods": [
+                                "createBackupPlanAssociation"
+                            ]
+                        },
+                        "CreateBackupVault": {
+                            "methods": [
+                                "createBackupVault"
+                            ]
+                        },
                         "CreateManagementServer": {
                             "methods": [
                                 "createManagementServer"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteBackupPlan": {
+                            "methods": [
+                                "deleteBackupPlan"
+                            ]
+                        },
+                        "DeleteBackupPlanAssociation": {
+                            "methods": [
+                                "deleteBackupPlanAssociation"
+                            ]
+                        },
+                        "DeleteBackupVault": {
+                            "methods": [
+                                "deleteBackupVault"
                             ]
                         },
                         "DeleteManagementServer": {
@@ -20,14 +55,94 @@
                                 "deleteManagementServer"
                             ]
                         },
+                        "FetchUsableBackupVaults": {
+                            "methods": [
+                                "fetchUsableBackupVaults"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupPlan": {
+                            "methods": [
+                                "getBackupPlan"
+                            ]
+                        },
+                        "GetBackupPlanAssociation": {
+                            "methods": [
+                                "getBackupPlanAssociation"
+                            ]
+                        },
+                        "GetBackupVault": {
+                            "methods": [
+                                "getBackupVault"
+                            ]
+                        },
+                        "GetDataSource": {
+                            "methods": [
+                                "getDataSource"
+                            ]
+                        },
                         "GetManagementServer": {
                             "methods": [
                                 "getManagementServer"
                             ]
                         },
+                        "ListBackupPlanAssociations": {
+                            "methods": [
+                                "listBackupPlanAssociations"
+                            ]
+                        },
+                        "ListBackupPlans": {
+                            "methods": [
+                                "listBackupPlans"
+                            ]
+                        },
+                        "ListBackupVaults": {
+                            "methods": [
+                                "listBackupVaults"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListDataSources": {
+                            "methods": [
+                                "listDataSources"
+                            ]
+                        },
                         "ListManagementServers": {
                             "methods": [
                                 "listManagementServers"
+                            ]
+                        },
+                        "RestoreBackup": {
+                            "methods": [
+                                "restoreBackup"
+                            ]
+                        },
+                        "TriggerBackup": {
+                            "methods": [
+                                "triggerBackup"
+                            ]
+                        },
+                        "UpdateBackup": {
+                            "methods": [
+                                "updateBackup"
+                            ]
+                        },
+                        "UpdateBackupVault": {
+                            "methods": [
+                                "updateBackupVault"
+                            ]
+                        },
+                        "UpdateDataSource": {
+                            "methods": [
+                                "updateDataSource"
                             ]
                         },
                         "GetLocation": {
