@@ -21,7 +21,6 @@ use Google\Cloud\Core\ServiceBuilder;
 use Google\Cloud\Core\Testing\CheckForClassTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Spanner\SpannerClient;
@@ -164,11 +163,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'datastore',
                 DatastoreClient::class
-            ], [
-                'firestore',
-                FirestoreClient::class,
-                [],
-                [$this, 'checkAndSkipGrpcTests']
             ], [
                 'logging',
                 LoggingClient::class

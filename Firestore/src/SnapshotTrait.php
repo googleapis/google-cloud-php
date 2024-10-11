@@ -17,30 +17,28 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\TimestampTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Methods common to representing Document Snapshots.
  */
 trait SnapshotTrait
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use PathTrait;
-    use TimeTrait;
-    use TimestampTrait;
 
     /**
      * Execute a service request to retrieve a document snapshot.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param DocumentReference $reference The parent document.
      * @param array $options {
@@ -51,7 +49,8 @@ trait SnapshotTrait
      * @return DocumentSnapshot
      */
     private function createSnapshot(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         DocumentReference $reference,
         array $options = []
@@ -61,7 +60,12 @@ trait SnapshotTrait
         $exists = true;
 
         try {
-            $document = $this->getSnapshot($connection, $reference->name(), $options);
+            $document = $this->getSnapshot(
+                $requestHandler,
+                $serializer,
+                $reference->name(),
+                $options
+            );
         } catch (NotFoundException $e) {
             $exists = false;
         }
@@ -77,7 +81,7 @@ trait SnapshotTrait
      * @codingStandardsIgnoreStart
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param DocumentReference $reference The parent document.
-     * @param array $document [Document](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Document)
+     * @param array $document [Document](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Document)
      * @param bool $exists Whether the document exists. **Defaults to** `true`.
      * @codingStandardsIgnoreEnd
      */
@@ -91,15 +95,15 @@ trait SnapshotTrait
             ? $valueMapper->decodeValues($this->pluck('fields', $document))
             : [];
 
-        $document = $this->transformSnapshotTimestamps($document);
-
         return new DocumentSnapshot($reference, $valueMapper, $document, $fields, $exists);
     }
 
     /**
      * Send a service request for a snapshot, and return the raw data
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
@@ -107,14 +111,24 @@ trait SnapshotTrait
      *     specified.
      * @throws NotFoundException If the document does not exist.
      */
-    private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
-    {
-        $options = $this->formatReadTimeOption($options);
-
-        $snapshot = $connection->batchGetDocuments([
+    private function getSnapshot(
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        $name,
+        array $options = []
+    ) {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'database' => $this->databaseFromName($name),
             'documents' => [$name],
-        ] + $options)->current();
+        ];
+        $request = $serializer->decodeMessage(new BatchGetDocumentsRequest(), $data);
+        $snapshot = $requestHandler->sendRequest(
+            FirestoreClient::class,
+            'batchGetDocuments',
+            $request,
+            $optionalArgs
+        )->current();
 
         if (!isset($snapshot['found'])) {
             throw new NotFoundException(sprintf(
@@ -131,7 +145,9 @@ trait SnapshotTrait
      * input order, creates a list of snapshots (whether the document exists or
      * not), and returns.
      *
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -141,7 +157,8 @@ trait SnapshotTrait
      * @return DocumentSnapshot[]
      */
     private function getDocumentsByPaths(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -167,10 +184,18 @@ trait SnapshotTrait
             $documentNames[] = $path;
         }
 
-        $documents = $this->connection->batchGetDocuments([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'database' => $this->databaseName($projectId, $database),
             'documents' => $documentNames,
-        ] + $options);
+        ];
+        $request = $serializer->decodeMessage(new BatchGetDocumentsRequest(), $data);
+        $documents = $requestHandler->sendRequest(
+            FirestoreClient::class,
+            'batchGetDocuments',
+            $request,
+            $optionalArgs
+        );
 
         $res = [];
         foreach ($documents as $document) {
@@ -184,7 +209,8 @@ trait SnapshotTrait
                 : $document['missing'];
 
             $ref = $this->getDocumentReference(
-                $connection,
+                $requestHandler,
+                $serializer,
                 $mapper,
                 $projectId,
                 $database,
@@ -210,7 +236,9 @@ trait SnapshotTrait
     /**
      * Creates a DocumentReference object.
      *
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -219,7 +247,8 @@ trait SnapshotTrait
      * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getDocumentReference(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -234,10 +263,12 @@ trait SnapshotTrait
         }
 
         return new DocumentReference(
-            $connection,
+            $requestHandler,
+            $serializer,
             $mapper,
             $this->getCollectionReference(
-                $connection,
+                $requestHandler,
+                $serializer,
                 $mapper,
                 $projectId,
                 $database,
@@ -250,7 +281,9 @@ trait SnapshotTrait
     /**
      * Creates a CollectionReference object.
      *
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -259,7 +292,8 @@ trait SnapshotTrait
      * @throws \InvalidArgumentException if an invalid path is provided.
      */
     private function getCollectionReference(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -276,27 +310,11 @@ trait SnapshotTrait
             ));
         }
 
-        return new CollectionReference($connection, $mapper, $name);
-    }
-
-    /**
-     * Convert snapshot timestamps to Google Cloud PHP types.
-     *
-     * @param array $data The snapshot data.
-     * @return array
-     */
-    private function transformSnapshotTimestamps(array $data)
-    {
-        foreach (['createTime', 'updateTime', 'readTime'] as $timestampField) {
-            if (!isset($data[$timestampField])) {
-                continue;
-            }
-
-            list($dt, $nanos) = $this->parseTimeString($data[$timestampField]);
-
-            $data[$timestampField] = new Timestamp($dt, $nanos);
-        }
-
-        return $data;
+        return new CollectionReference(
+            $requestHandler,
+            $serializer,
+            $mapper,
+            $name
+        );
     }
 }
