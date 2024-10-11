@@ -10,6 +10,14 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A query for entities.
+ * The query stages are executed in the following order:
+ * 1. kind
+ * 2. filter
+ * 3. projection
+ * 4. order + start_cursor + end_cursor
+ * 5. offset
+ * 6. limit
+ * 7. find_nearest
  *
  * Generated from protobuf message <code>google.datastore.v1.Query</code>
  */
@@ -85,6 +93,14 @@ class Query extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 12;</code>
      */
     private $limit = null;
+    /**
+     * Optional. A potential Nearest Neighbors Search.
+     * Applies after all other filters and ordering.
+     * Finds the closest vector embeddings to the given query vector.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.FindNearest find_nearest = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $find_nearest = null;
 
     /**
      * Constructor.
@@ -126,6 +142,10 @@ class Query extends \Google\Protobuf\Internal\Message
      *           constraints. Optional.
      *           Unspecified is interpreted as no limit.
      *           Must be >= 0 if specified.
+     *     @type \Google\Cloud\Datastore\V1\FindNearest $find_nearest
+     *           Optional. A potential Nearest Neighbors Search.
+     *           Applies after all other filters and ordering.
+     *           Finds the closest vector embeddings to the given query vector.
      * }
      */
     public function __construct($data = NULL) {
@@ -451,6 +471,46 @@ class Query extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("limit", $var);
         return $this;}
+
+    /**
+     * Optional. A potential Nearest Neighbors Search.
+     * Applies after all other filters and ordering.
+     * Finds the closest vector embeddings to the given query vector.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.FindNearest find_nearest = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastore\V1\FindNearest|null
+     */
+    public function getFindNearest()
+    {
+        return $this->find_nearest;
+    }
+
+    public function hasFindNearest()
+    {
+        return isset($this->find_nearest);
+    }
+
+    public function clearFindNearest()
+    {
+        unset($this->find_nearest);
+    }
+
+    /**
+     * Optional. A potential Nearest Neighbors Search.
+     * Applies after all other filters and ordering.
+     * Finds the closest vector embeddings to the given query vector.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.FindNearest find_nearest = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastore\V1\FindNearest $var
+     * @return $this
+     */
+    public function setFindNearest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\FindNearest::class);
+        $this->find_nearest = $var;
+
+        return $this;
+    }
 
 }
 
