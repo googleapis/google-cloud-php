@@ -121,6 +121,4 @@ class ArrowData extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ArrowData::class, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest_ArrowData::class);
 
