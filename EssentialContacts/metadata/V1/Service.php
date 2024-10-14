@@ -24,14 +24,14 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ï"
-/google/cloud/essentialcontacts/v1/service.proto!google.cloud.essentialcontacts.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/essentialcontacts/v1/enums.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Â
+ö"
+/google/cloud/essentialcontacts/v1/service.proto!google.cloud.essentialcontacts.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/essentialcontacts/v1/enums.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Í
 Contact
 name (	B‡A
 email (	B‡Ai
 #notification_category_subscriptions (27.google.cloud.essentialcontacts.v1.NotificationCategoryB‡A
-language_tag (	B‡AL
-validation_state (22.google.cloud.essentialcontacts.v1.ValidationState1
+language_tag (	B‡AQ
+validation_state (22.google.cloud.essentialcontacts.v1.ValidationStateB‡A1
 validate_time	 (2.google.protobuf.Timestamp:´ÍAß
 (essentialcontacts.googleapis.com/Contact%projects/{project}/contacts/{contact}#folders/{folder}/contacts/{contact}/organizations/{organization}/contacts/{contact}"à
 ListContactsRequest@
