@@ -78,6 +78,20 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $cloud_sql_instance = '';
     /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_instance = 17;</code>
+     */
+    protected $redis_instance = '';
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_cluster = 18;</code>
+     */
+    protected $redis_cluster = '';
+    /**
      * A [Cloud Function](https://cloud.google.com/functions).
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
@@ -158,6 +172,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *     @type string $cloud_sql_instance
      *           A [Cloud SQL](https://cloud.google.com/sql) instance URI.
+     *     @type string $redis_instance
+     *           A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     *           URI.
+     *     @type string $redis_cluster
+     *           A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     *           URI.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
      *           A [Cloud Function](https://cloud.google.com/functions).
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $app_engine_version
@@ -465,6 +485,62 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cloud_sql_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_instance = 17;</code>
+     * @return string
+     */
+    public function getRedisInstance()
+    {
+        return $this->redis_instance;
+    }
+
+    /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_instance = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedisInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redis_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_cluster = 18;</code>
+     * @return string
+     */
+    public function getRedisCluster()
+    {
+        return $this->redis_cluster;
+    }
+
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_cluster = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedisCluster($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redis_cluster = $var;
 
         return $this;
     }
