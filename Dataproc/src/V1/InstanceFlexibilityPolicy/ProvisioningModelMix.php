@@ -168,6 +168,4 @@ class ProvisioningModelMix extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProvisioningModelMix::class, \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy_ProvisioningModelMix::class);
 
