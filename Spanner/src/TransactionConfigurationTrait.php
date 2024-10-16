@@ -129,7 +129,9 @@ trait TransactionConfigurationTrait
         } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
             $transactionOptions = $this->configureSnapshotOptions($options, $previous);
         } elseif ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $transactionOptions = $this->configureTransactionOptions($type == 'begin' ? $begin : []);
+            $transactionOptions = $this->configureTransactionOptions(
+                $type == 'begin' && is_array($begin) ? $begin : []
+            );
         } else {
             throw new \BadMethodCallException(sprintf(
                 'Invalid transaction context %s',
