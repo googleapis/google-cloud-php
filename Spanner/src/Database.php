@@ -917,7 +917,7 @@ class Database
         ];
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,

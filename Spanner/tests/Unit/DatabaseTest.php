@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
@@ -29,6 +30,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
@@ -43,6 +45,9 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\ResultSet;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
@@ -2000,6 +2005,56 @@ class DatabaseTest extends TestCase
             $t->execute($sql);
             $t->rollback();
         }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionWithExcludeTxnFromChangeStreams()
+    {
+        $sql = 'SELECT example FROM sql_query';
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $session = new SessionProto(['name' => $sessName]);
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
+
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([$resultSet]);
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
+        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
+        $gapic->executeStreamingSql(
+            $sessName,
+            $sql,
+            Argument::that(function (array $options) {
+                $this->assertArrayHasKey('transaction', $options);
+                $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
+                $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $database = new Database(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            $this->instance,
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $database->runTransaction(
+            function (Transaction $t) use ($sql) {
+                // Run a fake query
+                $t->executeUpdate($sql);
+
+                // Simulate calling Transaction::commmit()
+                $prop = new \ReflectionProperty($t, 'state');
+                $prop->setAccessible(true);
+                $prop->setValue($t, Transaction::STATE_COMMITTED);
+            },
+            ['transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
+        );
     }
 
     private function createStreamingAPIArgs()
