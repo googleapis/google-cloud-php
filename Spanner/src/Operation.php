@@ -270,7 +270,6 @@ class Operation
         iterator_to_array($res->rows());
 
         $stats = $res->stats();
-
         if (!$stats) {
             throw new InvalidArgumentException(
                 'Partitioned DML response missing stats, possible due to non-DML statement as input.'

@@ -1105,7 +1105,9 @@ class Grpc implements ConnectionInterface
 
         // NOTE: if set for read-only actions, will throw exception
         if (isset($transactionOptions['excludeTxnFromChangeStreams'])) {
-            $options->setExcludeTxnFromChangeStreams($args['excludeTxnFromChangeStreams']);
+            $options->setExcludeTxnFromChangeStreams(
+                $transactionOptions['excludeTxnFromChangeStreams']
+            );
         }
 
         $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];

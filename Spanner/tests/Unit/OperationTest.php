@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
+use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeyRange;
@@ -35,6 +36,9 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\TransactionOptions;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -352,6 +356,32 @@ class OperationTest extends TestCase
         $t = $this->operation->transaction($this->session);
         $this->assertInstanceOf(Transaction::class, $t);
         $this->assertEquals(self::TRANSACTION, $t->id());
+    }
+
+    public function testTransactionWithExcludeTxnFromChangeStreams()
+    {
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->beginTransaction(
+            self::SESSION,
+            Argument::that(function (TransactionOptions $options) {
+                $this->assertTrue($options->getExcludeTxnFromChangeStreams());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalled()
+            ->willReturn(new TransactionProto(['id' => 'foo']));
+
+        $operation = new Operation(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            true
+        );
+
+        $transaction = $operation->transaction($this->session, [
+           'transactionOptions' => ['excludeTxnFromChangeStreams' => true]
+        ]);
+
+        $this->assertEquals('foo', $transaction->id());
     }
 
     public function testSnapshot()

@@ -2021,16 +2021,12 @@ class DatabaseTest extends TestCase
         $gapic = $this->prophesize(SpannerClient::class);
         $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
         $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
-        $gapic->executeStreamingSql(
-            $sessName,
-            $sql,
-            Argument::that(function (array $options) {
-                $this->assertArrayHasKey('transaction', $options);
-                $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
-                $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
-                return true;
-            })
-        )
+        $gapic->executeStreamingSql($sessName, $sql, Argument::that(function (array $options) {
+            $this->assertArrayHasKey('transaction', $options);
+            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
+            $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
+            return true;
+        }))
             ->shouldBeCalledOnce()
             ->willReturn($stream->reveal());
 
