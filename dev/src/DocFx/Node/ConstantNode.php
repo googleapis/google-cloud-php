@@ -42,4 +42,9 @@ class ConstantNode
     {
         return $this->xmlNode->value;
     }
+
+    public function getProtoPath(string $package = null): string
+    {
+        return ($package ? $package . '.' : '') . $this->getName();
+    }
 }
