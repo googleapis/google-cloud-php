@@ -133,7 +133,7 @@ trait EncryptionTrait
 
             $signature = $rsa->sign($data);
         } elseif (class_exists(RSA2::class) && !$forceOpenssl) {
-            $rsa = new RSA2;
+            $rsa = new RSA2();
             $rsa->loadKey($privateKey);
             $rsa->setSignatureMode(RSA2::SIGNATURE_PKCS1);
             $rsa->setHash('sha256');

@@ -36,12 +36,12 @@ trait TimestampTrait
             return $when;
         } elseif (!$when) {
             list($usec, $sec) = explode(' ', microtime());
-            $micro = sprintf("%06d", $usec * 1000000);
+            $micro = sprintf('%06d', $usec * 1000000);
             $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
         } elseif (is_numeric($when)) {
             // Expect that this is a timestamp
-            $micro = sprintf("%06d", ($when - floor($when)) * 1000000);
-            $when = new \DateTime(date('Y-m-d H:i:s.'. $micro, (int) $when));
+            $micro = sprintf('%06d', ($when - floor($when)) * 1000000);
+            $when = new \DateTime(date('Y-m-d H:i:s.' . $micro, (int) $when));
         }
         $when->setTimezone(new \DateTimeZone('UTC'));
         return $when->format('Y-m-d\TH:i:s.u000\Z');

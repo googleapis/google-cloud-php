@@ -121,7 +121,7 @@ class Transaction implements TransactionalReadInterface
 
         if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
             throw new \InvalidArgumentException(
-                "Cannot set a transaction tag on a single-use transaction."
+                'Cannot set a transaction tag on a single-use transaction.'
             );
         }
         $this->tag = $tag;
