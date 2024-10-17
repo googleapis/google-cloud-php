@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConnectivityTest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Unique name of the resource using the form:
+     * Identifier. Unique name of the resource using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -139,7 +139,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Unique name of the resource using the form:
+     *           Identifier. Unique name of the resource using the form:
      *               `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *     @type string $description
      *           The user-supplied description of the Connectivity Test.
@@ -210,10 +210,10 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unique name of the resource using the form:
+     * Identifier. Unique name of the resource using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -222,10 +222,10 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Unique name of the resource using the form:
+     * Identifier. Unique name of the resource using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

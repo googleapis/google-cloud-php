@@ -124,17 +124,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $testId = 'testId-1422455832';
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
         $request = (new CreateConnectivityTestRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setTestId($testId)
             ->setResource($resource);
         $response = $gapicClient->createConnectivityTest($request);
@@ -151,7 +149,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getTestId();
         $this->assertProtobufEquals($testId, $actualValue);
         $actualValue = $actualApiRequestObject->getResource();
@@ -210,17 +208,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $testId = 'testId-1422455832';
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
         $request = (new CreateConnectivityTestRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setTestId($testId)
             ->setResource($resource);
         $response = $gapicClient->createConnectivityTest($request);
@@ -275,8 +271,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteConnectivityTestRequest())->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new DeleteConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -291,7 +287,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConnectivityTestTest');
         $response->pollUntilComplete([
@@ -346,8 +342,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteConnectivityTestRequest())->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new DeleteConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -392,8 +388,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $expectedResponse->setBypassFirewallChecks($bypassFirewallChecks);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $name = 'name3373707';
-        $request = (new GetConnectivityTestRequest())->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new GetConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->getConnectivityTest($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -405,7 +401,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -431,8 +427,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new GetConnectivityTestRequest())->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new GetConnectivityTestRequest())->setName($formattedName);
         try {
             $gapicClient->getConnectivityTest($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -463,8 +459,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListConnectivityTestsRequest())->setParent($parent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListConnectivityTestsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConnectivityTests($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -479,7 +475,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -505,8 +501,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListConnectivityTestsRequest())->setParent($parent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListConnectivityTestsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConnectivityTests($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -560,8 +556,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $name = 'name3373707';
-        $request = (new RerunConnectivityTestRequest())->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new RerunConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->rerunConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -576,7 +572,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rerunConnectivityTestTest');
         $response->pollUntilComplete([
@@ -631,8 +627,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new RerunConnectivityTestRequest())->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new RerunConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->rerunConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -697,8 +693,6 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
@@ -777,8 +771,6 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
@@ -1179,17 +1171,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $testId = 'testId-1422455832';
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
         $request = (new CreateConnectivityTestRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setTestId($testId)
             ->setResource($resource);
         $response = $gapicClient->createConnectivityTestAsync($request)->wait();
@@ -1206,7 +1196,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getTestId();
         $this->assertProtobufEquals($testId, $actualValue);
         $actualValue = $actualApiRequestObject->getResource();
