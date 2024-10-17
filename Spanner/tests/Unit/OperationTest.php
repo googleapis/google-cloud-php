@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -36,6 +37,8 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\ResultSet;
+use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -382,6 +385,40 @@ class OperationTest extends TestCase
         ]);
 
         $this->assertEquals('foo', $transaction->id());
+    }
+
+    public function testExecuteAndExecuteUpdateWithExcludeTxnFromChangeStreams()
+    {
+        $sql = 'SELECT example FROM sql_query';
+
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledTimes(2)->willReturn([$resultSet]);
+
+        $gapic = $this->prophesize(SpannerClient::class);
+        $gapic->executeStreamingSql(self::SESSION, $sql, Argument::that(function (array $options) {
+            $this->assertArrayHasKey('transaction', $options);
+            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
+            $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
+            return true;
+        }))
+            ->shouldBeCalledTimes(2)
+            ->willReturn($stream->reveal());
+
+        $operation = new Operation(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            true
+        );
+
+        $operation->execute($this->session, $sql, [
+           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
+        ]);
+
+        $transaction = $this->prophesize(Transaction::class)->reveal();
+
+        $operation->executeUpdate($this->session, $transaction, $sql, [
+           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
+        ]);
     }
 
     public function testSnapshot()
