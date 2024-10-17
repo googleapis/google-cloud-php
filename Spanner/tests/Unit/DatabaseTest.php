@@ -2103,6 +2103,42 @@ class DatabaseTest extends TestCase
         );
     }
 
+    public function testBatchWriteWithExcludeTxnFromChangeStreams()
+    {
+        $gapic = $this->prophesize(SpannerClient::class);
+
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $session = new SessionProto(['name' => $sessName]);
+        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
+        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
+
+        $mutationGroups = [];
+        $gapic->batchWrite(
+            $sessName,
+            $mutationGroups,
+            Argument::that(function ($options) {
+                $this->assertArrayHasKey('excludeTxnFromChangeStreams', $options);
+                $this->assertTrue($options['excludeTxnFromChangeStreams']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => 'foo']));
+
+        $database = new Database(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            $this->instance,
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $database->batchWrite($mutationGroups, [
+            'excludeTxnFromChangeStreams' => true
+        ]);
+    }
+
     private function createStreamingAPIArgs()
     {
         $row = ['id' => 1];
