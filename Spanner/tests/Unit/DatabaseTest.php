@@ -47,8 +47,11 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -108,19 +111,24 @@ class DatabaseTest extends TestCase
         ]);
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
+                'autoFailoverDisabled' => false,
                 'replicaSelections' => [
-                    'location' => 'us-central1',
-                    'type' => 'READ_WRITE',
-                    'autoFailoverDisabled' => false
+                    [
+                        'location' => 'us-central1',
+                        'type' => ReplicaType::READ_WRITE,
+
+                    ]
                 ]
             ]
         ];
         $this->directedReadOptionsExcludeReplicas = [
             'excludeReplicas' => [
+                'autoFailoverDisabled' => false,
                 'replicaSelections' => [
-                    'location' => 'us-central1',
-                    'type' => 'READ_WRITE',
-                    'autoFailoverDisabled' => false
+                    [
+                        'location' => 'us-central1',
+                        'type' => ReplicaType::READ_WRITE,
+                    ]
                 ]
             ]
         ];
@@ -2009,18 +2017,17 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithExcludeTxnFromChangeStreams()
     {
-        $sql = 'SELECT example FROM sql_query';
+        $gapic = $this->prophesize(SpannerClient::class);
+
         $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
         $session = new SessionProto(['name' => $sessName]);
         $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
-
-        $stream = $this->prophesize(ServerStream::class);
-        $stream->readAll()
-            ->shouldBeCalledOnce()
-            ->willReturn([$resultSet]);
-        $gapic = $this->prophesize(SpannerClient::class);
         $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
         $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
+
+        $sql = 'SELECT example FROM sql_query';
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
         $gapic->executeStreamingSql($sessName, $sql, Argument::that(function (array $options) {
             $this->assertArrayHasKey('transaction', $options);
             $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
@@ -2049,6 +2056,49 @@ class DatabaseTest extends TestCase
                 $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
             },
+            ['transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
+        );
+    }
+
+    public function testExecutePartitionedUpdateWithExcludeTxnFromChangeStreams()
+    {
+        $gapic = $this->prophesize(SpannerClient::class);
+
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $session = new SessionProto(['name' => $sessName]);
+        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
+        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
+
+        $sql = 'SELECT example FROM sql_query';
+        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_lower_bound' => 0])]);
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
+        $gapic->executeStreamingSql($sessName, $sql, Argument::type('array'))
+            ->shouldBeCalledOnce()
+            ->willReturn($stream->reveal());
+
+        $gapic->beginTransaction(
+            $sessName,
+            Argument::that(function (TransactionOptions $options) {
+                $this->assertTrue($options->getExcludeTxnFromChangeStreams());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => 'foo']));
+
+        $database = new Database(
+            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
+            $this->instance,
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $database->executePartitionedUpdate(
+            $sql,
             ['transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
         );
     }
