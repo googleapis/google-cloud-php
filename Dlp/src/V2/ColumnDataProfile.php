@@ -59,21 +59,21 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      */
     protected $dataset_project_id = '';
     /**
-     * The BigQuery location where the dataset's data is stored.
+     * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
-     * locations.
+     * BigQuery locations.
      *
      * Generated from protobuf field <code>string dataset_location = 20;</code>
      */
     protected $dataset_location = '';
     /**
-     * The BigQuery dataset ID.
+     * The BigQuery dataset ID, if the resource profiled is a BigQuery table.
      *
      * Generated from protobuf field <code>string dataset_id = 21;</code>
      */
     protected $dataset_id = '';
     /**
-     * The BigQuery table ID.
+     * The table ID.
      *
      * Generated from protobuf field <code>string table_id = 22;</code>
      */
@@ -166,13 +166,13 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $dataset_project_id
      *           The Google Cloud project ID that owns the profiled resource.
      *     @type string $dataset_location
-     *           The BigQuery location where the dataset's data is stored.
+     *           If supported, the location where the dataset's data is stored.
      *           See https://cloud.google.com/bigquery/docs/locations for supported
-     *           locations.
+     *           BigQuery locations.
      *     @type string $dataset_id
-     *           The BigQuery dataset ID.
+     *           The BigQuery dataset ID, if the resource profiled is a BigQuery table.
      *     @type string $table_id
-     *           The BigQuery table ID.
+     *           The table ID.
      *     @type string $column
      *           The name of the column.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
@@ -410,9 +410,9 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery location where the dataset's data is stored.
+     * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
-     * locations.
+     * BigQuery locations.
      *
      * Generated from protobuf field <code>string dataset_location = 20;</code>
      * @return string
@@ -423,9 +423,9 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery location where the dataset's data is stored.
+     * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
-     * locations.
+     * BigQuery locations.
      *
      * Generated from protobuf field <code>string dataset_location = 20;</code>
      * @param string $var
@@ -440,7 +440,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery dataset ID.
+     * The BigQuery dataset ID, if the resource profiled is a BigQuery table.
      *
      * Generated from protobuf field <code>string dataset_id = 21;</code>
      * @return string
@@ -451,7 +451,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery dataset ID.
+     * The BigQuery dataset ID, if the resource profiled is a BigQuery table.
      *
      * Generated from protobuf field <code>string dataset_id = 21;</code>
      * @param string $var
@@ -466,7 +466,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery table ID.
+     * The table ID.
      *
      * Generated from protobuf field <code>string table_id = 22;</code>
      * @return string
@@ -477,7 +477,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery table ID.
+     * The table ID.
      *
      * Generated from protobuf field <code>string table_id = 22;</code>
      * @param string $var

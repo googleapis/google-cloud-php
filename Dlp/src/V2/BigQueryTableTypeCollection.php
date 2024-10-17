@@ -7,8 +7,8 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * Over time new types may be added. Currently VIEW, MATERIALIZED_VIEW,
- * and SNAPSHOT are not supported.
+ * Over time new types may be added. Currently VIEW, MATERIALIZED_VIEW, and
+ * non-BigLake external tables are not supported.
  *
  * Protobuf type <code>google.privacy.dlp.v2.BigQueryTableTypeCollection</code>
  */
