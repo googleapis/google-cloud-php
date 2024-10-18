@@ -40,6 +40,18 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
+    /**
+     * Optional. The name of the instance in which the repository is hosted,
+     * formatted as
+     * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
+     * When listing repositories via
+     * securesourcemanager.googleapis.com (Control Plane API), this field is
+     * required. When listing repositories via *.sourcemanager.dev (Data Plane
+     * API), this field is ignored.
+     *
+     * Generated from protobuf field <code>string instance = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $instance = '';
 
     /**
      * @param string $parent Required. Parent value for ListRepositoriesRequest. Please see
@@ -70,6 +82,14 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *           A token identifying a page of results the server should return.
      *     @type string $filter
      *           Optional. Filter results.
+     *     @type string $instance
+     *           Optional. The name of the instance in which the repository is hosted,
+     *           formatted as
+     *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
+     *           When listing repositories via
+     *           securesourcemanager.googleapis.com (Control Plane API), this field is
+     *           required. When listing repositories via *.sourcemanager.dev (Data Plane
+     *           API), this field is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,6 +199,44 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the instance in which the repository is hosted,
+     * formatted as
+     * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
+     * When listing repositories via
+     * securesourcemanager.googleapis.com (Control Plane API), this field is
+     * required. When listing repositories via *.sourcemanager.dev (Data Plane
+     * API), this field is ignored.
+     *
+     * Generated from protobuf field <code>string instance = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
+
+    /**
+     * Optional. The name of the instance in which the repository is hosted,
+     * formatted as
+     * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
+     * When listing repositories via
+     * securesourcemanager.googleapis.com (Control Plane API), this field is
+     * required. When listing repositories via *.sourcemanager.dev (Data Plane
+     * API), this field is ignored.
+     *
+     * Generated from protobuf field <code>string instance = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->instance = $var;
 
         return $this;
     }
