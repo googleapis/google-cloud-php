@@ -1,5 +1,114 @@
 # Changelog
 
+## 0.264.0
+
+<details><summary>google/analytics-data 0.20.0</summary>
+
+
+
+### Features
+
+* Add `sampling_level` to the `ReportDefinition` type ([1d6c067](https://github.com/googleapis/google-cloud-php/commit/1d6c067b446bfe6cd2875f93ec7cf8447f882955))
+* Add `SamplingLevel` type to Data API v1alpha ([#7753](https://github.com/googleapis/google-cloud-php/issues/7753)) ([1d6c067](https://github.com/googleapis/google-cloud-php/commit/1d6c067b446bfe6cd2875f93ec7cf8447f882955))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.1.0</summary>
+
+
+
+### Features
+
+* Add experimental ArrowData type and arrow_data field within AppendRowsRequest ([#7743](https://github.com/googleapis/google-cloud-php/issues/7743)) ([6865827](https://github.com/googleapis/google-cloud-php/commit/6865827d0c14684460a2565b0f6ecc1610c1ee3a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.2.0</summary>
+
+
+
+### Features
+
+* Add `ProvisioningModelMix` to support mixing of spot and standard instances for secondary workers ([#7746](https://github.com/googleapis/google-cloud-php/issues/7746)) ([21b4eb5](https://github.com/googleapis/google-cloud-php/commit/21b4eb508f3ecbc690ccddb25993b3975cc4aa31))
+* Add support for configuration of bootdisk IOPS and throughput when bootdisk is a hyperdisk ([21b4eb5](https://github.com/googleapis/google-cloud-php/commit/21b4eb508f3ecbc690ccddb25993b3975cc4aa31))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.32.0</summary>
+
+
+
+### Features
+
+* Add FindNearest API to the stable branch ([#7744](https://github.com/googleapis/google-cloud-php/issues/7744)) ([327de67](https://github.com/googleapis/google-cloud-php/commit/327de673ae8bcb59533d906237ce5c73416293c4))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.2.0</summary>
+
+
+
+### Features
+
+* Discovery of BigQuery snapshots ([#7751](https://github.com/googleapis/google-cloud-php/issues/7751)) ([273bc5c](https://github.com/googleapis/google-cloud-php/commit/273bc5c899391c7aee545523a2dc734debf8cee8))
+
+
+### Documentation
+
+* Documentation revisions for data profiles ([273bc5c](https://github.com/googleapis/google-cloud-php/commit/273bc5c899391c7aee545523a2dc734debf8cee8))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 1.0.1</summary>
+
+
+
+### Documentation
+
+* Marks the `google.cloud.essentialcontacts.v1.Contact.validation_state` field as `output_only` ([#7745](https://github.com/googleapis/google-cloud-php/issues/7745)) ([8699235](https://github.com/googleapis/google-cloud-php/commit/869923514bca067beac9c0b754b47435fb1d8f05))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.1.0</summary>
+
+
+
+### Features
+
+* Add fields related to advertised routes to the RouteInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add firewall policy URI to the FirewallInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add load balancer name to the ForwardingRuleInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add messages and fields related to Redis Clusters ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add messages and fields related to Redis Instances ([#7748](https://github.com/googleapis/google-cloud-php/issues/7748)) ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add more detailed abort and drop causes to corresponding enums ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add PSC network attachment URI to the InstanceInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add PSC target fields to the ForwardingRuleInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add region name field to the RouteInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add region name to the ForwardingRuleInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+* Add subnet URI and region name to the NetworkInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+
+
+### Documentation
+
+* Update outdated comments in the FirewallInfo proto ([72df650](https://github.com/googleapis/google-cloud-php/commit/72df650c65a54e473aeb0e186901295c40d0c7e8))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.2.0</summary>
+
+
+
+### Features
+
+* Add field `instance` to message `.google.cloud.securesourcemanager.v1.ListRepositoriesRequest` ([#7752](https://github.com/googleapis/google-cloud-php/issues/7752)) ([600d1af](https://github.com/googleapis/google-cloud-php/commit/600d1af1e1e258e2ba6110ce1ae842637a8f8a5d))
+
+
+### Documentation
+
+* A comment for field `instance` in message `.google.cloud.securesourcemanager.v1.Repository` is changed ([600d1af](https://github.com/googleapis/google-cloud-php/commit/600d1af1e1e258e2ba6110ce1ae842637a8f8a5d))
+
+</details>
+
 ## 0.263.0
 
 <details><summary>google/cloud-backupdr 0.4.0</summary>
