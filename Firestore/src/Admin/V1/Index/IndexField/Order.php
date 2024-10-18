@@ -58,7 +58,3 @@ class Order
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Order::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField_Order::class);
-
