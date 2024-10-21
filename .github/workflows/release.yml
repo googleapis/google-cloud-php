@@ -29,11 +29,9 @@ jobs:
             mkdir libgit2/build && cd libgit2/build
             cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
             sudo cmake --build . --target install
-        - name: Compile splitsh
+        - name: Install splitsh-lite
           run: |
-            go env -w GO111MODULE=off
-            go get github.com/splitsh/lite
-            go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
+            go install github.com/splitsh/lite
         - name: Checkout google/cloud
           uses: actions/checkout@v4
           with:
@@ -58,7 +56,7 @@ jobs:
             RELEASE_TAG: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
           run: |
             ./dev/google-cloud split $GITHUB_REPOSITORY $RELEASE_TAG \
-              --splitsh=/usr/local/bin/splitsh-lite \
+              --splitsh=$HOME/go/bin/lite \
               -t ${{ secrets.SPLIT_TOKEN }} \
               --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }}
