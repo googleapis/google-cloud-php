@@ -36,9 +36,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      * When creating repository via
      * securesourcemanager.googleapis.com (Control Plane API), this field is used
-     * as input.
-     * When creating repository via *.sourcemanager.dev (Data Plane API), this
-     * field is output only.
+     * as input. When creating repository via *.sourcemanager.dev (Data Plane
+     * API), this field is output only.
      *
      * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -101,9 +100,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      *           When creating repository via
      *           securesourcemanager.googleapis.com (Control Plane API), this field is used
-     *           as input.
-     *           When creating repository via *.sourcemanager.dev (Data Plane API), this
-     *           field is output only.
+     *           as input. When creating repository via *.sourcemanager.dev (Data Plane
+     *           API), this field is output only.
      *     @type string $uid
      *           Output only. Unique identifier of the repository.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -189,9 +187,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      * When creating repository via
      * securesourcemanager.googleapis.com (Control Plane API), this field is used
-     * as input.
-     * When creating repository via *.sourcemanager.dev (Data Plane API), this
-     * field is output only.
+     * as input. When creating repository via *.sourcemanager.dev (Data Plane
+     * API), this field is output only.
      *
      * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -207,9 +204,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      * When creating repository via
      * securesourcemanager.googleapis.com (Control Plane API), this field is used
-     * as input.
-     * When creating repository via *.sourcemanager.dev (Data Plane API), this
-     * field is output only.
+     * as input. When creating repository via *.sourcemanager.dev (Data Plane
+     * API), this field is output only.
      *
      * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

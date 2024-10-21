@@ -65,6 +65,4 @@ class Check extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Check::class, \Google\Cloud\SecureSourceManager\V1\BranchRule_Check::class);
 
