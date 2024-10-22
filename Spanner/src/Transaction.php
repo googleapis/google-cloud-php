@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -239,6 +240,12 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdate($sql, array $options = [])
     {
+        if (isset($options['transaction']['begin']['excludeTxnFromChangeStreams'])) {
+            throw new ValidationException(
+                'The excludeTxnFromChangeStreams option cannot be set for individual DML requests.'
+                . ' This option should be set at the transaction level.'
+            );
+        }
         $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
