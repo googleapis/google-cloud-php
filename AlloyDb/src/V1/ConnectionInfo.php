@@ -33,6 +33,14 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $ip_address = '';
     /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $public_ip_address = '';
+    /**
      * Output only. The unique ID of the Instance.
      *
      * Generated from protobuf field <code>string instance_uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -53,6 +61,10 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      *           Output only. The private network IP address for the Instance. This is the
      *           default IP for the instance and is always created (even if enable_public_ip
      *           is set). This is the connection endpoint for an end-user application.
+     *     @type string $public_ip_address
+     *           Output only. The public IP addresses for the Instance. This is available
+     *           ONLY when enable_public_ip is set. This is the connection endpoint for an
+     *           end-user application.
      *     @type string $instance_uid
      *           Output only. The unique ID of the Instance.
      * }
@@ -118,6 +130,36 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getPublicIpAddress()
+    {
+        return $this->public_ip_address;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_ip_address = $var;
 
         return $this;
     }
