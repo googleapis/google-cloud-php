@@ -256,7 +256,9 @@ class TransactionTest extends TestCase
     public function testExecuteUpdateWithExcludeTxnFromChangeStreamsThrowsException()
     {
         $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('The excludeTxnFromChangeStreams option cannot be set for individual DML requests');
+        $this->expectExceptionMessage(
+            'The excludeTxnFromChangeStreams option cannot be set for individual DML requests'
+        );
 
         $sql = 'UPDATE foo SET bar = @bar';
         $this->transaction->executeUpdate($sql, [
