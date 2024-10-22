@@ -20,7 +20,7 @@ class VoiceCloneParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string voice_cloning_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $voice_cloning_key = '';
+    private $voice_cloning_key = '';
 
     /**
      * Constructor.
