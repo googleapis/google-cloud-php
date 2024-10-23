@@ -154,6 +154,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $edition = 0;
+    /**
+     * Optional. Controls the default backup behavior for new databases within the
+     * instance.
+     * Note that `AUTOMATIC` is not permitted for free instances, as backups and
+     * backup schedules are not allowed for free instances.
+     * In the `GetInstance` or `ListInstances` response, if the value of
+     * default_backup_schedule_type is unset or NONE, no default backup
+     * schedule will be created for new databases within the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_backup_schedule_type = 0;
 
     /**
      * Constructor.
@@ -248,6 +260,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which the instance was most recently updated.
      *     @type int $edition
      *           Optional. The `Edition` of the current instance.
+     *     @type int $default_backup_schedule_type
+     *           Optional. Controls the default backup behavior for new databases within the
+     *           instance.
+     *           Note that `AUTOMATIC` is not permitted for free instances, as backups and
+     *           backup schedules are not allowed for free instances.
+     *           In the `GetInstance` or `ListInstances` response, if the value of
+     *           default_backup_schedule_type is unset or NONE, no default backup
+     *           schedule will be created for new databases within the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -741,6 +761,44 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\Edition::class);
         $this->edition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls the default backup behavior for new databases within the
+     * instance.
+     * Note that `AUTOMATIC` is not permitted for free instances, as backups and
+     * backup schedules are not allowed for free instances.
+     * In the `GetInstance` or `ListInstances` response, if the value of
+     * default_backup_schedule_type is unset or NONE, no default backup
+     * schedule will be created for new databases within the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultBackupScheduleType()
+    {
+        return $this->default_backup_schedule_type;
+    }
+
+    /**
+     * Optional. Controls the default backup behavior for new databases within the
+     * instance.
+     * Note that `AUTOMATIC` is not permitted for free instances, as backups and
+     * backup schedules are not allowed for free instances.
+     * In the `GetInstance` or `ListInstances` response, if the value of
+     * default_backup_schedule_type is unset or NONE, no default backup
+     * schedule will be created for new databases within the instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultBackupScheduleType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\DefaultBackupScheduleType::class);
+        $this->default_backup_schedule_type = $var;
 
         return $this;
     }
