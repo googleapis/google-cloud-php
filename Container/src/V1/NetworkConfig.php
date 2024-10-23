@@ -121,6 +121,16 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool enable_cilium_clusterwide_network_policy = 21;</code>
      */
     protected $enable_cilium_clusterwide_network_policy = null;
+    /**
+     * Controls whether by default nodes have private IP addresses only.
+     * It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     * and this field at the same time.
+     * To update the default setting, use
+     * [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
+     */
+    protected $default_enable_private_nodes = null;
 
     /**
      * Constructor.
@@ -174,6 +184,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Now named inter-node transparent encryption.
      *     @type bool $enable_cilium_clusterwide_network_policy
      *           Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
+     *     @type bool $default_enable_private_nodes
+     *           Controls whether by default nodes have private IP addresses only.
+     *           It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     *           and this field at the same time.
+     *           To update the default setting, use
+     *           [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
      * }
      */
     public function __construct($data = NULL) {
@@ -679,6 +695,50 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_cilium_clusterwide_network_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls whether by default nodes have private IP addresses only.
+     * It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     * and this field at the same time.
+     * To update the default setting, use
+     * [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
+     * @return bool
+     */
+    public function getDefaultEnablePrivateNodes()
+    {
+        return isset($this->default_enable_private_nodes) ? $this->default_enable_private_nodes : false;
+    }
+
+    public function hasDefaultEnablePrivateNodes()
+    {
+        return isset($this->default_enable_private_nodes);
+    }
+
+    public function clearDefaultEnablePrivateNodes()
+    {
+        unset($this->default_enable_private_nodes);
+    }
+
+    /**
+     * Controls whether by default nodes have private IP addresses only.
+     * It is invalid to specify both [PrivateClusterConfig.enablePrivateNodes][]
+     * and this field at the same time.
+     * To update the default setting, use
+     * [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *
+     * Generated from protobuf field <code>optional bool default_enable_private_nodes = 22;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDefaultEnablePrivateNodes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->default_enable_private_nodes = $var;
 
         return $this;
     }

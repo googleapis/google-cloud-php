@@ -68,15 +68,17 @@ jobs:
         continue-on-error: true
         # OwlBot PRs which are not labelled feat should not add new files or methods
         run: |
-          ~/.composer/vendor/bin/roave-backward-compatibility-check --to=origin/main --format=github-actions
+          ~/.composer/vendor/bin/roave-backward-compatibility-check \
+            --from=${{ github.head_ref || github.ref_name }} \
+            --to=origin/main --format=github-actions
       - name: "Print the action item"
         run: |
           if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
-            if [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "true" ]]; then
+            if [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "false" ]]; then
               echo "Action item: Change the conventional commit to use 'feat'"
               exit 1
             fi
-          elif [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "false" ]]; then
+          elif [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "true" ]]; then
             echo "Action item: No features found, do not use 'feat' for the conventional commit"
             exit 1
           fi

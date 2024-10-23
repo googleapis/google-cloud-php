@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Thread extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of the thread.
+     * Resource name of the thread.
      * Example: `spaces/{space}/threads/{thread}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -47,7 +47,7 @@ class Thread extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name of the thread.
+     *           Resource name of the thread.
      *           Example: `spaces/{space}/threads/{thread}`
      *     @type string $thread_key
      *           Optional. Input for creating or updating a thread. Otherwise, output only.
@@ -65,7 +65,7 @@ class Thread extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the thread.
+     * Resource name of the thread.
      * Example: `spaces/{space}/threads/{thread}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -77,7 +77,7 @@ class Thread extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the thread.
+     * Resource name of the thread.
      * Example: `spaces/{space}/threads/{thread}`
      *
      * Generated from protobuf field <code>string name = 1;</code>

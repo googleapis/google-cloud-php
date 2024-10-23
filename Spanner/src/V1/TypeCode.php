@@ -98,13 +98,13 @@ class TypeCode
     const STRUCT = 9;
     /**
      * Encoded as `string`, in decimal format or scientific notation format.
-     * <br>Decimal format:
-     * <br>`[+-]Digits[.[Digits]]` or
-     * <br>`[+-][Digits].Digits`
+     * Decimal format:
+     * `[+-]Digits[.[Digits]]` or
+     * `[+-][Digits].Digits`
      * Scientific notation:
-     * <br>`[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or
-     * <br>`[+-][Digits].Digits[ExponentIndicator[+-]Digits]`
-     * <br>(ExponentIndicator is `"e"` or `"E"`)
+     * `[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or
+     * `[+-][Digits].Digits[ExponentIndicator[+-]Digits]`
+     * (ExponentIndicator is `"e"` or `"E"`)
      *
      * Generated from protobuf enum <code>NUMERIC = 10;</code>
      */
@@ -134,6 +134,16 @@ class TypeCode
      * Generated from protobuf enum <code>ENUM = 14;</code>
      */
     const ENUM = 14;
+    /**
+     * Encoded as `string`, in `ISO8601` duration format -
+     * `P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S`
+     * where `n` is an integer.
+     * For example, `P1Y2M3DT4H5M6.5S` represents time duration of 1 year, 2
+     * months, 3 days, 4 hours, 5 minutes, and 6.5 seconds.
+     *
+     * Generated from protobuf enum <code>INTERVAL = 16;</code>
+     */
+    const INTERVAL = 16;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
@@ -151,6 +161,7 @@ class TypeCode
         self::JSON => 'JSON',
         self::PROTO => 'PROTO',
         self::ENUM => 'ENUM',
+        self::INTERVAL => 'INTERVAL',
     ];
 
     public static function name($value)

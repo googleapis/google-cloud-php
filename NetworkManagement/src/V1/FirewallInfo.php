@@ -10,22 +10,22 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * For display only. Metadata associated with a VPC firewall rule, an implied
- * VPC firewall rule, or a hierarchical firewall policy rule.
+ * VPC firewall rule, or a firewall policy rule.
  *
  * Generated from protobuf message <code>google.cloud.networkmanagement.v1.FirewallInfo</code>
  */
 class FirewallInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The display name of the VPC firewall rule. This field is not applicable
-     * to hierarchical firewall policy rules.
+     * The display name of the firewall rule. This field might be empty for
+     * firewall policy rules.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
     protected $display_name = '';
     /**
-     * The URI of the VPC firewall rule. This field is not applicable to
-     * implied firewall rules or hierarchical firewall policy rules.
+     * The URI of the firewall rule. This field is not applicable to implied
+     * VPC firewall rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -57,7 +57,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     protected $network_uri = '';
     /**
      * The target tags defined by the VPC firewall rule. This field is not
-     * applicable to hierarchical firewall policy rules.
+     * applicable to firewall policy rules.
      *
      * Generated from protobuf field <code>repeated string target_tags = 7;</code>
      */
@@ -69,12 +69,21 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      */
     private $target_service_accounts;
     /**
-     * The hierarchical firewall policy that this rule is associated with.
-     * This field is not applicable to VPC firewall rules.
+     * The name of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
      *
      * Generated from protobuf field <code>string policy = 9;</code>
      */
     protected $policy = '';
+    /**
+     * The URI of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
+     *
+     * Generated from protobuf field <code>string policy_uri = 11;</code>
+     */
+    protected $policy_uri = '';
     /**
      * The firewall rule's type.
      *
@@ -89,11 +98,11 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           The display name of the VPC firewall rule. This field is not applicable
-     *           to hierarchical firewall policy rules.
+     *           The display name of the firewall rule. This field might be empty for
+     *           firewall policy rules.
      *     @type string $uri
-     *           The URI of the VPC firewall rule. This field is not applicable to
-     *           implied firewall rules or hierarchical firewall policy rules.
+     *           The URI of the firewall rule. This field is not applicable to implied
+     *           VPC firewall rules.
      *     @type string $direction
      *           Possible values: INGRESS, EGRESS
      *     @type string $action
@@ -105,12 +114,17 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *           This field is not applicable to hierarchical firewall policy rules.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_tags
      *           The target tags defined by the VPC firewall rule. This field is not
-     *           applicable to hierarchical firewall policy rules.
+     *           applicable to firewall policy rules.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
      *           The target service accounts specified by the firewall rule.
      *     @type string $policy
-     *           The hierarchical firewall policy that this rule is associated with.
-     *           This field is not applicable to VPC firewall rules.
+     *           The name of the firewall policy that this rule is associated with.
+     *           This field is not applicable to VPC firewall rules and implied VPC firewall
+     *           rules.
+     *     @type string $policy_uri
+     *           The URI of the firewall policy that this rule is associated with.
+     *           This field is not applicable to VPC firewall rules and implied VPC firewall
+     *           rules.
      *     @type int $firewall_rule_type
      *           The firewall rule's type.
      * }
@@ -121,8 +135,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name of the VPC firewall rule. This field is not applicable
-     * to hierarchical firewall policy rules.
+     * The display name of the firewall rule. This field might be empty for
+     * firewall policy rules.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @return string
@@ -133,8 +147,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name of the VPC firewall rule. This field is not applicable
-     * to hierarchical firewall policy rules.
+     * The display name of the firewall rule. This field might be empty for
+     * firewall policy rules.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      * @param string $var
@@ -149,8 +163,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the VPC firewall rule. This field is not applicable to
-     * implied firewall rules or hierarchical firewall policy rules.
+     * The URI of the firewall rule. This field is not applicable to implied
+     * VPC firewall rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -161,8 +175,8 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the VPC firewall rule. This field is not applicable to
-     * implied firewall rules or hierarchical firewall policy rules.
+     * The URI of the firewall rule. This field is not applicable to implied
+     * VPC firewall rules.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -284,7 +298,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The target tags defined by the VPC firewall rule. This field is not
-     * applicable to hierarchical firewall policy rules.
+     * applicable to firewall policy rules.
      *
      * Generated from protobuf field <code>repeated string target_tags = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -296,7 +310,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The target tags defined by the VPC firewall rule. This field is not
-     * applicable to hierarchical firewall policy rules.
+     * applicable to firewall policy rules.
      *
      * Generated from protobuf field <code>repeated string target_tags = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -337,8 +351,9 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hierarchical firewall policy that this rule is associated with.
-     * This field is not applicable to VPC firewall rules.
+     * The name of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
      *
      * Generated from protobuf field <code>string policy = 9;</code>
      * @return string
@@ -349,8 +364,9 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hierarchical firewall policy that this rule is associated with.
-     * This field is not applicable to VPC firewall rules.
+     * The name of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
      *
      * Generated from protobuf field <code>string policy = 9;</code>
      * @param string $var
@@ -360,6 +376,36 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The URI of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
+     *
+     * Generated from protobuf field <code>string policy_uri = 11;</code>
+     * @return string
+     */
+    public function getPolicyUri()
+    {
+        return $this->policy_uri;
+    }
+
+    /**
+     * The URI of the firewall policy that this rule is associated with.
+     * This field is not applicable to VPC firewall rules and implied VPC firewall
+     * rules.
+     *
+     * Generated from protobuf field <code>string policy_uri = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPolicyUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->policy_uri = $var;
 
         return $this;
     }

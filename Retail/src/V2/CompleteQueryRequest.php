@@ -95,8 +95,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $max_suggestions = 0;
     /**
-     * If true, attribute suggestions are enabled and provided in response.
-     * This field is only available for "cloud-retail" dataset.
+     * If true, attribute suggestions are enabled and provided in the response.
+     * This field is only available for the "cloud-retail" dataset.
      *
      * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
      */
@@ -171,8 +171,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           The maximum allowed max suggestions is 20. If it is set higher, it will be
      *           capped by 20.
      *     @type bool $enable_attribute_suggestions
-     *           If true, attribute suggestions are enabled and provided in response.
-     *           This field is only available for "cloud-retail" dataset.
+     *           If true, attribute suggestions are enabled and provided in the response.
+     *           This field is only available for the "cloud-retail" dataset.
      *     @type string $entity
      *           The entity for customers who run multiple entities, domains, sites, or
      *           regions, for example, `Google US`, `Google Ads`, `Waymo`,
@@ -444,8 +444,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, attribute suggestions are enabled and provided in response.
-     * This field is only available for "cloud-retail" dataset.
+     * If true, attribute suggestions are enabled and provided in the response.
+     * This field is only available for the "cloud-retail" dataset.
      *
      * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
      * @return bool
@@ -456,8 +456,8 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, attribute suggestions are enabled and provided in response.
-     * This field is only available for "cloud-retail" dataset.
+     * If true, attribute suggestions are enabled and provided in the response.
+     * This field is only available for the "cloud-retail" dataset.
      *
      * Generated from protobuf field <code>bool enable_attribute_suggestions = 9;</code>
      * @param bool $var

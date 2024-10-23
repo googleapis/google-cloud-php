@@ -27,6 +27,27 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource.BucketObjectType bucket_object_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $bucket_object_type = 0;
+    /**
+     * Optional. The Cloud Storage path to the conversation metadata. Note that:
+     * [1] Metadata files are expected to be in JSON format.
+     * [2] Metadata and source files (transcripts or audio) must be in
+     *     separate buckets.
+     * [3] A source file and its corresponding metadata file must share the same
+     * name to
+     *     be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
+     *     `gs://bucket/metadata/conversation1.json`.
+     *
+     * Generated from protobuf field <code>optional string metadata_bucket_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $metadata_bucket_uri = null;
+    /**
+     * Optional. Custom keys to extract as conversation labels from metadata
+     * files in `metadata_bucket_uri`. Keys not included in this field will be
+     * ignored. Note that there is a limit of 20 labels per conversation.
+     *
+     * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $custom_metadata_keys;
 
     /**
      * Constructor.
@@ -38,6 +59,19 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           Required. The Cloud Storage bucket containing source objects.
      *     @type int $bucket_object_type
      *           Optional. Specifies the type of the objects in `bucket_uri`.
+     *     @type string $metadata_bucket_uri
+     *           Optional. The Cloud Storage path to the conversation metadata. Note that:
+     *           [1] Metadata files are expected to be in JSON format.
+     *           [2] Metadata and source files (transcripts or audio) must be in
+     *               separate buckets.
+     *           [3] A source file and its corresponding metadata file must share the same
+     *           name to
+     *               be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
+     *               `gs://bucket/metadata/conversation1.json`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_metadata_keys
+     *           Optional. Custom keys to extract as conversation labels from metadata
+     *           files in `metadata_bucket_uri`. Keys not included in this field will be
+     *           ignored. Note that there is a limit of 20 labels per conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +127,86 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\GcsSource\BucketObjectType::class);
         $this->bucket_object_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Cloud Storage path to the conversation metadata. Note that:
+     * [1] Metadata files are expected to be in JSON format.
+     * [2] Metadata and source files (transcripts or audio) must be in
+     *     separate buckets.
+     * [3] A source file and its corresponding metadata file must share the same
+     * name to
+     *     be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
+     *     `gs://bucket/metadata/conversation1.json`.
+     *
+     * Generated from protobuf field <code>optional string metadata_bucket_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMetadataBucketUri()
+    {
+        return isset($this->metadata_bucket_uri) ? $this->metadata_bucket_uri : '';
+    }
+
+    public function hasMetadataBucketUri()
+    {
+        return isset($this->metadata_bucket_uri);
+    }
+
+    public function clearMetadataBucketUri()
+    {
+        unset($this->metadata_bucket_uri);
+    }
+
+    /**
+     * Optional. The Cloud Storage path to the conversation metadata. Note that:
+     * [1] Metadata files are expected to be in JSON format.
+     * [2] Metadata and source files (transcripts or audio) must be in
+     *     separate buckets.
+     * [3] A source file and its corresponding metadata file must share the same
+     * name to
+     *     be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
+     *     `gs://bucket/metadata/conversation1.json`.
+     *
+     * Generated from protobuf field <code>optional string metadata_bucket_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataBucketUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_bucket_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom keys to extract as conversation labels from metadata
+     * files in `metadata_bucket_uri`. Keys not included in this field will be
+     * ignored. Note that there is a limit of 20 labels per conversation.
+     *
+     * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomMetadataKeys()
+    {
+        return $this->custom_metadata_keys;
+    }
+
+    /**
+     * Optional. Custom keys to extract as conversation labels from metadata
+     * files in `metadata_bucket_uri`. Keys not included in this field will be
+     * ignored. Note that there is a limit of 20 labels per conversation.
+     *
+     * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomMetadataKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_metadata_keys = $arr;
 
         return $this;
     }

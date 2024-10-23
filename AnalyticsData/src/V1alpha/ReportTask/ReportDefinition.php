@@ -122,6 +122,12 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool keep_empty_rows = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $keep_empty_rows = false;
+    /**
+     * Optional. The report's sampling level.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SamplingLevel sampling_level = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sampling_level = null;
 
     /**
      * Constructor.
@@ -188,6 +194,8 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *           For example if a property never logs a `purchase` event, then a query for
      *           the `eventName` dimension and  `eventCount` metric will not have a row
      *           containing eventName: "purchase" and eventCount: 0.
+     *     @type int $sampling_level
+     *           Optional. The report's sampling level.
      * }
      */
     public function __construct($data = NULL) {
@@ -603,6 +611,42 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->keep_empty_rows = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The report's sampling level.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SamplingLevel sampling_level = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSamplingLevel()
+    {
+        return isset($this->sampling_level) ? $this->sampling_level : 0;
+    }
+
+    public function hasSamplingLevel()
+    {
+        return isset($this->sampling_level);
+    }
+
+    public function clearSamplingLevel()
+    {
+        unset($this->sampling_level);
+    }
+
+    /**
+     * Optional. The report's sampling level.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SamplingLevel sampling_level = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSamplingLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Data\V1alpha\SamplingLevel::class);
+        $this->sampling_level = $var;
 
         return $this;
     }

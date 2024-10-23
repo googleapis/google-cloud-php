@@ -26,6 +26,13 @@ class SyncConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cron = 1;</code>
      */
     protected $cron = '';
+    /**
+     * Optional. If true, syncs the FeatureView in a continuous manner to Online
+     * Store.
+     *
+     * Generated from protobuf field <code>bool continuous = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $continuous = false;
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class SyncConfig extends \Google\Protobuf\Internal\Message
      *           The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone
      *           database. For example, "CRON_TZ=America/New_York 1 * * * *", or
      *           "TZ=America/New_York 1 * * * *".
+     *     @type bool $continuous
+     *           Optional. If true, syncs the FeatureView in a continuous manner to Online
+     *           Store.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,6 +89,34 @@ class SyncConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cron = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, syncs the FeatureView in a continuous manner to Online
+     * Store.
+     *
+     * Generated from protobuf field <code>bool continuous = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getContinuous()
+    {
+        return $this->continuous;
+    }
+
+    /**
+     * Optional. If true, syncs the FeatureView in a continuous manner to Online
+     * Store.
+     *
+     * Generated from protobuf field <code>bool continuous = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setContinuous($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->continuous = $var;
 
         return $this;
     }

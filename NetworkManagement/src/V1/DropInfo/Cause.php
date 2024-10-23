@@ -202,6 +202,18 @@ class Cause
      */
     const CLOUD_SQL_INSTANCE_NOT_RUNNING = 28;
     /**
+     * Packet sent from or to a Redis Instance that is not in running state.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE_NOT_RUNNING = 68;</code>
+     */
+    const REDIS_INSTANCE_NOT_RUNNING = 68;
+    /**
+     * Packet sent from or to a Redis Cluster that is not in running state.
+     *
+     * Generated from protobuf enum <code>REDIS_CLUSTER_NOT_RUNNING = 69;</code>
+     */
+    const REDIS_CLUSTER_NOT_RUNNING = 69;
+    /**
      * The type of traffic is blocked and the user cannot configure a firewall
      * rule to enable it. See [Always blocked
      * traffic](https://cloud.google.com/vpc/docs/firewalls#blockedtraffic) for
@@ -312,6 +324,14 @@ class Cause
      */
     const CLOUD_SQL_INSTANCE_NO_ROUTE = 35;
     /**
+     * Packet was dropped because the Cloud SQL instance requires all
+     * connections to use Cloud SQL connectors and to target the Cloud SQL proxy
+     * port (3307).
+     *
+     * Generated from protobuf enum <code>CLOUD_SQL_CONNECTOR_REQUIRED = 63;</code>
+     */
+    const CLOUD_SQL_CONNECTOR_REQUIRED = 63;
+    /**
      * Packet could be dropped because the Cloud Function is not in an active
      * status.
      *
@@ -331,6 +351,20 @@ class Cause
      * Generated from protobuf enum <code>VPC_CONNECTOR_NOT_RUNNING = 24;</code>
      */
     const VPC_CONNECTOR_NOT_RUNNING = 24;
+    /**
+     * Packet could be dropped because the traffic from the serverless service
+     * to the VPC connector is not allowed.
+     *
+     * Generated from protobuf enum <code>VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED = 60;</code>
+     */
+    const VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED = 60;
+    /**
+     * Packet could be dropped because the health check traffic to the VPC
+     * connector is not allowed.
+     *
+     * Generated from protobuf enum <code>VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED = 61;</code>
+     */
+    const VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED = 61;
     /**
      * Packet could be dropped because it was sent from a different region
      * to a regional forwarding without global access.
@@ -384,6 +418,13 @@ class Cause
      */
     const NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT = 57;
     /**
+     * PSC endpoint is accessed via NCC, but PSC transitivity configuration is
+     * not yet propagated.
+     *
+     * Generated from protobuf enum <code>PSC_TRANSITIVITY_NOT_PROPAGATED = 64;</code>
+     */
+    const PSC_TRANSITIVITY_NOT_PROPAGATED = 64;
+    /**
      * The packet sent from the hybrid NEG proxy matches a non-dynamic route,
      * but such a configuration is not supported.
      *
@@ -429,6 +470,126 @@ class Cause
      * Generated from protobuf enum <code>ROUTING_LOOP = 59;</code>
      */
     const ROUTING_LOOP = 59;
+    /**
+     * Packet is dropped inside a Google-managed service due to being delivered
+     * in return trace to an endpoint that doesn't match the endpoint the packet
+     * was sent from in forward trace. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE = 62;</code>
+     */
+    const DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE = 62;
+    /**
+     * Packet is dropped due to a load balancer backend instance not having a
+     * network interface in the network expected by the load balancer.
+     *
+     * Generated from protobuf enum <code>LOAD_BALANCER_BACKEND_INVALID_NETWORK = 65;</code>
+     */
+    const LOAD_BALANCER_BACKEND_INVALID_NETWORK = 65;
+    /**
+     * Packet is dropped due to a backend service named port not being defined
+     * on the instance group level.
+     *
+     * Generated from protobuf enum <code>BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED = 66;</code>
+     */
+    const BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED = 66;
+    /**
+     * Packet is dropped due to a destination IP range being part of a Private
+     * NAT IP range.
+     *
+     * Generated from protobuf enum <code>DESTINATION_IS_PRIVATE_NAT_IP_RANGE = 67;</code>
+     */
+    const DESTINATION_IS_PRIVATE_NAT_IP_RANGE = 67;
+    /**
+     * Generic drop cause for a packet being dropped inside a Redis Instance
+     * service project.
+     *
+     * Generated from protobuf enum <code>DROPPED_INSIDE_REDIS_INSTANCE_SERVICE = 70;</code>
+     */
+    const DROPPED_INSIDE_REDIS_INSTANCE_SERVICE = 70;
+    /**
+     * Packet is dropped due to an unsupported port being used to connect to a
+     * Redis Instance. Port 6379 should be used to connect to a Redis Instance.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE_UNSUPPORTED_PORT = 71;</code>
+     */
+    const REDIS_INSTANCE_UNSUPPORTED_PORT = 71;
+    /**
+     * Packet is dropped due to connecting from PUPI address to a PSA based
+     * Redis Instance.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS = 72;</code>
+     */
+    const REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS = 72;
+    /**
+     * Packet is dropped due to no route to the destination network.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK = 73;</code>
+     */
+    const REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK = 73;
+    /**
+     * Redis Instance does not have an external IP address.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE_NO_EXTERNAL_IP = 74;</code>
+     */
+    const REDIS_INSTANCE_NO_EXTERNAL_IP = 74;
+    /**
+     * Packet is dropped due to an unsupported protocol being used to connect to
+     * a Redis Instance. Only TCP connections are accepted by a Redis Instance.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE_UNSUPPORTED_PROTOCOL = 78;</code>
+     */
+    const REDIS_INSTANCE_UNSUPPORTED_PROTOCOL = 78;
+    /**
+     * Generic drop cause for a packet being dropped inside a Redis Cluster
+     * service project.
+     *
+     * Generated from protobuf enum <code>DROPPED_INSIDE_REDIS_CLUSTER_SERVICE = 75;</code>
+     */
+    const DROPPED_INSIDE_REDIS_CLUSTER_SERVICE = 75;
+    /**
+     * Packet is dropped due to an unsupported port being used to connect to a
+     * Redis Cluster. Ports 6379 and 11000 to 13047 should be used to connect to
+     * a Redis Cluster.
+     *
+     * Generated from protobuf enum <code>REDIS_CLUSTER_UNSUPPORTED_PORT = 76;</code>
+     */
+    const REDIS_CLUSTER_UNSUPPORTED_PORT = 76;
+    /**
+     * Redis Cluster does not have an external IP address.
+     *
+     * Generated from protobuf enum <code>REDIS_CLUSTER_NO_EXTERNAL_IP = 77;</code>
+     */
+    const REDIS_CLUSTER_NO_EXTERNAL_IP = 77;
+    /**
+     * Packet is dropped due to an unsupported protocol being used to connect to
+     * a Redis Cluster. Only TCP connections are accepted by a Redis Cluster.
+     *
+     * Generated from protobuf enum <code>REDIS_CLUSTER_UNSUPPORTED_PROTOCOL = 79;</code>
+     */
+    const REDIS_CLUSTER_UNSUPPORTED_PROTOCOL = 79;
+    /**
+     * Packet from the non-GCP (on-prem) or unknown GCP network is dropped due
+     * to the destination IP address not belonging to any IP prefix advertised
+     * via BGP by the Cloud Router.
+     *
+     * Generated from protobuf enum <code>NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION = 80;</code>
+     */
+    const NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION = 80;
+    /**
+     * Packet from the non-GCP (on-prem) or unknown GCP network is dropped due
+     * to the destination IP address not belonging to any IP prefix included to
+     * the local traffic selector of the VPN tunnel.
+     *
+     * Generated from protobuf enum <code>NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION = 81;</code>
+     */
+    const NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION = 81;
+    /**
+     * Packet from the unknown peered network is dropped due to no known route
+     * from the source network to the destination IP address.
+     *
+     * Generated from protobuf enum <code>NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION = 82;</code>
+     */
+    const NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION = 82;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -459,6 +620,8 @@ class Cause
         self::INSTANCE_NOT_RUNNING => 'INSTANCE_NOT_RUNNING',
         self::GKE_CLUSTER_NOT_RUNNING => 'GKE_CLUSTER_NOT_RUNNING',
         self::CLOUD_SQL_INSTANCE_NOT_RUNNING => 'CLOUD_SQL_INSTANCE_NOT_RUNNING',
+        self::REDIS_INSTANCE_NOT_RUNNING => 'REDIS_INSTANCE_NOT_RUNNING',
+        self::REDIS_CLUSTER_NOT_RUNNING => 'REDIS_CLUSTER_NOT_RUNNING',
         self::TRAFFIC_TYPE_BLOCKED => 'TRAFFIC_TYPE_BLOCKED',
         self::GKE_MASTER_UNAUTHORIZED_ACCESS => 'GKE_MASTER_UNAUTHORIZED_ACCESS',
         self::CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS => 'CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS',
@@ -474,9 +637,12 @@ class Cause
         self::CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC => 'CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC',
         self::PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION => 'PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION',
         self::CLOUD_SQL_INSTANCE_NO_ROUTE => 'CLOUD_SQL_INSTANCE_NO_ROUTE',
+        self::CLOUD_SQL_CONNECTOR_REQUIRED => 'CLOUD_SQL_CONNECTOR_REQUIRED',
         self::CLOUD_FUNCTION_NOT_ACTIVE => 'CLOUD_FUNCTION_NOT_ACTIVE',
         self::VPC_CONNECTOR_NOT_SET => 'VPC_CONNECTOR_NOT_SET',
         self::VPC_CONNECTOR_NOT_RUNNING => 'VPC_CONNECTOR_NOT_RUNNING',
+        self::VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED => 'VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED',
+        self::VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED => 'VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED',
         self::FORWARDING_RULE_REGION_MISMATCH => 'FORWARDING_RULE_REGION_MISMATCH',
         self::PSC_CONNECTION_NOT_ACCEPTED => 'PSC_CONNECTION_NOT_ACCEPTED',
         self::PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK => 'PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK',
@@ -484,6 +650,7 @@ class Cause
         self::PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS => 'PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS',
         self::CLOUD_SQL_PSC_NEG_UNSUPPORTED => 'CLOUD_SQL_PSC_NEG_UNSUPPORTED',
         self::NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT => 'NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT',
+        self::PSC_TRANSITIVITY_NOT_PROPAGATED => 'PSC_TRANSITIVITY_NOT_PROPAGATED',
         self::HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED => 'HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED',
         self::HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED => 'HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED',
         self::CLOUD_RUN_REVISION_NOT_READY => 'CLOUD_RUN_REVISION_NOT_READY',
@@ -491,6 +658,23 @@ class Cause
         self::LOAD_BALANCER_HAS_NO_PROXY_SUBNET => 'LOAD_BALANCER_HAS_NO_PROXY_SUBNET',
         self::CLOUD_NAT_NO_ADDRESSES => 'CLOUD_NAT_NO_ADDRESSES',
         self::ROUTING_LOOP => 'ROUTING_LOOP',
+        self::DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE => 'DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE',
+        self::LOAD_BALANCER_BACKEND_INVALID_NETWORK => 'LOAD_BALANCER_BACKEND_INVALID_NETWORK',
+        self::BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED => 'BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED',
+        self::DESTINATION_IS_PRIVATE_NAT_IP_RANGE => 'DESTINATION_IS_PRIVATE_NAT_IP_RANGE',
+        self::DROPPED_INSIDE_REDIS_INSTANCE_SERVICE => 'DROPPED_INSIDE_REDIS_INSTANCE_SERVICE',
+        self::REDIS_INSTANCE_UNSUPPORTED_PORT => 'REDIS_INSTANCE_UNSUPPORTED_PORT',
+        self::REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS => 'REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS',
+        self::REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK => 'REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK',
+        self::REDIS_INSTANCE_NO_EXTERNAL_IP => 'REDIS_INSTANCE_NO_EXTERNAL_IP',
+        self::REDIS_INSTANCE_UNSUPPORTED_PROTOCOL => 'REDIS_INSTANCE_UNSUPPORTED_PROTOCOL',
+        self::DROPPED_INSIDE_REDIS_CLUSTER_SERVICE => 'DROPPED_INSIDE_REDIS_CLUSTER_SERVICE',
+        self::REDIS_CLUSTER_UNSUPPORTED_PORT => 'REDIS_CLUSTER_UNSUPPORTED_PORT',
+        self::REDIS_CLUSTER_NO_EXTERNAL_IP => 'REDIS_CLUSTER_NO_EXTERNAL_IP',
+        self::REDIS_CLUSTER_UNSUPPORTED_PROTOCOL => 'REDIS_CLUSTER_UNSUPPORTED_PROTOCOL',
+        self::NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION => 'NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION',
+        self::NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION => 'NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION',
+        self::NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION => 'NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION',
     ];
 
     public static function name($value)
