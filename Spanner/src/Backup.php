@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\Spanner;
 
+use DateTimeInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
-use DateTimeInterface;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -394,7 +394,7 @@ class Backup
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

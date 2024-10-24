@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\ServerStream;
-use Google\Rpc\Code;
-use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Core\Exception\ServiceException;
-use Google\ApiCore\OperationResponse;
 use \Google\Protobuf\Internal\Message;
-use Google\Rpc\RetryInfo;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Rpc\BadRequest;
+use Google\Rpc\Code;
+use Google\Rpc\RetryInfo;
 
 /**
  * @internal
@@ -140,7 +140,7 @@ trait RequestProcessorTrait
                 if (!isset($this->metadataTypes[$type])) {
                     continue;
                 }
-                $metadataElement = new $this->metadataTypes[$type];
+                $metadataElement = new $this->metadataTypes[$type]();
                 $metadataElement->mergeFromString($binaryValue[0]);
                 $metadata[] = $this->serializer->encodeMessage($metadataElement);
             }

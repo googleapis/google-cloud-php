@@ -142,7 +142,7 @@ class Metadata
      */
     public function getProjectMetadata($key)
     {
-        $path = 'project/attributes/'.$key;
+        $path = 'project/attributes/' . $key;
         return $this->get($path);
     }
 
@@ -159,7 +159,7 @@ class Metadata
      */
     public function getInstanceMetadata($key)
     {
-        $path = 'instance/attributes/'.$key;
+        $path = 'instance/attributes/' . $key;
         return $this->get($path);
     }
 }

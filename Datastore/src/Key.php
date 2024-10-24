@@ -505,7 +505,7 @@ class Key implements JsonSerializable
             }
 
             $incomplete = (!isset($pathElement['id']) && !isset($pathElement['name']));
-            if ($index < count($path) -1 && $incomplete) {
+            if ($index < count($path) - 1 && $incomplete) {
                 throw new InvalidArgumentException(
                     'Only the final pathElement may omit a name or ID.'
                 );

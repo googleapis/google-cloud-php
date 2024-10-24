@@ -19,13 +19,11 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
 use Google\Cloud\Core\Batch\SimpleJobTrait;
-use Google\Cloud\Core\Batch\SerializableClientTrait;
-use Google\Cloud\Core\SysvTrait;
-use Google\Cloud\Core\Report\MetadataProviderInterface;
-use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Report\MetadataProviderInterface;
+use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\FileBreakpointStorage;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
