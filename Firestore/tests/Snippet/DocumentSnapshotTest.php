@@ -17,14 +17,16 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -35,10 +37,11 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DocumentSnapshotTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $snapshot;
 
@@ -52,7 +55,11 @@ class DocumentSnapshotTest extends SnippetTestCase
 
         $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
-            new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
+            new ValueMapper(
+                $this->prophesize(RequestHandler::class)->reveal(),
+                $this->getSerializer(),
+                false
+            ),
             [],
             [],
             true
@@ -63,15 +70,18 @@ class DocumentSnapshotTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                ['missing' => self::DOCUMENT]
-            ]));
+        $requestHandler = $this->prophesize(RequestHandler::class);
+        $requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            ['missing' => self::DOCUMENT]
+        ]));
 
-        $client = TestHelpers::stub(FirestoreClient::class);
-        $client->___setProperty('connection', $connection->reveal());
+        $client = TestHelpers::stub(FirestoreClient::class, [], ['requestHandler']);
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
         $snippet = $this->snippetFromClass(DocumentSnapshot::class);
         $snippet->setLine(2, '');
         $snippet->addLocal('firestore', $client);
@@ -130,7 +140,7 @@ class DocumentSnapshotTest extends SnippetTestCase
      */
     public function testTimestampMethods($method)
     {
-        $ts = new Timestamp(new \DateTime);
+        $ts = ['seconds' => 100, 'nanos' => 100];
         $info = [$method => $ts];
         $this->snapshot->___setProperty('info', $info);
 

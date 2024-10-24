@@ -114,7 +114,3 @@ class VectorConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VectorConfig::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField_VectorConfig::class);
-
