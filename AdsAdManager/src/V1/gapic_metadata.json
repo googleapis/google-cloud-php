@@ -1,0 +1,296 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.ads.admanager.v1",
+    "libraryPackage": "Google\\Ads\\AdManager\\V1",
+    "services": {
+        "AdUnitService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdUnitServiceGapicClient",
+                    "rpcs": {
+                        "GetAdUnit": {
+                            "methods": [
+                                "getAdUnit"
+                            ]
+                        },
+                        "ListAdUnitSizes": {
+                            "methods": [
+                                "listAdUnitSizes"
+                            ]
+                        },
+                        "ListAdUnits": {
+                            "methods": [
+                                "listAdUnits"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CompanyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompanyServiceGapicClient",
+                    "rpcs": {
+                        "GetCompany": {
+                            "methods": [
+                                "getCompany"
+                            ]
+                        },
+                        "ListCompanies": {
+                            "methods": [
+                                "listCompanies"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CustomFieldService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CustomFieldServiceGapicClient",
+                    "rpcs": {
+                        "GetCustomField": {
+                            "methods": [
+                                "getCustomField"
+                            ]
+                        },
+                        "ListCustomFields": {
+                            "methods": [
+                                "listCustomFields"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CustomTargetingKeyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CustomTargetingKeyServiceGapicClient",
+                    "rpcs": {
+                        "GetCustomTargetingKey": {
+                            "methods": [
+                                "getCustomTargetingKey"
+                            ]
+                        },
+                        "ListCustomTargetingKeys": {
+                            "methods": [
+                                "listCustomTargetingKeys"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CustomTargetingValueService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CustomTargetingValueServiceGapicClient",
+                    "rpcs": {
+                        "GetCustomTargetingValue": {
+                            "methods": [
+                                "getCustomTargetingValue"
+                            ]
+                        },
+                        "ListCustomTargetingValues": {
+                            "methods": [
+                                "listCustomTargetingValues"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EntitySignalsMappingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EntitySignalsMappingServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateEntitySignalsMappings": {
+                            "methods": [
+                                "batchCreateEntitySignalsMappings"
+                            ]
+                        },
+                        "BatchUpdateEntitySignalsMappings": {
+                            "methods": [
+                                "batchUpdateEntitySignalsMappings"
+                            ]
+                        },
+                        "CreateEntitySignalsMapping": {
+                            "methods": [
+                                "createEntitySignalsMapping"
+                            ]
+                        },
+                        "GetEntitySignalsMapping": {
+                            "methods": [
+                                "getEntitySignalsMapping"
+                            ]
+                        },
+                        "ListEntitySignalsMappings": {
+                            "methods": [
+                                "listEntitySignalsMappings"
+                            ]
+                        },
+                        "UpdateEntitySignalsMapping": {
+                            "methods": [
+                                "updateEntitySignalsMapping"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "NetworkService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NetworkServiceGapicClient",
+                    "rpcs": {
+                        "GetNetwork": {
+                            "methods": [
+                                "getNetwork"
+                            ]
+                        },
+                        "ListNetworks": {
+                            "methods": [
+                                "listNetworks"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OrderService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OrderServiceGapicClient",
+                    "rpcs": {
+                        "GetOrder": {
+                            "methods": [
+                                "getOrder"
+                            ]
+                        },
+                        "ListOrders": {
+                            "methods": [
+                                "listOrders"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PlacementService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PlacementServiceGapicClient",
+                    "rpcs": {
+                        "GetPlacement": {
+                            "methods": [
+                                "getPlacement"
+                            ]
+                        },
+                        "ListPlacements": {
+                            "methods": [
+                                "listPlacements"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReportService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReportServiceGapicClient",
+                    "rpcs": {
+                        "CreateReport": {
+                            "methods": [
+                                "createReport"
+                            ]
+                        },
+                        "FetchReportResultRows": {
+                            "methods": [
+                                "fetchReportResultRows"
+                            ]
+                        },
+                        "GetReport": {
+                            "methods": [
+                                "getReport"
+                            ]
+                        },
+                        "ListReports": {
+                            "methods": [
+                                "listReports"
+                            ]
+                        },
+                        "RunReport": {
+                            "methods": [
+                                "runReport"
+                            ]
+                        },
+                        "UpdateReport": {
+                            "methods": [
+                                "updateReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RoleService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RoleServiceGapicClient",
+                    "rpcs": {
+                        "GetRole": {
+                            "methods": [
+                                "getRole"
+                            ]
+                        },
+                        "ListRoles": {
+                            "methods": [
+                                "listRoles"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TaxonomyCategoryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TaxonomyCategoryServiceGapicClient",
+                    "rpcs": {
+                        "GetTaxonomyCategory": {
+                            "methods": [
+                                "getTaxonomyCategory"
+                            ]
+                        },
+                        "ListTaxonomyCategories": {
+                            "methods": [
+                                "listTaxonomyCategories"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserServiceGapicClient",
+                    "rpcs": {
+                        "GetUser": {
+                            "methods": [
+                                "getUser"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
