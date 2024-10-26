@@ -26,16 +26,23 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\ArtifactRegistry\V1\Attachment;
 use Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsRequest;
 use Google\Cloud\ArtifactRegistry\V1\Client\ArtifactRegistryClient;
+use Google\Cloud\ArtifactRegistry\V1\CreateAttachmentRequest;
 use Google\Cloud\ArtifactRegistry\V1\CreateRepositoryRequest;
+use Google\Cloud\ArtifactRegistry\V1\CreateRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\CreateTagRequest;
+use Google\Cloud\ArtifactRegistry\V1\DeleteAttachmentRequest;
+use Google\Cloud\ArtifactRegistry\V1\DeleteFileRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeletePackageRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteRepositoryRequest;
+use Google\Cloud\ArtifactRegistry\V1\DeleteRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteVersionRequest;
 use Google\Cloud\ArtifactRegistry\V1\DockerImage;
 use Google\Cloud\ArtifactRegistry\V1\File;
+use Google\Cloud\ArtifactRegistry\V1\GetAttachmentRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetDockerImageRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetFileRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetMavenArtifactRequest;
@@ -44,6 +51,7 @@ use Google\Cloud\ArtifactRegistry\V1\GetPackageRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetProjectSettingsRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetPythonPackageRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetRepositoryRequest;
+use Google\Cloud\ArtifactRegistry\V1\GetRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetVPCSCConfigRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetVersionRequest;
@@ -51,6 +59,8 @@ use Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsRequest;
 use Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsResponse;
 use Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsRequest;
 use Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsResponse;
+use Google\Cloud\ArtifactRegistry\V1\ListAttachmentsRequest;
+use Google\Cloud\ArtifactRegistry\V1\ListAttachmentsResponse;
 use Google\Cloud\ArtifactRegistry\V1\ListDockerImagesRequest;
 use Google\Cloud\ArtifactRegistry\V1\ListDockerImagesResponse;
 use Google\Cloud\ArtifactRegistry\V1\ListFilesRequest;
@@ -65,6 +75,8 @@ use Google\Cloud\ArtifactRegistry\V1\ListPythonPackagesRequest;
 use Google\Cloud\ArtifactRegistry\V1\ListPythonPackagesResponse;
 use Google\Cloud\ArtifactRegistry\V1\ListRepositoriesRequest;
 use Google\Cloud\ArtifactRegistry\V1\ListRepositoriesResponse;
+use Google\Cloud\ArtifactRegistry\V1\ListRulesRequest;
+use Google\Cloud\ArtifactRegistry\V1\ListRulesResponse;
 use Google\Cloud\ArtifactRegistry\V1\ListTagsRequest;
 use Google\Cloud\ArtifactRegistry\V1\ListTagsResponse;
 use Google\Cloud\ArtifactRegistry\V1\ListVersionsRequest;
@@ -75,11 +87,16 @@ use Google\Cloud\ArtifactRegistry\V1\Package;
 use Google\Cloud\ArtifactRegistry\V1\ProjectSettings;
 use Google\Cloud\ArtifactRegistry\V1\PythonPackage;
 use Google\Cloud\ArtifactRegistry\V1\Repository;
+use Google\Cloud\ArtifactRegistry\V1\Rule;
 use Google\Cloud\ArtifactRegistry\V1\Tag;
+use Google\Cloud\ArtifactRegistry\V1\UpdateFileRequest;
+use Google\Cloud\ArtifactRegistry\V1\UpdatePackageRequest;
 use Google\Cloud\ArtifactRegistry\V1\UpdateProjectSettingsRequest;
 use Google\Cloud\ArtifactRegistry\V1\UpdateRepositoryRequest;
+use Google\Cloud\ArtifactRegistry\V1\UpdateRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\UpdateTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\UpdateVPCSCConfigRequest;
+use Google\Cloud\ArtifactRegistry\V1\UpdateVersionRequest;
 use Google\Cloud\ArtifactRegistry\V1\VPCSCConfig;
 use Google\Cloud\ArtifactRegistry\V1\Version;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -95,6 +112,7 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -259,6 +277,160 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createAttachmentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAttachmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $target = 'target-880905839';
+        $type = 'type3575610';
+        $attachmentNamespace = 'attachmentNamespace1367660863';
+        $ociVersionName = 'ociVersionName-1366178692';
+        $expectedResponse = new Attachment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTarget($target);
+        $expectedResponse->setType($type);
+        $expectedResponse->setAttachmentNamespace($attachmentNamespace);
+        $expectedResponse->setOciVersionName($ociVersionName);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAttachmentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $attachmentId = 'attachmentId-1506844233';
+        $attachment = new Attachment();
+        $attachmentTarget = 'attachmentTarget279842964';
+        $attachment->setTarget($attachmentTarget);
+        $attachmentFiles = [$gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]')];
+        $attachment->setFiles($attachmentFiles);
+        $request = (new CreateAttachmentRequest())
+            ->setParent($formattedParent)
+            ->setAttachmentId($attachmentId)
+            ->setAttachment($attachment);
+        $response = $gapicClient->createAttachment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateAttachment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAttachmentId();
+        $this->assertProtobufEquals($attachmentId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAttachment();
+        $this->assertProtobufEquals($attachment, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAttachmentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAttachmentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAttachmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $attachmentId = 'attachmentId-1506844233';
+        $attachment = new Attachment();
+        $attachmentTarget = 'attachmentTarget279842964';
+        $attachment->setTarget($attachmentTarget);
+        $attachmentFiles = [$gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]')];
+        $attachment->setFiles($attachmentFiles);
+        $request = (new CreateAttachmentRequest())
+            ->setParent($formattedParent)
+            ->setAttachmentId($attachmentId)
+            ->setAttachment($attachment);
+        $response = $gapicClient->createAttachment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAttachmentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createRepositoryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -285,6 +457,8 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $sizeBytes = 1796325715;
         $satisfiesPzs = false;
         $cleanupPolicyDryRun = false;
+        $disallowUnspecifiedMode = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -292,6 +466,8 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setSizeBytes($sizeBytes);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
+        $expectedResponse->setDisallowUnspecifiedMode($disallowUnspecifiedMode);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -393,6 +569,73 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $packageId = 'packageId29331380';
+        $expectedResponse = new Rule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setPackageId($packageId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new CreateRuleRequest())->setParent($formattedParent);
+        $response = $gapicClient->createRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/CreateRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new CreateRuleRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->createRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createTagTest()
     {
         $transport = $this->createTransport();
@@ -451,6 +694,250 @@ class ArtifactRegistryClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAttachmentTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAttachmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteAttachmentTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->attachmentName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[ATTACHMENT]');
+        $request = (new DeleteAttachmentRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAttachment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteAttachment', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAttachmentTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAttachmentExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAttachmentTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->attachmentName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[ATTACHMENT]');
+        $request = (new DeleteAttachmentRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAttachment($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAttachmentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFileTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteFileTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteFileTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]');
+        $request = (new DeleteFileRequest())->setName($formattedName);
+        $response = $gapicClient->deleteFile($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteFile', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteFileTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFileExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteFileTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->fileName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[FILE]');
+        $request = (new DeleteFileRequest())->setName($formattedName);
+        $response = $gapicClient->deleteFile($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteFileTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -698,6 +1185,68 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->ruleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RULE]');
+        $request = (new DeleteRuleRequest())->setName($formattedName);
+        $gapicClient->deleteRule($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/DeleteRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->ruleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RULE]');
+        $request = (new DeleteRuleRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteTagTest()
     {
         $transport = $this->createTransport();
@@ -867,6 +1416,79 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getAttachmentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $target = 'target-880905839';
+        $type = 'type3575610';
+        $attachmentNamespace = 'attachmentNamespace1367660863';
+        $ociVersionName = 'ociVersionName-1366178692';
+        $expectedResponse = new Attachment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setTarget($target);
+        $expectedResponse->setType($type);
+        $expectedResponse->setAttachmentNamespace($attachmentNamespace);
+        $expectedResponse->setOciVersionName($ociVersionName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->attachmentName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[ATTACHMENT]');
+        $request = (new GetAttachmentRequest())->setName($formattedName);
+        $response = $gapicClient->getAttachment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetAttachment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAttachmentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->attachmentName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[ATTACHMENT]');
+        $request = (new GetAttachmentRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAttachment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1295,8 +1917,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $pullPercent = 1781572683;
         $expectedResponse = new ProjectSettings();
         $expectedResponse->setName($name2);
+        $expectedResponse->setPullPercent($pullPercent);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->projectSettingsName('[PROJECT]');
@@ -1436,6 +2060,8 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $sizeBytes = 1796325715;
         $satisfiesPzs = false;
         $cleanupPolicyDryRun = false;
+        $disallowUnspecifiedMode = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -1443,6 +2069,8 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setSizeBytes($sizeBytes);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
+        $expectedResponse->setDisallowUnspecifiedMode($disallowUnspecifiedMode);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -1485,6 +2113,73 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $packageId = 'packageId29331380';
+        $expectedResponse = new Rule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setPackageId($packageId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->ruleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RULE]');
+        $request = (new GetRuleRequest())->setName($formattedName);
+        $response = $gapicClient->getRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/GetRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->ruleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[RULE]');
+        $request = (new GetRuleRequest())->setName($formattedName);
+        try {
+            $gapicClient->getRule($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1919,6 +2614,77 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function listAttachmentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $attachmentsElement = new Attachment();
+        $attachments = [$attachmentsElement];
+        $expectedResponse = new ListAttachmentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAttachments($attachments);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ListAttachmentsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAttachments($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAttachments()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListAttachments', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAttachmentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ListAttachmentsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAttachments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -2419,6 +3185,77 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $rulesElement = new Rule();
+        $rules = [$rulesElement];
+        $expectedResponse = new ListRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRules($rules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ListRulesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listRules($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ListRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ListRulesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listRules($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listTagsTest()
     {
         $transport = $this->createTransport();
@@ -2687,6 +3524,140 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateFileTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $sizeBytes = 1796325715;
+        $owner = 'owner106164915';
+        $expectedResponse = new File();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setOwner($owner);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $file = new File();
+        $updateMask = new FieldMask();
+        $request = (new UpdateFileRequest())->setFile($file)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateFile($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateFile', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFile();
+        $this->assertProtobufEquals($file, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateFileExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $file = new File();
+        $updateMask = new FieldMask();
+        $request = (new UpdateFileRequest())->setFile($file)->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateFile($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updatePackageTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Package();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $request = new UpdatePackageRequest();
+        $response = $gapicClient->updatePackage($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdatePackage', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updatePackageExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new UpdatePackageRequest();
+        try {
+            $gapicClient->updatePackage($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateProjectSettingsTest()
     {
         $transport = $this->createTransport();
@@ -2696,8 +3667,10 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $pullPercent = 1781572683;
         $expectedResponse = new ProjectSettings();
         $expectedResponse->setName($name);
+        $expectedResponse->setPullPercent($pullPercent);
         $transport->addResponse($expectedResponse);
         $request = new UpdateProjectSettingsRequest();
         $response = $gapicClient->updateProjectSettings($request);
@@ -2763,6 +3736,8 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $sizeBytes = 1796325715;
         $satisfiesPzs = false;
         $cleanupPolicyDryRun = false;
+        $disallowUnspecifiedMode = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -2770,6 +3745,8 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $expectedResponse->setSizeBytes($sizeBytes);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setCleanupPolicyDryRun($cleanupPolicyDryRun);
+        $expectedResponse->setDisallowUnspecifiedMode($disallowUnspecifiedMode);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new UpdateRepositoryRequest();
         $response = $gapicClient->updateRepository($request);
@@ -2806,6 +3783,67 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $request = new UpdateRepositoryRequest();
         try {
             $gapicClient->updateRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $packageId = 'packageId29331380';
+        $expectedResponse = new Rule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setPackageId($packageId);
+        $transport->addResponse($expectedResponse);
+        $request = new UpdateRuleRequest();
+        $response = $gapicClient->updateRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateRule', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new UpdateRuleRequest();
+        try {
+            $gapicClient->updateRule($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2926,6 +3964,73 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $request = new UpdateVPCSCConfigRequest();
         try {
             $gapicClient->updateVPCSCConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new Version();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $version = new Version();
+        $request = (new UpdateVersionRequest())->setVersion($version);
+        $response = $gapicClient->updateVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/UpdateVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getVersion();
+        $this->assertProtobufEquals($version, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $version = new Version();
+        $request = (new UpdateVersionRequest())->setVersion($version);
+        try {
+            $gapicClient->updateVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
