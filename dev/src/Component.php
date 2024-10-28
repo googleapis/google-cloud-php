@@ -68,7 +68,7 @@ class Component
 
     public function getId(): string
     {
-        return str_replace('google/', '', $this->getPackageName());
+        return str_replace(['google/', 'googleads'], '', $this->getPackageName());
     }
 
     public function getName(): string
