@@ -127,6 +127,4 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RouteDestinations::class, \Google\Cloud\Deploy\V1\KubernetesConfig_GatewayServiceMesh_RouteDestinations::class);
 
