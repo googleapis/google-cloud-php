@@ -1,5 +1,123 @@
 # Changelog
 
+## 0.265.0
+
+<details><summary>googleads/ad-manager 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AdManager component ([#7767](https://github.com/googleapis/google-cloud-php/issues/7767)) ([9b4de94](https://github.com/googleapis/google-cloud-php/commit/9b4de9431c6774156ac0a58271fd0355f7d3004f))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.9.0</summary>
+
+
+
+### Features
+
+* Add `text` field for Grounding metadata support chunk output ([#7758](https://github.com/googleapis/google-cloud-php/issues/7758)) ([385c1e7](https://github.com/googleapis/google-cloud-php/commit/385c1e763613e3c5683757447a36f133c9787530))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.1.0</summary>
+
+
+
+### Features
+
+* Add more observability options on the Instance level ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add new API to execute SQL statements ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add new API to list the databases in a project and location ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add new API to perform a promotion or switchover on secondary instances ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add new PSC instance configuration setting and output the PSC DNS name ([#7760](https://github.com/googleapis/google-cloud-php/issues/7760)) ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add optional field to keep extra roles on a user if it already exists ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add support for Free Trials ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Add support to schedule maintenance ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Additional field to set tags on a backup or cluster ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+* Support for obtaining the public ip addresses of an instance and enabling either inbound or outbound public ip ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+
+
+### Documentation
+
+* Various typo fixes, correcting the formatting, and clarifications on the request_id and validate_only fields in API requests and on the page_size when listing the database ([22357f5](https://github.com/googleapis/google-cloud-php/commit/22357f5392c482243dd47d17383d0af6367d3911))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.1.0</summary>
+
+
+
+### Features
+
+* Add RESOURCE_EXHAUSTED to retryable status codes for ProcessDocument method ([4d427bf](https://github.com/googleapis/google-cloud-php/commit/4d427bf3f9b23c2d790e0d23ad0b9e842ceed691))
+* Added an url for issue reporting and api short name ([4d427bf](https://github.com/googleapis/google-cloud-php/commit/4d427bf3f9b23c2d790e0d23ad0b9e842ceed691))
+* Updated the exponential backoff settings for the Document AI ProcessDocument and BatchProcessDocuments methods ([#7757](https://github.com/googleapis/google-cloud-php/issues/7757)) ([4d427bf](https://github.com/googleapis/google-cloud-php/commit/4d427bf3f9b23c2d790e0d23ad0b9e842ceed691))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.7.0</summary>
+
+
+
+### Features
+
+* Add Parallelstore V1 ([#7764](https://github.com/googleapis/google-cloud-php/issues/7764)) ([c8289d5](https://github.com/googleapis/google-cloud-php/commit/c8289d51320fc3367fa1ab837c777288352f4bf3))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.3.0</summary>
+
+
+
+### Features
+
+* Add branch rule APIs ([#7754](https://github.com/googleapis/google-cloud-php/issues/7754)) ([be3a11c](https://github.com/googleapis/google-cloud-php/commit/be3a11c9f4b18c20264399206e6aa2c7716adb6a))
+* Add field `psc_allowed_projects` to message `.google.cloud.securesourcemanager.v1.Instance` ([be3a11c](https://github.com/googleapis/google-cloud-php/commit/be3a11c9f4b18c20264399206e6aa2c7716adb6a))
+
+
+### Documentation
+
+* A comment for field `instance` in message `.google.cloud.securesourcemanager.v1.Repository` is changed ([be3a11c](https://github.com/googleapis/google-cloud-php/commit/be3a11c9f4b18c20264399206e6aa2c7716adb6a))
+
+</details>
+
+<details><summary>google/shopping-css 0.3.0</summary>
+
+
+
+### Features
+
+* A new enum `SubscriptionPeriod` is added ([8afaa8c](https://github.com/googleapis/google-cloud-php/commit/8afaa8c19587006d276ded057c684b9a59836c66))
+* A new field `headline_offer_installment` is added to message `.google.shopping.css.v1.Attributes` ([#7761](https://github.com/googleapis/google-cloud-php/issues/7761)) ([8afaa8c](https://github.com/googleapis/google-cloud-php/commit/8afaa8c19587006d276ded057c684b9a59836c66))
+* A new field `headline_offer_subscription_cost` is added to message `.google.shopping.css.v1.Attributes` ([8afaa8c](https://github.com/googleapis/google-cloud-php/commit/8afaa8c19587006d276ded057c684b9a59836c66))
+* A new message `HeadlineOfferInstallment` is added ([8afaa8c](https://github.com/googleapis/google-cloud-php/commit/8afaa8c19587006d276ded057c684b9a59836c66))
+* A new message `HeadlineOfferSubscriptionCost` is added ([8afaa8c](https://github.com/googleapis/google-cloud-php/commit/8afaa8c19587006d276ded057c684b9a59836c66))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.88.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add support for Cloud Spanner Default Backup Schedules ([#7762](https://github.com/googleapis/google-cloud-php/issues/7762)) ([c134d3d](https://github.com/googleapis/google-cloud-php/commit/c134d3debb4e4afa724c2e769c4adaff113a3477))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.11.0</summary>
+
+
+
+### Features
+
+* Add brand voice lite, which lets you clone a voice with just 10 seconds of audio ([#7759](https://github.com/googleapis/google-cloud-php/issues/7759)) ([3b5afb3](https://github.com/googleapis/google-cloud-php/commit/3b5afb394afe814d2fa2de028e214b528c80a234))
+
+</details>
+
 ## 0.264.0
 
 <details><summary>google/analytics-data 0.20.0</summary>
