@@ -21,13 +21,13 @@ class Turn extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string speaker = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $speaker = '';
+    private $speaker = '';
     /**
      * Required. The text to speak.
      *
      * Generated from protobuf field <code>string text = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $text = '';
+    private $text = '';
 
     /**
      * Constructor.
