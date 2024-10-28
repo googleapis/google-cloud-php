@@ -261,7 +261,8 @@
         "google/shopping-merchant-products": "0.1.0",
         "google/shopping-merchant-promotions": "0.1.0",
         "google/shopping-merchant-quota": "0.1.3",
-        "google/shopping-merchant-reports": "0.8.1"
+        "google/shopping-merchant-reports": "0.8.1",
+        "googleads/ad-manager": "0.0.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -269,6 +270,7 @@
     },
     "autoload": {
         "psr-4": {
+            "GPBMetadata\\Google\\Ads\\Admanager\\": "AdsAdManager/metadata",
             "GPBMetadata\\Google\\Analytics\\Admin\\": "AnalyticsAdmin/metadata",
             "GPBMetadata\\Google\\Analytics\\Data\\": "AnalyticsData/metadata",
             "GPBMetadata\\Google\\Api\\": "CommonProtos/metadata/Api",
@@ -482,6 +484,7 @@
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
             "GPBMetadata\\Google\\Type\\": "CommonProtos/metadata/Type",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
+            "Google\\Ads\\AdManager\\": "AdsAdManager/src",
             "Google\\Ads\\MarketingPlatform\\Admin\\": "AdsMarketingPlatformAdmin/src",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
