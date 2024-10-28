@@ -1,6 +1,6 @@
 # Google Ads Ad Manager for PHP
 
-> Idiomatic PHP client for [Google Ads Ad Manager](https://developers.google.com/ad-manager/api/beta).
+> Idiomatic PHP client for [Google Ads Ad Manager](https://developers.google.com/ad-manager).
 
 [![Latest Stable Version](https://poser.pugx.org/googleads/ad-manager/v/stable)](https://packagist.org/packages/googleads/ad-manager) [![Packagist](https://img.shields.io/packagist/dm/googleads/ad-manager.svg)](https://packagist.org/packages/googleads/ad-manager)
 
