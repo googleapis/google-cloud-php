@@ -1,5 +1,5 @@
 {
-    "name": "google/ads-marketingplatform-admin",
+    "name": "googleads/marketingplatform-admin",
     "description": "Google Ads Marketing Platform Admin Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
