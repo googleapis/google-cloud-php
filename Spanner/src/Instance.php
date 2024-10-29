@@ -64,39 +64,6 @@ class Instance
     const DEFAULT_NODE_COUNT = 1;
 
     /**
-     * @var RequestHandler
-     * @internal
-     * The request handler that is responsible for sending a request and
-     * serializing responses into relevant classes.
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
-
-    /**
-     * @var array
-     */
-    private $info;
-
-    /**
      * @var IamManager|null
      */
     private $iam;
@@ -117,12 +84,17 @@ class Instance
     private $routeToLeader;
 
     /**
+     * @var string
+     */
+    private $projectName;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @internal Instance is constructed by the {@see SpannerClient} class.
      *
-     * @param RequestHandler The request handler that is responsible for sending a request
-     *        and serializing responses into relevant classes.
+     * @param InstanceAdminClient $instanceAdminClient The instance admin client.
+     * @param DatabaseAdminClient $databaseAdminClient The database admin client.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The project ID.
      * @param string $name The instance name or ID.
@@ -142,23 +114,20 @@ class Instance
      * }
      */
     public function __construct(
-        RequestHandler $requestHandler,
-        Serializer $serializer,
-        $projectId,
-        $name,
-        $returnInt64AsObject = false,
-        array $info = [],
+        private InstanceAdminClient $instanceAdminClient,
+        private DatabaseAdminClient $databaseAdminClient,
+        private Serializer $serializer,
+        private stirng $projectId,
+        private string $name,
+        private bool $returnInt64AsObject = false,
+        private array $info = [],
         array $options = []
     ) {
-        $this->requestHandler = $requestHandler;
-        $this->serializer = $serializer;
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
-        $this->returnInt64AsObject = $returnInt64AsObject;
-        $this->info = $info;
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
+        $this->projectName = InstanceAdminClient::projectName($projectId);
     }
 
     /**
@@ -231,16 +200,10 @@ class Instance
                     'name' => $this->name,
                     'fieldMask' => ['paths' => ['name']],
                 ];
-                $this->createAndSendRequest(
-                    InstanceAdminClient::class,
-                    'getInstance',
-                    $data,
-                    $callOptions,
-                    GetInstanceRequest::class,
-                    InstanceAdminClient::projectName(
-                        $this->projectId
-                    )
-                );
+                $request = $this->serializer->decodeMessage(new GetInstanceRequest(), $data);
+                $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
+
+                $this->instanceAdminClient->getInstance($request, $callOptions);
             } else {
                 $this->reload($options);
             }
@@ -291,16 +254,11 @@ class Instance
             $data['fieldMask'] = ['paths' => $fieldMask];
         }
 
-        return $this->info = $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'getInstance',
-            $data,
-            $callOptions,
-            GetInstanceRequest::class,
-            InstanceAdminClient::projectName(
-                $this->projectId
-            )
-        );
+        $request = $this->serializer->decodeMessage(new GetInstanceRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
+
+        $response = $this->instanceAdminClient->getInstance($request, $callOptions);
+        return $this->info = $this->handleResponse($response);
     }
 
     /**
@@ -347,14 +305,11 @@ class Instance
             'instance' => $this->createInstanceArray($instance, $config)
         ];
 
-        return $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'createInstance',
-            $data,
-            $callOptions,
-            CreateInstanceRequest::class,
-            $this->name
-        )->withResultFunction($this->instanceResultFunction());
+        $request = $this->serializer->decodeMessage(new CreateInstanceRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        return $this->instanceAdminClient->createInstance($request, $callOptions)
+            ->withResultFunction($this->instanceResultFunction());
     }
 
     /**
@@ -427,14 +382,12 @@ class Instance
             'fieldMask' => $fieldMask,
             'instance' => $this->createInstanceArray($instance)
         ];
-        return $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'updateInstance',
-            $data,
-            $callOptions,
-            UpdateInstanceRequest::class,
-            $this->name
-        )->withResultFunction($this->instanceResultFunction());
+
+        $request = $this->serializer->decodeMessage(new UpdateInstanceRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        return $this->instanceAdminClient->updateInstance($request, $callOptions)
+            ->withResultFunction($this->instanceResultFunction());
     }
 
     /**
@@ -456,14 +409,11 @@ class Instance
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
-        $this->createAndSendRequest(
-            InstanceAdminClient::class,
-            'deleteInstance',
-            $data,
-            $callOptions,
-            DeleteInstanceRequest::class,
-            $this->name
-        );
+
+        $request = $this->serializer->decodeMessage(new DeleteInstanceRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $this->instanceAdminClient->deleteInstance($request, $callOptions);
     }
 
     /**
@@ -600,14 +550,11 @@ class Instance
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        DatabaseAdminClient::class,
-                        'listDatabases',
-                        $data,
-                        $callOptions,
-                        ListDatabasesRequest::class,
-                        $this->name
-                    );
+                    $request = $this->serializer->decodeMessage(new ListDatabasesRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+                    $response = $this->databaseAdminClient->listDatabases($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [
@@ -692,14 +639,11 @@ class Instance
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        DatabaseAdminClient::class,
-                        'listBackups',
-                        $data,
-                        $callOptions,
-                        ListBackupsRequest::class,
-                        $this->name
-                    );
+                    $request = $this->serializer->decodeMessage(new ListBackupsRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+                    $response = $this->databaseAdminClient->listBackups($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [
@@ -786,7 +730,7 @@ class Instance
     {
         if (!$this->iam) {
             $this->iam = new IamManager(
-                $this->requestHandler,
+                new RequestHandler($this->serializer, [$this->instanceAdminClient]),
                 $this->serializer,
                 InstanceAdminClient::class,
                 $this->name

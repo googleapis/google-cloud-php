@@ -45,11 +45,11 @@ class RequestHandler
      */
     private Serializer $serializer;
 
-    private array $clients;
+    private array $clients = [];
 
     /**
      * @param Serializer $serializer
-     * @param array $clientClasses
+     * @param array<string|object> $clientClasses
      * @param array $clientConfig
      */
     public function __construct(
@@ -78,9 +78,12 @@ class RequestHandler
         //@codeCoverageIgnoreEnd
 
         // Initialize the client classes and store them in memory
-        $this->clients = [];
-        foreach ($clientClasses as $className) {
-            $this->addClientObject($className, new $className($clientConfig));
+        foreach ($clientClasses as $client) {
+            if (is_object($client)) {
+                $this->clients[get_class($client)] = $client;
+            } else {
+                $this->clients[$client] = new $client($clientConfig);
+            }
         }
     }
 
@@ -138,15 +141,5 @@ class RequestHandler
     public function getClientObject(string $clientClass)
     {
         return $this->clients[$clientClass] ?? null;
-    }
-    /**
-     * Helper function to add a client object to the $clients array.
-     *
-     * @param $clientName The class name of the client.
-     * @param $clientObject The client object to be added.
-     */
-    private function addClientObject(string $clientName, mixed $clientObject)
-    {
-        $this->clients[$clientName] = $clientObject;
     }
 }

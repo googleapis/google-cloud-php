@@ -158,15 +158,11 @@ class Session
         ];
 
         try {
-            $this->createAndSendRequest(
-                SpannerClient::class,
-                'getSession',
-                $data,
-                $callOptions,
-                GetSessionRequest::class,
-                $this->databaseName,
-                $this->routeToLeader
-            );
+            $request = $this->serializer->decodeMessage(new GetSessionRequest(), $data);
+            $callOptions = $this->addResourcePrefixHeader($callOptions, $this->databaseName);
+            $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+            $this->spannerClient->getSession($request, $callOptions);
         } catch (NotFoundException $e) {
             return false;
         }
@@ -186,14 +182,10 @@ class Session
             'name' => $this->name()
         ];
 
-        $this->createAndSendRequest(
-            SpannerClient::class,
-            'deleteSession',
-            $data,
-            $callOptions,
-            DeleteSessionRequest::class,
-            $this->databaseName
-        );
+        $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->databaseName);
+
+        $this->spannerClient->deleteSession($request, $callOptions);
     }
 
     /**

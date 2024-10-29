@@ -30,7 +30,6 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
@@ -115,39 +114,9 @@ class Database
     const TYPE_PG_OID = 'pgOid';
 
     /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
-     * @var Instance
-     */
-    private $instance;
-
-    /**
      * @var Operation
      */
     private $operation;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var array
-     */
-    private $info;
 
     /**
      * @var IamManager|null
@@ -160,19 +129,9 @@ class Database
     private $session;
 
     /**
-     * @var SessionPoolInterface|null
-     */
-    private $sessionPool;
-
-    /**
      * @var bool
      */
     private $isRunningTransaction = false;
-
-    /**
-     * @var string|null
-     */
-    private $databaseRole;
 
     /**
      * @var array
@@ -190,11 +149,6 @@ class Database
     private $defaultQueryOptions;
 
     /**
-     * @var bool
-     */
-    private $returnInt64AsObject;
-
-    /**
      * @var array
      */
     private $mutationSetters = [
@@ -210,8 +164,8 @@ class Database
      *
      * @internal Database is constructed by the {@see Instance} class.
      *
-     * @param RequestHandler The request handler that is responsible for sending a request
-     *        and serializing responses into relevant classes.
+     * @param SpannerClient $spannerClient The Spanner client used to interact with the API.
+     * @param DatabaseAdminClient $databaseAdminClient The database admin client used to interact with the API.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the database exists.
      * @param string $projectId The project ID.
@@ -231,27 +185,23 @@ class Database
      * }
      */
     public function __construct(
-        RequestHandler $requestHandler,
-        Serializer $serializer,
-        Instance $instance,
-        string $projectId,
-        string $name,
-        SessionPoolInterface $sessionPool = null,
-        bool $returnInt64AsObject = false,
-        array $info = [],
-        string $databaseRole = '',
+        private SpannerClient $spannerClient,
+        private DatabaseAdminClient $databaseAdminClient,
+        private Serializer $serializer,
+        private Instance $instance,
+        private string $projectId,
+        private string $name,
+        private ?SessionPoolInterface $sessionPool = null,
+        private bool $returnInt64AsObject = false,
+        private array $info = [],
+        private string $databaseRole = '',
         array $config = []
     ) {
-        $this->requestHandler = $requestHandler;
-        $this->serializer = $serializer;
-        $this->instance = $instance;
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
-        $this->sessionPool = $sessionPool;
         $this->routeToLeader = $config['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $config['defaultQueryOptions'] ?? [];
         $this->operation = new Operation(
-            $requestHandler,
+            $this->spannerClient,
             $serializer,
             $returnInt64AsObject,
             [
@@ -259,15 +209,12 @@ class Database
                 'defaultQueryOptions' => $this->defaultQueryOptions
             ]
         );
-        $this->info = $info;
 
         if ($this->sessionPool) {
             $this->sessionPool->setDatabase($this);
         }
 
-        $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
-        $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
     /**
@@ -412,14 +359,11 @@ class Database
         list($data, $callOptions) = $this->callOptions($options);
         $data['name'] = $this->name;
 
-        return $this->info = $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabase',
-            $data,
-            $callOptions,
-            GetDatabaseRequest::class,
-            $this->name
-        );
+        $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $response = $this->databaseAdminClient->getDatabase($request, $callOptions);
+        return $this->info = $this->handleResponse($response);
     }
 
     /**
@@ -467,7 +411,7 @@ class Database
      *
      *     @type string[] $statements Additional DDL statements.
      * }
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      */
     public function create(array $options = [])
     {
@@ -480,14 +424,11 @@ class Database
             'extraStatements' => $this->pluck('statements', $data, false) ?: []
         ];
 
-        return $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'createDatabase',
-            $data,
-            $callOptions,
-            CreateDatabaseRequest::class,
-            $this->instance->name()
-        )->withResultFunction($this->databaseResultFunction());
+        $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
+
+        return $this->databaseAdminClient->createDatabase($request, $callOptions)
+            ->withResultFunction($this->databaseResultFunction());
     }
 
     /**
@@ -504,7 +445,7 @@ class Database
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      */
     public function restore($backup, array $options = [])
     {
@@ -545,16 +486,14 @@ class Database
                 'name' => $this->name,
                 'enableDropProtection' =>
                     $this->pluck('enableDropProtection', $data, false) ?: false
-            ]];
+            ]
+        ];
 
-        return $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'updateDatabase',
-            $data,
-            $callOptions,
-            UpdateDatabaseRequest::class,
-            $this->name
-        )->withResultFunction($this->databaseResultFunction());
+        $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        return $this->databaseAdminClient->updateDatabase($request, $callOptions)
+            ->withResultFunction($this->databaseResultFunction());
     }
 
     /**
@@ -625,14 +564,10 @@ class Database
             'statements' => $statements
         ];
 
-        return $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'updateDatabaseDdl',
-            $data,
-            $callOptions,
-            UpdateDatabaseDdlRequest::class,
-            $this->name
-        );
+        $request = $this->serializer->decodeMessage(new UpdateDatabaseDdlRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        return $this->databaseAdminClient->updateDatabaseDdl($request, $callOptions);
     }
 
     /**
@@ -662,14 +597,10 @@ class Database
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
-        $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'dropDatabase',
-            $data,
-            $callOptions,
-            DropDatabaseRequest::class,
-            $this->name
-        );
+        $request = $this->serializer->decodeMessage(new DropDatabaseRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $this->databaseAdminClient->dropDatabase($request, $callOptions);
 
         if ($this->sessionPool) {
             $this->sessionPool->clear();
@@ -703,14 +634,11 @@ class Database
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
-        $ddl = $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabaseDdl',
-            $data,
-            $callOptions,
-            GetDatabaseDdlRequest::class,
-            $this->name
-        );
+        $request = $this->serializer->decodeMessage(new GetDatabaseDdlRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $response = $this->databaseAdminClient->getDatabaseDdl($request, $callOptions);
+        $dll = $this->handleResponse($response);
 
         if (isset($ddl['statements'])) {
             return $ddl['statements'];
@@ -733,7 +661,7 @@ class Database
     {
         if (!$this->iam) {
             $this->iam = new IamManager(
-                $this->requestHandler,
+                new RequestHandler($this->serializer, [$this->databaseAdminClient]),
                 $this->serializer,
                 DatabaseAdminClient::class,
                 $this->name
@@ -1856,15 +1784,12 @@ class Database
                 'mutationGroups' => $mutationGroups
             ];
 
-            return $this->createAndSendRequest(
-                GapicSpannerClient::class,
-                'batchWrite',
-                $data,
-                $callOptions,
-                BatchWriteRequest::class,
-                $this->name,
-                $this->routeToLeader
-            );
+            $request = $this->serializer->decodeMessage(new BatchWriteRequest(), $data);
+            $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+            $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+            $response = $this->spannerClient->batchWrite($request, $callOptions);
+            return $this->handleResponse($response);
         } finally {
             $this->isRunningTransaction = false;
             $session->setExpiration();
@@ -2272,15 +2197,13 @@ class Database
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
-        return $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'batchCreateSessions',
-            $data,
-            $callOptions,
-            BatchCreateSessionsRequest::class,
-            $this->name,
-            $this->routeToLeader
-        );
+
+
+        $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $response = $this->spannerClient->batchCreateSessions($request, $callOptions);
     }
 
     /**
@@ -2296,14 +2219,11 @@ class Database
     public function deleteSessionAsync(array $options)
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
-        return $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'deleteSessionAsync',
-            $data,
-            $callOptions,
-            DeleteSessionRequest::class,
-            $this->name
-        );
+
+        $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $response = $this->spannerClient->deleteSessionAsync($request, $callOptions);
     }
 
     /**
@@ -2348,14 +2268,11 @@ class Database
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        DatabaseAdminClient::class,
-                        'listBackupOperations',
-                        $data,
-                        $callOptions,
-                        ListBackupOperationsRequest::class,
-                        $this->name
-                    );
+                    $request = $this->serializer->decodeMessage(new ListBackupOperationsRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+                    $response = $this->databaseAdminClient->listBackupOperations($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [
@@ -2386,14 +2303,11 @@ class Database
             'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
 
-        return $this->createAndSendRequest(
-            DatabaseAdminClient::class,
-            'restoreDatabase',
-            $data,
-            $callOptions,
-            RestoreDatabaseRequest::class,
-            $this->name
-        )->withResultFunction($this->databaseResultFunction());
+        $request = $this->serializer->decodeMessage(new RestoreDatabaseRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        return $this->databaseAdminClient->restoreDatabase($request, $callOptions)
+            ->withResultFunction($this->databaseResultFunction());
     }
 
     /**
@@ -2438,14 +2352,11 @@ class Database
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        DatabaseAdminClient::class,
-                        'listDatabaseOperations',
-                        $data,
-                        $callOptions,
-                        ListDatabaseOperationsRequest::class,
-                        $this->instance->name()
-                    );
+                    $request = $this->serializer->decodeMessage(new ListDatabaseOperationsRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name);
+
+                    $response = $this->databaseAdminClient->listDatabaseOperations($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [

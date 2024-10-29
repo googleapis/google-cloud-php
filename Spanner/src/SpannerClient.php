@@ -262,6 +262,7 @@ class SpannerClient
         $this->spannerClient = new GapicSpannerClient($clientConfig);
         $this->instanceAdminClient = new InstanceAdminClient($clientConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($clientConfig);
+        $this->projectName = InstanceAdminClient::projectName($this->projectId);
     }
 
     /**
@@ -402,7 +403,7 @@ class SpannerClient
     public function instanceConfigurations(array $options = [])
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $data['parent'] = InstanceAdminClient::projectName($this->projectId);
+        $data['parent'] = $this->projectName;
 
         $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
         return new ItemIterator(
@@ -415,14 +416,11 @@ class SpannerClient
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        InstanceAdminClient::class,
-                        'listInstanceConfigs',
-                        $data,
-                        $callOptions,
-                        ListInstanceConfigsRequest::class,
-                        InstanceAdminClient::projectName($this->projectId)
-                    );
+                    $request = $this->serializer->decodeMessage(new ListInstanceConfigsRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
+
+                    $response = $this->instanceAdminClient->listInstanceConfigs($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [
@@ -496,7 +494,7 @@ class SpannerClient
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $data['parent'] = InstanceAdminClient::projectName($this->projectId);
+        $data['parent'] = $this->projectName;
         return new ItemIterator(
             new PageIterator(
                 function (OperationResponse $operation) {
@@ -507,14 +505,11 @@ class SpannerClient
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        InstanceAdminClient::class,
-                        'listInstanceConfigOperations',
-                        $data,
-                        $callOptions,
-                        ListInstanceConfigOperationsRequest::class,
-                        InstanceAdminClient::projectName($this->projectId)
-                    );
+                    $request = $this->serializer->decodeMessage(new ListInstanceConfigOperationsRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
+
+                    $response = $this->instanceAdminClient->listInstanceConfigOperations($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [
@@ -612,7 +607,7 @@ class SpannerClient
     public function instances(array $options = [])
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $data += ['filter' => '', 'parent' => InstanceAdminClient::projectName($this->projectId)];
+        $data += ['filter' => '', 'parent' => $this->projectName];
 
         $resultLimit = $this->pluck('resultLimit', $data, false);
         return new ItemIterator(
@@ -626,14 +621,11 @@ class SpannerClient
                         $data['pageToken'] = $callOptions['pageToken'];
                     }
 
-                    return $this->createAndSendRequest(
-                        InstanceAdminClient::class,
-                        'listInstances',
-                        $data,
-                        $callOptions,
-                        ListInstancesRequest::class,
-                        InstanceAdminClient::projectName($this->projectId)
-                    );
+                    $request = $this->serializer->decodeMessage(new ListInstancesRequest(), $data);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
+
+                    $response = $this->instanceAdminClient->listInstances($request, $callOptions);
+                    return $this->handleResponse($response);
                 },
                 $callOptions,
                 [

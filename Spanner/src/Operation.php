@@ -27,7 +27,7 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
-use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
@@ -67,16 +67,6 @@ class Operation
     const OP_DELETE = 'delete';
 
     /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
      * @var ValueMapper
      */
     private $mapper;
@@ -92,8 +82,7 @@ class Operation
     private $defaultQueryOptions;
 
     /**
-     * @param RequestHandler The request handler that is responsible for sending a request
-     *        and serializing responses into relevant classes.
+     * @param SpannerClient $spannerClient The Spanner client used to make requests.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
@@ -107,13 +96,11 @@ class Operation
      * }
      */
     public function __construct(
-        RequestHandler $requestHandler,
-        Serializer $serializer,
+        private SpannerClient $spannerClient,
+        private Serializer $serializer,
         bool $returnInt64AsObject,
         $config = []
     ) {
-        $this->requestHandler = $requestHandler;
-        $this->serializer = $serializer;
         $this->mapper = new ValueMapper($returnInt64AsObject);
         $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?: true;
         $this->defaultQueryOptions =
@@ -185,15 +172,12 @@ class Operation
         ];
         $data = $this->formatSingleUseTransactionOptions($data);
 
-        $res = $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'commit',
-            $data,
-            $callOptions,
-            CommitRequest::class,
-            $this->getDatabaseNameFromSession($session),
-            $this->routeToLeader
-        );
+        $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $response = $this->spannerClient->commit($request, $callOptions);
+        $res = $this->handleResponse($response);
 
         $time = $this->parseTimeString($res['commitTimestamp']);
         return [new Timestamp($time[0], $time[1]), $res];
@@ -222,15 +206,11 @@ class Operation
             'transactionId' => $transactionId
         ];
 
-        $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'rollback',
-            $data,
-            $callOptions,
-            RollbackRequest::class,
-            $this->getDatabaseNameFromSession($session),
-            $this->routeToLeader
-        );
+        $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $this->spannerClient->rollback($request, $callOptions);
     }
 
     /**
@@ -400,15 +380,12 @@ class Operation
             'statements' => $this->formatStatements($statements)
         ];
 
-        $res = $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'executeBatchDml',
-            $data,
-            $callOptions,
-            ExecuteBatchDmlRequest::class,
-            $this->getDatabaseNameFromSession($session),
-            $this->routeToLeader
-        );
+        $request = $this->serializer->decodeMessage(new ExecuteBatchDmlRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $response = $this->spannerClient->executeBatchDml($request, $callOptions);
+        $res = $this->handleResponse($response);
 
         if (empty($transaction->id())) {
             // Get the transaction from array of ResultSets.
@@ -682,15 +659,12 @@ class Operation
                 'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
         ]];
 
-        $res = $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'createSession',
-            $data,
-            $callOptions,
-            CreateSessionRequest::class,
-            $databaseName,
-            $this->routeToLeader
-        );
+        $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $response = $this->spannerClient->createSession($request, $callOptions);
+        $res = $this->handleResponse($response);
 
         return $this->session($res['name']);
     }
@@ -771,15 +745,12 @@ class Operation
             'partitionOptions' => $this->partitionOptions($data)
         ];
 
-        $res = $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'partitionQuery',
-            $data,
-            $callOptions,
-            PartitionQueryRequest::class,
-            $this->getDatabaseNameFromSession($session),
-            $this->routeToLeader
-        );
+        $request = $this->serializer->decodeMessage(new PartitionQueryRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $response = $this->spannerClient->partitionQuery($request, $callOptions);
+        $res = $this->handleResponse($response);
 
         $partitions = [];
         foreach ($res['partitions'] as $partition) {
@@ -837,15 +808,12 @@ class Operation
             'partitionOptions' => $this->partitionOptions($data)
         ];
 
-        $res = $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'partitionRead',
-            $data,
-            $callOptions,
-            PartitionReadRequest::class,
-            $this->getDatabaseNameFromSession($session),
-            $this->routeToLeader
-        );
+        $request = $this->serializer->decodeMessage(new PartitionReadRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
+
+        $response = $this->spannerClient->partitionRead($request, $callOptions);
+        $res = $this->handleResponse($response);
 
         $partitions = [];
         foreach ($res['partitions'] as $partition) {
@@ -900,14 +868,11 @@ class Operation
             'options' => $transactionOptions
         ];
 
-        return $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'beginTransaction',
-            $data,
-            $callOptions,
-            BeginTransactionRequest::class,
-            $this->getDatabaseNameFromSession($session)
-        );
+        $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+
+        $response = $this->spannerClient->beginTransaction($request, $callOptions);
+        return $this->handleResponse($response);
     }
 
     /**
@@ -1127,14 +1092,11 @@ class Operation
         $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
 
-        return $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'executeStreamingSql',
-            $data,
-            $callOptions,
-            ExecuteSqlRequest::class,
-            $databaseName
-        );
+        $request = $this->serializer->decodeMessage(new ExecuteSqlRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
+
+        $response = $this->spannerClient->executeStreamingSql($request, $callOptions);
+        return $this->handleResponse($response);
     }
 
     /**
@@ -1149,14 +1111,11 @@ class Operation
         $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
 
-        return $this->createAndSendRequest(
-            GapicSpannerClient::class,
-            'streamingRead',
-            $data,
-            $callOptions,
-            ReadRequest::class,
-            $databaseName
-        );
+        $request = $this->serializer->decodeMessage(new ReadRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
+
+        $response = $this->spannerClient->streamingRead($request, $callOptions);
+        return $this->handleResponse($response);
     }
 
     /**

@@ -55,11 +55,6 @@ class Backup
     const STATE_CREATING = State::CREATING;
 
     /**
-     * @var string
-     */
-    private string $name;
-
-    /**
      * Create an object representing a Backup.
      *
      * @internal Backup is constructed by the {@see Instance} class.
@@ -76,7 +71,7 @@ class Backup
         private Serializer $serializer,
         private Instance $instance,
         private $projectId,
-        $name,
+        private string $name,
         private array $info = []
     ) {
         $this->name = $this->fullyQualifiedBackupName($name);
@@ -192,7 +187,7 @@ class Backup
         $request = $this->serializer->decodeMessage(new DeleteBackupRequest(), $data);
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        return $this->databaseAdminClient->deleteBackup($request, $callOptions);
+        $this->databaseAdminClient->deleteBackup($request, $callOptions);
     }
 
     /**

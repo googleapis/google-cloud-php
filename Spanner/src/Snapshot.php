@@ -43,16 +43,6 @@ class Snapshot implements TransactionalReadInterface
     use SnapshotTrait;
 
     /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
      * @param array $options [optional] {

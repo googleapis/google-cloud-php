@@ -45,38 +45,6 @@ trait RequestTrait
     private $resourcePrefixHeader = 'google-cloud-resource-prefix';
 
     /**
-     * Create request and send the request.
-     */
-    private function createAndSendRequest(
-        string $clientClass,
-        string $method,
-        array $data,
-        array $callOptions,
-        string $requestClass,
-        string $resourcePrefixHeader = '',
-        bool $routeToLeader = false
-    ) {
-        if ($resourcePrefixHeader) {
-            $callOptions = $this->addResourcePrefixHeader(
-                $callOptions,
-                $resourcePrefixHeader
-            );
-        }
-        if ($routeToLeader) {
-            $callOptions = $this->addLarHeader($callOptions, $routeToLeader);
-        }
-
-        $request = $this->serializer->decodeMessage(new $requestClass(), $data);
-
-        return $this->requestHandler->sendRequest(
-            $clientClass,
-            $method,
-            $request,
-            $callOptions
-        );
-    }
-
-    /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
      *
      * @param array $args Request arguments.
