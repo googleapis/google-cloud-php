@@ -31,52 +31,52 @@ trait TransactionalReadTrait
     /**
      * @var Operation
      */
-    private $operation;
+    private Operation $operation;
 
     /**
      * @var Session
      */
-    private $session;
+    private Session $session;
 
     /**
      * @var string
      */
-    private $transactionId;
+    private ?string $transactionId;
 
     /**
      * @var string
      */
-    private $context;
+    private string $context;
 
     /**
      * @var int
      */
-    private $type;
+    private int $type;
 
     /**
      * @var int
      */
-    private $state = 0; // TransactionalReadInterface::STATE_ACTIVE
+    private int $state = 0; // TransactionalReadInterface::STATE_ACTIVE
 
     /**
      * @var array
      */
-    private $options = [];
+    private array $options = [];
 
     /**
      * @var int
      */
-    private $seqno = 1;
+    private int $seqno = 1;
 
     /**
      * @var string
      */
-    private $tag = null;
+    private ?string $tag = null;
 
     /**
      * @var array
      */
-    private $directedReadOptions = [];
+    private array $directedReadOptions = [];
 
     /**
      * Run a query.

@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 
 /**
  * Represents a Cloud Spanner instance
@@ -114,6 +115,7 @@ class Instance
      * }
      */
     public function __construct(
+        private GapicSpannerClient $spannerClient,
         private InstanceAdminClient $instanceAdminClient,
         private DatabaseAdminClient $databaseAdminClient,
         private Serializer $serializer,
@@ -494,7 +496,8 @@ class Instance
     public function database($name, array $options = [])
     {
         return new Database(
-            $this->requestHandler,
+            $this->spannerClient,
+            $this->databaseAdminClient,
             $this->serializer,
             $this,
             $this->projectId,
@@ -580,7 +583,7 @@ class Instance
     public function backup($name, array $backup = [])
     {
         return new Backup(
-            $this->requestHandler,
+            $this->databaseAdminClient,
             $this->serializer,
             $this,
             $this->projectId,
@@ -764,7 +767,9 @@ class Instance
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'spannerClient' => get_class($this->spannerClient),
+            'databaseAdminClient' => get_class($this->databaseAdminClient),
+            'instanceAdminClient' => get_class($this->instanceAdminClient),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info
@@ -829,9 +834,7 @@ class Instance
     {
         return new OperationResponse(
             $operationName,
-            $this->requestHandler
-                ->getClientObject(InstanceAdminClient::class)
-                ->getOperationsClient()
+            $this->instanceAdminClient->getOperationsClient()
         );
     }
 
@@ -840,7 +843,9 @@ class Instance
         return function (InstanceProto $result) {
             $name = InstanceAdminClient::parseName($result->getName());
             return new self(
-                $this->requestHandler,
+                $this->spannerClient,
+                $this->instanceAdminClient,
+                $this->databaseAdminClient,
                 $this->serializer,
                 $this->projectId,
                 $name['instance'],

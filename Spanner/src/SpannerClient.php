@@ -29,7 +29,6 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
@@ -294,7 +293,7 @@ class SpannerClient
     public function batch($instanceId, $databaseId, array $options = [])
     {
         $operation = new Operation(
-            $this->requestHandler,
+            $this->spannerClient,
             $this->serializer,
             $this->returnInt64AsObject,
             [
@@ -456,7 +455,7 @@ class SpannerClient
     public function instanceConfiguration($name, array $options = [])
     {
         return new InstanceConfiguration(
-            $this->requestHandler,
+            $this->instanceAdminClient,
             $this->serializer,
             $this->projectId,
             $name,
@@ -564,7 +563,9 @@ class SpannerClient
     public function instance($name, array $instance = [])
     {
         return new Instance(
-            $this->requestHandler,
+            $this->spannerClient,
+            $this->instanceAdminClient,
+            $this->databaseAdminClient,
             $this->serializer,
             $this->projectId,
             $name,
@@ -689,9 +690,7 @@ class SpannerClient
     {
         return new OperationResponse(
             $operationName,
-            $this->requestHandler
-                ->getClientObject(DatabaseAdminClient::class)
-                ->getOperationsClient()
+            $this->databaseAdminClient->getOperationsClient()
         );
     }
 

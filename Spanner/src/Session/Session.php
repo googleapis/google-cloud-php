@@ -21,7 +21,6 @@ use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\RequestTrait;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
@@ -38,41 +37,6 @@ class Session
     use RequestTrait;
 
     /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $instance;
-
-    /**
-     * @var string
-     */
-    private $database;
-
-    /**
-     * @var string
-     */
-    private $databaseName;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * @var int|null
      */
     private $expiration;
@@ -85,8 +49,6 @@ class Session
     /**
      * @internal Session is constructed by the {@see Database} class.
      *
-     * @param RequestHandler The request handler that is responsible for sending a request
-     *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The project ID.
      * @param string $instance The instance name.
@@ -100,19 +62,14 @@ class Session
      * }
      */
     public function __construct(
-        RequestHandler $requestHandler,
-        Serializer $serializer,
-        $projectId,
-        $instance,
-        $database,
-        $name,
+        private SpannerClient $spannerClient,
+        private Serializer $serializer,
+        private $projectId,
+        private $instance,
+        private $database,
+        private $name,
         $config = []
     ) {
-        $this->requestHandler = $requestHandler;
-        $this->serializer = $serializer;
-        $this->projectId = $projectId;
-        $this->instance = $instance;
-        $this->database = $database;
         $this->databaseName = SpannerClient::databaseName(
             $projectId,
             $instance,
@@ -230,7 +187,7 @@ class Session
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'spannerClient' => get_class($this->spannerClient),
             'projectId' => $this->projectId,
             'instance' => $this->instance,
             'database' => $this->database,

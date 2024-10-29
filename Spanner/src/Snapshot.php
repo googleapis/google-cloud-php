@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\Serializer;
-use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 

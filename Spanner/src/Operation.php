@@ -21,7 +21,6 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
@@ -682,9 +681,9 @@ class Operation
      */
     public function session($sessionName)
     {
-        $sessionNameComponents = GapicSpannerClient::parseName($sessionName);
+        $sessionNameComponents = SpannerClient::parseName($sessionName);
         return new Session(
-            $this->requestHandler,
+            $this->spannerClient,
             $this->serializer,
             $sessionNameComponents['project'],
             $sessionNameComponents['instance'],
@@ -1158,7 +1157,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'spannerClient' => get_class($this->spannerClient),
         ];
     }
 }

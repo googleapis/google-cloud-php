@@ -31,6 +31,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -50,7 +51,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
-use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
@@ -2258,9 +2259,7 @@ class Database
                 function (array $operation) {
                     return new OperationResponse(
                         $operation['name'],
-                        $this->requestHandler
-                            ->getClientObject(DatabaseAdminClient::class)
-                            ->getOperationsClient(),
+                        $this->databaseAdminClient->getOperationsClient(),
                     );
                 },
                 function ($callOptions) use ($data) {
@@ -2342,9 +2341,7 @@ class Database
                 function (array $operation) {
                     return new OperationResponse(
                         $operation['name'],
-                        $this->requestHandler
-                            ->getClientObject(DatabaseAdminClient::class)
-                            ->getOperationsClient(),
+                        $this->databaseAdminClient->getOperationsClient(),
                     );
                 },
                 function ($callOptions) use ($data) {
@@ -2382,9 +2379,7 @@ class Database
     {
         return new OperationResponse(
             $operationName,
-            $this->requestHandler
-                ->getClientObject(DatabaseAdminClient::class)
-                ->getOperationsClient()
+            $this->databaseAdminClient->getOperationsClient()
         );
     }
 
@@ -2453,7 +2448,7 @@ class Database
         $instance = DatabaseAdminClient::parseName($this->instance->name())['instance'];
 
         try {
-            return GapicSpannerClient::databaseName(
+            return SpannerClient::databaseName(
                 $this->projectId,
                 $instance,
                 $name
@@ -2620,7 +2615,8 @@ class Database
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'spannerClient' => get_class($this->spannerClient),
+            'databaseAdminClient' => get_class($this->databaseAdminClient),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'instance' => $this->instance,
