@@ -159,6 +159,15 @@ trait XrefTrait
         // Remove preceeding "\" from namespace
         $name = $name ?: ltrim($uid, '\\');
 
+        // Case for nested types
+        if (preg_match('/(.*)<(.*)>/', $uid, $matches)) {
+            return sprintf(
+                '%s<%s>',
+                $this->replaceUidWithLink($matches[1]),
+                $this->replaceUidWithLink($matches[2])
+            );
+        }
+
         // Check for external package namespaces
         switch (true) {
             case 0 === strpos($uid, '\Google\ApiCore\\'):
@@ -179,14 +188,19 @@ trait XrefTrait
             case 0 === strpos($uid, '\Google\Type\\'):
                 $extLinkRoot = 'https://googleapis.github.io/common-protos-php#';
                 break;
+            case 0 === strpos($uid, '\GuzzleHttp\Promise\PromiseInterface'):
+                $extLinkRoot = 'https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html';
+                break;
             default:
                 $extLinkRoot = '';
         }
 
         // Create external link
         if ($extLinkRoot) {
-            $path = str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
-            return sprintf('<a href="%s">%s</a>', $extLinkRoot . $path, $name);
+            if (str_starts_with('\Google', $uid)) {
+                $extLinkRoot = str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
+            }
+            return sprintf('<a href="%s">%s</a>', $extLinkRoot, $name);
         }
 
         return sprintf('<xref uid="%s">%s</xref>', $uid, $name);

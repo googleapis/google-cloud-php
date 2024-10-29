@@ -138,6 +138,42 @@ EOF;
         );
     }
 
+    public function testReplaceGuzzleExternalLink()
+    {
+        $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
+        $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
+        $xref = new class {
+            use XrefTrait;
+
+            public function replace(string $uid) {
+                return $this->replaceUidWithLink($uid);
+            }
+        };
+
+        $result = $xref->replace($guzzlePromiseClassName);
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testReplaceNestedPromiseClass()
+    {
+        $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
+        $googleReference = '\Google\Cloud\AdvisoryNotifications\V1\Notification';
+        $uid = $guzzlePromiseClassName . '<' . $googleReference . '>';
+
+        $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
+        $expected .= '<<xref uid="' . $googleReference . '">Google\Cloud\AdvisoryNotifications\V1\Notification</xref>>';
+        $xref = new class {
+            use XrefTrait;
+
+            public function replace(string $uid) {
+                return $this->replaceUidWithLink($uid);
+            }
+        };
+
+        $result = $xref->replace($uid);
+        $this->assertEquals($expected, $result);
+    }
+
     /**
      * @dataProvider provideReplaceProtoRefWithXref
      */
