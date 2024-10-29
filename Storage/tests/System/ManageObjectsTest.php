@@ -295,7 +295,7 @@ class ManageObjectsTest extends StorageTestCase
             $softDeleteBucketName,
             [
                 'location' => 'us-west1',
-                'softDeletePolicy' => ['retentionDurationSeconds' => 8*24*60*60]
+                'softDeletePolicy' => ['retentionDurationSeconds' => 8 * 24 * 60 * 60]
             ]
         );
         $object = $softDeleteBucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
@@ -314,6 +314,47 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertNotEquals($generation, $restoredObject->info()['generation']);
 
         $this->assertStorageObjectExists($softDeleteBucket, $restoredObject);
+    }
+
+    public function testSoftDeleteHNSObject()
+    {
+        $softDeleteBucketName = "soft-delete-hns-bucket-" . uniqid();
+        $softDeleteHNSBucket = self::createBucket(
+            self::$client,
+            $softDeleteBucketName,
+            [
+                'location' => 'us-west1',
+                'softDeletePolicy' => ['retentionDurationSeconds' => 8 * 24 * 60 * 60],
+                'hierarchicalNamespace' => ['enabled' => true,],
+                'iamConfiguration' => ['uniformBucketLevelAccess' => ['enabled' => true]]
+            ]
+        );
+        $object = $softDeleteHNSBucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
+        $this->assertStorageObjectExists($softDeleteHNSBucket, $object);
+        $generation = $object->info()['generation'];
+        $objectName = $object->info()['name'];
+        $options = [
+            'softDeleted' => true,
+            'generation' => $generation
+        ];
+
+        $object->delete();
+
+        $deletedObject = $softDeleteHNSBucket->object($objectName, $options);
+        $restoreToken = $deletedObject->info($options)['restoreToken'];
+
+        $this->assertStorageObjectNotExists($softDeleteHNSBucket, $object);
+        $this->assertStorageObjectExists($softDeleteHNSBucket, $object, [
+            'softDeleted' => true,
+            'generation' => $generation
+        ]);
+
+        $restoredObject = $softDeleteHNSBucket->restore($object->name(), $generation, [
+            'restoreToken' => $restoreToken
+        ]);
+        $this->assertNotEquals($generation, $restoredObject->info()['generation']);
+
+        $this->assertStorageObjectExists($softDeleteHNSBucket, $restoredObject);
     }
 
     public function testRotatesCustomerSuppliedEncrpytion()
