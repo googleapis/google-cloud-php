@@ -198,7 +198,7 @@ trait XrefTrait
         // Create external link
         if ($extLinkRoot) {
             if (str_starts_with('\Google', $uid)) {
-                $extLinkRoot = str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
+                $extLinkRoot .= str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
             }
             return sprintf('<a href="%s">%s</a>', $extLinkRoot, $name);
         }
