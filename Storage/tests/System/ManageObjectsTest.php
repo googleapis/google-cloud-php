@@ -295,7 +295,7 @@ class ManageObjectsTest extends StorageTestCase
             $softDeleteBucketName,
             [
                 'location' => 'us-west1',
-                'softDeletePolicy' => ['retentionDurationSeconds' => 8*24*60*60]
+                'softDeletePolicy' => ['retentionDurationSeconds' => 8 * 24 * 60 * 60]
             ]
         );
         $object = $softDeleteBucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
@@ -349,7 +349,9 @@ class ManageObjectsTest extends StorageTestCase
             'generation' => $generation
         ]);
 
-        $restoredObject = $softDeleteHNSBucket->restore($object->name(), $generation, ['restoreToken' => $restoreToken]);
+        $restoredObject = $softDeleteHNSBucket->restore($object->name(), $generation, [
+            'restoreToken' => $restoreToken
+        ]);
         $this->assertNotEquals($generation, $restoredObject->info()['generation']);
 
         $this->assertStorageObjectExists($softDeleteHNSBucket, $restoredObject);
