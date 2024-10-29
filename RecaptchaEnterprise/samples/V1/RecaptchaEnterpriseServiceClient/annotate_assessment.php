@@ -36,8 +36,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
  * @param string $formattedName The resource name of the Assessment, in the format
  *                              `projects/{project}/assessments/{assessment}`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
- * @param int    $annotation    Optional. The annotation that is assigned to the Event. This field can
- *                              be left empty to provide reasons that apply to an event without concluding
+ * @param int    $annotation    Optional. The annotation that is assigned to the Event. This field can be
+ *                              left empty to provide reasons that apply to an event without concluding
  *                              whether the event is legitimate or fraudulent.
  */
 function annotate_assessment_sample(string $formattedName, int $annotation): void

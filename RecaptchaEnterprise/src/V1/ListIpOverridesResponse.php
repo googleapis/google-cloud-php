@@ -27,7 +27,7 @@ class ListIpOverridesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    protected $next_page_token = '';
+    private $next_page_token = '';
 
     /**
      * Constructor.
