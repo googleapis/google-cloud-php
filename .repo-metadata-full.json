@@ -15,6 +15,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "accesscontextmanager"
     },
+    "AdsAdManager": {
+        "language": "php",
+        "distribution_name": "googleads/ad-manager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/ad-manager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "admanager"
+    },
     "AdsMarketingPlatformAdmin": {
         "language": "php",
         "distribution_name": "google/ads-marketingplatform-admin",

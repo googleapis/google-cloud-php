@@ -1,0 +1,30 @@
+{
+    "name": "googleads/ad-manager",
+    "description": "Google Ads Ad Manager Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Ads\\AdManager\\": "src",
+            "GPBMetadata\\Google\\Ads\\Admanager\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "googleads/ad-manager",
+            "path": "AdsAdManager",
+            "target": "googleapis/php-ads-ad-manager"
+        }
+    },
+    "require": {
+        "php": "^8.0",
+        "google/gax": "^1.34.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}
