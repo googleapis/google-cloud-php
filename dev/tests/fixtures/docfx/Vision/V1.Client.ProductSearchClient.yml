@@ -826,7 +826,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()'
     name: createProductAsync
@@ -847,7 +847,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()'
     name: createProductSetAsync
@@ -868,7 +868,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()'
     name: createReferenceImageAsync
@@ -889,7 +889,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()'
     name: deleteProductAsync
@@ -910,7 +910,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()'
     name: deleteProductSetAsync
@@ -931,7 +931,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()'
     name: deleteReferenceImageAsync
@@ -952,7 +952,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()'
     name: getProductAsync
@@ -973,7 +973,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()'
     name: getProductSetAsync
@@ -994,7 +994,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()'
     name: getReferenceImageAsync
@@ -1015,7 +1015,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()'
     name: importProductSetsAsync
@@ -1036,7 +1036,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()'
     name: listProductSetsAsync
@@ -1057,7 +1057,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()'
     name: listProductsAsync
@@ -1078,7 +1078,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()'
     name: listProductsInProductSetAsync
@@ -1099,7 +1099,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()'
     name: listReferenceImagesAsync
@@ -1120,7 +1120,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()'
     name: purgeProductsAsync
@@ -1141,7 +1141,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()'
     name: removeProductFromProductSetAsync
@@ -1162,7 +1162,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()'
     name: updateProductAsync
@@ -1183,7 +1183,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()'
     name: updateProductSetAsync
@@ -1204,7 +1204,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getOperationsClient()'
     name: getOperationsClient
