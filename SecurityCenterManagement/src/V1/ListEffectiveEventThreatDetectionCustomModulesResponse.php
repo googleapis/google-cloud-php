@@ -9,21 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for listing effective Event Threat Detection custom
- * modules.
+ * Response message for
+ * [SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListEffectiveEventThreatDetectionCustomModulesResponse</code>
  */
 class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of EffectiveEventThreatDetectionCustomModules
+     * The list of effective Event Threat Detection custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule effective_event_threat_detection_custom_modules = 1;</code>
      */
     private $effective_event_threat_detection_custom_modules;
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -36,9 +37,10 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $effective_event_threat_detection_custom_modules
-     *           The list of EffectiveEventThreatDetectionCustomModules
+     *           The list of effective Event Threat Detection custom modules.
      *     @type string $next_page_token
-     *           A token identifying a page of results the server should return.
+     *           A pagination token. To retrieve the next page of results, call the method
+     *           again with this token.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +49,7 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
     }
 
     /**
-     * The list of EffectiveEventThreatDetectionCustomModules
+     * The list of effective Event Threat Detection custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule effective_event_threat_detection_custom_modules = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,7 +60,7 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
     }
 
     /**
-     * The list of EffectiveEventThreatDetectionCustomModules
+     * The list of effective Event Threat Detection custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule effective_event_threat_detection_custom_modules = 1;</code>
      * @param array<\Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -73,7 +75,8 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -84,7 +87,8 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

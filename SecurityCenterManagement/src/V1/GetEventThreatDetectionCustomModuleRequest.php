@@ -9,32 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for getting a EventThreatDetectionCustomModule
+ * Request message for
+ * [SecurityCenterManagement.GetEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEventThreatDetectionCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.GetEventThreatDetectionCustomModuleRequest</code>
  */
 class GetEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Required. The resource name of the Event Threat Detection custom module, in
+     * one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. The resource name of the ETD custom module.
+     * @param string $name Required. The resource name of the Event Threat Detection custom module, in
+     *                     one of the following formats:
      *
-     *                     Its format is:
-     *
-     *                     * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *                     * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *                     * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`. Please see
-     *                     {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
+     *                     * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *                     * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *                     * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *                     Please see {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\GetEventThreatDetectionCustomModuleRequest
      *
@@ -53,11 +53,11 @@ class GetEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Intern
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the ETD custom module.
-     *           Its format is:
-     *             * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *             * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *             * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     *           Required. The resource name of the Event Threat Detection custom module, in
+     *           one of the following formats:
+     *           * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *           * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *           * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      * }
      */
     public function __construct($data = NULL) {
@@ -66,11 +66,11 @@ class GetEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * Required. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Required. The resource name of the Event Threat Detection custom module, in
+     * one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,11 +81,11 @@ class GetEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Intern
     }
 
     /**
-     * Required. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Required. The resource name of the Event Threat Detection custom module, in
+     * one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

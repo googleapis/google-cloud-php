@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for getting a EffectiveSecurityHealthAnalyticsCustomModule
+ * Request message for
+ * [SecurityCenterManagement.GetEffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetEffectiveSecurityHealthAnalyticsCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.GetEffectiveSecurityHealthAnalyticsCustomModuleRequest</code>
  */
@@ -18,9 +19,9 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
     /**
      * Required. The full resource name of the custom module, specified in one of
      * the following formats:
-     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,9 +31,9 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
      * @param string $name Required. The full resource name of the custom module, specified in one of
      *                     the following formats:
      *
-     *                     * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     *                     * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     *                     * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     *                     * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     *                     * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     *                     * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *                     Please see {@see SecurityCenterManagementClient::effectiveSecurityHealthAnalyticsCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest
@@ -54,9 +55,9 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
      *     @type string $name
      *           Required. The full resource name of the custom module, specified in one of
      *           the following formats:
-     *           * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     *           * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     *           * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     *           * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     *           * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     *           * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      * }
      */
     public function __construct($data = NULL) {
@@ -67,9 +68,9 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
     /**
      * Required. The full resource name of the custom module, specified in one of
      * the following formats:
-     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,9 +83,9 @@ class GetEffectiveSecurityHealthAnalyticsCustomModuleRequest extends \Google\Pro
     /**
      * Required. The full resource name of the custom module, specified in one of
      * the following formats:
-     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

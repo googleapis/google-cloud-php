@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing Security Health Analytics custom modules.
+ * Request message for
+ * [SecurityCenterManagement.ListSecurityHealthAnalyticsCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityHealthAnalyticsCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListSecurityHealthAnalyticsCustomModulesRequest</code>
  */
 class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent organization, folder, or project in which to list
-     * custom modules, specified in one of the following formats:
+     * Required. Name of the parent organization, folder, or project in which to
+     * list custom modules, in one of the following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
      * * `projects/{project}/locations/{location}`
@@ -33,15 +34,18 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
      */
     protected $page_size = 0;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent organization, folder, or project in which to list
-     *                       custom modules, specified in one of the following formats:
+     * @param string $parent Required. Name of the parent organization, folder, or project in which to
+     *                       list custom modules, in one of the following formats:
      *
      *                       * `organizations/{organization}/locations/{location}`
      *                       * `folders/{folder}/locations/{location}`
@@ -65,8 +69,8 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent organization, folder, or project in which to list
-     *           custom modules, specified in one of the following formats:
+     *           Required. Name of the parent organization, folder, or project in which to
+     *           list custom modules, in one of the following formats:
      *           * `organizations/{organization}/locations/{location}`
      *           * `folders/{folder}/locations/{location}`
      *           * `projects/{project}/locations/{location}`
@@ -74,7 +78,10 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results the server should return.
+     *           Optional. A pagination token returned from a previous request. Provide this
+     *           token to retrieve the next page of results.
+     *           When paginating, the rest of the request must match the request that
+     *           generated the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,8 +90,8 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. Name of parent organization, folder, or project in which to list
-     * custom modules, specified in one of the following formats:
+     * Required. Name of the parent organization, folder, or project in which to
+     * list custom modules, in one of the following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
      * * `projects/{project}/locations/{location}`
@@ -98,8 +105,8 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. Name of parent organization, folder, or project in which to list
-     * custom modules, specified in one of the following formats:
+     * Required. Name of the parent organization, folder, or project in which to
+     * list custom modules, in one of the following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
      * * `projects/{project}/locations/{location}`
@@ -145,7 +152,10 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,7 +166,10 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
