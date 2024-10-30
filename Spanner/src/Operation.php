@@ -22,6 +22,7 @@ use Google\Cloud\Core\ApiHelperTrait;
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Session\Session;
@@ -55,6 +56,7 @@ class Operation
     use ApiHelperTrait;
     use ArrayTrait;
     use RequestTrait;
+    use RequestProcessorTrait;
     use MutationTrait;
     use TimeTrait;
     use ValidateTrait;
@@ -659,7 +661,7 @@ class Operation
         ]];
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
         $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
         $response = $this->spannerClient->createSession($request, $callOptions);

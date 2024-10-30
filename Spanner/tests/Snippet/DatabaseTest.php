@@ -484,7 +484,7 @@ class DatabaseTest extends SnippetTestCase
             ])
         );
 
-        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
+        $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
@@ -499,9 +499,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRunTransactionRollback()
     {
-        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $this->mockSendRequest(SpannerClient::class, 'commit', null, null, 0);
+        $this->spannerClient->commit(Argument::cetera())->shouldNotBeCalled();
 
         $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 1);
 

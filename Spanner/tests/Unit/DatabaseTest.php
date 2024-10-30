@@ -832,9 +832,9 @@ class DatabaseTest extends TestCase
         // Begin transaction RPC is skipped when begin is inlined
         // and invoked only if `begin` fails or if commit is the
         // sole operation in the transaction.
-        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
+        $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
@@ -900,9 +900,9 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
+        $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
@@ -913,9 +913,9 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
+        $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
@@ -1074,9 +1074,9 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
-        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
+        $this->spannerClient->rollback(Argument::cetera())->shouldNotBeCalled();
 
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
@@ -2099,7 +2099,7 @@ class DatabaseTest extends TestCase
             $error,
             Database::MAX_RETRIES
         );
-        $this->mockSendRequest(SpannerClient::class, 'commit', null, null, 0);
+        $this->spannerClient->commit(Argument::cetera())->shouldNotBeCalled();
         $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($sql) {
@@ -2336,7 +2336,7 @@ class DatabaseTest extends TestCase
     private function stubCommit($withTransaction = true)
     {
         if ($withTransaction) {
-            $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+            $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
         } else {
             $this->mockSendRequest(
                 SpannerClient::class,

@@ -101,8 +101,8 @@ class Transaction implements TransactionalReadInterface
         private Session $session,
         private ?string $transactionId = null,
         private bool $isRetry = false,
-        private ?string $tag = null,
-        private array $options = [],
+        ?string $tag = null,
+        array $options = [],
         private ?ValueMapper $mapper = null
     ) {
         $this->type = ($transactionId || isset($options['begin']))
@@ -116,6 +116,8 @@ class Transaction implements TransactionalReadInterface
         }
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->options = $options;
+        $this->tag =$tag;
     }
 
     /**

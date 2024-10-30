@@ -17,7 +17,8 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
         "google/cloud-pubsub": "^2.0",
-        "dg/bypass-finals": "^1.7"
+        "dg/bypass-finals": "^1.7",
+        "dms/phpunit-arraysubset-asserts": "^0.5.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",

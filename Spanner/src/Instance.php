@@ -119,7 +119,7 @@ class Instance
         private InstanceAdminClient $instanceAdminClient,
         private DatabaseAdminClient $databaseAdminClient,
         private Serializer $serializer,
-        private stirng $projectId,
+        private string $projectId,
         private string $name,
         private bool $returnInt64AsObject = false,
         private array $info = [],

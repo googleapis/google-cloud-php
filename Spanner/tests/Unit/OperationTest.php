@@ -465,7 +465,7 @@ class OperationTest extends TestCase
 
     public function testSnapshotSingleUse()
     {
-        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->operation->___setProperty('serializer', $this->serializer);
