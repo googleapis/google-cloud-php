@@ -178,10 +178,15 @@ class Operation
         $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
         $response = $this->spannerClient->commit($request, $callOptions);
-        $res = $this->handleResponse($response);
+        $timestamp = $response->getCommitTimestamp();
 
-        $time = $this->parseTimeString($res['commitTimestamp']);
-        return [new Timestamp($time[0], $time[1]), $res];
+        return [
+            new Timestamp(
+                $this->createDateTimeFromSeconds($timestamp->getSeconds()),
+                $timestamp->getNanos()
+            ),
+            $this->handleResponse($response)
+        ];
     }
 
     /**
@@ -661,6 +666,7 @@ class Operation
         ]];
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $data);
+
         $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
         $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
