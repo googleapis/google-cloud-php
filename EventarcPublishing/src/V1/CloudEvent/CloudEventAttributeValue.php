@@ -271,6 +271,4 @@ class CloudEventAttributeValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudEventAttributeValue::class, \Google\Cloud\Eventarc\Publishing\V1\CloudEvent_CloudEventAttributeValue::class);
 
