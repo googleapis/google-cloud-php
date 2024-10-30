@@ -16,22 +16,29 @@ class Package
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È
-1google/devtools/artifactregistry/v1/package.proto#google.devtools.artifactregistry.v1google/api/resource.protogoogle/protobuf/timestamp.proto"”
+­
+1google/devtools/artifactregistry/v1/package.proto#google.devtools.artifactregistry.v1google/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¡
 Package
 name (	
 display_name (	/
 create_time (2.google.protobuf.Timestamp/
-update_time (2.google.protobuf.Timestamp:‚êA
-\'artifactregistry.googleapis.com/PackageTprojects/{project}/locations/{location}/repositories/{repository}/packages/{package}"}
+update_time (2.google.protobuf.TimestampW
+annotations (2=.google.devtools.artifactregistry.v1.Package.AnnotationsEntryBàA2
+AnnotationsEntry
+key (	
+value (	:8:‚êA
+\'artifactregistry.googleapis.com/PackageTprojects/{project}/locations/{location}/repositories/{repository}/packages/{package}"©
 ListPackagesRequest?
 parent (	B/àAúA)\'artifactregistry.googleapis.com/Package
 	page_size (
 
-page_token (	"o
+page_token (	
+filter (	BàA
+order_by (	BàA"o
 ListPackagesResponse>
 packages (2,.google.devtools.artifactregistry.v1.Package
 next_page_token (	"R
@@ -40,7 +47,10 @@ page_token (	"o
 \'artifactregistry.googleapis.com/Package"U
 DeletePackageRequest=
 name (	B/àAúA)
-\'artifactregistry.googleapis.com/PackageB÷
+\'artifactregistry.googleapis.com/Package"†
+UpdatePackageRequest=
+package (2,.google.devtools.artifactregistry.v1.Package/
+update_mask (2.google.protobuf.FieldMaskB÷
 \'com.google.devtools.artifactregistry.v1BPackageProtoPZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypbª Google.Cloud.ArtifactRegistry.V1Ê Google\\Cloud\\ArtifactRegistry\\V1ê#Google::Cloud::ArtifactRegistry::V1bproto3'
         , true);
 
