@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
@@ -444,7 +445,7 @@ class TransactionTypeTest extends TestCase
         ]);
         $this->spannerClient->executeStreamingSql(
             Argument::that(function ($request) use ($transaction) {
-                Argument::type(executeSqlRequest::class);
+                Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($request->getTransaction(), $transaction);
                 return true;
             }),
@@ -1010,10 +1011,22 @@ class TransactionTypeTest extends TestCase
 
     private function resultGeneratorStream(array $chunks)
     {
+        foreach ($chunks as $i => $chunk) {
+            $result = new PartialResultSet();
+            $result->mergeFromJsonString($chunk);
+            $chunks[$i] = $result;
+        }
         $this->stream = $this->prophesize(ServerStream::class);
         $this->stream->readAll()
             ->willReturn($this->resultGenerator($chunks));
 
         return $this->stream->reveal();
+    }
+
+    private function resultGenerator($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield $chunk;
+        }
     }
 }
