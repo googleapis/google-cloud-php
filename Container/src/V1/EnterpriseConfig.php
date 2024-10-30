@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class EnterpriseConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. cluster_tier specifies the premium tier of the cluster.
+     * Output only. cluster_tier indicates the effective tier of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -29,7 +29,7 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $cluster_tier
-     *           Output only. cluster_tier specifies the premium tier of the cluster.
+     *           Output only. cluster_tier indicates the effective tier of the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. cluster_tier specifies the premium tier of the cluster.
+     * Output only. cluster_tier indicates the effective tier of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -49,7 +49,7 @@ class EnterpriseConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. cluster_tier specifies the premium tier of the cluster.
+     * Output only. cluster_tier indicates the effective tier of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig.ClusterTier cluster_tier = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource link for the VPC network in which cluster
+     * Optional. The resource link for the VPC network in which cluster
      * resources are created and from which they are accessible via Private IP.
      * The network must belong to the same project as the cluster. It is
      * specified in the form:
-     * "projects/{project_number}/global/networks/{network_id}". This is
+     * `projects/{project_number}/global/networks/{network_id}`. This is
      * required to create a cluster.
      *
-     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
     /**
@@ -46,11 +46,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network
-     *           Required. The resource link for the VPC network in which cluster
+     *           Optional. The resource link for the VPC network in which cluster
      *           resources are created and from which they are accessible via Private IP.
      *           The network must belong to the same project as the cluster. It is
      *           specified in the form:
-     *           "projects/{project_number}/global/networks/{network_id}". This is
+     *           `projects/{project_number}/global/networks/{network_id}`. This is
      *           required to create a cluster.
      *     @type string $allocated_ip_range
      *           Optional. Name of the allocated IP range for the private IP AlloyDB
@@ -68,14 +68,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource link for the VPC network in which cluster
+     * Optional. The resource link for the VPC network in which cluster
      * resources are created and from which they are accessible via Private IP.
      * The network must belong to the same project as the cluster. It is
      * specified in the form:
-     * "projects/{project_number}/global/networks/{network_id}". This is
+     * `projects/{project_number}/global/networks/{network_id}`. This is
      * required to create a cluster.
      *
-     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -84,14 +84,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource link for the VPC network in which cluster
+     * Optional. The resource link for the VPC network in which cluster
      * resources are created and from which they are accessible via Private IP.
      * The network must belong to the same project as the cluster. It is
      * specified in the form:
-     * "projects/{project_number}/global/networks/{network_id}". This is
+     * `projects/{project_number}/global/networks/{network_id}`. This is
      * required to create a cluster.
      *
-     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -17,10 +17,11 @@ class ListManagementServersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location for which to retrieve management servers
-     * information, in the format `projects/{project_id}/locations/{location}`. In
-     * Cloud BackupDR, locations map to GCP regions, for example **us-central1**.
-     * To retrieve management servers for all locations, use "-" for the
-     * `{location}` value.
+     * information, in the format 'projects/{project_id}/locations/{location}'. In
+     * Cloud BackupDR, locations map to Google Cloud regions, for example
+     * **us-central1**. To retrieve management servers for all locations, use "-"
+     * for the
+     * '{location}' value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,10 +54,11 @@ class ListManagementServersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location for which to retrieve management servers
-     *                       information, in the format `projects/{project_id}/locations/{location}`. In
-     *                       Cloud BackupDR, locations map to GCP regions, for example **us-central1**.
-     *                       To retrieve management servers for all locations, use "-" for the
-     *                       `{location}` value. Please see
+     *                       information, in the format 'projects/{project_id}/locations/{location}'. In
+     *                       Cloud BackupDR, locations map to Google Cloud regions, for example
+     *                       **us-central1**. To retrieve management servers for all locations, use "-"
+     *                       for the
+     *                       '{location}' value. Please see
      *                       {@see BackupDRClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BackupDR\V1\ListManagementServersRequest
@@ -77,10 +79,11 @@ class ListManagementServersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location for which to retrieve management servers
-     *           information, in the format `projects/{project_id}/locations/{location}`. In
-     *           Cloud BackupDR, locations map to GCP regions, for example **us-central1**.
-     *           To retrieve management servers for all locations, use "-" for the
-     *           `{location}` value.
+     *           information, in the format 'projects/{project_id}/locations/{location}'. In
+     *           Cloud BackupDR, locations map to Google Cloud regions, for example
+     *           **us-central1**. To retrieve management servers for all locations, use "-"
+     *           for the
+     *           '{location}' value.
      *     @type int $page_size
      *           Optional. Requested page size. Server may return fewer items than
      *           requested. If unspecified, server will pick an appropriate default.
@@ -99,10 +102,11 @@ class ListManagementServersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location for which to retrieve management servers
-     * information, in the format `projects/{project_id}/locations/{location}`. In
-     * Cloud BackupDR, locations map to GCP regions, for example **us-central1**.
-     * To retrieve management servers for all locations, use "-" for the
-     * `{location}` value.
+     * information, in the format 'projects/{project_id}/locations/{location}'. In
+     * Cloud BackupDR, locations map to Google Cloud regions, for example
+     * **us-central1**. To retrieve management servers for all locations, use "-"
+     * for the
+     * '{location}' value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -114,10 +118,11 @@ class ListManagementServersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location for which to retrieve management servers
-     * information, in the format `projects/{project_id}/locations/{location}`. In
-     * Cloud BackupDR, locations map to GCP regions, for example **us-central1**.
-     * To retrieve management servers for all locations, use "-" for the
-     * `{location}` value.
+     * information, in the format 'projects/{project_id}/locations/{location}'. In
+     * Cloud BackupDR, locations map to Google Cloud regions, for example
+     * **us-central1**. To retrieve management servers for all locations, use "-"
+     * for the
+     * '{location}' value.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

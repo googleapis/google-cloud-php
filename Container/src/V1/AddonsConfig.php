@@ -101,6 +101,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     protected $stateful_ha_config = null;
     /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ParallelstoreCsiDriverConfig parallelstore_csi_driver_config = 19;</code>
+     */
+    protected $parallelstore_csi_driver_config = null;
+    /**
      * Optional. Configuration for Ray Operator addon.
      *
      * Generated from protobuf field <code>.google.container.v1.RayOperatorConfig ray_operator_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -148,6 +154,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Cloud Storage Fuse CSI driver.
      *     @type \Google\Cloud\Container\V1\StatefulHAConfig $stateful_ha_config
      *           Optional. Configuration for the StatefulHA add-on.
+     *     @type \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig $parallelstore_csi_driver_config
+     *           Configuration for the Cloud Storage Parallelstore CSI driver.
      *     @type \Google\Cloud\Container\V1\RayOperatorConfig $ray_operator_config
      *           Optional. Configuration for Ray Operator addon.
      * }
@@ -613,6 +621,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\StatefulHAConfig::class);
         $this->stateful_ha_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ParallelstoreCsiDriverConfig parallelstore_csi_driver_config = 19;</code>
+     * @return \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig|null
+     */
+    public function getParallelstoreCsiDriverConfig()
+    {
+        return $this->parallelstore_csi_driver_config;
+    }
+
+    public function hasParallelstoreCsiDriverConfig()
+    {
+        return isset($this->parallelstore_csi_driver_config);
+    }
+
+    public function clearParallelstoreCsiDriverConfig()
+    {
+        unset($this->parallelstore_csi_driver_config);
+    }
+
+    /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ParallelstoreCsiDriverConfig parallelstore_csi_driver_config = 19;</code>
+     * @param \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig $var
+     * @return $this
+     */
+    public function setParallelstoreCsiDriverConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ParallelstoreCsiDriverConfig::class);
+        $this->parallelstore_csi_driver_config = $var;
 
         return $this;
     }

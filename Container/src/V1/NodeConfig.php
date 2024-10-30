@@ -338,11 +338,26 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $secondary_boot_disks;
     /**
+     * List of Storage Pools where boot disks are provisioned.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 49;</code>
+     */
+    private $storage_pools;
+    /**
      * Secondary boot disk update strategy.
      *
      * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
      */
     protected $secondary_boot_disk_update_strategy = null;
+    /**
+     * Output only. effective_cgroup_mode is the cgroup mode actually used by the
+     * node pool. It is determined by the cgroup mode specified in the
+     * LinuxNodeConfig or the default cgroup mode based on the cluster creation
+     * version.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeConfig.EffectiveCgroupMode effective_cgroup_mode = 55 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $effective_cgroup_mode = 0;
 
     /**
      * Constructor.
@@ -516,8 +531,15 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Reserved for future use.
      *     @type array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $secondary_boot_disks
      *           List of secondary boot disks attached to the nodes.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_pools
+     *           List of Storage Pools where boot disks are provisioned.
      *     @type \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $secondary_boot_disk_update_strategy
      *           Secondary boot disk update strategy.
+     *     @type int $effective_cgroup_mode
+     *           Output only. effective_cgroup_mode is the cgroup mode actually used by the
+     *           node pool. It is determined by the cgroup mode specified in the
+     *           LinuxNodeConfig or the default cgroup mode based on the cluster creation
+     *           version.
      * }
      */
     public function __construct($data = NULL) {
@@ -1874,6 +1896,32 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * List of Storage Pools where boot disks are provisioned.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 49;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStoragePools()
+    {
+        return $this->storage_pools;
+    }
+
+    /**
+     * List of Storage Pools where boot disks are provisioned.
+     *
+     * Generated from protobuf field <code>repeated string storage_pools = 49;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStoragePools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->storage_pools = $arr;
+
+        return $this;
+    }
+
+    /**
      * Secondary boot disk update strategy.
      *
      * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
@@ -1905,6 +1953,38 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy::class);
         $this->secondary_boot_disk_update_strategy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. effective_cgroup_mode is the cgroup mode actually used by the
+     * node pool. It is determined by the cgroup mode specified in the
+     * LinuxNodeConfig or the default cgroup mode based on the cluster creation
+     * version.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeConfig.EffectiveCgroupMode effective_cgroup_mode = 55 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getEffectiveCgroupMode()
+    {
+        return $this->effective_cgroup_mode;
+    }
+
+    /**
+     * Output only. effective_cgroup_mode is the cgroup mode actually used by the
+     * node pool. It is determined by the cgroup mode specified in the
+     * LinuxNodeConfig or the default cgroup mode based on the cluster creation
+     * version.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeConfig.EffectiveCgroupMode effective_cgroup_mode = 55 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEffectiveCgroupMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodeConfig\EffectiveCgroupMode::class);
+        $this->effective_cgroup_mode = $var;
 
         return $this;
     }

@@ -18,8 +18,8 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
     /**
      * Required. The fully qualified resource name of the model.
      * Format:
-     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`
-     * model must be an alpha-numerical string with limit of 40 characters.
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`.
+     * Model must be an alpha-numerical string with limit of 40 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
      */
     protected $model_state = 0;
     /**
-     * Deprecated: timestamp the Model was created at.
+     * Deprecated: Timestamp the Model was created at.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [deprecated = true];</code>
      * @deprecated
@@ -61,6 +61,13 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, double> metrics = 7;</code>
      */
     private $metrics;
+    /**
+     * Currently this is only populated if the model state is
+     * `INPUT_VALIDATION_FAILED`.
+     *
+     * Generated from protobuf field <code>string error_message = 8;</code>
+     */
+    protected $error_message = '';
 
     /**
      * Constructor.
@@ -71,8 +78,8 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The fully qualified resource name of the model.
      *           Format:
-     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`
-     *           model must be an alpha-numerical string with limit of 40 characters.
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`.
+     *           Model must be an alpha-numerical string with limit of 40 characters.
      *     @type string $display_name
      *           The display name of the model.
      *     @type int|string $model_version
@@ -80,11 +87,14 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
      *     @type int $model_state
      *           The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Deprecated: timestamp the Model was created at.
+     *           Deprecated: Timestamp the Model was created at.
      *     @type \Google\Protobuf\Timestamp $training_start_time
      *           Timestamp the model training was initiated.
      *     @type array|\Google\Protobuf\Internal\MapField $metrics
      *           The metrics of the trained model.
+     *     @type string $error_message
+     *           Currently this is only populated if the model state is
+     *           `INPUT_VALIDATION_FAILED`.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,8 +105,8 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
     /**
      * Required. The fully qualified resource name of the model.
      * Format:
-     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`
-     * model must be an alpha-numerical string with limit of 40 characters.
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`.
+     * Model must be an alpha-numerical string with limit of 40 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -109,8 +119,8 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
     /**
      * Required. The fully qualified resource name of the model.
      * Format:
-     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`
-     * model must be an alpha-numerical string with limit of 40 characters.
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`.
+     * Model must be an alpha-numerical string with limit of 40 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -203,7 +213,7 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: timestamp the Model was created at.
+     * Deprecated: Timestamp the Model was created at.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [deprecated = true];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -228,7 +238,7 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated: timestamp the Model was created at.
+     * Deprecated: Timestamp the Model was created at.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [deprecated = true];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -302,6 +312,34 @@ class CustomTuningModel extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::DOUBLE);
         $this->metrics = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Currently this is only populated if the model state is
+     * `INPUT_VALIDATION_FAILED`.
+     *
+     * Generated from protobuf field <code>string error_message = 8;</code>
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->error_message;
+    }
+
+    /**
+     * Currently this is only populated if the model state is
+     * `INPUT_VALIDATION_FAILED`.
+     *
+     * Generated from protobuf field <code>string error_message = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setErrorMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->error_message = $var;
 
         return $this;
     }

@@ -33,6 +33,19 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_info) = {</code>
      */
     protected $ip_address = '';
+    /**
+     * Name of the Cloud Storage Bucket the packet is delivered to (if
+     * applicable).
+     *
+     * Generated from protobuf field <code>string storage_bucket = 4;</code>
+     */
+    protected $storage_bucket = '';
+    /**
+     * PSC Google API target the packet is delivered to (if applicable).
+     *
+     * Generated from protobuf field <code>string psc_google_api_target = 5;</code>
+     */
+    protected $psc_google_api_target = '';
 
     /**
      * Constructor.
@@ -46,6 +59,11 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      *           URI of the resource that the packet is delivered to.
      *     @type string $ip_address
      *           IP address of the target (if applicable).
+     *     @type string $storage_bucket
+     *           Name of the Cloud Storage Bucket the packet is delivered to (if
+     *           applicable).
+     *     @type string $psc_google_api_target
+     *           PSC Google API target the packet is delivered to (if applicable).
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +145,60 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the Cloud Storage Bucket the packet is delivered to (if
+     * applicable).
+     *
+     * Generated from protobuf field <code>string storage_bucket = 4;</code>
+     * @return string
+     */
+    public function getStorageBucket()
+    {
+        return $this->storage_bucket;
+    }
+
+    /**
+     * Name of the Cloud Storage Bucket the packet is delivered to (if
+     * applicable).
+     *
+     * Generated from protobuf field <code>string storage_bucket = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStorageBucket($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->storage_bucket = $var;
+
+        return $this;
+    }
+
+    /**
+     * PSC Google API target the packet is delivered to (if applicable).
+     *
+     * Generated from protobuf field <code>string psc_google_api_target = 5;</code>
+     * @return string
+     */
+    public function getPscGoogleApiTarget()
+    {
+        return $this->psc_google_api_target;
+    }
+
+    /**
+     * PSC Google API target the packet is delivered to (if applicable).
+     *
+     * Generated from protobuf field <code>string psc_google_api_target = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPscGoogleApiTarget($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psc_google_api_target = $var;
 
         return $this;
     }
