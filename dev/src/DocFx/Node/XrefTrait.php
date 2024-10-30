@@ -170,22 +170,22 @@ trait XrefTrait
 
         // Check for external package namespaces
         switch (true) {
-            case 0 === strpos($uid, '\Google\ApiCore\\'):
+            case str_starts_with($uid, '\Google\ApiCore\\'):
                 $extLinkRoot = 'https://googleapis.github.io/gax-php#';
                 break;
-            case 0 === strpos($uid, '\Google\Auth\\'):
+            case str_starts_with($uid, '\Google\Auth\\'):
                 $extLinkRoot = 'https://googleapis.github.io/google-auth-library-php/main/';
                 break;
-            case 0 === strpos($uid, '\Google\Protobuf\\'):
+            case str_starts_with($uid, '\Google\Protobuf\\'):
                 $extLinkRoot = 'https://protobuf.dev/reference/php/api-docs/';
                 break;
-            case 0 === strpos($uid, '\Google\Api\\'):
-            case 0 === strpos($uid, '\Google\Cloud\Iam\V1\\'):
-            case 0 === strpos($uid, '\Google\Cloud\Location\\'):
-            case 0 === strpos($uid, '\Google\Cloud\Logging\Type\\'):
-            case 0 === strpos($uid, '\Google\Iam\\'):
-            case 0 === strpos($uid, '\Google\Rpc\\'):
-            case 0 === strpos($uid, '\Google\Type\\'):
+            case str_starts_with($uid, '\Google\Api\\'):
+            case str_starts_with($uid, '\Google\Cloud\Iam\V1\\'):
+            case str_starts_with($uid, '\Google\Cloud\Location\\'):
+            case str_starts_with($uid, '\Google\Cloud\Logging\Type\\'):
+            case str_starts_with($uid, '\Google\Iam\\'):
+            case str_starts_with($uid, '\Google\Rpc\\'):
+            case str_starts_with($uid, '\Google\Type\\'):
                 $extLinkRoot = 'https://googleapis.github.io/common-protos-php#';
                 break;
             case 0 === strpos($uid, '\GuzzleHttp\Promise\PromiseInterface'):
@@ -197,7 +197,7 @@ trait XrefTrait
 
         // Create external link
         if ($extLinkRoot) {
-            if (str_starts_with('\Google', $uid)) {
+            if (str_starts_with($uid, '\Google')) {
                 $extLinkRoot .= str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
             }
             return sprintf('<a href="%s">%s</a>', $extLinkRoot, $name);
