@@ -159,7 +159,7 @@ trait XrefTrait
         // Remove preceeding "\" from namespace
         $name = $name ?: ltrim($uid, '\\');
 
-        // Case for nested types
+        // Case for generic types
         if (preg_match('/(.*)<(.*)>/', $uid, $matches)) {
             return sprintf(
                 '%s<%s>',

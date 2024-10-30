@@ -154,7 +154,7 @@ EOF;
         $this->assertEquals($expected, $result);
     }
 
-    public function testReplaceNestedPromiseClass()
+    public function testReplaceGenericPromiseClass()
     {
         $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
         $googleReference = '\Google\Cloud\AdvisoryNotifications\V1\Notification';
