@@ -68,19 +68,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAgentAsync(CreateAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAgentAsync(DeleteAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportAgentAsync(ExportAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAgentAsync(GetAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAgentValidationResultAsync(GetAgentValidationResultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGenerativeSettingsAsync(GetGenerativeSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAgentsAsync(ListAgentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreAgentAsync(RestoreAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAgentAsync(UpdateAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGenerativeSettingsAsync(UpdateGenerativeSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateAgentAsync(ValidateAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Agent> createAgentAsync(CreateAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAgentAsync(DeleteAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportAgentAsync(ExportAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Agent> getAgentAsync(GetAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentValidationResult> getAgentValidationResultAsync(GetAgentValidationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerativeSettings> getGenerativeSettingsAsync(GetGenerativeSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAgentsAsync(ListAgentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreAgentAsync(RestoreAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Agent> updateAgentAsync(UpdateAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerativeSettings> updateGenerativeSettingsAsync(UpdateGenerativeSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentValidationResult> validateAgentAsync(ValidateAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class AgentsClient
 {

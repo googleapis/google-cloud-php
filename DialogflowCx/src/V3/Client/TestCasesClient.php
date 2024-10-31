@@ -76,20 +76,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchDeleteTestCasesAsync(BatchDeleteTestCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchRunTestCasesAsync(BatchRunTestCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface calculateCoverageAsync(CalculateCoverageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTestCaseAsync(CreateTestCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportTestCasesAsync(ExportTestCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTestCaseAsync(GetTestCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTestCaseResultAsync(GetTestCaseResultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importTestCasesAsync(ImportTestCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTestCaseResultsAsync(ListTestCaseResultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTestCasesAsync(ListTestCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runTestCaseAsync(RunTestCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTestCaseAsync(UpdateTestCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> batchDeleteTestCasesAsync(BatchDeleteTestCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchRunTestCasesAsync(BatchRunTestCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CalculateCoverageResponse> calculateCoverageAsync(CalculateCoverageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestCase> createTestCaseAsync(CreateTestCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportTestCasesAsync(ExportTestCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestCase> getTestCaseAsync(GetTestCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestCaseResult> getTestCaseResultAsync(GetTestCaseResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importTestCasesAsync(ImportTestCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTestCaseResultsAsync(ListTestCaseResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTestCasesAsync(ListTestCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runTestCaseAsync(RunTestCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestCase> updateTestCaseAsync(UpdateTestCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class TestCasesClient
 {
