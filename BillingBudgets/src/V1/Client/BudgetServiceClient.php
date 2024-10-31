@@ -53,11 +53,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBudgetAsync(CreateBudgetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBudgetAsync(DeleteBudgetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBudgetAsync(GetBudgetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBudgetsAsync(ListBudgetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBudgetAsync(UpdateBudgetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Budget> createBudgetAsync(CreateBudgetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBudgetAsync(DeleteBudgetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Budget> getBudgetAsync(GetBudgetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBudgetsAsync(ListBudgetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Budget> updateBudgetAsync(UpdateBudgetRequest $request, array $optionalArgs = [])
  */
 final class BudgetServiceClient
 {

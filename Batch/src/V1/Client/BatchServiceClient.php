@@ -62,14 +62,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class BatchServiceClient
 {

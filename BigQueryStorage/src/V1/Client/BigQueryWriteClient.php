@@ -60,11 +60,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCommitWriteStreamsAsync(BatchCommitWriteStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWriteStreamAsync(CreateWriteStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface finalizeWriteStreamAsync(FinalizeWriteStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface flushRowsAsync(FlushRowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWriteStreamAsync(GetWriteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCommitWriteStreamsResponse> batchCommitWriteStreamsAsync(BatchCommitWriteStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteStream> createWriteStreamAsync(CreateWriteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FinalizeWriteStreamResponse> finalizeWriteStreamAsync(FinalizeWriteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FlushRowsResponse> flushRowsAsync(FlushRowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteStream> getWriteStreamAsync(GetWriteStreamRequest $request, array $optionalArgs = [])
  */
 final class BigQueryWriteClient
 {

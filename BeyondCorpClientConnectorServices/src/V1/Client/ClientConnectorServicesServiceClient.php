@@ -73,16 +73,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createClientConnectorServiceAsync(CreateClientConnectorServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClientConnectorServiceAsync(DeleteClientConnectorServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClientConnectorServiceAsync(GetClientConnectorServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClientConnectorServicesAsync(ListClientConnectorServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClientConnectorServiceAsync(UpdateClientConnectorServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClientConnectorServiceAsync(CreateClientConnectorServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClientConnectorServiceAsync(DeleteClientConnectorServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClientConnectorService> getClientConnectorServiceAsync(GetClientConnectorServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClientConnectorServicesAsync(ListClientConnectorServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClientConnectorServiceAsync(UpdateClientConnectorServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ClientConnectorServicesServiceClient
 {
