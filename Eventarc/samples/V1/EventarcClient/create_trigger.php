@@ -37,25 +37,24 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent              The parent collection in which to add this trigger. Please see
  *                                             {@see EventarcClient::locationName()} for help formatting this field.
- * @param string $triggerName                  The resource name of the trigger. Must be unique within the location of the
- *                                             project and must be in
+ * @param string $triggerName                  The resource name of the trigger. Must be unique within the
+ *                                             location of the project and must be in
  *                                             `projects/{project}/locations/{location}/triggers/{trigger}` format.
- * @param string $triggerEventFiltersAttribute The name of a CloudEvents attribute. Currently, only a subset of attributes
- *                                             are supported for filtering.
+ * @param string $triggerEventFiltersAttribute The name of a CloudEvents attribute. Currently, only a subset of
+ *                                             attributes are supported for filtering. You can [retrieve a specific
+ *                                             provider's supported event
+ *                                             types](/eventarc/docs/list-providers#describe-provider).
  *
  *                                             All triggers MUST provide a filter for the 'type' attribute.
  * @param string $triggerEventFiltersValue     The value for the attribute.
  * @param string $triggerId                    The user-provided ID to be assigned to the trigger.
- * @param bool   $validateOnly                 If set, validate the request and preview the review, but do not
- *                                             post it.
  */
 function create_trigger_sample(
     string $formattedParent,
     string $triggerName,
     string $triggerEventFiltersAttribute,
     string $triggerEventFiltersValue,
-    string $triggerId,
-    bool $validateOnly
+    string $triggerId
 ): void {
     // Create a client.
     $eventarcClient = new EventarcClient();
@@ -73,8 +72,7 @@ function create_trigger_sample(
     $request = (new CreateTriggerRequest())
         ->setParent($formattedParent)
         ->setTrigger($trigger)
-        ->setTriggerId($triggerId)
-        ->setValidateOnly($validateOnly);
+        ->setTriggerId($triggerId);
 
     // Call the API and handle any network failures.
     try {
@@ -112,15 +110,13 @@ function callSample(): void
     $triggerEventFiltersAttribute = '[ATTRIBUTE]';
     $triggerEventFiltersValue = '[VALUE]';
     $triggerId = '[TRIGGER_ID]';
-    $validateOnly = false;
 
     create_trigger_sample(
         $formattedParent,
         $triggerName,
         $triggerEventFiltersAttribute,
         $triggerEventFiltersValue,
-        $triggerId,
-        $validateOnly
+        $triggerId
     );
 }
 // [END eventarc_v1_generated_Eventarc_CreateTrigger_sync]
