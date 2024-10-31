@@ -33,7 +33,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
  * Enterprise actions can be executed.
  * A project may have a maximum of 1000 policies.
  *
- * @param string $formattedParent The name of the project this policy will apply to, in the format
+ * @param string $formattedParent The name of the project this policy applies to, in the format
  *                                `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */

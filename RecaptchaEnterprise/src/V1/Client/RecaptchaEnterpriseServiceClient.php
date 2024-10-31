@@ -49,11 +49,14 @@ use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
@@ -85,10 +88,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMetricsAsync(GetMetricsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listFirewallPoliciesAsync(ListFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listIpOverridesAsync(ListIpOverridesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRelatedAccountGroupMembershipsAsync(ListRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRelatedAccountGroupsAsync(ListRelatedAccountGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface migrateKeyAsync(MigrateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface removeIpOverrideAsync(RemoveIpOverrideRequest $request, array $optionalArgs = [])
  * @method PromiseInterface reorderFirewallPoliciesAsync(ReorderFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface retrieveLegacySecretKeyAsync(RetrieveLegacySecretKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
@@ -641,6 +646,33 @@ final class RecaptchaEnterpriseServiceClient
     }
 
     /**
+     * Lists all IP overrides for a key.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::listIpOverridesAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_ip_overrides.php
+     *
+     * @param ListIpOverridesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listIpOverrides(ListIpOverridesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListIpOverrides', $request, $callOptions);
+    }
+
+    /**
      * Returns the list of all keys that belong to a project.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::listKeysAsync()} .
@@ -751,6 +783,37 @@ final class RecaptchaEnterpriseServiceClient
     public function migrateKey(MigrateKeyRequest $request, array $callOptions = []): Key
     {
         return $this->startApiCall('MigrateKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes an IP override from a key. The following restrictions hold:
+     * * If the IP isn't found in an existing IP override, a `NOT_FOUND` error
+     * is returned.
+     * * If the IP is found in an existing IP override, but the
+     * override type does not match, a `NOT_FOUND` error is returned.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::removeIpOverrideAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/remove_ip_override.php
+     *
+     * @param RemoveIpOverrideRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RemoveIpOverrideResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeIpOverride(RemoveIpOverrideRequest $request, array $callOptions = []): RemoveIpOverrideResponse
+    {
+        return $this->startApiCall('RemoveIpOverride', $request, $callOptions)->wait();
     }
 
     /**

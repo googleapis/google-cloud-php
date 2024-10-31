@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,35 +22,35 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListKeys_sync]
+// [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListIpOverrides_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
-use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest;
 
 /**
- * Returns the list of all keys that belong to a project.
+ * Lists all IP overrides for a key.
  *
- * @param string $formattedParent The name of the project that contains the keys that is
- *                                listed, in the format `projects/{project}`. Please see
- *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+ * @param string $formattedParent The parent key for which the IP overrides are listed, in the
+ *                                format `projects/{project}/keys/{key}`. Please see
+ *                                {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
  */
-function list_keys_sample(string $formattedParent): void
+function list_ip_overrides_sample(string $formattedParent): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
     // Prepare the request message.
-    $request = (new ListKeysRequest())
+    $request = (new ListIpOverridesRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->listKeys($request);
+        $response = $recaptchaEnterpriseServiceClient->listIpOverrides($request);
 
-        /** @var Key $element */
+        /** @var IpOverrideData $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -70,8 +70,8 @@ function list_keys_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
+    $formattedParent = RecaptchaEnterpriseServiceClient::keyName('[PROJECT]', '[KEY]');
 
-    list_keys_sample($formattedParent);
+    list_ip_overrides_sample($formattedParent);
 }
-// [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListKeys_sync]
+// [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListIpOverrides_sync]

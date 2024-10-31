@@ -9,40 +9,42 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The list keys request message.
+ * The ListIpOverrides request message.
  *
- * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.ListKeysRequest</code>
+ * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.ListIpOverridesRequest</code>
  */
-class ListKeysRequest extends \Google\Protobuf\Internal\Message
+class ListIpOverridesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project that contains the keys that is
-     * listed, in the format `projects/{project}`.
+     * Required. The parent key for which the IP overrides are listed, in the
+     * format `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of keys to return. Default is 10. Max limit is
-     * 1000.
+     * Optional. The maximum number of overrides to return. Default is 10. Max
+     * limit is 100. If the number of overrides is less than the page_size, all
+     * overrides are returned. If the page size is more than 100, it is coerced to
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. The next_page_token value returned from a previous.
-     * ListKeysRequest, if any.
+     * Optional. The next_page_token value returned from a previous
+     * ListIpOverridesRequest, if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The name of the project that contains the keys that is
-     *                       listed, in the format `projects/{project}`. Please see
-     *                       {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+     * @param string $parent Required. The parent key for which the IP overrides are listed, in the
+     *                       format `projects/{project}/keys/{key}`. Please see
+     *                       {@see RecaptchaEnterpriseServiceClient::keyName()} for help formatting this field.
      *
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest
      *
      * @experimental
      */
@@ -59,14 +61,16 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the project that contains the keys that is
-     *           listed, in the format `projects/{project}`.
+     *           Required. The parent key for which the IP overrides are listed, in the
+     *           format `projects/{project}/keys/{key}`.
      *     @type int $page_size
-     *           Optional. The maximum number of keys to return. Default is 10. Max limit is
-     *           1000.
+     *           Optional. The maximum number of overrides to return. Default is 10. Max
+     *           limit is 100. If the number of overrides is less than the page_size, all
+     *           overrides are returned. If the page size is more than 100, it is coerced to
+     *           100.
      *     @type string $page_token
-     *           Optional. The next_page_token value returned from a previous.
-     *           ListKeysRequest, if any.
+     *           Optional. The next_page_token value returned from a previous
+     *           ListIpOverridesRequest, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,8 +79,8 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project that contains the keys that is
-     * listed, in the format `projects/{project}`.
+     * Required. The parent key for which the IP overrides are listed, in the
+     * format `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -87,8 +91,8 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project that contains the keys that is
-     * listed, in the format `projects/{project}`.
+     * Required. The parent key for which the IP overrides are listed, in the
+     * format `projects/{project}/keys/{key}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -103,8 +107,10 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of keys to return. Default is 10. Max limit is
-     * 1000.
+     * Optional. The maximum number of overrides to return. Default is 10. Max
+     * limit is 100. If the number of overrides is less than the page_size, all
+     * overrides are returned. If the page size is more than 100, it is coerced to
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -115,8 +121,10 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of keys to return. Default is 10. Max limit is
-     * 1000.
+     * Optional. The maximum number of overrides to return. Default is 10. Max
+     * limit is 100. If the number of overrides is less than the page_size, all
+     * overrides are returned. If the page size is more than 100, it is coerced to
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -131,8 +139,8 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous.
-     * ListKeysRequest, if any.
+     * Optional. The next_page_token value returned from a previous
+     * ListIpOverridesRequest, if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -143,8 +151,8 @@ class ListKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous.
-     * ListKeysRequest, if any.
+     * Optional. The next_page_token value returned from a previous
+     * ListIpOverridesRequest, if any.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
