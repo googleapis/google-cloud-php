@@ -55,12 +55,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getStyleGuideAsync(GetStyleGuideRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStyleGuideContentsAsync(GetStyleGuideContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lintSpecAsync(LintSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateStyleGuideAsync(UpdateStyleGuideRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StyleGuide> getStyleGuideAsync(GetStyleGuideRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StyleGuideContents> getStyleGuideContentsAsync(GetStyleGuideContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> lintSpecAsync(LintSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StyleGuide> updateStyleGuideAsync(UpdateStyleGuideRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class LintingServiceClient
 {

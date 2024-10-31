@@ -18,7 +18,7 @@ class UserMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö
+“
 +google/ads/admanager/v1/user_messages.protogoogle.ads.admanager.v1google/api/resource.proto"ß
 User
 name (	BàA
@@ -32,8 +32,8 @@ class UserMessages
 external_id (	BàA
 service_account (BàA&
 orders_ui_local_time_zone	 (	BàA:UêAR
-admanager.googleapis.com/User$networks/{network_code}/users/{user}*users2userB¨
-com.google.ads.admanager.v1BUserMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+admanager.googleapis.com/User$networks/{network_code}/users/{user}*users2userBÅ
+com.google.ads.admanager.v1BUserMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

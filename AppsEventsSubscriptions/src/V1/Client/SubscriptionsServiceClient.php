@@ -56,12 +56,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSubscriptionAsync(CreateSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reactivateSubscriptionAsync(ReactivateSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSubscriptionAsync(UpdateSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSubscriptionAsync(CreateSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Subscription> getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reactivateSubscriptionAsync(ReactivateSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSubscriptionAsync(UpdateSubscriptionRequest $request, array $optionalArgs = [])
  */
 final class SubscriptionsServiceClient
 {

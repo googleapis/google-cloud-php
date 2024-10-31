@@ -64,18 +64,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getConferenceRecordAsync(GetConferenceRecordRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConferenceRecord> getConferenceRecordAsync(GetConferenceRecordRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Participant> getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ParticipantSession> getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recording> getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Transcript> getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TranscriptEntry> getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
  */
 final class ConferenceRecordsServiceClient
 {

@@ -57,11 +57,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createApiHubInstanceAsync(CreateApiHubInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiHubInstanceAsync(GetApiHubInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupApiHubInstanceAsync(LookupApiHubInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createApiHubInstanceAsync(CreateApiHubInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiHubInstance> getApiHubInstanceAsync(GetApiHubInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupApiHubInstanceResponse> lookupApiHubInstanceAsync(LookupApiHubInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ProvisioningClient
 {

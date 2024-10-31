@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getCustomTargetingValueAsync(GetCustomTargetingValueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomTargetingValuesAsync(ListCustomTargetingValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomTargetingValue> getCustomTargetingValueAsync(GetCustomTargetingValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomTargetingValuesAsync(ListCustomTargetingValuesRequest $request, array $optionalArgs = [])
  */
 final class CustomTargetingValueServiceClient
 {
