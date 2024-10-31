@@ -68,19 +68,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTaxonomyAsync(DeleteTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyTagAsync(GetPolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaxonomyAsync(GetTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPolicyTagsAsync(ListPolicyTagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTaxonomiesAsync(ListTaxonomiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePolicyTagAsync(UpdatePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaxonomyAsync(UpdateTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTaxonomyAsync(DeleteTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> getPolicyTagAsync(GetPolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> getTaxonomyAsync(GetTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPolicyTagsAsync(ListPolicyTagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTaxonomiesAsync(ListTaxonomiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> updatePolicyTagAsync(UpdatePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> updateTaxonomyAsync(UpdateTaxonomyRequest $request, array $optionalArgs = [])
  */
 final class PolicyTagManagerClient
 {
