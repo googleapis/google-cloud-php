@@ -29,29 +29,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore;
 
-/**
- * For connect to emulator.
- * @TODO: implement HeaderCredentialsInterface instead of extending CredentialsWrapper
- */
-class InsecureCredentialsWrapper extends CredentialsWrapper
+interface HeaderCredentialsInterface
 {
-    public function __construct()
-    {
-    }
+    /**
+     * @param string|null $audience optional audience for self-signed JWTs.
+     * @return callable|null Callable function that returns an authorization header.
+     */
+    public function getAuthorizationHeaderCallback(?string $audience = null): ?callable;
 
     /**
-     * @param string $audience
-     * @return callable|null Returns null so the gRPC can accept it as an insecure channel.
+     * Verify that the expected universe domain matches the universe domain from the credentials.
+     *
+     * @throws ValidationException if the universe domain does not match.
      */
-    public function getAuthorizationHeaderCallback($audience = null): ?callable
-    {
-        return null;
-    }
-
-    public function checkUniverseDomain(): void
-    {
-    }
+    public function checkUniverseDomain(): void;
 }

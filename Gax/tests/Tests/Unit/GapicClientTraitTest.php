@@ -33,6 +33,7 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\AgentHeader;
+use Google\ApiCore\ApiKeyHeaderCredentials;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
@@ -52,6 +53,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\FulfilledPromise;
@@ -1564,6 +1566,94 @@ class GapicClientTraitTest extends TestCase
         $agentHeader = $client->getAgentHeader();
         $this->assertStringContainsString(' gapic/0.0.1 ', $agentHeader['x-goog-api-client'][0]);
         $this->assertEquals('gcloud-php-new/0.0.1', $agentHeader['User-Agent'][0]);
+    }
+
+    public function testApiKeyOption()
+    {
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::that(function ($options) {
+                // assert API key
+                $this->assertArrayHasKey('credentialsWrapper', $options);
+                $headers = $options['credentialsWrapper']->getAuthorizationHeaderCallback()();
+                $this->assertArrayHasKey('x-goog-api-key', $headers);
+                $this->assertEquals(['abc-123'], $headers['x-goog-api-key']);
+
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise(new MockResponse()));
+
+        $client = new GapicV2SurfaceClient([
+            'transport' => $transport->reveal(),
+            'apiKey' => 'abc-123',
+        ]);
+
+        $response = $client->startCall('SimpleMethod', 'decodeType');
+    }
+
+    public function testApiKeyOptionThrowsExceptionWhenCredentialsAreSupplied()
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(
+            'API Keys and Credentials are mutually exclusive authentication methods and cannot be used together.'
+        );
+
+        $credentials = $this->prophesize(FetchAuthTokenInterface::class);
+        $client = new GapicV2SurfaceClient([
+            'apiKey' => 'abc-123',
+            'credentials' => $credentials->reveal(),
+        ]);
+    }
+
+    public function testKeyFileIsIgnoredWhenApiKeyOptionIsSupplied()
+    {
+        $credentials = $this->prophesize(FetchAuthTokenInterface::class);
+        $client = new GapicV2SurfaceClient([
+            'apiKey' => 'abc-123',
+            'credentialsConfig' => [
+                'keyFile' => __DIR__ . '/testdata/json-key-file.json',
+            ],
+        ]);
+
+        $prop = new \ReflectionProperty($client, 'credentialsWrapper');
+        $prop->setAccessible(true);
+        $this->assertInstanceOf(ApiKeyHeaderCredentials::class, $prop->getValue($client));
+
+    }
+
+    public function testApiKeyOptionAndQuotaProject()
+    {
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::that(function ($options) {
+                // assert API key
+                $this->assertArrayHasKey('credentialsWrapper', $options);
+                $headers = $options['credentialsWrapper']->getAuthorizationHeaderCallback()();
+                $this->assertArrayHasKey('x-goog-api-key', $headers);
+                $this->assertEquals(['abc-123'], $headers['x-goog-api-key']);
+
+                // assert quota project
+                $this->assertArrayHasKey('headers', $options);
+                $this->assertArrayHasKey('X-Goog-User-Project', $options['headers']);
+                $this->assertEquals(['def-456'], $options['headers']['X-Goog-User-Project']);
+
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise(new MockResponse()));
+
+        $client = new GapicV2SurfaceClient([
+            'transport' => $transport->reveal(),
+            'apiKey' => 'abc-123',
+            'credentialsConfig' => ['quotaProject' => 'def-456']
+        ]);
+
+        $response = $client->startCall('SimpleMethod', 'decodeType');
     }
 }
 

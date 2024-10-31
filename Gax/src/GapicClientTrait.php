@@ -66,7 +66,7 @@ trait GapicClientTrait
     use GrpcSupportTrait;
 
     private ?TransportInterface $transport = null;
-    private ?CredentialsWrapper $credentialsWrapper = null;
+    private ?HeaderCredentialsInterface $credentialsWrapper = null;
     /** @var RetrySettings[] $retrySettings */
     private array $retrySettings = [];
     private string $serviceName = '';
@@ -287,11 +287,24 @@ trait GapicClientTrait
         $descriptors = require($options['descriptorsConfigPath']);
         $this->descriptors = $descriptors['interfaces'][$this->serviceName];
 
-        $this->credentialsWrapper = $this->createCredentialsWrapper(
-            $options['credentials'],
-            $options['credentialsConfig'],
-            $options['universeDomain']
-        );
+        if (isset($options['apiKey'], $options['credentials'])) {
+            throw new ValidationException(
+                'API Keys and Credentials are mutually exclusive authentication methods and cannot be used together.'
+            );
+        }
+        // Set the credentialsWrapper
+        if (isset($options['apiKey'])) {
+            $this->credentialsWrapper = new ApiKeyHeaderCredentials(
+                $options['apiKey'],
+                $options['credentialsConfig']['quotaProject'] ?? null
+            );
+        } else {
+            $this->credentialsWrapper = $this->createCredentialsWrapper(
+                $options['credentials'],
+                $options['credentialsConfig'],
+                $options['universeDomain']
+            );
+        }
 
         $transport = $options['transport'] ?: self::defaultTransport();
         $this->transport = $transport instanceof TransportInterface
@@ -622,9 +635,8 @@ trait GapicClientTrait
      */
     private function createCallStack(array $callConstructionOptions)
     {
-        $quotaProject = $this->credentialsWrapper->getQuotaProject();
         $fixedHeaders = $this->agentHeader;
-        if ($quotaProject) {
+        if ($quotaProject = $this->credentialsWrapper->getQuotaProject()) {
             $fixedHeaders += [
                 'X-Goog-User-Project' => [$quotaProject]
             ];
