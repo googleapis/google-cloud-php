@@ -261,20 +261,27 @@ trait ClientOptionsTrait
     private function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain)
     {
         if (is_null($credentials)) {
+            // If the user has explicitly set the apiKey option, use Api Key credentials
             return CredentialsWrapper::build($credentialsConfig, $universeDomain);
-        } elseif (is_string($credentials) || is_array($credentials)) {
+        }
+
+        if (is_string($credentials) || is_array($credentials)) {
             return CredentialsWrapper::build(['keyFile' => $credentials] + $credentialsConfig, $universeDomain);
-        } elseif ($credentials instanceof FetchAuthTokenInterface) {
+        }
+
+        if ($credentials instanceof FetchAuthTokenInterface) {
             $authHttpHandler = $credentialsConfig['authHttpHandler'] ?? null;
             return new CredentialsWrapper($credentials, $authHttpHandler, $universeDomain);
-        } elseif ($credentials instanceof CredentialsWrapper) {
-            return $credentials;
-        } else {
-            throw new ValidationException(
-                'Unexpected value in $auth option, got: ' .
-                print_r($credentials, true)
-            );
         }
+
+        if ($credentials instanceof CredentialsWrapper) {
+            return $credentials;
+        }
+
+        throw new ValidationException(sprintf(
+            'Unexpected value in $auth option, got: %s',
+            print_r($credentials, true)
+        ));
     }
 
     /**

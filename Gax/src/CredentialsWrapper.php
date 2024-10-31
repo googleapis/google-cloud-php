@@ -49,7 +49,7 @@ use Psr\Cache\CacheItemPoolInterface;
 /**
  * The CredentialsWrapper object provides a wrapper around a FetchAuthTokenInterface.
  */
-class CredentialsWrapper implements ProjectIdProviderInterface
+class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProviderInterface
 {
     use ValidationTrait;
 
@@ -192,7 +192,7 @@ class CredentialsWrapper implements ProjectIdProviderInterface
     /**
      * @return string|null The quota project associated with the credentials.
      */
-    public function getQuotaProject()
+    public function getQuotaProject(): ?string
     {
         if ($this->credentialsFetcher instanceof GetQuotaProjectInterface) {
             return $this->credentialsFetcher->getQuotaProject();
@@ -236,7 +236,7 @@ class CredentialsWrapper implements ProjectIdProviderInterface
      * @param string $audience optional audience for self-signed JWTs.
      * @return callable Callable function that returns an authorization header.
      */
-    public function getAuthorizationHeaderCallback($audience = null)
+    public function getAuthorizationHeaderCallback($audience = null): ?callable
     {
         // NOTE: changes to this function should be treated carefully and tested thoroughly. It will
         // be passed into the gRPC c extension, and changes have the potential to trigger very
@@ -268,8 +268,10 @@ class CredentialsWrapper implements ProjectIdProviderInterface
 
     /**
      * Verify that the expected universe domain matches the universe domain from the credentials.
+     *
+     * @throws ValidationException if the universe domain does not match.
      */
-    public function checkUniverseDomain()
+    public function checkUniverseDomain(): void
     {
         if (false === $this->hasCheckedUniverse && $this->shouldCheckUniverseDomain()) {
             $credentialsUniverse = $this->credentialsFetcher instanceof GetUniverseDomainInterface
