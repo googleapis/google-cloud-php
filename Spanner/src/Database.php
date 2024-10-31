@@ -1593,7 +1593,7 @@ class Database
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration Options.
-     *     See {@see V1\TransactionOptions\ReadOnly} for detailed description of
+     *     See {@see V1\TransactionOptions\PBReadOnly} for detailed description of
      *     available transaction options. Please note that only one of
      *     `$strong`, `$minReadTimestamp`, `$maxStaleness`, `$readTimestamp` or
      *     `$exactStaleness` may be set in a request.
