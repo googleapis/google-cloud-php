@@ -344,7 +344,7 @@ class TransactionTypeTest extends TestCase
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
-                    'minReadTimestamp' => $timestamp,
+                    'readTimestamp' => $this->formatTimestampForApi($this->timestamp),
                     'exactStaleness' => $duration,
                 ]
             ]
@@ -384,38 +384,40 @@ class TransactionTypeTest extends TestCase
         $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
         $options = [
             'readOnly' => [
-                'minReadTimestamp' => $this->formatTimestampForApi($this->timestamp),
-                'exactStaleness' => [
-                    'seconds' => $seconds,
-                    'nanos' => $nanos
-                ]
+                'readTimestamp' => $this->formatTimestampForApi($this->timestamp),
+                'exactStaleness' => $duration,
             ]
         ];
+        $transaction = new TransactionProto(['id' => self::TRANSACTION]);
         $this->spannerClient->beginTransaction(
-            Argument::that(function ($request) use ($options) {
-                Argument::type(BeginTransactionRequest::class);
-                $this->assertEquals(
-                    $request->getOptions(),
-                    $this->createTransactionOptions($options)
-                );
-                return true;
-            }),
+            Argument::type(BeginTransactionRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+            ->willReturn($transaction);
 
         $this->spannerClient->executeStreamingSql(
-            Argument::that(function (ExecuteSqlRequest $request) {
-                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
-                return true;
-            }),
+            Argument::type(ExecuteSqlRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $serializer = $this->serializerForStreamingSql($chunks, $options);
+        $this->serializer->decodeMessage(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::that(function (array $data) use ($options){
+                $this->assertEquals($data['options'], $options);
+                return true;
+            }),
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new BeginTransactionRequest());
+
+        $this->serializer->encodeMessage($transaction)
+            ->shouldBeCalledOnce()
+            ->willReturn([]);
+
+        $serializer = $this->serializerForStreamingSql($chunks, ['singleUse' => $options]);
         $database = $this->database($this->spannerClient->reveal(), $serializer);
 
         $snapshot = $database->snapshot([
@@ -432,6 +434,7 @@ class TransactionTypeTest extends TestCase
     public function testDatabaseSingleUseSnapshotStrongConsistency($chunks)
     {
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
+
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
@@ -439,8 +442,9 @@ class TransactionTypeTest extends TestCase
                 ]
             ]
         ];
+
         $this->spannerClient->executeStreamingSql(
-            Argument::type(ReadRequest::class),
+            Argument::type(ExecuteSqlRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
@@ -467,31 +471,37 @@ class TransactionTypeTest extends TestCase
                 'strong' => true
             ]
         ];
+        $transaction = new TransactionProto(['id' => self::TRANSACTION]);
         $this->spannerClient->beginTransaction(
-            Argument::that(function ($request) use ($options) {
-                Argument::type(BeginTransactionRequest::class);
-                $this->assertEquals(
-                    $request->getOptions(),
-                    $this->createTransactionOptions($options)
-                );
-                return true;
-            }),
+            Argument::type(BeginTransactionRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+            ->willReturn($transaction);
 
         $this->spannerClient->executeStreamingSql(
-            Argument::that(function (ExecuteSqlRequest $request) {
-                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
-                return true;
-            }),
+            Argument::type(ExecuteSqlRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
+        $this->serializer->decodeMessage(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::that(function (array $data) use ($options){
+                $this->assertEquals($data['options'], $options);
+                return true;
+            }),
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new BeginTransactionRequest());
+
+        $this->serializer->encodeMessage($transaction)
+            ->shouldBeCalledOnce()
+            ->willReturn([]);
+
+        $serializer = $this->serializerForStreamingSql($chunks, ['singleUse' => $options]);
+        $database = $this->database($this->spannerClient->reveal(), $serializer);
 
         $snapshot = $database->snapshot([
             'strong' => true
@@ -514,14 +524,14 @@ class TransactionTypeTest extends TestCase
             ]
         ];
         $this->spannerClient->executeStreamingSql(
-            Argument::type(ReadRequest::class),
+            Argument::type(ExecuteSqlRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
         $serializer = $this->serializerForStreamingSql($chunks, $transaction);
-        $database = $this->database($this->spannerClient->reveal());
+        $database = $this->database($this->spannerClient->reveal(), $serializer);
 
         $snapshot = $database->snapshot([
             'singleUse' => true,
@@ -540,31 +550,37 @@ class TransactionTypeTest extends TestCase
                 'strong' => true
             ]
         ];
+        $transaction = new TransactionProto(['id' => self::TRANSACTION]);
         $this->spannerClient->beginTransaction(
-            Argument::that(function ($request) use ($options) {
-                Argument::type(BeginTransactionRequest::class);
-                $this->assertEquals(
-                    $request->getOptions(),
-                    $this->createTransactionOptions($options)
-                );
-                return true;
-            }),
+            Argument::type(BeginTransactionRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+            ->willReturn($transaction);
 
         $this->spannerClient->executeStreamingSql(
-            Argument::that(function (ExecuteSqlRequest $request) {
-                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
-                return true;
-            }),
+            Argument::type(ExecuteSqlRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream($chunks));
 
-        $database = $this->database($this->spannerClient->reveal());
+        $this->serializer->decodeMessage(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::that(function (array $data) use ($options){
+                $this->assertEquals($data['options'], $options);
+                return true;
+            }),
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new BeginTransactionRequest());
+
+        $this->serializer->encodeMessage($transaction)
+            ->shouldBeCalledOnce()
+            ->willReturn([]);
+
+        $serializer = $this->serializerForStreamingSql($chunks, ['singleUse' => $options]);
+        $database = $this->database($this->spannerClient->reveal(), $serializer);
 
         $snapshot = $database->snapshot();
 
@@ -605,6 +621,7 @@ class TransactionTypeTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn(new BeginTransactionRequest());
+
         $this->serializer->encodeMessage($transaction)
             ->shouldBeCalledOnce()
             ->willReturn([]);
