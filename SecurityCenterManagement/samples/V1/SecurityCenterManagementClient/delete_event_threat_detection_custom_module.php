@@ -29,17 +29,16 @@ use Google\Cloud\SecurityCenterManagement\V1\DeleteEventThreatDetectionCustomMod
 
 /**
  * Deletes the specified Event Threat Detection custom module and all of its
- * descendants in the Resource Manager hierarchy. This method is only
- * supported for resident custom modules.
+ * descendants in the resource hierarchy. This method is only supported for
+ * resident custom modules.
  *
- * @param string $formattedName The resource name of the ETD custom module.
+ * @param string $formattedName The resource name of the Event Threat Detection custom module, in
+ *                              one of the following formats:
  *
- *                              Its format is:
- *
- *                              * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
- *                              * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
- *                              * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`. Please see
- *                              {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
+ *                              * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+ *                              * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+ *                              * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+ *                              Please see {@see SecurityCenterManagementClient::eventThreatDetectionCustomModuleName()} for help formatting this field.
  */
 function delete_event_threat_detection_custom_module_sample(string $formattedName): void
 {

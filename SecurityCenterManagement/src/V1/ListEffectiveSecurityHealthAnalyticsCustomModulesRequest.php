@@ -9,20 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing effective Security Health Analytics custom
- * modules.
+ * Request message for
+ * [SecurityCenterManagement.ListEffectiveSecurityHealthAnalyticsCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveSecurityHealthAnalyticsCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListEffectiveSecurityHealthAnalyticsCustomModulesRequest</code>
  */
 class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent to list effective custom modules. specified in one
-     * of the following formats:
+     * Required. Name of parent to list effective custom modules, in one of the
+     * following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
-     * or
-     * `projects/{project}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,19 +34,22 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
      */
     protected $page_size = 0;
     /**
-     * Optional. The value returned by the last call indicating a continuation.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent to list effective custom modules. specified in one
-     *                       of the following formats:
+     * @param string $parent Required. Name of parent to list effective custom modules, in one of the
+     *                       following formats:
+     *
      *                       * `organizations/{organization}/locations/{location}`
      *                       * `folders/{folder}/locations/{location}`
-     *                       or
-     *                       `projects/{project}/locations/{location}`
+     *                       * `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
@@ -67,17 +69,19 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent to list effective custom modules. specified in one
-     *           of the following formats:
+     *           Required. Name of parent to list effective custom modules, in one of the
+     *           following formats:
      *           * `organizations/{organization}/locations/{location}`
      *           * `folders/{folder}/locations/{location}`
-     *           or
-     *           `projects/{project}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
-     *           Optional. The value returned by the last call indicating a continuation.
+     *           Optional. A pagination token returned from a previous request. Provide this
+     *           token to retrieve the next page of results.
+     *           When paginating, the rest of the request must match the request that
+     *           generated the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,12 +90,11 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
     }
 
     /**
-     * Required. Name of parent to list effective custom modules. specified in one
-     * of the following formats:
+     * Required. Name of parent to list effective custom modules, in one of the
+     * following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
-     * or
-     * `projects/{project}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -102,12 +105,11 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
     }
 
     /**
-     * Required. Name of parent to list effective custom modules. specified in one
-     * of the following formats:
+     * Required. Name of parent to list effective custom modules, in one of the
+     * following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
-     * or
-     * `projects/{project}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -150,7 +152,10 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +166,10 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

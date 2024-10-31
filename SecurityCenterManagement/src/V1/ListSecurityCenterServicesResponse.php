@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for listing Security Command Center services.
+ * Response message for
+ * [SecurityCenterManagement.ListSecurityCenterServices][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListSecurityCenterServicesResponse</code>
  */
@@ -22,7 +23,8 @@ class ListSecurityCenterServicesResponse extends \Google\Protobuf\Internal\Messa
      */
     private $security_center_services;
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -37,7 +39,8 @@ class ListSecurityCenterServicesResponse extends \Google\Protobuf\Internal\Messa
      *     @type array<\Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService>|\Google\Protobuf\Internal\RepeatedField $security_center_services
      *           The list of services.
      *     @type string $next_page_token
-     *           A token identifying a page of results the server should return.
+     *           A pagination token. To retrieve the next page of results, call the method
+     *           again with this token.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +75,8 @@ class ListSecurityCenterServicesResponse extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -83,7 +87,8 @@ class ListSecurityCenterServicesResponse extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

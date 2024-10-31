@@ -30,11 +30,13 @@ use Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityHealthAnalyticsCustom
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates the SecurityHealthAnalyticsCustomModule under the given name based
- * on the given update mask. Updating the enablement state is supported on
- * both resident and inherited modules (though resident modules cannot have an
- * enablement state of "inherited"). Updating the display name and custom
- * config of a module is supported on resident modules only.
+ * Updates the
+ * [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+ * under the given name based on the given update mask. Updating the
+ * enablement state is supported on both resident and inherited modules
+ * (though resident modules cannot have an enablement state of "inherited").
+ * Updating the display name and custom configuration of a module is supported
+ * on resident modules only.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

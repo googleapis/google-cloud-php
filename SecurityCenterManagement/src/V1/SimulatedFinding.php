@@ -9,49 +9,46 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A subset of the fields of the Security Center Finding proto. The minimum set
- * of fields needed to represent a simulated finding from a SHA custom module.
+ * The minimum set of fields needed to represent a simulated finding from a
+ * Security Health Analytics custom module.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.SimulatedFinding</code>
  */
 class SimulatedFinding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The [relative resource
-     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     * of the finding. Example:
-     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
-     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
-     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
+     * Identifier. The [relative resource name](https://google.aip.dev/122) of the
+     * finding, in one of the following formats:
+     * * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`
+     * * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`
+     * * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * The relative resource name of the source the finding belongs to. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * This field is immutable after creation time.
-     * For example:
-     * `organizations/{organization_id}/sources/{source_id}`
+     * The [relative resource name](https://google.aip.dev/122) of the source the
+     * finding belongs to. For example,
+     * `organizations/{organization_id}/sources/{source_id}`. This field is
+     * immutable after creation time.
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
     protected $parent = '';
     /**
-     * For findings on Google Cloud resources, the full resource
-     * name of the Google Cloud resource this finding is for. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * When the finding is for a non-Google Cloud resource, the resourceName can
-     * be a customer or partner defined string. This field is immutable after
-     * creation time.
+     * For findings on Google Cloud resources, the
+     * [full resource name](https://google.aip.dev/122#full-resource-names) of the
+     * Google Cloud resource this finding is for. When the finding is for a
+     * non-Google Cloud resource, the value can be a customer or partner defined
+     * string. This field is immutable after creation time.
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      */
     protected $resource_name = '';
     /**
-     * The additional taxonomy group within findings from a given source.
-     * This field is immutable after creation time.
-     * Example: "XSS_FLASH_INJECTION"
+     * The additional taxonomy group within findings from a given source. For
+     * example, `XSS_FLASH_INJECTION`. This field is immutable after creation
+     * time.
      *
      * Generated from protobuf field <code>string category = 4;</code>
      */
@@ -63,22 +60,23 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Source specific properties. These properties are managed by the source
-     * that writes the finding. The key names in the source_properties map must be
-     * between 1 and 255 characters, and must start with a letter and contain
-     * alphanumeric characters or underscores only.
+     * Source-specific properties. These properties are managed by the source
+     * that writes the finding. The key names must be between 1 and 255
+     * characters; they must start with a letter and contain alphanumeric
+     * characters or underscores only.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> source_properties = 6;</code>
      */
     private $source_properties;
     /**
      * The time the finding was first detected. If an existing finding is updated,
-     * then this is the time the update occurred.
+     * then this is the time the update occurred. If the finding is later
+     * resolved, then this time reflects when the finding was resolved.
      * For example, if the finding represents an open firewall, this property
      * captures the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding is later resolved,
-     * then this time reflects when the finding was resolved. This must not
-     * be set to a value greater than the current timestamp.
+     * accuracy is determined by the detector.
+     * The event time must not be set to a value greater than the current
+     * timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 7;</code>
      */
@@ -104,44 +102,42 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The [relative resource
-     *           name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     *           of the finding. Example:
-     *           `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
-     *           `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
-     *           `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
+     *           Identifier. The [relative resource name](https://google.aip.dev/122) of the
+     *           finding, in one of the following formats:
+     *           * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`
+     *           * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`
+     *           * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`
      *     @type string $parent
-     *           The relative resource name of the source the finding belongs to. See:
-     *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *           This field is immutable after creation time.
-     *           For example:
-     *           `organizations/{organization_id}/sources/{source_id}`
+     *           The [relative resource name](https://google.aip.dev/122) of the source the
+     *           finding belongs to. For example,
+     *           `organizations/{organization_id}/sources/{source_id}`. This field is
+     *           immutable after creation time.
      *     @type string $resource_name
-     *           For findings on Google Cloud resources, the full resource
-     *           name of the Google Cloud resource this finding is for. See:
-     *           https://cloud.google.com/apis/design/resource_names#full_resource_name
-     *           When the finding is for a non-Google Cloud resource, the resourceName can
-     *           be a customer or partner defined string. This field is immutable after
-     *           creation time.
+     *           For findings on Google Cloud resources, the
+     *           [full resource name](https://google.aip.dev/122#full-resource-names) of the
+     *           Google Cloud resource this finding is for. When the finding is for a
+     *           non-Google Cloud resource, the value can be a customer or partner defined
+     *           string. This field is immutable after creation time.
      *     @type string $category
-     *           The additional taxonomy group within findings from a given source.
-     *           This field is immutable after creation time.
-     *           Example: "XSS_FLASH_INJECTION"
+     *           The additional taxonomy group within findings from a given source. For
+     *           example, `XSS_FLASH_INJECTION`. This field is immutable after creation
+     *           time.
      *     @type int $state
      *           Output only. The state of the finding.
      *     @type array|\Google\Protobuf\Internal\MapField $source_properties
-     *           Source specific properties. These properties are managed by the source
-     *           that writes the finding. The key names in the source_properties map must be
-     *           between 1 and 255 characters, and must start with a letter and contain
-     *           alphanumeric characters or underscores only.
+     *           Source-specific properties. These properties are managed by the source
+     *           that writes the finding. The key names must be between 1 and 255
+     *           characters; they must start with a letter and contain alphanumeric
+     *           characters or underscores only.
      *     @type \Google\Protobuf\Timestamp $event_time
      *           The time the finding was first detected. If an existing finding is updated,
-     *           then this is the time the update occurred.
+     *           then this is the time the update occurred. If the finding is later
+     *           resolved, then this time reflects when the finding was resolved.
      *           For example, if the finding represents an open firewall, this property
      *           captures the time the detector believes the firewall became open. The
-     *           accuracy is determined by the detector. If the finding is later resolved,
-     *           then this time reflects when the finding was resolved. This must not
-     *           be set to a value greater than the current timestamp.
+     *           accuracy is determined by the detector.
+     *           The event time must not be set to a value greater than the current
+     *           timestamp.
      *     @type int $severity
      *           The severity of the finding. This field is managed by the source that
      *           writes the finding.
@@ -155,12 +151,11 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The [relative resource
-     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     * of the finding. Example:
-     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
-     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
-     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
+     * Identifier. The [relative resource name](https://google.aip.dev/122) of the
+     * finding, in one of the following formats:
+     * * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`
+     * * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`
+     * * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -171,12 +166,11 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The [relative resource
-     * name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
-     * of the finding. Example:
-     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
-     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
-     * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`.
+     * Identifier. The [relative resource name](https://google.aip.dev/122) of the
+     * finding, in one of the following formats:
+     * * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`
+     * * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`
+     * * `projects/{project_id}/sources/{source_id}/findings/{finding_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -191,11 +185,10 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of the source the finding belongs to. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * This field is immutable after creation time.
-     * For example:
-     * `organizations/{organization_id}/sources/{source_id}`
+     * The [relative resource name](https://google.aip.dev/122) of the source the
+     * finding belongs to. For example,
+     * `organizations/{organization_id}/sources/{source_id}`. This field is
+     * immutable after creation time.
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      * @return string
@@ -206,11 +199,10 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of the source the finding belongs to. See:
-     * https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     * This field is immutable after creation time.
-     * For example:
-     * `organizations/{organization_id}/sources/{source_id}`
+     * The [relative resource name](https://google.aip.dev/122) of the source the
+     * finding belongs to. For example,
+     * `organizations/{organization_id}/sources/{source_id}`. This field is
+     * immutable after creation time.
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      * @param string $var
@@ -225,12 +217,11 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For findings on Google Cloud resources, the full resource
-     * name of the Google Cloud resource this finding is for. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * When the finding is for a non-Google Cloud resource, the resourceName can
-     * be a customer or partner defined string. This field is immutable after
-     * creation time.
+     * For findings on Google Cloud resources, the
+     * [full resource name](https://google.aip.dev/122#full-resource-names) of the
+     * Google Cloud resource this finding is for. When the finding is for a
+     * non-Google Cloud resource, the value can be a customer or partner defined
+     * string. This field is immutable after creation time.
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      * @return string
@@ -241,12 +232,11 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For findings on Google Cloud resources, the full resource
-     * name of the Google Cloud resource this finding is for. See:
-     * https://cloud.google.com/apis/design/resource_names#full_resource_name
-     * When the finding is for a non-Google Cloud resource, the resourceName can
-     * be a customer or partner defined string. This field is immutable after
-     * creation time.
+     * For findings on Google Cloud resources, the
+     * [full resource name](https://google.aip.dev/122#full-resource-names) of the
+     * Google Cloud resource this finding is for. When the finding is for a
+     * non-Google Cloud resource, the value can be a customer or partner defined
+     * string. This field is immutable after creation time.
      *
      * Generated from protobuf field <code>string resource_name = 3;</code>
      * @param string $var
@@ -261,9 +251,9 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The additional taxonomy group within findings from a given source.
-     * This field is immutable after creation time.
-     * Example: "XSS_FLASH_INJECTION"
+     * The additional taxonomy group within findings from a given source. For
+     * example, `XSS_FLASH_INJECTION`. This field is immutable after creation
+     * time.
      *
      * Generated from protobuf field <code>string category = 4;</code>
      * @return string
@@ -274,9 +264,9 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The additional taxonomy group within findings from a given source.
-     * This field is immutable after creation time.
-     * Example: "XSS_FLASH_INJECTION"
+     * The additional taxonomy group within findings from a given source. For
+     * example, `XSS_FLASH_INJECTION`. This field is immutable after creation
+     * time.
      *
      * Generated from protobuf field <code>string category = 4;</code>
      * @param string $var
@@ -317,10 +307,10 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source specific properties. These properties are managed by the source
-     * that writes the finding. The key names in the source_properties map must be
-     * between 1 and 255 characters, and must start with a letter and contain
-     * alphanumeric characters or underscores only.
+     * Source-specific properties. These properties are managed by the source
+     * that writes the finding. The key names must be between 1 and 255
+     * characters; they must start with a letter and contain alphanumeric
+     * characters or underscores only.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> source_properties = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -331,10 +321,10 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source specific properties. These properties are managed by the source
-     * that writes the finding. The key names in the source_properties map must be
-     * between 1 and 255 characters, and must start with a letter and contain
-     * alphanumeric characters or underscores only.
+     * Source-specific properties. These properties are managed by the source
+     * that writes the finding. The key names must be between 1 and 255
+     * characters; they must start with a letter and contain alphanumeric
+     * characters or underscores only.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> source_properties = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -350,12 +340,13 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
 
     /**
      * The time the finding was first detected. If an existing finding is updated,
-     * then this is the time the update occurred.
+     * then this is the time the update occurred. If the finding is later
+     * resolved, then this time reflects when the finding was resolved.
      * For example, if the finding represents an open firewall, this property
      * captures the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding is later resolved,
-     * then this time reflects when the finding was resolved. This must not
-     * be set to a value greater than the current timestamp.
+     * accuracy is determined by the detector.
+     * The event time must not be set to a value greater than the current
+     * timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 7;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -377,12 +368,13 @@ class SimulatedFinding extends \Google\Protobuf\Internal\Message
 
     /**
      * The time the finding was first detected. If an existing finding is updated,
-     * then this is the time the update occurred.
+     * then this is the time the update occurred. If the finding is later
+     * resolved, then this time reflects when the finding was resolved.
      * For example, if the finding represents an open firewall, this property
      * captures the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding is later resolved,
-     * then this time reflects when the finding was resolved. This must not
-     * be set to a value greater than the current timestamp.
+     * accuracy is determined by the detector.
+     * The event time must not be set to a value greater than the current
+     * timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
