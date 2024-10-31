@@ -211,8 +211,9 @@ class Component
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
         $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
 
+        $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
-            if (0 === strpos($dir, 'src')) {
+            if (str_starts_with($dir, 'src')) {
                 $namespaces[rtrim($namespace, '\\')] = $dir;
             }
         }
@@ -245,9 +246,51 @@ class Component
         return array_map(fn($v) => $v->getMigrationStatus(), $this->getComponentPackages());
     }
 
-    public function getProtoPackages(): array
+    public function getProtoNamespaces(): array
     {
-        return array_map(fn($v) => $v->getProtoPackage(), $this->getComponentPackages());
+        $protoNamespaces = [];
+        $componentPackages = $this->getComponentPackages();
+        foreach ($this->namespaces as $namespace => $dir) {
+            $componentPackages = $dir === 'src'
+                ? $this->getComponentPackages()
+                : [new ComponentPackage($this, str_replace('src/', '', $dir))];
+
+            $protoNamespaces = array_reduce(
+                $componentPackages,
+                fn($protoNamespaces, $pkg) => array_merge($protoNamespaces, $pkg->getProtoNamespaces()),
+                $protoNamespaces
+            );
+        }
+
+        return $protoNamespaces;
+    }
+
+    public static function getProtoPackageToNamespaceMap(): array
+    {
+        $protoNamespaces = [];
+        foreach (self::getComponents() as $component) {
+            $componentProtoNamespaces = $component->getProtoNamespaces();
+            if ($commonPackages = array_intersect_key($componentProtoNamespaces, $protoNamespaces)) {
+                foreach ($commonPackages as $package => $namespace) {
+                    if ($namespace !== $protoNamespaces[$package]) {
+                        throw new RuntimeException(sprintf(
+                            'Package "%s" has conflicting namespaces: "%s" and "%s"',
+                            $package,
+                            $namespace,
+                            $protoNamespaces[$package]
+                        ));
+                    }
+                }
+            }
+            $protoNamespaces = array_merge($protoNamespaces, $componentProtoNamespaces);
+        }
+
+        return $protoNamespaces;
+    }
+
+    public function getProtoPaths(): array
+    {
+        return array_map(fn($v) => $v->getProtoPath(), $this->getComponentPackages());
     }
 
     public function getServiceAddresses(): array

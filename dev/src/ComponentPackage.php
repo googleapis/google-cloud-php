@@ -48,7 +48,7 @@ class ComponentPackage
         return $this->name;
     }
 
-    public function getProtoPackage(): string
+    public function getProtoPath(): string
     {
         $gapicClientFiles = $this->getV1GapicClientFiles() + $this->getV2ClientFiles();
 
@@ -78,11 +78,7 @@ class ComponentPackage
         $gapicClientClasses = array_map(fn ($fp) => $this->getClassFromFile($fp), $gapicClientFiles);
 
         foreach ($gapicClientClasses as $className) {
-            // Access V1-surface public constant
-            if (defined($className . '::SERVICE_ADDRESS')) {
-                return constant($className . '::SERVICE_ADDRESS');
-            }
-            // Access V2-surface private constant
+            // Access private constants (for v2 surfaces)
             if ($constants = (new \ReflectionClass($className))->getConstants()) {
                 if (isset($constants['SERVICE_ADDRESS'])) {
                     return $constants['SERVICE_ADDRESS'];
@@ -90,6 +86,22 @@ class ComponentPackage
             }
         }
         return '';
+    }
+
+    public function getProtoNamespaces(): array
+    {
+        $protoPackages = [];
+        foreach ($this->getFilesInDir('*.php', $this->path) as $classFile) {
+            $contents = file_get_contents($classFile);
+            if (preg_match(
+                '/Generated from protobuf message <code>([a-z0-9\.]+)(\..*)<\/code>/',
+                $contents,
+                $matches
+            ) && preg_match('/namespace (.*);/', $contents, $nsMatches)) {
+                $protoPackages[$matches[1]] = str_replace(str_replace('.', '\\', $matches[2]), '', $nsMatches[1]);
+            }
+        }
+        return array_unique($protoPackages);
     }
 
     public function getBaseUri(): string

@@ -37,6 +37,7 @@ do
             --out $DIR/out \
             --metadata-version $VERSION \
             --staging-bucket $STAGING_BUCKET \
+            --with-cache \
             $VERBOSITY
     else
         # dry run
@@ -44,6 +45,7 @@ do
             --component $COMPONENT \
             --out $DIR/out \
             --metadata-version $VERSION \
+            --with-cache \
             $VERBOSITY
     fi
 done

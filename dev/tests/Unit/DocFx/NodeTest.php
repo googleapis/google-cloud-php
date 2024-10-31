@@ -284,15 +284,14 @@ EOF;
         $description = '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]';
         $protoPackages = ['google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2'];
 
-        $xref = new class {
+        $xref = new class($protoPackages) {
             use XrefTrait;
-            public $protoPackages;
+            public function __construct(private array $protoPackages) {
+            }
             public function replace(string $description) {
                 return $this->replaceProtoRef($description);
             }
         };
-
-        $xref->protoPackages = $protoPackages;
 
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
@@ -302,9 +301,7 @@ EOF;
         $classNode = new ClassNode(new SimpleXMLElement(sprintf(
             '<class><docblock><description>%s</description></docblock></class>',
             $description
-        )));
-
-        $classNode->setProtoPackages($protoPackages);
+        )), $protoPackages);
 
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',

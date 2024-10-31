@@ -69,9 +69,27 @@ class ComponentTest extends TestCase
                 [
                     'id' => 'cloud-talent',
                     'apiVersions' => ['V4'],
-                    'protoPackages' => ['google/cloud/talent/v4'],
+                    'protoPaths' => ['google/cloud/talent/v4'],
                 ]
             ]
         ];
+    }
+
+    public function testGetProtoNamespaces()
+    {
+        // ensure there are no conflicts - this would throw an exception
+        $allProtoNamespaces = Component::getProtoPackageToNamespaceMap();
+
+        // verify a few are as expected
+        $this->assertEquals('Google\Cloud\Bigtable\V2', $allProtoNamespaces['google.bigtable.v2']);
+        $this->assertEquals('Google\Cloud\Talent\V4', $allProtoNamespaces['google.cloud.talent.v4']);
+        $this->assertEquals('Grafeas\V1', $allProtoNamespaces['grafeas.v1']);
+        $this->assertEquals('Google\Cloud\Workflows\Executions\V1', $allProtoNamespaces['google.cloud.workflows.executions.v1']);
+        $this->assertEquals('Google\Api', $allProtoNamespaces['google.api']);
+        $this->assertEquals('Google\Cloud\Location', $allProtoNamespaces['google.cloud.location']);
+        $this->assertEquals('Google\LongRunning', $allProtoNamespaces['google.longrunning']);
+        $this->assertEquals('Google\Rpc\Context\AttributeContext', $allProtoNamespaces['google.rpc.context']);
+        $this->assertEquals('Google\Cloud\Iam\V1', $allProtoNamespaces['google.iam.v1']);
+        $this->assertEquals('Google\Cloud\Logging\Type', $allProtoNamespaces['google.logging.type']);
     }
 }
