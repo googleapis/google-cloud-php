@@ -38,24 +38,49 @@ use Google\Cloud\Eventarc\V1\Channel;
 use Google\Cloud\Eventarc\V1\ChannelConnection;
 use Google\Cloud\Eventarc\V1\CreateChannelConnectionRequest;
 use Google\Cloud\Eventarc\V1\CreateChannelRequest;
+use Google\Cloud\Eventarc\V1\CreateEnrollmentRequest;
+use Google\Cloud\Eventarc\V1\CreateGoogleApiSourceRequest;
+use Google\Cloud\Eventarc\V1\CreateMessageBusRequest;
+use Google\Cloud\Eventarc\V1\CreatePipelineRequest;
 use Google\Cloud\Eventarc\V1\CreateTriggerRequest;
 use Google\Cloud\Eventarc\V1\DeleteChannelConnectionRequest;
 use Google\Cloud\Eventarc\V1\DeleteChannelRequest;
+use Google\Cloud\Eventarc\V1\DeleteEnrollmentRequest;
+use Google\Cloud\Eventarc\V1\DeleteGoogleApiSourceRequest;
+use Google\Cloud\Eventarc\V1\DeleteMessageBusRequest;
+use Google\Cloud\Eventarc\V1\DeletePipelineRequest;
 use Google\Cloud\Eventarc\V1\DeleteTriggerRequest;
+use Google\Cloud\Eventarc\V1\Enrollment;
 use Google\Cloud\Eventarc\V1\GetChannelConnectionRequest;
 use Google\Cloud\Eventarc\V1\GetChannelRequest;
+use Google\Cloud\Eventarc\V1\GetEnrollmentRequest;
+use Google\Cloud\Eventarc\V1\GetGoogleApiSourceRequest;
 use Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest;
+use Google\Cloud\Eventarc\V1\GetMessageBusRequest;
+use Google\Cloud\Eventarc\V1\GetPipelineRequest;
 use Google\Cloud\Eventarc\V1\GetProviderRequest;
 use Google\Cloud\Eventarc\V1\GetTriggerRequest;
+use Google\Cloud\Eventarc\V1\GoogleApiSource;
 use Google\Cloud\Eventarc\V1\GoogleChannelConfig;
 use Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest;
 use Google\Cloud\Eventarc\V1\ListChannelsRequest;
+use Google\Cloud\Eventarc\V1\ListEnrollmentsRequest;
+use Google\Cloud\Eventarc\V1\ListGoogleApiSourcesRequest;
+use Google\Cloud\Eventarc\V1\ListMessageBusEnrollmentsRequest;
+use Google\Cloud\Eventarc\V1\ListMessageBusesRequest;
+use Google\Cloud\Eventarc\V1\ListPipelinesRequest;
 use Google\Cloud\Eventarc\V1\ListProvidersRequest;
 use Google\Cloud\Eventarc\V1\ListTriggersRequest;
+use Google\Cloud\Eventarc\V1\MessageBus;
+use Google\Cloud\Eventarc\V1\Pipeline;
 use Google\Cloud\Eventarc\V1\Provider;
 use Google\Cloud\Eventarc\V1\Trigger;
 use Google\Cloud\Eventarc\V1\UpdateChannelRequest;
+use Google\Cloud\Eventarc\V1\UpdateEnrollmentRequest;
+use Google\Cloud\Eventarc\V1\UpdateGoogleApiSourceRequest;
 use Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest;
+use Google\Cloud\Eventarc\V1\UpdateMessageBusRequest;
+use Google\Cloud\Eventarc\V1\UpdatePipelineRequest;
 use Google\Cloud\Eventarc\V1\UpdateTriggerRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -83,21 +108,42 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createChannelConnectionAsync(CreateChannelConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createEnrollmentAsync(CreateEnrollmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createGoogleApiSourceAsync(CreateGoogleApiSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createMessageBusAsync(CreateMessageBusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createPipelineAsync(CreatePipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTriggerAsync(CreateTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteChannelAsync(DeleteChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteChannelConnectionAsync(DeleteChannelConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteEnrollmentAsync(DeleteEnrollmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteGoogleApiSourceAsync(DeleteGoogleApiSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteMessageBusAsync(DeleteMessageBusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deletePipelineAsync(DeletePipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTriggerAsync(DeleteTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getChannelAsync(GetChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getChannelConnectionAsync(GetChannelConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getEnrollmentAsync(GetEnrollmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getGoogleApiSourceAsync(GetGoogleApiSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getGoogleChannelConfigAsync(GetGoogleChannelConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getMessageBusAsync(GetMessageBusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getPipelineAsync(GetPipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getProviderAsync(GetProviderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getTriggerAsync(GetTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listChannelConnectionsAsync(ListChannelConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listChannelsAsync(ListChannelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listEnrollmentsAsync(ListEnrollmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listGoogleApiSourcesAsync(ListGoogleApiSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listMessageBusEnrollmentsAsync(ListMessageBusEnrollmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listMessageBusesAsync(ListMessageBusesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listPipelinesAsync(ListPipelinesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listProvidersAsync(ListProvidersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTriggersAsync(ListTriggersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateChannelAsync(UpdateChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateEnrollmentAsync(UpdateEnrollmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateGoogleApiSourceAsync(UpdateGoogleApiSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateGoogleChannelConfigAsync(UpdateGoogleChannelConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateMessageBusAsync(UpdateMessageBusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updatePipelineAsync(UpdatePipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateTriggerAsync(UpdateTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -282,6 +328,44 @@ final class EventarcClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a enrollment
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $enrollment
+     *
+     * @return string The formatted enrollment resource.
+     */
+    public static function enrollmentName(string $project, string $location, string $enrollment): string
+    {
+        return self::getPathTemplate('enrollment')->render([
+            'project' => $project,
+            'location' => $location,
+            'enrollment' => $enrollment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * google_api_source resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $googleApiSource
+     *
+     * @return string The formatted google_api_source resource.
+     */
+    public static function googleApiSourceName(string $project, string $location, string $googleApiSource): string
+    {
+        return self::getPathTemplate('googleApiSource')->render([
+            'project' => $project,
+            'location' => $location,
+            'google_api_source' => $googleApiSource,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * google_channel_config resource.
      *
@@ -312,6 +396,63 @@ final class EventarcClient
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a message_bus
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $messageBus
+     *
+     * @return string The formatted message_bus resource.
+     */
+    public static function messageBusName(string $project, string $location, string $messageBus): string
+    {
+        return self::getPathTemplate('messageBus')->render([
+            'project' => $project,
+            'location' => $location,
+            'message_bus' => $messageBus,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkattachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkattachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'networkattachment' => $networkattachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a pipeline
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pipeline
+     *
+     * @return string The formatted pipeline resource.
+     */
+    public static function pipelineName(string $project, string $location, string $pipeline): string
+    {
+        return self::getPathTemplate('pipeline')->render([
+            'project' => $project,
+            'location' => $location,
+            'pipeline' => $pipeline,
         ]);
     }
 
@@ -348,6 +489,23 @@ final class EventarcClient
         return self::getPathTemplate('serviceAccount')->render([
             'project' => $project,
             'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a topic
+     * resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     */
+    public static function topicName(string $project, string $topic): string
+    {
+        return self::getPathTemplate('topic')->render([
+            'project' => $project,
+            'topic' => $topic,
         ]);
     }
 
@@ -397,10 +555,16 @@ final class EventarcClient
      * - channelConnection: projects/{project}/locations/{location}/channelConnections/{channel_connection}
      * - cloudFunction: projects/{project}/locations/{location}/functions/{function}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - enrollment: projects/{project}/locations/{location}/enrollments/{enrollment}
+     * - googleApiSource: projects/{project}/locations/{location}/googleApiSources/{google_api_source}
      * - googleChannelConfig: projects/{project}/locations/{location}/googleChannelConfig
      * - location: projects/{project}/locations/{location}
+     * - messageBus: projects/{project}/locations/{location}/messageBuses/{message_bus}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{networkattachment}
+     * - pipeline: projects/{project}/locations/{location}/pipelines/{pipeline}
      * - provider: projects/{project}/locations/{location}/providers/{provider}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
+     * - topic: projects/{project}/topics/{topic}
      * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
      * - workflow: projects/{project}/locations/{location}/workflows/{workflow}
      *
@@ -549,6 +713,112 @@ final class EventarcClient
     }
 
     /**
+     * Create a new Enrollment in a particular project and location.
+     *
+     * The async variant is {@see EventarcClient::createEnrollmentAsync()} .
+     *
+     * @example samples/V1/EventarcClient/create_enrollment.php
+     *
+     * @param CreateEnrollmentRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createEnrollment(CreateEnrollmentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateEnrollment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a new GoogleApiSource in a particular project and location.
+     *
+     * The async variant is {@see EventarcClient::createGoogleApiSourceAsync()} .
+     *
+     * @example samples/V1/EventarcClient/create_google_api_source.php
+     *
+     * @param CreateGoogleApiSourceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGoogleApiSource(
+        CreateGoogleApiSourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateGoogleApiSource', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a new MessageBus in a particular project and location.
+     *
+     * The async variant is {@see EventarcClient::createMessageBusAsync()} .
+     *
+     * @example samples/V1/EventarcClient/create_message_bus.php
+     *
+     * @param CreateMessageBusRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMessageBus(CreateMessageBusRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateMessageBus', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a new Pipeline in a particular project and location.
+     *
+     * The async variant is {@see EventarcClient::createPipelineAsync()} .
+     *
+     * @example samples/V1/EventarcClient/create_pipeline.php
+     *
+     * @param CreatePipelineRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createPipeline(CreatePipelineRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreatePipeline', $request, $callOptions)->wait();
+    }
+
+    /**
      * Create a new trigger in a particular project and location.
      *
      * The async variant is {@see EventarcClient::createTriggerAsync()} .
@@ -626,6 +896,112 @@ final class EventarcClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteChannelConnection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete a single Enrollment.
+     *
+     * The async variant is {@see EventarcClient::deleteEnrollmentAsync()} .
+     *
+     * @example samples/V1/EventarcClient/delete_enrollment.php
+     *
+     * @param DeleteEnrollmentRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteEnrollment(DeleteEnrollmentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteEnrollment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete a single GoogleApiSource.
+     *
+     * The async variant is {@see EventarcClient::deleteGoogleApiSourceAsync()} .
+     *
+     * @example samples/V1/EventarcClient/delete_google_api_source.php
+     *
+     * @param DeleteGoogleApiSourceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGoogleApiSource(
+        DeleteGoogleApiSourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteGoogleApiSource', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete a single message bus.
+     *
+     * The async variant is {@see EventarcClient::deleteMessageBusAsync()} .
+     *
+     * @example samples/V1/EventarcClient/delete_message_bus.php
+     *
+     * @param DeleteMessageBusRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMessageBus(DeleteMessageBusRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteMessageBus', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete a single pipeline.
+     *
+     * The async variant is {@see EventarcClient::deletePipelineAsync()} .
+     *
+     * @example samples/V1/EventarcClient/delete_pipeline.php
+     *
+     * @param DeletePipelineRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deletePipeline(DeletePipelineRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeletePipeline', $request, $callOptions)->wait();
     }
 
     /**
@@ -709,6 +1085,58 @@ final class EventarcClient
     }
 
     /**
+     * Get a single Enrollment.
+     *
+     * The async variant is {@see EventarcClient::getEnrollmentAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_enrollment.php
+     *
+     * @param GetEnrollmentRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Enrollment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getEnrollment(GetEnrollmentRequest $request, array $callOptions = []): Enrollment
+    {
+        return $this->startApiCall('GetEnrollment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a single GoogleApiSource.
+     *
+     * The async variant is {@see EventarcClient::getGoogleApiSourceAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_google_api_source.php
+     *
+     * @param GetGoogleApiSourceRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GoogleApiSource
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGoogleApiSource(GetGoogleApiSourceRequest $request, array $callOptions = []): GoogleApiSource
+    {
+        return $this->startApiCall('GetGoogleApiSource', $request, $callOptions)->wait();
+    }
+
+    /**
      * Get a GoogleChannelConfig
      *
      * The async variant is {@see EventarcClient::getGoogleChannelConfigAsync()} .
@@ -734,6 +1162,58 @@ final class EventarcClient
         array $callOptions = []
     ): GoogleChannelConfig {
         return $this->startApiCall('GetGoogleChannelConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a single MessageBus.
+     *
+     * The async variant is {@see EventarcClient::getMessageBusAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_message_bus.php
+     *
+     * @param GetMessageBusRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MessageBus
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMessageBus(GetMessageBusRequest $request, array $callOptions = []): MessageBus
+    {
+        return $this->startApiCall('GetMessageBus', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a single Pipeline.
+     *
+     * The async variant is {@see EventarcClient::getPipelineAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_pipeline.php
+     *
+     * @param GetPipelineRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Pipeline
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPipeline(GetPipelineRequest $request, array $callOptions = []): Pipeline
+    {
+        return $this->startApiCall('GetPipeline', $request, $callOptions)->wait();
     }
 
     /**
@@ -843,6 +1323,140 @@ final class EventarcClient
     }
 
     /**
+     * List Enrollments.
+     *
+     * The async variant is {@see EventarcClient::listEnrollmentsAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_enrollments.php
+     *
+     * @param ListEnrollmentsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listEnrollments(ListEnrollmentsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListEnrollments', $request, $callOptions);
+    }
+
+    /**
+     * List GoogleApiSources.
+     *
+     * The async variant is {@see EventarcClient::listGoogleApiSourcesAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_google_api_sources.php
+     *
+     * @param ListGoogleApiSourcesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGoogleApiSources(
+        ListGoogleApiSourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGoogleApiSources', $request, $callOptions);
+    }
+
+    /**
+     * List message bus enrollments.
+     *
+     * The async variant is {@see EventarcClient::listMessageBusEnrollmentsAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_message_bus_enrollments.php
+     *
+     * @param ListMessageBusEnrollmentsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMessageBusEnrollments(
+        ListMessageBusEnrollmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListMessageBusEnrollments', $request, $callOptions);
+    }
+
+    /**
+     * List message buses.
+     *
+     * The async variant is {@see EventarcClient::listMessageBusesAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_message_buses.php
+     *
+     * @param ListMessageBusesRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMessageBuses(ListMessageBusesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMessageBuses', $request, $callOptions);
+    }
+
+    /**
+     * List pipelines.
+     *
+     * The async variant is {@see EventarcClient::listPipelinesAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_pipelines.php
+     *
+     * @param ListPipelinesRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPipelines(ListPipelinesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPipelines', $request, $callOptions);
+    }
+
+    /**
      * List providers.
      *
      * The async variant is {@see EventarcClient::listProvidersAsync()} .
@@ -921,6 +1535,60 @@ final class EventarcClient
     }
 
     /**
+     * Update a single Enrollment.
+     *
+     * The async variant is {@see EventarcClient::updateEnrollmentAsync()} .
+     *
+     * @example samples/V1/EventarcClient/update_enrollment.php
+     *
+     * @param UpdateEnrollmentRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateEnrollment(UpdateEnrollmentRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateEnrollment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update a single GoogleApiSource.
+     *
+     * The async variant is {@see EventarcClient::updateGoogleApiSourceAsync()} .
+     *
+     * @example samples/V1/EventarcClient/update_google_api_source.php
+     *
+     * @param UpdateGoogleApiSourceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateGoogleApiSource(
+        UpdateGoogleApiSourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateGoogleApiSource', $request, $callOptions)->wait();
+    }
+
+    /**
      * Update a single GoogleChannelConfig
      *
      * The async variant is {@see EventarcClient::updateGoogleChannelConfigAsync()} .
@@ -946,6 +1614,58 @@ final class EventarcClient
         array $callOptions = []
     ): GoogleChannelConfig {
         return $this->startApiCall('UpdateGoogleChannelConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update a single message bus.
+     *
+     * The async variant is {@see EventarcClient::updateMessageBusAsync()} .
+     *
+     * @example samples/V1/EventarcClient/update_message_bus.php
+     *
+     * @param UpdateMessageBusRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMessageBus(UpdateMessageBusRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateMessageBus', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update a single pipeline.
+     *
+     * The async variant is {@see EventarcClient::updatePipelineAsync()} .
+     *
+     * @example samples/V1/EventarcClient/update_pipeline.php
+     *
+     * @param UpdatePipelineRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePipeline(UpdatePipelineRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdatePipeline', $request, $callOptions)->wait();
     }
 
     /**

@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Position extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The line position in the text
+     * The line position in the text.
      *
      * Generated from protobuf field <code>int32 line_number = 1;</code>
      */
     protected $line_number = 0;
     /**
-     * The column position in the line
+     * The column position in the line.
      *
      * Generated from protobuf field <code>int32 column_number = 2;</code>
      */
@@ -35,9 +35,9 @@ class Position extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $line_number
-     *           The line position in the text
+     *           The line position in the text.
      *     @type int $column_number
-     *           The column position in the line
+     *           The column position in the line.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The line position in the text
+     * The line position in the text.
      *
      * Generated from protobuf field <code>int32 line_number = 1;</code>
      * @return int
@@ -57,7 +57,7 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The line position in the text
+     * The line position in the text.
      *
      * Generated from protobuf field <code>int32 line_number = 1;</code>
      * @param int $var
@@ -72,7 +72,7 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The column position in the line
+     * The column position in the line.
      *
      * Generated from protobuf field <code>int32 column_number = 2;</code>
      * @return int
@@ -83,7 +83,7 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The column position in the line
+     * The column position in the line.
      *
      * Generated from protobuf field <code>int32 column_number = 2;</code>
      * @param int $var

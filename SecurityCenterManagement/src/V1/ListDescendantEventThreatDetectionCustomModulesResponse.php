@@ -9,21 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for listing descendant Event Threat Detection custom
- * modules.
+ * Response message for
+ * [SecurityCenterManagement.ListDescendantEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListDescendantEventThreatDetectionCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListDescendantEventThreatDetectionCustomModulesResponse</code>
  */
 class ListDescendantEventThreatDetectionCustomModulesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of EventThreatDetectionCustomModules
+     * The list of custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_modules = 1;</code>
      */
     private $event_threat_detection_custom_modules;
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -36,9 +37,10 @@ class ListDescendantEventThreatDetectionCustomModulesResponse extends \Google\Pr
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $event_threat_detection_custom_modules
-     *           The list of EventThreatDetectionCustomModules
+     *           The list of custom modules.
      *     @type string $next_page_token
-     *           A token identifying a page of results the server should return.
+     *           A pagination token. To retrieve the next page of results, call the method
+     *           again with this token.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +49,7 @@ class ListDescendantEventThreatDetectionCustomModulesResponse extends \Google\Pr
     }
 
     /**
-     * The list of EventThreatDetectionCustomModules
+     * The list of custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_modules = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,7 +60,7 @@ class ListDescendantEventThreatDetectionCustomModulesResponse extends \Google\Pr
     }
 
     /**
-     * The list of EventThreatDetectionCustomModules
+     * The list of custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_modules = 1;</code>
      * @param array<\Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -73,7 +75,8 @@ class ListDescendantEventThreatDetectionCustomModulesResponse extends \Google\Pr
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -84,7 +87,8 @@ class ListDescendantEventThreatDetectionCustomModulesResponse extends \Google\Pr
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * A pagination token. To retrieve the next page of results, call the method
+     * again with this token.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

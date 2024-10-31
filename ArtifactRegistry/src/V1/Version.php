@@ -19,7 +19,7 @@ class Version extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the version, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`.
      * If the package or version ID parts contain slashes, the slashes are
      * escaped.
      *
@@ -61,6 +61,12 @@ class Version extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $metadata = null;
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
 
     /**
      * Constructor.
@@ -70,7 +76,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the version, for example:
-     *           "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     *           `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`.
      *           If the package or version ID parts contain slashes, the slashes are
      *           escaped.
      *     @type string $description
@@ -88,6 +94,8 @@ class Version extends \Google\Protobuf\Internal\Message
      *           resource. Currently, the resources could be:
      *           [DockerImage][google.devtools.artifactregistry.v1.DockerImage]
      *           [MavenArtifact][google.devtools.artifactregistry.v1.MavenArtifact]
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Client specified annotations.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,7 +105,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the version, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`.
      * If the package or version ID parts contain slashes, the slashes are
      * escaped.
      *
@@ -111,7 +119,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the version, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`.
      * If the package or version ID parts contain slashes, the slashes are
      * escaped.
      *
@@ -293,6 +301,32 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }

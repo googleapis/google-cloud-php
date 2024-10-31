@@ -23,7 +23,7 @@ class ListMavenArtifactsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -60,7 +60,7 @@ class ListMavenArtifactsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the parent resource whose maven artifacts will be
      *           listed.
      *     @type int $page_size
-     *           The maximum number of artifacts to return.
+     *           The maximum number of artifacts to return. Maximum page size is 1,000.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request, if any.
      * }
@@ -99,7 +99,7 @@ class ListMavenArtifactsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -110,7 +110,7 @@ class ListMavenArtifactsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of artifacts to return.
+     * The maximum number of artifacts to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

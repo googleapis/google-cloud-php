@@ -244,7 +244,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()'
     name: asyncBatchAnnotateImagesAsync
@@ -265,7 +265,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()'
     name: batchAnnotateFilesAsync
@@ -286,7 +286,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()'
     name: batchAnnotateImagesAsync
@@ -307,7 +307,7 @@ items:
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
     name: getOperationsClient

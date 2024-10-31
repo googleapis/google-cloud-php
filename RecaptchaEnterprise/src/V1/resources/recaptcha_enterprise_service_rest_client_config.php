@@ -149,6 +149,17 @@ return [
                     ],
                 ],
             ],
+            'ListIpOverrides' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/keys/*}:listIpOverrides',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/keys',
@@ -185,6 +196,18 @@ return [
             'MigrateKey' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/keys/*}:migrate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveIpOverride' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:removeIpOverride',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

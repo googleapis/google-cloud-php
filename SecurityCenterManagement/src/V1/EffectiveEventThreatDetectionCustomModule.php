@@ -9,30 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An EffectiveEventThreatDetectionCustomModule is the representation of
- * EventThreatDetectionCustomModule at a given level taking hierarchy into
- * account and resolving various fields accordingly. e.g. if the module is
- * enabled at the ancestor level, effective modules at all descendant levels
- * will have enablement_state set to ENABLED. Similarly, if module.inherited is
- * set, then effective module's config will contain the ancestor's config
- * details. EffectiveEventThreatDetectionCustomModule is read-only.
+ * The representation of an
+ * [EventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]
+ * at a given level, taking hierarchy into account and resolving various fields
+ * accordingly. For example, if the module is enabled at the ancestor level,
+ * then effective modules at all descendant levels will have their enablement
+ * state set to `ENABLED`. Similarly, if `module.inherited` is set, then the
+ * effective module's configuration will reflect the ancestor's configuration.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule</code>
  */
 class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+     * Identifier. The resource name of the Event Threat Detection custom module,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. Config for the effective module.
+     * Output only. Configuration for the effective module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,19 +45,19 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
      */
     protected $enablement_state = 0;
     /**
-     * Output only. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     * Output only. Type for the module (for example, `CONFIGURABLE_BAD_IP`).
      *
      * Generated from protobuf field <code>string type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $type = '';
     /**
-     * Output only. The human readable name to be displayed for the module.
+     * Output only. The human-readable name of the module.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $display_name = '';
     /**
-     * Output only. The description for the module.
+     * Output only. A description of the module.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -70,22 +70,22 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the ETD custom module.
-     *           Its format is:
-     *             * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *             * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *             * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+     *           Identifier. The resource name of the Event Threat Detection custom module,
+     *           in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     *           * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     *           * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
      *     @type \Google\Protobuf\Struct $config
-     *           Output only. Config for the effective module.
+     *           Output only. Configuration for the effective module.
      *     @type int $enablement_state
      *           Output only. The effective state of enablement for the module at the given
      *           level of the hierarchy.
      *     @type string $type
-     *           Output only. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     *           Output only. Type for the module (for example, `CONFIGURABLE_BAD_IP`).
      *     @type string $display_name
-     *           Output only. The human readable name to be displayed for the module.
+     *           Output only. The human-readable name of the module.
      *     @type string $description
-     *           Output only. The description for the module.
+     *           Output only. A description of the module.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,11 +94,11 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Identifier. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+     * Identifier. The resource name of the Event Threat Detection custom module,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -109,11 +109,11 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Identifier. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+     * Identifier. The resource name of the Event Threat Detection custom module,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -128,7 +128,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. Config for the effective module.
+     * Output only. Configuration for the effective module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Struct|null
@@ -149,7 +149,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. Config for the effective module.
+     * Output only. Configuration for the effective module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Struct $var
@@ -192,7 +192,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     * Output only. Type for the module (for example, `CONFIGURABLE_BAD_IP`).
      *
      * Generated from protobuf field <code>string type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -203,7 +203,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     * Output only. Type for the module (for example, `CONFIGURABLE_BAD_IP`).
      *
      * Generated from protobuf field <code>string type = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -218,7 +218,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. The human readable name to be displayed for the module.
+     * Output only. The human-readable name of the module.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -229,7 +229,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. The human readable name to be displayed for the module.
+     * Output only. The human-readable name of the module.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -244,7 +244,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. The description for the module.
+     * Output only. A description of the module.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -255,7 +255,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Output only. The description for the module.
+     * Output only. A description of the module.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

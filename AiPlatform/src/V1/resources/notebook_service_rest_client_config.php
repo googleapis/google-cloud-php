@@ -170,6 +170,18 @@ return [
                     ],
                 ],
             ],
+            'StopNotebookRuntime' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimes/*}:stop',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateNotebookRuntimeTemplate' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{notebook_runtime_template.name=projects/*/locations/*/notebookRuntimeTemplates/*}',

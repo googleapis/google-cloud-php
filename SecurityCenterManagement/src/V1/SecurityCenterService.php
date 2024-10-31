@@ -13,39 +13,38 @@ use Google\Protobuf\Internal\GPBUtil;
  * settings information such as top-level enablement in addition to individual
  * module settings. Service settings can be configured at the organization,
  * folder, or project level. Service settings at the organization or folder
- * level are inherited by those in child folders and projects.
+ * level are inherited by those in descendant folders and projects.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.SecurityCenterService</code>
  */
 class SecurityCenterService extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The name of the service.
-     * Its format is:
-     *   * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *   * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *   * projects/{project}/locations/{location}/securityCenterServices/{service}
-     * The possible values for id {service} are:
-     *   * container-threat-detection
-     *   * event-threat-detection
-     *   * security-health-analytics
-     *   * vm-threat-detection
-     *   * web-security-scanner
+     * Identifier. The name of the service, in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/securityCenterServices/{service}`
+     * * `folders/{folder}/locations/{location}/securityCenterServices/{service}`
+     * * `projects/{project}/locations/{location}/securityCenterServices/{service}`
+     * The following values are valid for `{service}`:
+     * * `container-threat-detection`
+     * * `event-threat-detection`
+     * * `security-health-analytics`
+     * * `vm-threat-detection`
+     * * `web-security-scanner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Optional. The intended state of enablement for the service at its level of
-     * the resource hierarchy. A DISABLED state will override all module
-     * enablement_states to DISABLED.
+     * Optional. The intended enablement state for the service at its level of the
+     * resource hierarchy. A `DISABLED` state will override all module enablement
+     * states to `DISABLED`.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState intended_enablement_state = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $intended_enablement_state = 0;
     /**
      * Output only. The effective enablement state for the service at its level of
-     * the resource hierarchy. If the intended state is set to INHERITED, the
+     * the resource hierarchy. If the intended state is set to `INHERITED`, the
      * effective state will be inherited from the enablement state of an ancestor.
      * This state may differ from the intended enablement state due to billing
      * eligibility or onboarding status.
@@ -54,8 +53,8 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
      */
     protected $effective_enablement_state = 0;
     /**
-     * Optional. The configurations including the state of enablement for the
-     * service's different modules. The absence of a module in the map implies its
+     * Optional. The module configurations, including the enablement state for the
+     * service's modules. The absence of a module in the map implies that its
      * configuration is inherited from its parents.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycentermanagement.v1.SecurityCenterService.ModuleSettings> modules = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,14 +62,14 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     private $modules;
     /**
      * Output only. The time the service was last updated. This could be due to an
-     * explicit user update or due to a side effect of another system change such
+     * explicit user update or due to a side effect of another system change, such
      * as billing subscription expiry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
-     * Optional. Additional service specific configuration. Not all services will
+     * Optional. Additional service-specific configuration. Not all services will
      * utilize this field.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct service_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -84,37 +83,36 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The name of the service.
-     *           Its format is:
-     *             * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *             * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *             * projects/{project}/locations/{location}/securityCenterServices/{service}
-     *           The possible values for id {service} are:
-     *             * container-threat-detection
-     *             * event-threat-detection
-     *             * security-health-analytics
-     *             * vm-threat-detection
-     *             * web-security-scanner
+     *           Identifier. The name of the service, in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}/securityCenterServices/{service}`
+     *           * `folders/{folder}/locations/{location}/securityCenterServices/{service}`
+     *           * `projects/{project}/locations/{location}/securityCenterServices/{service}`
+     *           The following values are valid for `{service}`:
+     *           * `container-threat-detection`
+     *           * `event-threat-detection`
+     *           * `security-health-analytics`
+     *           * `vm-threat-detection`
+     *           * `web-security-scanner`
      *     @type int $intended_enablement_state
-     *           Optional. The intended state of enablement for the service at its level of
-     *           the resource hierarchy. A DISABLED state will override all module
-     *           enablement_states to DISABLED.
+     *           Optional. The intended enablement state for the service at its level of the
+     *           resource hierarchy. A `DISABLED` state will override all module enablement
+     *           states to `DISABLED`.
      *     @type int $effective_enablement_state
      *           Output only. The effective enablement state for the service at its level of
-     *           the resource hierarchy. If the intended state is set to INHERITED, the
+     *           the resource hierarchy. If the intended state is set to `INHERITED`, the
      *           effective state will be inherited from the enablement state of an ancestor.
      *           This state may differ from the intended enablement state due to billing
      *           eligibility or onboarding status.
      *     @type array|\Google\Protobuf\Internal\MapField $modules
-     *           Optional. The configurations including the state of enablement for the
-     *           service's different modules. The absence of a module in the map implies its
+     *           Optional. The module configurations, including the enablement state for the
+     *           service's modules. The absence of a module in the map implies that its
      *           configuration is inherited from its parents.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time the service was last updated. This could be due to an
-     *           explicit user update or due to a side effect of another system change such
+     *           explicit user update or due to a side effect of another system change, such
      *           as billing subscription expiry.
      *     @type \Google\Protobuf\Struct $service_config
-     *           Optional. Additional service specific configuration. Not all services will
+     *           Optional. Additional service-specific configuration. Not all services will
      *           utilize this field.
      * }
      */
@@ -124,17 +122,16 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of the service.
-     * Its format is:
-     *   * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *   * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *   * projects/{project}/locations/{location}/securityCenterServices/{service}
-     * The possible values for id {service} are:
-     *   * container-threat-detection
-     *   * event-threat-detection
-     *   * security-health-analytics
-     *   * vm-threat-detection
-     *   * web-security-scanner
+     * Identifier. The name of the service, in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/securityCenterServices/{service}`
+     * * `folders/{folder}/locations/{location}/securityCenterServices/{service}`
+     * * `projects/{project}/locations/{location}/securityCenterServices/{service}`
+     * The following values are valid for `{service}`:
+     * * `container-threat-detection`
+     * * `event-threat-detection`
+     * * `security-health-analytics`
+     * * `vm-threat-detection`
+     * * `web-security-scanner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -145,17 +142,16 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of the service.
-     * Its format is:
-     *   * organizations/{organization}/locations/{location}/securityCenterServices/{service}
-     *   * folders/{folder}/locations/{location}/securityCenterServices/{service}
-     *   * projects/{project}/locations/{location}/securityCenterServices/{service}
-     * The possible values for id {service} are:
-     *   * container-threat-detection
-     *   * event-threat-detection
-     *   * security-health-analytics
-     *   * vm-threat-detection
-     *   * web-security-scanner
+     * Identifier. The name of the service, in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/securityCenterServices/{service}`
+     * * `folders/{folder}/locations/{location}/securityCenterServices/{service}`
+     * * `projects/{project}/locations/{location}/securityCenterServices/{service}`
+     * The following values are valid for `{service}`:
+     * * `container-threat-detection`
+     * * `event-threat-detection`
+     * * `security-health-analytics`
+     * * `vm-threat-detection`
+     * * `web-security-scanner`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -170,9 +166,9 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The intended state of enablement for the service at its level of
-     * the resource hierarchy. A DISABLED state will override all module
-     * enablement_states to DISABLED.
+     * Optional. The intended enablement state for the service at its level of the
+     * resource hierarchy. A `DISABLED` state will override all module enablement
+     * states to `DISABLED`.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState intended_enablement_state = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -183,9 +179,9 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The intended state of enablement for the service at its level of
-     * the resource hierarchy. A DISABLED state will override all module
-     * enablement_states to DISABLED.
+     * Optional. The intended enablement state for the service at its level of the
+     * resource hierarchy. A `DISABLED` state will override all module enablement
+     * states to `DISABLED`.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState intended_enablement_state = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -201,7 +197,7 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The effective enablement state for the service at its level of
-     * the resource hierarchy. If the intended state is set to INHERITED, the
+     * the resource hierarchy. If the intended state is set to `INHERITED`, the
      * effective state will be inherited from the enablement state of an ancestor.
      * This state may differ from the intended enablement state due to billing
      * eligibility or onboarding status.
@@ -216,7 +212,7 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The effective enablement state for the service at its level of
-     * the resource hierarchy. If the intended state is set to INHERITED, the
+     * the resource hierarchy. If the intended state is set to `INHERITED`, the
      * effective state will be inherited from the enablement state of an ancestor.
      * This state may differ from the intended enablement state due to billing
      * eligibility or onboarding status.
@@ -234,8 +230,8 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configurations including the state of enablement for the
-     * service's different modules. The absence of a module in the map implies its
+     * Optional. The module configurations, including the enablement state for the
+     * service's modules. The absence of a module in the map implies that its
      * configuration is inherited from its parents.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycentermanagement.v1.SecurityCenterService.ModuleSettings> modules = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -247,8 +243,8 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The configurations including the state of enablement for the
-     * service's different modules. The absence of a module in the map implies its
+     * Optional. The module configurations, including the enablement state for the
+     * service's modules. The absence of a module in the map implies that its
      * configuration is inherited from its parents.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycentermanagement.v1.SecurityCenterService.ModuleSettings> modules = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -265,7 +261,7 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time the service was last updated. This could be due to an
-     * explicit user update or due to a side effect of another system change such
+     * explicit user update or due to a side effect of another system change, such
      * as billing subscription expiry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -288,7 +284,7 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time the service was last updated. This could be due to an
-     * explicit user update or due to a side effect of another system change such
+     * explicit user update or due to a side effect of another system change, such
      * as billing subscription expiry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -304,7 +300,7 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Additional service specific configuration. Not all services will
+     * Optional. Additional service-specific configuration. Not all services will
      * utilize this field.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct service_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -326,7 +322,7 @@ class SecurityCenterService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Additional service specific configuration. Not all services will
+     * Optional. Additional service-specific configuration. Not all services will
      * utilize this field.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct service_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>

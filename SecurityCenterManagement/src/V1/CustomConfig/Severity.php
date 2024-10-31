@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Severity
 {
     /**
-     * Unspecified severity.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>SEVERITY_UNSPECIFIED = 0;</code>
      */

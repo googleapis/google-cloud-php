@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project this policy will apply to, in the format
+     * Required. The name of the project this policy applies to, in the format
      * `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +30,7 @@ class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     private $firewall_policy = null;
 
     /**
-     * @param string                                              $parent         Required. The name of the project this policy will apply to, in the format
+     * @param string                                              $parent         Required. The name of the project this policy applies to, in the format
      *                                                                            `projects/{project}`. Please see
      *                                                                            {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy $firewallPolicy Required. Information to create the policy.
@@ -53,7 +53,7 @@ class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the project this policy will apply to, in the format
+     *           Required. The name of the project this policy applies to, in the format
      *           `projects/{project}`.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy $firewall_policy
      *           Required. Information to create the policy.
@@ -65,7 +65,7 @@ class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project this policy will apply to, in the format
+     * Required. The name of the project this policy applies to, in the format
      * `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -77,7 +77,7 @@ class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project this policy will apply to, in the format
+     * Required. The name of the project this policy applies to, in the format
      * `projects/{project}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

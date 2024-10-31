@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An event threat detection custom module is a Cloud SCC resource that contains
- * the configuration and enablement state of a custom module, which enables ETD
- * to write certain findings to Cloud SCC.
+ * A Security Command Center resource that contains the configuration and
+ * enablement state of a custom module, which enables Event Threat Detection to
+ * write certain findings to Security Command Center.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule</code>
  */
 class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Identifier. The resource name of the Event Threat Detection custom module,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Optional. Config for the module. For the resident module, its config value
-     * is defined at this level. For the inherited module, its config value is
-     * inherited from the ancestor module.
+     * Optional. Configuration for the module. For the resident module, its
+     * configuration value is defined at this level. For the inherited module, its
+     * configuration value is inherited from the ancestor module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,7 +39,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      * Output only. The closest ancestor module that this module inherits the
      * enablement state from. If empty, indicates that the custom module was
      * created in the requesting parent organization, folder, or project. The
-     * format is the same as the EventThreatDetectionCustomModule resource name.
+     * format is the same as the custom module's resource name.
      *
      * Generated from protobuf field <code>string ancestor_module = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -52,19 +52,19 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      */
     protected $enablement_state = 0;
     /**
-     * Optional. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     * Optional. Type for the module. For example, `CONFIGURABLE_BAD_IP`.
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $type = '';
     /**
-     * Optional. The human readable name to be displayed for the module.
+     * Optional. The human-readable name of the module.
      *
      * Generated from protobuf field <code>string display_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $display_name = '';
     /**
-     * Optional. The description for the module.
+     * Optional. A description of the module.
      *
      * Generated from protobuf field <code>string description = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,29 +89,29 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the ETD custom module.
-     *           Its format is:
-     *             * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *             * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *             * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     *           Identifier. The resource name of the Event Threat Detection custom module,
+     *           in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *           * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     *           * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *     @type \Google\Protobuf\Struct $config
-     *           Optional. Config for the module. For the resident module, its config value
-     *           is defined at this level. For the inherited module, its config value is
-     *           inherited from the ancestor module.
+     *           Optional. Configuration for the module. For the resident module, its
+     *           configuration value is defined at this level. For the inherited module, its
+     *           configuration value is inherited from the ancestor module.
      *     @type string $ancestor_module
      *           Output only. The closest ancestor module that this module inherits the
      *           enablement state from. If empty, indicates that the custom module was
      *           created in the requesting parent organization, folder, or project. The
-     *           format is the same as the EventThreatDetectionCustomModule resource name.
+     *           format is the same as the custom module's resource name.
      *     @type int $enablement_state
      *           Optional. The state of enablement for the module at the given level of the
      *           hierarchy.
      *     @type string $type
-     *           Optional. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     *           Optional. Type for the module. For example, `CONFIGURABLE_BAD_IP`.
      *     @type string $display_name
-     *           Optional. The human readable name to be displayed for the module.
+     *           Optional. The human-readable name of the module.
      *     @type string $description
-     *           Optional. The description for the module.
+     *           Optional. A description of the module.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time the module was last updated.
      *     @type string $last_editor
@@ -124,11 +124,11 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Identifier. The resource name of the Event Threat Detection custom module,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -139,11 +139,11 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the ETD custom module.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
-     *   * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}`.
+     * Identifier. The resource name of the Event Threat Detection custom module,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -158,9 +158,9 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config for the module. For the resident module, its config value
-     * is defined at this level. For the inherited module, its config value is
-     * inherited from the ancestor module.
+     * Optional. Configuration for the module. For the resident module, its
+     * configuration value is defined at this level. For the inherited module, its
+     * configuration value is inherited from the ancestor module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -181,9 +181,9 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Config for the module. For the resident module, its config value
-     * is defined at this level. For the inherited module, its config value is
-     * inherited from the ancestor module.
+     * Optional. Configuration for the module. For the resident module, its
+     * configuration value is defined at this level. For the inherited module, its
+     * configuration value is inherited from the ancestor module.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
@@ -201,7 +201,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      * Output only. The closest ancestor module that this module inherits the
      * enablement state from. If empty, indicates that the custom module was
      * created in the requesting parent organization, folder, or project. The
-     * format is the same as the EventThreatDetectionCustomModule resource name.
+     * format is the same as the custom module's resource name.
      *
      * Generated from protobuf field <code>string ancestor_module = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -215,7 +215,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
      * Output only. The closest ancestor module that this module inherits the
      * enablement state from. If empty, indicates that the custom module was
      * created in the requesting parent organization, folder, or project. The
-     * format is the same as the EventThreatDetectionCustomModule resource name.
+     * format is the same as the custom module's resource name.
      *
      * Generated from protobuf field <code>string ancestor_module = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -258,7 +258,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     * Optional. Type for the module. For example, `CONFIGURABLE_BAD_IP`.
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -269,7 +269,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Type for the module. e.g. CONFIGURABLE_BAD_IP.
+     * Optional. Type for the module. For example, `CONFIGURABLE_BAD_IP`.
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -284,7 +284,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The human readable name to be displayed for the module.
+     * Optional. The human-readable name of the module.
      *
      * Generated from protobuf field <code>string display_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -295,7 +295,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The human readable name to be displayed for the module.
+     * Optional. The human-readable name of the module.
      *
      * Generated from protobuf field <code>string display_name = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -310,7 +310,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description for the module.
+     * Optional. A description of the module.
      *
      * Generated from protobuf field <code>string description = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -321,7 +321,7 @@ class EventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description for the module.
+     * Optional. A description of the module.
      *
      * Generated from protobuf field <code>string description = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -28,7 +28,7 @@ class MatcherValue extends \Google\Protobuf\Internal\Message
      *           If match by URI, the URI of the
      *           [Document][google.cloud.discoveryengine.v1.Document].
      *     @type string $fhir_resource
-     *           Required. Format:
+     *           Format:
      *           projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      * }
      */
@@ -71,7 +71,7 @@ class MatcherValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format:
+     * Format:
      * projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      *
      * Generated from protobuf field <code>string fhir_resource = 2 [(.google.api.resource_reference) = {</code>
@@ -88,7 +88,7 @@ class MatcherValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format:
+     * Format:
      * projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      *
      * Generated from protobuf field <code>string fhir_resource = 2 [(.google.api.resource_reference) = {</code>
