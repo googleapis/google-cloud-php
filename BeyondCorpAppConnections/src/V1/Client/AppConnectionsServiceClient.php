@@ -77,17 +77,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAppConnectionAsync(CreateAppConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAppConnectionAsync(DeleteAppConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAppConnectionAsync(GetAppConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAppConnectionsAsync(ListAppConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resolveAppConnectionsAsync(ResolveAppConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAppConnectionAsync(UpdateAppConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAppConnectionAsync(CreateAppConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAppConnectionAsync(DeleteAppConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AppConnection> getAppConnectionAsync(GetAppConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAppConnectionsAsync(ListAppConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> resolveAppConnectionsAsync(ResolveAppConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAppConnectionAsync(UpdateAppConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class AppConnectionsServiceClient
 {

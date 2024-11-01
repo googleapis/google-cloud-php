@@ -55,13 +55,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createMigrationWorkflowAsync(CreateMigrationWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMigrationWorkflowAsync(DeleteMigrationWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMigrationSubtaskAsync(GetMigrationSubtaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMigrationWorkflowAsync(GetMigrationWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMigrationSubtasksAsync(ListMigrationSubtasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMigrationWorkflowsAsync(ListMigrationWorkflowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startMigrationWorkflowAsync(StartMigrationWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationWorkflow> createMigrationWorkflowAsync(CreateMigrationWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMigrationWorkflowAsync(DeleteMigrationWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationSubtask> getMigrationSubtaskAsync(GetMigrationSubtaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationWorkflow> getMigrationWorkflowAsync(GetMigrationWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMigrationSubtasksAsync(ListMigrationSubtasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMigrationWorkflowsAsync(ListMigrationWorkflowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> startMigrationWorkflowAsync(StartMigrationWorkflowRequest $request, array $optionalArgs = [])
  */
 final class MigrationServiceClient
 {
