@@ -88,7 +88,7 @@ class ComponentTest extends TestCase
         $this->assertEquals('Google\Api', $allProtoNamespaces['google.api']);
         $this->assertEquals('Google\Cloud\Location', $allProtoNamespaces['google.cloud.location']);
         $this->assertEquals('Google\LongRunning', $allProtoNamespaces['google.longrunning']);
-        $this->assertEquals('Google\Rpc\Context\AttributeContext', $allProtoNamespaces['google.rpc.context']);
+        $this->assertEquals('Google\Rpc\Context', $allProtoNamespaces['google.rpc.context']);
         $this->assertEquals('Google\Cloud\Iam\V1', $allProtoNamespaces['google.iam.v1']);
         $this->assertEquals('Google\Cloud\Logging\Type', $allProtoNamespaces['google.logging.type']);
     }

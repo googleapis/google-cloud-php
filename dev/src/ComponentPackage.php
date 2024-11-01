@@ -98,7 +98,12 @@ class ComponentPackage
                 $contents,
                 $matches
             ) && preg_match('/namespace (.*);/', $contents, $nsMatches)) {
-                $protoPackages[$matches[1]] = str_replace(str_replace('.', '\\', $matches[2]), '', $nsMatches[1]);
+                // remove namespace (in case it's nested)
+                $protoPackages[$matches[1]] = str_replace(
+                    str_replace('.', '\\', substr($matches[2], 0, strrpos($matches[2], '.'))),
+                    '',
+                    $nsMatches[1]
+                );
             }
         }
         return array_unique($protoPackages);
