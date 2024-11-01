@@ -17,7 +17,7 @@ class AdmanagerError
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–
+³
 -google/ads/admanager/v1/admanager_error.protogoogle.ads.admanager.v1"–
 AdManagerError
 
@@ -27,8 +27,8 @@ error_code (	
 field_path (	
 trigger (	
 stack_trace (	%
-details (2.google.protobuf.AnyBª
-com.google.ads.admanager.v1BAdManagerErrorProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+details (2.google.protobuf.AnyBÇ
+com.google.ads.admanager.v1BAdManagerErrorProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

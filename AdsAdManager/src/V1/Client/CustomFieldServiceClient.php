@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getCustomFieldAsync(GetCustomFieldRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomFieldsAsync(ListCustomFieldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomField> getCustomFieldAsync(GetCustomFieldRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomFieldsAsync(ListCustomFieldsRequest $request, array $optionalArgs = [])
  */
 final class CustomFieldServiceClient
 {

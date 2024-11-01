@@ -56,13 +56,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDependencyAsync(CreateDependencyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDependencyAsync(DeleteDependencyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDependencyAsync(GetDependencyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDependenciesAsync(ListDependenciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDependencyAsync(UpdateDependencyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dependency> createDependencyAsync(CreateDependencyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDependencyAsync(DeleteDependencyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dependency> getDependencyAsync(GetDependencyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDependenciesAsync(ListDependenciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dependency> updateDependencyAsync(UpdateDependencyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ApiHubDependenciesClient
 {

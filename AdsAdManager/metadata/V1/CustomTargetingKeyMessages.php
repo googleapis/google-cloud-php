@@ -19,7 +19,7 @@ class CustomTargetingKeyMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ª
+ÿ
 ;google/ads/admanager/v1/custom_targeting_key_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.proto"Â
 CustomTargetingKey
 name (	B‡A$
@@ -29,8 +29,8 @@ class CustomTargetingKeyMessages
 type (2J.google.ads.admanager.v1.CustomTargetingKeyTypeEnum.CustomTargetingKeyTypeB‡Ac
 status (2N.google.ads.admanager.v1.CustomTargetingKeyStatusEnum.CustomTargetingKeyStatusB‡A|
 reportable_type (2^.google.ads.admanager.v1.CustomTargetingKeyReportableTypeEnum.CustomTargetingKeyReportableTypeB‡A:ûÍAö
-+admanager.googleapis.com/CustomTargetingKeyBnetworks/{network_code}/customTargetingKeys/{custom_targeting_key}*customTargetingKeys2customTargetingKeyB∂
-com.google.ads.admanager.v1BCustomTargetingKeyMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1bproto3'
++admanager.googleapis.com/CustomTargetingKeyBnetworks/{network_code}/customTargetingKeys/{custom_targeting_key}*customTargetingKeys2customTargetingKeyB”
+com.google.ads.admanager.v1BCustomTargetingKeyMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1ÍGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;
