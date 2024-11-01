@@ -47,8 +47,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface checkAsync(CheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reportAsync(ReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckResponse> checkAsync(CheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportResponse> reportAsync(ReportRequest $request, array $optionalArgs = [])
  */
 final class ServiceControllerClient
 {

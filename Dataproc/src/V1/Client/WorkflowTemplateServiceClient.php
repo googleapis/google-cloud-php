@@ -64,16 +64,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createWorkflowTemplateAsync(CreateWorkflowTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkflowTemplateAsync(DeleteWorkflowTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkflowTemplateAsync(GetWorkflowTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface instantiateInlineWorkflowTemplateAsync(InstantiateInlineWorkflowTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface instantiateWorkflowTemplateAsync(InstantiateWorkflowTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkflowTemplatesAsync(ListWorkflowTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWorkflowTemplateAsync(UpdateWorkflowTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowTemplate> createWorkflowTemplateAsync(CreateWorkflowTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWorkflowTemplateAsync(DeleteWorkflowTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowTemplate> getWorkflowTemplateAsync(GetWorkflowTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> instantiateInlineWorkflowTemplateAsync(InstantiateInlineWorkflowTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> instantiateWorkflowTemplateAsync(InstantiateWorkflowTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkflowTemplatesAsync(ListWorkflowTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowTemplate> updateWorkflowTemplateAsync(UpdateWorkflowTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class WorkflowTemplateServiceClient
 {
