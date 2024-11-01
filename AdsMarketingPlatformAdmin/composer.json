@@ -11,7 +11,7 @@
     },
     "extra": {
         "component": {
-            "id": "ads-marketingplatform-admin",
+            "id": "googleads/marketingplatform-admin",
             "path": "AdsMarketingPlatformAdmin",
             "target": "googleapis/php-ads-marketingplatform-admin"
         }
