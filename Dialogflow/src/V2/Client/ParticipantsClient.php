@@ -65,17 +65,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface analyzeContentAsync(AnalyzeContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createParticipantAsync(CreateParticipantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestArticlesAsync(SuggestArticlesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestFaqAnswersAsync(SuggestFaqAnswersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestKnowledgeAssistAsync(SuggestKnowledgeAssistRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestSmartRepliesAsync(SuggestSmartRepliesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateParticipantAsync(UpdateParticipantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeContentResponse> analyzeContentAsync(AnalyzeContentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Participant> createParticipantAsync(CreateParticipantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Participant> getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestArticlesResponse> suggestArticlesAsync(SuggestArticlesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestFaqAnswersResponse> suggestFaqAnswersAsync(SuggestFaqAnswersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestKnowledgeAssistResponse> suggestKnowledgeAssistAsync(SuggestKnowledgeAssistRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestSmartRepliesResponse> suggestSmartRepliesAsync(SuggestSmartRepliesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Participant> updateParticipantAsync(UpdateParticipantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ParticipantsClient
 {

@@ -63,15 +63,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface clearSuggestionFeatureConfigAsync(ClearSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationProfileAsync(CreateConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationProfileAsync(DeleteConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationProfileAsync(GetConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationProfilesAsync(ListConversationProfilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSuggestionFeatureConfigAsync(SetSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversationProfileAsync(UpdateConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> clearSuggestionFeatureConfigAsync(ClearSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationProfile> createConversationProfileAsync(CreateConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversationProfileAsync(DeleteConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationProfile> getConversationProfileAsync(GetConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationProfilesAsync(ListConversationProfilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSuggestionFeatureConfigAsync(SetSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationProfile> updateConversationProfileAsync(UpdateConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationProfilesClient
 {
