@@ -25,7 +25,7 @@
     },
     "AdsMarketingPlatformAdmin": {
         "language": "php",
-        "distribution_name": "google/ads-marketingplatform-admin",
+        "distribution_name": "googleads/marketingplatform-admin",
         "release_level": "preview",
         "client_documentation": "https://cloud.google.com/php/docs/reference/ads-marketingplatform-admin/latest",
         "library_type": "GAPIC_AUTO",
