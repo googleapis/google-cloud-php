@@ -68,17 +68,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployFlowAsync(DeployFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listContinuousTestResultsAsync(ListContinuousTestResultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupEnvironmentHistoryAsync(LookupEnvironmentHistoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runContinuousTestAsync(RunContinuousTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployFlowAsync(DeployFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Environment> getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listContinuousTestResultsAsync(ListContinuousTestResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> lookupEnvironmentHistoryAsync(LookupEnvironmentHistoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runContinuousTestAsync(RunContinuousTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class EnvironmentsClient
 {

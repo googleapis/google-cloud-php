@@ -62,12 +62,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface detectIntentAsync(DetectIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fulfillIntentAsync(FulfillIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface matchIntentAsync(MatchIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface submitAnswerFeedbackAsync(SubmitAnswerFeedbackRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DetectIntentResponse> detectIntentAsync(DetectIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FulfillIntentResponse> fulfillIntentAsync(FulfillIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MatchIntentResponse> matchIntentAsync(MatchIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnswerFeedback> submitAnswerFeedbackAsync(SubmitAnswerFeedbackRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SessionsClient
 {
