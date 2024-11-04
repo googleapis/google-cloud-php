@@ -44,7 +44,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface allocateQuotaAsync(AllocateQuotaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AllocateQuotaResponse> allocateQuotaAsync(AllocateQuotaRequest $request, array $optionalArgs = [])
  */
 final class QuotaControllerClient
 {

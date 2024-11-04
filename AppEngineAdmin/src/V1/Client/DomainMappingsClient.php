@@ -49,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createDomainMappingAsync(CreateDomainMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDomainMappingAsync(DeleteDomainMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDomainMappingAsync(GetDomainMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDomainMappingsAsync(ListDomainMappingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDomainMappingAsync(UpdateDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDomainMappingAsync(CreateDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDomainMappingAsync(DeleteDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DomainMapping> getDomainMappingAsync(GetDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDomainMappingsAsync(ListDomainMappingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDomainMappingAsync(UpdateDomainMappingRequest $request, array $optionalArgs = [])
  */
 final class DomainMappingsClient
 {

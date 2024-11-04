@@ -49,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createVersionAsync(CreateVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVersionAsync(GetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVersionsAsync(ListVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVersionAsync(UpdateVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createVersionAsync(CreateVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Version> getVersionAsync(GetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVersionsAsync(ListVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateVersionAsync(UpdateVersionRequest $request, array $optionalArgs = [])
  */
 final class VersionsClient
 {

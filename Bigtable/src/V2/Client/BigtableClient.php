@@ -64,10 +64,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readModifyWriteRowAsync(ReadModifyWriteRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckAndMutateRowResponse> checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MutateRowResponse> mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PingAndWarmResponse> pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadModifyWriteRowResponse> readModifyWriteRowAsync(ReadModifyWriteRowRequest $request, array $optionalArgs = [])
  */
 final class BigtableClient
 {

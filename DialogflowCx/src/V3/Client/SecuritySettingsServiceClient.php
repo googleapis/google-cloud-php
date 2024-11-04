@@ -55,13 +55,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSecuritySettingsAsync(CreateSecuritySettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSecuritySettingsAsync(DeleteSecuritySettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSecuritySettingsAsync(GetSecuritySettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSecuritySettingsAsync(ListSecuritySettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSecuritySettingsAsync(UpdateSecuritySettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecuritySettings> createSecuritySettingsAsync(CreateSecuritySettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSecuritySettingsAsync(DeleteSecuritySettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecuritySettings> getSecuritySettingsAsync(GetSecuritySettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSecuritySettingsAsync(ListSecuritySettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecuritySettings> updateSecuritySettingsAsync(UpdateSecuritySettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SecuritySettingsServiceClient
 {

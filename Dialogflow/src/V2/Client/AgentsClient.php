@@ -65,17 +65,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface deleteAgentAsync(DeleteAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportAgentAsync(ExportAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAgentAsync(GetAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getValidationResultAsync(GetValidationResultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importAgentAsync(ImportAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreAgentAsync(RestoreAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchAgentsAsync(SearchAgentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setAgentAsync(SetAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface trainAgentAsync(TrainAgentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAgentAsync(DeleteAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportAgentAsync(ExportAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Agent> getAgentAsync(GetAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValidationResult> getValidationResultAsync(GetValidationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importAgentAsync(ImportAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreAgentAsync(RestoreAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAgentsAsync(SearchAgentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Agent> setAgentAsync(SetAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> trainAgentAsync(TrainAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class AgentsClient
 {

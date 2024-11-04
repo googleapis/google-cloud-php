@@ -55,13 +55,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createPageAsync(CreatePageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePageAsync(DeletePageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPageAsync(GetPageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPagesAsync(ListPagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePageAsync(UpdatePageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Page> createPageAsync(CreatePageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePageAsync(DeletePageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Page> getPageAsync(GetPageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPagesAsync(ListPagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Page> updatePageAsync(UpdatePageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class PagesClient
 {

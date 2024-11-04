@@ -53,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createReadSessionAsync(CreateReadSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface splitReadStreamAsync(SplitReadStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadSession> createReadSessionAsync(CreateReadSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SplitReadStreamResponse> splitReadStreamAsync(SplitReadStreamRequest $request, array $optionalArgs = [])
  */
 final class BigQueryReadClient
 {

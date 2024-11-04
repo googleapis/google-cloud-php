@@ -76,20 +76,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceList> getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PropertyQuotasSnapshot> getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportTask> getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceListResponse> queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryReportTaskResponse> queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunFunnelReportResponse> runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SheetExportAudienceListResponse> sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
  */
 final class AlphaAnalyticsDataClient
 {

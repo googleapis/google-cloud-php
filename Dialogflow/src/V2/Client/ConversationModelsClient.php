@@ -67,17 +67,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConversationModelAsync(CreateConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationModelEvaluationAsync(CreateConversationModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationModelAsync(DeleteConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployConversationModelAsync(DeployConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationModelAsync(GetConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationModelEvaluationAsync(GetConversationModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationModelEvaluationsAsync(ListConversationModelEvaluationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationModelsAsync(ListConversationModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployConversationModelAsync(UndeployConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationModelAsync(CreateConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationModelEvaluationAsync(CreateConversationModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConversationModelAsync(DeleteConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployConversationModelAsync(DeployConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationModel> getConversationModelAsync(GetConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationModelEvaluation> getConversationModelEvaluationAsync(GetConversationModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationModelEvaluationsAsync(ListConversationModelEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationModelsAsync(ListConversationModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployConversationModelAsync(UndeployConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationModelsClient
 {

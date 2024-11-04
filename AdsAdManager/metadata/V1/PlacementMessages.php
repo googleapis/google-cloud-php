@@ -20,7 +20,7 @@ class PlacementMessages
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
+È
 0google/ads/admanager/v1/placement_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"È
 	Placement
 name (	BàA
@@ -33,8 +33,8 @@ class PlacementMessages
 admanager.googleapis.com/AdUnit4
 update_time	 (2.google.protobuf.TimestampBàA:nêAk
 "admanager.googleapis.com/Placement.networks/{network_code}/placements/{placement}*
-placements2	placementB­
-com.google.ads.admanager.v1BPlacementMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+placements2	placementBÊ
+com.google.ads.admanager.v1BPlacementMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

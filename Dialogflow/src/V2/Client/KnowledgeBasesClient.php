@@ -56,13 +56,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createKnowledgeBaseAsync(CreateKnowledgeBaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKnowledgeBaseAsync(DeleteKnowledgeBaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKnowledgeBaseAsync(GetKnowledgeBaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKnowledgeBasesAsync(ListKnowledgeBasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKnowledgeBaseAsync(UpdateKnowledgeBaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KnowledgeBase> createKnowledgeBaseAsync(CreateKnowledgeBaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteKnowledgeBaseAsync(DeleteKnowledgeBaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KnowledgeBase> getKnowledgeBaseAsync(GetKnowledgeBaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKnowledgeBasesAsync(ListKnowledgeBasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KnowledgeBase> updateKnowledgeBaseAsync(UpdateKnowledgeBaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class KnowledgeBasesClient
 {

@@ -39,6 +39,12 @@ class RollbackAttempt extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string state_desc = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state_desc = '';
+    /**
+     * Output only. If active rollout exists on the target, abort this rollback.
+     *
+     * Generated from protobuf field <code>bool disable_rollback_if_rollout_pending = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $disable_rollback_if_rollout_pending = false;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class RollbackAttempt extends \Google\Protobuf\Internal\Message
      *           Output only. Valid state of this rollback action.
      *     @type string $state_desc
      *           Output only. Description of the state of the Rollback.
+     *     @type bool $disable_rollback_if_rollout_pending
+     *           Output only. If active rollout exists on the target, abort this rollback.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +169,32 @@ class RollbackAttempt extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state_desc = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If active rollout exists on the target, abort this rollback.
+     *
+     * Generated from protobuf field <code>bool disable_rollback_if_rollout_pending = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getDisableRollbackIfRolloutPending()
+    {
+        return $this->disable_rollback_if_rollout_pending;
+    }
+
+    /**
+     * Output only. If active rollout exists on the target, abort this rollback.
+     *
+     * Generated from protobuf field <code>bool disable_rollback_if_rollout_pending = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableRollbackIfRolloutPending($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_rollback_if_rollout_pending = $var;
 
         return $this;
     }
