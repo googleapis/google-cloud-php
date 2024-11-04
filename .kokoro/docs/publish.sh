@@ -81,7 +81,7 @@ if [ "$KOKORO_GITHUB_COMMIT" != "" ]; then
 
         # Store composer.lock for SBOM generation
         mkdir "pkg/$module"
-        composer update -d "$module"
+        composer update -d "$module" --ignore-platform-req ext-grpc
         cp "$module/composer.lock" "pkg/$module/composer.lock"
     done
 fi
