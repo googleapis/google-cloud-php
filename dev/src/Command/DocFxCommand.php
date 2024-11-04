@@ -178,15 +178,20 @@ class DocFxCommand extends Command
 
         if ($metadataVersion = $input->getOption('metadata-version')) {
             $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
+            $xrefs = array_merge(...array_map(
+                fn ($c) => ['--xrefs', sprintf('devsite://php/%s', $c->getRefdocId())],
+                $component->getComponentDependencies(),
+            ));
             $process = new Process([
                 'docuploader', 'create-metadata',
-                '--name', str_replace('google/', '', $component->getPackageName()),
+                '--name', $component->getRefdocId(),
                 '--version', $metadataVersion,
                 '--language', 'php',
                 '--distribution-name', $component->getPackageName(),
                 '--product-page', $component->getProductDocumentation(),
                 '--github-repository', $component->getRepoName(),
                 '--issue-tracker', $component->getIssueTracker(),
+                ...$xrefs,
                 $outDir . '/docs.metadata'
             ]);
             $process->mustRun();

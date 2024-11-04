@@ -37,6 +37,8 @@ class Component
     private string $clientDocumentation;
     private string $description;
     private array $namespaces;
+    /** @var array<Component> */
+    private array $componentDependencies;
 
     public function __construct(private string $name, string $path = null)
     {
@@ -221,6 +223,22 @@ class Component
             throw new RuntimeException('composer autoload.psr-4 does not contain a namespace');
         }
         $this->namespaces = $namespaces;
+
+        // find dependencies which are google/cloud components
+        $this->componentDependencies = [];
+        foreach ($composerJson['require'] ?? [] as $name => $version) {
+            if ($componentName = key(array_filter(
+                $repoMetadataFullJson,
+                fn ($metadata) => $metadata['distribution_name'] === $name
+            ))) {
+                $this->componentDependencies[] = new Component($componentName);
+            }
+        }
+        if (isset($composerJson['require']['google/gax'])
+            && !isset($composerJson['require']['google/common-protos'])
+        ) {
+            $this->componentDependencies[] = new Component('CommonProtos');
+        }
     }
 
     /**
@@ -326,5 +344,15 @@ class Component
             $paths = [''];
         }
         return array_reverse($paths);
+    }
+
+    public function getComponentDependencies(): array
+    {
+        return $this->componentDependencies;
+    }
+
+    public function getRefdocId(): string
+    {
+        return str_replace('google/', '', $this->getPackageName());
     }
 }
