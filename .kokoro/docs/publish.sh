@@ -40,7 +40,7 @@ do
 done
 
 # Add GAX repo
-$GAX_DIR=$PROJECT_DIR/dev/vendor/google/gax
+GAX_DIR=$PROJECT_DIR/dev/vendor/google/gax
 $PROJECT_DIR/dev/google-cloud docfx \
     --path $GAX_DIR \
     --out gax-out \
