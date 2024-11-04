@@ -54,16 +54,11 @@ class DocFxCommand extends Command
         $this->setName('docfx')
             ->setDescription('Generate DocFX yaml from a phpdoc strucutre.xml')
             ->addOption('xml', '', InputOption::VALUE_REQUIRED, 'Path to phpdoc structure.xml')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs only for a single component.', '')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs for a specific component.', '')
             ->addOption('out', '', InputOption::VALUE_REQUIRED, 'Path where to store the generated output.', 'out')
             ->addOption('metadata-version', '', InputOption::VALUE_REQUIRED, 'version to write to docs.metadata using docuploader')
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
-            ->addOption(
-                'component-path',
-                '',
-                InputOption::VALUE_OPTIONAL,
-                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.'
-            )
+            ->addOption('path', '', InputOption::VALUE_OPTIONAL, 'Specify the path to the composer package to generate.')
         ;
     }
 
@@ -73,8 +68,9 @@ class DocFxCommand extends Command
             throw new RuntimeException('This command must be run on PHP 8.0 or above');
         }
 
-        $componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
-        $component = new Component($componentName, $input->getOption('component-path'));
+        $componentPath = $input->getOption('path');
+        $componentName = rtrim($input->getOption('component'), '/') ?: basename($componentPath ?: getcwd());
+        $component = new Component($componentName, $componentPath);
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
         $xml = $input->getOption('xml');
         $outDir = $input->getOption('out');

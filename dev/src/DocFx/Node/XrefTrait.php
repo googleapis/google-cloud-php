@@ -170,23 +170,11 @@ trait XrefTrait
 
         // Check for external package namespaces
         switch (true) {
-            case str_starts_with($uid, '\Google\ApiCore\\'):
-                $extLinkRoot = 'https://googleapis.github.io/gax-php#';
-                break;
             case str_starts_with($uid, '\Google\Auth\\'):
                 $extLinkRoot = 'https://googleapis.github.io/google-auth-library-php/main/';
                 break;
             case str_starts_with($uid, '\Google\Protobuf\\'):
                 $extLinkRoot = 'https://protobuf.dev/reference/php/api-docs/';
-                break;
-            case str_starts_with($uid, '\Google\Api\\'):
-            case str_starts_with($uid, '\Google\Cloud\Iam\V1\\'):
-            case str_starts_with($uid, '\Google\Cloud\Location\\'):
-            case str_starts_with($uid, '\Google\Cloud\Logging\Type\\'):
-            case str_starts_with($uid, '\Google\Iam\\'):
-            case str_starts_with($uid, '\Google\Rpc\\'):
-            case str_starts_with($uid, '\Google\Type\\'):
-                $extLinkRoot = 'https://googleapis.github.io/common-protos-php#';
                 break;
             case 0 === strpos($uid, '\GuzzleHttp\Promise\PromiseInterface'):
                 $extLinkRoot = 'https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html';
