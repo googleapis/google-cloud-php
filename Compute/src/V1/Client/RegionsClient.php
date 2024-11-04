@@ -43,8 +43,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetRegionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Region> getAsync(GetRegionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionsRequest $request, array $optionalArgs = [])
  */
 final class RegionsClient
 {

@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InterconnectAttachment> getAsync(GetInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInterconnectAttachmentRequest $request, array $optionalArgs = [])
  */
 final class InterconnectAttachmentsClient
 {

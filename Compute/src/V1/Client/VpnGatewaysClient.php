@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStatusAsync(GetStatusVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VpnGateway> getAsync(GetVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VpnGatewaysGetStatusResponse> getStatusAsync(GetStatusVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsVpnGatewayRequest $request, array $optionalArgs = [])
  */
 final class VpnGatewaysClient
 {

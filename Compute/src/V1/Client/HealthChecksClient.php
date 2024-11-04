@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListHealthChecksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HealthCheck> getAsync(GetHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListHealthChecksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateHealthCheckRequest $request, array $optionalArgs = [])
  */
 final class HealthChecksClient
 {

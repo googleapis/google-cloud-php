@@ -52,13 +52,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListLicensesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyLicenseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<License> getAsync(GetLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListLicensesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyLicenseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsLicenseRequest $request, array $optionalArgs = [])
  */
 final class LicensesClient
 {

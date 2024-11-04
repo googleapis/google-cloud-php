@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListAddressesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListAddressesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveAsync(MoveAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Address> getAsync(GetAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveAsync(MoveAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsAddressRequest $request, array $optionalArgs = [])
  */
 final class AddressesClient
 {

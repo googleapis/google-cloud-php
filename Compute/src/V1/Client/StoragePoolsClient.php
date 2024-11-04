@@ -57,16 +57,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDisksAsync(ListDisksStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePool> getAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePoolList> listAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePoolListDisks> listDisksAsync(ListDisksStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
  */
 final class StoragePoolsClient
 {

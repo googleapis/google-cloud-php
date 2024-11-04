@@ -57,18 +57,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addRuleAsync(AddRuleSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListSecurityPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuleAsync(GetRuleSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListSecurityPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPreconfiguredExpressionSetsAsync(ListPreconfiguredExpressionSetsSecurityPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchRuleAsync(PatchRuleSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeRuleAsync(RemoveRuleSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicy> getAsync(GetSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicyRule> getRuleAsync(GetRuleSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPoliciesListPreconfiguredExpressionSetsResponse> listPreconfiguredExpressionSetsAsync(ListPreconfiguredExpressionSetsSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsSecurityPolicyRequest $request, array $optionalArgs = [])
  */
 final class SecurityPoliciesClient
 {

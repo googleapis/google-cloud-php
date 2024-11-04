@@ -44,9 +44,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListDiskTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetDiskTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListDiskTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListDiskTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiskType> getAsync(GetDiskTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListDiskTypesRequest $request, array $optionalArgs = [])
  */
 final class DiskTypesClient
 {
