@@ -195,7 +195,6 @@ class Component
         } elseif (file_exists($repoMetadataPath = $this->path . '/.repo-metadata.json')) {
             $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
         } else {
-            exit($repoMetadataPath);
             throw new RuntimeException(sprintf(
                 'repo metadata not found for component "%s"',
                 $this->name
