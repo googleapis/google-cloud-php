@@ -350,9 +350,4 @@ class Component
     {
         return $this->componentDependencies;
     }
-
-    public function getRefdocId(): string
-    {
-        return str_replace('google/', '', $this->getPackageName());
-    }
 }
