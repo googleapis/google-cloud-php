@@ -5,19 +5,73 @@ The recommended way to authenticate to the Google Cloud PHP library is to use
 which discovers your credentials automatically, based on the environment where your code is running.
 To review all of your authentication options, see Project and Credential lookup.
 
-For more information about authentication at Google, see [the authentication guide](https://cloud.google.com/docs/authentication). 
+## Quickstart
+
+Here is a quick an opinionated quickstart guide that serves as a mean to get started as quick as possible. There are different ways to authenticate
+a client that we will go over this guide, but we wanted to offer a quick way to get started. We will go over the steps of what needs to be done in
+order to authenticate a client first and then we will explain said steps in detail for a quickstart.
+
+### Steps:
+* Install the Google Cloud CLI.
+* Authenticate with `gcloud` to generate the credentials file.
+* Instantiate a client.
+
+### Installing the Google Cloud CLI
+In order to generate our needed credentials file we need to authenticate to gcloud first. Installation is handled differently depending on your platform.
+Here is a link to help you setup the Google Cloud CLI:
+
+https://cloud.google.com/sdk/docs/install
+
+### Authenticate via the `gcloud` command
+Once the Google Cloud CLI tools are installed it is required that we authenticate via the `gcloud`:
+```shell
+$ gcloud init
+$ gcloud auth application-default login
+```
+
+This will create a local file in your system that the authentication library for our client will read in order to make requests to the apis with those credentials.
+This file is located in different place depending on your system.
+
+Windows:
+```
+%APPDATA%\gcloud\application_default_credentials.json
+```
+
+Linux and MacOS:
+```
+$HOME/.config/gcloud/application_default_credentials.json
+```
+
+### Instantiating the client
+Once we have the `application_default_credentials.json` that we created on the previous step now we can instantiate a client which internally using the Google Auth library
+will take that file and use it to authenticate your requests:
+```php
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\TranslateTextRequest;
+
+// Instantiating the client gathers the credentials from the `application_default_credentials.json`
+$client = new TranslationServiceClient();
+
+$request = new TranslateTextRequest();
+$request->setParent('<YOUR_PROJECT_ID>');
+$request->setTargetLanguageCode('en-US');
+$request->setContents('こんにちは');
+
+// The request will contain the authentication token based on the default credentials file
+$response = $client->translateText($request);
+var_dump($response);
+```
+
+This quickstart guide is meant to be used as a quick and easy way to start development and get started on how you can authenticate your requests. There are diferent ways to authenticate your
+requests which are explained in this document.
+
+For more information about authentication at Google, see [the authentication guide](https://cloud.google.com/docs/authentication).
 Specific instructions and environment variables for each individual service are linked from the README documents listed below for each service.
 
-## Project and Credential Lookup
+## Credential Lookup
 
-The Google Cloud PHP library provides several mechanisms to configure your system without 
-providing **Project ID** and **Service Account Credentials** directly in code.
-
-**Project ID** is discovered in the following order:
-
-1. Specify project ID in code
-2. Discover project ID in environment variables 
-3. Discover GCE project ID
+The Google Cloud PHP library provides several mechanisms to configure your system without
+providing **Service Account Credentials** directly in code.
 
 **Credentials** are discovered in the following order:
 
@@ -29,7 +83,7 @@ providing **Project ID** and **Service Account Credentials** directly in code.
 ### Google Cloud Platform environments
 
 While running on Google Cloud Platform environments such as Google Compute Engine, Google App Engine and
-Google Kubernetes Engine, no extra work is needed. The **Project ID** and **Credentials** and are 
+Google Kubernetes Engine, no extra work is needed. The **Project ID** and **Credentials** and are
 discovered automatically from the attached service account. Code should be written as if already authenticated.
 
 For more information, see
@@ -37,7 +91,7 @@ For more information, see
 
 ### Environment Variables
 
-**NOTE**: This library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if your environemnt 
+**NOTE**: This library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if your environemnt
 variables are set in PHP, they must use [`putenv`](https://www.php.net/manual/en/function.putenv.php),
 
 ```php
@@ -85,7 +139,7 @@ $video = new VideoIntelligenceServiceClient([
 ]);
 ```
 
-However, some clients use the `keyFile` or `keyFilePath` option: 
+However, some clients use the `keyFile` or `keyFilePath` option:
 
 ```php
 require 'vendor/autoload.php';
@@ -114,7 +168,7 @@ Check the [client documentation][php-ref-docs] for the client library you're usi
 
 ### Local ADC file
 
-This option allows for an easy way to authenticate in a local environment during development. 
+This option allows for an easy way to authenticate in a local environment during development.
 If credentials are not provided in code or in environment variables, then your user credentials can be discovered
 from your local ADC file.
 
@@ -122,7 +176,7 @@ To set up a local ADC file:
 
 1. [Download, install, and initialize the Cloud SDK](https://cloud.google.com/sdk)
 2. Create your local ADC file:
-   
+
 ```sh
 gcloud auth application-default login
 ```
