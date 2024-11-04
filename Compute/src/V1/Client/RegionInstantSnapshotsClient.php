@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionInstantSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstantSnapshot> getAsync(GetRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionInstantSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
  */
 final class RegionInstantSnapshotsClient
 {

@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface attachNetworkEndpointsAsync(AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachNetworkEndpointsAsync(DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkEndpointsAsync(ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachNetworkEndpointsAsync(AttachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachNetworkEndpointsAsync(DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkEndpointGroup> getAsync(GetGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertGlobalNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworkEndpointsAsync(ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
  */
 final class GlobalNetworkEndpointGroupsClient
 {

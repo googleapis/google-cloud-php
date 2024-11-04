@@ -48,11 +48,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNetworkEdgeSecurityServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkEdgeSecurityServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkEdgeSecurityService> getAsync(GetNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
  */
 final class NetworkEdgeSecurityServicesClient
 {

@@ -54,15 +54,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNetworkAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNetworkAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkAttachment> getAsync(GetNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNetworkAttachmentRequest $request, array $optionalArgs = [])
  */
 final class NetworkAttachmentsClient
 {

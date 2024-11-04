@@ -62,22 +62,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendService> getAsync(GetBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class BackendServicesClient
 {

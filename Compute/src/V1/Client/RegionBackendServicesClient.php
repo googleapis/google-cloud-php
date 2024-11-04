@@ -58,18 +58,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHealthAsync(GetHealthRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableAsync(ListUsableRegionBackendServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionBackendServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendService> getAsync(GetRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendServiceGroupHealth> getHealthAsync(GetHealthRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableRegionBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class RegionBackendServicesClient
 {

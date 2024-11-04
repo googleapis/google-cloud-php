@@ -41,7 +41,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetImageFamilyViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImageFamilyView> getAsync(GetImageFamilyViewRequest $request, array $optionalArgs = [])
  */
 final class ImageFamilyViewsClient
 {

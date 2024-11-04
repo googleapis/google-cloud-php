@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDiagnosticsAsync(GetDiagnosticsInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMacsecConfigAsync(GetMacsecConfigInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchInterconnectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Interconnect> getAsync(GetInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InterconnectsGetDiagnosticsResponse> getDiagnosticsAsync(GetDiagnosticsInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InterconnectsGetMacsecConfigResponse> getMacsecConfigAsync(GetMacsecConfigInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInterconnectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchInterconnectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInterconnectRequest $request, array $optionalArgs = [])
  */
 final class InterconnectsClient
 {
