@@ -59,19 +59,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createScanConfigAsync(CreateScanConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteScanConfigAsync(DeleteScanConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFindingAsync(GetFindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScanConfigAsync(GetScanConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScanRunAsync(GetScanRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCrawledUrlsAsync(ListCrawledUrlsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFindingTypeStatsAsync(ListFindingTypeStatsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listScanConfigsAsync(ListScanConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listScanRunsAsync(ListScanRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startScanRunAsync(StartScanRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopScanRunAsync(StopScanRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateScanConfigAsync(UpdateScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanConfig> createScanConfigAsync(CreateScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteScanConfigAsync(DeleteScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> getFindingAsync(GetFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanConfig> getScanConfigAsync(GetScanConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanRun> getScanRunAsync(GetScanRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCrawledUrlsAsync(ListCrawledUrlsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListFindingTypeStatsResponse> listFindingTypeStatsAsync(ListFindingTypeStatsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScanConfigsAsync(ListScanConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScanRunsAsync(ListScanRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanRun> startScanRunAsync(StartScanRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanRun> stopScanRunAsync(StopScanRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ScanConfig> updateScanConfigAsync(UpdateScanConfigRequest $request, array $optionalArgs = [])
  */
 final class WebSecurityScannerClient
 {
