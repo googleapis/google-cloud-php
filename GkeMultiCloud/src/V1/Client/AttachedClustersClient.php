@@ -64,15 +64,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAttachedClusterAsync(CreateAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAttachedClusterAsync(DeleteAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAttachedClusterAgentTokenAsync(GenerateAttachedClusterAgentTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAttachedClusterInstallManifestAsync(GenerateAttachedClusterInstallManifestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttachedClusterAsync(GetAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttachedServerConfigAsync(GetAttachedServerConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importAttachedClusterAsync(ImportAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAttachedClustersAsync(ListAttachedClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttachedClusterAsync(UpdateAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAttachedClusterAsync(CreateAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAttachedClusterAsync(DeleteAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAttachedClusterAgentTokenResponse> generateAttachedClusterAgentTokenAsync(GenerateAttachedClusterAgentTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAttachedClusterInstallManifestResponse> generateAttachedClusterInstallManifestAsync(GenerateAttachedClusterInstallManifestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttachedCluster> getAttachedClusterAsync(GetAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttachedServerConfig> getAttachedServerConfigAsync(GetAttachedServerConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importAttachedClusterAsync(ImportAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAttachedClustersAsync(ListAttachedClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAttachedClusterAsync(UpdateAttachedClusterRequest $request, array $optionalArgs = [])
  */
 final class AttachedClustersClient
 {

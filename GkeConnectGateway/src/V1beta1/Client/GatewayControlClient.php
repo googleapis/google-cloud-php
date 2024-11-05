@@ -45,7 +45,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface generateCredentialsAsync(GenerateCredentialsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateCredentialsResponse> generateCredentialsAsync(GenerateCredentialsRequest $request, array $optionalArgs = [])
  */
 final class GatewayControlClient
 {
