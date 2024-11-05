@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
  */
 final class TasksClient
 {

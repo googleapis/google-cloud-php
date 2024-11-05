@@ -54,10 +54,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelExecutionAsync(CancelExecutionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteExecutionAsync(DeleteExecutionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExecutionAsync(GetExecutionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExecutionsAsync(ListExecutionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelExecutionAsync(CancelExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteExecutionAsync(DeleteExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Execution> getExecutionAsync(GetExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExecutionsAsync(ListExecutionsRequest $request, array $optionalArgs = [])
  */
 final class ExecutionsClient
 {

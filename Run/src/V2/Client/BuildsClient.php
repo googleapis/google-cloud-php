@@ -47,7 +47,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface submitBuildAsync(SubmitBuildRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubmitBuildResponse> submitBuildAsync(SubmitBuildRequest $request, array $optionalArgs = [])
  */
 final class BuildsClient
 {
