@@ -63,18 +63,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelPatchJobAsync(CancelPatchJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPatchDeploymentAsync(CreatePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePatchDeploymentAsync(DeletePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface executePatchJobAsync(ExecutePatchJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPatchDeploymentAsync(GetPatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPatchJobAsync(GetPatchJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPatchDeploymentsAsync(ListPatchDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPatchJobInstanceDetailsAsync(ListPatchJobInstanceDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPatchJobsAsync(ListPatchJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pausePatchDeploymentAsync(PausePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumePatchDeploymentAsync(ResumePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePatchDeploymentAsync(UpdatePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchJob> cancelPatchJobAsync(CancelPatchJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> createPatchDeploymentAsync(CreatePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePatchDeploymentAsync(DeletePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchJob> executePatchJobAsync(ExecutePatchJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> getPatchDeploymentAsync(GetPatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchJob> getPatchJobAsync(GetPatchJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPatchDeploymentsAsync(ListPatchDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPatchJobInstanceDetailsAsync(ListPatchJobInstanceDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPatchJobsAsync(ListPatchJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> pausePatchDeploymentAsync(PausePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> resumePatchDeploymentAsync(ResumePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> updatePatchDeploymentAsync(UpdatePatchDeploymentRequest $request, array $optionalArgs = [])
  */
 final class OsConfigServiceClient
 {

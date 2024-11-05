@@ -60,16 +60,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeliveryVehiclesAsync(ListDeliveryVehiclesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeliveryVehicleAsync(UpdateDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateTasksResponse> batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TaskTrackingInfo> getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeliveryVehiclesAsync(ListDeliveryVehiclesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> updateDeliveryVehicleAsync(UpdateDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
  */
 final class DeliveryServiceClient
 {
