@@ -58,7 +58,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
-     * [Output Only] The internal IPv6 address range that is assigned to this subnetwork.
+     * The internal IPv6 address range that is owned by this subnetwork.
      *
      * Generated from protobuf field <code>optional string internal_ipv6_prefix = 506270056;</code>
      */
@@ -193,7 +193,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $internal_ipv6_prefix
-     *           [Output Only] The internal IPv6 address range that is assigned to this subnetwork.
+     *           The internal IPv6 address range that is owned by this subnetwork.
      *     @type string $ip_cidr_range
      *           The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *     @type string $ipv6_access_type
@@ -494,7 +494,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The internal IPv6 address range that is assigned to this subnetwork.
+     * The internal IPv6 address range that is owned by this subnetwork.
      *
      * Generated from protobuf field <code>optional string internal_ipv6_prefix = 506270056;</code>
      * @return string
@@ -515,7 +515,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The internal IPv6 address range that is assigned to this subnetwork.
+     * The internal IPv6 address range that is owned by this subnetwork.
      *
      * Generated from protobuf field <code>optional string internal_ipv6_prefix = 506270056;</code>
      * @param string $var

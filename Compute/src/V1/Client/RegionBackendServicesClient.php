@@ -401,7 +401,7 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Retrieves an aggregated list of all usable backend services in the specified project in the given region.
+     * Retrieves a list of all usable backend services in the specified project in the given region.
      *
      * The async variant is {@see RegionBackendServicesClient::listUsableAsync()} .
      *

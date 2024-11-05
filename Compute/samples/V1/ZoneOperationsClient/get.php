@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\ZoneOperationsClient;
 /**
  * Retrieves the specified zone-specific Operations resource.
  *
- * @param string $operation Name of the Operations resource to return.
+ * @param string $operation Name of the Operations resource to return, or its unique numeric identifier.
  * @param string $project   Project ID for this request.
  * @param string $zone      Name of the zone for this request.
  */

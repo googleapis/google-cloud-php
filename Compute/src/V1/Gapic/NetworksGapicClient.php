@@ -766,7 +766,7 @@ class NetworksGapicClient
     }
 
     /**
-     * Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode.
+     * Patches the specified network with the data included in the request. Only routingConfig can be modified.
      *
      * Sample code:
      * ```
