@@ -68,16 +68,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSpecialistPoolAsync(CreateSpecialistPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSpecialistPoolAsync(DeleteSpecialistPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpecialistPoolAsync(GetSpecialistPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSpecialistPoolsAsync(ListSpecialistPoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpecialistPoolAsync(UpdateSpecialistPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSpecialistPoolAsync(CreateSpecialistPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSpecialistPoolAsync(DeleteSpecialistPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpecialistPool> getSpecialistPoolAsync(GetSpecialistPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpecialistPoolsAsync(ListSpecialistPoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSpecialistPoolAsync(UpdateSpecialistPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class SpecialistPoolServiceClient
 {

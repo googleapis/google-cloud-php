@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,30 +22,30 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START aiplatform_v1_generated_FeaturestoreService_BatchCreateFeatures_sync]
+// [START aiplatform_v1_generated_FeatureRegistryService_BatchCreateFeatures_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesResponse;
-use Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient;
+use Google\Cloud\AIPlatform\V1\Client\FeatureRegistryServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateFeatureRequest;
 use Google\Cloud\AIPlatform\V1\Feature;
 use Google\Rpc\Status;
 
 /**
- * Creates a batch of Features in a given EntityType.
+ * Creates a batch of Features in a given FeatureGroup.
  *
  * @param string $formattedParent         The resource name of the EntityType/FeatureGroup to create the
  *                                        batch of Features under. Format:
  *                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
  *                                        `projects/{project}/locations/{location}/featureGroups/{feature_group}`
- *                                        Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+ *                                        Please see {@see FeatureRegistryServiceClient::entityTypeName()} for help formatting this field.
  * @param string $formattedRequestsParent The resource name of the EntityType or FeatureGroup to create a
  *                                        Feature. Format for entity_type as parent:
  *                                        `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
  *                                        Format for feature_group as parent:
  *                                        `projects/{project}/locations/{location}/featureGroups/{feature_group}`
- *                                        Please see {@see FeaturestoreServiceClient::entityTypeName()} for help formatting this field.
+ *                                        Please see {@see FeatureRegistryServiceClient::entityTypeName()} for help formatting this field.
  * @param string $requestsFeatureId       The ID to use for the Feature, which will become the final
  *                                        component of the Feature's resource name.
  *
@@ -60,7 +60,7 @@ function batch_create_features_sample(
     string $requestsFeatureId
 ): void {
     // Create a client.
-    $featurestoreServiceClient = new FeaturestoreServiceClient();
+    $featureRegistryServiceClient = new FeatureRegistryServiceClient();
 
     // Prepare the request message.
     $requestsFeature = new Feature();
@@ -76,7 +76,7 @@ function batch_create_features_sample(
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $featurestoreServiceClient->batchCreateFeatures($request);
+        $response = $featureRegistryServiceClient->batchCreateFeatures($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -104,13 +104,13 @@ function batch_create_features_sample(
  */
 function callSample(): void
 {
-    $formattedParent = FeaturestoreServiceClient::entityTypeName(
+    $formattedParent = FeatureRegistryServiceClient::entityTypeName(
         '[PROJECT]',
         '[LOCATION]',
         '[FEATURESTORE]',
         '[ENTITY_TYPE]'
     );
-    $formattedRequestsParent = FeaturestoreServiceClient::entityTypeName(
+    $formattedRequestsParent = FeatureRegistryServiceClient::entityTypeName(
         '[PROJECT]',
         '[LOCATION]',
         '[FEATURESTORE]',
@@ -120,4 +120,4 @@ function callSample(): void
 
     batch_create_features_sample($formattedParent, $formattedRequestsParent, $requestsFeatureId);
 }
-// [END aiplatform_v1_generated_FeaturestoreService_BatchCreateFeatures_sync]
+// [END aiplatform_v1_generated_FeatureRegistryService_BatchCreateFeatures_sync]
