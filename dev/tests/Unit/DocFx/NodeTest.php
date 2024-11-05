@@ -161,7 +161,7 @@ EOF;
         $uid = $guzzlePromiseClassName . '<' . $googleReference . '>';
 
         $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
-        $expected .= '<<xref uid="' . $googleReference . '">Google\Cloud\AdvisoryNotifications\V1\Notification</xref>>';
+        $expected .= '&lt;<xref uid="' . $googleReference . '">Google\Cloud\AdvisoryNotifications\V1\Notification</xref>&gt;';
         $xref = new class {
             use XrefTrait;
 
