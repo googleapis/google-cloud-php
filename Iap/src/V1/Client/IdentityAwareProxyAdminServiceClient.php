@@ -60,16 +60,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTunnelDestGroupAsync(CreateTunnelDestGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTunnelDestGroupAsync(DeleteTunnelDestGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIapSettingsAsync(GetIapSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTunnelDestGroupAsync(GetTunnelDestGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTunnelDestGroupsAsync(ListTunnelDestGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIapSettingsAsync(UpdateIapSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTunnelDestGroupAsync(UpdateTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TunnelDestGroup> createTunnelDestGroupAsync(CreateTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTunnelDestGroupAsync(DeleteTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IapSettings> getIapSettingsAsync(GetIapSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TunnelDestGroup> getTunnelDestGroupAsync(GetTunnelDestGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTunnelDestGroupsAsync(ListTunnelDestGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IapSettings> updateIapSettingsAsync(UpdateIapSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TunnelDestGroup> updateTunnelDestGroupAsync(UpdateTunnelDestGroupRequest $request, array $optionalArgs = [])
  */
 final class IdentityAwareProxyAdminServiceClient
 {

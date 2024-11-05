@@ -73,22 +73,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAwsClusterAsync(CreateAwsClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAwsNodePoolAsync(CreateAwsNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAwsClusterAsync(DeleteAwsClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAwsNodePoolAsync(DeleteAwsNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAwsAccessTokenAsync(GenerateAwsAccessTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAwsClusterAgentTokenAsync(GenerateAwsClusterAgentTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAwsClusterAsync(GetAwsClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAwsJsonWebKeysAsync(GetAwsJsonWebKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAwsNodePoolAsync(GetAwsNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAwsOpenIdConfigAsync(GetAwsOpenIdConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAwsServerConfigAsync(GetAwsServerConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAwsClustersAsync(ListAwsClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAwsNodePoolsAsync(ListAwsNodePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackAwsNodePoolUpdateAsync(RollbackAwsNodePoolUpdateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAwsClusterAsync(UpdateAwsClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAwsNodePoolAsync(UpdateAwsNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAwsClusterAsync(CreateAwsClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAwsNodePoolAsync(CreateAwsNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAwsClusterAsync(DeleteAwsClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAwsNodePoolAsync(DeleteAwsNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAwsAccessTokenResponse> generateAwsAccessTokenAsync(GenerateAwsAccessTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAwsClusterAgentTokenResponse> generateAwsClusterAgentTokenAsync(GenerateAwsClusterAgentTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AwsCluster> getAwsClusterAsync(GetAwsClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AwsJsonWebKeys> getAwsJsonWebKeysAsync(GetAwsJsonWebKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AwsNodePool> getAwsNodePoolAsync(GetAwsNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AwsOpenIdConfig> getAwsOpenIdConfigAsync(GetAwsOpenIdConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AwsServerConfig> getAwsServerConfigAsync(GetAwsServerConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAwsClustersAsync(ListAwsClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAwsNodePoolsAsync(ListAwsNodePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rollbackAwsNodePoolUpdateAsync(RollbackAwsNodePoolUpdateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAwsClusterAsync(UpdateAwsClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAwsNodePoolAsync(UpdateAwsNodePoolRequest $request, array $optionalArgs = [])
  */
 final class AwsClustersClient
 {

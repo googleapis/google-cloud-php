@@ -61,10 +61,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface generateAccessTokenAsync(GenerateAccessTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateIdTokenAsync(GenerateIdTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface signBlobAsync(SignBlobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface signJwtAsync(SignJwtRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAccessTokenResponse> generateAccessTokenAsync(GenerateAccessTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateIdTokenResponse> generateIdTokenAsync(GenerateIdTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SignBlobResponse> signBlobAsync(SignBlobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SignJwtResponse> signJwtAsync(SignJwtRequest $request, array $optionalArgs = [])
  */
 final class IAMCredentialsClient
 {
