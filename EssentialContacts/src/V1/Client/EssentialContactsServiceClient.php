@@ -54,13 +54,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface computeContactsAsync(ComputeContactsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createContactAsync(CreateContactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteContactAsync(DeleteContactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getContactAsync(GetContactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listContactsAsync(ListContactsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sendTestMessageAsync(SendTestMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateContactAsync(UpdateContactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> computeContactsAsync(ComputeContactsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Contact> createContactAsync(CreateContactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteContactAsync(DeleteContactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Contact> getContactAsync(GetContactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listContactsAsync(ListContactsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> sendTestMessageAsync(SendTestMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Contact> updateContactAsync(UpdateContactRequest $request, array $optionalArgs = [])
  */
 final class EssentialContactsServiceClient
 {

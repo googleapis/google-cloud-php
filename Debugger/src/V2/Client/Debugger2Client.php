@@ -59,11 +59,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteBreakpointAsync(DeleteBreakpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBreakpointAsync(GetBreakpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBreakpointsAsync(ListBreakpointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDebuggeesAsync(ListDebuggeesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setBreakpointAsync(SetBreakpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBreakpointAsync(DeleteBreakpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetBreakpointResponse> getBreakpointAsync(GetBreakpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListBreakpointsResponse> listBreakpointsAsync(ListBreakpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListDebuggeesResponse> listDebuggeesAsync(ListDebuggeesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SetBreakpointResponse> setBreakpointAsync(SetBreakpointRequest $request, array $optionalArgs = [])
  */
 final class Debugger2Client
 {

@@ -55,9 +55,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface deleteEventsAsync(DeleteEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGroupStatsAsync(ListGroupStatsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeleteEventsResponse> deleteEventsAsync(DeleteEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGroupStatsAsync(ListGroupStatsRequest $request, array $optionalArgs = [])
  */
 final class ErrorStatsServiceClient
 {

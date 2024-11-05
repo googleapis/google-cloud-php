@@ -50,8 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkGroundingAsync(CheckGroundingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateGroundedContentAsync(GenerateGroundedContentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckGroundingResponse> checkGroundingAsync(CheckGroundingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateGroundedContentResponse> generateGroundedContentAsync(GenerateGroundedContentRequest $request, array $optionalArgs = [])
  */
 final class GroundedGenerationServiceClient
 {
