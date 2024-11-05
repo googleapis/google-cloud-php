@@ -88,22 +88,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface approveGrantAsync(ApproveGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkOnboardingStatusAsync(CheckOnboardingStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntitlementAsync(CreateEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGrantAsync(CreateGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntitlementAsync(DeleteEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface denyGrantAsync(DenyGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntitlementAsync(GetEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGrantAsync(GetGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGrantsAsync(ListGrantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface revokeGrantAsync(RevokeGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchEntitlementsAsync(SearchEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchGrantsAsync(SearchGrantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntitlementAsync(UpdateEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> approveGrantAsync(ApproveGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckOnboardingStatusResponse> checkOnboardingStatusAsync(CheckOnboardingStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntitlementAsync(CreateEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> createGrantAsync(CreateGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEntitlementAsync(DeleteEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> denyGrantAsync(DenyGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entitlement> getEntitlementAsync(GetEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> getGrantAsync(GetGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGrantsAsync(ListGrantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> revokeGrantAsync(RevokeGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchEntitlementsAsync(SearchEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchGrantsAsync(SearchGrantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEntitlementAsync(UpdateEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class PrivilegedAccessManagerClient
 {

@@ -53,9 +53,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface deleteRevisionAsync(DeleteRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRevisionAsync(DeleteRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Revision> getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
  */
 final class RevisionsClient
 {

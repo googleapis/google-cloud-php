@@ -61,15 +61,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTagKeyAsync(CreateTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTagKeyAsync(DeleteTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNamespacedTagKeyAsync(GetNamespacedTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTagKeyAsync(GetTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTagKeysAsync(ListTagKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTagKeyAsync(UpdateTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTagKeyAsync(CreateTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTagKeyAsync(DeleteTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagKey> getNamespacedTagKeyAsync(GetNamespacedTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagKey> getTagKeyAsync(GetTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTagKeysAsync(ListTagKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTagKeyAsync(UpdateTagKeyRequest $request, array $optionalArgs = [])
  */
 final class TagKeysClient
 {

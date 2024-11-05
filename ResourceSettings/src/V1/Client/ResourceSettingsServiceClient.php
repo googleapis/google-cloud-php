@@ -66,9 +66,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @deprecated This class will be removed in the next major version update.
  *
- * @method PromiseInterface getSettingAsync(GetSettingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSettingsAsync(ListSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSettingAsync(UpdateSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Setting> getSettingAsync(GetSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSettingsAsync(ListSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Setting> updateSettingAsync(UpdateSettingRequest $request, array $optionalArgs = [])
  */
 final class ResourceSettingsServiceClient
 {

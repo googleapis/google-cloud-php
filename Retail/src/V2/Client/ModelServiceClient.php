@@ -69,14 +69,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelAsync(GetModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseModelAsync(PauseModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeModelAsync(ResumeModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface tuneModelAsync(TuneModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> getModelAsync(GetModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> pauseModelAsync(PauseModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> resumeModelAsync(ResumeModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> tuneModelAsync(TuneModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
  */
 final class ModelServiceClient
 {

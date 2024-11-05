@@ -61,17 +61,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addCatalogAttributeAsync(AddCatalogAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttributesConfigAsync(GetAttributesConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCompletionConfigAsync(GetCompletionConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDefaultBranchAsync(GetDefaultBranchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCatalogsAsync(ListCatalogsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeCatalogAttributeAsync(RemoveCatalogAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceCatalogAttributeAsync(ReplaceCatalogAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setDefaultBranchAsync(SetDefaultBranchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttributesConfigAsync(UpdateAttributesConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCatalogAsync(UpdateCatalogRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCompletionConfigAsync(UpdateCompletionConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> addCatalogAttributeAsync(AddCatalogAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> getAttributesConfigAsync(GetAttributesConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompletionConfig> getCompletionConfigAsync(GetCompletionConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetDefaultBranchResponse> getDefaultBranchAsync(GetDefaultBranchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCatalogsAsync(ListCatalogsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> removeCatalogAttributeAsync(RemoveCatalogAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> replaceCatalogAttributeAsync(ReplaceCatalogAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> setDefaultBranchAsync(SetDefaultBranchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> updateAttributesConfigAsync(UpdateAttributesConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Catalog> updateCatalogAsync(UpdateCatalogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompletionConfig> updateCompletionConfigAsync(UpdateCompletionConfigRequest $request, array $optionalArgs = [])
  */
 final class CatalogServiceClient
 {
