@@ -57,8 +57,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getOnlineReturnPolicyAsync(GetOnlineReturnPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOnlineReturnPoliciesAsync(ListOnlineReturnPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OnlineReturnPolicy> getOnlineReturnPolicyAsync(GetOnlineReturnPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOnlineReturnPoliciesAsync(ListOnlineReturnPoliciesRequest $request, array $optionalArgs = [])
  */
 final class OnlineReturnPolicyServiceClient
 {

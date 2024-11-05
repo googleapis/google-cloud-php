@@ -54,9 +54,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getPromotionAsync(GetPromotionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertPromotionAsync(InsertPromotionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPromotionsAsync(ListPromotionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Promotion> getPromotionAsync(GetPromotionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Promotion> insertPromotionAsync(InsertPromotionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPromotionsAsync(ListPromotionsRequest $request, array $optionalArgs = [])
  */
 final class PromotionsServiceClient
 {

@@ -58,9 +58,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getAccountTaxAsync(GetAccountTaxRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountTaxAsync(ListAccountTaxRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountTaxAsync(UpdateAccountTaxRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountTax> getAccountTaxAsync(GetAccountTaxRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountTaxAsync(ListAccountTaxRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountTax> updateAccountTaxAsync(UpdateAccountTaxRequest $request, array $optionalArgs = [])
  */
 final class AccountTaxServiceClient
 {
