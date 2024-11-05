@@ -162,7 +162,7 @@ trait XrefTrait
         // Case for generic types
         if (preg_match('/(.*)<(.*)>/', $uid, $matches)) {
             return sprintf(
-                '%s<%s>',
+                '%s&lt;%s&gt;',
                 $this->replaceUidWithLink($matches[1]),
                 $this->replaceUidWithLink($matches[2])
             );
