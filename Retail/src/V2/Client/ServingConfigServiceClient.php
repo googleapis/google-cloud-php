@@ -54,13 +54,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addControlAsync(AddControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeControlAsync(RemoveControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> addControlAsync(AddControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> removeControlAsync(RemoveControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
  */
 final class ServingConfigServiceClient
 {

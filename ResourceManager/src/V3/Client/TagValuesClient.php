@@ -61,15 +61,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTagValueAsync(CreateTagValueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTagValueAsync(DeleteTagValueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNamespacedTagValueAsync(GetNamespacedTagValueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTagValueAsync(GetTagValueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTagValuesAsync(ListTagValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTagValueAsync(UpdateTagValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTagValueAsync(CreateTagValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTagValueAsync(DeleteTagValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagValue> getNamespacedTagValueAsync(GetNamespacedTagValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagValue> getTagValueAsync(GetTagValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTagValuesAsync(ListTagValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTagValueAsync(UpdateTagValueRequest $request, array $optionalArgs = [])
  */
 final class TagValuesClient
 {

@@ -63,18 +63,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProductAsync(GetProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> getProductAsync(GetProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
  */
 final class ProductServiceClient
 {

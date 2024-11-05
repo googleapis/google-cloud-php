@@ -63,17 +63,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createProjectAsync(CreateProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProjectAsync(DeleteProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProjectAsync(GetProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProjectsAsync(ListProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveProjectAsync(MoveProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchProjectsAsync(SearchProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteProjectAsync(UndeleteProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProjectAsync(UpdateProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createProjectAsync(CreateProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteProjectAsync(DeleteProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Project> getProjectAsync(GetProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProjectsAsync(ListProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveProjectAsync(MoveProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchProjectsAsync(SearchProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteProjectAsync(UndeleteProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateProjectAsync(UpdateProjectRequest $request, array $optionalArgs = [])
  */
 final class ProjectsClient
 {

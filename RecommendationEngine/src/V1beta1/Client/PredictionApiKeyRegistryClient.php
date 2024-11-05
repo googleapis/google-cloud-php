@@ -58,9 +58,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createPredictionApiKeyRegistrationAsync(CreatePredictionApiKeyRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePredictionApiKeyRegistrationAsync(DeletePredictionApiKeyRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPredictionApiKeyRegistrationsAsync(ListPredictionApiKeyRegistrationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PredictionApiKeyRegistration> createPredictionApiKeyRegistrationAsync(CreatePredictionApiKeyRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePredictionApiKeyRegistrationAsync(DeletePredictionApiKeyRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPredictionApiKeyRegistrationsAsync(ListPredictionApiKeyRegistrationsRequest $request, array $optionalArgs = [])
  */
 final class PredictionApiKeyRegistryClient
 {
