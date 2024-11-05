@@ -50,8 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface listVoicesAsync(ListVoicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface synthesizeSpeechAsync(SynthesizeSpeechRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListVoicesResponse> listVoicesAsync(ListVoicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SynthesizeSpeechResponse> synthesizeSpeechAsync(SynthesizeSpeechRequest $request, array $optionalArgs = [])
  */
 final class TextToSpeechClient
 {

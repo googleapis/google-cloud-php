@@ -57,11 +57,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConnectorAsync(CreateConnectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConnectorAsync(DeleteConnectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectorAsync(GetConnectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConnectorsAsync(ListConnectorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConnectorAsync(CreateConnectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConnectorAsync(DeleteConnectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Connector> getConnectorAsync(GetConnectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConnectorsAsync(ListConnectorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class VpcAccessServiceClient
 {

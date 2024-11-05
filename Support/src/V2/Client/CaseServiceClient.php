@@ -55,14 +55,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface closeCaseAsync(CloseCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCaseAsync(CreateCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface escalateCaseAsync(EscalateCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCaseAsync(GetCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCasesAsync(ListCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchCaseClassificationsAsync(SearchCaseClassificationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchCasesAsync(SearchCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCaseAsync(UpdateCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> closeCaseAsync(CloseCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> createCaseAsync(CreateCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> escalateCaseAsync(EscalateCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> getCaseAsync(GetCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCasesAsync(ListCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchCaseClassificationsAsync(SearchCaseClassificationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchCasesAsync(SearchCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> updateCaseAsync(UpdateCaseRequest $request, array $optionalArgs = [])
  */
 final class CaseServiceClient
 {

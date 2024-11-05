@@ -72,21 +72,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createNodeAsync(CreateNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodeAsync(DeleteNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateServiceIdentityAsync(GenerateServiceIdentityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAcceleratorTypeAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGuestAttributesAsync(GetGuestAttributesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeVersionAsync(GetRuntimeVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAcceleratorTypesAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimeVersionsAsync(ListRuntimeVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startNodeAsync(StartNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopNodeAsync(StopNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNodeAsync(UpdateNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNodeAsync(CreateNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNodeAsync(DeleteNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateServiceIdentityResponse> generateServiceIdentityAsync(GenerateServiceIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcceleratorType> getAcceleratorTypeAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetGuestAttributesResponse> getGuestAttributesAsync(GetGuestAttributesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Node> getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeVersion> getRuntimeVersionAsync(GetRuntimeVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAcceleratorTypesAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimeVersionsAsync(ListRuntimeVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startNodeAsync(StartNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopNodeAsync(StopNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNodeAsync(UpdateNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class TpuClient
 {

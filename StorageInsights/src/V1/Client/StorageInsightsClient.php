@@ -58,15 +58,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportDetailAsync(GetReportDetailRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportDetailsAsync(ListReportDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReportConfigAsync(UpdateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportDetail> getReportDetailAsync(GetReportDetailRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportDetailsAsync(ListReportDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> updateReportConfigAsync(UpdateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class StorageInsightsClient
 {
