@@ -58,11 +58,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAnalyticsAccountLinkAsync(CreateAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAnalyticsAccountLinkAsync(DeleteAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOrganizationAsync(GetOrganizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAnalyticsAccountLinksAsync(ListAnalyticsAccountLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setPropertyServiceLevelAsync(SetPropertyServiceLevelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyticsAccountLink> createAnalyticsAccountLinkAsync(CreateAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAnalyticsAccountLinkAsync(DeleteAnalyticsAccountLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Organization> getOrganizationAsync(GetOrganizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnalyticsAccountLinksAsync(ListAnalyticsAccountLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SetPropertyServiceLevelResponse> setPropertyServiceLevelAsync(SetPropertyServiceLevelRequest $request, array $optionalArgs = [])
  */
 final class MarketingplatformAdminServiceClient
 {

@@ -69,9 +69,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface publishAsync(PublishRequest $request, array $optionalArgs = [])
- * @method PromiseInterface publishChannelConnectionEventsAsync(PublishChannelConnectionEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface publishEventsAsync(PublishEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishResponse> publishAsync(PublishRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishChannelConnectionEventsResponse> publishChannelConnectionEventsAsync(PublishChannelConnectionEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishEventsResponse> publishEventsAsync(PublishEventsRequest $request, array $optionalArgs = [])
  */
 final class PublisherClient
 {
