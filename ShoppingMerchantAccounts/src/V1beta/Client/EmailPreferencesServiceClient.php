@@ -55,8 +55,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getEmailPreferencesAsync(GetEmailPreferencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEmailPreferencesAsync(UpdateEmailPreferencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EmailPreferences> getEmailPreferencesAsync(GetEmailPreferencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EmailPreferences> updateEmailPreferencesAsync(UpdateEmailPreferencesRequest $request, array $optionalArgs = [])
  */
 final class EmailPreferencesServiceClient
 {

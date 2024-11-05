@@ -51,7 +51,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface listQuotaGroupsAsync(ListQuotaGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQuotaGroupsAsync(ListQuotaGroupsRequest $request, array $optionalArgs = [])
  */
 final class QuotaServiceClient
 {

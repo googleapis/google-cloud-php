@@ -54,9 +54,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface deleteLocalInventoryAsync(DeleteLocalInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertLocalInventoryAsync(InsertLocalInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocalInventoriesAsync(ListLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLocalInventoryAsync(DeleteLocalInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LocalInventory> insertLocalInventoryAsync(InsertLocalInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocalInventoriesAsync(ListLocalInventoriesRequest $request, array $optionalArgs = [])
  */
 final class LocalInventoryServiceClient
 {
