@@ -42,7 +42,8 @@ use InvalidArgumentException;
 /**
  * The ClientOptions class adds typing to the associative array of options
  * passed into each API client constructor. To use this class directly, pass
- * the result of {@see ClientOptions::toArray} to the client constructor:
+ * the result of {@see \Google\ApiCore\Options\ClientOptions::toArray()} to the
+ * client constructor:
  *
  * ```
  * use Google\ApiCore\ClientOptions;
