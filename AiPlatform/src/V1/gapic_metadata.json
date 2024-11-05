@@ -647,6 +647,11 @@
                 "grpc": {
                     "libraryClient": "FeatureRegistryServiceGapicClient",
                     "rpcs": {
+                        "BatchCreateFeatures": {
+                            "methods": [
+                                "batchCreateFeatures"
+                            ]
+                        },
                         "CreateFeature": {
                             "methods": [
                                 "createFeature"
