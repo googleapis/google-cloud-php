@@ -22,6 +22,10 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $physical_host = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusScheduling scheduling = 386688404;</code>
+     */
+    private $scheduling = null;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      */
     private $upcoming_maintenance = null;
@@ -34,6 +38,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type string $physical_host
      *           [Output Only] An opaque ID of the host on which the VM is running.
+     *     @type \Google\Cloud\Compute\V1\ResourceStatusScheduling $scheduling
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
      * }
      */
@@ -74,6 +79,38 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->physical_host = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusScheduling scheduling = 386688404;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceStatusScheduling|null
+     */
+    public function getScheduling()
+    {
+        return $this->scheduling;
+    }
+
+    public function hasScheduling()
+    {
+        return isset($this->scheduling);
+    }
+
+    public function clearScheduling()
+    {
+        unset($this->scheduling);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusScheduling scheduling = 386688404;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceStatusScheduling $var
+     * @return $this
+     */
+    public function setScheduling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatusScheduling::class);
+        $this->scheduling = $var;
 
         return $this;
     }

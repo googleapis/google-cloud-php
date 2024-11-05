@@ -646,6 +646,7 @@ class DisksClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $accessMode = 'accessMode-1032586338';
         $architecture = 'architecture839674195';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
@@ -682,6 +683,7 @@ class DisksClientTest extends GeneratedTest
         $type = 'type3575610';
         $zone2 = 'zone2-696322977';
         $expectedResponse = new Disk();
+        $expectedResponse->setAccessMode($accessMode);
         $expectedResponse->setArchitecture($architecture);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);

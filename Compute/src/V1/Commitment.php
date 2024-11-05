@@ -35,6 +35,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     *
+     * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
+     */
+    private $custom_end_timestamp = null;
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -102,6 +108,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $reservations;
     /**
+     * [Output Only] Status information for Commitment resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
+     */
+    private $resource_status = null;
+    /**
      * A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
@@ -159,6 +171,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           Check the Category enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type string $custom_end_timestamp
+     *           [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $end_timestamp
@@ -182,6 +196,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           [Output Only] URL of the region where this commitment may be used.
      *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
      *           List of create-on-create reservations for this commitment.
+     *     @type \Google\Cloud\Compute\V1\CommitmentResourceStatus $resource_status
+     *           [Output Only] Status information for Commitment resource.
      *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *     @type string $self_link
@@ -311,6 +327,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creation_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     *
+     * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
+     * @return string
+     */
+    public function getCustomEndTimestamp()
+    {
+        return isset($this->custom_end_timestamp) ? $this->custom_end_timestamp : '';
+    }
+
+    public function hasCustomEndTimestamp()
+    {
+        return isset($this->custom_end_timestamp);
+    }
+
+    public function clearCustomEndTimestamp()
+    {
+        unset($this->custom_end_timestamp);
+    }
+
+    /**
+     * [Input Only] Optional, specifies the CUD end time requested by the customer in RFC3339 text format. Needed when the customer wants CUD's end date is later than the start date + term duration.
+     *
+     * Generated from protobuf field <code>optional string custom_end_timestamp = 181770852;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomEndTimestamp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_end_timestamp = $var;
 
         return $this;
     }
@@ -679,6 +731,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\Reservation::class);
         $this->reservations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Status information for Commitment resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\CommitmentResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return $this->resource_status;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * [Output Only] Status information for Commitment resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\CommitmentResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CommitmentResourceStatus::class);
+        $this->resource_status = $var;
 
         return $this;
     }

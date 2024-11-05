@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\RegionBackendServicesClient;
 
 /**
- * Retrieves an aggregated list of all usable backend services in the specified project in the given region.
+ * Retrieves a list of all usable backend services in the specified project in the given region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request. It must be a string that meets the requirements in RFC1035.
