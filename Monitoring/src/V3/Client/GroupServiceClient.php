@@ -64,12 +64,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createGroupAsync(CreateGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGroupAsync(DeleteGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGroupMembersAsync(ListGroupMembersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Group> createGroupAsync(CreateGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteGroupAsync(DeleteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Group> getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGroupMembersAsync(ListGroupMembersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Group> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
  */
 final class GroupServiceClient
 {

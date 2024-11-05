@@ -58,13 +58,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSshPublicKeyAsync(CreateSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePosixAccountAsync(DeletePosixAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSshPublicKeyAsync(DeleteSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLoginProfileAsync(GetLoginProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSshPublicKeyAsync(GetSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importSshPublicKeyAsync(ImportSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSshPublicKeyAsync(UpdateSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SshPublicKey> createSshPublicKeyAsync(CreateSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePosixAccountAsync(DeletePosixAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSshPublicKeyAsync(DeleteSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LoginProfile> getLoginProfileAsync(GetLoginProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SshPublicKey> getSshPublicKeyAsync(GetSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportSshPublicKeyResponse> importSshPublicKeyAsync(ImportSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SshPublicKey> updateSshPublicKeyAsync(UpdateSshPublicKeyRequest $request, array $optionalArgs = [])
  */
 final class OsLoginServiceClient
 {

@@ -62,8 +62,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
- * @method PromiseInterface optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OptimizeToursResponse> optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
  */
 final class FleetRoutingClient
 {

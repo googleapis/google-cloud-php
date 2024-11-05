@@ -60,16 +60,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createNotificationChannelAsync(CreateNotificationChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotificationChannelAsync(DeleteNotificationChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationChannelAsync(GetNotificationChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationChannelDescriptorAsync(GetNotificationChannelDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationChannelVerificationCodeAsync(GetNotificationChannelVerificationCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationChannelDescriptorsAsync(ListNotificationChannelDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationChannelsAsync(ListNotificationChannelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sendNotificationChannelVerificationCodeAsync(SendNotificationChannelVerificationCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNotificationChannelAsync(UpdateNotificationChannelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface verifyNotificationChannelAsync(VerifyNotificationChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationChannel> createNotificationChannelAsync(CreateNotificationChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNotificationChannelAsync(DeleteNotificationChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationChannel> getNotificationChannelAsync(GetNotificationChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationChannelDescriptor> getNotificationChannelDescriptorAsync(GetNotificationChannelDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetNotificationChannelVerificationCodeResponse> getNotificationChannelVerificationCodeAsync(GetNotificationChannelVerificationCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationChannelDescriptorsAsync(ListNotificationChannelDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationChannelsAsync(ListNotificationChannelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> sendNotificationChannelVerificationCodeAsync(SendNotificationChannelVerificationCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationChannel> updateNotificationChannelAsync(UpdateNotificationChannelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationChannel> verifyNotificationChannelAsync(VerifyNotificationChannelRequest $request, array $optionalArgs = [])
  */
 final class NotificationChannelServiceClient
 {
