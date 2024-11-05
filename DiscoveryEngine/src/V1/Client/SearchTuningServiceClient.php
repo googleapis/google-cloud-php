@@ -51,8 +51,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface listCustomModelsAsync(ListCustomModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface trainCustomModelAsync(TrainCustomModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListCustomModelsResponse> listCustomModelsAsync(ListCustomModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> trainCustomModelAsync(TrainCustomModelRequest $request, array $optionalArgs = [])
  */
 final class SearchTuningServiceClient
 {

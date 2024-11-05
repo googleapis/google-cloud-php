@@ -54,11 +54,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importCompletionSuggestionsAsync(ImportCompletionSuggestionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importSuggestionDenyListEntriesAsync(ImportSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeCompletionSuggestionsAsync(PurgeCompletionSuggestionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeSuggestionDenyListEntriesAsync(PurgeSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompleteQueryResponse> completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importCompletionSuggestionsAsync(ImportCompletionSuggestionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importSuggestionDenyListEntriesAsync(ImportSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeCompletionSuggestionsAsync(PurgeCompletionSuggestionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeSuggestionDenyListEntriesAsync(PurgeSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
  */
 final class CompletionServiceClient
 {
