@@ -51,14 +51,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListForwardingRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListForwardingRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setTargetAsync(SetTargetForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListForwardingRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ForwardingRule> getAsync(GetForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListForwardingRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setTargetAsync(SetTargetForwardingRuleRequest $request, array $optionalArgs = [])
  */
 final class ForwardingRulesClient
 {

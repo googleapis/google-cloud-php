@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNodeTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNodeTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNodeTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodeTemplate> getAsync(GetNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNodeTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNodeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNodeTemplateRequest $request, array $optionalArgs = [])
  */
 final class NodeTemplatesClient
 {

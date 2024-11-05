@@ -56,18 +56,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addHealthCheckAsync(AddHealthCheckTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addInstanceAsync(AddInstanceTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetPoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHealthAsync(GetHealthTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetPoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeHealthCheckAsync(RemoveHealthCheckTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeInstanceAsync(RemoveInstanceTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setBackupAsync(SetBackupTargetPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addHealthCheckAsync(AddHealthCheckTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addInstanceAsync(AddInstanceTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetPoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetPool> getAsync(GetTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetPoolInstanceHealth> getHealthAsync(GetHealthTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetPoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeHealthCheckAsync(RemoveHealthCheckTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeInstanceAsync(RemoveInstanceTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setBackupAsync(SetBackupTargetPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyTargetPoolRequest $request, array $optionalArgs = [])
  */
 final class TargetPoolsClient
 {

@@ -55,17 +55,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addPeeringAsync(AddPeeringNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEffectiveFirewallsAsync(GetEffectiveFirewallsNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPeeringRoutesAsync(ListPeeringRoutesNetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removePeeringAsync(RemovePeeringNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface switchToCustomModeAsync(SwitchToCustomModeNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePeeringAsync(UpdatePeeringNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addPeeringAsync(AddPeeringNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> getAsync(GetNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworksGetEffectiveFirewallsResponse> getEffectiveFirewallsAsync(GetEffectiveFirewallsNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPeeringRoutesAsync(ListPeeringRoutesNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removePeeringAsync(RemovePeeringNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> switchToCustomModeAsync(SwitchToCustomModeNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePeeringAsync(UpdatePeeringNetworkRequest $request, array $optionalArgs = [])
  */
 final class NetworksClient
 {
@@ -420,7 +420,7 @@ final class NetworksClient
     }
 
     /**
-     * Patches the specified network with the data included in the request. Only the following fields can be modified: routingConfig.routingMode.
+     * Patches the specified network with the data included in the request. Only routingConfig can be modified.
      *
      * The async variant is {@see NetworksClient::patchAsync()} .
      *

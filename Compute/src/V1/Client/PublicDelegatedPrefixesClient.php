@@ -51,14 +51,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface announceAsync(AnnouncePublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeletePublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface withdrawAsync(WithdrawPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> announceAsync(AnnouncePublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeletePublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublicDelegatedPrefix> getAsync(GetPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> withdrawAsync(WithdrawPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  */
 final class PublicDelegatedPrefixesClient
 {

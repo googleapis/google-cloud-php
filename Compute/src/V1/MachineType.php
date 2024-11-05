@@ -22,6 +22,13 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
+     * [Output Only] The architecture of the machine type.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -120,6 +127,9 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           [Output Only] A list of accelerator configurations assigned to this machine type.
+     *     @type string $architecture
+     *           [Output Only] The architecture of the machine type.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
@@ -179,6 +189,44 @@ class MachineType extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\Accelerators::class);
         $this->accelerators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The architecture of the machine type.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @return string
+     */
+    public function getArchitecture()
+    {
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * [Output Only] The architecture of the machine type.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
 
         return $this;
     }

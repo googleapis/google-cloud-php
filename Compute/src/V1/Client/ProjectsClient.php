@@ -57,20 +57,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface disableXpnHostAsync(DisableXpnHostProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableXpnResourceAsync(DisableXpnResourceProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableXpnHostAsync(EnableXpnHostProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableXpnResourceAsync(EnableXpnResourceProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getXpnHostAsync(GetXpnHostProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getXpnResourcesAsync(GetXpnResourcesProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listXpnHostsAsync(ListXpnHostsProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveDiskAsync(MoveDiskProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveInstanceAsync(MoveInstanceProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCloudArmorTierAsync(SetCloudArmorTierProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCommonInstanceMetadataAsync(SetCommonInstanceMetadataProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setDefaultNetworkTierAsync(SetDefaultNetworkTierProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUsageExportBucketAsync(SetUsageExportBucketProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableXpnHostAsync(DisableXpnHostProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableXpnResourceAsync(DisableXpnResourceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableXpnHostAsync(EnableXpnHostProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableXpnResourceAsync(EnableXpnResourceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Project> getAsync(GetProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Project> getXpnHostAsync(GetXpnHostProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> getXpnResourcesAsync(GetXpnResourcesProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listXpnHostsAsync(ListXpnHostsProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveDiskAsync(MoveDiskProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveInstanceAsync(MoveInstanceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCloudArmorTierAsync(SetCloudArmorTierProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCommonInstanceMetadataAsync(SetCommonInstanceMetadataProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setDefaultNetworkTierAsync(SetDefaultNetworkTierProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUsageExportBucketAsync(SetUsageExportBucketProjectRequest $request, array $optionalArgs = [])
  */
 final class ProjectsClient
 {

@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\StoragePoolsClient;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: size_tb and provisioned_iops.
+ * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: pool_provisioned_capacity_gb, pool_provisioned_iops and pool_provisioned_throughput.
  *
  * @param string $project     Project ID for this request.
  * @param string $storagePool The storagePool name for this request.

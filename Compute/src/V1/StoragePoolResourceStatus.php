@@ -40,7 +40,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     private $pool_used_capacity_bytes = null;
     /**
-     * Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity.
+     * [Output Only] Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity. For more information, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_used_iops = 99558536;</code>
      */
@@ -91,7 +91,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      *     @type int|string $pool_used_capacity_bytes
      *           [Output Only] Space used by data stored in disks within the storage pool (in bytes). This will reflect the total number of bytes written to the disks in the pool, in contrast to the capacity of those disks.
      *     @type int|string $pool_used_iops
-     *           Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity.
+     *           [Output Only] Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity. For more information, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *     @type int|string $pool_used_throughput
      *           [Output Only] Sum of all the disks' provisioned throughput in MB/s.
      *     @type int|string $pool_user_written_bytes
@@ -254,7 +254,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity.
+     * [Output Only] Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity. For more information, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_used_iops = 99558536;</code>
      * @return int|string
@@ -275,7 +275,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity.
+     * [Output Only] Sum of all the disks' provisioned IOPS, minus some amount that is allowed per disk that is not counted towards pool's IOPS capacity. For more information, see https://cloud.google.com/compute/docs/disks/storage-pools.
      *
      * Generated from protobuf field <code>optional int64 pool_used_iops = 99558536;</code>
      * @param int|string $var

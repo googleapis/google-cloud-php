@@ -47,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionNotificationEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionNotificationEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionNotificationEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionNotificationEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNotificationEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationEndpoint> getAsync(GetRegionNotificationEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNotificationEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNotificationEndpointsRequest $request, array $optionalArgs = [])
  */
 final class RegionNotificationEndpointsClient
 {

@@ -56,17 +56,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deprecateAsync(DeprecateImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFromFamilyAsync(GetFromFamilyImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deprecateAsync(DeprecateImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Image> getAsync(GetImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Image> getFromFamilyAsync(GetFromFamilyImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsImageRequest $request, array $optionalArgs = [])
  */
 final class ImagesClient
 {

@@ -49,12 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteGlobalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertGlobalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalAddressesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveAsync(MoveGlobalAddressRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsGlobalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteGlobalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Address> getAsync(GetGlobalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertGlobalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalAddressesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveAsync(MoveGlobalAddressRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsGlobalAddressRequest $request, array $optionalArgs = [])
  */
 final class GlobalAddressesClient
 {

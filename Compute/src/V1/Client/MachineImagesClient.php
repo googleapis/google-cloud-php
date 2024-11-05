@@ -52,13 +52,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListMachineImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MachineImage> getAsync(GetMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListMachineImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyMachineImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsMachineImageRequest $request, array $optionalArgs = [])
  */
 final class MachineImagesClient
 {

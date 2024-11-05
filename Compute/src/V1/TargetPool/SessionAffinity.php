@@ -67,6 +67,12 @@ class SessionAffinity
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */
     const NONE = 2402104;
+    /**
+     * Strong cookie-based affinity. Connections bearing the same cookie will be served by the same backend VM while that VM remains healthy, as long as the cookie has not expired.
+     *
+     * Generated from protobuf enum <code>STRONG_COOKIE_AFFINITY = 438628091;</code>
+     */
+    const STRONG_COOKIE_AFFINITY = 438628091;
 
     private static $valueToName = [
         self::UNDEFINED_SESSION_AFFINITY => 'UNDEFINED_SESSION_AFFINITY',
@@ -78,6 +84,7 @@ class SessionAffinity
         self::HEADER_FIELD => 'HEADER_FIELD',
         self::HTTP_COOKIE => 'HTTP_COOKIE',
         self::NONE => 'NONE',
+        self::STRONG_COOKIE_AFFINITY => 'STRONG_COOKIE_AFFINITY',
     ];
 
     public static function name($value)

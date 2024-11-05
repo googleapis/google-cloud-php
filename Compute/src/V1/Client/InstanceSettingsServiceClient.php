@@ -44,8 +44,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetInstanceSettingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchInstanceSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceSettings> getAsync(GetInstanceSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchInstanceSettingRequest $request, array $optionalArgs = [])
  */
 final class InstanceSettingsServiceClient
 {

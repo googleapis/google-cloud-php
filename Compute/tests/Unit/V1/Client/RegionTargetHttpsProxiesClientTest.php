@@ -224,6 +224,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $serverTlsPolicy = 'serverTlsPolicy1906438002';
         $sslPolicy = 'sslPolicy-1852293435';
+        $tlsEarlyData = 'tlsEarlyData-1549504310';
         $urlMap = 'urlMap-169850228';
         $expectedResponse = new TargetHttpsProxy();
         $expectedResponse->setAuthorizationPolicy($authorizationPolicy);
@@ -241,6 +242,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setServerTlsPolicy($serverTlsPolicy);
         $expectedResponse->setSslPolicy($sslPolicy);
+        $expectedResponse->setTlsEarlyData($tlsEarlyData);
         $expectedResponse->setUrlMap($urlMap);
         $transport->addResponse($expectedResponse);
         // Mock request

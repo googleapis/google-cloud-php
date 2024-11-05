@@ -51,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListSslPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteSslPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetSslPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertSslPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListSslPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAvailableFeaturesAsync(ListAvailableFeaturesSslPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListSslPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslPolicy> getAsync(GetSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListSslPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslPoliciesListAvailableFeaturesResponse> listAvailableFeaturesAsync(ListAvailableFeaturesSslPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchSslPolicyRequest $request, array $optionalArgs = [])
  */
 final class SslPoliciesClient
 {

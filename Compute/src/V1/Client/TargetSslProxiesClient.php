@@ -52,15 +52,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetSslProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setBackendServiceAsync(SetBackendServiceTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCertificateMapAsync(SetCertificateMapTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setProxyHeaderAsync(SetProxyHeaderTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslCertificatesAsync(SetSslCertificatesTargetSslProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslPolicyAsync(SetSslPolicyTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetSslProxy> getAsync(GetTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetSslProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setBackendServiceAsync(SetBackendServiceTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCertificateMapAsync(SetCertificateMapTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setProxyHeaderAsync(SetProxyHeaderTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslCertificatesAsync(SetSslCertificatesTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslPolicyAsync(SetSslPolicyTargetSslProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetSslProxiesClient
 {

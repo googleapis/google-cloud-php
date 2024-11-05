@@ -49,12 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionAutoscalersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Autoscaler> getAsync(GetRegionAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionAutoscalersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionAutoscalerRequest $request, array $optionalArgs = [])
  */
 final class RegionAutoscalersClient
 {

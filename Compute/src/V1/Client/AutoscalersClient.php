@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListAutoscalersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListAutoscalersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchAutoscalerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListAutoscalersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Autoscaler> getAsync(GetAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListAutoscalersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateAutoscalerRequest $request, array $optionalArgs = [])
  */
 final class AutoscalersClient
 {

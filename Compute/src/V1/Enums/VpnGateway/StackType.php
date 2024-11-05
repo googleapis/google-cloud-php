@@ -35,4 +35,6 @@ class StackType
     const IPV4_IPV6 = 'IPV4_IPV6';
 
     const IPV4_ONLY = 'IPV4_ONLY';
+
+    const IPV6_ONLY = 'IPV6_ONLY';
 }
