@@ -58,11 +58,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface computeThreatListDiffAsync(ComputeThreatListDiffRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSubmissionAsync(CreateSubmissionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchHashesAsync(SearchHashesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchUrisAsync(SearchUrisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface submitUriAsync(SubmitUriRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ComputeThreatListDiffResponse> computeThreatListDiffAsync(ComputeThreatListDiffRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Submission> createSubmissionAsync(CreateSubmissionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchHashesResponse> searchHashesAsync(SearchHashesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchUrisResponse> searchUrisAsync(SearchUrisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> submitUriAsync(SubmitUriRequest $request, array $optionalArgs = [])
  */
 final class WebRiskServiceClient
 {
