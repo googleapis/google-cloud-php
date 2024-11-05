@@ -47,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(SqlSslCertsDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlSslCertsGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlSslCertsInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlSslCertsListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlSslCertsDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCert> getAsync(SqlSslCertsGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCertsInsertResponse> insertAsync(SqlSslCertsInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCertsListResponse> listAsync(SqlSslCertsListRequest $request, array $optionalArgs = [])
  */
 final class SqlSslCertsServiceClient
 {

@@ -46,10 +46,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlBackupRunsListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupRun> getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupRunsListResponse> listAsync(SqlBackupRunsListRequest $request, array $optionalArgs = [])
  */
 final class SqlBackupRunsServiceClient
 {
