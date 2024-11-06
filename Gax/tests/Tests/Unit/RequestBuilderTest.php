@@ -62,6 +62,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithUrlPlaceholder', $message);
         $uri = $request->getUri();
 
+        $this->assertSame('https', $uri->getScheme());
         $this->assertEmpty($uri->getQuery());
         $this->assertEmpty((string) $request->getBody());
         $this->assertSame('/v1/message/foo', $uri->getPath());
@@ -78,6 +79,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithBodyAndUrlPlaceholder', $message);
         $uri = $request->getUri();
 
+        $this->assertSame('https', $uri->getScheme());
         $this->assertEmpty($uri->getQuery());
         $this->assertSame('/v1/message/foo', $uri->getPath());
         $this->assertEquals(
@@ -97,6 +99,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithNestedMessageAsBody', $message);
         $uri = $request->getUri();
 
+        $this->assertSame('https', $uri->getScheme());
         $this->assertEmpty($uri->getQuery());
         $this->assertSame('/v1/message/foo', $uri->getPath());
         $this->assertEquals(
@@ -161,6 +164,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithNestedUrlPlaceholder', $message);
         $uri = $request->getUri();
 
+        $this->assertSame('https', $uri->getScheme());
         $this->assertEmpty($uri->getQuery());
         $this->assertSame('/v1/nested/foo', $uri->getPath());
         $this->assertEquals(
@@ -179,6 +183,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty((string) $request->getBody());
+        $this->assertSame('https', $uri->getScheme());
         $this->assertSame('/v1/message/foo', $uri->getPath());
         $this->assertSame('repeatedField=bar1&repeatedField=bar2', $uri->getQuery());
     }
@@ -206,6 +211,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithColonInUrl', $message);
         $uri = $request->getUri();
 
+        $this->assertSame('https', $uri->getScheme());
         $this->assertEmpty($uri->getQuery());
         $this->assertSame('/v1/message/foo:action', $uri->getPath());
     }
@@ -222,6 +228,7 @@ class RequestBuilderTest extends TestCase
         );
         $uri = $request->getUri();
 
+        $this->assertSame('https', $uri->getScheme());
         $this->assertEmpty($uri->getQuery());
         $this->assertSame('/v1/message/foo/number/10:action', $uri->getPath());
     }
@@ -236,7 +243,7 @@ class RequestBuilderTest extends TestCase
             $message
         );
         $uri = $request->getUri();
-
+        $this->assertSame('https', $uri->getScheme());
         $this->assertSame('/v1/message-name', $uri->getPath());
     }
 
