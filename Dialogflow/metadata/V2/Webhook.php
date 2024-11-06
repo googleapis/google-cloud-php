@@ -21,7 +21,7 @@ class Webhook
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ó
+Ð
 (google/cloud/dialogflow/v2/webhook.protogoogle.cloud.dialogflow.v2\'google/cloud/dialogflow/v2/intent.proto(google/cloud/dialogflow/v2/session.proto4google/cloud/dialogflow/v2/session_entity_type.protogoogle/protobuf/struct.proto"Ö
 WebhookRequest
 session (	
@@ -40,8 +40,8 @@ class Webhook
 OriginalDetectIntentRequest
 source (	
 version (	(
-payload (2.google.protobuf.StructB•
-com.google.cloud.dialogflow.v2BWebhookProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpbø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
+payload (2.google.protobuf.StructB’
+com.google.cloud.dialogflow.v2BWebhookProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
         , true);
 
         static::$is_initialized = true;

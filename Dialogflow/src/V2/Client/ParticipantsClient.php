@@ -201,6 +201,25 @@ final class ParticipantsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_conversation resource.
      *
@@ -616,6 +635,7 @@ final class ParticipantsClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
      * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - projectConversation: projects/{project}/conversations/{conversation}
      * - projectConversationMessage: projects/{project}/conversations/{conversation}/messages/{message}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}

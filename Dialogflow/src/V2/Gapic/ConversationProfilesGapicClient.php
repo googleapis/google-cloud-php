@@ -154,6 +154,8 @@ class ConversationProfilesGapicClient
 
     private static $locationNameTemplate;
 
+    private static $phraseSetNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $projectAgentNameTemplate;
@@ -271,6 +273,15 @@ class ConversationProfilesGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getPhraseSetNameTemplate()
+    {
+        if (self::$phraseSetNameTemplate == null) {
+            self::$phraseSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/phraseSets/{phrase_set}');
+        }
+
+        return self::$phraseSetNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -382,6 +393,7 @@ class ConversationProfilesGapicClient
                 'generator' => self::getGeneratorNameTemplate(),
                 'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'phraseSet' => self::getPhraseSetNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAgent' => self::getProjectAgentNameTemplate(),
                 'projectConversationModel' => self::getProjectConversationModelNameTemplate(),
@@ -538,6 +550,25 @@ class ConversationProfilesGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName($project, $location, $phraseSet)
+    {
+        return self::getPhraseSetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -748,6 +779,7 @@ class ConversationProfilesGapicClient
      * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
