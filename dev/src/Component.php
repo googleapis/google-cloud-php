@@ -198,8 +198,9 @@ class Component
             $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
         } else {
             throw new RuntimeException(sprintf(
-                'repo metadata not found for component "%s"',
-                $this->name
+                'repo metadata not found for component "%s" and no .repo-metadata.json file found in %s',
+                $this->name,
+                $repoMetadataPath
             ));
         }
 
@@ -240,10 +241,11 @@ class Component
                 $this->componentDependencies[] = new Component($componentName);
             }
         }
-        if (isset($composerJson['require']['google/gax'])
-            && !isset($composerJson['require']['google/common-protos'])
-        ) {
-            $this->componentDependencies[] = new Component('CommonProtos');
+        if (isset($composerJson['require']['google/gax'])) {
+            $this->componentDependencies[] = new Component('gax', self::ROOT_DIR . '/dev/vendor/google/gax');
+            if (!isset($composerJson['require']['google/common-protos'])) {
+                $this->componentDependencies[] = new Component('CommonProtos');
+            }
         }
     }
 
