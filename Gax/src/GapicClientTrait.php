@@ -313,7 +313,8 @@ trait GapicClientTrait
                 $options['apiEndpoint'],
                 $transport,
                 $options['transportConfig'],
-                $options['clientCertSource']
+                $options['clientCertSource'],
+                $options['hasEmulator'] ?? false
             );
     }
 
@@ -322,6 +323,7 @@ trait GapicClientTrait
      * @param string $transport
      * @param TransportOptions|array $transportConfig
      * @param callable $clientCertSource
+     * @param bool $hasEmulator
      * @return TransportInterface
      * @throws ValidationException
      */
@@ -329,7 +331,8 @@ trait GapicClientTrait
         string $apiEndpoint,
         $transport,
         $transportConfig,
-        callable $clientCertSource = null
+        callable $clientCertSource = null,
+        bool $hasEmulator = false
     ) {
         if (!is_string($transport)) {
             throw new ValidationException(
@@ -372,6 +375,8 @@ trait GapicClientTrait
                     );
                 }
                 $restConfigPath = $configForSpecifiedTransport['restClientConfigPath'];
+                $configForSpecifiedTransport['hasEmulator'] = $hasEmulator;
+
                 return RestTransport::build($apiEndpoint, $restConfigPath, $configForSpecifiedTransport);
             default:
                 throw new ValidationException(

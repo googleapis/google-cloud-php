@@ -50,7 +50,7 @@ class RequestBuilder
     use UriTrait;
     use ValidationTrait;
 
-    private $baseUri;
+    protected $baseUri;
     private $restConfig;
 
     /**
@@ -270,7 +270,7 @@ class RequestBuilder
      * @param array $queryParams
      * @return UriInterface
      */
-    private function buildUri(string $path, array $queryParams)
+    protected function buildUri(string $path, array $queryParams)
     {
         $uri = Utils::uriFor(
             sprintf(
