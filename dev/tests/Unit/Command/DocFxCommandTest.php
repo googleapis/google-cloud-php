@@ -141,7 +141,7 @@ class DocFxCommandTest extends TestCase
             '--xml' => self::$fixturesDir . '/phpdoc/structure.xml',
             '--out' => self::$tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
-            '--component-path' => self::$fixturesDir . '/component/Vision',
+            '--path' => self::$fixturesDir . '/component/Vision',
             '--with-cache' => true,
         ]);
 

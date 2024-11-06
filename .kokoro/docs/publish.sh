@@ -17,38 +17,37 @@ PROJECT_DIR=$(dirname $(dirname $SCRIPT_DIR))
 if [ ! -d 'dev/vendor/' ]; then
     composer install -d $PROJECT_DIR/dev
 fi
-
+STAGING_FLAG="";
 if [ "$STAGING_BUCKET" != "" ]; then
     echo "Using staging bucket ${STAGING_BUCKET}..."
+    STAGING_FLAG="--staging-bucket $STAGING_BUCKET"
 fi
-VERBOSITY="";
+VERBOSITY_FLAG="";
 if [ "$GCLOUD_DEBUG" = "1" ]; then
     echo "Setting verbosity to VERBOSE...";
-    VERBOSITY=" -v";
+    VERBOSITY_FLAG=" -v";
 fi
-
 find $PROJECT_DIR/* -mindepth 1 -maxdepth 1 -name 'composer.json' -not -path '*vendor/*' -regex "$PROJECT_DIR/[A-Z].*" -exec dirname {} \; | while read DIR
 do
     COMPONENT=$(basename $DIR)
     VERSION=$(cat $DIR/VERSION)
-    if [ "$STAGING_BUCKET" != "" ]; then
-        $PROJECT_DIR/dev/google-cloud docfx \
-            --component $COMPONENT \
-            --out $DIR/out \
-            --metadata-version $VERSION \
-            --staging-bucket $STAGING_BUCKET \
-            --with-cache \
-            $VERBOSITY
-    else
-        # dry run
-        $PROJECT_DIR/dev/google-cloud docfx \
-            --component $COMPONENT \
-            --out $DIR/out \
-            --metadata-version $VERSION \
-            --with-cache \
-            $VERBOSITY
-    fi
+    $PROJECT_DIR/dev/google-cloud docfx \
+        --component $COMPONENT \
+        --out $DIR/out \
+        --metadata-version $VERSION \
+        --with-cache \
+        $STAGING_FLAG \
+        $VERBOSITY_FLAG
 done
+
+# Add GAX repo
+GAX_DIR=$PROJECT_DIR/dev/vendor/google/gax
+$PROJECT_DIR/dev/google-cloud docfx \
+    --path $GAX_DIR \
+    --out gax-out \
+    --metadata-version $(cat $GAX_DIR/VERSION) \
+    $STAGING_FLAG \
+    $VERBOSITY_FLAG
 
 # If this run after a release, store the released artifacts.
 if [ "$KOKORO_GITHUB_COMMIT" != "" ]; then
