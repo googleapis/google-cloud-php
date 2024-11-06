@@ -44,8 +44,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent    The [Flow][google.cloud.dialogflow.cx.v3.Flow] to create an
  *                                   [Version][google.cloud.dialogflow.cx.v3.Version] for. Format:
- *                                   `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                   ID>/flows/<Flow ID>`. Please see
+ *                                   `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                                   {@see VersionsClient::flowName()} for help formatting this field.
  * @param string $versionDisplayName The human-readable name of the version. Limit of 64 characters.
  */

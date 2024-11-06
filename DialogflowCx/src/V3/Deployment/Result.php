@@ -17,16 +17,16 @@ class Result extends \Google\Protobuf\Internal\Message
 {
     /**
      * Results of test cases running before the deployment.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *
      * Generated from protobuf field <code>repeated string deployment_test_results = 1 [(.google.api.resource_reference) = {</code>
      */
     private $deployment_test_results;
     /**
      * The name of the experiment triggered by this deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/experiments/<Experiment ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *
      * Generated from protobuf field <code>string experiment = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -40,12 +40,12 @@ class Result extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deployment_test_results
      *           Results of test cases running before the deployment.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *     @type string $experiment
      *           The name of the experiment triggered by this deployment.
-     *           Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>/experiments/<Experiment ID>.
+     *           Format:
+     *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +55,8 @@ class Result extends \Google\Protobuf\Internal\Message
 
     /**
      * Results of test cases running before the deployment.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *
      * Generated from protobuf field <code>repeated string deployment_test_results = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -68,8 +68,8 @@ class Result extends \Google\Protobuf\Internal\Message
 
     /**
      * Results of test cases running before the deployment.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *
      * Generated from protobuf field <code>repeated string deployment_test_results = 1 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -85,8 +85,8 @@ class Result extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the experiment triggered by this deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/experiments/<Experiment ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *
      * Generated from protobuf field <code>string experiment = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -98,8 +98,8 @@ class Result extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the experiment triggered by this deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/experiments/<Experiment ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *
      * Generated from protobuf field <code>string experiment = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

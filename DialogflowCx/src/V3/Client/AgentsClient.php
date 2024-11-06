@@ -305,6 +305,25 @@ final class AgentsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName(string $project, string $secret, string $version): string
+    {
+        return self::getPathTemplate('secretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * security_settings resource.
      *
      * @param string $project
@@ -332,6 +351,7 @@ final class AgentsClient
      * - environment: projects/{project}/locations/{location}/agents/{agent}/environments/{environment}
      * - flow: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}
      * - location: projects/{project}/locations/{location}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - securitySettings: projects/{project}/locations/{location}/securitySettings/{security_settings}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

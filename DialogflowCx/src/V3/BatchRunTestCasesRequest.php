@@ -17,23 +17,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Agent name. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/ <AgentID>`.
+     * Required. Agent name. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Optional. If not set, draft environment is assumed. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $environment = '';
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/testCases/<TestCase ID>`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string test_cases = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,15 +45,14 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Agent name. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/ <AgentID>`.
+     *           Required. Agent name. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $environment
      *           Optional. If not set, draft environment is assumed. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $test_cases
-     *           Required. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/testCases/<TestCase ID>`.
+     *           Required. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,8 +61,8 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Agent name. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/ <AgentID>`.
+     * Required. Agent name. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,8 +73,8 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Agent name. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/ <AgentID>`.
+     * Required. Agent name. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -92,8 +90,7 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If not set, draft environment is assumed. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -105,8 +102,7 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If not set, draft environment is assumed. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -121,8 +117,8 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/testCases/<TestCase ID>`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string test_cases = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -133,8 +129,8 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/testCases/<TestCase ID>`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string test_cases = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

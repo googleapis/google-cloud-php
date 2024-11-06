@@ -37,7 +37,7 @@ use Google\Cloud\Dialogflow\Cx\V3\EntityType\Kind;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedParent       The agent to create a entity type for.
- *                                      Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                      Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                      {@see EntityTypesClient::agentName()} for help formatting this field.
  * @param string $entityTypeDisplayName The human-readable name of the entity type, unique within the
  *                                      agent.

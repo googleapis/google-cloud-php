@@ -34,8 +34,8 @@ use Google\Cloud\Dialogflow\Cx\V3\ValidateFlowRequest;
  * validation results.
  *
  * @param string $formattedName The flow to validate.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                              {@see FlowsClient::flowName()} for help formatting this field.
  */
 function validate_flow_sample(string $formattedName): void

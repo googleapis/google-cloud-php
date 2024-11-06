@@ -33,9 +33,9 @@ use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
  * Returns the list of all transition route groups in the specified flow.
  *
  * @param string $formattedParent The flow to list all transition route groups for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                ID>/flows/<Flow ID>`
- *                                or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>. Please see
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+ *                                or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>. Please see
  *                                {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
  */
 function list_transition_route_groups_sample(string $formattedParent): void

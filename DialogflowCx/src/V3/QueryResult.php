@@ -187,8 +187,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Data store connection feature output signals.
      * Filled only when data stores are involved in serving the query and
-     * DetectIntentRequest.populate data_store_connection_quality_signals is set
-     * to true in the request.
+     * DetectIntentRequest.populate_data_store_connection_signals is set to true
+     * in the request.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -207,8 +207,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_intent
      *           If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      *           input, this field will contain a copy of the intent identifier. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $transcript
      *           If [natural language speech
      *           audio][google.cloud.dialogflow.cx.v3.AudioInput] was provided as input,
@@ -318,8 +317,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $data_store_connection_signals
      *           Optional. Data store connection feature output signals.
      *           Filled only when data stores are involved in serving the query and
-     *           DetectIntentRequest.populate data_store_connection_quality_signals is set
-     *           to true in the request.
+     *           DetectIntentRequest.populate_data_store_connection_signals is set to true
+     *           in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -363,8 +362,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      * input, this field will contain a copy of the intent identifier. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string trigger_intent = 11 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -382,8 +380,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      * input, this field will contain a copy of the intent identifier. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string trigger_intent = 11 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -1179,8 +1176,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Data store connection feature output signals.
      * Filled only when data stores are involved in serving the query and
-     * DetectIntentRequest.populate data_store_connection_quality_signals is set
-     * to true in the request.
+     * DetectIntentRequest.populate_data_store_connection_signals is set to true
+     * in the request.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals|null
@@ -1203,8 +1200,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Data store connection feature output signals.
      * Filled only when data stores are involved in serving the query and
-     * DetectIntentRequest.populate data_store_connection_quality_signals is set
-     * to true in the request.
+     * DetectIntentRequest.populate_data_store_connection_signals is set to true
+     * in the request.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $var

@@ -25,8 +25,7 @@ class DeployFlowResponse extends \Google\Protobuf\Internal\Message
     /**
      * The name of the flow version
      * [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * environments/<Environment ID>/deployments/<Deployment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      *
      * Generated from protobuf field <code>string deployment = 2;</code>
      */
@@ -43,8 +42,7 @@ class DeployFlowResponse extends \Google\Protobuf\Internal\Message
      *     @type string $deployment
      *           The name of the flow version
      *           [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     *           environments/<Environment ID>/deployments/<Deployment ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,8 +89,7 @@ class DeployFlowResponse extends \Google\Protobuf\Internal\Message
     /**
      * The name of the flow version
      * [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * environments/<Environment ID>/deployments/<Deployment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      *
      * Generated from protobuf field <code>string deployment = 2;</code>
      * @return string
@@ -105,8 +102,7 @@ class DeployFlowResponse extends \Google\Protobuf\Internal\Message
     /**
      * The name of the flow version
      * [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * environments/<Environment ID>/deployments/<Deployment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      *
      * Generated from protobuf field <code>string deployment = 2;</code>
      * @param string $var

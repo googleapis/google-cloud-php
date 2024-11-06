@@ -31,8 +31,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetGenerativeSettingsRequest;
 /**
  * Gets the generative settings for the agent.
  *
- * @param string $formattedName Format: `projects/<Project ID>/locations/<Location
- *                              ID>/agents/<Agent ID>/generativeSettings`. Please see
+ * @param string $formattedName Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`. Please see
  *                              {@see AgentsClient::agentGenerativeSettingsName()} for help formatting this field.
  * @param string $languageCode  Language code of the generative settings.
  */

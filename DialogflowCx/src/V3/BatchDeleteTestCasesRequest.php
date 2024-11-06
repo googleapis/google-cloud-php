@@ -18,14 +18,14 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to delete test cases from.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Required. Format of test case names: `projects/<Project ID>/locations/
-     * <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`.
+     * Required. Format of test case names:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,7 +33,7 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent to delete test cases from.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                       {@see TestCasesClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\BatchDeleteTestCasesRequest
@@ -54,10 +54,10 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to delete test cases from.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
-     *           Required. Format of test case names: `projects/<Project ID>/locations/
-     *           <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`.
+     *           Required. Format of test case names:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +67,7 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to delete test cases from.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +79,7 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to delete test cases from.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -94,8 +94,8 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format of test case names: `projects/<Project ID>/locations/
-     * <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`.
+     * Required. Format of test case names:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -106,8 +106,8 @@ class BatchDeleteTestCasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format of test case names: `projects/<Project ID>/locations/
-     * <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`.
+     * Required. Format of test case names:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetFlowRequest;
  * Retrieves the specified flow.
  *
  * @param string $formattedName The name of the flow to get.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                              {@see FlowsClient::flowName()} for help formatting this field.
  */
 function get_flow_sample(string $formattedName): void

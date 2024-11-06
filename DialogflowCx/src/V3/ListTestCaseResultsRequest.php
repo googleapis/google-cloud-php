@@ -18,9 +18,10 @@ class ListTestCaseResultsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The test case to list results for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
-     * list results across multiple test cases.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
+     * Specify a `-` as a wildcard for TestCase ID to
+     *  list results across multiple test cases.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -65,8 +66,9 @@ class ListTestCaseResultsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The test case to list results for.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     *                       testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
+     *                       Format:
+     *                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
+     *                       Specify a `-` as a wildcard for TestCase ID to
      *                       list results across multiple test cases. Please see
      *                       {@see TestCasesClient::testCaseName()} for help formatting this field.
      *
@@ -88,9 +90,10 @@ class ListTestCaseResultsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The test case to list results for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     *           testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
-     *           list results across multiple test cases.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
+     *           Specify a `-` as a wildcard for TestCase ID to
+     *            list results across multiple test cases.
      *     @type int $page_size
      *           The maximum number of items to return in a single page. By default 100 and
      *           at most 1000.
@@ -125,9 +128,10 @@ class ListTestCaseResultsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The test case to list results for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
-     * list results across multiple test cases.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
+     * Specify a `-` as a wildcard for TestCase ID to
+     *  list results across multiple test cases.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -139,9 +143,10 @@ class ListTestCaseResultsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The test case to list results for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
-     * testCases/<TestCase ID>`. Specify a `-` as a wildcard for TestCase ID to
-     * list results across multiple test cases.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
+     * Specify a `-` as a wildcard for TestCase ID to
+     *  list results across multiple test cases.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

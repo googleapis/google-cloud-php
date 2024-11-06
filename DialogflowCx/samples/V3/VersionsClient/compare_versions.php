@@ -34,13 +34,13 @@ use Google\Cloud\Dialogflow\Cx\V3\CompareVersionsResponse;
  * @param string $formattedBaseVersion   Name of the base flow version to compare with the target version.
  *                                       Use version ID `0` to indicate the draft version of the specified flow.
  *
- *                                       Format: `projects/<Project ID>/locations/<Location ID>/agents/
- *                                       <Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+ *                                       Format:
+ *                                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
  *                                       {@see VersionsClient::versionName()} for help formatting this field.
  * @param string $formattedTargetVersion Name of the target flow version to compare with the
  *                                       base version. Use version ID `0` to indicate the draft version of the
- *                                       specified flow. Format: `projects/<Project ID>/locations/<Location
- *                                       ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+ *                                       specified flow. Format:
+ *                                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
  *                                       {@see VersionsClient::versionName()} for help formatting this field.
  */
 function compare_versions_sample(

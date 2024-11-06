@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\ListGeneratorsRequest;
  * Returns the list of all generators in the specified agent.
  *
  * @param string $formattedParent The agent to list all generators for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see GeneratorsClient::agentName()} for help formatting this field.
  */
 function list_generators_sample(string $formattedParent): void

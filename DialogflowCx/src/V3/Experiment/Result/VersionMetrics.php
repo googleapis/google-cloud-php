@@ -17,8 +17,8 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the flow [Version][google.cloud.dialogflow.cx.v3.Version].
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -45,8 +45,8 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
      *
      *     @type string $version
      *           The name of the flow [Version][google.cloud.dialogflow.cx.v3.Version].
-     *           Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           The metrics and corresponding confidence intervals in the inference
      *           result.
@@ -61,8 +61,8 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flow [Version][google.cloud.dialogflow.cx.v3.Version].
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -74,8 +74,8 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flow [Version][google.cloud.dialogflow.cx.v3.Version].
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
