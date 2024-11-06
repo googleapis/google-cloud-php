@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.35.0](https://github.com/googleapis/gax-php/compare/v1.34.1...v1.35.0) (2024-11-06)
+
+
+### Features
+
+* Add `InsecureRequestBuilder` for emulator ([#582](https://github.com/googleapis/gax-php/issues/582)) ([cc1d047](https://github.com/googleapis/gax-php/commit/cc1d0472a1caf31bb3ecd98da1d6b8588f95b63a))
+* **docs:** Use doctum shared workflow for reference docs ([#578](https://github.com/googleapis/gax-php/issues/578)) ([021763f](https://github.com/googleapis/gax-php/commit/021763f255acaffda6ebe34a9d1a01c2bd187326))
+* Support for API Key client option ([#351](https://github.com/googleapis/gax-php/issues/351)) ([ab7f04f](https://github.com/googleapis/gax-php/commit/ab7f04fd8c9f7ed33a58155ae6b9e740f365ac2a))
+
+
+### Bug Fixes
+
+* **tests:** Skip docs tests from forks ([#591](https://github.com/googleapis/gax-php/issues/591)) ([35ae9f7](https://github.com/googleapis/gax-php/commit/35ae9f708d3ef937308d266e3a012296ce8606fc))
+
 ## [1.34.1](https://github.com/googleapis/gax-php/compare/v1.34.0...v1.34.1) (2024-08-13)
 
 
