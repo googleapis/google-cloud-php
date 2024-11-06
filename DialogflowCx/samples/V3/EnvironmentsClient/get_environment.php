@@ -34,8 +34,7 @@ use Google\Cloud\Dialogflow\Cx\V3\GetEnvironmentRequest;
  *
  * @param string $formattedName The name of the
  *                              [Environment][google.cloud.dialogflow.cx.v3.Environment]. Format:
- *                              `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/environments/<Environment ID>`. Please see
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                              {@see EnvironmentsClient::environmentName()} for help formatting this field.
  */
 function get_environment_sample(string $formattedName): void

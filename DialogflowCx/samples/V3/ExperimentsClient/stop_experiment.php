@@ -33,8 +33,8 @@ use Google\Cloud\Dialogflow\Cx\V3\StopExperimentRequest;
  * This rpc only changes the state of experiment from RUNNING to DONE.
  *
  * @param string $formattedName Resource name of the experiment to stop.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/environments/<Environment ID>/experiments/<Experiment ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>`. Please see
  *                              {@see ExperimentsClient::experimentName()} for help formatting this field.
  */
 function stop_experiment_sample(string $formattedName): void

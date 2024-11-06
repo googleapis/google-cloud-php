@@ -19,9 +19,9 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The flow to create an
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     * for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`
-     * or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+     * for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+     * or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`
      * for agent-level groups.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -51,9 +51,9 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string                                              $parent               Required. The flow to create an
      *                                                                                  [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     *                                                                                  for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                                                                                  ID>/flows/<Flow ID>`
-     *                                                                                  or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+     *                                                                                  for. Format:
+     *                                                                                  `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+     *                                                                                  or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`
      *                                                                                  for agent-level groups. Please see
      *                                                                                  {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transitionRouteGroup Required. The transition route group to create.
@@ -78,9 +78,9 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $parent
      *           Required. The flow to create an
      *           [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     *           for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`
-     *           or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+     *           for. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+     *           or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`
      *           for agent-level groups.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $transition_route_group
      *           Required. The transition route group to create.
@@ -104,9 +104,9 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The flow to create an
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     * for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`
-     * or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+     * for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+     * or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`
      * for agent-level groups.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -120,9 +120,9 @@ class CreateTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The flow to create an
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     * for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`
-     * or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+     * for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+     * or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`
      * for agent-level groups.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

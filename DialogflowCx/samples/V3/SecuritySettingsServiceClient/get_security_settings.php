@@ -34,8 +34,8 @@ use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
  * returned settings may be stale by up to 1 minute.
  *
  * @param string $formattedName Resource name of the settings.
- *                              Format: `projects/<Project ID>/locations/<Location
- *                              ID>/securitySettings/<security settings ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/securitySettings/<securitysettingsID>`. Please see
  *                              {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
  */
 function get_security_settings_sample(string $formattedName): void

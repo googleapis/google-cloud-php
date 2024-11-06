@@ -18,8 +18,8 @@ class GetSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the settings.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<security settings ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<securitysettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,8 +27,8 @@ class GetSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Resource name of the settings.
-     *                     Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/securitySettings/<security settings ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/securitySettings/<securitysettingsID>`. Please see
      *                     {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetSecuritySettingsRequest
@@ -49,8 +49,8 @@ class GetSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the settings.
-     *           Format: `projects/<Project ID>/locations/<Location
-     *           ID>/securitySettings/<security settings ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/securitySettings/<securitysettingsID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,8 +60,8 @@ class GetSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the settings.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<security settings ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<securitysettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,8 +73,8 @@ class GetSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the settings.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/securitySettings/<security settings ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<securitysettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

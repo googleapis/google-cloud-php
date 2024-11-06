@@ -17,14 +17,14 @@ class SafetySettings
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-²
+¯
 3google/cloud/dialogflow/cx/v3/safety_settings.protogoogle.cloud.dialogflow.cx.v3"—
 SafetySettingsL
 banned_phrases (24.google.cloud.dialogflow.cx.v3.SafetySettings.Phrase7
 Phrase
 text (	BàA
-language_code (	BàAB¹
-!com.google.cloud.dialogflow.cx.v3BSafetySettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpbø¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
+language_code (	BàAB¶
+!com.google.cloud.dialogflow.cx.v3BSafetySettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 
         static::$is_initialized = true;

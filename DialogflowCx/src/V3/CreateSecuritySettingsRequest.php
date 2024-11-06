@@ -18,7 +18,7 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The location to create an
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,7 +33,7 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                          $parent           Required. The location to create an
      *                                                                          [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
-     *                                                                          Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+     *                                                                          Format: `projects/<ProjectID>/locations/<LocationID>`. Please see
      *                                                                          {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $securitySettings Required. The security settings to create.
      *
@@ -57,7 +57,7 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The location to create an
      *           [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings $security_settings
      *           Required. The security settings to create.
      * }
@@ -70,7 +70,7 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The location to create an
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -83,7 +83,7 @@ class CreateSecuritySettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The location to create an
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] for.
-     * Format: `projects/<Project ID>/locations/<Location ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
