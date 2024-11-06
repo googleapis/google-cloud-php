@@ -32,7 +32,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\Backup as ProtoBackup;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
@@ -48,7 +47,6 @@ class BackupTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
     use ArraySubsetAsserts;
 
     const PROJECT_ID = 'test-project';
@@ -60,6 +58,7 @@ class BackupTest extends TestCase
     private $databaseAdminClient;
     private Serializer $serializer;
     private $instance;
+    private $operationResponse;
 
     private $database;
     private DateTime $expireTime;
@@ -70,7 +69,7 @@ class BackupTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
 
         $this->database = $this->prophesize(Database::class);
         $this->database->name()->willReturn(DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE));
@@ -78,6 +77,9 @@ class BackupTest extends TestCase
         $this->instance = $this->prophesize(Instance::class);
         $this->instance->name()->willReturn(DatabaseAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE));
         $this->instance->database(Argument::any())->willReturn($this->database);
+
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::any())->willReturn($this->operationResponse->reveal());
 
         $this->expireTime = new DateTime("+7 hours");
         $this->versionTime = new DateTime("-2 hours");
@@ -119,7 +121,7 @@ class BackupTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->getOperationResponseMock());
+            ->willReturn($this->operationResponse->reveal());
 
         $backup = new Backup(
             $this->databaseAdminClient->reveal(),
@@ -153,7 +155,7 @@ class BackupTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->getOperationResponseMock());
+            ->willReturn($this->operationResponse->reveal());
 
         $backup = new Backup(
             $this->databaseAdminClient->reveal(),
@@ -219,6 +221,7 @@ class BackupTest extends TestCase
         );
 
         $info = $backup->info();
+        var_dump($info);exit;
 
         $this->assertArraySubset([
             'name' => $response->getName(),
