@@ -304,6 +304,25 @@ final class ConversationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -588,6 +607,7 @@ final class ConversationsClient
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}

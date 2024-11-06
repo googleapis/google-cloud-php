@@ -23,7 +23,7 @@ class Context
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-"
+"
 (google/cloud/dialogflow/v2/context.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.proto"
 Context
 name (	BàA
@@ -60,8 +60,8 @@ GetContext-.google.cloud.dialogflow.v2.GetContextRequest#.google.cloud.dialogf
 CreateContext0.google.cloud.dialogflow.v2.CreateContextRequest#.google.cloud.dialogflow.v2.Context"ÔÚAparent,context‚Óä“¼"1/v2/{parent=projects/*/agent/sessions/*}/contexts:contextZS"H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts:contextZH"=/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts:contextZ_"T/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts:contextâ
 UpdateContext0.google.cloud.dialogflow.v2.UpdateContextRequest#.google.cloud.dialogflow.v2.Context"ùÚAcontext,update_mask‚Óä“Ü29/v2/{context.name=projects/*/agent/sessions/*/contexts/*}:contextZ[2P/v2/{context.name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}:contextZP2E/v2/{context.name=projects/*/locations/*/agent/sessions/*/contexts/*}:contextZg2\\/v2/{context.name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}:context‚
 DeleteContext0.google.cloud.dialogflow.v2.DeleteContextRequest.google.protobuf.Empty"¦ÚAname‚Óä“˜*1/v2/{name=projects/*/agent/sessions/*/contexts/*}ZJ*H/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}Z?*=/v2/{name=projects/*/locations/*/agent/sessions/*/contexts/*}ZV*T/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}Œ
-DeleteAllContexts4.google.cloud.dialogflow.v2.DeleteAllContextsRequest.google.protobuf.Empty"¨ÚAparent‚Óä“˜*1/v2/{parent=projects/*/agent/sessions/*}/contextsZJ*H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contextsZ?*=/v2/{parent=projects/*/locations/*/agent/sessions/*}/contextsZV*T/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contextsxÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB•
-com.google.cloud.dialogflow.v2BContextProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpbø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
+DeleteAllContexts4.google.cloud.dialogflow.v2.DeleteAllContextsRequest.google.protobuf.Empty"¨ÚAparent‚Óä“˜*1/v2/{parent=projects/*/agent/sessions/*}/contextsZJ*H/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contextsZ?*=/v2/{parent=projects/*/locations/*/agent/sessions/*}/contextsZV*T/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contextsxÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB’
+com.google.cloud.dialogflow.v2BContextProtoPZ>cloud.google.com/go/dialogflow/apiv2/dialogflowpb;dialogflowpb¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
         , true);
 
         static::$is_initialized = true;

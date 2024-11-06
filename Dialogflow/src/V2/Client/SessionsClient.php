@@ -128,6 +128,25 @@ final class SessionsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_environment_user_session resource.
      *
@@ -424,6 +443,7 @@ final class SessionsClient
      * The following name formats are supported:
      * Template: Pattern
      * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
      * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
      * - projectEnvironmentUserSessionEntityType: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}
