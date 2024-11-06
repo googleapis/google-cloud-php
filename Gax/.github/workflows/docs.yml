@@ -17,6 +17,7 @@ jobs:
     docs:
         name: "Generate Documentation"
         uses: GoogleCloudPlatform/php-tools/.github/workflows/doctum.yml@main
+        if: ${{ github.event.pull_request.head.repo.full_name == 'googleapis/gax-php' }}
         with:
           title: "Google API Core (GAX) Reference Documentation"
           default_version: ${{ inputs.tag || github.head_ref || github.ref_name }}
