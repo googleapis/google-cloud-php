@@ -37,6 +37,8 @@ class Component
     private string $clientDocumentation;
     private string $description;
     private array $namespaces;
+    /** @var array<Component> */
+    private array $componentDependencies;
 
     public function __construct(private string $name, string $path = null)
     {
@@ -211,8 +213,9 @@ class Component
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
         $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
 
+        $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
-            if (0 === strpos($dir, 'src')) {
+            if (str_starts_with($dir, 'src')) {
                 $namespaces[rtrim($namespace, '\\')] = $dir;
             }
         }
@@ -220,6 +223,22 @@ class Component
             throw new RuntimeException('composer autoload.psr-4 does not contain a namespace');
         }
         $this->namespaces = $namespaces;
+
+        // find dependencies which are google/cloud components
+        $this->componentDependencies = [];
+        foreach ($composerJson['require'] ?? [] as $name => $version) {
+            if ($componentName = key(array_filter(
+                $repoMetadataFullJson,
+                fn ($metadata) => $metadata['distribution_name'] === $name
+            ))) {
+                $this->componentDependencies[] = new Component($componentName);
+            }
+        }
+        if (isset($composerJson['require']['google/gax'])
+            && !isset($composerJson['require']['google/common-protos'])
+        ) {
+            $this->componentDependencies[] = new Component('CommonProtos');
+        }
     }
 
     /**
@@ -245,9 +264,51 @@ class Component
         return array_map(fn($v) => $v->getMigrationStatus(), $this->getComponentPackages());
     }
 
-    public function getProtoPackages(): array
+    public function getProtoNamespaces(): array
     {
-        return array_map(fn($v) => $v->getProtoPackage(), $this->getComponentPackages());
+        $protoNamespaces = [];
+        $componentPackages = $this->getComponentPackages();
+        foreach ($this->namespaces as $namespace => $dir) {
+            $componentPackages = $dir === 'src'
+                ? $this->getComponentPackages()
+                : [new ComponentPackage($this, str_replace('src/', '', $dir))];
+
+            $protoNamespaces = array_reduce(
+                $componentPackages,
+                fn($protoNamespaces, $pkg) => array_merge($protoNamespaces, $pkg->getProtoNamespaces()),
+                $protoNamespaces
+            );
+        }
+
+        return $protoNamespaces;
+    }
+
+    public static function getProtoPackageToNamespaceMap(): array
+    {
+        $protoNamespaces = [];
+        foreach (self::getComponents() as $component) {
+            $componentProtoNamespaces = $component->getProtoNamespaces();
+            if ($commonPackages = array_intersect_key($componentProtoNamespaces, $protoNamespaces)) {
+                foreach ($commonPackages as $package => $namespace) {
+                    if ($namespace !== $protoNamespaces[$package]) {
+                        throw new RuntimeException(sprintf(
+                            'Package "%s" has conflicting namespaces: "%s" and "%s"',
+                            $package,
+                            $namespace,
+                            $protoNamespaces[$package]
+                        ));
+                    }
+                }
+            }
+            $protoNamespaces = array_merge($protoNamespaces, $componentProtoNamespaces);
+        }
+
+        return $protoNamespaces;
+    }
+
+    public function getProtoPaths(): array
+    {
+        return array_map(fn($v) => $v->getProtoPath(), $this->getComponentPackages());
     }
 
     public function getServiceAddresses(): array
@@ -283,5 +344,10 @@ class Component
             $paths = [''];
         }
         return array_reverse($paths);
+    }
+
+    public function getComponentDependencies(): array
+    {
+        return $this->componentDependencies;
     }
 }
